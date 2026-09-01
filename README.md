@@ -29,4 +29,8 @@ GitHub Actions cron is fixed UTC and doesn't know about daylight saving, so ever
 
 Manually trigger a full run (all three) any time via `workflow_dispatch` (Actions tab → Run workflow, or `gh workflow run scan.yml`).
 
+### Shared price cache
+
+All three screeners import `price_cache.py`, which persists daily OHLCV history for the whole ASX universe in `price_cache.parquet` (committed back to the repo each run, like the cooldown files). A ticker not yet cached gets a full history pull; an already-cached one only gets its trailing ~10 days re-fetched and merged in. Since all three share one cache, only the first screener to run in a job does real fetching — the other two just read what it already refreshed. This exists because re-fetching full multi-year history for ~2000 tickers on every run (now 5x/day) was triggering Yahoo Finance's throttling on GitHub Actions' shared IP ranges; each script also has a circuit breaker (`MIN_FETCH_RATIO` in each script, `price_cache.count_usable`) that aborts without publishing if too little of the universe has usable cached data, rather than overwriting the live site with a near-empty report.
+
 Not financial advice — research tooling only.
