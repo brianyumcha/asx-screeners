@@ -409,7 +409,12 @@ h1{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;letter-spacing
 .reportnav:hover{border-color:var(--accent2)}
 .notice{background:rgba(255,184,0,.05);border:1px solid rgba(255,184,0,.15);border-radius:4px;
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
-.controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:1.2rem}
+.controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.7rem}
+.sectorrow{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
+.sectorpill{background:var(--surface);border:1px solid var(--border);color:var(--muted);
+  font-size:.68rem;padding:.35rem .7rem;border-radius:20px;cursor:pointer}
+.sectorpill:hover{color:var(--text)}
+.sectorpill.active{background:rgba(0,229,160,.12);border-color:var(--accent);color:var(--accent)}
 .pillgroup{display:flex;gap:.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.2rem}
 .pill{background:transparent;border:none;color:var(--muted);font-size:.72rem;
   padding:.4rem .8rem;border-radius:6px;cursor:pointer;white-space:nowrap}
@@ -493,6 +498,8 @@ canvas{width:100%;height:100%;display:block}
     <label class="checkline"><input type="checkbox" id="onlySignals" checked> Only show NEW HH</label>
   </div>
 
+  <div class="sectorrow" id="sectorRow"></div>
+
   <div id="sectors"></div>
   <div id="grid" class="grid" style="display:none"></div>
   <footer>##FOOTER_NOTE##</footer>
@@ -504,7 +511,19 @@ document.getElementById('reportNav').value = location.pathname.split('/').pop() 
 const DATA = ##DATA_JSON##;
 const SECTOR_ORDER = ##SECTOR_ORDER_JSON##;
 
-let state = { mode: 'table', tf: 'daily', chartTf: 21, search: '', onlySignals: true };
+let state = { mode: 'table', tf: 'daily', chartTf: 21, search: '', onlySignals: true, sector: null };
+
+const sectorsPresent = [...new Set(DATA.map(r => r.sector))];
+const sectorRow = document.getElementById('sectorRow');
+sectorRow.innerHTML = '<button class="sectorpill active" data-sector="">All sectors</button>' +
+  SECTOR_ORDER.filter(s => sectorsPresent.includes(s)).map(s => `<button class="sectorpill" data-sector="${esc(s)}">${esc(s)}</button>`).join('');
+sectorRow.addEventListener('click', e => {
+  if (!e.target.dataset.hasOwnProperty('sector')) return;
+  state.sector = e.target.dataset.sector || null;
+  sectorRow.querySelectorAll('.sectorpill').forEach(x => x.classList.remove('active'));
+  e.target.classList.add('active');
+  render();
+});
 
 document.getElementById('modeToggle').addEventListener('click', e => {
   if (!e.target.dataset.mode) return;
@@ -703,6 +722,7 @@ function render() {
   const obvKey = state.tf === 'daily' ? 'obv_daily' : 'obv_weekly';
 
   let visible = DATA.filter(r => !state.search || r.ticker.includes(state.search));
+  if (state.sector) visible = visible.filter(r => r.sector === state.sector);
   if (state.onlySignals || state.mode === 'chart') visible = visible.filter(r => r[sigKey]);
 
   const sectorsEl = document.getElementById('sectors');
