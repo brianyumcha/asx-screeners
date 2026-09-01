@@ -22,8 +22,10 @@ python3 "HH SCREENER.py"
 
 A GitHub Actions workflow (`.github/workflows/scan.yml`) publishes the dashboards to GitHub Pages on a schedule:
 
-- **OBV + Pullback** — once daily, 5:00pm AEST (after ASX close). Cooldown state (`seen_tickers*.json`) is committed back to the repo each run so "already seen" tracking persists across runs.
+- **OBV + Pullback** — once daily, 5:00pm Sydney time (after ASX close). Cooldown state (`seen_tickers*.json`) is committed back to the repo each run so "already seen" tracking persists across runs.
 - **Higher-High** — 5x daily during market hours (10:30am, 1pm, 3:30pm, 4:30pm, and again as part of the 5pm full run). No cooldown/scoring concept — every ticker passing the liquidity filters is shown, live-signal state only, so re-running intraday just reflects current state.
+
+GitHub Actions cron is fixed UTC and doesn't know about daylight saving, so every slot above is registered twice in `scan.yml` (once at its AEST instant, once at its AEDT instant). `.github/workflows/dst_gate.py` checks the real current `Australia/Sydney` UTC offset at runtime and skips whichever set doesn't match the current season — so the schedule stays correct in local time across the AEST/AEDT switch without any manual edits.
 
 Manually trigger a full run (all three) any time via `workflow_dispatch` (Actions tab → Run workflow, or `gh workflow run scan.yml`).
 

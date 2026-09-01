@@ -2,13 +2,20 @@ name: ASX Screeners
 
 on:
   schedule:
-    # Times are UTC, converted assuming AEST (UTC+10) — during AEDT (UTC+11,
-    # roughly Oct-Apr) each fires ~1hr later local time.
-    - cron: '30 0 * * 1-5'   # 10:30am AEST — Higher-High screener only
-    - cron: '0 3 * * 1-5'    # 1:00pm AEST — Higher-High screener only
-    - cron: '30 5 * * 1-5'   # 3:30pm AEST — Higher-High screener only
-    - cron: '30 6 * * 1-5'   # 4:30pm AEST — Higher-High screener only
-    - cron: '0 7 * * 1-5'    # 5:00pm AEST, after close — full run (OBV + Pullback + HH)
+    # GitHub Actions cron is fixed UTC — it can't shift for daylight saving on
+    # its own, so every local time slot below is registered TWICE: once at its
+    # AEST (UTC+10) instant, once at its AEDT (UTC+11) instant. Both fire
+    # year-round; dst_gate.py checks the real current Australia/Sydney offset
+    # at runtime and skips whichever set doesn't match the current season.
+    - cron: '30 0 * * 1-5'    # 10:30am AEST — HH only
+    - cron: '0 3 * * 1-5'     # 1:00pm AEST — HH only
+    - cron: '30 5 * * 1-5'    # 3:30pm AEST == 4:30pm AEDT (same UTC instant) — HH only
+    - cron: '30 6 * * 1-5'    # 4:30pm AEST — HH only
+    - cron: '0 7 * * 1-5'     # 5:00pm AEST, after close — full run
+    - cron: '30 23 * * 0-4'   # 10:30am AEDT (falls on the previous UTC day) — HH only
+    - cron: '0 2 * * 1-5'     # 1:00pm AEDT — HH only
+    - cron: '30 4 * * 1-5'    # 3:30pm AEDT — HH only
+    - cron: '0 6 * * 1-5'     # 5:00pm AEDT, after close — full run
   workflow_dispatch: {}
 
 permissions:
@@ -23,6 +30,8 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.gate.outputs.should_run }}
     steps:
       - uses: actions/checkout@v4
 
@@ -30,28 +39,36 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Determine DST-aware run mode
+        id: gate
+        env:
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: python3 .github/workflows/dst_gate.py
+
       - name: Install dependencies
+        if: steps.gate.outputs.should_run == 'true'
         run: pip install -r requirements.txt
 
       - name: Run OBV pre-breakout screener
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 7 * * 1-5'
+        if: steps.gate.outputs.full_run == 'true'
         run: python3 "OBV SCREENER.py"
 
       - name: Run pullback (Zag Zone) screener
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 7 * * 1-5'
+        if: steps.gate.outputs.full_run == 'true'
         run: python3 "PULLBACK SCREENER.py"
 
       - name: Run Higher-High screener
+        if: steps.gate.outputs.should_run == 'true'
         run: python3 "HH SCREENER.py"
 
       - name: Preserve existing OBV/Pullback pages on HH-only intraday runs
-        if: github.event_name == 'schedule' && github.event.schedule != '0 7 * * 1-5'
+        if: steps.gate.outputs.should_run == 'true' && steps.gate.outputs.full_run != 'true'
         run: |
           curl -sf -o asx_breakout_results.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html
           curl -sf -o asx_pullback_results.html https://brianyumcha.github.io/asx-screeners/pullback.html
 
       - name: Commit updated cooldown state
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 7 * * 1-5'
+        if: steps.gate.outputs.full_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -60,6 +77,7 @@ jobs:
           git push
 
       - name: Build Pages site
+        if: steps.gate.outputs.should_run == 'true'
         run: |
           mkdir -p _site
           cp "asx_breakout_results.html" _site/pre-breakout.html
@@ -81,16 +99,18 @@ jobs:
             <a href="pre-breakout.html">📈 Pre-Breakout Screener (OBV)</a>
             <a href="pullback.html">↩️ Pullback Screener (Zag Zone)</a>
             <a href="higher-high.html">⬆️ Higher-High Screener</a>
-            <div class="note">OBV + Pullback run once on weekday afternoons (AEST, after close). Higher-High also runs intraday at 10:30am/1pm/3:30pm/4:30pm AEST. All via GitHub Actions. Not financial advice.</div>
+            <div class="note">OBV + Pullback run once on weekday afternoons (after ASX close). Higher-High also runs intraday at 10:30am/1pm/3:30pm/4:30pm local Sydney time. All via GitHub Actions, DST-adjusted automatically. Not financial advice.</div>
           </body></html>
           HTMLEOF
 
       - uses: actions/upload-pages-artifact@v3
+        if: steps.gate.outputs.should_run == 'true'
         with:
           path: _site
 
   deploy:
     needs: scan
+    if: needs.scan.outputs.should_run == 'true'
     permissions:
       pages: write
       id-token: write
