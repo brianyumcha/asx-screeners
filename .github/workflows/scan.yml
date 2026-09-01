@@ -34,6 +34,9 @@ jobs:
       - name: Run pullback (Zag Zone) screener
         run: python3 "PULLBACK SCREENER.py"
 
+      - name: Run Higher-High screener
+        run: python3 "HH SCREENER.py"
+
       - name: Commit updated cooldown state
         run: |
           git config user.name "github-actions[bot]"
@@ -47,6 +50,7 @@ jobs:
           mkdir -p _site
           cp "asx_breakout_results.html" _site/pre-breakout.html
           cp "asx_pullback_results.html" _site/pullback.html
+          cp "asx_hh_results.html" _site/higher-high.html
           cat > _site/index.html <<'HTMLEOF'
           <!doctype html><html><head><meta charset="utf-8"><title>ASX Screeners</title>
           <style>
@@ -62,6 +66,7 @@ jobs:
             <h1>ASX Screeners</h1>
             <a href="pre-breakout.html">📈 Pre-Breakout Screener (OBV)</a>
             <a href="pullback.html">↩️ Pullback Screener (Zag Zone)</a>
+            <a href="higher-high.html">⬆️ Higher-High Screener</a>
             <div class="note">Runs automatically on weekday afternoons (AEST) via GitHub Actions. Not financial advice.</div>
           </body></html>
           HTMLEOF
