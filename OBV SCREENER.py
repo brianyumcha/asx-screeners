@@ -56,6 +56,8 @@ import yfinance as yf
 import openpyxl  # required by pandas to read .xlsx files (Market Index ticker list)
 import pdfplumber  # required to read a locally-supplied ASX company list PDF
 
+import price_cache
+
 warnings.filterwarnings("ignore")
 
 # Save output files next to this script, not in system32
@@ -77,8 +79,6 @@ MIN_PRICE             = 0.05   # minimum price filter (5 cents)
 MIN_MARKET_CAP        = 50_000_000  # minimum market cap ($50 million)
 MIN_AVG_VOLUME         = 50_000     # filter out illiquid stocks (30-day avg daily volume)
 RATE_LIMIT_SLEEP      = 0.05   # seconds between batches to avoid rate limits
-FETCH_RETRIES    = 2      # extra attempts if yfinance returns no/short data (transient throttling)
-FETCH_RETRY_SLEEP = 1.5
 # Below this fraction of tickers actually returning usable price data on a
 # full-universe scan (not a --tickers test run), treat the whole run as
 # broken (Yahoo Finance throttling the source IP, e.g. a GitHub Actions
@@ -461,28 +461,16 @@ def calc_sma(closes, period):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
-def _fetch_history(ticker_obj, period, min_needed):
-    """.history() with retries - a single flaky/throttled request shouldn't
-    silently drop a ticker from the scan (see MIN_FETCH_RATIO note above)."""
-    for attempt in range(FETCH_RETRIES + 1):
-        try:
-            df = ticker_obj.history(period=period, interval='1d', auto_adjust=True)
-        except Exception:
-            df = None
-        if df is not None and not df.empty and len(df) >= min_needed:
-            return df
-        if attempt < FETCH_RETRIES:
-            time.sleep(FETCH_RETRY_SLEEP * (attempt + 1))
-    return df
-
-
-def analyse_ticker(ticker_raw, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS):
+def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS):
     """
-    Fetch data and apply screening criteria.
-    Returns (result_or_None, fetched_ok). fetched_ok is True as soon as we got
-    real, usable price data - independent of whether the ticker then passes
-    the screening criteria - so run_scan can tell "no signal" apart from
-    "Yahoo Finance didn't answer" (see MIN_FETCH_RATIO).
+    Apply screening criteria to an already-fetched price_cache frame (see
+    that module - all three screeners share one cache now, refreshed once
+    up front, so this function only does the (much lighter) market-cap/
+    sector lookups over the network, not the price history itself).
+    Returns dict or None if the ticker doesn't pass.
+
+    Raw (auto_adjust=False) prices, matching HH SCREENER.py's fix - see
+    price_cache.py's docstring for why.
     """
     sym = ticker_raw.upper().strip()
     yahoo_sym = sym if sym.endswith('.AX') else sym + '.AX'
@@ -497,33 +485,24 @@ def analyse_ticker(ticker_raw, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS):
             market_cap = 0
 
         if market_cap and market_cap < MIN_MARKET_CAP:
-            return None, True
+            return None
 
         min_needed = max(obv_days + 5, lookback_days + 5, SMA_LONG + 5)
-        df = _fetch_history(ticker_obj, HISTORY_PERIOD, min_needed)
+        if ticker_frame is None or len(ticker_frame) < min_needed:
+            return None
 
-        if df is None or df.empty or len(df) < min_needed:
-            return None, False
-
-        if isinstance(df.columns, pd.MultiIndex):
-            df.columns = df.columns.get_level_values(0)
-
-        df = df.dropna(subset=['Open', 'High', 'Low', 'Close'])
-        closes  = df['Close'].tolist()
-        opens   = df['Open'].tolist()
-        highs   = df['High'].tolist()
-        lows    = df['Low'].tolist()
-        volumes = df['Volume'].fillna(0).tolist()
-        dates   = [d.strftime('%Y-%m-%d') for d in df.index]
-
-        if len(closes) < min_needed:
-            return None, True
+        closes  = ticker_frame['close'].tolist()
+        opens   = ticker_frame['open'].tolist()
+        highs   = ticker_frame['high'].tolist()
+        lows    = ticker_frame['low'].tolist()
+        volumes = ticker_frame['volume'].tolist()
+        dates   = [d.strftime('%Y-%m-%d') for d in ticker_frame['date'].tolist()]
 
         price = closes[-1]
 
         # Filter: price >= 5 cents
         if price < MIN_PRICE:
-            return None, True
+            return None
 
         # Filter: market cap >= $50M (fallback via shares outstanding)
         if market_cap == 0:
@@ -533,41 +512,41 @@ def analyse_ticker(ticker_raw, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS):
             except Exception:
                 market_cap = 0
         if market_cap > 0 and market_cap < MIN_MARKET_CAP:
-            return None, True
+            return None
 
         # Filter: 30-day average volume >= 50,000
         avg_vol = sum(volumes[-30:]) / min(30, len(volumes))
         if avg_vol < MIN_AVG_VOLUME:
-            return None, True
+            return None
 
         # ── Criterion: Rising OBV over 30 days ────────────────────────────
         obv = calc_obv(closes, volumes)
         obv_window = obv[-obv_days:]
         obv_slope = linear_slope(obv_window)
         if obv_slope <= 0:
-            return None, True
+            return None
 
         score = obv_score(obv, closes, window=obv_days)
 
         # ── Criterion: Price has NOT broken the 30-day high ──────────────
         n_day_high = max(highs[-(lookback_days + 1):-1])
         if price >= n_day_high:
-            return None, True
+            return None
 
         gap_pct = (n_day_high - price) / n_day_high * 100  # info column only
 
         # ── Criterion: RSI between 45 and 70 ──────────────────────────────
         rsi = calc_rsi(closes, period=RSI_PERIOD)
         if rsi is None or not (RSI_MIN <= rsi <= RSI_MAX):
-            return None, True
+            return None
 
         # ── Criterion: price above 20-day and 50-day SMA ──────────────────
         sma20 = calc_sma(closes, SMA_SHORT)
         sma50 = calc_sma(closes, SMA_LONG)
         if sma20 is None or sma50 is None:
-            return None, True
+            return None
         if price <= sma20 or price <= sma50:
-            return None, True
+            return None
 
         # ── Extra info metrics ─────────────────────────────────────────────
         prev_close = closes[-2]
@@ -611,34 +590,39 @@ def analyse_ticker(ticker_raw, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS):
             'lows':         [round(v, 4) for v in lows[trim]],
             'closes':       [round(v, 4) for v in closes[trim]],
             'volumes':      [int(v) for v in volumes[trim]],
-        }, True
+        }
 
     except Exception:
-        return None, False
+        return None
 
 
 # ─── SCAN ALL TICKERS ─────────────────────────────────────────────────────────
 
 def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
-    results = []
-    fetched_ok = 0
-    failed  = 0
-    total   = len(tickers)
-    done    = 0
-    t0      = time.time()
+    total = len(tickers)
+    t0 = time.time()
 
-    print(f"\n🔍 Scanning {total} ASX tickers  |  {workers} threads  |  OBV window: {obv_days}d\n")
+    print(f"\n🔄 Refreshing shared price cache for {total} ASX tickers | {workers} threads\n")
+    cache, fetched_ok, _ = price_cache.refresh_cache(tickers, workers=workers, max_history=HISTORY_PERIOD)
+    min_needed = max(obv_days + 5, LOOKBACK_DAYS + 5, SMA_LONG + 5)
+    usable = price_cache.count_usable(cache, tickers, min_days=min_needed)
+    print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  Usable overall: {usable}/{total}")
+
+    results = []
+    failed = 0
+    done = 0
+    t1 = time.time()
+
+    print(f"\n🔍 Scoring {total} ASX tickers  |  {workers} threads  |  OBV window: {obv_days}d\n")
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(analyse_ticker, t, obv_days): t for t in tickers}
+        futures = {pool.submit(analyse_ticker, t, price_cache.get_ticker_frame(cache, t), obv_days): t for t in tickers}
 
         for fut in as_completed(futures):
             done += 1
             tick = futures[fut]
             try:
-                res, ok = fut.result()
-                if ok:
-                    fetched_ok += 1
+                res = fut.result()
                 if res:
                     results.append(res)
                     flag = f"  ✅ {tick:8s}  score={res['obv_score']:3d}  rsi={res['rsi']:5.1f}  gap={res['gap_pct']:5.1f}%"
@@ -648,7 +632,7 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
                 failed += 1
                 flag = f"  ✗  {tick}  ({e})"
 
-            elapsed = time.time() - t0
+            elapsed = time.time() - t1
             rate    = done / elapsed if elapsed > 0 else 0
             eta     = (total - done) / rate if rate > 0 else 0
 
@@ -663,7 +647,7 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
 
     print(f"\n\n✅ Scan complete in {time.time()-t0:.1f}s")
     print(f"   Scanned: {total}  |  Signals: {len(results)}  |  Got real data: {fetched_ok}  |  Failed: {failed}")
-    return results, fetched_ok
+    return results, usable
 
 
 # ─── HTML DASHBOARD ────────────────────────────────────────────────────────────
@@ -858,19 +842,21 @@ def main():
     else:
         tickers = get_asx_tickers()
 
-    results, fetched_ok = run_scan(tickers, obv_days=args.days, workers=args.workers)
+    results, usable = run_scan(tickers, obv_days=args.days, workers=args.workers)
 
-    # Circuit breaker: on a full-universe run, if only a small fraction of
-    # tickers actually returned real price data, the scan is broken (Yahoo
-    # Finance throttling the source IP), not "a quiet day" - abort instead of
-    # publishing a near-empty report. Skipped for --tickers test runs, which
-    # are too small for this ratio to mean anything.
+    # Circuit breaker: on a full-universe run, if the shared price cache
+    # doesn't have usable data for most of the universe - whether from
+    # today's fetches or an earlier run's still-recent ones - the pipeline
+    # is broken (Yahoo Finance throttling the source IP with nothing decent
+    # cached yet), not "a quiet day" - abort instead of publishing a
+    # near-empty report. Skipped for --tickers test runs, which are too
+    # small for this ratio to mean anything.
     if not args.tickers and len(tickers) >= MIN_UNIVERSE_FOR_CHECK:
-        fetch_ratio = fetched_ok / len(tickers)
-        if fetch_ratio < MIN_FETCH_RATIO:
-            print(f"\n❌ Only {fetched_ok}/{len(tickers)} tickers ({fetch_ratio:.0%}) returned real "
-                  f"price data - likely Yahoo Finance throttling this machine/IP, not a real quiet "
-                  f"day. Aborting WITHOUT writing a report, so the last good one stays live.")
+        usable_ratio = usable / len(tickers)
+        if usable_ratio < MIN_FETCH_RATIO:
+            print(f"\n❌ Only {usable}/{len(tickers)} tickers ({usable_ratio:.0%}) have usable cached "
+                  f"price data - likely Yahoo Finance throttling this machine/IP with nothing decent "
+                  f"cached yet. Aborting WITHOUT writing a report, so the last good one stays live.")
             sys.exit(1)
 
     # Sort by score descending

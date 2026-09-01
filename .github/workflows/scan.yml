@@ -67,6 +67,20 @@ jobs:
           curl -sf -o asx_breakout_results.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html
           curl -sf -o asx_pullback_results.html https://brianyumcha.github.io/asx-screeners/pullback.html
 
+      - name: Commit updated price cache
+        # Every successful run (including intraday HH-only ones) refreshes
+        # price_cache.parquet - it has to be committed every time too, or
+        # an intraday run's fetches are just thrown away when the ephemeral
+        # runner is torn down, and the next run starts from the same stale
+        # cache instead of building on what was just fetched.
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f price_cache.parquet
+          git diff --staged --quiet || git commit -m "Update price cache"
+          git push
+
       - name: Commit updated cooldown state
         if: steps.gate.outputs.full_run == 'true'
         run: |

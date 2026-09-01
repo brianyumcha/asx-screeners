@@ -49,14 +49,14 @@ import re
 import sys
 import time
 import warnings
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 
 import pandas as pd
 import requests
-import yfinance as yf
 import openpyxl
 import pdfplumber
+
+import price_cache
 
 warnings.filterwarnings("ignore")
 
@@ -70,9 +70,6 @@ CHART_TRIM_BARS = 130    # trailing daily bars embedded for the chart-view mini 
 MIN_PRICE       = 0.05
 MIN_MARKET_CAP  = 20_000_000
 MIN_AVG_VOLUME  = 20_000
-RATE_LIMIT_SLEEP = 0.05
-FETCH_RETRIES    = 2      # extra attempts if yfinance returns no/short data (transient throttling)
-FETCH_RETRY_SLEEP = 1.5
 # Below this fraction of tickers actually returning usable price data on a
 # full-universe scan (not a --tickers test run), treat the whole run as
 # broken (Yahoo Finance throttling the source IP, e.g. a GitHub Actions
@@ -258,64 +255,42 @@ def resample_weekly(dates, opens, highs, lows, closes, volumes):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
-def _fetch_history(ticker_obj):
-    """.history() with retries - a single flaky/throttled request shouldn't
-    silently drop a ticker from the scan (see MIN_FETCH_RATIO note above)."""
-    for attempt in range(FETCH_RETRIES + 1):
-        try:
-            df = ticker_obj.history(period=HISTORY_PERIOD, interval="1d", auto_adjust=False)
-        except Exception:
-            df = None
-        if df is not None and not df.empty and len(df) >= 40:
-            return df
-        if attempt < FETCH_RETRIES:
-            time.sleep(FETCH_RETRY_SLEEP * (attempt + 1))
-    return df
+def analyse_ticker(ticker_raw, info, ticker_frame):
+    """Computes signals from an already-fetched price_cache frame (see that
+    module - all three screeners share one cache now, refreshed once up
+    front, so this function does no network I/O at all). Returns a result
+    dict, or None if the ticker doesn't pass the liquidity filters.
 
-
-def analyse_ticker(ticker_raw, info):
-    """Returns (result_or_None, fetched_ok). fetched_ok is True as soon as we
-    got real, usable price data - independent of whether the ticker then
-    passes the liquidity/signal filters - so run_scan can tell "no signal"
-    apart from "Yahoo Finance didn't answer" (see MIN_FETCH_RATIO)."""
+    Raw (auto_adjust=False) prices deliberately: adjusted prices
+    retroactively lower every historical bar before an ex-dividend date to
+    make them comparable to today, which can make a pivot level look
+    "broken" by today's raw price when it never actually was (confirmed on
+    ANN, 2026-09-01 - see the fix note in this script's version history).
+    TradingView's own chart/Pine data uses raw prices by default, so this
+    also matches what the live "HH Indicator" dashboard shows."""
     sym = ticker_raw.upper().strip()
-    yahoo_sym = sym if sym.endswith(".AX") else sym + ".AX"
 
     try:
         market_cap = info.get("market_cap") or 0
         if market_cap and market_cap < MIN_MARKET_CAP:
-            return None, True
+            return None
 
-        ticker_obj = yf.Ticker(yahoo_sym)
-        # auto_adjust=False deliberately: adjusted prices retroactively lower
-        # every historical bar before an ex-dividend date to make them
-        # comparable to today, which can make a pivot level look "broken" by
-        # today's raw price when it never actually was (confirmed on ANN,
-        # 2026-09-01 - see the fix note in this script's version history).
-        # TradingView's own chart/Pine data uses raw prices by default, so
-        # this also matches what the live "HH Indicator" dashboard shows.
-        df = _fetch_history(ticker_obj)
-        if df is None or df.empty or len(df) < 40:
-            return None, False
-        if isinstance(df.columns, pd.MultiIndex):
-            df.columns = df.columns.get_level_values(0)
-        df = df.dropna(subset=["Open", "High", "Low", "Close"])
-        if len(df) < 40:
-            return None, False
+        if ticker_frame is None or len(ticker_frame) < 40:
+            return None
 
-        closes = df["Close"].tolist()
-        opens = df["Open"].tolist()
-        highs = df["High"].tolist()
-        lows = df["Low"].tolist()
-        volumes = df["Volume"].fillna(0).tolist()
-        dates = list(df.index)
+        closes = ticker_frame["close"].tolist()
+        opens = ticker_frame["open"].tolist()
+        highs = ticker_frame["high"].tolist()
+        lows = ticker_frame["low"].tolist()
+        volumes = ticker_frame["volume"].tolist()
+        dates = ticker_frame["date"].tolist()
 
         price = closes[-1]
         if price < MIN_PRICE:
-            return None, True
+            return None
         avg_vol = sum(volumes[-30:]) / min(30, len(volumes))
         if avg_vol < MIN_AVG_VOLUME:
-            return None, True
+            return None
 
         prev_close = closes[-2]
         change_1d = (price - prev_close) / prev_close * 100
@@ -364,10 +339,10 @@ def analyse_ticker(ticker_raw, info):
                 "closes": [round(v, 4) for v in closes[trim]],
             })
 
-        return result, True
+        return result
 
     except Exception:
-        return None, False
+        return None
 
 
 # ─── SCAN ─────────────────────────────────────────────────────────────────────
@@ -375,40 +350,24 @@ def analyse_ticker(ticker_raw, info):
 def run_scan(universe, workers=DEFAULT_WORKERS):
     tickers = list(universe.keys())
     total = len(tickers)
-    results = []
-    fetched_ok = 0
-    failed = 0
-    done = 0
     t0 = time.time()
 
-    print(f"\n🔍 Scanning {total} ASX tickers for Higher-High signals (daily + weekly) | {workers} threads\n")
+    print(f"\n🔄 Refreshing shared price cache for {total} ASX tickers | {workers} threads\n")
+    cache, fetched_ok, _ = price_cache.refresh_cache(tickers, workers=workers, max_history=HISTORY_PERIOD)
+    usable = price_cache.count_usable(cache, tickers, min_days=40)
+    print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  Usable overall: {usable}/{total}")
 
-    with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(analyse_ticker, t, universe[t]): t for t in tickers}
-        for fut in as_completed(futures):
-            done += 1
-            tick = futures[fut]
-            try:
-                res, ok = fut.result()
-                if ok:
-                    fetched_ok += 1
-                if res:
-                    results.append(res)
-            except Exception:
-                failed += 1
+    results = []
+    for t in tickers:
+        try:
+            res = analyse_ticker(t, universe[t], price_cache.get_ticker_frame(cache, t))
+            if res:
+                results.append(res)
+        except Exception:
+            pass
 
-            elapsed = time.time() - t0
-            rate = done / elapsed if elapsed > 0 else 0
-            eta = (total - done) / rate if rate > 0 else 0
-            sys.stdout.write(f"\r  [{done:5d}/{total}]  {rate:4.1f}/s  ETA {eta:5.0f}s  Included: {len(results):4d}   ")
-            sys.stdout.flush()
-            if done % 100 == 0:
-                time.sleep(RATE_LIMIT_SLEEP)
-
-    print(f"\n\n✅ Scan complete in {time.time()-t0:.1f}s")
-    print(f"   Scanned: {total}  |  Included (passed liquidity filters): {len(results)}  |  "
-          f"Got real data: {fetched_ok}  |  Failed: {failed}")
-    return results, fetched_ok
+    print(f"   Scanned: {total}  |  Included (passed liquidity filters): {len(results)}")
+    return results, usable
 
 
 # ─── HTML REPORT (sector-grouped table, matches the Pine dashboard layout) ────
@@ -838,20 +797,22 @@ def main():
         universe = {t: universe.get(t, {"industry": "Other", "sector": "Other", "market_cap": 0, "name": t}) for t in wanted}
         print(f"  Using custom list: {len(universe)} tickers")
 
-    results, fetched_ok = run_scan(universe, workers=args.workers)
+    results, usable = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])
 
-    # Circuit breaker: on a full-universe run, if only a small fraction of
-    # tickers actually returned real price data, the scan is broken (Yahoo
-    # Finance throttling the source IP), not "a quiet day" - abort instead of
-    # publishing a near-empty report. Skipped for --tickers test runs, which
-    # are too small for this ratio to mean anything.
+    # Circuit breaker: on a full-universe run, if the shared price cache
+    # doesn't have usable data for most of the universe - whether from
+    # today's fetches or an earlier run's still-recent ones - the pipeline
+    # is broken (Yahoo Finance throttling the source IP with nothing decent
+    # cached yet), not "a quiet day" - abort instead of publishing a
+    # near-empty report. Skipped for --tickers test runs, which are too
+    # small for this ratio to mean anything.
     if not args.tickers and len(universe) >= MIN_UNIVERSE_FOR_CHECK:
-        fetch_ratio = fetched_ok / len(universe)
-        if fetch_ratio < MIN_FETCH_RATIO:
-            print(f"\n❌ Only {fetched_ok}/{len(universe)} tickers ({fetch_ratio:.0%}) returned real "
-                  f"price data - likely Yahoo Finance throttling this machine/IP, not a real quiet "
-                  f"day. Aborting WITHOUT writing a report, so the last good one stays live.")
+        usable_ratio = usable / len(universe)
+        if usable_ratio < MIN_FETCH_RATIO:
+            print(f"\n❌ Only {usable}/{len(universe)} tickers ({usable_ratio:.0%}) have usable cached "
+                  f"price data - likely Yahoo Finance throttling this machine/IP with nothing decent "
+                  f"cached yet. Aborting WITHOUT writing a report, so the last good one stays live.")
             sys.exit(1)
 
     out_base = os.path.join(SCRIPT_DIR, 'asx_hh_results')
