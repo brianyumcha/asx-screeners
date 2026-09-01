@@ -1,0 +1,84 @@
+name: ASX Screeners
+
+on:
+  schedule:
+    # 07:00 UTC = 17:00 AEST / 18:00 AEDT — after the 4pm ASX close, weekdays.
+    - cron: '0 7 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run OBV pre-breakout screener
+        run: python3 "OBV SCREENER.py"
+
+      - name: Run pullback (Zag Zone) screener
+        run: python3 "PULLBACK SCREENER.py"
+
+      - name: Commit updated cooldown state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f seen_tickers.json seen_tickers_pullback.json
+          git diff --staged --quiet || git commit -m "Update cooldown state"
+          git push
+
+      - name: Build Pages site
+        run: |
+          mkdir -p _site
+          cp "asx_breakout_results.html" _site/pre-breakout.html
+          cp "asx_pullback_results.html" _site/pullback.html
+          cat > _site/index.html <<'HTMLEOF'
+          <!doctype html><html><head><meta charset="utf-8"><title>ASX Screeners</title>
+          <style>
+            body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0a0c0f;color:#e8edf2;
+                 padding:3rem 2rem;max-width:600px;margin:0 auto;}
+            h1{font-size:1.6rem;}
+            a{color:#00aaff;display:block;margin:1.2rem 0;font-size:1.15rem;text-decoration:none;
+              padding:1rem 1.2rem;background:#141820;border:1px solid #1e2530;border-radius:8px;}
+            a:hover{border-color:#00e5a0;}
+            .note{color:#5a6478;font-size:.8rem;margin-top:2rem;}
+          </style></head>
+          <body>
+            <h1>ASX Screeners</h1>
+            <a href="pre-breakout.html">📈 Pre-Breakout Screener (OBV)</a>
+            <a href="pullback.html">↩️ Pullback Screener (Zag Zone)</a>
+            <div class="note">Runs automatically on weekday afternoons (AEST) via GitHub Actions. Not financial advice.</div>
+          </body></html>
+          HTMLEOF
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: scan
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
