@@ -79,7 +79,12 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -f price_cache.parquet
           git diff --staged --quiet || git commit -m "Update price cache"
-          git push
+          for i in 1 2 3; do
+            git push && break
+            echo "Push rejected (concurrent commit to main) - rebasing and retrying (attempt $i)"
+            git fetch origin main
+            git rebase origin/main
+          done
 
       - name: Commit updated cooldown state
         if: steps.gate.outputs.full_run == 'true'
@@ -88,7 +93,12 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -f seen_tickers.json seen_tickers_pullback.json
           git diff --staged --quiet || git commit -m "Update cooldown state"
-          git push
+          for i in 1 2 3; do
+            git push && break
+            echo "Push rejected (concurrent commit to main) - rebasing and retrying (attempt $i)"
+            git fetch origin main
+            git rebase origin/main
+          done
 
       - name: Build Pages site
         if: steps.gate.outputs.should_run == 'true'
