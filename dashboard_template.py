@@ -77,14 +77,15 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>##TITLE##</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
 :root {
   --bg:#0a0c0f; --surface:#111418; --border:#1e2530;
   --accent:#00e5a0; --accent2:#00aaff; --warn:#ffb800; --danger:#ff4455;
   --text:#e8edf2; --muted:#5a6478; --card:#141820;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;padding:1.6rem;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-variant-numeric:tabular-nums;padding:1.6rem;}
 body::before{content:'';position:fixed;inset:0;
   background-image:linear-gradient(rgba(0,229,160,.03) 1px,transparent 1px),
   linear-gradient(90deg,rgba(0,229,160,.03) 1px,transparent 1px);
@@ -97,26 +98,26 @@ h1{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;letter-spacing
 .subtitle{font-size:.78rem;color:var(--muted);margin-top:.3rem}
 .session{font-size:.68rem;color:var(--muted);margin:.6rem 0 1.1rem;letter-spacing:.03em}
 .copybtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
-  font-family:'DM Mono',monospace;font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;
+  font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;
   display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
 
 .controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.7rem}
 .pillgroup{display:flex;gap:.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.2rem}
-.pill{background:transparent;border:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:.72rem;
+.pill{background:transparent;border:none;color:var(--muted);font-size:.72rem;
   padding:.4rem .8rem;border-radius:6px;cursor:pointer;white-space:nowrap}
 .pill:hover{color:var(--text)}
 .pill.active{background:var(--accent2);color:#04121a;font-weight:600}
 input[type=text]{background:var(--surface);border:1px solid var(--border);color:var(--text);
-  font-family:'DM Mono',monospace;font-size:.75rem;padding:.5rem .8rem;border-radius:8px;outline:none;width:170px}
+  font-size:.75rem;padding:.5rem .8rem;border-radius:8px;outline:none;width:170px}
 input[type=text]:focus{border-color:rgba(0,229,160,.4)}
 .checkline{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted);cursor:pointer}
 .checkline input{cursor:pointer}
 
 .sectorrow{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
 .sectorpill{background:var(--surface);border:1px solid var(--border);color:var(--muted);
-  font-family:'DM Mono',monospace;font-size:.68rem;padding:.35rem .7rem;border-radius:20px;cursor:pointer}
+  font-size:.68rem;padding:.35rem .7rem;border-radius:20px;cursor:pointer}
 .sectorpill:hover{color:var(--text)}
 .sectorpill.active{background:rgba(0,229,160,.12);border-color:var(--accent);color:var(--accent)}
 
@@ -151,6 +152,21 @@ canvas{width:100%;height:100%;display:block}
 .sectortag{font-size:.64rem;color:var(--muted);text-transform:none}
 
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:3rem 0;font-size:.85rem}
+.empty.table-empty{text-align:center;color:var(--muted);padding:3rem 0;font-size:.85rem}
+
+table.datatable{width:100%;border-collapse:collapse;font-size:.8rem}
+table.datatable thead tr{border-bottom:1px solid var(--border)}
+table.datatable th{text-align:left;padding:.6rem .8rem;font-size:.66rem;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.06em;cursor:pointer;white-space:nowrap;user-select:none;font-weight:600}
+table.datatable th:hover{color:var(--text)}
+table.datatable th.sorted{color:var(--accent)}
+table.datatable tbody tr{border-bottom:1px solid rgba(30,37,48,.6);transition:background .1s}
+table.datatable tbody tr:hover{background:rgba(0,229,160,.03)}
+table.datatable tbody tr.seen{opacity:.5}
+table.datatable td{padding:.65rem .8rem;vertical-align:middle;white-space:nowrap}
+table.datatable td.ticker-cell{font-family:'Syne',sans-serif;font-weight:700}
+table.datatable td.ticker-cell a{color:var(--accent2);text-decoration:none}
+table.datatable td.sector-cell{color:var(--muted);font-size:.74rem}
 .notice{background:rgba(255,184,0,.05);border:1px solid rgba(255,184,0,.15);border-radius:4px;
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
@@ -170,6 +186,10 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
   <div class="notice">⚠ Static report from a single scan run — not live. Re-run the script for fresh data. Nothing here is a trade recommendation.</div>
 
   <div class="controls">
+    <div class="pillgroup" id="modeToggle">
+      <button class="pill active" data-mode="chart">📊 Charts</button>
+      <button class="pill" data-mode="table">☰ Table</button>
+    </div>
     <div class="pillgroup" id="viewToggle">
       <button class="pill active" data-view="ranked">Ranked</button>
       <button class="pill" data-view="sector">Sector</button>
@@ -191,6 +211,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
   <div class="sectorrow" id="sectorRow"></div>
   <div class="countline" id="countLine"></div>
   <div class="grid" id="grid"></div>
+  <div id="tableWrap" style="display:none;overflow-x:auto;"></div>
 
   <footer>##FOOTER_NOTE##</footer>
 </div>
@@ -200,12 +221,15 @@ const DATA = ##DATA_JSON##;
 const SECTORS = ##SECTORS_JSON##;
 
 let state = {
+  mode: 'chart',   // 'chart' or 'table'
   view: 'ranked',
   sizes: new Set(['S','M','L']),
   tf: 126,
   search: '',
   showSeen: false,
   sector: null,
+  sortKey: 'score',
+  sortDir: -1,
 };
 
 const sectorRow = document.getElementById('sectorRow');
@@ -218,6 +242,15 @@ sectorRow.querySelectorAll('.sectorpill').forEach(el => el.addEventListener('cli
   render();
 }));
 
+document.getElementById('modeToggle').addEventListener('click', e => {
+  if (!e.target.dataset.mode) return;
+  state.mode = e.target.dataset.mode;
+  document.querySelectorAll('#modeToggle .pill').forEach(x => x.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('viewToggle').style.display = state.mode === 'chart' ? '' : 'none';
+  document.getElementById('tfToggle').style.display = state.mode === 'chart' ? '' : 'none';
+  render();
+});
 document.getElementById('viewToggle').addEventListener('click', e => {
   if (!e.target.dataset.view) return;
   state.view = e.target.dataset.view;
@@ -342,7 +375,7 @@ function drawChart(canvas, card, tf) {
   // floating last-price badge
   const lastPrice = closes[closes.length - 1];
   const up = card.change_1d >= 0;
-  ctx.font = '600 10px "DM Mono", monospace';
+  ctx.font = '600 10px Inter, sans-serif';
   const label = lastPrice.toFixed(lastPrice < 1 ? 3 : 2);
   const tw = ctx.measureText(label).width;
   const bx = W - tw - 10, by = y(lastPrice);
@@ -371,10 +404,80 @@ function cardHtml(c) {
   </div>`;
 }
 
+function statNumeric(value) {
+  const m = String(value).match(/-?[\d.]+/);
+  return m ? parseFloat(m[0]) : NaN;
+}
+
+function renderTable(visible) {
+  const wrap = document.getElementById('tableWrap');
+  if (visible.length === 0) {
+    wrap.innerHTML = '<div class="empty table-empty">No stocks match the current filters.</div>';
+    return;
+  }
+  const statLabels = visible[0].stats.map(s => s.label);
+  const sorters = {
+    ticker: c => c.ticker,
+    sector: c => c.sector,
+    price: c => c.price,
+    change_1d: c => c.change_1d,
+    score: c => c.score,
+  };
+  statLabels.forEach((label, i) => { sorters['stat' + i] = c => statNumeric(c.stats[i].value); });
+
+  const getVal = sorters[state.sortKey] || sorters.score;
+  const sorted = [...visible].sort((a, b) => {
+    const av = getVal(a), bv = getVal(b);
+    if (typeof av === 'string') return state.sortDir * av.localeCompare(bv);
+    return state.sortDir * ((av ?? -Infinity) - (bv ?? -Infinity));
+  });
+
+  const headers = [
+    ['ticker', 'Ticker'], ['sector', 'Sector'], ['price', 'Price'],
+    ['change_1d', '1D Chg'], ['score', 'Score'],
+    ...statLabels.map((l, i) => ['stat' + i, l]),
+  ];
+  const thead = headers.map(([key, label]) =>
+    `<th class="${state.sortKey === key ? 'sorted' : ''}" data-sortkey="${key}">${esc(label)}${state.sortKey === key ? (state.sortDir === 1 ? ' ↑' : ' ↓') : ''}</th>`
+  ).join('');
+
+  const rows = sorted.map(c => {
+    const chgClass = c.change_1d > 0 ? 'up' : c.change_1d < 0 ? 'dn' : 'neutral';
+    const chgSign = c.change_1d > 0 ? '+' : '';
+    const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${c.ticker}`;
+    const statCells = c.stats.map(s => `<td>${esc(s.value)}</td>`).join('');
+    return `<tr class="${c.already_seen ? 'seen' : ''}">
+      <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(c.ticker)}</a></td>
+      <td class="sector-cell">${esc(c.sector)}</td>
+      <td>$${c.price.toFixed(c.price < 1 ? 3 : 2)}</td>
+      <td class="${chgClass}">${chgSign}${c.change_1d.toFixed(1)}%</td>
+      <td>${c.score}</td>
+      ${statCells}
+    </tr>`;
+  }).join('');
+
+  wrap.innerHTML = `<table class="datatable"><thead><tr>${thead}</tr></thead><tbody>${rows}</tbody></table>`;
+  wrap.querySelectorAll('th').forEach(th => th.addEventListener('click', () => {
+    const key = th.dataset.sortkey;
+    if (state.sortKey === key) state.sortDir *= -1; else { state.sortKey = key; state.sortDir = -1; }
+    render();
+  }));
+}
+
 function render() {
   const visible = filteredCards();
   document.getElementById('countLine').textContent = `${visible.length} stocks`;
   const grid = document.getElementById('grid');
+  const tableWrap = document.getElementById('tableWrap');
+
+  if (state.mode === 'table') {
+    grid.style.display = 'none';
+    tableWrap.style.display = '';
+    renderTable(visible);
+    return;
+  }
+  grid.style.display = '';
+  tableWrap.style.display = 'none';
 
   if (visible.length === 0) {
     grid.innerHTML = '<div class="empty">No stocks match the current filters.</div>';
