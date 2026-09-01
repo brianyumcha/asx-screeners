@@ -71,6 +71,16 @@ MIN_PRICE       = 0.05
 MIN_MARKET_CAP  = 20_000_000
 MIN_AVG_VOLUME  = 20_000
 RATE_LIMIT_SLEEP = 0.05
+FETCH_RETRIES    = 2      # extra attempts if yfinance returns no/short data (transient throttling)
+FETCH_RETRY_SLEEP = 1.5
+# Below this fraction of tickers actually returning usable price data on a
+# full-universe scan (not a --tickers test run), treat the whole run as
+# broken (Yahoo Finance throttling the source IP, e.g. a GitHub Actions
+# runner) rather than a real "quiet day", and abort before publishing -
+# found 2026-09-01: a GitHub Actions run silently got real data for only
+# 27/2037 tickers (1.3%) and reported it as a normal "1 NEW HH" result.
+MIN_FETCH_RATIO       = 0.5
+MIN_UNIVERSE_FOR_CHECK = 500
 
 PIVOT_LEFT  = 3
 PIVOT_RIGHT = 3
@@ -248,14 +258,33 @@ def resample_weekly(dates, opens, highs, lows, closes, volumes):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
+def _fetch_history(ticker_obj):
+    """.history() with retries - a single flaky/throttled request shouldn't
+    silently drop a ticker from the scan (see MIN_FETCH_RATIO note above)."""
+    for attempt in range(FETCH_RETRIES + 1):
+        try:
+            df = ticker_obj.history(period=HISTORY_PERIOD, interval="1d", auto_adjust=False)
+        except Exception:
+            df = None
+        if df is not None and not df.empty and len(df) >= 40:
+            return df
+        if attempt < FETCH_RETRIES:
+            time.sleep(FETCH_RETRY_SLEEP * (attempt + 1))
+    return df
+
+
 def analyse_ticker(ticker_raw, info):
+    """Returns (result_or_None, fetched_ok). fetched_ok is True as soon as we
+    got real, usable price data - independent of whether the ticker then
+    passes the liquidity/signal filters - so run_scan can tell "no signal"
+    apart from "Yahoo Finance didn't answer" (see MIN_FETCH_RATIO)."""
     sym = ticker_raw.upper().strip()
     yahoo_sym = sym if sym.endswith(".AX") else sym + ".AX"
 
     try:
         market_cap = info.get("market_cap") or 0
         if market_cap and market_cap < MIN_MARKET_CAP:
-            return None
+            return None, True
 
         ticker_obj = yf.Ticker(yahoo_sym)
         # auto_adjust=False deliberately: adjusted prices retroactively lower
@@ -265,14 +294,14 @@ def analyse_ticker(ticker_raw, info):
         # 2026-09-01 - see the fix note in this script's version history).
         # TradingView's own chart/Pine data uses raw prices by default, so
         # this also matches what the live "HH Indicator" dashboard shows.
-        df = ticker_obj.history(period=HISTORY_PERIOD, interval="1d", auto_adjust=False)
-        if df.empty or len(df) < 40:
-            return None
+        df = _fetch_history(ticker_obj)
+        if df is None or df.empty or len(df) < 40:
+            return None, False
         if isinstance(df.columns, pd.MultiIndex):
             df.columns = df.columns.get_level_values(0)
         df = df.dropna(subset=["Open", "High", "Low", "Close"])
         if len(df) < 40:
-            return None
+            return None, False
 
         closes = df["Close"].tolist()
         opens = df["Open"].tolist()
@@ -283,10 +312,10 @@ def analyse_ticker(ticker_raw, info):
 
         price = closes[-1]
         if price < MIN_PRICE:
-            return None
+            return None, True
         avg_vol = sum(volumes[-30:]) / min(30, len(volumes))
         if avg_vol < MIN_AVG_VOLUME:
-            return None
+            return None, True
 
         prev_close = closes[-2]
         change_1d = (price - prev_close) / prev_close * 100
@@ -335,10 +364,10 @@ def analyse_ticker(ticker_raw, info):
                 "closes": [round(v, 4) for v in closes[trim]],
             })
 
-        return result
+        return result, True
 
     except Exception:
-        return None
+        return None, False
 
 
 # ─── SCAN ─────────────────────────────────────────────────────────────────────
@@ -347,6 +376,7 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
     tickers = list(universe.keys())
     total = len(tickers)
     results = []
+    fetched_ok = 0
     failed = 0
     done = 0
     t0 = time.time()
@@ -359,7 +389,9 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
             done += 1
             tick = futures[fut]
             try:
-                res = fut.result()
+                res, ok = fut.result()
+                if ok:
+                    fetched_ok += 1
                 if res:
                     results.append(res)
             except Exception:
@@ -374,8 +406,9 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
                 time.sleep(RATE_LIMIT_SLEEP)
 
     print(f"\n\n✅ Scan complete in {time.time()-t0:.1f}s")
-    print(f"   Scanned: {total}  |  Included (passed liquidity filters): {len(results)}  |  Failed: {failed}")
-    return results
+    print(f"   Scanned: {total}  |  Included (passed liquidity filters): {len(results)}  |  "
+          f"Got real data: {fetched_ok}  |  Failed: {failed}")
+    return results, fetched_ok
 
 
 # ─── HTML REPORT (sector-grouped table, matches the Pine dashboard layout) ────
@@ -783,6 +816,7 @@ def main():
     parser = argparse.ArgumentParser(description='ASX Higher-High Screener (sector grid)')
     parser.add_argument('--workers', type=int, default=DEFAULT_WORKERS)
     parser.add_argument('--tickers', type=str, default='', help='Comma-separated ticker list (overrides full ASX scan)')
+    parser.add_argument('--no-open', action='store_true', help="Don't auto-open the HTML report in a browser tab when done")
     parser.add_argument('--min-vol', type=int, default=MIN_AVG_VOLUME)
     parser.add_argument('--min-price', type=float, default=MIN_PRICE)
     parser.add_argument('--min-mcap', type=float, default=MIN_MARKET_CAP)
@@ -804,8 +838,21 @@ def main():
         universe = {t: universe.get(t, {"industry": "Other", "sector": "Other", "market_cap": 0, "name": t}) for t in wanted}
         print(f"  Using custom list: {len(universe)} tickers")
 
-    results = run_scan(universe, workers=args.workers)
+    results, fetched_ok = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])
+
+    # Circuit breaker: on a full-universe run, if only a small fraction of
+    # tickers actually returned real price data, the scan is broken (Yahoo
+    # Finance throttling the source IP), not "a quiet day" - abort instead of
+    # publishing a near-empty report. Skipped for --tickers test runs, which
+    # are too small for this ratio to mean anything.
+    if not args.tickers and len(universe) >= MIN_UNIVERSE_FOR_CHECK:
+        fetch_ratio = fetched_ok / len(universe)
+        if fetch_ratio < MIN_FETCH_RATIO:
+            print(f"\n❌ Only {fetched_ok}/{len(universe)} tickers ({fetch_ratio:.0%}) returned real "
+                  f"price data - likely Yahoo Finance throttling this machine/IP, not a real quiet "
+                  f"day. Aborting WITHOUT writing a report, so the last good one stays live.")
+            sys.exit(1)
 
     out_base = os.path.join(SCRIPT_DIR, 'asx_hh_results')
     html_path = out_base + '.html'
@@ -822,7 +869,7 @@ def main():
     except Exception as e:
         print(f"  ⚠ CSV save error: {e}")
 
-    if os.path.isfile(html_path):
+    if not args.no_open and os.path.isfile(html_path):
         try:
             import webbrowser
             webbrowser.open(html_path)

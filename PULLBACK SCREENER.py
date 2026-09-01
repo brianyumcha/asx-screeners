@@ -81,6 +81,16 @@ MIN_PRICE         = 0.05
 MIN_MARKET_CAP    = 50_000_000
 MIN_AVG_VOLUME    = 50_000
 RATE_LIMIT_SLEEP  = 0.05
+FETCH_RETRIES    = 2      # extra attempts if yfinance returns no/short data (transient throttling)
+FETCH_RETRY_SLEEP = 1.5
+# Below this fraction of tickers actually returning usable price data on a
+# full-universe scan (not a --tickers test run), treat the whole run as
+# broken (Yahoo Finance throttling the source IP, e.g. a GitHub Actions
+# runner) rather than a real "quiet day", and abort before publishing -
+# found 2026-09-01 on the HH screener's identical fetch pattern: a GitHub
+# Actions run silently got real data for only 27/2037 tickers (1.3%).
+MIN_FETCH_RATIO       = 0.5
+MIN_UNIVERSE_FOR_CHECK = 500
 
 ZIGZAG_THRESHOLD_PCT = 8.0   # min % move to count as a new zigzag swing
 MIN_IMPULSE_PCT       = 8.0  # the up-leg itself must be at least this big
@@ -445,7 +455,23 @@ def confluence_score(signals):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
+def _fetch_history(ticker_obj, period, min_needed):
+    """.history() with retries - a single flaky/throttled request shouldn't
+    silently drop a ticker from the scan (see MIN_FETCH_RATIO note above)."""
+    for attempt in range(FETCH_RETRIES + 1):
+        try:
+            df = ticker_obj.history(period=period, interval='1d', auto_adjust=True)
+        except Exception:
+            df = None
+        if df is not None and not df.empty and len(df) >= min_needed:
+            return df
+        if attempt < FETCH_RETRIES:
+            time.sleep(FETCH_RETRY_SLEEP * (attempt + 1))
+    return df
+
+
 def analyse_ticker(ticker_raw, min_score=DEFAULT_MIN_SCORE):
+    """Returns (result_or_None, fetched_ok) - see MIN_FETCH_RATIO note above."""
     sym = ticker_raw.upper().strip()
     yahoo_sym = sym if sym.endswith('.AX') else sym + '.AX'
 
@@ -460,11 +486,11 @@ def analyse_ticker(ticker_raw, min_score=DEFAULT_MIN_SCORE):
             info = None
 
         if market_cap and market_cap < MIN_MARKET_CAP:
-            return None
+            return None, True
 
-        df = ticker_obj.history(period=HISTORY_PERIOD, interval='1d', auto_adjust=True)
-        if df.empty or len(df) < 60:
-            return None
+        df = _fetch_history(ticker_obj, HISTORY_PERIOD, 60)
+        if df is None or df.empty or len(df) < 60:
+            return None, False
 
         if isinstance(df.columns, pd.MultiIndex):
             df.columns = df.columns.get_level_values(0)
@@ -478,11 +504,11 @@ def analyse_ticker(ticker_raw, min_score=DEFAULT_MIN_SCORE):
         dates   = [d.strftime('%Y-%m-%d') for d in df.index]
         n = len(closes)
         if n < 60:
-            return None
+            return None, True
 
         price = closes[-1]
         if price < MIN_PRICE:
-            return None
+            return None, True
 
         if market_cap == 0 and info is not None:
             try:
@@ -491,22 +517,22 @@ def analyse_ticker(ticker_raw, min_score=DEFAULT_MIN_SCORE):
             except Exception:
                 market_cap = 0
         if market_cap > 0 and market_cap < MIN_MARKET_CAP:
-            return None
+            return None, True
 
         avg_vol = sum(volumes[-30:]) / min(30, len(volumes))
         if avg_vol < MIN_AVG_VOLUME:
-            return None
+            return None, True
 
         # ── Structural filter: in the Zag Zone of the latest impulse leg ──
         pivots = zigzag(highs, lows)
         setup = find_latest_impulse_and_pullback(pivots, n - 1, price)
         if setup is None:
-            return None
+            return None, True
         lo_idx, lo_price, hi_idx, hi_price = setup
 
         retracement = (hi_price - price) / (hi_price - lo_price)
         if not (ZAG_ZONE_LOW <= retracement <= ZAG_ZONE_HIGH):
-            return None
+            return None, True
 
         # ── Supporting confluence (scored, not gated) ──────────────────────
         signals = {}
@@ -564,7 +590,7 @@ def analyse_ticker(ticker_raw, min_score=DEFAULT_MIN_SCORE):
 
         score = confluence_score(signals)
         if score < min_score:
-            return None
+            return None, True
 
         prev_close = closes[-2]
         change_1d = (price - prev_close) / prev_close * 100
@@ -610,16 +636,17 @@ def analyse_ticker(ticker_raw, min_score=DEFAULT_MIN_SCORE):
             'lows': [round(v, 4) for v in lows[trim]],
             'closes': [round(v, 4) for v in closes[trim]],
             'volumes': [int(v) for v in volumes[trim]],
-        }
+        }, True
 
     except Exception:
-        return None
+        return None, False
 
 
 # ─── SCAN ALL TICKERS ─────────────────────────────────────────────────────────
 
 def run_scan(tickers, min_score=DEFAULT_MIN_SCORE, workers=DEFAULT_WORKERS):
     results = []
+    fetched_ok = 0
     failed = 0
     total = len(tickers)
     done = 0
@@ -633,7 +660,9 @@ def run_scan(tickers, min_score=DEFAULT_MIN_SCORE, workers=DEFAULT_WORKERS):
             done += 1
             tick = futures[fut]
             try:
-                res = fut.result()
+                res, ok = fut.result()
+                if ok:
+                    fetched_ok += 1
                 if res:
                     results.append(res)
                     flag = f"  ✅ {tick:8s} score={res['confluence_score']:3d} retr={res['retracement_pct']:5.1f}%"
@@ -654,8 +683,8 @@ def run_scan(tickers, min_score=DEFAULT_MIN_SCORE, workers=DEFAULT_WORKERS):
                 time.sleep(RATE_LIMIT_SLEEP)
 
     print(f"\n\n✅ Scan complete in {time.time()-t0:.1f}s")
-    print(f"   Scanned: {total}  |  Signals: {len(results)}  |  Failed: {failed}")
-    return results
+    print(f"   Scanned: {total}  |  Signals: {len(results)}  |  Got real data: {fetched_ok}  |  Failed: {failed}")
+    return results, fetched_ok
 
 
 # ─── HTML DASHBOARD ────────────────────────────────────────────────────────────
@@ -789,6 +818,8 @@ def main():
     parser.add_argument('--out', type=str, default='asx_pullback_results')
     parser.add_argument('--tickers', type=str, default='',
                         help='Comma-separated ticker list (overrides full ASX scan)')
+    parser.add_argument('--no-open', action='store_true',
+                        help="Don't auto-open the HTML report in a browser tab when done")
     parser.add_argument('--min-score', type=int, default=DEFAULT_MIN_SCORE,
                         help=f'Min confluence score 0-100 to show a result (default: {DEFAULT_MIN_SCORE})')
     parser.add_argument('--min-vol', type=int, default=MIN_AVG_VOLUME)
@@ -822,7 +853,21 @@ def main():
     else:
         tickers = get_asx_tickers()
 
-    results = run_scan(tickers, min_score=args.min_score, workers=args.workers)
+    results, fetched_ok = run_scan(tickers, min_score=args.min_score, workers=args.workers)
+
+    # Circuit breaker: on a full-universe run, if only a small fraction of
+    # tickers actually returned real price data, the scan is broken (Yahoo
+    # Finance throttling the source IP), not "a quiet day" - abort instead of
+    # publishing a near-empty report. Skipped for --tickers test runs, which
+    # are too small for this ratio to mean anything.
+    if not args.tickers and len(tickers) >= MIN_UNIVERSE_FOR_CHECK:
+        fetch_ratio = fetched_ok / len(tickers)
+        if fetch_ratio < MIN_FETCH_RATIO:
+            print(f"\n❌ Only {fetched_ok}/{len(tickers)} tickers ({fetch_ratio:.0%}) returned real "
+                  f"price data - likely Yahoo Finance throttling this machine/IP, not a real quiet "
+                  f"day. Aborting WITHOUT writing a report, so the last good one stays live.")
+            sys.exit(1)
+
     results.sort(key=lambda x: x['confluence_score'], reverse=True)
 
     history = load_seen_history()
@@ -881,7 +926,7 @@ def main():
     print(f"  {'✅' if tv_ok   else '❌'} TradingView watchlist → {tv_path}")
     print(f"{'='*60}")
 
-    if html_ok:
+    if html_ok and not args.no_open:
         try:
             import webbrowser
             webbrowser.open(html_path)
