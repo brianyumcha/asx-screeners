@@ -2,8 +2,13 @@ name: ASX Screeners
 
 on:
   schedule:
-    # 07:00 UTC = 17:00 AEST / 18:00 AEDT — after the 4pm ASX close, weekdays.
-    - cron: '0 7 * * 1-5'
+    # Times are UTC, converted assuming AEST (UTC+10) — during AEDT (UTC+11,
+    # roughly Oct-Apr) each fires ~1hr later local time.
+    - cron: '30 0 * * 1-5'   # 10:30am AEST — Higher-High screener only
+    - cron: '0 3 * * 1-5'    # 1:00pm AEST — Higher-High screener only
+    - cron: '30 5 * * 1-5'   # 3:30pm AEST — Higher-High screener only
+    - cron: '30 6 * * 1-5'   # 4:30pm AEST — Higher-High screener only
+    - cron: '0 7 * * 1-5'    # 5:00pm AEST, after close — full run (OBV + Pullback + HH)
   workflow_dispatch: {}
 
 permissions:
@@ -29,15 +34,24 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run OBV pre-breakout screener
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 7 * * 1-5'
         run: python3 "OBV SCREENER.py"
 
       - name: Run pullback (Zag Zone) screener
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 7 * * 1-5'
         run: python3 "PULLBACK SCREENER.py"
 
       - name: Run Higher-High screener
         run: python3 "HH SCREENER.py"
 
+      - name: Preserve existing OBV/Pullback pages on HH-only intraday runs
+        if: github.event_name == 'schedule' && github.event.schedule != '0 7 * * 1-5'
+        run: |
+          curl -sf -o asx_breakout_results.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html
+          curl -sf -o asx_pullback_results.html https://brianyumcha.github.io/asx-screeners/pullback.html
+
       - name: Commit updated cooldown state
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 7 * * 1-5'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -67,7 +81,7 @@ jobs:
             <a href="pre-breakout.html">📈 Pre-Breakout Screener (OBV)</a>
             <a href="pullback.html">↩️ Pullback Screener (Zag Zone)</a>
             <a href="higher-high.html">⬆️ Higher-High Screener</a>
-            <div class="note">Runs automatically on weekday afternoons (AEST) via GitHub Actions. Not financial advice.</div>
+            <div class="note">OBV + Pullback run once on weekday afternoons (AEST, after close). Higher-High also runs intraday at 10:30am/1pm/3:30pm/4:30pm AEST. All via GitHub Actions. Not financial advice.</div>
           </body></html>
           HTMLEOF
 
