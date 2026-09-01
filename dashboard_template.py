@@ -102,6 +102,11 @@ h1{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;letter-spacing
   display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
+.topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.reportnav{background:var(--surface);border:1px solid var(--border);color:var(--text);
+  font-family:'Inter',sans-serif;font-size:.72rem;padding:.5rem .8rem;border-radius:6px;
+  cursor:pointer;outline:none;height:fit-content}
+.reportnav:hover{border-color:var(--accent2)}
 
 .controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.7rem}
 .pillgroup{display:flex;gap:.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.2rem}
@@ -179,7 +184,14 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
       <h1>##TITLE##</h1>
       <div class="subtitle">##SUBTITLE##</div>
     </div>
-    <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
+    <div class="topbar-right">
+      <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
+        <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
+        <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
+        <option value="higher-high.html">⬆️ Higher-High</option>
+      </select>
+      <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
+    </div>
   </div>
   <div class="session">##SESSION_LINE##</div>
 
@@ -217,6 +229,8 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 </div>
 
 <script>
+document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'pre-breakout.html';
+
 const DATA = ##DATA_JSON##;
 const SECTORS = ##SECTORS_JSON##;
 

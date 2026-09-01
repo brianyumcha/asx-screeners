@@ -397,11 +397,16 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;padding:1.6rem;}
 .wrap{max-width:1400px;margin:0 auto}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
 h1{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;letter-spacing:-.03em;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .subtitle{font-size:.78rem;color:var(--muted);margin-top:.3rem}
 .session{font-size:.68rem;color:var(--muted);margin:.6rem 0 1.1rem}
+.reportnav{background:var(--surface);border:1px solid var(--border);color:var(--text);
+  font-family:'Inter',sans-serif;font-size:.72rem;padding:.5rem .8rem;border-radius:6px;
+  cursor:pointer;outline:none;height:fit-content}
+.reportnav:hover{border-color:var(--accent2)}
 .notice{background:rgba(255,184,0,.05);border:1px solid rgba(255,184,0,.15);border-radius:4px;
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
 .controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:1.2rem}
@@ -455,8 +460,17 @@ canvas{width:100%;height:100%;display:block}
 </head>
 <body>
 <div class="wrap">
-  <h1>ASX HIGHER-HIGH SCREENER</h1>
-  <div class="subtitle">Structural breakout of the last swing high, by sector — port of the "HH Indicator (BT)" TradingView scripts, full ASX universe.</div>
+  <div class="topbar">
+    <div>
+      <h1>ASX HIGHER-HIGH SCREENER</h1>
+      <div class="subtitle">Structural breakout of the last swing high, by sector — port of the "HH Indicator (BT)" TradingView scripts, full ASX universe.</div>
+    </div>
+    <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
+      <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
+      <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
+      <option value="higher-high.html">⬆️ Higher-High</option>
+    </select>
+  </div>
   <div class="session">##SESSION_LINE##</div>
 
   <div class="notice">⚠ Static report from a single scan run — not live. The wave/structure validity is NOT auto-verified. Not financial advice.</div>
@@ -485,6 +499,8 @@ canvas{width:100%;height:100%;display:block}
 </div>
 
 <script>
+document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'higher-high.html';
+
 const DATA = ##DATA_JSON##;
 const SECTOR_ORDER = ##SECTOR_ORDER_JSON##;
 
