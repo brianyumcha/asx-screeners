@@ -462,7 +462,7 @@ def calc_sma(closes, period):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
-def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS):
+def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS, latest_date=None):
     """
     Apply screening criteria to an already-fetched price_cache frame (see
     that module - all three screeners share one cache now, refreshed once
@@ -490,6 +490,13 @@ def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LO
 
         min_needed = max(obv_days + 5, lookback_days + 5, SMA_LONG + 5)
         if ticker_frame is None or len(ticker_frame) < min_needed:
+            return None
+
+        # Same staleness guard as HH SCREENER.py (added there 2026-09-02,
+        # ported here after the same bug pattern showed up in Pullback via
+        # SUN - a stale-cache signal genuinely valid as of its last cached
+        # session, but price had already moved on by the time this ran).
+        if latest_date is not None and ticker_frame["date"].iloc[-1] < latest_date:
             return None
 
         closes  = ticker_frame['close'].tolist()
@@ -615,6 +622,7 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
     cache, fetched_ok, _ = price_cache.refresh_cache(tickers, workers=workers, max_history=HISTORY_PERIOD)
     min_needed = max(obv_days + 5, LOOKBACK_DAYS + 5, SMA_LONG + 5)
     usable = price_cache.count_usable(cache, tickers, min_days=min_needed)
+    latest_date = cache["date"].max() if not cache.empty else None
     print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  Usable overall: {usable}/{total}")
 
     results = []
@@ -625,7 +633,7 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
     print(f"\n🔍 Scoring {total} ASX tickers  |  {workers} threads  |  OBV window: {obv_days}d\n")
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(analyse_ticker, t, price_cache.get_ticker_frame(cache, t), obv_days): t for t in tickers}
+        futures = {pool.submit(analyse_ticker, t, price_cache.get_ticker_frame(cache, t), obv_days, latest_date=latest_date): t for t in tickers}
 
         for fut in as_completed(futures):
             done += 1

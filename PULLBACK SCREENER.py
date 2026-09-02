@@ -411,11 +411,30 @@ def zigzag(highs, lows, threshold_pct=ZIGZAG_THRESHOLD_PCT):
 
 def find_latest_impulse_and_pullback(pivots, current_idx, current_price):
     """
-    From the zigzag pivot list, find the most recent completed swing LOW ->
-    swing HIGH (the "impulse leg"), where price since that high has pulled
-    back below it (i.e. we're currently retracing it). Returns
-    (low_idx, low_price, high_idx, high_price) or None if no such setup
-    exists in the data.
+    From the zigzag pivot list, find the most recent swing HIGH that price
+    is currently retracing, and reconstruct the FULL impulse leg into it -
+    not just the leg immediately before it.
+
+    A raw zigzag chops one continuous trending move into several smaller
+    legs whenever a mid-trend pullback is itself big enough to clear the
+    zigzag threshold, even though it never broke the prior swing low (the
+    structure never actually reversed - it's still one impulse with an
+    internal wiggle). Using only the LAST such small leg mistakes that
+    wiggle for "the" impulse. Found on FBU, 2026-09-02: the raw zigzag's
+    final leg was a 13% counter-trend blip riding the tail of a much
+    bigger, still-intact ~53% move (Apr 28 low to Aug 20 high) - the small
+    leg alone put price in the Zag Zone of ITSELF while price was barely
+    off the highs of the real move, which the screener never saw at all.
+
+    Fix: once a candidate (low, high) pair is found, keep merging in any
+    EARLIER (low, high) pair as long as that earlier high was itself a
+    higher high than the one before it - i.e. the trend was still making
+    higher highs straight through that mid-trend pullback, so it's part of
+    the same impulse. The impulse low becomes the lowest low anywhere in
+    that merged run; the impulse high stays the most recent swing high.
+
+    Returns (low_idx, low_price, high_idx, high_price) or None if no such
+    setup exists in the data.
     """
     if len(pivots) < 2:
         return None
@@ -424,12 +443,25 @@ def find_latest_impulse_and_pullback(pivots, current_idx, current_price):
     for i in range(len(pivots) - 1, 0, -1):
         hi_idx, hi_price, hi_kind = pivots[i]
         lo_idx, lo_price, lo_kind = pivots[i - 1]
-        if hi_kind == 'H' and lo_kind == 'L' and hi_idx > lo_idx:
-            impulse_pct = (hi_price - lo_price) / lo_price * 100
-            if impulse_pct < MIN_IMPULSE_PCT:
-                continue
-            if current_idx > hi_idx and current_price < hi_price:
-                return (lo_idx, lo_price, hi_idx, hi_price)
+        if not (hi_kind == 'H' and lo_kind == 'L' and hi_idx > lo_idx):
+            continue
+        if not (current_idx > hi_idx and current_price < hi_price):
+            continue
+
+        lowest_lo_idx, lowest_lo_price = lo_idx, lo_price
+        scan_hi_price = hi_price
+        j = i - 2
+        while j >= 1 and pivots[j][2] == 'H' and pivots[j][1] < scan_hi_price:
+            scan_hi_price = pivots[j][1]
+            earlier_lo_idx, earlier_lo_price, _ = pivots[j - 1]
+            if earlier_lo_price < lowest_lo_price:
+                lowest_lo_idx, lowest_lo_price = earlier_lo_idx, earlier_lo_price
+            j -= 2
+
+        impulse_pct = (hi_price - lowest_lo_price) / lowest_lo_price * 100
+        if impulse_pct < MIN_IMPULSE_PCT:
+            continue
+        return (lowest_lo_idx, lowest_lo_price, hi_idx, hi_price)
     return None
 
 
@@ -456,7 +488,7 @@ def confluence_score(signals):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
-def analyse_ticker(ticker_raw, ticker_frame, min_score=DEFAULT_MIN_SCORE):
+def analyse_ticker(ticker_raw, ticker_frame, min_score=DEFAULT_MIN_SCORE, latest_date=None):
     """Applies screening criteria to an already-fetched price_cache frame
     (see that module - all three screeners share one cache now, refreshed
     once up front). Raw (auto_adjust=False) prices, matching HH SCREENER.py's
@@ -478,6 +510,15 @@ def analyse_ticker(ticker_raw, ticker_frame, min_score=DEFAULT_MIN_SCORE):
             return None
 
         if ticker_frame is None or len(ticker_frame) < 60:
+            return None
+
+        # Same staleness guard as HH SCREENER.py (added there 2026-09-02,
+        # ported here 2026-09-02 after SUN showed a stale-cache 41.2%
+        # retracement - genuinely valid as of its last cached session, but
+        # price had already moved on and closed the gap by the time this
+        # ran, so it wasn't a live read at all. Skip rather than score
+        # something we can't verify is current.
+        if latest_date is not None and ticker_frame["date"].iloc[-1] < latest_date:
             return None
 
         closes  = ticker_frame['close'].tolist()
@@ -639,6 +680,7 @@ def run_scan(tickers, min_score=DEFAULT_MIN_SCORE, workers=DEFAULT_WORKERS):
     print(f"\n🔄 Refreshing shared price cache for {total} ASX tickers | {workers} threads\n")
     cache, fetched_ok, _ = price_cache.refresh_cache(tickers, workers=workers, max_history=HISTORY_PERIOD)
     usable = price_cache.count_usable(cache, tickers, min_days=60)
+    latest_date = cache["date"].max() if not cache.empty else None
     print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  Usable overall: {usable}/{total}")
 
     results = []
@@ -649,7 +691,7 @@ def run_scan(tickers, min_score=DEFAULT_MIN_SCORE, workers=DEFAULT_WORKERS):
     print(f"\n🔍 Scoring {total} ASX tickers for Zag Zone pullbacks | {workers} threads | min score {min_score}\n")
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(analyse_ticker, t, price_cache.get_ticker_frame(cache, t), min_score): t for t in tickers}
+        futures = {pool.submit(analyse_ticker, t, price_cache.get_ticker_frame(cache, t), min_score, latest_date): t for t in tickers}
         for fut in as_completed(futures):
             done += 1
             tick = futures[fut]
