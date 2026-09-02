@@ -251,6 +251,25 @@ def obv_confirmation(obv, closes, pivot_idx):
     return "Neutral"
 
 
+def high_tier(closes):
+    """Longest of the 1/3/6-month windows (in trading days) for which today's
+    close is still the highest close in that window. Monotonic - being a
+    6-month high necessarily makes you a 3- and 1-month high too, since the
+    6-month window contains the other two - so only the longest qualifying
+    tier needs to be reported. A tier is skipped (not just failed) if there
+    isn't enough history to confirm it, rather than trivially "passing" on a
+    too-short window. Used to flag a NEW HH that only clears a very recent,
+    low-significance local pivot (see YRL, 2026-09-02: broke a pivot from 9
+    days earlier while still ~15% below its own 3-month high)."""
+    today = closes[-1]
+    for label, n in (("6M", 126), ("3M", 63), ("1M", 21)):
+        if len(closes) < n:
+            continue
+        if today >= max(closes[-n:]):
+            return label
+    return None
+
+
 def resample_weekly(dates, opens, highs, lows, closes, volumes):
     df = pd.DataFrame({"Open": opens, "High": highs, "Low": lows, "Close": closes, "Volume": volumes}, index=pd.to_datetime(dates))
     wk = df.resample("W-FRI").agg({"Open": "first", "High": "max", "Low": "min", "Close": "last", "Volume": "sum"}).dropna()
@@ -345,6 +364,7 @@ def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None):
             "hh_weekly": bool(sig_w),
             "obv_daily": obv_conf_d,
             "obv_weekly": obv_conf_w,
+            "high_tier": high_tier(closes) if (sig_d or sig_w) else None,
         }
 
         # Daily OHLCV for the chart-view mini candlesticks - only embedded for
@@ -454,11 +474,12 @@ table.datatable td{padding:.32rem .6rem;vertical-align:middle;white-space:nowrap
    that sector's own content lengths (table-layout:auto let each sector's
    table size its columns independently, so widths drifted sector to sector -
    e.g. a long Industry name in one sector didn't affect another's table). */
-table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:14%}
-table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:38%}
-table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:16%}
-table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:14%}
-table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:18%}
+table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:12%}
+table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:32%}
+table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:14%}
+table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:12%}
+table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:15%}
+table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:15%}
 /* Mobile: Industry is the least essential column (ticker/price/chg/OBV are
    what you actually need to act on), and table-layout:fixed enforces the
    desktop % widths verbatim regardless of viewport - on a narrow phone that
@@ -466,10 +487,11 @@ table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:18%}
    the rest breathe instead. */
 @media (max-width: 640px){
   table.datatable th:nth-child(2), table.datatable td:nth-child(2){display:none}
-  table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:26%}
-  table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:24%}
-  table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:24%}
-  table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:26%}
+  table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:21%}
+  table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:19%}
+  table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:19%}
+  table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:20%}
+  table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:21%}
   table.datatable th, table.datatable td{padding:.3rem .35rem;font-size:.72rem}
 }
 td.ticker-cell{font-family:'Syne',sans-serif;font-weight:700}
@@ -477,6 +499,7 @@ td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .up{color:var(--accent)} .dn{color:var(--danger)} .neutral{color:var(--muted)}
 .hh-yes{background:rgba(0,229,160,.14);color:var(--accent);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
 .obv-confirm{color:var(--accent)} .obv-not{color:var(--danger)} .obv-neutral{color:var(--muted)}
+.tier-6M{color:var(--accent);font-weight:700} .tier-3M{color:var(--accent2)} .tier-1M{color:var(--muted)} .tier-none{color:var(--muted)}
 .empty{text-align:center;color:var(--muted);padding:2rem 0;font-size:.85rem}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
 
@@ -707,6 +730,9 @@ function renderTable(visible, sigKey, obvKey) {
       const obv = r[obvKey];
       const obvClass = obv === 'Confirming' ? 'obv-confirm' : obv === 'Not confirming' ? 'obv-not' : 'obv-neutral';
       const obvShort = obv === 'Confirming' ? '✓' : obv === 'Not confirming' ? '✗' : obv === 'Neutral' ? '~' : '-';
+      const tier = r.high_tier;
+      const tierClass = tier ? `tier-${tier}` : 'tier-none';
+      const tierTitle = tier ? `New ${tier} high` : 'Not even a 1-month high - a low-significance pivot break';
       const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${r.ticker}`;
       return `<tr>
         <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a></td>
@@ -714,12 +740,13 @@ function renderTable(visible, sigKey, obvKey) {
         <td>$${r.price.toFixed(r.price < 1 ? 3 : 2)}</td>
         <td class="${chgClass}">${chgSign}${r.change_1d.toFixed(1)}%</td>
         <td class="${obvClass}" title="${obv ? esc(obv) : 'No OBV read'}">${obvShort}</td>
+        <td class="${tierClass}" title="${tierTitle}">${tier || '<1M'}</td>
       </tr>`;
     }).join('');
     return `<div class="sector">
       <div class="sector-head"><h2>${esc(sec)}</h2><span class="count">${list.length} stocks</span></div>
       <table class="datatable">
-        <thead><tr><th>Ticker</th><th>Industry</th><th>Price</th><th>1D Chg</th><th>OBV</th></tr></thead>
+        <thead><tr><th>Ticker</th><th>Industry</th><th>Price</th><th>1D Chg</th><th>OBV</th><th>High</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
@@ -803,7 +830,7 @@ def build_html_report(results, total_scanned, out_path):
 def build_csv(results, out_path):
     import csv
     fieldnames = ['ticker', 'name', 'sector', 'industry', 'market_cap', 'price', 'change_1d',
-                  'hh_daily', 'hh_weekly', 'obv_daily', 'obv_weekly']
+                  'hh_daily', 'hh_weekly', 'obv_daily', 'obv_weekly', 'high_tier']
     with open(out_path, 'w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
         w.writeheader()
