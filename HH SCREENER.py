@@ -454,17 +454,28 @@ table.datatable td{padding:.32rem .6rem;vertical-align:middle;white-space:nowrap
    that sector's own content lengths (table-layout:auto let each sector's
    table size its columns independently, so widths drifted sector to sector -
    e.g. a long Industry name in one sector didn't affect another's table). */
-table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:9%}
-table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:33%}
-table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:12%}
-table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:12%}
-table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:17%}
-table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:17%}
+table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:14%}
+table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:38%}
+table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:16%}
+table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:14%}
+table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:18%}
+/* Mobile: Industry is the least essential column (ticker/price/chg/OBV are
+   what you actually need to act on), and table-layout:fixed enforces the
+   desktop % widths verbatim regardless of viewport - on a narrow phone that
+   squeezed ticker/price/chg down to a few px each. Drop Industry and let
+   the rest breathe instead. */
+@media (max-width: 640px){
+  table.datatable th:nth-child(2), table.datatable td:nth-child(2){display:none}
+  table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:26%}
+  table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:24%}
+  table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:24%}
+  table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:26%}
+  table.datatable th, table.datatable td{padding:.3rem .35rem;font-size:.72rem}
+}
 td.ticker-cell{font-family:'Syne',sans-serif;font-weight:700}
 td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .up{color:var(--accent)} .dn{color:var(--danger)} .neutral{color:var(--muted)}
 .hh-yes{background:rgba(0,229,160,.14);color:var(--accent);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
-.hh-no{color:var(--muted)}
 .obv-confirm{color:var(--accent)} .obv-not{color:var(--danger)} .obv-neutral{color:var(--muted)}
 .empty{text-align:center;color:var(--muted);padding:2rem 0;font-size:.85rem}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
@@ -693,23 +704,22 @@ function renderTable(visible, sigKey, obvKey) {
     const rows = list.map(r => {
       const chgClass = r.change_1d > 0 ? 'up' : r.change_1d < 0 ? 'dn' : 'neutral';
       const chgSign = r.change_1d > 0 ? '+' : '';
-      const sig = r[sigKey];
       const obv = r[obvKey];
       const obvClass = obv === 'Confirming' ? 'obv-confirm' : obv === 'Not confirming' ? 'obv-not' : 'obv-neutral';
+      const obvShort = obv === 'Confirming' ? '✓' : obv === 'Not confirming' ? '✗' : obv === 'Neutral' ? '~' : '-';
       const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${r.ticker}`;
       return `<tr>
         <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a></td>
         <td style="color:var(--muted);font-size:.72rem">${esc(r.industry)}</td>
         <td>$${r.price.toFixed(r.price < 1 ? 3 : 2)}</td>
         <td class="${chgClass}">${chgSign}${r.change_1d.toFixed(1)}%</td>
-        <td>${sig ? '<span class="hh-yes">NEW HH</span>' : '<span class="hh-no">-</span>'}</td>
-        <td class="${obvClass}">${obv ? esc(obv) : '-'}</td>
+        <td class="${obvClass}" title="${obv ? esc(obv) : 'No OBV read'}">${obvShort}</td>
       </tr>`;
     }).join('');
     return `<div class="sector">
       <div class="sector-head"><h2>${esc(sec)}</h2><span class="count">${list.length} stocks</span></div>
       <table class="datatable">
-        <thead><tr><th>Ticker</th><th>Industry</th><th>Price</th><th>1D Chg</th><th>Signal</th><th>OBV</th></tr></thead>
+        <thead><tr><th>Ticker</th><th>Industry</th><th>Price</th><th>1D Chg</th><th>OBV</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
