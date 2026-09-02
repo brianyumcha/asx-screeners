@@ -46,6 +46,7 @@ import io
 import json
 import os
 import re
+import statistics
 import sys
 import time
 import warnings
@@ -291,8 +292,13 @@ def analyse_ticker(ticker_raw, info, ticker_frame):
         price = closes[-1]
         if price < MIN_PRICE:
             return None
-        avg_vol = sum(volumes[-30:]) / min(30, len(volumes))
-        if avg_vol < MIN_AVG_VOLUME:
+        # Median, not mean: a single spike day (a stock otherwise dead most
+        # of the month) can drag a 30-day AVERAGE above threshold even when
+        # it barely trades - found 2026-09-02 on RAU (mean 49,659, cleared
+        # the old 20,000 mean filter; median 0, since 16 of its last 30 days
+        # had zero volume). Median is naturally immune to that.
+        median_vol = statistics.median(volumes[-30:])
+        if median_vol < MIN_AVG_VOLUME:
             return None
 
         prev_close = closes[-2]

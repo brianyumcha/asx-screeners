@@ -44,6 +44,7 @@ import json
 import math
 import os
 import re
+import statistics
 import sys
 import time
 import warnings
@@ -514,9 +515,17 @@ def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LO
         if market_cap > 0 and market_cap < MIN_MARKET_CAP:
             return None
 
-        # Filter: 30-day average volume >= 50,000
+        # Filter: 30-day volume >= 50,000. Median, not mean: a single spike
+        # day (a stock otherwise dead most of the month) can drag a 30-day
+        # AVERAGE above threshold even when it barely trades - found
+        # 2026-09-02 on HH SCREENER.py's identical filter (RAU: mean
+        # 49,659 cleared its 20,000 filter; median 0, since 16 of its last
+        # 30 days had zero volume). avg_vol (the true mean) is kept too,
+        # only for the displayed stat below - the threshold check uses the
+        # median.
         avg_vol = sum(volumes[-30:]) / min(30, len(volumes))
-        if avg_vol < MIN_AVG_VOLUME:
+        median_vol = statistics.median(volumes[-30:])
+        if median_vol < MIN_AVG_VOLUME:
             return None
 
         # ── Criterion: Rising OBV over 30 days ────────────────────────────

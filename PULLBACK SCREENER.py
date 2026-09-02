@@ -51,6 +51,7 @@ import io
 import json
 import os
 import re
+import statistics
 import sys
 import time
 import warnings
@@ -500,8 +501,14 @@ def analyse_ticker(ticker_raw, ticker_frame, min_score=DEFAULT_MIN_SCORE):
         if market_cap > 0 and market_cap < MIN_MARKET_CAP:
             return None
 
+        # Median, not mean: a single spike day (a stock otherwise dead most
+        # of the month) can drag a 30-day AVERAGE above threshold even when
+        # it barely trades - found 2026-09-02 on HH SCREENER.py's identical
+        # filter. avg_vol (the true mean) is kept for the displayed stat
+        # below - the threshold check uses the median.
         avg_vol = sum(volumes[-30:]) / min(30, len(volumes))
-        if avg_vol < MIN_AVG_VOLUME:
+        median_vol = statistics.median(volumes[-30:])
+        if median_vol < MIN_AVG_VOLUME:
             return None
 
         # ── Structural filter: in the Zag Zone of the latest impulse leg ──
