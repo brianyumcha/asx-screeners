@@ -411,58 +411,59 @@ def zigzag(highs, lows, threshold_pct=ZIGZAG_THRESHOLD_PCT):
 
 def find_latest_impulse_and_pullback(pivots, current_idx, current_price):
     """
-    From the zigzag pivot list, find the most recent swing HIGH that price
-    is currently retracing, and reconstruct the FULL impulse leg into it -
-    not just the leg immediately before it.
+    Reconstruct the CURRENT structural impulse and check whether price is
+    now retracing it.
 
-    A raw zigzag chops one continuous trending move into several smaller
-    legs whenever a mid-trend pullback is itself big enough to clear the
-    zigzag threshold, even though it never broke the prior swing low (the
-    structure never actually reversed - it's still one impulse with an
-    internal wiggle). Using only the LAST such small leg mistakes that
-    wiggle for "the" impulse. Found on FBU, 2026-09-02: the raw zigzag's
-    final leg was a 13% counter-trend blip riding the tail of a much
-    bigger, still-intact ~53% move (Apr 28 low to Aug 20 high) - the small
-    leg alone put price in the Zag Zone of ITSELF while price was barely
-    off the highs of the real move, which the screener never saw at all.
+    A swing high stands as "the" reference high until either price makes a
+    genuine NEW high above it (extending the impulse), or a later swing low
+    undercuts the low that the move to that high started from - which
+    invalidates it, since a fresh, lower base means a new structure is
+    forming and the old high no longer describes what's happening now. A
+    high that gets approached again but not exceeded is still just part of
+    the ongoing correction OFF that high, not a new leg of its own, however
+    choppy the correction's own internal wiggles are.
 
-    Fix: once a candidate (low, high) pair is found, keep merging in any
-    EARLIER (low, high) pair as long as that earlier high was itself a
-    higher high than the one before it - i.e. the trend was still making
-    higher highs straight through that mid-trend pullback, so it's part of
-    the same impulse. The impulse low becomes the lowest low anywhere in
-    that merged run; the impulse high stays the most recent swing high.
+    Verified 2026-09-03 against two real cases:
+      - FBU: user's own hand-drawn Fib box (Apr 28 low $2.22 -> Aug 20 high
+        $3.40) matched this exactly - a raw zigzag had chopped that single
+        continuous move into pieces over an 8%+ mid-trend dip that never
+        undercut the prior low.
+      - SUN: Aug 14 high ($19.93) was approached again on Aug 26 ($19.65)
+        but never exceeded, and price never undercut the Mar 9 low
+        ($13.80) either - so Aug 14 remains the reference high; the Aug 26
+        rally and the pullback since are still all part of the SAME
+        correction off Aug 14, not a leg of their own.
 
     Returns (low_idx, low_price, high_idx, high_price) or None if no such
     setup exists in the data.
     """
-    if len(pivots) < 2:
+    structure_low, structure_low_idx = None, None
+    best_hi, best_hi_idx = float('-inf'), None
+    result = None
+
+    for idx, price, kind in pivots:
+        if kind == 'L':
+            if structure_low is None or price < structure_low:
+                # a new lower low invalidates whatever high was being
+                # tracked off the old (now-superseded) base - start fresh
+                structure_low, structure_low_idx = price, idx
+                best_hi, best_hi_idx = float('-inf'), None
+        else:  # 'H'
+            if structure_low is None:
+                continue
+            if price > best_hi:
+                best_hi, best_hi_idx = price, idx
+                result = (structure_low_idx, structure_low, best_hi_idx, best_hi)
+
+    if result is None:
         return None
-
-    # walk backwards looking for a L then H pair, most recent first
-    for i in range(len(pivots) - 1, 0, -1):
-        hi_idx, hi_price, hi_kind = pivots[i]
-        lo_idx, lo_price, lo_kind = pivots[i - 1]
-        if not (hi_kind == 'H' and lo_kind == 'L' and hi_idx > lo_idx):
-            continue
-        if not (current_idx > hi_idx and current_price < hi_price):
-            continue
-
-        lowest_lo_idx, lowest_lo_price = lo_idx, lo_price
-        scan_hi_price = hi_price
-        j = i - 2
-        while j >= 1 and pivots[j][2] == 'H' and pivots[j][1] < scan_hi_price:
-            scan_hi_price = pivots[j][1]
-            earlier_lo_idx, earlier_lo_price, _ = pivots[j - 1]
-            if earlier_lo_price < lowest_lo_price:
-                lowest_lo_idx, lowest_lo_price = earlier_lo_idx, earlier_lo_price
-            j -= 2
-
-        impulse_pct = (hi_price - lowest_lo_price) / lowest_lo_price * 100
-        if impulse_pct < MIN_IMPULSE_PCT:
-            continue
-        return (lowest_lo_idx, lowest_lo_price, hi_idx, hi_price)
-    return None
+    lo_idx, lo_price, hi_idx, hi_price = result
+    if not (current_idx > hi_idx and current_price < hi_price):
+        return None
+    impulse_pct = (hi_price - lo_price) / lo_price * 100
+    if impulse_pct < MIN_IMPULSE_PCT:
+        return None
+    return result
 
 
 def confluence_score(signals):
