@@ -50,11 +50,14 @@ import sys
 import time
 import warnings
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
 import openpyxl
 import pdfplumber
+
+SYDNEY_TZ = ZoneInfo("Australia/Sydney")
 
 import price_cache
 
@@ -737,11 +740,11 @@ render();
 
 
 def build_html_report(results, total_scanned, out_path):
-    now = datetime.now()
+    now = datetime.now(SYDNEY_TZ)
     n_daily = sum(1 for r in results if r['hh_daily'])
     n_weekly = sum(1 for r in results if r['hh_weekly'])
     session_line = (
-        f"Session {now.strftime('%Y-%m-%d %H:%M')} · {total_scanned} scanned · "
+        f"Session {now.strftime('%Y-%m-%d %H:%M')} Sydney time · {total_scanned} scanned · "
         f"{n_daily} daily NEW HH · {n_weekly} weekly NEW HH"
     )
     html = HTML_TEMPLATE

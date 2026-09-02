@@ -11,6 +11,9 @@ it. Re-running the screener script overwrites the file with a fresh scan.
 """
 import json
 from datetime import datetime
+from zoneinfo import ZoneInfo
+
+SYDNEY_TZ = ZoneInfo("Australia/Sydney")
 
 
 def size_bucket(market_cap):
@@ -50,11 +53,11 @@ def render_dashboard_html(
     all_cards = cards + excluded_cards
     sectors = sorted({c['sector'] for c in all_cards})
 
-    now = datetime.now()
+    now = datetime.now(SYDNEY_TZ)
     session_line = (
         f"Session {now.strftime('%Y-%m-%d')} · {total_scanned} scanned · "
         f"{len(cards)} new · {len(excluded_cards)} already seen · "
-        f"last run {now.strftime('%Y-%m-%d %H:%M')}"
+        f"last run {now.strftime('%Y-%m-%d %H:%M')} Sydney time"
     )
 
     html = HTML_TEMPLATE
