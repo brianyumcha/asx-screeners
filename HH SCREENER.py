@@ -377,12 +377,13 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
     print(f"\n🔄 Refreshing shared price cache for {total} ASX tickers | {workers} threads\n")
     cache, fetched_ok, _ = price_cache.refresh_cache(tickers, workers=workers, max_history=HISTORY_PERIOD)
     usable = price_cache.count_usable(cache, tickers, min_days=40)
+    latest_date = cache["date"].max() if not cache.empty else None
     print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  Usable overall: {usable}/{total}")
 
     results = []
     for t in tickers:
         try:
-            res = analyse_ticker(t, universe[t], price_cache.get_ticker_frame(cache, t))
+            res = analyse_ticker(t, universe[t], price_cache.get_ticker_frame(cache, t), latest_date)
             if res:
                 results.append(res)
         except Exception:
