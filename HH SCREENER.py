@@ -398,7 +398,18 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
     cache, fetched_ok, _ = price_cache.refresh_cache(tickers, workers=workers, max_history=HISTORY_PERIOD)
     usable = price_cache.count_usable(cache, tickers, min_days=40)
     latest_date = cache["date"].max() if not cache.empty else None
-    print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  Usable overall: {usable}/{total}")
+    # "Usable" only checks cache DEPTH (>=40 days), not freshness - a ticker
+    # stuck a week stale from repeated Yahoo throttling still counts as
+    # usable there. This is the actual "did we get today's session for it"
+    # count, surfaced in the report so a heavily-throttled run doesn't look
+    # identical to a clean one just because "X scanned" is always the full
+    # universe size regardless of how much of it is trustworthy today.
+    fresh_today = 0
+    if latest_date is not None and not cache.empty:
+        last_by_ticker = cache.groupby("ticker")["date"].max()
+        fresh_today = sum(1 for t in tickers if last_by_ticker.get(t) == latest_date)
+    print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  "
+          f"Usable overall: {usable}/{total}  |  Fresh as of today's session: {fresh_today}/{total}")
 
     results = []
     for t in tickers:
@@ -410,7 +421,7 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
             pass
 
     print(f"   Scanned: {total}  |  Included (passed liquidity filters): {len(results)}")
-    return results, usable
+    return results, usable, fresh_today
 
 
 # ─── HTML REPORT (sector-grouped table, matches the Pine dashboard layout) ────
@@ -806,13 +817,18 @@ render();
 </html>"""
 
 
-def build_html_report(results, total_scanned, out_path):
+def build_html_report(results, total_scanned, fresh_today, out_path):
     now = datetime.now(SYDNEY_TZ)
     n_daily = sum(1 for r in results if r['hh_daily'])
     n_weekly = sum(1 for r in results if r['hh_weekly'])
+    # "X scanned" alone is just the universe size - it looks identical on a
+    # clean run and a heavily Yahoo-throttled one, since every ticker gets
+    # attempted either way. Surface how many actually had a fresh (today's)
+    # cached session too, so a degraded run is visible in the report itself
+    # instead of only discoverable by reading GitHub Actions logs.
     session_line = (
-        f"Session {now.strftime('%Y-%m-%d %H:%M')} Sydney time · {total_scanned} scanned · "
-        f"{n_daily} daily NEW HH · {n_weekly} weekly NEW HH"
+        f"Session {now.strftime('%Y-%m-%d %H:%M')} Sydney time · {total_scanned} scanned "
+        f"({fresh_today} fresh today) · {n_daily} daily NEW HH · {n_weekly} weekly NEW HH"
     )
     html = HTML_TEMPLATE
     html = html.replace('##SESSION_LINE##', session_line)
@@ -867,7 +883,7 @@ def main():
         universe = {t: universe.get(t, {"industry": "Other", "sector": "Other", "market_cap": 0, "name": t}) for t in wanted}
         print(f"  Using custom list: {len(universe)} tickers")
 
-    results, usable = run_scan(universe, workers=args.workers)
+    results, usable, fresh_today = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])
 
     # Circuit breaker: on a full-universe run, if the shared price cache
@@ -892,7 +908,7 @@ def main():
     print(f"\n💾 Saving to:\n   {html_path}\n   {csv_path}\n")
 
     try:
-        build_html_report(results, len(universe), html_path)
+        build_html_report(results, len(universe), fresh_today, html_path)
     except Exception as e:
         print(f"  ⚠ HTML save error: {e}")
     try:
