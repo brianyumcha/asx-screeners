@@ -259,7 +259,7 @@ def resample_weekly(dates, opens, highs, lows, closes, volumes):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
-def analyse_ticker(ticker_raw, info, ticker_frame):
+def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None):
     """Computes signals from an already-fetched price_cache frame (see that
     module - all three screeners share one cache now, refreshed once up
     front, so this function does no network I/O at all). Returns a result
@@ -280,6 +280,19 @@ def analyse_ticker(ticker_raw, info, ticker_frame):
             return None
 
         if ticker_frame is None or len(ticker_frame) < 40:
+            return None
+
+        # If this ticker's cache didn't actually refresh to the most recent
+        # session other tickers reached this run (a per-ticker fetch
+        # failure quietly falling back to stale cached data - separate
+        # from the circuit breaker's universe-wide check), we can't trust
+        # "today's" price/signal for it. Found 2026-09-02: LDR's fetch
+        # failed, so its cache still ended on Sept 1 - the code used that
+        # stale close as if it were live, firing a false "NEW HH" a full
+        # day after the real (and correct) Sept 1 breakout, once price had
+        # already reversed on Sept 2. Skip rather than show anything
+        # unverifiable, same philosophy as the circuit breaker.
+        if latest_date is not None and ticker_frame["date"].iloc[-1] < latest_date:
             return None
 
         closes = ticker_frame["close"].tolist()
@@ -424,18 +437,28 @@ h1{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;letter-spacing
 input[type=text]{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.75rem;padding:.5rem .8rem;border-radius:8px;outline:none;width:170px}
 .checkline{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted);cursor:pointer}
-.sector{margin-bottom:1.4rem;border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.sector-head{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1rem;
+.sector{margin-bottom:.9rem;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.sector-head{display:flex;justify-content:space-between;align-items:center;padding:.5rem .9rem;
   background:var(--surface);cursor:pointer;user-select:none}
-.sector-head h2{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700}
+.sector-head h2{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700}
 .sector-head .count{font-size:.68rem;color:var(--muted)}
-table.datatable{width:100%;border-collapse:collapse;font-size:.78rem}
+table.datatable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.74rem}
 table.datatable thead tr{border-bottom:1px solid var(--border)}
-table.datatable th{text-align:left;padding:.5rem .8rem;font-size:.62rem;color:var(--muted);text-transform:uppercase;
+table.datatable th{text-align:left;padding:.35rem .6rem;font-size:.6rem;color:var(--muted);text-transform:uppercase;
   letter-spacing:.06em;white-space:nowrap;font-weight:600}
 table.datatable tbody tr{border-bottom:1px solid rgba(30,37,48,.6)}
 table.datatable tbody tr:hover{background:rgba(0,229,160,.03)}
-table.datatable td{padding:.55rem .8rem;vertical-align:middle;white-space:nowrap}
+table.datatable td{padding:.32rem .6rem;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Fixed column widths, identical across every sector's table regardless of
+   that sector's own content lengths (table-layout:auto let each sector's
+   table size its columns independently, so widths drifted sector to sector -
+   e.g. a long Industry name in one sector didn't affect another's table). */
+table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:9%}
+table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:33%}
+table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:12%}
+table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:12%}
+table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:17%}
+table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:17%}
 td.ticker-cell{font-family:'Syne',sans-serif;font-weight:700}
 td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .up{color:var(--accent)} .dn{color:var(--danger)} .neutral{color:var(--muted)}
