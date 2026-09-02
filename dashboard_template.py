@@ -79,6 +79,14 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>##TITLE##</title>
+<script>
+// Set before first paint so there's no flash of the wrong theme. Defaults
+// to dark (this site's original look) unless the viewer explicitly chose
+// light on a previous visit.
+try {
+  if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');
+} catch (e) {}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
 :root {
@@ -86,6 +94,14 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   --accent:#00e5a0; --accent2:#00aaff; --warn:#ffb800; --danger:#ff4455;
   --text:#e8edf2; --muted:#5a6478; --card:#141820;
 }
+[data-theme="light"] {
+  --bg:#f4f6f9; --surface:#ffffff; --border:#dde3ea;
+  --accent:#00a37b; --accent2:#0077b3; --warn:#a66a00; --danger:#d6293a;
+  --text:#1a2029; --muted:#65707f; --card:#ffffff;
+}
+.themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
+  font-size:.9rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;line-height:1;height:fit-content}
+.themebtn:hover{border-color:var(--accent2)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;padding:1.6rem;}
@@ -194,6 +210,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
         <option value="higher-high.html">⬆️ Higher-High</option>
       </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
+      <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
   <div class="session">##SESSION_LINE##</div>
@@ -233,6 +250,19 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 
 <script>
 document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'pre-breakout.html';
+
+const themeBtn = document.getElementById('themeBtn');
+function isLightTheme() { return document.documentElement.getAttribute('data-theme') === 'light'; }
+function syncThemeBtn() { themeBtn.textContent = isLightTheme() ? '☀️' : '🌙'; }
+syncThemeBtn();
+themeBtn.addEventListener('click', () => {
+  const next = isLightTheme() ? null : 'light';
+  if (next) document.documentElement.setAttribute('data-theme', next);
+  else document.documentElement.removeAttribute('data-theme');
+  try { localStorage.setItem('theme', next || 'dark'); } catch (e) {}
+  syncThemeBtn();
+  render();  // re-run chart-mode canvas drawing with theme-correct colors
+});
 
 const DATA = ##DATA_JSON##;
 const SECTORS = ##SECTORS_JSON##;
@@ -372,7 +402,7 @@ function drawChart(canvas, card, tf) {
     ctx.stroke();
     ctx.setLineDash([]);
   }
-  line(sma50, 'rgba(180,190,200,0.55)', true);
+  line(sma50, isLightTheme() ? 'rgba(70,80,95,0.55)' : 'rgba(180,190,200,0.55)', true);
   line(sma20, 'rgba(0,170,255,0.85)', false);
 
   for (let i = 0; i < n2; i++) {

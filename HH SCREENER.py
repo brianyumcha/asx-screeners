@@ -121,6 +121,86 @@ SECTOR_ORDER = [
     "Consumer Discretionary", "Essentials", "Property & Industrials", "Other",
 ]
 
+# ─── RELATIVE STRENGTH (Traderlion-style RS line vs XJO + GICS sector index) ──
+# Routed off the raw SeaBee `industry` string, not the 8 broad SECTOR_MAP
+# buckets, so a composite bucket like "Essentials" (Staples/Utilities/Comms)
+# or "Property & Industrials" still compares each ticker against its actual
+# specific sector benchmark rather than an arbitrary one of the two/three
+# indices that bucket blends together.
+BENCHMARK_MARKET = "^AXJO"   # S&P/ASX 200 - every ticker's broad-market RS line
+RS_EMA_PERIOD = 21            # matches the Traderlion RS Line indicator's default signal EMA
+
+INDUSTRY_TO_SECTOR_BENCHMARK = {
+    "Materials": "^AXMJ",
+    "Energy": "^AXEJ",
+    "Software & Services": "^AXIJ",
+    "Technology Hardware & Equipment": "^AXIJ",
+    "Semiconductors & Semiconductor Equipment": "^AXIJ",
+    "Financial Services": "^AXFJ",
+    "Banks": "^AXFJ",
+    "Insurance": "^AXFJ",
+    "Pharmaceuticals, Biotechnology & Life Sciences": "^AXHJ",
+    "Health Care Equipment & Services": "^AXHJ",
+    "Capital Goods": "^AXNJ",
+    "Commercial & Professional Services": "^AXNJ",
+    "Transportation": "^AXNJ",
+    "Equity Real Estate Investment Trusts (REITs)": "^AXPJ",
+    "Real Estate Management & Development": "^AXPJ",
+    "Consumer Services": "^AXDJ",
+    "Media & Entertainment": "^AXTJ",
+    "Consumer Discretionary Distribution & Retail": "^AXDJ",
+    "Consumer Durables & Apparel": "^AXDJ",
+    "Automobiles & Components": "^AXDJ",
+    "Food, Beverage & Tobacco": "^AXSJ",
+    "Household & Personal Products": "^AXSJ",
+    "Consumer Staples Distribution & Retail": "^AXSJ",
+    "Utilities": "^AXUJ",
+    "Telecommunication Services": "^AXTJ",
+}
+BENCHMARK_LABELS = {
+    "^AXJO": "XJO", "^AXMJ": "XMJ", "^AXEJ": "XEJ", "^AXFJ": "XFJ",
+    "^AXHJ": "XHJ", "^AXIJ": "XIJ", "^AXDJ": "XDJ", "^AXSJ": "XSJ",
+    "^AXPJ": "XPJ", "^AXNJ": "XNJ", "^AXTJ": "XTJ", "^AXUJ": "XUJ",
+}
+
+
+def fetch_benchmark_series():
+    """Fetches daily closes for the ASX 200 plus every GICS sector index used
+    for relative-strength comparison. A small, fixed set of 12 tickers -
+    fetched directly (not through the shared per-ticker price cache, whose
+    ".AX"-suffix convention doesn't apply to index symbols) once per run,
+    reusing price_cache's own retry logic. Returns {yahoo_symbol: pd.Series
+    of close, indexed by tz-naive date}."""
+    symbols = {BENCHMARK_MARKET} | set(INDUSTRY_TO_SECTOR_BENCHMARK.values())
+    series = {}
+    for sym in symbols:
+        df = price_cache._fetch_one(sym, HISTORY_PERIOD)
+        if df is None or df.empty:
+            continue
+        df = df.dropna(subset=["Close"])
+        if df.empty:
+            continue
+        s = df["Close"]
+        s.index = pd.to_datetime(s.index).tz_localize(None).normalize()
+        series[sym] = s
+    return series
+
+
+def relative_strength_status(dates, closes, index_series):
+    """True if the RS line (ticker close / index close) is currently above
+    its own RS_EMA_PERIOD-bar EMA - the Traderlion RS Line indicator's
+    "showing relative strength" (blue) signal - False if below, None if
+    there isn't enough overlapping data to tell."""
+    if index_series is None or len(index_series) < RS_EMA_PERIOD + 5:
+        return None
+    ticker_s = pd.Series(closes, index=pd.to_datetime(dates).tz_localize(None).normalize())
+    aligned = pd.concat([ticker_s, index_series], axis=1, join="inner").dropna()
+    if len(aligned) < RS_EMA_PERIOD + 5:
+        return None
+    ratio = aligned.iloc[:, 0] / aligned.iloc[:, 1]
+    ema = ratio.ewm(span=RS_EMA_PERIOD, adjust=False).mean()
+    return bool(ratio.iloc[-1] > ema.iloc[-1])
+
 # ─── TICKER UNIVERSE (SeaBee gives us industry + market cap in one call) ──────
 
 def get_asx_universe():
@@ -278,7 +358,7 @@ def resample_weekly(dates, opens, highs, lows, closes, volumes):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
-def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None):
+def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None, index_series=None):
     """Computes signals from an already-fetched price_cache frame (see that
     module - all three screeners share one cache now, refreshed once up
     front, so this function does no network I/O at all). Returns a result
@@ -352,6 +432,14 @@ def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None):
                 obv_w = calc_obv_series(wc, wv)
                 obv_conf_w = obv_confirmation(obv_w, wc, piv_idx_w)
 
+        rs_market = rs_sector = rs_sector_label = None
+        if (sig_d or sig_w) and index_series:
+            rs_market = relative_strength_status(dates, closes, index_series.get(BENCHMARK_MARKET))
+            sector_benchmark = INDUSTRY_TO_SECTOR_BENCHMARK.get(info.get("industry", ""))
+            if sector_benchmark:
+                rs_sector = relative_strength_status(dates, closes, index_series.get(sector_benchmark))
+                rs_sector_label = BENCHMARK_LABELS.get(sector_benchmark)
+
         result = {
             "ticker": sym,
             "name": info.get("name", sym),
@@ -365,6 +453,9 @@ def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None):
             "obv_daily": obv_conf_d,
             "obv_weekly": obv_conf_w,
             "high_tier": high_tier(closes) if (sig_d or sig_w) else None,
+            "rs_market": rs_market,
+            "rs_sector": rs_sector,
+            "rs_sector_label": rs_sector_label,
         }
 
         # Daily OHLCV for the chart-view mini candlesticks - only embedded for
@@ -411,10 +502,14 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
     print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  "
           f"Usable overall: {usable}/{total}  |  Fresh as of today's session: {fresh_today}/{total}")
 
+    print("   Fetching relative-strength benchmark indices (XJO + GICS sectors)...")
+    index_series = fetch_benchmark_series()
+    print(f"   Got {len(index_series)}/{len(INDUSTRY_TO_SECTOR_BENCHMARK) + 1} benchmark indices")
+
     results = []
     for t in tickers:
         try:
-            res = analyse_ticker(t, universe[t], price_cache.get_ticker_frame(cache, t), latest_date)
+            res = analyse_ticker(t, universe[t], price_cache.get_ticker_frame(cache, t), latest_date, index_series)
             if res:
                 results.append(res)
         except Exception:
@@ -432,6 +527,14 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ASX Higher-High Screener</title>
+<script>
+// Set before first paint so there's no flash of the wrong theme. Defaults
+// to dark (this site's original look) unless the viewer explicitly chose
+// light on a previous visit.
+try {
+  if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');
+} catch (e) {}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
 :root {
@@ -439,6 +542,14 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   --accent:#00e5a0; --accent2:#00aaff; --warn:#ffb800; --danger:#ff4455;
   --text:#e8edf2; --muted:#5a6478; --card:#141820;
 }
+[data-theme="light"] {
+  --bg:#f4f6f9; --surface:#ffffff; --border:#dde3ea;
+  --accent:#00a37b; --accent2:#0077b3; --warn:#a66a00; --danger:#d6293a;
+  --text:#1a2029; --muted:#65707f; --card:#ffffff;
+}
+.themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
+  font-size:.9rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;line-height:1;height:fit-content}
+.themebtn:hover{border-color:var(--accent2)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;padding:1.6rem;}
@@ -485,12 +596,13 @@ table.datatable td{padding:.32rem .6rem;vertical-align:middle;white-space:nowrap
    that sector's own content lengths (table-layout:auto let each sector's
    table size its columns independently, so widths drifted sector to sector -
    e.g. a long Industry name in one sector didn't affect another's table). */
-table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:12%}
-table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:32%}
-table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:14%}
-table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:12%}
-table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:15%}
-table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:15%}
+table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:11%}
+table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:27%}
+table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:13%}
+table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:11%}
+table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:13%}
+table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:12%}
+table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:13%}
 /* Mobile: Industry is the least essential column (ticker/price/chg/OBV are
    what you actually need to act on), and table-layout:fixed enforces the
    desktop % widths verbatim regardless of viewport - on a narrow phone that
@@ -498,11 +610,12 @@ table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:15%}
    the rest breathe instead. */
 @media (max-width: 640px){
   table.datatable th:nth-child(2), table.datatable td:nth-child(2){display:none}
-  table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:21%}
-  table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:19%}
-  table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:19%}
-  table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:20%}
-  table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:21%}
+  table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:18%}
+  table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:16%}
+  table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:16%}
+  table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:16%}
+  table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:17%}
+  table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:17%}
   table.datatable th, table.datatable td{padding:.3rem .35rem;font-size:.72rem}
 }
 td.ticker-cell{font-family:'Syne',sans-serif;font-weight:700}
@@ -510,6 +623,7 @@ td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .up{color:var(--accent)} .dn{color:var(--danger)} .neutral{color:var(--muted)}
 .hh-yes{background:rgba(0,229,160,.14);color:var(--accent);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
 .obv-confirm{color:var(--accent)} .obv-not{color:var(--danger)} .obv-neutral{color:var(--muted)}
+.rs-yes{color:var(--accent);font-weight:700} .rs-no{color:var(--muted)} .rs-na{color:var(--muted);opacity:.5}
 .tier-6M{color:var(--accent);font-weight:700} .tier-3M{color:var(--accent2)} .tier-1M{color:var(--muted)} .tier-none{color:var(--muted)}
 .empty{text-align:center;color:var(--muted);padding:2rem 0;font-size:.85rem}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
@@ -545,6 +659,7 @@ canvas{width:100%;height:100%;display:block}
       <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
       <option value="higher-high.html">⬆️ Higher-High</option>
     </select>
+    <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
   </div>
   <div class="session">##SESSION_LINE##</div>
 
@@ -577,6 +692,19 @@ canvas{width:100%;height:100%;display:block}
 
 <script>
 document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'higher-high.html';
+
+const themeBtn = document.getElementById('themeBtn');
+function isLightTheme() { return document.documentElement.getAttribute('data-theme') === 'light'; }
+function syncThemeBtn() { themeBtn.textContent = isLightTheme() ? '☀️' : '🌙'; }
+syncThemeBtn();
+themeBtn.addEventListener('click', () => {
+  const next = isLightTheme() ? null : 'light';
+  if (next) document.documentElement.setAttribute('data-theme', next);
+  else document.documentElement.removeAttribute('data-theme');
+  try { localStorage.setItem('theme', next || 'dark'); } catch (e) {}
+  syncThemeBtn();
+  render();  // re-run chart-mode canvas drawing with theme-correct colors
+});
 
 const DATA = ##DATA_JSON##;
 const SECTOR_ORDER = ##SECTOR_ORDER_JSON##;
@@ -675,7 +803,7 @@ function drawChart(canvas, r, tf) {
     ctx.stroke();
     ctx.setLineDash([]);
   }
-  line(sma50, 'rgba(180,190,200,0.55)', true);
+  line(sma50, isLightTheme() ? 'rgba(70,80,95,0.55)' : 'rgba(180,190,200,0.55)', true);
   line(sma20, 'rgba(0,170,255,0.85)', false);
 
   for (let i = 0; i < n2; i++) {
@@ -744,6 +872,11 @@ function renderTable(visible, sigKey, obvKey) {
       const tier = r.high_tier;
       const tierClass = tier ? `tier-${tier}` : 'tier-none';
       const tierTitle = tier ? `New ${tier} high` : 'Not even a 1-month high - a low-significance pivot break';
+      const rsSectorLabel = r.rs_sector_label || 'sector';
+      const rsWord = v => v === true ? 'Yes' : v === false ? 'No' : 'N/A';
+      const rsClass = v => v === true ? 'rs-yes' : v === false ? 'rs-no' : 'rs-na';
+      const rsChar = v => v === true ? '✓' : v === false ? '✗' : '–';
+      const rsTitle = `RS vs XJO: ${rsWord(r.rs_market)} · RS vs ${esc(rsSectorLabel)}: ${rsWord(r.rs_sector)}`;
       const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${r.ticker}`;
       return `<tr>
         <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a></td>
@@ -752,12 +885,13 @@ function renderTable(visible, sigKey, obvKey) {
         <td class="${chgClass}">${chgSign}${r.change_1d.toFixed(1)}%</td>
         <td class="${obvClass}" title="${obv ? esc(obv) : 'No OBV read'}">${obvShort}</td>
         <td class="${tierClass}" title="${tierTitle}">${tier || '<1M'}</td>
+        <td title="${rsTitle}"><span class="${rsClass(r.rs_market)}">M${rsChar(r.rs_market)}</span> <span class="${rsClass(r.rs_sector)}">S${rsChar(r.rs_sector)}</span></td>
       </tr>`;
     }).join('');
     return `<div class="sector">
       <div class="sector-head"><h2>${esc(sec)}</h2><span class="count">${list.length} stocks</span></div>
       <table class="datatable">
-        <thead><tr><th>Ticker</th><th>Industry</th><th>Price</th><th>1D Chg</th><th>OBV</th><th>High</th></tr></thead>
+        <thead><tr><th>Ticker</th><th>Industry</th><th>Price</th><th>1D Chg</th><th>OBV</th><th>High</th><th>RS</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
@@ -846,7 +980,8 @@ def build_html_report(results, total_scanned, fresh_today, out_path):
 def build_csv(results, out_path):
     import csv
     fieldnames = ['ticker', 'name', 'sector', 'industry', 'market_cap', 'price', 'change_1d',
-                  'hh_daily', 'hh_weekly', 'obv_daily', 'obv_weekly', 'high_tier']
+                  'hh_daily', 'hh_weekly', 'obv_daily', 'obv_weekly', 'high_tier',
+                  'rs_market', 'rs_sector', 'rs_sector_label']
     with open(out_path, 'w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
         w.writeheader()
