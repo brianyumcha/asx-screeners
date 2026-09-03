@@ -103,11 +103,27 @@ def refresh_cache(tickers, workers=15, max_history="3y"):
     needed_days = _period_to_days(max_history)
     depth_cutoff = pd.Timestamp.now().normalize() - pd.Timedelta(days=needed_days - DEPTH_SLACK_DAYS)
     earliest_by_ticker = cache.groupby("ticker")["date"].min() if not cache.empty else pd.Series(dtype="datetime64[ns]")
+    latest_by_ticker = cache.groupby("ticker")["date"].max() if not cache.empty else pd.Series(dtype="datetime64[ns]")
+    cache_max_date = cache["date"].max() if not cache.empty else None
 
     def needs_full_fetch(t):
         if t not in earliest_by_ticker.index:
             return True
         return earliest_by_ticker[t] > depth_cutoff
+
+    def already_fresh(t):
+        # All three screeners share this one cache and each calls
+        # refresh_cache() independently at the start of their own run - if
+        # OBV already refreshed a ticker to today's session a minute ago,
+        # Pullback and HH re-requesting it too just triples the volume
+        # sent to Yahoo within the same job for zero benefit (and likely
+        # makes the throttling worse, not better). Skip anything that's
+        # already current AND already deep enough for this caller's needs.
+        if cache_max_date is None or needs_full_fetch(t) or t not in latest_by_ticker.index:
+            return False
+        return latest_by_ticker[t] >= cache_max_date
+
+    to_fetch = [t for t in tickers if not already_fresh(t)]
 
     fetched_ok = 0
     new_frames = []
@@ -118,7 +134,7 @@ def refresh_cache(tickers, workers=15, max_history="3y"):
         return t, _fetch_one(yahoo_sym, period)
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(work, t): t for t in tickers}
+        futures = {pool.submit(work, t): t for t in to_fetch}
         for fut in as_completed(futures):
             t, df = fut.result()
             if df is None or df.empty:
