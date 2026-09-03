@@ -540,12 +540,12 @@ try {
 :root {
   --bg:#0a0c0f; --surface:#111418; --border:#1e2530;
   --accent:#00e5a0; --accent2:#00aaff; --warn:#ffb800; --danger:#ff4455;
-  --text:#e8edf2; --muted:#5a6478; --card:#141820;
+  --text:#e8edf2; --muted:#5a6478; --card:#141820; --rs-dim:#9aa4b8;
 }
 [data-theme="light"] {
   --bg:#f4f6f9; --surface:#ffffff; --border:#dde3ea;
   --accent:#00a37b; --accent2:#0077b3; --warn:#a66a00; --danger:#d6293a;
-  --text:#1a2029; --muted:#65707f; --card:#ffffff;
+  --text:#1a2029; --muted:#65707f; --card:#ffffff; --rs-dim:#4a5568;
 }
 .themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.9rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;line-height:1;height:fit-content}
@@ -585,13 +585,13 @@ input[type=text]{background:var(--surface);border:1px solid var(--border);color:
   background:var(--surface);cursor:pointer;user-select:none}
 .sector-head h2{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700}
 .sector-head .count{font-size:.68rem;color:var(--muted)}
-table.datatable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.74rem}
+table.datatable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.82rem}
 table.datatable thead tr{border-bottom:1px solid var(--border)}
-table.datatable th{text-align:left;padding:.35rem .6rem;font-size:.6rem;color:var(--muted);text-transform:uppercase;
+table.datatable th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--muted);text-transform:uppercase;
   letter-spacing:.06em;white-space:nowrap;font-weight:600}
 table.datatable tbody tr{border-bottom:1px solid rgba(30,37,48,.6)}
 table.datatable tbody tr:hover{background:rgba(0,229,160,.03)}
-table.datatable td{padding:.32rem .6rem;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.datatable td{padding:.38rem .6rem;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Fixed column widths, identical across every sector's table regardless of
    that sector's own content lengths (table-layout:auto let each sector's
    table size its columns independently, so widths drifted sector to sector -
@@ -616,14 +616,14 @@ table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:13%}
   table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:16%}
   table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:17%}
   table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:17%}
-  table.datatable th, table.datatable td{padding:.3rem .35rem;font-size:.72rem}
+  table.datatable th, table.datatable td{padding:.32rem .35rem;font-size:.78rem}
 }
 td.ticker-cell{font-family:'Syne',sans-serif;font-weight:700}
 td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .up{color:var(--accent)} .dn{color:var(--danger)} .neutral{color:var(--muted)}
 .hh-yes{background:rgba(0,229,160,.14);color:var(--accent);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
 .obv-confirm{color:var(--accent)} .obv-not{color:var(--danger)} .obv-neutral{color:var(--muted)}
-.rs-yes{color:var(--accent);font-weight:700} .rs-no{color:var(--muted)} .rs-na{color:var(--muted);opacity:.5}
+.rs-yes{color:var(--accent);font-weight:700} .rs-no{color:var(--rs-dim);font-weight:600} .rs-na{color:var(--rs-dim);opacity:.6}
 .tier-6M{color:var(--accent);font-weight:700} .tier-3M{color:var(--accent2)} .tier-1M{color:var(--muted)} .tier-none{color:var(--muted)}
 .empty{text-align:center;color:var(--muted);padding:2rem 0;font-size:.85rem}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
