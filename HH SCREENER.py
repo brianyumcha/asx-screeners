@@ -998,10 +998,14 @@ TELEGRAM_SEEN_PATH = os.path.join(SCRIPT_DIR, "seen_tickers_hh_telegram.json")
 def send_hh_telegram(results):
     """
     Posts every current daily NEW HH signal to Telegram on every run,
-    grouped by sector - tickers that were ALSO flagged in the previous
-    run are shown plain, tickers appearing for the first time since the
-    last run are **bold**, so today's genuinely-new signals stand out
-    without hiding the ones still active from earlier in the day.
+    grouped by sector in a monospace table (Telegram has no real table
+    support, but a ``` code block preserves fixed-width spacing, which is
+    the usual way to fake clean columns in a chat message - bold doesn't
+    reliably nest inside one, so a leading "*" column marks tickers
+    appearing for the first time since the last run instead). Each row
+    also shows the high_tier flag (see high_tier()'s docstring) so a
+    quick glance shows whether a signal is breaking real resistance or
+    just a recent local wiggle, without needing to open the HTML report.
 
     No-ops quietly (prints why, doesn't raise) if the bot isn't
     configured, or on a --tickers test run - matches the circuit
@@ -1026,18 +1030,24 @@ def send_hh_telegram(results):
 
     by_sector = {}
     for r in daily:
-        by_sector.setdefault(r["sector"], []).append(r["ticker"])
+        by_sector.setdefault(r["sector"], []).append(r)
 
     now = datetime.now(SYDNEY_TZ)
     lines = [f"📈 *ASX Higher-High Screener* — {now.strftime('%Y-%m-%d %H:%M')} Sydney time", ""]
     for sector in SECTOR_ORDER:
-        tickers = sorted(by_sector.get(sector, []))
-        if not tickers:
+        rows = sorted(by_sector.get(sector, []), key=lambda r: r["ticker"])
+        if not rows:
             continue
         lines.append(f"*{sector}*")
-        for t in tickers:
-            lines.append(f"*{t}*" if t not in previously_seen else t)
-        lines.append("")
+        lines.append("```")
+        lines.append(f"{'':<1}{'TICKER':<7}{'HIGH':<7}{'OBV'}")
+        for r in rows:
+            marker = "*" if r["ticker"] not in previously_seen else " "
+            tier = r["high_tier"] or "-"
+            obv = r.get("obv_daily")
+            obv_mark = "Y" if obv == "Confirming" else "N" if obv == "Not confirming" else "~" if obv == "Neutral" else ""
+            lines.append(f"{marker:<1}{r['ticker']:<7}{tier:<7}{obv_mark}")
+        lines.append("```")
     message = "\n".join(lines).strip()
 
     try:
