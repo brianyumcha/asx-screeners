@@ -990,6 +990,75 @@ def build_csv(results, out_path):
     print(f"  📊 CSV export  → {out_path}")
 
 
+# ─── TELEGRAM NOTIFICATION ─────────────────────────────────────────────────────
+
+TELEGRAM_SEEN_PATH = os.path.join(SCRIPT_DIR, "seen_tickers_hh_telegram.json")
+
+
+def send_hh_telegram(results):
+    """
+    Posts every current daily NEW HH signal to Telegram on every run,
+    grouped by sector - tickers that were ALSO flagged in the previous
+    run are shown plain, tickers appearing for the first time since the
+    last run are **bold**, so today's genuinely-new signals stand out
+    without hiding the ones still active from earlier in the day.
+
+    No-ops quietly (prints why, doesn't raise) if the bot isn't
+    configured, or on a --tickers test run - matches the circuit
+    breaker's own "don't do this on a small test slice" philosophy.
+    """
+    token = os.environ.get("TELEGRAM_HH_BOT_TOKEN")
+    chat_id = os.environ.get("TELEGRAM_HH_CHAT_ID")
+    if not token or not chat_id:
+        print("  ℹ Telegram not configured (TELEGRAM_HH_BOT_TOKEN/TELEGRAM_HH_CHAT_ID unset) - skipping notification")
+        return
+
+    daily = [r for r in results if r["hh_daily"]]
+    if not daily:
+        print("  ℹ No daily NEW HH signals this run - nothing to send")
+        return
+
+    try:
+        with open(TELEGRAM_SEEN_PATH) as f:
+            previously_seen = set(json.load(f))
+    except (FileNotFoundError, json.JSONDecodeError):
+        previously_seen = set()
+
+    by_sector = {}
+    for r in daily:
+        by_sector.setdefault(r["sector"], []).append(r["ticker"])
+
+    now = datetime.now(SYDNEY_TZ)
+    lines = [f"📈 *ASX Higher-High Screener* — {now.strftime('%Y-%m-%d %H:%M')} Sydney time", ""]
+    for sector in SECTOR_ORDER:
+        tickers = sorted(by_sector.get(sector, []))
+        if not tickers:
+            continue
+        lines.append(f"*{sector}*")
+        for t in tickers:
+            lines.append(f"*{t}*" if t not in previously_seen else t)
+        lines.append("")
+    message = "\n".join(lines).strip()
+
+    try:
+        resp = requests.post(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data={"chat_id": chat_id, "text": message, "parse_mode": "Markdown"},
+            timeout=30,
+        )
+        resp.raise_for_status()
+        if not resp.json().get("ok"):
+            print(f"  ⚠ Telegram API error: {resp.json()}")
+            return
+    except Exception as e:
+        print(f"  ⚠ Telegram send failed: {e}")
+        return
+
+    with open(TELEGRAM_SEEN_PATH, "w") as f:
+        json.dump(sorted({r["ticker"] for r in daily}), f)
+    print(f"  📨 Telegram: sent {len(daily)} daily NEW HH signals")
+
+
 # ─── MAIN ─────────────────────────────────────────────────────────────────────
 
 def main():
@@ -1050,6 +1119,12 @@ def main():
         build_csv(results, csv_path)
     except Exception as e:
         print(f"  ⚠ CSV save error: {e}")
+
+    if not args.tickers:
+        try:
+            send_hh_telegram(results)
+        except Exception as e:
+            print(f"  ⚠ Telegram notification error: {e}")
 
     if not args.no_open and os.path.isfile(html_path):
         try:

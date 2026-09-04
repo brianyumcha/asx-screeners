@@ -59,6 +59,9 @@ jobs:
 
       - name: Run Higher-High screener
         if: steps.gate.outputs.should_run == 'true'
+        env:
+          TELEGRAM_HH_BOT_TOKEN: ${{ secrets.TELEGRAM_HH_BOT_TOKEN }}
+          TELEGRAM_HH_CHAT_ID: ${{ secrets.TELEGRAM_HH_CHAT_ID }}
         run: python3 "HH SCREENER.py"
 
       - name: Preserve existing OBV/Pullback pages on HH-only intraday runs
@@ -77,7 +80,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f price_cache.parquet
+          git add -f price_cache.parquet seen_tickers_hh_telegram.json
           git diff --staged --quiet || git commit -m "Update price cache"
           for i in 1 2 3; do
             git push && break
