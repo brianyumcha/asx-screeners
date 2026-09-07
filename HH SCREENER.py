@@ -277,6 +277,10 @@ COMMODITY_KEYWORDS = [
     ("Vanadium", ["vanadium"], False),
     ("Diamonds", ["diamonds?"], False),
     ("Steel", ["steel"], False),
+    ("Tungsten", ["tungsten", "scheelite", "wolframite"], False),
+    ("Magnesium", ["magnesium"], False),
+    ("Silica", ["silica"], False),
+    ("Kaolin", ["kaolin"], False),
     ("Base Metals", ["base metals?", "polymetallic"], False),
     ("Battery Metals", ["battery metals?"], False),
     ("Chemicals", ["chemicals?"], False),
@@ -302,16 +306,18 @@ def classify_commodity(summary):
     not its own output - see ORI, an explosives maker that "serves" coal/
     iron ore/metal miners without mining anything itself).
 
-    A company that explicitly calls itself "diversified" is trusted
-    directly. Otherwise, 3+ distinct surviving commodity matches (BHP, RIO,
-    S32 all read this way) is reported as "Diversified" rather than
-    whichever matched earliest; below that, the earliest-occurring match in
-    the text wins, since companies typically lead with their primary
-    business before listing secondary products/by-products. Returns None if
-    nothing matched (summary missing/too vague to classify)."""
+    A company that explicitly calls itself "diversified", or that has 3+
+    distinct surviving commodity matches (BHP, RIO, S32 all read this way),
+    is reported as its top 3 commodities by earliest mention (e.g. "Copper
+    / Iron Ore / Coal") rather than the single generic word "Diversified" -
+    majors typically list their segments in that same order, so earliest-
+    mentioned doubles as a reasonable proxy for most-significant. Below
+    that threshold, the single earliest-occurring match wins, since
+    companies typically lead with their primary business before listing
+    secondary products/by-products. Returns None if nothing matched
+    (summary missing/too vague to classify)."""
     text = summary or ""
-    if re.search(r"\bdiversified\b", text, re.IGNORECASE):
-        return "Diversified"
+    self_described_diversified = bool(re.search(r"\bdiversified\b", text, re.IGNORECASE))
 
     def find_matches(t):
         earliest_pos = {}
@@ -327,16 +333,24 @@ def classify_commodity(summary):
 
     stripped = re.sub(r"\bexplores?\s+for\b[^.]*\.", " ", text, flags=re.IGNORECASE)
     stripped = re.sub(r"\bserves\b[^.]*\.", " ", stripped, flags=re.IGNORECASE)
+    stripped = re.sub(r"\bcustomers?\b[^.]*\.", " ", stripped, flags=re.IGNORECASE)
 
-    # Prefer matches from the stripped text (excludes exploration side-bets
-    # and services-company customer lists - see FMG/ORI above). But a
+    # Prefer matches from the stripped text (excludes exploration side-bets,
+    # services-company customer lists, and end-use/customer-industry
+    # mentions - see FMG/ORI/AAI above). But a
     # single-commodity explorer's ONLY mention of its commodity is often
     # itself inside an "explores for X" sentence (e.g. PLS: "The company
     # primarily explores for lithium.") - if stripping wiped out every
     # match, fall back to the unstripped text rather than reporting nothing.
     earliest_pos = find_matches(stripped) or find_matches(text)
 
-    if len(earliest_pos) >= 3:
+    if self_described_diversified or len(earliest_pos) >= 3:
+        if earliest_pos:
+            # " + " rather than " / " - a couple of category labels (e.g.
+            # "Zinc / Lead") already contain a slash, so joining with the
+            # same character would make 3 categories read as 4.
+            top3 = sorted(earliest_pos, key=earliest_pos.get)[:3]
+            return " + ".join(top3)
         return "Diversified"
     if not earliest_pos:
         return None
@@ -670,11 +684,17 @@ try {
   --bg:#0a0c0f; --surface:#111418; --border:#1e2530;
   --accent:#00e5a0; --accent2:#00aaff; --warn:#ffb800; --danger:#ff4455;
   --text:#e8edf2; --muted:#5a6478; --card:#141820; --rs-dim:#9aa4b8;
+  --row-border:rgba(30,37,48,.6); --sector-head-bg:var(--surface);
 }
 [data-theme="light"] {
   --bg:#f4f6f9; --surface:#ffffff; --border:#dde3ea;
   --accent:#00a37b; --accent2:#0077b3; --warn:#a66a00; --danger:#d6293a;
   --text:#1a2029; --muted:#65707f; --card:#ffffff; --rs-dim:#4a5568;
+  /* The dark theme's row divider (a translucent dark navy) reads as a
+     harsh, heavy line once it's sitting on a white background instead of
+     near-black - swap to the theme's own soft border color instead of
+     letting the dark-mode rgba leak through. */
+  --row-border:var(--border); --sector-head-bg:#e3f5f0;
 }
 .themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.9rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;line-height:1;height:fit-content}
@@ -708,17 +728,16 @@ h1{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;letter-spacing
 .pill.active{background:var(--accent2);color:#04121a;font-weight:600}
 input[type=text]{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.75rem;padding:.5rem .8rem;border-radius:8px;outline:none;width:170px}
-.checkline{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted);cursor:pointer}
 .sector{margin-bottom:.9rem;border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .sector-head{display:flex;justify-content:space-between;align-items:center;padding:.5rem .9rem;
-  background:var(--surface);cursor:pointer;user-select:none}
+  background:var(--sector-head-bg);cursor:pointer;user-select:none}
 .sector-head h2{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700}
 .sector-head .count{font-size:.68rem;color:var(--muted)}
 table.datatable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.82rem}
 table.datatable thead tr{border-bottom:1px solid var(--border)}
 table.datatable th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--muted);text-transform:uppercase;
   letter-spacing:.06em;white-space:nowrap;font-weight:600}
-table.datatable tbody tr{border-bottom:1px solid rgba(30,37,48,.6)}
+table.datatable tbody tr{border-bottom:1px solid var(--row-border)}
 table.datatable tbody tr:hover{background:rgba(0,229,160,.03)}
 table.datatable td{padding:.38rem .6rem;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Fixed column widths, identical across every sector's table regardless of
@@ -820,7 +839,6 @@ canvas{width:100%;height:100%;display:block}
       <button class="pill active" data-ctf="126">6M</button>
     </div>
     <input type="text" id="search" placeholder="Search ticker...">
-    <label class="checkline"><input type="checkbox" id="onlySignals" checked> Only show NEW HH</label>
   </div>
 
   <div class="sectorrow" id="sectorRow"></div>
@@ -849,7 +867,7 @@ themeBtn.addEventListener('click', () => {
 const DATA = ##DATA_JSON##;
 const SECTOR_ORDER = ##SECTOR_ORDER_JSON##;
 
-let state = { mode: 'table', tf: 'daily', chartTf: 126, search: '', onlySignals: true, sector: null, minTier: 0 };
+let state = { mode: 'table', tf: 'daily', chartTf: 126, search: '', sector: null, minTier: 0 };
 
 // Monotonic rank matching high_tier()'s own tier order - a 6M high is
 // also a 3M and 1M high, so "6M+" means rank >= 3, not "exactly 6M".
@@ -898,7 +916,6 @@ document.getElementById('chartTfToggle').addEventListener('click', e => {
   render();
 });
 document.getElementById('search').addEventListener('input', e => { state.search = e.target.value.toUpperCase(); render(); });
-document.getElementById('onlySignals').addEventListener('change', e => { state.onlySignals = e.target.checked; render(); });
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 // SeaBee names come back ALL CAPS (e.g. "CHALLENGER LIMITED") - title-case
@@ -1091,7 +1108,7 @@ function render() {
 
   let visible = DATA.filter(r => !state.search || r.ticker.includes(state.search));
   if (state.sector) visible = visible.filter(r => r.sector === state.sector);
-  if (state.onlySignals || state.mode === 'chart') visible = visible.filter(r => r[sigKey]);
+  visible = visible.filter(r => r[sigKey]);
   if (state.minTier > 0) visible = visible.filter(r => tierRank(r.high_tier) >= state.minTier);
 
   const sectorsEl = document.getElementById('sectors');
