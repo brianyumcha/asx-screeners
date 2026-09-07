@@ -685,9 +685,9 @@ canvas{width:100%;height:100%;display:block}
       <button class="pill" data-tier="4">12M+</button>
     </div>
     <div class="pillgroup" id="chartTfToggle" style="display:none">
-      <button class="pill active" data-ctf="21">1M</button>
+      <button class="pill" data-ctf="21">1M</button>
       <button class="pill" data-ctf="63">3M</button>
-      <button class="pill" data-ctf="126">6M</button>
+      <button class="pill active" data-ctf="126">6M</button>
     </div>
     <input type="text" id="search" placeholder="Search ticker...">
     <label class="checkline"><input type="checkbox" id="onlySignals" checked> Only show NEW HH</label>
@@ -719,7 +719,7 @@ themeBtn.addEventListener('click', () => {
 const DATA = ##DATA_JSON##;
 const SECTOR_ORDER = ##SECTOR_ORDER_JSON##;
 
-let state = { mode: 'table', tf: 'daily', chartTf: 21, search: '', onlySignals: true, sector: null, minTier: 0 };
+let state = { mode: 'table', tf: 'daily', chartTf: 126, search: '', onlySignals: true, sector: null, minTier: 0 };
 
 // Monotonic rank matching high_tier()'s own tier order - a 6M high is
 // also a 3M and 1M high, so "6M+" means rank >= 3, not "exactly 6M".
