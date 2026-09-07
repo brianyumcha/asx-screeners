@@ -332,17 +332,18 @@ def obv_confirmation(obv, closes, pivot_idx):
 
 
 def high_tier(closes):
-    """Longest of the 1/3/6-month windows (in trading days) for which today's
-    close is still the highest close in that window. Monotonic - being a
-    6-month high necessarily makes you a 3- and 1-month high too, since the
-    6-month window contains the other two - so only the longest qualifying
-    tier needs to be reported. A tier is skipped (not just failed) if there
-    isn't enough history to confirm it, rather than trivially "passing" on a
-    too-short window. Used to flag a NEW HH that only clears a very recent,
-    low-significance local pivot (see YRL, 2026-09-02: broke a pivot from 9
-    days earlier while still ~15% below its own 3-month high)."""
+    """Longest of the 1/3/6/12-month windows (in trading days) for which
+    today's close is still the highest close in that window. Monotonic - a
+    12-month high necessarily makes you a 6-, 3- and 1-month high too, since
+    each longer window contains all the shorter ones - so only the longest
+    qualifying tier needs to be reported. A tier is skipped (not just
+    failed) if there isn't enough history to confirm it, rather than
+    trivially "passing" on a too-short window. Used to flag a NEW HH that
+    only clears a very recent, low-significance local pivot (see YRL,
+    2026-09-02: broke a pivot from 9 days earlier while still ~15% below
+    its own 3-month high)."""
     today = closes[-1]
-    for label, n in (("6M", 126), ("3M", 63), ("1M", 21)):
+    for label, n in (("12M", 252), ("6M", 126), ("3M", 63), ("1M", 21)):
         if len(closes) < n:
             continue
         if today >= max(closes[-n:]):
@@ -624,7 +625,7 @@ td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .hh-yes{background:rgba(0,229,160,.14);color:var(--accent);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
 .obv-confirm{color:var(--accent)} .obv-not{color:var(--danger)} .obv-neutral{color:var(--muted)}
 .rs-yes{color:var(--accent);font-weight:700} .rs-no{color:var(--rs-dim);font-weight:600} .rs-na{color:var(--rs-dim);opacity:.6}
-.tier-6M{color:var(--accent);font-weight:700} .tier-3M{color:var(--accent2)} .tier-1M{color:var(--muted)} .tier-none{color:var(--muted)}
+.tier-12M{color:var(--warn);font-weight:700} .tier-6M{color:var(--accent);font-weight:700} .tier-3M{color:var(--accent2)} .tier-1M{color:var(--muted)} .tier-none{color:var(--muted)}
 .empty{text-align:center;color:var(--muted);padding:2rem 0;font-size:.85rem}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
 
@@ -674,6 +675,13 @@ canvas{width:100%;height:100%;display:block}
       <button class="pill active" data-tf="daily">Daily</button>
       <button class="pill" data-tf="weekly">Weekly</button>
     </div>
+    <div class="pillgroup" id="tierToggle" title="Only show tickers at or above this High Tier">
+      <button class="pill active" data-tier="0">All</button>
+      <button class="pill" data-tier="1">1M+</button>
+      <button class="pill" data-tier="2">3M+</button>
+      <button class="pill" data-tier="3">6M+</button>
+      <button class="pill" data-tier="4">12M+</button>
+    </div>
     <div class="pillgroup" id="chartTfToggle" style="display:none">
       <button class="pill active" data-ctf="21">1M</button>
       <button class="pill" data-ctf="63">3M</button>
@@ -709,7 +717,12 @@ themeBtn.addEventListener('click', () => {
 const DATA = ##DATA_JSON##;
 const SECTOR_ORDER = ##SECTOR_ORDER_JSON##;
 
-let state = { mode: 'table', tf: 'daily', chartTf: 21, search: '', onlySignals: true, sector: null };
+let state = { mode: 'table', tf: 'daily', chartTf: 21, search: '', onlySignals: true, sector: null, minTier: 0 };
+
+// Monotonic rank matching high_tier()'s own tier order - a 6M high is
+// also a 3M and 1M high, so "6M+" means rank >= 3, not "exactly 6M".
+const TIER_RANK = { '12M': 4, '6M': 3, '3M': 2, '1M': 1 };
+function tierRank(tier) { return TIER_RANK[tier] || 0; }
 
 const sectorsPresent = [...new Set(DATA.map(r => r.sector))];
 const sectorRow = document.getElementById('sectorRow');
@@ -735,6 +748,13 @@ document.getElementById('tfToggle').addEventListener('click', e => {
   if (!e.target.dataset.tf) return;
   state.tf = e.target.dataset.tf;
   document.querySelectorAll('#tfToggle .pill').forEach(x => x.classList.remove('active'));
+  e.target.classList.add('active');
+  render();
+});
+document.getElementById('tierToggle').addEventListener('click', e => {
+  if (!e.target.dataset.tier) return;
+  state.minTier = parseInt(e.target.dataset.tier, 10);
+  document.querySelectorAll('#tierToggle .pill').forEach(x => x.classList.remove('active'));
   e.target.classList.add('active');
   render();
 });
@@ -931,6 +951,7 @@ function render() {
   let visible = DATA.filter(r => !state.search || r.ticker.includes(state.search));
   if (state.sector) visible = visible.filter(r => r.sector === state.sector);
   if (state.onlySignals || state.mode === 'chart') visible = visible.filter(r => r[sigKey]);
+  if (state.minTier > 0) visible = visible.filter(r => tierRank(r.high_tier) >= state.minTier);
 
   const sectorsEl = document.getElementById('sectors');
   const gridEl = document.getElementById('grid');
