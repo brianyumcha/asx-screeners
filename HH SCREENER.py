@@ -57,6 +57,7 @@ import pandas as pd
 import requests
 import openpyxl
 import pdfplumber
+import yfinance as yf
 
 SYDNEY_TZ = ZoneInfo("Australia/Sydney")
 
@@ -235,6 +236,141 @@ def get_asx_universe():
     # Minimal built-in fallback so the script still runs if SeaBee is down.
     fallback = "BHP,RIO,FMG,CBA,NAB,WBC,ANZ,CSL,WES,WOW,TLS,STO,ORG,WDS,XRO,WTC".split(",")
     return {t: {"industry": "Other", "sector": "Other", "market_cap": 0, "name": t} for t in fallback}
+
+
+# ─── MATERIALS COMMODITY CLASSIFICATION ────────────────────────────────────
+# GICS gives Materials only one Industry Group (matching the Sector name
+# itself - see the SECTOR_MAP comment above), so every Materials ticker's
+# "industry" column would otherwise just say "Materials" for all ~90 of
+# them. Keyword-match each company's Yahoo business summary against known
+# commodities instead, once per ticker ever - a company's primary commodity
+# doesn't change between runs, so the result is cached to disk
+# (materials_commodity_cache.json) and this only costs a Yahoo .info call
+# (heavier / more throttle-prone than the OHLCV fetches in price_cache.py)
+# for genuinely new Materials-sector listings, not on every scan.
+MATERIALS_COMMODITY_CACHE_PATH = os.path.join(SCRIPT_DIR, "materials_commodity_cache.json")
+
+# (label, [regex fragments (word-boundary-wrapped automatically)], needs_context).
+# needs_context is for the handful of commodity words that routinely show up
+# for unrelated reasons - "zinc"/"lead" in a coating/brand description
+# ("zinc/aluminium alloy coated steel"), "lead" as the verb, "tin" as in tin
+# cans/tinplate for a packaging company - so those only count as a match if
+# a mining-context word (mine/deposit/ore/smelt/refine/...) appears nearby.
+COMMODITY_KEYWORDS = [
+    ("Gold", ["gold"], False),
+    ("Iron Ore", ["iron ores?"], False),
+    ("Lithium", ["lithium"], False),
+    ("Copper", ["copper"], False),
+    ("Nickel", ["nickel"], False),
+    ("Uranium", ["uranium"], False),
+    ("Coal", ["coal"], False),
+    ("Rare Earths", ["rare earths?"], False),
+    ("Mineral Sands", ["mineral sands?", "zircon", "titanium dioxide"], False),
+    ("Zinc / Lead", ["zinc", "lead"], True),
+    ("Silver", ["silver"], False),
+    ("Tin", ["tin"], True),
+    ("Manganese", ["manganese"], False),
+    ("Graphite", ["graphite"], False),
+    ("Potash / Fertiliser", ["potash", r"fertilis\w*", r"fertiliz\w*", "phosphates?"], False),
+    ("Bauxite / Alumina", ["bauxite", "alumina"], False),
+    ("Cobalt", ["cobalt"], False),
+    ("Vanadium", ["vanadium"], False),
+    ("Diamonds", ["diamonds?"], False),
+    ("Steel", ["steel"], False),
+    ("Base Metals", ["base metals?", "polymetallic"], False),
+    ("Battery Metals", ["battery metals?"], False),
+    ("Chemicals", ["chemicals?"], False),
+    ("Building Materials", ["cement", "concrete"], False),
+    ("Packaging", ["packaging", "paperboard", "paper and pulp"], False),
+]
+
+# Broadened past the literal word "mine" so "producing bauxite..." (South32)
+# and "X deposits" (most explorers) both count, without going so generic
+# (e.g. "operates"/"produces" alone) that it stops filtering anything out.
+MINING_CONTEXT_RE = re.compile(
+    r"\b(?:mine|mines|mining|miner|deposit|ore|concentrate|smelt|refin|reserve)\w*", re.IGNORECASE)
+
+
+def classify_commodity(summary):
+    """Keyword-matches a Yahoo longBusinessSummary against COMMODITY_KEYWORDS.
+    Two clause types are stripped before matching, because both routinely
+    list several commodities that have nothing to do with what the company
+    actually produces today: "explores for X, Y and Z" (an early-stage side
+    bet alongside the real business - see FMG, which explores for copper/
+    lithium/rare earths but is overwhelmingly an iron ore producer) and
+    "serves ... markets" (a mining-*services* company's customer industries,
+    not its own output - see ORI, an explosives maker that "serves" coal/
+    iron ore/metal miners without mining anything itself).
+
+    A company that explicitly calls itself "diversified" is trusted
+    directly. Otherwise, 3+ distinct surviving commodity matches (BHP, RIO,
+    S32 all read this way) is reported as "Diversified" rather than
+    whichever matched earliest; below that, the earliest-occurring match in
+    the text wins, since companies typically lead with their primary
+    business before listing secondary products/by-products. Returns None if
+    nothing matched (summary missing/too vague to classify)."""
+    text = summary or ""
+    if re.search(r"\bdiversified\b", text, re.IGNORECASE):
+        return "Diversified"
+
+    def find_matches(t):
+        earliest_pos = {}
+        for label, patterns, needs_context in COMMODITY_KEYWORDS:
+            for pat in patterns:
+                for m in re.finditer(r"\b" + pat + r"\b", t, re.IGNORECASE):
+                    if needs_context and not MINING_CONTEXT_RE.search(t[max(0, m.start() - 60):m.end() + 60]):
+                        continue
+                    if label not in earliest_pos or m.start() < earliest_pos[label]:
+                        earliest_pos[label] = m.start()
+                    break
+        return earliest_pos
+
+    stripped = re.sub(r"\bexplores?\s+for\b[^.]*\.", " ", text, flags=re.IGNORECASE)
+    stripped = re.sub(r"\bserves\b[^.]*\.", " ", stripped, flags=re.IGNORECASE)
+
+    # Prefer matches from the stripped text (excludes exploration side-bets
+    # and services-company customer lists - see FMG/ORI above). But a
+    # single-commodity explorer's ONLY mention of its commodity is often
+    # itself inside an "explores for X" sentence (e.g. PLS: "The company
+    # primarily explores for lithium.") - if stripping wiped out every
+    # match, fall back to the unstripped text rather than reporting nothing.
+    earliest_pos = find_matches(stripped) or find_matches(text)
+
+    if len(earliest_pos) >= 3:
+        return "Diversified"
+    if not earliest_pos:
+        return None
+    return min(earliest_pos, key=earliest_pos.get)
+
+
+def classify_materials_commodities(universe):
+    """Mutates `universe` in place: for every Materials-sector ticker,
+    replaces the generic "industry" value with its primary commodity.
+    Only fetches Yahoo's .info for tickers not already in the on-disk
+    cache - see the module comment above for why that matters."""
+    try:
+        with open(MATERIALS_COMMODITY_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    materials_tickers = [t for t, d in universe.items() if d.get("sector") == "Materials"]
+    new_tickers = [t for t in materials_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Materials ticker(s) by commodity...")
+        for t in new_tickers:
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                summary = yf.Ticker(yahoo_sym).info.get("longBusinessSummary", "")
+                cache[t] = classify_commodity(summary) or "Materials"
+            except Exception:
+                cache[t] = "Materials"
+        with open(MATERIALS_COMMODITY_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in materials_tickers:
+        universe[t]["industry"] = cache.get(t, "Materials")
 
 
 # ─── INDICATORS ───────────────────────────────────────────────────────────────
@@ -1122,6 +1258,8 @@ def main():
         wanted = [t.strip().upper() for t in args.tickers.split(',') if t.strip()]
         universe = {t: universe.get(t, {"industry": "Other", "sector": "Other", "market_cap": 0, "name": t}) for t in wanted}
         print(f"  Using custom list: {len(universe)} tickers")
+
+    classify_materials_commodities(universe)
 
     results, usable, fresh_today = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])
