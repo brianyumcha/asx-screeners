@@ -86,12 +86,21 @@ MIN_UNIVERSE_FOR_CHECK = 500
 PIVOT_LEFT  = 3
 PIVOT_RIGHT = 3
 
-# SeaBee's `industry` field (GICS industry-group level) mapped onto the same
-# 8 broad sector buckets used in the "HH Indicator ... (BT)" Pine scripts, so
-# this tool groups stocks the same way your TradingView dashboard already does.
+# SeaBee's `industry` field (GICS industry-group level) mapped onto the 11
+# standard GICS sectors (matching e.g. listcorp.com/asx/sectors) rather than
+# a smaller custom bucket set - the old 8-bucket scheme (combining Staples/
+# Utilities/Comms into one "Essentials" bucket, and REITs/Real Estate with
+# Industrials into "Property & Industrials") only existed because the
+# TradingView Pine dashboards could only fit 8 indicator panes on screen.
+# This report has no such constraint, and each of the 11 sectors below has
+# its own dedicated RS benchmark index (see SECTOR_BENCHMARK), so there's no
+# reason to keep them blended here.
 SECTOR_MAP = {
     "Materials": "Materials",
     "Energy": "Energy",
+    "Capital Goods": "Industrials",
+    "Commercial & Professional Services": "Industrials",
+    "Transportation": "Industrials",
     "Software & Services": "Info Tech",
     "Technology Hardware & Equipment": "Info Tech",
     "Semiconductors & Semiconductor Equipment": "Info Tech",
@@ -100,62 +109,45 @@ SECTOR_MAP = {
     "Insurance": "Financials",
     "Pharmaceuticals, Biotechnology & Life Sciences": "Healthcare",
     "Health Care Equipment & Services": "Healthcare",
-    "Capital Goods": "Property & Industrials",
-    "Commercial & Professional Services": "Property & Industrials",
-    "Transportation": "Property & Industrials",
-    "Equity Real Estate Investment Trusts (REITs)": "Property & Industrials",
-    "Real Estate Management & Development": "Property & Industrials",
     "Consumer Services": "Consumer Discretionary",
-    "Media & Entertainment": "Essentials",
     "Consumer Discretionary Distribution & Retail": "Consumer Discretionary",
     "Consumer Durables & Apparel": "Consumer Discretionary",
     "Automobiles & Components": "Consumer Discretionary",
-    "Food, Beverage & Tobacco": "Essentials",
-    "Household & Personal Products": "Essentials",
-    "Consumer Staples Distribution & Retail": "Essentials",
-    "Utilities": "Essentials",
-    "Telecommunication Services": "Essentials",
+    "Food, Beverage & Tobacco": "Consumer Staples",
+    "Household & Personal Products": "Consumer Staples",
+    "Consumer Staples Distribution & Retail": "Consumer Staples",
+    "Media & Entertainment": "Communication Services",
+    "Telecommunication Services": "Communication Services",
+    "Utilities": "Utilities",
+    "Equity Real Estate Investment Trusts (REITs)": "Real Estate",
+    "Real Estate Management & Development": "Real Estate",
 }
 SECTOR_ORDER = [
-    "Materials", "Energy", "Financials", "Healthcare", "Info Tech",
-    "Consumer Discretionary", "Essentials", "Property & Industrials", "Other",
+    "Materials", "Energy", "Industrials", "Financials", "Healthcare", "Info Tech",
+    "Consumer Discretionary", "Consumer Staples", "Communication Services",
+    "Utilities", "Real Estate", "Other",
 ]
 
 # ─── RELATIVE STRENGTH (Traderlion-style RS line vs XJO + GICS sector index) ──
-# Routed off the raw SeaBee `industry` string, not the 8 broad SECTOR_MAP
-# buckets, so a composite bucket like "Essentials" (Staples/Utilities/Comms)
-# or "Property & Industrials" still compares each ticker against its actual
-# specific sector benchmark rather than an arbitrary one of the two/three
-# indices that bucket blends together.
+# One dedicated benchmark per sector now that SECTOR_MAP is the full 11-way
+# GICS split - no more need to route off the raw `industry` string to dodge
+# a blended bucket, since every report sector already maps to exactly one
+# real index.
 BENCHMARK_MARKET = "^AXJO"   # S&P/ASX 200 - every ticker's broad-market RS line
 RS_EMA_PERIOD = 21            # matches the Traderlion RS Line indicator's default signal EMA
 
-INDUSTRY_TO_SECTOR_BENCHMARK = {
+SECTOR_BENCHMARK = {
     "Materials": "^AXMJ",
     "Energy": "^AXEJ",
-    "Software & Services": "^AXIJ",
-    "Technology Hardware & Equipment": "^AXIJ",
-    "Semiconductors & Semiconductor Equipment": "^AXIJ",
-    "Financial Services": "^AXFJ",
-    "Banks": "^AXFJ",
-    "Insurance": "^AXFJ",
-    "Pharmaceuticals, Biotechnology & Life Sciences": "^AXHJ",
-    "Health Care Equipment & Services": "^AXHJ",
-    "Capital Goods": "^AXNJ",
-    "Commercial & Professional Services": "^AXNJ",
-    "Transportation": "^AXNJ",
-    "Equity Real Estate Investment Trusts (REITs)": "^AXPJ",
-    "Real Estate Management & Development": "^AXPJ",
-    "Consumer Services": "^AXDJ",
-    "Media & Entertainment": "^AXTJ",
-    "Consumer Discretionary Distribution & Retail": "^AXDJ",
-    "Consumer Durables & Apparel": "^AXDJ",
-    "Automobiles & Components": "^AXDJ",
-    "Food, Beverage & Tobacco": "^AXSJ",
-    "Household & Personal Products": "^AXSJ",
-    "Consumer Staples Distribution & Retail": "^AXSJ",
+    "Industrials": "^AXNJ",
+    "Financials": "^AXFJ",
+    "Healthcare": "^AXHJ",
+    "Info Tech": "^AXIJ",
+    "Consumer Discretionary": "^AXDJ",
+    "Consumer Staples": "^AXSJ",
+    "Communication Services": "^AXTJ",
     "Utilities": "^AXUJ",
-    "Telecommunication Services": "^AXTJ",
+    "Real Estate": "^AXPJ",
 }
 BENCHMARK_LABELS = {
     "^AXJO": "XJO", "^AXMJ": "XMJ", "^AXEJ": "XEJ", "^AXFJ": "XFJ",
@@ -171,7 +163,7 @@ def fetch_benchmark_series():
     ".AX"-suffix convention doesn't apply to index symbols) once per run,
     reusing price_cache's own retry logic. Returns {yahoo_symbol: pd.Series
     of close, indexed by tz-naive date}."""
-    symbols = {BENCHMARK_MARKET} | set(INDUSTRY_TO_SECTOR_BENCHMARK.values())
+    symbols = {BENCHMARK_MARKET} | set(SECTOR_BENCHMARK.values())
     series = {}
     for sym in symbols:
         df = price_cache._fetch_one(sym, HISTORY_PERIOD)
@@ -436,7 +428,7 @@ def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None, index_serie
         rs_market = rs_sector = rs_sector_label = None
         if (sig_d or sig_w) and index_series:
             rs_market = relative_strength_status(dates, closes, index_series.get(BENCHMARK_MARKET))
-            sector_benchmark = INDUSTRY_TO_SECTOR_BENCHMARK.get(info.get("industry", ""))
+            sector_benchmark = SECTOR_BENCHMARK.get(info.get("sector", ""))
             if sector_benchmark:
                 rs_sector = relative_strength_status(dates, closes, index_series.get(sector_benchmark))
                 rs_sector_label = BENCHMARK_LABELS.get(sector_benchmark)
@@ -505,7 +497,7 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
 
     print("   Fetching relative-strength benchmark indices (XJO + GICS sectors)...")
     index_series = fetch_benchmark_series()
-    print(f"   Got {len(index_series)}/{len(INDUSTRY_TO_SECTOR_BENCHMARK) + 1} benchmark indices")
+    print(f"   Got {len(index_series)}/{len(SECTOR_BENCHMARK) + 1} benchmark indices")
 
     results = []
     for t in tickers:
