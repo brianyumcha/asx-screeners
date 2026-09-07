@@ -597,8 +597,8 @@ table.datatable td{padding:.38rem .6rem;vertical-align:middle;white-space:nowrap
    that sector's own content lengths (table-layout:auto let each sector's
    table size its columns independently, so widths drifted sector to sector -
    e.g. a long Industry name in one sector didn't affect another's table). */
-table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:11%}
-table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:27%}
+table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:20%}
+table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:18%}
 table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:13%}
 table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:11%}
 table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:13%}
@@ -610,6 +610,7 @@ table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:13%}
    squeezed ticker/price/chg down to a few px each. Drop Industry and let
    the rest breathe instead. */
 @media (max-width: 640px){
+  .company-name{display:none}
   table.datatable th:nth-child(2), table.datatable td:nth-child(2){display:none}
   table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:18%}
   table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:16%}
@@ -621,6 +622,7 @@ table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:13%}
 }
 td.ticker-cell{font-family:'Syne',sans-serif;font-weight:700}
 td.ticker-cell a{color:var(--accent2);text-decoration:none}
+.company-name{font-family:'Inter',sans-serif;font-weight:400;color:var(--muted);font-size:.68rem;margin-left:.5rem}
 .up{color:var(--accent)} .dn{color:var(--danger)} .neutral{color:var(--muted)}
 .hh-yes{background:rgba(0,229,160,.14);color:var(--accent);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
 .obv-confirm{color:var(--accent)} .obv-not{color:var(--danger)} .obv-neutral{color:var(--muted)}
@@ -769,6 +771,12 @@ document.getElementById('search').addEventListener('input', e => { state.search 
 document.getElementById('onlySignals').addEventListener('change', e => { state.onlySignals = e.target.checked; render(); });
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+// SeaBee names come back ALL CAPS (e.g. "CHALLENGER LIMITED") - title-case
+// for readability next to the ticker, but leave short all-caps tokens
+// (LTD, NL, plc-style suffixes under 4 chars) alone so they don't look odd.
+function titleCase(s){
+  return String(s).split(' ').map(w => w.length <= 3 && w === w.toUpperCase() ? w : w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
+}
 
 function sma(closes, period) {
   const out = new Array(closes.length).fill(null);
@@ -899,7 +907,7 @@ function renderTable(visible, sigKey, obvKey) {
       const rsTitle = `RS vs XJO: ${rsWord(r.rs_market)} · RS vs ${esc(rsSectorLabel)}: ${rsWord(r.rs_sector)}`;
       const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${r.ticker}`;
       return `<tr>
-        <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a></td>
+        <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a><span class="company-name">${esc(titleCase(r.name))}</span></td>
         <td style="color:var(--muted);font-size:.72rem">${esc(r.industry)}</td>
         <td>$${r.price.toFixed(r.price < 1 ? 3 : 2)}</td>
         <td class="${chgClass}">${chgSign}${r.change_1d.toFixed(1)}%</td>
