@@ -601,8 +601,10 @@ table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:13%}
    desktop % widths verbatim regardless of viewport - on a narrow phone that
    squeezed ticker/price/chg down to a few px each. Drop Industry and let
    the rest breathe instead. */
+.rs-short{display:none} .rs-long{display:inline}
 @media (max-width: 640px){
   .company-name{display:none}
+  .rs-short{display:inline} .rs-long{display:none}
   table.datatable th:nth-child(2), table.datatable td:nth-child(2){display:none}
   table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:18%}
   table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:16%}
@@ -905,7 +907,10 @@ function renderTable(visible, sigKey, obvKey) {
         <td class="${chgClass}">${chgSign}${r.change_1d.toFixed(1)}%</td>
         <td class="${obvClass}" title="${obv ? esc(obv) : 'No OBV read'}">${obvShort}</td>
         <td class="${tierClass}" title="${tierTitle}">${tier || '<1M'}</td>
-        <td title="${rsTitle}"><span class="${rsClass(r.rs_market)}">M${rsChar(r.rs_market)}</span> <span class="${rsClass(r.rs_sector)}">S${rsChar(r.rs_sector)}</span></td>
+        <td title="${rsTitle}">
+          <span class="rs-short"><span class="${rsClass(r.rs_market)}">M${rsChar(r.rs_market)}</span> <span class="${rsClass(r.rs_sector)}">S${rsChar(r.rs_sector)}</span></span>
+          <span class="rs-long"><span class="${rsClass(r.rs_market)}">XJO${rsChar(r.rs_market)}</span> <span class="${rsClass(r.rs_sector)}">${esc(rsSectorLabel)}${rsChar(r.rs_sector)}</span></span>
+        </td>
       </tr>`;
     }).join('');
     return `<div class="sector">
