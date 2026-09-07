@@ -258,14 +258,27 @@ MATERIALS_COMMODITY_CACHE_PATH = os.path.join(SCRIPT_DIR, "materials_commodity_c
 # a mining-context word (mine/deposit/ore/smelt/refine/...) appears nearby.
 COMMODITY_KEYWORDS = [
     ("Gold", ["gold"], False),
+    ("Platinum Group Metals", ["platinum", "palladium", "rhodium", "iridium", "ruthenium", "platinum group"], False),
     ("Iron Ore", ["iron ores?"], False),
     ("Lithium", ["lithium"], False),
     ("Copper", ["copper"], False),
     ("Nickel", ["nickel"], False),
     ("Uranium", ["uranium"], False),
-    ("Coal", ["coal"], False),
+    ("Hydrogen", ["hydrogen"], False),
+    ("Gas", ["natural gas", "coal\\s*(?:bed|seam)\\s*(?:gas|methane)", r"\bmethane\b", r"\blng\b"], False),
+    # Negative lookahead so "coal bed methane"/"coal seam gas" (a gas
+    # extraction technique, not coal mining - see JGH) is Gas, not Coal.
+    ("Coal", [r"coal(?!\s*(?:bed|seam)\s*(?:gas|methane))"], False),
     ("Rare Earths", ["rare earths?"], False),
-    ("Mineral Sands", ["mineral sands?", "zircon", "titanium dioxide"], False),
+    ("Mineral Sands", ["mineral sands?", "zircon", "titanium dioxide", "rutile", "ilmenite"], False),
+    ("Niobium", ["niobium"], False),
+    ("Antimony", ["antimony"], False),
+    ("Molybdenum", [r"molybden\w*"], False),
+    ("Tantalum", ["tantalum"], False),
+    ("Scandium", ["scandium"], False),
+    ("Chromium", ["chromite", "chromium"], False),
+    ("Halloysite", ["halloysite"], False),
+    ("Boron", ["boron", "borates?"], False),
     ("Zinc / Lead", ["zinc", "lead"], True),
     ("Silver", ["silver"], False),
     ("Tin", ["tin"], True),
@@ -283,7 +296,8 @@ COMMODITY_KEYWORDS = [
     ("Kaolin", ["kaolin"], False),
     ("Base Metals", ["base metals?", "polymetallic"], False),
     ("Battery Metals", ["battery metals?"], False),
-    ("Chemicals", ["chemicals?"], False),
+    ("Chemicals", ["chemicals?", "herbicides?", "insecticides?", "fungicides?",
+                   "pesticides?", "crop protection", "agrochemicals?"], False),
     ("Building Materials", ["cement", "concrete"], False),
     ("Packaging", ["packaging", "paperboard", "paper and pulp"], False),
 ]
@@ -337,11 +351,17 @@ def classify_commodity(summary):
 
     # Prefer matches from the stripped text (excludes exploration side-bets,
     # services-company customer lists, and end-use/customer-industry
-    # mentions - see FMG/ORI/AAI above). But a
-    # single-commodity explorer's ONLY mention of its commodity is often
-    # itself inside an "explores for X" sentence (e.g. PLS: "The company
-    # primarily explores for lithium.") - if stripping wiped out every
-    # match, fall back to the unstripped text rather than reporting nothing.
+    # mentions - see FMG/ORI/AAI above). A same-business/side-bet overlap
+    # check was tried here and reverted: almost any real miner's "explores
+    # for" list trivially includes its own actual commodity plus a few
+    # speculative extras, so "shares a commodity with the core text" ends
+    # up true for nearly everyone - it stopped filtering anything and
+    # introduced arbitrary reordering (see SFR/ARL/EVN in git history for
+    # what that looked like). A single-commodity explorer's ONLY mention of
+    # its commodity is often itself inside an "explores for X" sentence
+    # (e.g. PLS: "The company primarily explores for lithium.") - if
+    # stripping wiped out every match, fall back to the unstripped text
+    # rather than reporting nothing.
     earliest_pos = find_matches(stripped) or find_matches(text)
 
     if self_described_diversified or len(earliest_pos) >= 3:
@@ -744,29 +764,31 @@ table.datatable td{padding:.38rem .6rem;vertical-align:middle;white-space:nowrap
    that sector's own content lengths (table-layout:auto let each sector's
    table size its columns independently, so widths drifted sector to sector -
    e.g. a long Industry name in one sector didn't affect another's table). */
-table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:20%}
-table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:18%}
-table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:13%}
-table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:11%}
-table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:13%}
+table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:18%}
+table.datatable th:nth-child(2), table.datatable td:nth-child(2){width:14%}
+table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:11%}
+table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:12%}
+table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:10%}
 table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:12%}
-table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:13%}
-/* Mobile: Industry is the least essential column (ticker/price/chg/OBV are
-   what you actually need to act on), and table-layout:fixed enforces the
-   desktop % widths verbatim regardless of viewport - on a narrow phone that
-   squeezed ticker/price/chg down to a few px each. Drop Industry and let
-   the rest breathe instead. */
+table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:11%}
+table.datatable th:nth-child(8), table.datatable td:nth-child(8){width:12%}
+/* Mobile: Industry and Mkt Cap are the least essential columns (ticker/
+   price/chg/OBV are what you actually need to act on), and table-
+   layout:fixed enforces the desktop % widths verbatim regardless of
+   viewport - on a narrow phone that squeezed ticker/price/chg down to a
+   few px each. Drop both and let the rest breathe instead. */
 .rs-short{display:none} .rs-long{display:inline}
 @media (max-width: 640px){
   .company-name{display:none}
   .rs-short{display:inline} .rs-long{display:none}
   table.datatable th:nth-child(2), table.datatable td:nth-child(2){display:none}
+  table.datatable th:nth-child(3), table.datatable td:nth-child(3){display:none}
   table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:18%}
-  table.datatable th:nth-child(3), table.datatable td:nth-child(3){width:16%}
   table.datatable th:nth-child(4), table.datatable td:nth-child(4){width:16%}
   table.datatable th:nth-child(5), table.datatable td:nth-child(5){width:16%}
-  table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:17%}
+  table.datatable th:nth-child(6), table.datatable td:nth-child(6){width:16%}
   table.datatable th:nth-child(7), table.datatable td:nth-child(7){width:17%}
+  table.datatable th:nth-child(8), table.datatable td:nth-child(8){width:17%}
   table.datatable th, table.datatable td{padding:.32rem .35rem;font-size:.78rem}
 }
 td.ticker-cell{font-family:'Syne',sans-serif;font-weight:700}
@@ -925,6 +947,13 @@ function titleCase(s){
   return String(s).split(' ').map(w => w.length <= 3 && w === w.toUpperCase() ? w : w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
 }
 
+function fmtMcap(v){
+  if (!v) return '–';
+  if (v >= 1e9) return '$' + (v/1e9).toFixed(1) + 'B';
+  if (v >= 1e6) return '$' + (v/1e6).toFixed(0) + 'M';
+  return '$' + (v/1e3).toFixed(0) + 'K';
+}
+
 function sma(closes, period) {
   const out = new Array(closes.length).fill(null);
   let sum = 0;
@@ -1011,13 +1040,16 @@ function cardHtml(r) {
   const chgClass = r.change_1d > 0 ? 'up' : r.change_1d < 0 ? 'dn' : 'neutral';
   const chgSign = r.change_1d > 0 ? '+' : '';
   const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${r.ticker}`;
+  const tier = r.high_tier;
+  const tierClass = tier ? `tier-${tier}` : 'tier-none';
+  const tierTitle = tier ? `New ${tier} high` : 'Not even a 1-month high - a low-significance pivot break';
   return `<div class="card" data-ticker="${esc(r.ticker)}">
     <div class="cardhead">
       <div class="cardhead-left">
         <span class="ticker"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)} ↗</a></span>
         <span class="chg ${chgClass}">${chgSign}${r.change_1d.toFixed(1)}%</span>
       </div>
-      <span class="hh-yes">NEW HH</span>
+      <span class="hh-yes ${tierClass}" title="${tierTitle}">${tier || '<1M'} HIGH</span>
     </div>
     <div class="chartwrap"><canvas></canvas></div>
     <div class="cardfoot"><span>${esc(r.industry)}</span><span class="v">$${r.price.toFixed(r.price < 1 ? 3 : 2)}</span></div>
@@ -1056,6 +1088,7 @@ function renderTable(visible, sigKey, obvKey) {
       return `<tr>
         <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a><span class="company-name">${esc(titleCase(r.name))}</span></td>
         <td style="color:var(--muted);font-size:.72rem">${esc(r.industry)}</td>
+        <td style="color:var(--muted);font-size:.72rem">${fmtMcap(r.market_cap)}</td>
         <td>$${r.price.toFixed(r.price < 1 ? 3 : 2)}</td>
         <td class="${chgClass}">${chgSign}${r.change_1d.toFixed(1)}%</td>
         <td class="${obvClass}" title="${obv ? esc(obv) : 'No OBV read'}">${obvShort}</td>
@@ -1069,7 +1102,7 @@ function renderTable(visible, sigKey, obvKey) {
     return `<div class="sector">
       <div class="sector-head"><h2>${esc(sec)}</h2><span class="count">${list.length} stocks</span></div>
       <table class="datatable">
-        <thead><tr><th>Ticker</th><th>Industry</th><th>Price</th><th>1D Chg</th><th>OBV</th><th>High</th><th>RS</th></tr></thead>
+        <thead><tr><th>Ticker</th><th>Industry</th><th>Mkt Cap</th><th>Price</th><th>1D Chg</th><th>OBV</th><th>High</th><th>RS</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
