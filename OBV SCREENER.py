@@ -627,7 +627,7 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
     # budget for the run, and this used to run only after that. One
     # request while the budget is still fresh has a real chance of
     # succeeding where the same request after 2000 others didn't.
-    index_series = rs_utils.fetch_benchmark_series(HISTORY_PERIOD, symbols={rs_utils.BENCHMARK_MARKET})
+    index_series = rs_utils.get_benchmark_series(SCRIPT_DIR, HISTORY_PERIOD, symbols={rs_utils.BENCHMARK_MARKET})
     print(f"   Got RS benchmark index: {'yes' if rs_utils.BENCHMARK_MARKET in index_series else 'no'}")
 
     print(f"\n🔄 Refreshing shared price cache for {total} ASX tickers | {workers} threads\n")

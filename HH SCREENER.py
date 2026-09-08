@@ -111,7 +111,7 @@ BENCHMARK_LABELS = rs_utils.BENCHMARK_LABELS
 
 
 def fetch_benchmark_series():
-    return rs_utils.fetch_benchmark_series(HISTORY_PERIOD, symbols={BENCHMARK_MARKET})
+    return rs_utils.get_benchmark_series(SCRIPT_DIR, HISTORY_PERIOD, symbols={BENCHMARK_MARKET})
 
 
 def relative_strength_status(dates, closes, index_series):

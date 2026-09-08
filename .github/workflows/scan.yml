@@ -49,6 +49,18 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: pip install -r requirements.txt
 
+      - name: Prefetch RS benchmark index (before any bulk price fetching)
+        # Must run before OBV/Pullback/HH's own ~2000-ticker bulk price
+        # fetches, not after - the runner IP's Yahoo rate-limit budget for
+        # the whole job is shared across every step, and by the time a
+        # later screener gets to its own benchmark fetch that budget is
+        # already exhausted regardless of that screener's own internal
+        # ordering (found 2026-09-08 - see rs_utils.py's
+        # save_benchmark_cache docstring). Every screener then reads this
+        # file instead of live-fetching its own copy.
+        if: steps.gate.outputs.should_run == 'true'
+        run: python3 -c "import rs_utils; rs_utils.save_benchmark_cache('.', '1y', symbols={rs_utils.BENCHMARK_MARKET})"
+
       - name: Run OBV pre-breakout screener
         if: steps.gate.outputs.full_run == 'true'
         run: python3 "OBV SCREENER.py"

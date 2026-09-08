@@ -7,9 +7,17 @@ sector instead of maintaining two copies that could drift apart.
 
 Requires price_cache.py (for the raw index fetch) alongside it.
 """
+import json
+import os
+
 import pandas as pd
 
 import price_cache
+
+# A same-run, on-disk relay for the benchmark fetch - see get_benchmark_series's
+# docstring for why this exists instead of just calling fetch_benchmark_series
+# directly from each screener.
+BENCHMARK_CACHE_FILENAME = "benchmark_cache.json"
 
 # SeaBee's `industry` field (GICS industry-group level) mapped onto the 11
 # standard GICS sectors (matching e.g. listcorp.com/asx/sectors) - see
@@ -127,6 +135,53 @@ def fetch_benchmark_series(history_period, symbols=None):
         s.index = pd.to_datetime(s.index).tz_localize(None).normalize()
         series[sym] = s
     return series
+
+
+def save_benchmark_cache(dir_path, history_period, symbols=None):
+    """Fetches once and writes to a small JSON file in `dir_path` - the
+    GitHub Actions workflow runs this as its own step, BEFORE any of the
+    three screener scripts. Reason: the "fetch benchmark before the bulk
+    refresh" ordering inside each screener's own run_scan() only protects
+    that ONE screener's fetch - on a full run, OBV and Pullback each burn
+    through their own ~2000-ticker bulk price fetch before HH even starts,
+    so by the time HH's turn comes (a separate step, same runner, same
+    rate-limit budget for the whole job) the budget is already exhausted
+    regardless of HH's own internal ordering (found 2026-09-08). Fetching
+    once, right at the start of the job before ANY bulk fetching has
+    happened, and relaying it to every later step via this file, is the
+    only ordering that actually works for every screener in a full run."""
+    series = fetch_benchmark_series(history_period, symbols=symbols)
+    payload = {sym: {d.strftime("%Y-%m-%d"): float(v) for d, v in s.items()} for sym, s in series.items()}
+    with open(os.path.join(dir_path, BENCHMARK_CACHE_FILENAME), "w") as f:
+        json.dump(payload, f)
+    return series
+
+
+def load_benchmark_cache(dir_path):
+    try:
+        with open(os.path.join(dir_path, BENCHMARK_CACHE_FILENAME)) as f:
+            payload = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+    series = {}
+    for sym, points in payload.items():
+        if not points:
+            continue
+        s = pd.Series({pd.Timestamp(d): v for d, v in points.items()}).sort_index()
+        series[sym] = s
+    return series
+
+
+def get_benchmark_series(dir_path, history_period, symbols=None):
+    """What both screeners should actually call: use the on-disk relay
+    from save_benchmark_cache if the workflow already populated it this
+    run, otherwise fall back to a live fetch (local dev runs, or the
+    prefetch step itself failing) - see save_benchmark_cache's docstring
+    for why the relay exists at all."""
+    cached = load_benchmark_cache(dir_path)
+    if cached:
+        return cached
+    return fetch_benchmark_series(history_period, symbols=symbols)
 
 
 def _align(dates, closes, index_series, min_len):
