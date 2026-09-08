@@ -784,6 +784,7 @@ canvas{width:100%;height:100%;display:block}
     <div>
       <h1>ASX HIGHER-HIGH SCREENER</h1>
       <div class="subtitle">Structural breakout of the last swing high, by sector — port of the "HH Indicator (BT)" TradingView scripts, full ASX universe.</div>
+      <div class="subtitle">Runs weekdays at 10:30am, 1pm, 3:30pm &amp; 4:30pm intraday, plus 5pm after close — all Sydney time.</div>
     </div>
     <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
       <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
