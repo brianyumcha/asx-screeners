@@ -264,7 +264,10 @@ COMMODITY_KEYWORDS = [
     ("Copper", ["copper"], False),
     ("Nickel", ["nickel"], False),
     ("Uranium", ["uranium"], False),
-    ("Hydrogen", ["hydrogen"], False),
+    # Negative lookahead so "hydrogen sulfide/sulphide" (an industrial
+    # pollutant being removed, not a hydrogen product - see CG1, an
+    # activated-carbon maker whose products remove H2S) isn't Hydrogen.
+    ("Hydrogen", [r"hydrogen(?!\s*sulph?ide)"], False),
     ("Gas", ["natural gas", "coal\\s*(?:bed|seam)\\s*(?:gas|methane)", r"\bmethane\b", r"\blng\b"], False),
     # Negative lookahead so "coal bed methane"/"coal seam gas" (a gas
     # extraction technique, not coal mining - see JGH) is Gas, not Coal.
@@ -283,15 +286,20 @@ COMMODITY_KEYWORDS = [
     ("Silver", ["silver"], False),
     ("Tin", ["tin"], True),
     ("Manganese", ["manganese"], False),
-    ("Graphite", ["graphite"], False),
+    ("Graphite", ["graphite", "graphene"], False),
     ("Potash / Fertiliser", ["potash", r"fertilis\w*", r"fertiliz\w*", "phosphates?"], False),
-    ("Bauxite / Alumina", ["bauxite", "alumina"], False),
+    ("Bauxite / Alumina", ["bauxite", "alumina", "high purity alumina", r"\bhpa\b"], False),
     ("Cobalt", ["cobalt"], False),
     ("Vanadium", ["vanadium"], False),
-    ("Diamonds", ["diamonds?"], False),
+    # Negative lookahead so "diamond drilling"/"diamond coring"/"diamond
+    # core" - standard drilling-technique terminology (diamond-tipped drill
+    # bits) used constantly by mining SERVICES companies - isn't read as
+    # diamond mining (see PRN/Perenti, MSV/Mitchell Services: both pure
+    # drilling contractors with zero diamond exposure).
+    ("Diamonds", [r"diamonds?(?!\s*(?:drill|cor|bit))"], False),
     ("Steel", ["steel"], False),
     ("Tungsten", ["tungsten", "scheelite", "wolframite"], False),
-    ("Magnesium", ["magnesium"], False),
+    ("Magnesium", ["magnesium", "magnesite"], False),
     ("Silica", ["silica"], False),
     ("Kaolin", ["kaolin"], False),
     ("Base Metals", ["base metals?", "polymetallic"], False),
@@ -345,24 +353,45 @@ def classify_commodity(summary):
                     break
         return earliest_pos
 
-    stripped = re.sub(r"\bexplores?\s+for\b[^.]*\.", " ", text, flags=re.IGNORECASE)
-    stripped = re.sub(r"\bserves\b[^.]*\.", " ", stripped, flags=re.IGNORECASE)
-    stripped = re.sub(r"\bcustomers?\b[^.]*\.", " ", stripped, flags=re.IGNORECASE)
+    # These four clause types are never worth falling back into (below) -
+    # unlike an "explores for" side-bet, none of them describe the
+    # company's own current-or-future business at all, so a match found
+    # ONLY inside one of them is pure noise, never a last-resort signal:
+    #   - "serves ... markets" - a mining-*services* company's customer
+    #     industries, not its own output (ORI, an explosives maker that
+    #     "serves" coal/iron ore/metal miners without mining anything).
+    #   - "customers who/that ..." - same idea, phrased differently (AAI/
+    #     Alcoa: "aluminium ... to customers that produce products for
+    #     ... packaging ..." wrongly read as Alcoa making packaging).
+    #   - "formerly known as ..." - a stale former name (IMD: "formerly
+    #     known as Pilbara Gold NL" - now a drilling-tech company with zero
+    #     gold exposure; PMT: "...Patriot Battery Metals..." obscuring its
+    #     real lithium project; KGL: "...Kentor Gold..." for a copper
+    #     project) is name history, not current business.
+    #   - "is/are used in/for ..." - a downstream product-application list
+    #     (FGR/First Graphene: "used in composites, coatings ... concrete
+    #     ..." wrongly read as a building-materials producer instead of
+    #     the graphene manufacturer it actually is).
+    no_fallback = re.sub(r"\bserves\b[^.]*\.", " ", text, flags=re.IGNORECASE)
+    no_fallback = re.sub(r"\bcustomers?\b[^.]*\.", " ", no_fallback, flags=re.IGNORECASE)
+    no_fallback = re.sub(r"\bformerly known as\b[^.]*\.", " ", no_fallback, flags=re.IGNORECASE)
+    no_fallback = re.sub(r"\b(?:is|are)\s+used\s+(?:in|for)\b[^.]*\.", " ", no_fallback, flags=re.IGNORECASE)
 
-    # Prefer matches from the stripped text (excludes exploration side-bets,
-    # services-company customer lists, and end-use/customer-industry
-    # mentions - see FMG/ORI/AAI above). A same-business/side-bet overlap
-    # check was tried here and reverted: almost any real miner's "explores
-    # for" list trivially includes its own actual commodity plus a few
-    # speculative extras, so "shares a commodity with the core text" ends
-    # up true for nearly everyone - it stopped filtering anything and
-    # introduced arbitrary reordering (see SFR/ARL/EVN in git history for
-    # what that looked like). A single-commodity explorer's ONLY mention of
-    # its commodity is often itself inside an "explores for X" sentence
-    # (e.g. PLS: "The company primarily explores for lithium.") - if
-    # stripping wiped out every match, fall back to the unstripped text
-    # rather than reporting nothing.
-    earliest_pos = find_matches(stripped) or find_matches(text)
+    # An "explores for X, Y, Z" side bet is different - it DOES describe the
+    # company's own (future) business, just not necessarily its current
+    # core one. Stripping it is still the right default (see FMG/IGO
+    # above), but if that's the ONLY place a company's single real
+    # commodity is named (PLS: "The company primarily explores for
+    # lithium."), fall back to it rather than reporting nothing - just
+    # never fall back INTO the four noise clauses above (see CG1/Carbonxt,
+    # an activated-carbon maker with no commodity of its own: without this
+    # split, an empty core after stripping explores-for still fell back to
+    # the fully unstripped text and resurrected "serves coal-fired power
+    # plants, cement plants, ... hydrogen sulfide ..." as if it mined coal,
+    # cement, and hydrogen).
+    stripped = re.sub(r"\bexplores?\s+for\b[^.]*\.", " ", no_fallback, flags=re.IGNORECASE)
+
+    earliest_pos = find_matches(stripped) or find_matches(no_fallback)
 
     if self_described_diversified or len(earliest_pos) >= 3:
         if earliest_pos:
