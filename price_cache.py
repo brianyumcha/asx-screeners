@@ -70,17 +70,33 @@ def save_cache(df):
     df.to_parquet(CACHE_PATH, index=False)
 
 
-def _fetch_one(yahoo_sym, period):
+def _fetch_one(yahoo_sym, period, verbose=False):
+    """verbose=True prints the actual failure reason (exception, or "empty
+    dataframe, no exception") when every retry is exhausted - opt-in
+    because this is called both for the ~2000-ticker bulk equity fetch
+    (where ~10% failing per run is routine and printing each one would
+    flood the log) and for the handful of benchmark/index symbols (where a
+    failure is rare and worth seeing - a silent None here gave zero
+    visibility into WHY the STW.AX benchmark fetch failed 100% of the time
+    on GitHub Actions right after thousands of other .AX tickers had just
+    succeeded in the same run, found 2026-09-08)."""
     df = None
+    last_error = None
     for attempt in range(FETCH_RETRIES + 1):
         try:
             df = yf.Ticker(yahoo_sym).history(period=period, interval="1d", auto_adjust=False)
-        except Exception:
+        except Exception as e:
             df = None
+            last_error = e
         if df is not None and not df.empty:
             return df
         if attempt < FETCH_RETRIES:
             time.sleep(FETCH_RETRY_SLEEP * (attempt + 1))
+    if verbose:
+        if last_error is not None:
+            print(f"    (fetch failed for {yahoo_sym}: {last_error})")
+        elif df is not None and df.empty:
+            print(f"    (fetch for {yahoo_sym} returned an empty dataframe, no exception)")
     return df
 
 

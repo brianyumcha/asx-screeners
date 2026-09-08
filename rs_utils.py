@@ -108,7 +108,7 @@ def fetch_benchmark_series(history_period, symbols=None):
         symbols = {BENCHMARK_MARKET} | set(SECTOR_BENCHMARK.values())
     series = {}
     for sym in symbols:
-        df = price_cache._fetch_one(sym, history_period)
+        df = price_cache._fetch_one(sym, history_period, verbose=True)
         if df is None or df.empty:
             continue
         df = df.dropna(subset=["Close"])
