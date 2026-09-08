@@ -194,6 +194,18 @@ def _align(dates, closes, index_series, min_len):
     return aligned
 
 
+def resample_weekly_close(dates, closes):
+    """Friday-anchored weekly close series from daily dates/closes - a
+    close-only counterpart to HH SCREENER.py's own full-OHLCV
+    resample_weekly (used there for pivot/HH-signal detection, which needs
+    open/high/low too). This one's for RS, which only ever needs closes -
+    used both for a ticker's own weekly closes and for resampling the
+    daily benchmark index series to weekly, so both sides of the RS ratio
+    use the same W-FRI week boundaries."""
+    s = pd.Series(closes, index=pd.to_datetime(dates))
+    return s.resample("W-FRI").last().dropna()
+
+
 def relative_strength_status(dates, closes, index_series):
     """True if the RS line (ticker close / index close) is currently above
     its own RS_EMA_PERIOD-bar EMA - the Traderlion RS Line indicator's

@@ -692,18 +692,27 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
 # fetch instead of the "^AX*J" index symbols the way the market-wide
 # benchmark was fixed (STW.AX). Rather than ship a second broken/
 # inconsistent RS check, this only does the XJO comparison, which works.
-RS_LOOKBACK_DAYS = 63  # ~3 months - see rs_utils.rs_new_high_signal's docstring
-                        # for the tradeoff this window controls
+RS_LOOKBACK_DAYS = 63   # ~3 months of daily bars - see rs_utils.rs_new_high_signal's
+                         # docstring for the tradeoff this window controls
+RS_LOOKBACK_WEEKS = 13  # the same ~3-month window, in weekly bars (63/5 trading
+                         # days per week ≈ 13) - kept equivalent to the daily
+                         # window rather than picked independently, so "weekly"
+                         # is a stricter version of the same check (a rarer,
+                         # more significant new high - user's steer, weekly
+                         # reads as the stronger signal), not a different one.
 
 
-def scan_rs_leaders(tickers, cache, index_series, lookback=RS_LOOKBACK_DAYS):
-    print(f"\n🔎 Scanning for RS leaders (RS new {lookback}-bar high vs XJO, price not) ...")
+def scan_rs_leaders(tickers, cache, index_series, lookback_days=RS_LOOKBACK_DAYS, lookback_weeks=RS_LOOKBACK_WEEKS):
+    print(f"\n🔎 Scanning for RS leaders (RS new high vs XJO, price not - daily {lookback_days}-bar / weekly {lookback_weeks}-bar) ...")
     market_series = index_series.get(rs_utils.BENCHMARK_MARKET)
+    market_series_weekly = None
+    if market_series is not None:
+        market_series_weekly = rs_utils.resample_weekly_close(market_series.index, market_series.tolist())
 
     results = []
     for t in tickers:
         frame = price_cache.get_ticker_frame(cache, t)
-        if frame is None or len(frame) < lookback + 5:
+        if frame is None or len(frame) < lookback_days + 5:
             continue
         closes = frame["close"].tolist()
         price = closes[-1]
@@ -714,26 +723,41 @@ def scan_rs_leaders(tickers, cache, index_series, lookback=RS_LOOKBACK_DAYS):
             continue
 
         dates = frame["date"].tolist()
-        if not rs_utils.rs_new_high_signal(dates, closes, market_series, lookback):
+        daily_hit = rs_utils.rs_new_high_signal(dates, closes, market_series, lookback_days)
+
+        weekly_hit = False
+        if market_series_weekly is not None:
+            wk_closes = rs_utils.resample_weekly_close(dates, closes)
+            if len(wk_closes) >= lookback_weeks + 5:
+                weekly_hit = rs_utils.rs_new_high_signal(wk_closes.index, wk_closes.tolist(), market_series_weekly, lookback_weeks)
+
+        if not (daily_hit or weekly_hit):
             continue
+
+        timeframe = "Daily + Weekly" if (daily_hit and weekly_hit) else "Weekly" if weekly_hit else "Daily"
 
         prev_close = closes[-2]
         results.append({
             "ticker": t,
             "price": round(price, 4),
             "change_1d": round((price - prev_close) / prev_close * 100, 2),
+            "timeframe": timeframe,
         })
 
     print(f"   RS leaders found: {len(results)}")
     return results
 
 
-def build_rs_leaders_section_html(results, lookback):
+def build_rs_leaders_section_html(results, lookback_days, lookback_weeks):
     """A small, self-contained table appended to the OBV report - deliberately
     NOT routed through dashboard_template.py's card grid, since that's built
     around the OBV score/cooldown model this section doesn't share (no
     score, no cooldown, different stats). Styled to match its dark theme."""
-    rows = sorted(results, key=lambda r: r["ticker"])
+    # Weekly first, then Daily+Weekly, then Daily - weekly is the rarer,
+    # more significant read (a stricter, longer-window version of the same
+    # check - see RS_LOOKBACK_WEEKS's comment), so it leads.
+    tf_rank = {"Weekly": 0, "Daily + Weekly": 1, "Daily": 2}
+    rows = sorted(results, key=lambda r: (tf_rank.get(r["timeframe"], 9), r["ticker"]))
     if not rows:
         body = '<div class="rs-empty">No RS leaders this run.</div>'
     else:
@@ -742,17 +766,22 @@ def build_rs_leaders_section_html(results, lookback):
             chg_class = "rs-up" if r["change_1d"] > 0 else "rs-dn" if r["change_1d"] < 0 else "rs-flat"
             chg_sign = "+" if r["change_1d"] > 0 else ""
             tv_url = f"https://www.tradingview.com/chart/?symbol=ASX:{r['ticker']}"
+            has_weekly = "Weekly" in r["timeframe"]
+            dot = '<span class="rs-dot"></span>' if has_weekly else ""
+            tf_class = "rs-tf-weekly" if has_weekly else "rs-tf-daily"
             trs.append(f"""<tr>
                 <td class="rs-ticker"><a href="{tv_url}" target="_blank" rel="noopener">{r['ticker']}</a></td>
                 <td>${r['price']:.3f}</td>
                 <td class="{chg_class}">{chg_sign}{r['change_1d']:.1f}%</td>
+                <td class="{tf_class}">{dot}{r['timeframe']}</td>
             </tr>""")
         body = f"""<table class="rs-table">
-            <thead><tr><th>Ticker</th><th>Price</th><th>1D Chg</th></tr></thead>
+            <thead><tr><th>Ticker</th><th>Price</th><th>1D Chg</th><th>Timeframe</th></tr></thead>
             <tbody>{''.join(trs)}</tbody>
         </table>"""
 
-    months = lookback / 21
+    daily_months = lookback_days / 21
+    weekly_months = lookback_weeks / 4.3
     return f"""
 <section class="rs-section">
   <style>
@@ -766,12 +795,18 @@ def build_rs_leaders_section_html(results, lookback):
     .rs-ticker a {{ color:#00aaff; text-decoration:none; font-weight:700; font-family:'Syne',sans-serif; }}
     .rs-up {{ color:#00e5a0; }} .rs-dn {{ color:#ff4455; }} .rs-flat {{ color:#5a6478; }}
     .rs-empty {{ text-align:center; color:#5a6478; padding:2rem 0; font-size:.85rem; background:#111418; border:1px solid #1e2530; border-radius:10px; }}
+    .rs-dot {{ display:inline-block; width:.5rem; height:.5rem; border-radius:50%; background:#ff2d95; margin-right:.4rem; }}
+    .rs-tf-weekly {{ color:#ff2d95; font-weight:700; }}
+    .rs-tf-daily {{ color:#5a6478; }}
   </style>
   <h2>📶 RS Leaders</h2>
   <div class="rs-sub">
-    Relative strength making a new {months:.0f}-month high vs the XJO while price hasn't broken out yet -
-    the stock quietly outperforming the index before it shows up in the chart.
-    Complementary to the OBV list above, not a replacement for it - not financial advice.
+    Relative strength making a new high vs the XJO while price hasn't broken out yet - the stock quietly
+    outperforming the index before it shows up in the chart. Checked on both daily (~{daily_months:.0f}-month
+    lookback) and weekly (~{weekly_months:.0f}-month lookback) closes - weekly is the rarer, more significant
+    read (marked with a <span class="rs-dot"></span> pink dot, matching the Traderlion RS indicator's own
+    convention) since it takes a much longer stretch of real outperformance to clear a weekly high than a daily
+    one. Complementary to the OBV list above, not a replacement for it - not financial advice.
   </div>
   {body}
 </section>
@@ -821,7 +856,7 @@ def build_html_report(results, excluded, total_scanned, out_path, rs_leaders=Non
         html_path = out_path + '.html'
         with open(html_path, 'r', encoding='utf-8') as f:
             html = f.read()
-        section = build_rs_leaders_section_html(rs_leaders, RS_LOOKBACK_DAYS)
+        section = build_rs_leaders_section_html(rs_leaders, RS_LOOKBACK_DAYS, RS_LOOKBACK_WEEKS)
         html = html.replace('</body>', section + '</body>')
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(html)
