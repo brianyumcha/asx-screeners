@@ -619,6 +619,17 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
     total = len(tickers)
     t0 = time.time()
 
+    # Fetched BEFORE the ~2000-ticker bulk refresh below, not after (which
+    # is where the RS Leaders benchmark fetch used to happen) - found
+    # 2026-09-08 that GitHub Actions runs got "Too Many Requests. Rate
+    # limited." on this fetch 100% of the time. Not a symbol-type block:
+    # the bulk refresh's ~2000 requests exhaust the runner IP's rate-limit
+    # budget for the run, and this used to run only after that. One
+    # request while the budget is still fresh has a real chance of
+    # succeeding where the same request after 2000 others didn't.
+    index_series = rs_utils.fetch_benchmark_series(HISTORY_PERIOD, symbols={rs_utils.BENCHMARK_MARKET})
+    print(f"   Got RS benchmark index: {'yes' if rs_utils.BENCHMARK_MARKET in index_series else 'no'}")
+
     print(f"\n🔄 Refreshing shared price cache for {total} ASX tickers | {workers} threads\n")
     cache, fetched_ok, _ = price_cache.refresh_cache(tickers, workers=workers, max_history=HISTORY_PERIOD)
     min_needed = max(obv_days + 5, LOOKBACK_DAYS + 5, SMA_LONG + 5)
@@ -665,33 +676,29 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
 
     print(f"\n\n✅ Scan complete in {time.time()-t0:.1f}s")
     print(f"   Scanned: {total}  |  Signals: {len(results)}  |  Got real data: {fetched_ok}  |  Failed: {failed}")
-    return results, usable, cache
+    return results, usable, cache, index_series
 
 
 # ─── RS LEADERS (RS line new high, price not yet - the Traderlion RS dot) ─────
 # Complementary to the OBV pre-breakout list above: instead of "volume is
 # building before a breakout," this flags "the stock is quietly beating the
 # index before a breakout" - relative strength leading price. Reuses
-# whatever's already in the shared price cache from the OBV scan just above,
-# so this costs nothing beyond the one-off benchmark-index fetch (and that's
-# shared with the RS_LEADERS_MARKET_ONLY note below too).
+# whatever's already in the shared price cache from the OBV scan just above.
 #
 # Market-wide only (vs XJO), not vs sector: HH SCREENER.py's sector-level RS
-# is broken on GitHub Actions (Yahoo blocks the "^AX*J" sector index symbols
-# from the runner IP - see rs_utils.py's SECTOR_BENCHMARK comment) and ASX
+# is broken on GitHub Actions - not a symbol-type block (see run_scan's
+# benchmark-fetch-ordering comment above for the real cause) but ASX simply
 # doesn't have a verified full set of matching single-GICS-sector ETFs to
-# swap in the way the market-wide benchmark was fixed (STW.AX). Rather than
-# ship a second broken/inconsistent RS check, this only does the XJO
-# comparison, which does work.
+# fetch instead of the "^AX*J" index symbols the way the market-wide
+# benchmark was fixed (STW.AX). Rather than ship a second broken/
+# inconsistent RS check, this only does the XJO comparison, which works.
 RS_LOOKBACK_DAYS = 63  # ~3 months - see rs_utils.rs_new_high_signal's docstring
                         # for the tradeoff this window controls
 
 
-def scan_rs_leaders(tickers, cache, lookback=RS_LOOKBACK_DAYS):
+def scan_rs_leaders(tickers, cache, index_series, lookback=RS_LOOKBACK_DAYS):
     print(f"\n🔎 Scanning for RS leaders (RS new {lookback}-bar high vs XJO, price not) ...")
-    index_series = rs_utils.fetch_benchmark_series(HISTORY_PERIOD, symbols={rs_utils.BENCHMARK_MARKET})
     market_series = index_series.get(rs_utils.BENCHMARK_MARKET)
-    print(f"   Got market benchmark: {'yes' if market_series is not None else 'no'}")
 
     results = []
     for t in tickers:
@@ -973,7 +980,7 @@ def main():
     else:
         tickers = get_asx_tickers()
 
-    results, usable, cache = run_scan(tickers, obv_days=args.days, workers=args.workers)
+    results, usable, cache, index_series = run_scan(tickers, obv_days=args.days, workers=args.workers)
 
     # Circuit breaker: on a full-universe run, if the shared price cache
     # doesn't have usable data for most of the universe - whether from
@@ -1034,7 +1041,7 @@ def main():
     print(f"\n💾 Saving to:\n   {html_path}\n   {csv_path}\n   {tv_path}\n")
 
     try:
-        rs_leaders = scan_rs_leaders(tickers, cache)
+        rs_leaders = scan_rs_leaders(tickers, cache, index_series)
     except Exception as e:
         print(f"  ⚠ RS leaders scan error: {e}")
         rs_leaders = []

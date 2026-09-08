@@ -48,28 +48,37 @@ SECTOR_ORDER = [
     "Utilities", "Real Estate", "Other",
 ]
 
-# STW.AX (SPDR S&P/ASX 200 ETF), not the raw "^AXJO" index symbol - GitHub
-# Actions runners get 0/12 benchmark fetches on every run (confirmed via
-# workflow logs: regular .AX equity tickers succeed ~90% of the time from
-# the SAME runner IP, same run, while every single "^"-prefixed index
-# symbol fails 100% of the time - Yahoo blocks that endpoint specifically,
-# not the runner generally). STW is a large, liquid, physically-replicated
-# ETF that tracks the ASX 200 closely - going through the ordinary equity
-# endpoint instead of the blocked index endpoint fixes the fetch without
-# giving up meaningful tracking accuracy. Still labelled "XJO" in the UI
-# (see BENCHMARK_LABELS) since that's the index it's standing in for.
+# STW.AX (SPDR S&P/ASX 200 ETF), not the raw "^AXJO" index symbol.
+# GitHub Actions runs got 0/12 benchmark fetches on every run - initially
+# looked like Yahoo blocking the "^"-prefixed index endpoint specifically
+# (regular .AX equity tickers succeeded ~90% of the time in the same run),
+# but narrowing the fetch down to just this one liquid .AX equity ticker
+# STILL failed 100% of the time with "Too Many Requests. Rate limited."
+# (found 2026-09-08 after adding real error logging - see price_cache.py's
+# _fetch_one verbose param). The real cause: the benchmark fetch used to
+# run AFTER the ~2000-ticker bulk price_cache refresh, by which point the
+# runner IP's rate-limit budget for the run was already exhausted - not a
+# symbol-type block at all. Both screeners now fetch this BEFORE their
+# bulk refresh instead (see HH SCREENER.py's run_scan and
+# OBV SCREENER.py's run_scan, both have a comment at that fetch call).
+# STW is a large, liquid, physically-replicated ETF that tracks the ASX
+# 200 closely, so the swap away from the raw index symbol itself doesn't
+# cost meaningful tracking accuracy even though it turned out not to be
+# the actual fix. Still labelled "XJO" in the UI (see BENCHMARK_LABELS)
+# since that's the index it's standing in for.
 BENCHMARK_MARKET = "STW.AX"
 RS_EMA_PERIOD = 21            # matches the Traderlion RS Line indicator's default signal EMA
 
-# Sector benchmarks are still the raw "^AX*J" index symbols and so are
-# still subject to the same 0/12 GitHub Actions failure described above -
-# unlike the market-wide benchmark, ASX doesn't have a clean, verified
-# single-GICS-sector ETF for all 11 sectors to substitute (checked: SPDR's
-# entire ASX range is 17 broad-market funds, not a full sector family like
-# the US Select Sector SPDRs; only a few sectors - Financials, Real
-# Estate, Info Tech - have a solid ASX-domestic single-sector ETF match).
-# Sector RS (rs_sector) will keep coming back None on GitHub Actions until
-# this gets a real fix; rs_market (the XJO comparison above) works.
+# Sector benchmarks are still the raw "^AX*J" index symbols. Even with the
+# fetch-before-bulk-refresh ordering fix, fetching all 11 of these adds 11x
+# the rate-limit exposure right at the point in the run when the budget is
+# freshest - and ASX doesn't have a clean, verified single-GICS-sector ETF
+# for all 11 sectors to substitute the way the market-wide benchmark was
+# (checked: SPDR's entire ASX range is 17 broad-market funds, not a full
+# sector family like the US Select Sector SPDRs; only a few sectors -
+# Financials, Real Estate, Info Tech - have a solid ASX-domestic single-
+# sector ETF match). Sector RS has been dropped from both screeners
+# entirely rather than ship something that would still be unreliable.
 SECTOR_BENCHMARK = {
     "Materials": "^AXMJ",
     "Energy": "^AXEJ",

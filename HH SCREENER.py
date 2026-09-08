@@ -547,11 +547,10 @@ def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None, index_serie
                 obv_w = calc_obv_series(wc, wv)
                 obv_conf_w = obv_confirmation(obv_w, wc, piv_idx_w)
 
-        # Sector-level RS (vs a GICS sector index) is dropped - it's broken
-        # on GitHub Actions (Yahoo blocks the "^AX*J" index symbols from the
-        # runner IP - see rs_utils.py's SECTOR_BENCHMARK comment) with no
-        # verified fix available, unlike the market-wide XJO benchmark
-        # (swapped to the STW.AX ETF, which does work). Only rs_market ships.
+        # Sector-level RS (vs a GICS sector index) is dropped - see
+        # rs_utils.py's SECTOR_BENCHMARK comment for why. Only rs_market
+        # (the XJO comparison, fetched before the bulk refresh above - see
+        # run_scan's comment on that ordering) ships.
         rs_market = None
         if (sig_d or sig_w) and index_series:
             rs_market = relative_strength_status(dates, closes, index_series.get(BENCHMARK_MARKET))
@@ -599,6 +598,19 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
     total = len(tickers)
     t0 = time.time()
 
+    # Fetched BEFORE the ~2000-ticker bulk refresh below, not after - found
+    # 2026-09-08 that GitHub Actions runs got "Too Many Requests. Rate
+    # limited." on the STW.AX benchmark fetch 100% of the time, even after
+    # narrowing it to a single liquid .AX equity ticker. Not a symbol-type
+    # block after all: the bulk refresh's ~2000 requests exhaust the
+    # runner IP's rate-limit budget for the run, and the benchmark fetch
+    # used to run only after that. One request while the budget is still
+    # fresh has a real chance of succeeding where the same request after
+    # 2000 others didn't.
+    print("   Fetching relative-strength benchmark index (XJO)...")
+    index_series = fetch_benchmark_series()
+    print(f"   Got market benchmark: {'yes' if BENCHMARK_MARKET in index_series else 'no'}")
+
     print(f"\n🔄 Refreshing shared price cache for {total} ASX tickers | {workers} threads\n")
     cache, fetched_ok, _ = price_cache.refresh_cache(tickers, workers=workers, max_history=HISTORY_PERIOD)
     usable = price_cache.count_usable(cache, tickers, min_days=40)
@@ -615,10 +627,6 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
         fresh_today = sum(1 for t in tickers if last_by_ticker.get(t) == latest_date)
     print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  "
           f"Usable overall: {usable}/{total}  |  Fresh as of today's session: {fresh_today}/{total}")
-
-    print("   Fetching relative-strength benchmark index (XJO)...")
-    index_series = fetch_benchmark_series()
-    print(f"   Got market benchmark: {'yes' if BENCHMARK_MARKET in index_series else 'no'}")
 
     results = []
     for t in tickers:
@@ -1197,13 +1205,14 @@ def send_hh_telegram(results):
             continue
         lines.append(f"*{sector}*")
         lines.append("```")
-        lines.append(f"{'':<1}{'TICKER':<7}{'HIGH':<7}{'OBV'}")
+        lines.append(f"{'':<1}{'TICKER':<7}{'CHG':<8}{'HIGH':<7}{'OBV'}")
         for r in rows:
             marker = "*" if r["ticker"] not in previously_seen else " "
             tier = r["high_tier"] or "-"
+            chg = f"{r['change_1d']:+.1f}%"
             obv = r.get("obv_daily")
             obv_mark = "Y" if obv == "Confirming" else "N" if obv == "Not confirming" else "~" if obv == "Neutral" else ""
-            lines.append(f"{marker:<1}{r['ticker']:<7}{tier:<7}{obv_mark}")
+            lines.append(f"{marker:<1}{r['ticker']:<7}{chg:<8}{tier:<7}{obv_mark}")
         lines.append("```")
     message = "\n".join(lines).strip()
 
