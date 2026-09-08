@@ -90,14 +90,22 @@ BENCHMARK_LABELS = {
 }
 
 
-def fetch_benchmark_series(history_period):
-    """Fetches daily closes for the ASX 200 plus every GICS sector index used
-    for relative-strength comparison. A small, fixed set of 12 tickers -
-    fetched directly (not through the shared per-ticker price cache, whose
-    ".AX"-suffix convention doesn't apply to index symbols) once per run,
+def fetch_benchmark_series(history_period, symbols=None):
+    """Fetches daily closes for the given benchmark symbols (default: the
+    market-wide benchmark plus every GICS sector index) - fetched directly
+    (not through the shared per-ticker price cache, whose ".AX"-suffix
+    convention doesn't apply to "^"-prefixed index symbols) once per run,
     reusing price_cache's own retry logic. Returns {yahoo_symbol: pd.Series
-    of close, indexed by tz-naive date}."""
-    symbols = {BENCHMARK_MARKET} | set(SECTOR_BENCHMARK.values())
+    of close, indexed by tz-naive date}.
+
+    Callers that only need the market-wide benchmark (both screeners
+    currently do - sector RS is dropped, see SECTOR_BENCHMARK's comment)
+    should pass symbols={BENCHMARK_MARKET} rather than the default, since
+    the 11 sector index symbols are guaranteed to fail on GitHub Actions
+    and fetching them anyway would just be wasted retries/time for data
+    nothing uses."""
+    if symbols is None:
+        symbols = {BENCHMARK_MARKET} | set(SECTOR_BENCHMARK.values())
     series = {}
     for sym in symbols:
         df = price_cache._fetch_one(sym, history_period)

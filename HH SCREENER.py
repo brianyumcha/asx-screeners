@@ -111,7 +111,7 @@ BENCHMARK_LABELS = rs_utils.BENCHMARK_LABELS
 
 
 def fetch_benchmark_series():
-    return rs_utils.fetch_benchmark_series(HISTORY_PERIOD)
+    return rs_utils.fetch_benchmark_series(HISTORY_PERIOD, symbols={BENCHMARK_MARKET})
 
 
 def relative_strength_status(dates, closes, index_series):
@@ -547,13 +547,14 @@ def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None, index_serie
                 obv_w = calc_obv_series(wc, wv)
                 obv_conf_w = obv_confirmation(obv_w, wc, piv_idx_w)
 
-        rs_market = rs_sector = rs_sector_label = None
+        # Sector-level RS (vs a GICS sector index) is dropped - it's broken
+        # on GitHub Actions (Yahoo blocks the "^AX*J" index symbols from the
+        # runner IP - see rs_utils.py's SECTOR_BENCHMARK comment) with no
+        # verified fix available, unlike the market-wide XJO benchmark
+        # (swapped to the STW.AX ETF, which does work). Only rs_market ships.
+        rs_market = None
         if (sig_d or sig_w) and index_series:
             rs_market = relative_strength_status(dates, closes, index_series.get(BENCHMARK_MARKET))
-            sector_benchmark = SECTOR_BENCHMARK.get(info.get("sector", ""))
-            if sector_benchmark:
-                rs_sector = relative_strength_status(dates, closes, index_series.get(sector_benchmark))
-                rs_sector_label = BENCHMARK_LABELS.get(sector_benchmark)
 
         result = {
             "ticker": sym,
@@ -569,8 +570,6 @@ def analyse_ticker(ticker_raw, info, ticker_frame, latest_date=None, index_serie
             "obv_weekly": obv_conf_w,
             "high_tier": high_tier(closes) if (sig_d or sig_w) else None,
             "rs_market": rs_market,
-            "rs_sector": rs_sector,
-            "rs_sector_label": rs_sector_label,
         }
 
         # Daily OHLCV for the chart-view mini candlesticks - only embedded for
@@ -617,9 +616,9 @@ def run_scan(universe, workers=DEFAULT_WORKERS):
     print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  "
           f"Usable overall: {usable}/{total}  |  Fresh as of today's session: {fresh_today}/{total}")
 
-    print("   Fetching relative-strength benchmark indices (XJO + GICS sectors)...")
+    print("   Fetching relative-strength benchmark index (XJO)...")
     index_series = fetch_benchmark_series()
-    print(f"   Got {len(index_series)}/{len(SECTOR_BENCHMARK) + 1} benchmark indices")
+    print(f"   Got market benchmark: {'yes' if BENCHMARK_MARKET in index_series else 'no'}")
 
     results = []
     for t in tickers:
@@ -729,10 +728,8 @@ table.datatable th:nth-child(8), table.datatable td:nth-child(8){width:12%}
    layout:fixed enforces the desktop % widths verbatim regardless of
    viewport - on a narrow phone that squeezed ticker/price/chg down to a
    few px each. Drop both and let the rest breathe instead. */
-.rs-short{display:none} .rs-long{display:inline}
 @media (max-width: 640px){
   .company-name{display:none}
-  .rs-short{display:inline} .rs-long{display:none}
   table.datatable th:nth-child(2), table.datatable td:nth-child(2){display:none}
   table.datatable th:nth-child(3), table.datatable td:nth-child(3){display:none}
   table.datatable th:nth-child(1), table.datatable td:nth-child(1){width:18%}
@@ -1031,11 +1028,10 @@ function renderTable(visible, sigKey, obvKey) {
       const tier = r.high_tier;
       const tierClass = tier ? `tier-${tier}` : 'tier-none';
       const tierTitle = tier ? `New ${tier} high` : 'Not even a 1-month high - a low-significance pivot break';
-      const rsSectorLabel = r.rs_sector_label || 'sector';
       const rsWord = v => v === true ? 'Yes' : v === false ? 'No' : 'N/A';
       const rsClass = v => v === true ? 'rs-yes' : v === false ? 'rs-no' : 'rs-na';
       const rsChar = v => v === true ? '✓' : v === false ? '✗' : '–';
-      const rsTitle = `RS vs XJO: ${rsWord(r.rs_market)} · RS vs ${esc(rsSectorLabel)}: ${rsWord(r.rs_sector)}`;
+      const rsTitle = `RS vs XJO: ${rsWord(r.rs_market)}`;
       const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${r.ticker}`;
       return `<tr>
         <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a><span class="company-name">${esc(titleCase(r.name))}</span></td>
@@ -1045,10 +1041,7 @@ function renderTable(visible, sigKey, obvKey) {
         <td class="${chgClass}">${chgSign}${r.change_1d.toFixed(1)}%</td>
         <td class="${obvClass}" title="${obv ? esc(obv) : 'No OBV read'}">${obvShort}</td>
         <td class="${tierClass}" title="${tierTitle}">${tier || '<1M'}</td>
-        <td title="${rsTitle}">
-          <span class="rs-short"><span class="${rsClass(r.rs_market)}">M${rsChar(r.rs_market)}</span> <span class="${rsClass(r.rs_sector)}">S${rsChar(r.rs_sector)}</span></span>
-          <span class="rs-long"><span class="${rsClass(r.rs_market)}">XJO${rsChar(r.rs_market)}</span> <span class="${rsClass(r.rs_sector)}">${esc(rsSectorLabel)}${rsChar(r.rs_sector)}</span></span>
-        </td>
+        <td class="${rsClass(r.rs_market)}" title="${rsTitle}">XJO ${rsChar(r.rs_market)}</td>
       </tr>`;
     }).join('');
     return `<div class="sector">
@@ -1145,7 +1138,7 @@ def build_csv(results, out_path):
     import csv
     fieldnames = ['ticker', 'name', 'sector', 'industry', 'market_cap', 'price', 'change_1d',
                   'hh_daily', 'hh_weekly', 'obv_daily', 'obv_weekly', 'high_tier',
-                  'rs_market', 'rs_sector', 'rs_sector_label']
+                  'rs_market']
     with open(out_path, 'w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
         w.writeheader()

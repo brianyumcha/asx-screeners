@@ -58,6 +58,7 @@ import openpyxl  # required by pandas to read .xlsx files (Market Index ticker l
 import pdfplumber  # required to read a locally-supplied ASX company list PDF
 
 import price_cache
+import rs_utils
 
 warnings.filterwarnings("ignore")
 
@@ -664,7 +665,110 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
 
     print(f"\n\n✅ Scan complete in {time.time()-t0:.1f}s")
     print(f"   Scanned: {total}  |  Signals: {len(results)}  |  Got real data: {fetched_ok}  |  Failed: {failed}")
-    return results, usable
+    return results, usable, cache
+
+
+# ─── RS LEADERS (RS line new high, price not yet - the Traderlion RS dot) ─────
+# Complementary to the OBV pre-breakout list above: instead of "volume is
+# building before a breakout," this flags "the stock is quietly beating the
+# index before a breakout" - relative strength leading price. Reuses
+# whatever's already in the shared price cache from the OBV scan just above,
+# so this costs nothing beyond the one-off benchmark-index fetch (and that's
+# shared with the RS_LEADERS_MARKET_ONLY note below too).
+#
+# Market-wide only (vs XJO), not vs sector: HH SCREENER.py's sector-level RS
+# is broken on GitHub Actions (Yahoo blocks the "^AX*J" sector index symbols
+# from the runner IP - see rs_utils.py's SECTOR_BENCHMARK comment) and ASX
+# doesn't have a verified full set of matching single-GICS-sector ETFs to
+# swap in the way the market-wide benchmark was fixed (STW.AX). Rather than
+# ship a second broken/inconsistent RS check, this only does the XJO
+# comparison, which does work.
+RS_LOOKBACK_DAYS = 63  # ~3 months - see rs_utils.rs_new_high_signal's docstring
+                        # for the tradeoff this window controls
+
+
+def scan_rs_leaders(tickers, cache, lookback=RS_LOOKBACK_DAYS):
+    print(f"\n🔎 Scanning for RS leaders (RS new {lookback}-bar high vs XJO, price not) ...")
+    index_series = rs_utils.fetch_benchmark_series(HISTORY_PERIOD, symbols={rs_utils.BENCHMARK_MARKET})
+    market_series = index_series.get(rs_utils.BENCHMARK_MARKET)
+    print(f"   Got market benchmark: {'yes' if market_series is not None else 'no'}")
+
+    results = []
+    for t in tickers:
+        frame = price_cache.get_ticker_frame(cache, t)
+        if frame is None or len(frame) < lookback + 5:
+            continue
+        closes = frame["close"].tolist()
+        price = closes[-1]
+        if price < MIN_PRICE:
+            continue
+        median_vol = statistics.median(frame["volume"].tolist()[-30:])
+        if median_vol < MIN_AVG_VOLUME:
+            continue
+
+        dates = frame["date"].tolist()
+        if not rs_utils.rs_new_high_signal(dates, closes, market_series, lookback):
+            continue
+
+        prev_close = closes[-2]
+        results.append({
+            "ticker": t,
+            "price": round(price, 4),
+            "change_1d": round((price - prev_close) / prev_close * 100, 2),
+        })
+
+    print(f"   RS leaders found: {len(results)}")
+    return results
+
+
+def build_rs_leaders_section_html(results, lookback):
+    """A small, self-contained table appended to the OBV report - deliberately
+    NOT routed through dashboard_template.py's card grid, since that's built
+    around the OBV score/cooldown model this section doesn't share (no
+    score, no cooldown, different stats). Styled to match its dark theme."""
+    rows = sorted(results, key=lambda r: r["ticker"])
+    if not rows:
+        body = '<div class="rs-empty">No RS leaders this run.</div>'
+    else:
+        trs = []
+        for r in rows:
+            chg_class = "rs-up" if r["change_1d"] > 0 else "rs-dn" if r["change_1d"] < 0 else "rs-flat"
+            chg_sign = "+" if r["change_1d"] > 0 else ""
+            tv_url = f"https://www.tradingview.com/chart/?symbol=ASX:{r['ticker']}"
+            trs.append(f"""<tr>
+                <td class="rs-ticker"><a href="{tv_url}" target="_blank" rel="noopener">{r['ticker']}</a></td>
+                <td>${r['price']:.3f}</td>
+                <td class="{chg_class}">{chg_sign}{r['change_1d']:.1f}%</td>
+            </tr>""")
+        body = f"""<table class="rs-table">
+            <thead><tr><th>Ticker</th><th>Price</th><th>1D Chg</th></tr></thead>
+            <tbody>{''.join(trs)}</tbody>
+        </table>"""
+
+    months = lookback / 21
+    return f"""
+<section class="rs-section">
+  <style>
+    .rs-section {{ max-width:1400px; margin:2.5rem auto 0; padding:0 1.6rem; font-family:'Inter',-apple-system,sans-serif; }}
+    .rs-section h2 {{ font-family:'Syne',sans-serif; font-size:1.3rem; color:#e8edf2; margin-bottom:.2rem; }}
+    .rs-section .rs-sub {{ font-size:.78rem; color:#5a6478; margin-bottom:1rem; line-height:1.6; }}
+    .rs-table {{ width:100%; border-collapse:collapse; font-size:.82rem; background:#111418; border:1px solid #1e2530; border-radius:10px; overflow:hidden; }}
+    .rs-table th {{ text-align:left; padding:.5rem .8rem; font-size:.66rem; color:#5a6478; text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid #1e2530; }}
+    .rs-table td {{ padding:.45rem .8rem; border-bottom:1px solid rgba(30,37,48,.6); color:#e8edf2; }}
+    .rs-table tr:last-child td {{ border-bottom:none; }}
+    .rs-ticker a {{ color:#00aaff; text-decoration:none; font-weight:700; font-family:'Syne',sans-serif; }}
+    .rs-up {{ color:#00e5a0; }} .rs-dn {{ color:#ff4455; }} .rs-flat {{ color:#5a6478; }}
+    .rs-empty {{ text-align:center; color:#5a6478; padding:2rem 0; font-size:.85rem; background:#111418; border:1px solid #1e2530; border-radius:10px; }}
+  </style>
+  <h2>📶 RS Leaders</h2>
+  <div class="rs-sub">
+    Relative strength making a new {months:.0f}-month high vs the XJO while price hasn't broken out yet -
+    the stock quietly outperforming the index before it shows up in the chart.
+    Complementary to the OBV list above, not a replacement for it - not financial advice.
+  </div>
+  {body}
+</section>
+"""
 
 
 # ─── HTML DASHBOARD ────────────────────────────────────────────────────────────
@@ -672,7 +776,7 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
 # shared with PULLBACK SCREENER.py. This just adapts this screener's result
 # dicts into the shared card schema.
 
-def build_html_report(results, excluded, total_scanned, out_path):
+def build_html_report(results, excluded, total_scanned, out_path, rs_leaders=None):
     from dashboard_template import render_dashboard_html
 
     def to_card(r):
@@ -705,6 +809,16 @@ def build_html_report(results, excluded, total_scanned, out_path):
         ),
         out_path=out_path + '.html',
     )
+
+    if rs_leaders is not None:
+        html_path = out_path + '.html'
+        with open(html_path, 'r', encoding='utf-8') as f:
+            html = f.read()
+        section = build_rs_leaders_section_html(rs_leaders, RS_LOOKBACK_DAYS)
+        html = html.replace('</body>', section + '</body>')
+        with open(html_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+
     print(f"  📄 HTML report → {out_path}.html")
 
 
@@ -859,7 +973,7 @@ def main():
     else:
         tickers = get_asx_tickers()
 
-    results, usable = run_scan(tickers, obv_days=args.days, workers=args.workers)
+    results, usable, cache = run_scan(tickers, obv_days=args.days, workers=args.workers)
 
     # Circuit breaker: on a full-universe run, if the shared price cache
     # doesn't have usable data for most of the universe - whether from
@@ -920,7 +1034,13 @@ def main():
     print(f"\n💾 Saving to:\n   {html_path}\n   {csv_path}\n   {tv_path}\n")
 
     try:
-        build_html_report(results, skipped, len(tickers), out_base)
+        rs_leaders = scan_rs_leaders(tickers, cache)
+    except Exception as e:
+        print(f"  ⚠ RS leaders scan error: {e}")
+        rs_leaders = []
+
+    try:
+        build_html_report(results, skipped, len(tickers), out_base, rs_leaders)
     except Exception as e:
         print(f"  ⚠ HTML save error: {e}")
 
