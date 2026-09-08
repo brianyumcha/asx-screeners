@@ -62,6 +62,7 @@ import yfinance as yf
 SYDNEY_TZ = ZoneInfo("Australia/Sydney")
 
 import price_cache
+import rs_utils
 
 warnings.filterwarnings("ignore")
 
@@ -96,103 +97,25 @@ PIVOT_RIGHT = 3
 # This report has no such constraint, and each of the 11 sectors below has
 # its own dedicated RS benchmark index (see SECTOR_BENCHMARK), so there's no
 # reason to keep them blended here.
-SECTOR_MAP = {
-    "Materials": "Materials",
-    "Energy": "Energy",
-    "Capital Goods": "Industrials",
-    "Commercial & Professional Services": "Industrials",
-    "Transportation": "Industrials",
-    "Software & Services": "Info Tech",
-    "Technology Hardware & Equipment": "Info Tech",
-    "Semiconductors & Semiconductor Equipment": "Info Tech",
-    "Financial Services": "Financials",
-    "Banks": "Financials",
-    "Insurance": "Financials",
-    "Pharmaceuticals, Biotechnology & Life Sciences": "Healthcare",
-    "Health Care Equipment & Services": "Healthcare",
-    "Consumer Services": "Consumer Discretionary",
-    "Consumer Discretionary Distribution & Retail": "Consumer Discretionary",
-    "Consumer Durables & Apparel": "Consumer Discretionary",
-    "Automobiles & Components": "Consumer Discretionary",
-    "Food, Beverage & Tobacco": "Consumer Staples",
-    "Household & Personal Products": "Consumer Staples",
-    "Consumer Staples Distribution & Retail": "Consumer Staples",
-    "Media & Entertainment": "Communication Services",
-    "Telecommunication Services": "Communication Services",
-    "Utilities": "Utilities",
-    "Equity Real Estate Investment Trusts (REITs)": "Real Estate",
-    "Real Estate Management & Development": "Real Estate",
-}
-SECTOR_ORDER = [
-    "Materials", "Energy", "Industrials", "Financials", "Healthcare", "Info Tech",
-    "Consumer Discretionary", "Consumer Staples", "Communication Services",
-    "Utilities", "Real Estate", "Other",
-]
-
-# ─── RELATIVE STRENGTH (Traderlion-style RS line vs XJO + GICS sector index) ──
-# One dedicated benchmark per sector now that SECTOR_MAP is the full 11-way
-# GICS split - no more need to route off the raw `industry` string to dodge
-# a blended bucket, since every report sector already maps to exactly one
-# real index.
-BENCHMARK_MARKET = "^AXJO"   # S&P/ASX 200 - every ticker's broad-market RS line
-RS_EMA_PERIOD = 21            # matches the Traderlion RS Line indicator's default signal EMA
-
-SECTOR_BENCHMARK = {
-    "Materials": "^AXMJ",
-    "Energy": "^AXEJ",
-    "Industrials": "^AXNJ",
-    "Financials": "^AXFJ",
-    "Healthcare": "^AXHJ",
-    "Info Tech": "^AXIJ",
-    "Consumer Discretionary": "^AXDJ",
-    "Consumer Staples": "^AXSJ",
-    "Communication Services": "^AXTJ",
-    "Utilities": "^AXUJ",
-    "Real Estate": "^AXPJ",
-}
-BENCHMARK_LABELS = {
-    "^AXJO": "XJO", "^AXMJ": "XMJ", "^AXEJ": "XEJ", "^AXFJ": "XFJ",
-    "^AXHJ": "XHJ", "^AXIJ": "XIJ", "^AXDJ": "XDJ", "^AXSJ": "XSJ",
-    "^AXPJ": "XPJ", "^AXNJ": "XNJ", "^AXTJ": "XTJ", "^AXUJ": "XUJ",
-}
+#
+# SECTOR_MAP/SECTOR_ORDER/BENCHMARK_MARKET/RS_EMA_PERIOD/SECTOR_BENCHMARK/
+# BENCHMARK_LABELS/fetch_benchmark_series/relative_strength_status now live
+# in rs_utils.py, shared with OBV SCREENER.py's RS-new-high section so both
+# screeners route to the same benchmark for the same sector.
+SECTOR_MAP = rs_utils.SECTOR_MAP
+SECTOR_ORDER = rs_utils.SECTOR_ORDER
+BENCHMARK_MARKET = rs_utils.BENCHMARK_MARKET
+RS_EMA_PERIOD = rs_utils.RS_EMA_PERIOD
+SECTOR_BENCHMARK = rs_utils.SECTOR_BENCHMARK
+BENCHMARK_LABELS = rs_utils.BENCHMARK_LABELS
 
 
 def fetch_benchmark_series():
-    """Fetches daily closes for the ASX 200 plus every GICS sector index used
-    for relative-strength comparison. A small, fixed set of 12 tickers -
-    fetched directly (not through the shared per-ticker price cache, whose
-    ".AX"-suffix convention doesn't apply to index symbols) once per run,
-    reusing price_cache's own retry logic. Returns {yahoo_symbol: pd.Series
-    of close, indexed by tz-naive date}."""
-    symbols = {BENCHMARK_MARKET} | set(SECTOR_BENCHMARK.values())
-    series = {}
-    for sym in symbols:
-        df = price_cache._fetch_one(sym, HISTORY_PERIOD)
-        if df is None or df.empty:
-            continue
-        df = df.dropna(subset=["Close"])
-        if df.empty:
-            continue
-        s = df["Close"]
-        s.index = pd.to_datetime(s.index).tz_localize(None).normalize()
-        series[sym] = s
-    return series
+    return rs_utils.fetch_benchmark_series(HISTORY_PERIOD)
 
 
 def relative_strength_status(dates, closes, index_series):
-    """True if the RS line (ticker close / index close) is currently above
-    its own RS_EMA_PERIOD-bar EMA - the Traderlion RS Line indicator's
-    "showing relative strength" (blue) signal - False if below, None if
-    there isn't enough overlapping data to tell."""
-    if index_series is None or len(index_series) < RS_EMA_PERIOD + 5:
-        return None
-    ticker_s = pd.Series(closes, index=pd.to_datetime(dates).tz_localize(None).normalize())
-    aligned = pd.concat([ticker_s, index_series], axis=1, join="inner").dropna()
-    if len(aligned) < RS_EMA_PERIOD + 5:
-        return None
-    ratio = aligned.iloc[:, 0] / aligned.iloc[:, 1]
-    ema = ratio.ewm(span=RS_EMA_PERIOD, adjust=False).mean()
-    return bool(ratio.iloc[-1] > ema.iloc[-1])
+    return rs_utils.relative_strength_status(dates, closes, index_series)
 
 # ─── TICKER UNIVERSE (SeaBee gives us industry + market cap in one call) ──────
 
