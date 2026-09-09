@@ -819,6 +819,7 @@ canvas{width:100%;height:100%;display:block}
       <button class="pill active" data-ctf="126">6M</button>
     </div>
     <input type="text" id="search" placeholder="Search ticker...">
+    <button class="themebtn" id="copyTvBtn" title="Copy the tickers currently shown, formatted for TradingView's Watchlist → Import list">📋 Copy to TradingView</button>
   </div>
 
   <div class="sectorrow" id="sectorRow"></div>
@@ -848,6 +849,7 @@ const DATA = ##DATA_JSON##;
 const SECTOR_ORDER = ##SECTOR_ORDER_JSON##;
 
 let state = { mode: 'table', tf: 'daily', chartTf: 126, search: '', sector: null, minTier: 0 };
+let currentVisibleTickers = [];
 
 // Monotonic rank matching high_tier()'s own tier order - a 6M high is
 // also a 3M and 1M high, so "6M+" means rank >= 3, not "exactly 6M".
@@ -896,6 +898,19 @@ document.getElementById('chartTfToggle').addEventListener('click', e => {
   render();
 });
 document.getElementById('search').addEventListener('input', e => { state.search = e.target.value.toUpperCase(); render(); });
+document.getElementById('copyTvBtn').addEventListener('click', e => {
+  const list = currentVisibleTickers.map(t => `ASX:${t}`).join(',');
+  const btn = e.target;
+  const restore = btn.textContent;
+  if (!list) { btn.textContent = 'Nothing to copy'; setTimeout(() => btn.textContent = restore, 1500); return; }
+  navigator.clipboard.writeText(list).then(() => {
+    btn.textContent = `✓ Copied ${currentVisibleTickers.length}`;
+    setTimeout(() => btn.textContent = restore, 1500);
+  }).catch(() => {
+    btn.textContent = 'Copy failed';
+    setTimeout(() => btn.textContent = restore, 1500);
+  });
+});
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 // SeaBee names come back ALL CAPS (e.g. "CHALLENGER LIMITED") - title-case
@@ -1097,6 +1112,7 @@ function render() {
   if (state.sector) visible = visible.filter(r => r.sector === state.sector);
   visible = visible.filter(r => r[sigKey]);
   if (state.minTier > 0) visible = visible.filter(r => tierRank(r.high_tier) >= state.minTier);
+  currentVisibleTickers = visible.map(r => r.ticker);
 
   const sectorsEl = document.getElementById('sectors');
   const gridEl = document.getElementById('grid');
