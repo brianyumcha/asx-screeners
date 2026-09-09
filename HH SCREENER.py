@@ -692,6 +692,12 @@ h1{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;letter-spacing
   font-family:'Inter',sans-serif;font-size:.72rem;padding:.5rem .8rem;border-radius:6px;
   cursor:pointer;outline:none;height:fit-content}
 .reportnav:hover{border-color:var(--accent2)}
+.topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.copybtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
+  font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;
+  display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
+.copybtn:hover{border-color:var(--accent)}
+.copybtn.copied{border-color:var(--accent);color:var(--accent)}
 .notice{background:rgba(255,184,0,.05);border:1px solid rgba(255,184,0,.15);border-radius:4px;
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
 .controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.7rem}
@@ -786,12 +792,15 @@ canvas{width:100%;height:100%;display:block}
       <div class="subtitle">Structural breakout of the last swing high, by sector — port of the "HH Indicator (BT)" TradingView scripts, full ASX universe.</div>
       <div class="subtitle">Runs weekdays at 10:30am, 1pm, 3:30pm &amp; 4:30pm intraday, plus 5pm after close — all Sydney time.</div>
     </div>
-    <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
-      <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
-      <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
-      <option value="higher-high.html">⬆️ Higher-High</option>
-    </select>
-    <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+    <div class="topbar-right">
+      <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
+        <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
+        <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
+        <option value="higher-high.html">⬆️ Higher-High</option>
+      </select>
+      <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
+      <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+    </div>
   </div>
   <div class="session">##SESSION_LINE##</div>
 
@@ -819,7 +828,6 @@ canvas{width:100%;height:100%;display:block}
       <button class="pill active" data-ctf="126">6M</button>
     </div>
     <input type="text" id="search" placeholder="Search ticker...">
-    <button class="themebtn" id="copyTvBtn" title="Copy the tickers currently shown, formatted for TradingView's Watchlist → Import list">📋 Copy to TradingView</button>
   </div>
 
   <div class="sectorrow" id="sectorRow"></div>
@@ -898,17 +906,13 @@ document.getElementById('chartTfToggle').addEventListener('click', e => {
   render();
 });
 document.getElementById('search').addEventListener('input', e => { state.search = e.target.value.toUpperCase(); render(); });
-document.getElementById('copyTvBtn').addEventListener('click', e => {
-  const list = currentVisibleTickers.map(t => `ASX:${t}`).join(',');
-  const btn = e.target;
-  const restore = btn.textContent;
-  if (!list) { btn.textContent = 'Nothing to copy'; setTimeout(() => btn.textContent = restore, 1500); return; }
-  navigator.clipboard.writeText(list).then(() => {
-    btn.textContent = `✓ Copied ${currentVisibleTickers.length}`;
-    setTimeout(() => btn.textContent = restore, 1500);
-  }).catch(() => {
-    btn.textContent = 'Copy failed';
-    setTimeout(() => btn.textContent = restore, 1500);
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const text = currentVisibleTickers.map(t => `ASX:${t}`).join(',');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.classList.add('copied');
+    btn.textContent = `✓ Copied ${currentVisibleTickers.length} tickers`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy TradingView list'; }, 1800);
   });
 });
 
