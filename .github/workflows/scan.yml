@@ -82,6 +82,15 @@ jobs:
           curl -sf -o asx_breakout_results.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html
           curl -sf -o asx_pullback_results.html https://brianyumcha.github.io/asx-screeners/pullback.html
 
+      - name: Preserve existing materials index page
+        # This workflow never regenerates materials-index.html (that's
+        # materials_index.yml's job, weekly) - without this, every scan run
+        # here would deploy a _site/ missing that page and wipe it off the
+        # live site. `-f` with `|| true` so a first-ever run before that page
+        # exists doesn't break this build.
+        if: steps.gate.outputs.should_run == 'true'
+        run: curl -sf -o materials-index.html https://brianyumcha.github.io/asx-screeners/materials-index.html || true
+
       - name: Commit updated price cache
         # Every successful run (including intraday HH-only ones) refreshes
         # price_cache.parquet - it has to be committed every time too, or
@@ -122,25 +131,8 @@ jobs:
           cp "asx_breakout_results.html" _site/pre-breakout.html
           cp "asx_pullback_results.html" _site/pullback.html
           cp "asx_hh_results.html" _site/higher-high.html
-          cat > _site/index.html <<'HTMLEOF'
-          <!doctype html><html><head><meta charset="utf-8"><title>ASX Screeners</title>
-          <style>
-            body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0a0c0f;color:#e8edf2;
-                 padding:3rem 2rem;max-width:600px;margin:0 auto;}
-            h1{font-size:1.6rem;}
-            a{color:#00aaff;display:block;margin:1.2rem 0;font-size:1.15rem;text-decoration:none;
-              padding:1rem 1.2rem;background:#141820;border:1px solid #1e2530;border-radius:8px;}
-            a:hover{border-color:#00e5a0;}
-            .note{color:#5a6478;font-size:.8rem;margin-top:2rem;}
-          </style></head>
-          <body>
-            <h1>ASX Screeners</h1>
-            <a href="pre-breakout.html">📈 Pre-Breakout Screener (OBV)</a>
-            <a href="pullback.html">↩️ Pullback Screener (Zag Zone)</a>
-            <a href="higher-high.html">⬆️ Higher-High Screener</a>
-            <div class="note">OBV + Pullback run once on weekday afternoons (after ASX close). Higher-High also runs intraday at 10:30am/1pm/3:30pm/4:30pm local Sydney time. All via GitHub Actions, DST-adjusted automatically. Not financial advice.</div>
-          </body></html>
-          HTMLEOF
+          cp site_index.html _site/index.html
+          [ -f materials-index.html ] && cp materials-index.html _site/materials-index.html || true
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.gate.outputs.should_run == 'true'

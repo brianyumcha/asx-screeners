@@ -1,0 +1,84 @@
+name: Materials Index
+
+on:
+  schedule:
+    # Sunday morning Sydney-ish (market closed either way, so DST precision
+    # doesn't matter here the way it does for scan.yml's intraday runs).
+    - cron: '0 22 * * 6'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build materials index (fresh name/market-cap/revenue fetch)
+        run: python3 build_materials_index.py
+
+      - name: Commit generated page
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f materials-index.html
+          git diff --staged --quiet || git commit -m "Weekly materials index rebuild"
+          for i in 1 2 3; do
+            git push && break
+            echo "Push rejected (concurrent commit to main) - rebasing and retrying (attempt $i)"
+            git fetch origin main
+            git rebase origin/main
+          done
+
+      - name: Preserve existing screener pages
+        # This workflow only regenerates materials-index.html - without this,
+        # deploying _site/ here would wipe the other 3 pages off the live
+        # site until scan.yml's next run restored them. `-f` (fail on HTTP
+        # error) with `|| true` so a first-ever run before these pages exist
+        # doesn't break the build.
+        run: |
+          curl -sf -o pre-breakout.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html || true
+          curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true
+          curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
+
+      - name: Build Pages site
+        run: |
+          mkdir -p _site
+          cp site_index.html _site/index.html
+          cp materials-index.html _site/materials-index.html
+          [ -f pre-breakout.html ] && cp pre-breakout.html _site/pre-breakout.html || true
+          [ -f pullback.html ] && cp pullback.html _site/pullback.html || true
+          [ -f higher-high.html ] && cp higher-high.html _site/higher-high.html || true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
