@@ -88,6 +88,7 @@ tbody tr:hover{background:var(--surface2)}
 .stagechip.explorer{background:var(--warn-bg);color:var(--ink-soft)}
 .stagechip.unresolved{background:var(--bad-bg);color:var(--bad)}
 .stagechip.careandmaintenance{background:var(--surface2);color:var(--ink-faint)}
+.stagechip.notapplicable{background:transparent;color:var(--ink-faint);border:none;padding:.15rem 0}
 .up{color:var(--good)}
 .down{color:var(--bad)}
 .colname-mobile{display:none}
@@ -198,12 +199,14 @@ function stageClass(stage){
   if(stage==='Producer') return 'producer';
   if(stage==='Explorer / Developer') return 'explorer';
   if(stage==='Care & Maintenance') return 'careandmaintenance';
+  if(stage==='—') return 'notapplicable';
   return 'unresolved';
 }
 function stageIcon(stage){
   if(stage==='Producer') return '🏭 ';
   if(stage==='Explorer / Developer') return '🔍 ';
   if(stage==='Care & Maintenance') return '🧰 ';
+  if(stage==='—') return '';
   return '❔ ';
 }
 function fmtPrice(n){

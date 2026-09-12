@@ -57,12 +57,44 @@ def fetch_one(ticker):
     }
 
 
-def classify_stage(summary, revenue, resolved):
+
+# Categories that describe what a company DOES rather than what it mines -
+# a services contractor, a downstream processor, or an unrelated business
+# that happens to sit in the Materials universe (see the Unclassified/
+# Diversified cleanup). None of these fit the mining-lifecycle framework
+# Producer/Explorer/Care & Maintenance was built around, so they get "-"
+# instead of a guess.
+NON_MINING_LABELS = {
+    "Mining Services", "Materials Processing", "Chemicals",
+    "Battery Recycling", "Agricultural Inputs", "Geothermal",
+    "Building Materials", "Packaging",
+}
+
+
+def classify_stage(summary, revenue, resolved, label=None):
+    if label is not None and any(part.strip() in NON_MINING_LABELS for part in label.split("+")):
+        return "—"
     s = (summary or "").lower()
     if "care and maintenance" in s or "care & maintenance" in s:
         return "Care & Maintenance"
     aspirational = bool(ASPIRATIONAL_RE.search(s))
     keyword_producer = (not aspirational) and any(re.search(sig, s) for sig in PRODUCER_SIGNALS)
+    # A keyword match alone isn't trustworthy at very low revenue - found via
+    # a full audit of all 154 Producer-tagged tickers (2026-09-13): INF, AKA,
+    # GEN, AMN, A11, ZEO, GBM and AVL all matched a real PRODUCER_SIGNALS
+    # phrase (mostly the generic "produces"/"production of") while sitting
+    # on <$2M revenue - either aspirational company-authored text (AMN:
+    # "focuses on the production of...") or an incidental mention unrelated
+    # to their actual mining business (ZEO: "production of synthetic
+    # zeolites" describes a lab process, not a mine; AVL: "develops and
+    # sells vanadium flow batteries" is a side product, not its $600k-
+    # revenue flagship project). Only trust the keyword match at this
+    # revenue level if it's unknown entirely (None) - don't penalize a
+    # company for a missing revenue field, which was the original intent
+    # of trusting keyword matches unconditionally.
+    MIN_KEYWORD_REVENUE = 2_000_000
+    if keyword_producer and revenue is not None and revenue < MIN_KEYWORD_REVENUE:
+        keyword_producer = False
     keyword_explorer = bool(re.search(r"exploration|explores|development", s)) and not keyword_producer
 
     if keyword_producer:
@@ -95,7 +127,7 @@ def main():
         label = commodity[ticker]
         info = fetch_one(ticker)
         resolved = bool(info.get("name") or info.get("mcap"))
-        stage = classify_stage(info.get("summary"), info.get("revenue"), resolved)
+        stage = classify_stage(info.get("summary"), info.get("revenue"), resolved, label)
         mcap = info.get("mcap")
         change1d = info.get("change1d")
         price = info.get("price")
