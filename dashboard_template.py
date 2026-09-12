@@ -113,10 +113,10 @@ body::before{content:'';position:fixed;inset:0;
   background-size:40px 40px;pointer-events:none;z-index:0}
 .wrap{max-width:1560px;margin:0 auto;position:relative;z-index:1}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
-h1{font-family:"Fraunces",Georgia,serif;font-size:1.9rem;font-weight:800;letter-spacing:-.03em;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.subtitle{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:-.01em;
+  text-wrap:balance;color:var(--text)}
+@media (max-width:640px){h1{font-size:1.8rem}}
+.subtitle{font-size:.92rem;color:var(--muted);margin-top:.3rem;max-width:44rem}
 .session{font-size:.68rem;color:var(--muted);margin:.6rem 0 1.1rem;letter-spacing:.03em}
 .copybtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;

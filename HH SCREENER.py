@@ -703,10 +703,9 @@ body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-s
   font-variant-numeric:tabular-nums;padding:1.6rem;}
 .wrap{max-width:1400px;margin:0 auto}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
-h1{font-family:"Fraunces",Georgia,serif;font-size:1.9rem;font-weight:800;letter-spacing:-.03em;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.subtitle{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:-.01em;
+  text-wrap:balance;color:var(--text)}
+.subtitle{font-size:.92rem;color:var(--muted);margin-top:.3rem;max-width:44rem}
 .session{font-size:.68rem;color:var(--muted);margin:.6rem 0 1.1rem}
 .reportnav{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-family:"IBM Plex Sans",sans-serif;font-size:.72rem;padding:.5rem .8rem;border-radius:6px;
@@ -727,6 +726,7 @@ h1{font-family:"Fraunces",Georgia,serif;font-size:1.9rem;font-weight:800;letter-
 .sectorpill:hover{color:var(--text)}
 .sectorpill.active{background:rgba(217,164,78,.12);border-color:var(--accent);color:var(--accent)}
 .pillgroup{display:flex;gap:.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.2rem}
+.ctrllabel{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
 .pill{background:transparent;border:none;color:var(--muted);font-size:.72rem;
   padding:.4rem .8rem;border-radius:6px;cursor:pointer;white-space:nowrap}
 .pill:hover{color:var(--text)}
@@ -763,6 +763,7 @@ table.datatable th:nth-child(8), table.datatable td:nth-child(8){width:12%}
    viewport - on a narrow phone that squeezed ticker/price/chg down to a
    few px each. Drop both and let the rest breathe instead. */
 @media (max-width: 640px){
+  h1{font-size:1.8rem}
   .company-name{display:none}
   table.datatable th:nth-child(2), table.datatable td:nth-child(2){display:none}
   table.datatable th:nth-child(3), table.datatable td:nth-child(3){display:none}
@@ -836,6 +837,7 @@ canvas{width:100%;height:100%;display:block}
       <button class="pill active" data-tf="daily">Daily</button>
       <button class="pill" data-tf="weekly">Weekly</button>
     </div>
+    <label class="ctrllabel" for="tierToggle">Tier</label>
     <div class="pillgroup" id="tierToggle" title="Only show tickers at or above this High Tier">
       <button class="pill active" data-tier="0">All</button>
       <button class="pill" data-tier="1">1M+</button>
@@ -843,6 +845,7 @@ canvas{width:100%;height:100%;display:block}
       <button class="pill" data-tier="3">6M+</button>
       <button class="pill" data-tier="4">12M+</button>
     </div>
+    <label class="ctrllabel" for="chartTfToggle" id="chartTfLabel" style="display:none">Chart Range</label>
     <div class="pillgroup" id="chartTfToggle" style="display:none">
       <button class="pill" data-ctf="21">1M</button>
       <button class="pill" data-ctf="63">3M</button>
@@ -903,6 +906,7 @@ document.getElementById('modeToggle').addEventListener('click', e => {
   document.querySelectorAll('#modeToggle .pill').forEach(x => x.classList.remove('active'));
   e.target.classList.add('active');
   document.getElementById('chartTfToggle').style.display = state.mode === 'chart' ? '' : 'none';
+  document.getElementById('chartTfLabel').style.display = state.mode === 'chart' ? '' : 'none';
   render();
 });
 document.getElementById('tfToggle').addEventListener('click', e => {
