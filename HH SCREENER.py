@@ -221,6 +221,7 @@ COMMODITY_KEYWORDS = [
     # drilling contractors with zero diamond exposure).
     ("Diamonds", [r"diamonds?(?!\s*(?:drill|cor|bit))"], False),
     ("Steel", ["steel"], False),
+    ("Aluminium", [r"alumin[iu]?um"], False),
     ("Tungsten", ["tungsten", "scheelite", "wolframite"], False),
     ("Magnesium", ["magnesium", "magnesite"], False),
     ("Silica", ["silica"], False),
@@ -238,6 +239,24 @@ COMMODITY_KEYWORDS = [
 # (e.g. "operates"/"produces" alone) that it stops filtering anything out.
 MINING_CONTEXT_RE = re.compile(
     r"\b(?:mine|mines|mining|miner|deposit|ore|concentrate|smelt|refin|reserve)\w*", re.IGNORECASE)
+
+# Drilling/mining contractors (GNG, MAH, MSV, MYE, PRN, VYS - confirmed
+# 2026-09-13) don't mine any commodity of their own, so they never match
+# COMMODITY_KEYWORDS on a real commodity - they'd otherwise fall through to
+# the generic "Materials" bucket, or worse, get caught by an incidental
+# mention of a commodity-shaped word in their own service offerings (MYE:
+# "chemical application" / "chemical products ... to the ... coal mining
+# operations" as part of its contracting services, not a chemicals
+# business - wrongly matched "Chemicals" before this check existed).
+# Checked as explicit phrases (not just mining-context + a generic
+# "services" word) specifically to avoid false-triggering on an actual
+# producer's summary that happens to mention "customer service" or similar
+# incidental phrasing - verified against BHP/FMG/PLS/RIO/S32 (no match).
+MINING_SERVICES_RE = re.compile(
+    r"mining services|services? to the mining|mine operation,?\s*contracting|"
+    r"contract mining|drilling services|mining (?:and|&) (?:mineral processing|support)|"
+    r"mining support services|geotechnical drilling|hydrogeological drilling",
+    re.IGNORECASE)
 
 
 def classify_commodity(summary):
@@ -262,6 +281,8 @@ def classify_commodity(summary):
     secondary products/by-products. Returns None if nothing matched
     (summary missing/too vague to classify)."""
     text = summary or ""
+    if MINING_SERVICES_RE.search(text):
+        return "Mining Services"
     self_described_diversified = bool(re.search(r"\bdiversified\b", text, re.IGNORECASE))
 
     def find_matches(t):
