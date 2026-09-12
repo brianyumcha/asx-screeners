@@ -1,0 +1,1174 @@
+<meta charset="UTF-8">
+<title>The Materials Index</title>
+<style>
+:root{
+  --bg:#f1efe9; --surface:#e8e4da; --surface2:#ddd7c8; --border:#cdc4ae;
+  --ink:#26231d; --ink-soft:#5a5344; --ink-faint:#8b8271;
+  --accent:#a06a1f; --accent-ink:#fff8ee;
+  --accent2:#2f5566; --accent2-ink:#eef7fa;
+  --good:#4b6b3a; --good-bg:#e2e9d8;
+  --warn:#8b8271; --warn-bg:#e6e1d3;
+  --bad:#933f34; --bad-bg:#efdcd6;
+  --shadow: 0 1px 2px rgba(38,35,29,.06), 0 4px 16px rgba(38,35,29,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16181c; --surface:#1e2126; --surface2:#262a30; --border:#383d45;
+    --ink:#ece8de; --ink-soft:#b7b1a2; --ink-faint:#837c6c;
+    --accent:#d9a44e; --accent-ink:#241a08;
+    --accent2:#7fb0c4; --accent2-ink:#0b1e26;
+    --good:#9bc47f; --good-bg:#26311f;
+    --warn:#837c6c; --warn-bg:#282a26;
+    --bad:#e08f83; --bad-bg:#3a231f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16181c; --surface:#1e2126; --surface2:#262a30; --border:#383d45;
+  --ink:#ece8de; --ink-soft:#b7b1a2; --ink-faint:#837c6c;
+  --accent:#d9a44e; --accent-ink:#241a08;
+  --accent2:#7fb0c4; --accent2-ink:#0b1e26;
+  --good:#9bc47f; --good-bg:#26311f;
+  --warn:#837c6c; --warn-bg:#282a26;
+  --bad:#e08f83; --bad-bg:#3a231f;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,sans-serif;font-size:16px;line-height:1.55}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.wrap{max-width:1360px;margin:0 auto;padding:2rem 1.5rem 4rem}
+h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
+h1{font-size:2.2rem;letter-spacing:-.01em;margin:0 0 .2rem}
+h2{font-size:1.15rem;margin:0 0 .5rem}
+p{color:var(--ink-soft)}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.4rem}
+.topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;flex:none}
+.themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
+.copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:.76rem;padding:.5rem .8rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
+.copybtn:hover{border-color:var(--accent)}
+.copybtn.copied{border-color:var(--accent);color:var(--accent)}
+.subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0;max-width:44rem}
+.source{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);margin-top:.6rem}
+
+.chipsection{margin-top:1.3rem}
+.chipsection h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);font-family:"IBM Plex Mono",monospace;font-weight:600}
+.commchips{display:flex;flex-wrap:wrap;gap:.4rem}
+.commchip{font-family:"IBM Plex Mono",monospace;font-size:.78rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+.commchip:hover{border-color:var(--accent);color:var(--accent)}
+.commchip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.commchip .cnt{opacity:.7;font-size:.85em}
+
+.controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:1.1rem 0 .7rem}
+.controls input,.controls select{background:var(--surface);border:1px solid var(--border);color:var(--ink);border-radius:6px;padding:.5rem .7rem;font-family:"IBM Plex Mono",monospace;font-size:.85rem}
+.controls input{width:14rem}
+.controls select{width:11rem}
+.controls input:focus,.controls select:focus{outline:none;border-color:var(--accent2)}
+.controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow);max-height:calc(100vh - 2rem)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--surface)}
+thead th{position:sticky;top:0;background:var(--surface2);text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);padding:.55rem .7rem;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none;z-index:2}
+thead th:hover{color:var(--accent)}
+thead th.active{color:var(--accent2)}
+thead th .arrow{font-size:.65rem;margin-left:.15rem}
+tbody td{padding:.4rem .7rem;border-bottom:1px solid var(--border);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--surface2)}
+.tk{font-family:"IBM Plex Mono",monospace;font-weight:600}
+.tk a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
+.tk a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.cname{color:var(--ink-soft);max-width:16rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.diversified{color:var(--ink-faint);font-style:italic}
+.stagechip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;padding:.15rem .5rem;border-radius:99px;white-space:nowrap}
+.stagechip.producer{background:var(--good-bg);color:var(--good)}
+.stagechip.explorer{background:var(--warn-bg);color:var(--ink-soft)}
+.stagechip.unresolved{background:var(--bad-bg);color:var(--bad)}
+.colname-mobile{display:none}
+
+footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint)}
+
+@media (max-width:900px){
+  .cname, .colname-desktop{display:none}
+}
+@media (max-width:640px){h1{font-size:1.8rem}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>The Materials Index</h1>
+      <p class="subtitle">Every ASX Materials-sector ticker in HH SCREENER's coverage — 890 names, what each one mines, and whether it's actually producing yet.</p>
+    </div>
+    <div class="topbar-right">
+      <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
+      <button class="copybtn" id="downloadCsvBtn">⬇ Download CSV</button>
+      <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+    </div>
+  </div>
+  <div class="source">Commodity: materials_commodity_cache.json, keyword-matched + LLM-reviewed. Name/market cap/stage: fetched live, rebuilt weekly — last rebuilt 12 Sep 2026. Stage is a revenue-based read (Producer = reports meaningful revenue, Explorer/Developer = doesn't), not a technical assessment.</div>
+
+  <div class="chipsection">
+    <h2>Filter by commodity</h2>
+    <div class="commchips" id="commchips"></div>
+  </div>
+
+  <div class="controls">
+    <input type="text" id="filterInput" placeholder="Search ticker, name or commodity…">
+    <span class="hint" id="countLabel"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table id="matTable">
+      <thead>
+        <tr>
+          <th data-key="ticker">Ticker</th>
+          <th data-key="name" class="colname-desktop">Company</th>
+          <th data-key="label">Commodity</th>
+          <th data-key="stage">Stage</th>
+          <th data-key="mcap" style="text-align:right">Market Cap</th>
+        </tr>
+      </thead>
+      <tbody id="matBody"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    Built from HH SCREENER's Materials-sector classification work — keyword regex matching against company descriptions, cross-checked with an LLM pass, then manually corrected across several rounds this session. "Unresolved" stage/name/cap = ticker didn't return live data (often a delisted, suspended or deferred-settlement code, not necessarily a fetch error). Compound commodity labels mean "carries exposure to," not a strict ranking.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+["10X","Exultant Mining Limited","Gold + Silver + Lithium","Explorer / Developer",5797000],
+["1AE","Aurora Energy Metals Limited","Uranium","Explorer / Developer",10027570],
+["1MC","Morella Corporation Limited","Lithium","Producer",14578049],
+["29M","29Metals Limited","Copper + Gold + Silver","Producer",630027584],
+["49M","49 Metals Limited","Gold","Explorer / Developer",9457216],
+["5EA","","Materials","Unresolved",null],
+["6KA","6K Additive, Inc.","Chromium","Producer",203526848],
+["A11","Atlantic Lithium Limited","Lithium","Producer",236443456],
+["A1G","","Materials","Unresolved",null],
+["A1M","AIC Mines Limited","Gold + Copper + Nickel","Producer",615603392],
+["A4N","Alpha HPA Limited","Bauxite / Alumina","Producer",791283584],
+["A8G","Australasian Metals Limited","Gold + Lithium + Bauxite / Alumina","Explorer / Developer",11577945],
+["AA2","Ariana Resources plc","Gold","Explorer / Developer",68615744],
+["AAI","Alcoa Corporation","Bauxite / Alumina","Producer",17837637632],
+["AAJ","Aruma Resources Limited","Gold + Lithium + Uranium","Producer",6701068],
+["AAM","AuMEGA Metals Ltd","Gold + Copper + Zinc / Lead","Producer",50953256],
+["AAR","Astral Resources NL","Gold","Explorer / Developer",361761952],
+["AAU","Antilles Gold Limited","Gold","Producer",26828946],
+["ABR","Albright Metals Ltd","Gold","Explorer / Developer",3107578],
+["ABX","ABx Group Limited","Bauxite / Alumina + Rare Earths + Chemicals","Producer",14246882],
+["ACM","Australian Critical Minerals Limited","Lithium + Gold + Silver","Explorer / Developer",3899517],
+["ACP","Audalia Resources Limited","Vanadium","Explorer / Developer",19296996],
+["ACS","Accent Resources NL","Iron Ore + Gold + Base Metals","Explorer / Developer",107698200],
+["ADC","ACDC Metals Limited","Rare Earths","Explorer / Developer",5286346],
+["ADCN","","Materials","Unresolved",null],
+["ADG","","Materials","Unresolved",null],
+["ADN","Andromeda Metals Limited","Halloysite","Explorer / Developer",27741800],
+["ADV","","Materials","Unresolved",null],
+["ADY","Admiralty Resources NL","Iron Ore","Explorer / Developer",15776877],
+["AEM","Advanced Engineered Materials Ltd","Bauxite / Alumina","Producer",176850976],
+["AEU","Atomic Eagle Limited","Uranium","Explorer / Developer",188845312],
+["AEV","Avenira Limited","Potash / Fertiliser","Explorer / Developer",32580538],
+["AEVN","","Materials","Unresolved",null],
+["AGC","Australian Gold and Copper Limited","Gold + Copper + Base Metals","Explorer / Developer",46415372],
+["AGD","Austral Gold Limited","Gold","Producer",103556072],
+["AGR","Aguia Resources Limited","Gold + Potash / Fertiliser + Copper","Producer",36000312],
+["AGY","Argosy Minerals Limited","Lithium","Producer",52057420],
+["AHK","Ark Mines Limited","Rare Earths","Explorer / Developer",24233322],
+["AHN","Athena Resources Limited","Iron Ore + Copper + Nickel","Explorer / Developer",10522217],
+["AHNDA","Athena Resources Limited","Iron Ore + Copper + Nickel","Explorer / Developer",13943073],
+["AII","Almonty Industries Inc","Tungsten","Producer",7346076672],
+["AIS","Aeris Resources Limited","Base Metals + Copper + Gold","Producer",712842944],
+["AISN","","Materials","Unresolved",null],
+["AIV","ActivEX Limited","Lithium + Gold + Copper","Explorer / Developer",7812886],
+["AJX","Alexium International Group Limited","Chemicals","Producer",21894496],
+["AJXN","","Materials","Unresolved",null],
+["AKA","Aureka Limited","Gold","Explorer / Developer",24451284],
+["AKM","Aspire Mining Limited","Coal","Explorer / Developer",104065584],
+["AKN","AuKing Mining Limited","Copper + Gold + Silver","Explorer / Developer",35626004],
+["AKO","AKORA Resources Limited","Iron Ore","Explorer / Developer",18043780],
+["AKON","","Materials","Unresolved",null],
+["ALB","Albion Resources Limited","Nickel + Copper + Gold","Producer",7113983],
+["ALK","Alkane Resources Ltd","Gold","Producer",null],
+["ALR","Altair Minerals Limited","Cobalt","Explorer / Developer",304930912],
+["ALU","Alurion Resources Limited","Rare Earths","Explorer / Developer",null],
+["ALV","Alvo Minerals Limited","Copper + Zinc / Lead + Silver","Producer",6026703],
+["ALY","Alchemy Resources Limited","Gold + Nickel + Cobalt","Producer",10692686],
+["AM3","Amara Minerals Limited","Gold","Producer",15569635],
+["AM5","Antares Metals Limited","Gold","Explorer / Developer",4708566],
+["AM7","Arcadia Minerals Limited","Tantalum + Lithium + Copper","Explorer / Developer",7943005],
+["AMC","Amcor plc","Packaging","Producer",27731494912],
+["AMCDD","","Materials","Unresolved",null],
+["AMD","Arrow Minerals Limited","Bauxite / Alumina","Explorer / Developer",23774878],
+["AMI","Aurelia Metals Limited","Gold + Silver + Copper","Producer",731205824],
+["AMN","Agrimin Limited","Potash / Fertiliser","Explorer / Developer",20016332],
+["AMU","American Uranium Limited","Uranium","Explorer / Developer",8727976],
+["AMUNA","","Materials","Unresolved",null],
+["ANO","Advance ZincTek Limited","Materials","Producer",37460160],
+["ANX","Anax Metals Limited","Gold + Copper + Lithium","Explorer / Developer",64512656],
+["AOA","Ausmon Resources Limited","Base Metals + Copper + Cobalt","Explorer / Developer",1426513],
+["AON","Apollo Minerals Limited","Zinc / Lead + Gold + Copper","Explorer / Developer",88196696],
+["APC","APC Minerals Limited","Potash / Fertiliser","Explorer / Developer",5873007],
+["AQC","Australian Pacific Coal Limited","Coal","Producer",4202805],
+["AQD","AusQuest Limited","Copper + Gold + Nickel","Producer",73899184],
+["AQI","Alicanto Minerals Ltd","Gold + Copper + Silver","Explorer / Developer",254269152],
+["AQIDA","","Materials","Unresolved",null],
+["AQX","Alice Queen Limited","Gold","Explorer / Developer",16244097],
+["AQXN","","Materials","Unresolved",null],
+["AR1","Austral Resources Australia Ltd","Copper","Producer",193804544],
+["AR3","Australian Rare Earths Limited","Rare Earths","Explorer / Developer",30825572],
+["ARD","Argent Minerals Limited","Base Metals","Producer",37456608],
+["ARI","Arika Resources Limited","Gold","Explorer / Developer",49329436],
+["ARL","Ardea Resources Limited","Nickel","Producer",93378504],
+["ARN","Aldoro Resources Limited","Niobium","Explorer / Developer",54637128],
+["ARO","Altoro Metals Limited","Copper + Gold + Zinc / Lead","Explorer / Developer",8801822],
+["ARR","American Rare Earths Limited","Rare Earths","Explorer / Developer",209738816],
+["ARU","Arafura Rare Earths Limited","Rare Earths + Potash / Fertiliser + Uranium","Explorer / Developer",1123411200],
+["ARV","Artemis Resources Limited","Gold","Explorer / Developer",17406194],
+["AS1","Asara Resources Limited","Gold","Explorer / Developer",271485696],
+["AS2","Askari Metals Limited","Copper","Explorer / Developer",5798257],
+["ASL","Andean Silver Limited","Silver","Producer",504744768],
+["ASM","Australian Strategic Materials Ltd","Rare Earths","Producer",326993728],
+["ASN","Anson Resources Limited","Lithium","Explorer / Developer",74686584],
+["ASQ","Australian Silica Quartz Group Ltd.","Silica","Explorer / Developer",7548486],
+["AT4","American Tungsten and Antimony Ltd","Tungsten","Explorer / Developer",96654232],
+["AT4N","","Materials","Unresolved",null],
+["ATC","Altech Batteries Limited","Bauxite / Alumina + Graphite + Kaolin","Producer",4003584],
+["ATM","PT Antam (Persero) Tbk","Nickel + Bauxite / Alumina + Gold","Explorer / Developer",4710029824],
+["ATR","Astron Corporation Limited","Rare Earths + Mineral Sands","Producer",210673744],
+["ATT","Altitude Minerals Ltd","Copper","Explorer / Developer",3568936],
+["AUC","Ausgold Limited","Gold","Producer",758777088],
+["AUE","Aurum Resources Limited","Gold","Producer",232408032],
+["AUG","Augustus Minerals Ltd","Gold","Explorer / Developer",10216660],
+["AUQ","Alara Resources Limited","Copper + Gold + Silver","Producer",53565900],
+["AUQN","","Materials","Unresolved",null],
+["AUR","Auris Minerals Limited","Copper","Explorer / Developer",19299388],
+["AUV","Auravelle Metals Limited","Nickel + Copper + Gold","Explorer / Developer",7186047],
+["AUZ","Australian Mines Limited","Battery Metals + Rare Earths + Lithium","Explorer / Developer",70047296],
+["AVL","Australian Vanadium Limited","Vanadium","Producer",105255400],
+["AVM","Advance Metals Limited","Silver","Explorer / Developer",27770944],
+["AVW","Avira Resources Limited","Gold + Copper + Nickel","Explorer / Developer",4025000],
+["AW1","American West Metals Limited","Silver + Copper + Gold","Explorer / Developer",44264520],
+["AWJ","Auric Mining Limited","Gold","Producer",42163560],
+["AX8","Accelerate Resources Limited","Manganese + Gold + Lithium","Explorer / Developer",7507132],
+["AXL","Axel REE Limited","Rare Earths","Explorer / Developer",13196588],
+["AXN","Alliance Nickel Limited","Nickel","Producer",29055040],
+["AXNN","","Materials","Unresolved",null],
+["AXR","Axiant Resources Ltd","Gold","Explorer / Developer",null],
+["AYM","Australia United Mining Limited","Gold + Copper + Silver","Explorer / Developer",3685155],
+["AYT","Austin Metals Limited","Gold","Producer",4384382],
+["AZ9","Azzuro Resources PLC","Graphite + Nickel + Copper","Producer",11489386],
+["AZI","Altamin Limited","Lithium","Explorer / Developer",19482566],
+["AZY","Antipa Minerals Limited","Gold + Copper + Silver","Producer",391390880],
+["BAK","Barkly Rare Earths Limited","Rare Earths + Vanadium + Base Metals","Explorer / Developer",17468750],
+["BC8","Black Cat Syndicate Limited","Gold","Producer",717994112],
+["BCA","Black Canyon Limited","Manganese + Copper + Cobalt","Explorer / Developer",51289376],
+["BCB","","Materials","Unresolved",null],
+["BCI","BCI Minerals Limited","Potash / Fertiliser","Producer",1615668864],
+["BCK","Brockman Mining Limited","Iron Ore","Explorer / Developer",111362792],
+["BCM","Brazilian Critical Minerals Limited","Rare Earths","Explorer / Developer",152780688],
+["BCN","Beacon Minerals Limited","Gold","Producer",383962496],
+["BDM","Burgundy Diamond Mines Limited","Diamonds","Producer",24168936],
+["BEZ","Besra Gold Inc.","Gold","Explorer / Developer",29685164],
+["BGD","Barton Gold Holdings Limited","Gold","Explorer / Developer",291364000],
+["BGL","Bellevue Gold Limited","Gold","Producer",2319286016],
+["BGT","Bio-Gene Technology Limited","Chemicals","Producer",7447039],
+["BH6","Broken Hill Gold Ltd.","Gold","Explorer / Developer",85732048],
+["BHL","Black Horse Mining Limited","Gold","Explorer / Developer",14546029],
+["BHM","Broken Hill Mines Limited","Silver + Zinc / Lead + Copper","Producer",263463712],
+["BHP","BHP Group Limited","Copper + Iron Ore + Coal","Producer",309399388160],
+["BIM","Bindi Metals Limited","Copper","Explorer / Developer",8380575],
+["BIS","Bisalloy Steel Group Limited","Steel","Producer",207252496],
+["BKB","Black Bear Minerals Limited","Gold","Explorer / Developer",91482944],
+["BKT","Black Rock Mining Limited","Graphite","Explorer / Developer",27927042],
+["BM1","Ballard Mining Limited","Gold","Explorer / Developer",347773440],
+["BM8","Battery Age Minerals Ltd","Lithium + Gold + Zinc / Lead","Producer",9966490],
+["BMC","BMC Minerals Limited","Silver + Zinc / Lead + Copper","Explorer / Developer",755259456],
+["BMG","","Materials","Unresolved",null],
+["BML","Boab Metals Limited","Zinc / Lead + Silver + Cobalt","Producer",247832320],
+["BMM","Bayan Mining and Minerals Limited","Gold","Explorer / Developer",7063682],
+["BMO","","Materials","Unresolved",null],
+["BMR","Ballymore Resources Limited","Gold + Copper + Silver","Explorer / Developer",33710324],
+["BMRN","","Materials","Unresolved",null],
+["BNR","Bulletin Resources Limited","Gold + Lithium + Nickel","Producer",9689239],
+["BNZ","Benz Mining Corp.","Gold","Explorer / Developer",1338635520],
+["BOA","BOA Resources Limited","Lithium + Nickel + Copper","Explorer / Developer",19471690],
+["BOC","Bougainville Copper Limited","Copper + Gold + Silver","Explorer / Developer",64169996],
+["BPM","BPM Minerals Limited","Gold + Silver + Copper","Explorer / Developer",33226606],
+["BRE","Brazilian Rare Earths Limited","Rare Earths + Uranium + Tantalum","Explorer / Developer",966538048],
+["BRI","Big River Industries Limited","Building Materials","Producer",121976872],
+["BRL","Bathurst Resources Limited","Coal","Producer",109224104],
+["BRX","Belararox Ltd","Zinc / Lead + Lithium + Copper","Explorer / Developer",11247049],
+["BRY","Barys Resources Limited","Copper","Explorer / Developer",4488576],
+["BRYDB","BARYSRES DEF SET [BRYDB]","Copper","Explorer / Developer",3696474],
+["BSL","BlueScope Steel Limited","Steel","Producer",null],
+["BSR","Bison Resources Limited","Gold + Silver + Copper","Explorer / Developer",27162500],
+["BSX","Blackstone Minerals Limited","Nickel + Cobalt + Copper","Explorer / Developer",80918016],
+["BTR","Brightstar Resources Limited","Gold","Producer",585000768],
+["BUR","Burley Minerals Ltd","Lithium","Explorer / Developer",5249770],
+["BUS","Bubalus Resources Limited","Manganese + Gold + Rare Earths","Explorer / Developer",5101824],
+["BUX","Buxton Resources Limited","Copper + Gold + Graphite","Producer",16928688],
+["BVR","Bellavista Resources Limited","Base Metals + Nickel + Zinc / Lead","Producer",75590976],
+["C1X","EAU Lithium Limited","Lithium","Explorer / Developer",24193318],
+["C29","C29 Metals Limited","Copper","Explorer / Developer",5375647],
+["C7A","Clara Resources Australia Ltd","Coal + Nickel + Tin","Explorer / Developer",9096713],
+["CAA","Capral Limited","Materials","Producer",184565872],
+["CAE","Cannindah Resources Limited","Copper + Gold + Silver","Explorer / Developer",41518808],
+["CAV","Carnavale Resources Limited","Lithium + Cobalt + Silver","Producer",33869440],
+["CAY","Canyon Resources Limited","Bauxite / Alumina","Explorer / Developer",90733064],
+["CAZ","Cazaly Resources Limited","Rare Earths + Lithium + Silver","Producer",11780615],
+["CBE","Cobre Limited","Copper","Producer",442374560],
+["CBY","Canterbury Resources Limited","Copper + Molybdenum + Silver","Explorer / Developer",12586418],
+["CC9","Chariot Resources Ltd","Lithium","Explorer / Developer",13613509],
+["CCM","Cadoux Limited","Kaolin + Bauxite / Alumina + Potash / Fertiliser","Explorer / Developer",13260276],
+["CDR","Codrus Minerals Limited","Gold + Uranium + Nickel","Producer",12404063],
+["CDT","Castle Minerals Limited","Gold","Explorer / Developer",17873678],
+["CEL","Challenger Gold Limited","Gold + Silver + Copper","Producer",354138240],
+["CELDB","Challenger Gold Limited","Gold + Silver + Copper","Producer",396677664],
+["CG1","Carbonxt Group Limited","Materials","Producer",32499778],
+["CGR","CGN Resources Limited","Copper + Nickel + Gold","Explorer / Developer",8522816],
+["CHN","Chalice Mining Limited","Platinum Group Metals + Nickel + Copper","Explorer / Developer",474047488],
+["CHR","Charger Metals NL","Battery Metals","Producer",6832080],
+["CHRCB","Charger Metals NL","Battery Metals","Producer",1438332],
+["CHW","Chilwa Minerals Limited","Mineral Sands","Explorer / Developer",82748576],
+["CIA","Champion Iron Limited","Iron Ore","Producer",1831353344],
+["CKA","Cokal Limited","Coal","Producer",57184296],
+["CLA","Celsius Resources Limited","Copper + Gold + Coal","Explorer / Developer",14888828],
+["CLE","","Materials","Unresolved",null],
+["CLV","Clover Corporation Limited","Materials","Producer",150299408],
+["CLZ","Classic Minerals Limited","Gold","Explorer / Developer",5509605],
+["CMD","Cassius Mining Limited","Lithium","Explorer / Developer",14869522],
+["CMG","Critical Minerals Group Limited","Bauxite / Alumina + Vanadium + Molybdenum","Producer",8450237],
+["CMM","Capricorn Metals Ltd","Gold","Producer",6838863872],
+["CMO","Cosmo Metals Limited","Gold + Base Metals + Antimony","Explorer / Developer",3945260],
+["CMONA","","Materials","Unresolved",null],
+["CMX","ChemX Materials Limited","Bauxite / Alumina","Explorer / Developer",33545804],
+["CNB","Carnaby Resources Limited","Copper","Producer",260933280],
+["CNJ","Conico Ltd","Gold + Cobalt + Copper","Explorer / Developer",6519869],
+["CNJN","","Materials","Unresolved",null],
+["COB","Cobalt Blue Holdings Limited","Cobalt + Nickel + Copper","Explorer / Developer",40535072],
+["COD","Coda Minerals Limited","Base Metals + Copper + Cobalt","Explorer / Developer",50118352],
+["COY","Coppermoly Limited","Copper","Explorer / Developer",3530629],
+["CP8","Canadian Phosphate Limited","Potash / Fertiliser + Magnesium + Silica","Producer",57206604],
+["CP8N","","Materials","Unresolved",null],
+["CPM","Cooper Metals Limited","Copper","Explorer / Developer",9199565],
+["CPN","Caspin Resources Limited","Gold + Nickel + Copper","Explorer / Developer",40128728],
+["CPO","Culpeo Minerals Limited","Copper","Explorer / Developer",15153291],
+["CR1","Constellation Resources Limited","Copper + Gold + Nickel","Producer",15542927],
+["CR1N","","Materials","Unresolved",null],
+["CR3","Core Energy Minerals Ltd","Gold + Silver + Uranium","Explorer / Developer",5796944],
+["CR9","","Materials","Unresolved",null],
+["CRB","Carbine Resources Limited","Silica","Explorer / Developer",14302389],
+["CRI","Critica Limited","Uranium + Lithium + Antimony","Explorer / Developer",66677732],
+["CRN","Coronado Global Resources Inc.","Coal","Producer",460164736],
+["CRR","Critical Resources Limited","Lithium","Explorer / Developer",19164512],
+["CRS","Caprice Resources Limited","Gold + Copper + Niobium","Explorer / Developer",72329832],
+["CSC","Capstone Copper Corp.","Copper + Silver + Gold","Producer",11153659904],
+["CST","Castile Resources Limited","Copper + Gold + Cobalt","Producer",28362412],
+["CTM","Centaurus Metals Limited","Nickel","Producer",287214144],
+["CTN","Catalina Resources Ltd","Lithium + Gold + Rare Earths","Explorer / Developer",11570721],
+["CTO","Citigold Corporation Limited","Gold","Explorer / Developer",55200000],
+["CUF","CuFe Ltd","Lithium + Copper + Iron Ore","Explorer / Developer",107827672],
+["CUL","Cullen Resources Limited","Gold + Lithium + Nickel","Producer",4160411],
+["CVR","Cavalier Resources Ltd","Gold","Explorer / Developer",19589584],
+["CVV","Caravel Minerals Limited","Copper","Producer",159247328],
+["CXL","Calix Limited","Magnesium","Producer",51845888],
+["CXO","Core Lithium Ltd","Lithium","Explorer / Developer",1116696576],
+["CY5","Cygnus Metals Limited","Lithium + Gold + Nickel","Explorer / Developer",224555200],
+["CYL","Catalyst Metals Limited","Gold","Producer",1682208384],
+["CYM","Cyprium Metals Limited","Copper","Producer",300601440],
+["CYMN","","Materials","Unresolved",null],
+["CZN","Corazon Mining Limited","Nickel + Copper + Cobalt","Producer",26292218],
+["CZR","CZR Resources Ltd","Gold","Producer",46065100],
+["DAF","Discovery Alaska Limited","Lithium + Tin + Silver","Explorer / Developer",4392115],
+["DAL","Dalaroo Metals Ltd","Zinc / Lead + Copper + Nickel","Explorer / Developer",28017590],
+["DBO","Diablo Resources Limited","Copper","Explorer / Developer",8657168],
+["DES","DeSoto Resources Limited","Gold + Lithium + Rare Earths","Explorer / Developer",38749980],
+["DGL","DGL Group Limited","Chemicals","Producer",81289192],
+["DGR","DGR Global Limited","Gold + Nickel + Copper","Explorer / Developer",32354576],
+["DKM","Duketon Mining Limited","Gold + Lithium + Uranium","Explorer / Developer",14595769],
+["DLI","Delta Lithium Limited","Lithium","Explorer / Developer",122262216],
+["DLY","Daly Resources Ltd","Copper","Explorer / Developer",13650001],
+["DM1","Desert Metals Limited","Gold","Producer",4682151],
+["DME","Dome Gold Mines Ltd","Gold","Explorer / Developer",20994390],
+["DMG","Everflow Resources Ltd","Gold","Explorer / Developer",2368030],
+["DMM","DMC Mining Limited","Materials","Explorer / Developer",2688300],
+["DNL","Dyno Nobel Limited","Chemicals","Producer",6813589504],
+["DPM","DPM Metals Inc.","Gold + Copper + Silver","Producer",13094114304],
+["DRE","Dreadnought Resources Limited","Copper + Nickel + Gold","Explorer / Developer",74427600],
+["DRR","Deterra Royalties Limited","Iron Ore + Mineral Sands + Copper","Producer",2192155136],
+["DRX","Diatreme Resources Limited","Silica","Explorer / Developer",75124224],
+["DSM","Desert Minerals Limited","Lithium","Explorer / Developer",21058740],
+["DTM","Dart Mining NL","Gold","Producer",4010677],
+["DTR","Dateline Resources Limited","Gold","Producer",297060832],
+["DTRND","","Materials","Unresolved",null],
+["DUN","Dundas Minerals Limited","Gold","Explorer / Developer",10811158],
+["DVP","Develop Global Limited","Zinc / Lead + Copper + Lithium","Producer",1616928896],
+["DYM","Dynamic Metals Limited","Lithium + Nickel + Gold","Producer",29911854],
+["E25","Element 25 Limited","Manganese","Producer",89637120],
+["E79","E79 Gold Mines Limited","Gold","Producer",9192448],
+["EAU","EAU Lithium Limited","Materials","Explorer / Developer",25402984],
+["EE1","Earths Energy Limited","Materials","Explorer / Developer",3751622],
+["EEL","","Materials","Unresolved",null],
+["EFE","Eastern Resources Limited","Iron Ore","Producer",3760143],
+["EFR","Everflow Resources Limited","Gold","Explorer / Developer",null],
+["EG1","Evergold Minerals Limited","Lithium","Explorer / Developer",13105360],
+["EGR","EcoGraf Limited","Graphite","Explorer / Developer",145388624],
+["ELK","Elk Range Mining Limited","Gold","Explorer / Developer",null],
+["ELT","Elementos Limited","Tin + Tungsten + Copper","Explorer / Developer",157790304],
+["ELV","Elevra Lithium Limited","Lithium","Producer",1380099072],
+["EM2","Eagle Mountain Mining Limited","Copper","Producer",10771317],
+["EM3","EMC Gold Corporation","Gold","Explorer / Developer",59208824],
+["EMA","Eminence Minerals Limited","Iron Ore + Lithium + Rare Earths","Explorer / Developer",6692045],
+["EMC","Everest Metals Corporation Ltd","Gold","Producer",32364840],
+["EMH","European Metals Holdings Limited","Lithium","Producer",55887396],
+["EMN","Euro Manganese Inc.","Manganese","Producer",10864541],
+["EMR","Emerald Resources NL","Gold","Producer",4559255552],
+["EMS","","Materials","Unresolved",null],
+["EMU","Emu NL","Copper + Gold + Nickel","Explorer / Developer",6487963],
+["EMUCA","Emu NL","Materials","Explorer / Developer",null],
+["EMUNE","","Materials","Unresolved",null],
+["ENR","Encounter Resources Limited","Copper + Gold + Niobium","Explorer / Developer",145658416],
+["ENT","Enterprise Metals Limited","Gold + Copper + Zinc / Lead","Explorer / Developer",5002285],
+["ENV","Enova Mining Limited","Rare Earths","Explorer / Developer",3866512],
+["ENX","","Materials","Unresolved",null],
+["EQR","EQ Resources Limited","Tungsten","Producer",1989158912],
+["EQX","Equatorial Resources Limited","Iron Ore","Explorer / Developer",18402350],
+["ERE","European Resources Limited","Gold + Silver + Copper","Explorer / Developer",12598467],
+["EREN","","Materials","Unresolved",null],
+["ERENA","","Materials","Unresolved",null],
+["ERL","Empire Resources Limited","Gold","Explorer / Developer",18784272],
+["ERM","","Materials","Unresolved",null],
+["ESR","Estrella Resources Limited","Nickel","Explorer / Developer",67397328],
+["ETM","Energy Transition Minerals Ltd","Tantalum + Niobium + Tin","Producer",96822024],
+["EUR","European Lithium Limited","Lithium","Producer",596651584],
+["EV1","Evolution Energy Minerals Limited","Graphite","Explorer / Developer",8984009],
+["EV1N","","Materials","Unresolved",null],
+["EV8","Everlast Minerals Ltd","Mineral Sands","Explorer / Developer",53182580],
+["EVG","Evion Group NL","Graphite","Producer",15691447],
+["EVN","Evolution Mining Limited","Gold","Producer",28623677440],
+["EVR","EV Resources Limited","Gold + Silver + Copper","Explorer / Developer",12898547],
+["EVRDD","","Materials","Explorer / Developer",13865939],
+["EVRN","","Materials","Unresolved",null],
+["FAL","Falcon Metals Limited","Gold","Explorer / Developer",109032912],
+["FAU","First Au Limited","Gold","Producer",45161764],
+["FEG","Far East Gold Limited","Gold","Explorer / Developer",52128432],
+["FEX","Fenix Resources Limited","Iron Ore","Producer",196524624],
+["FFM","FireFly Metals Ltd","Copper","Explorer / Developer",1509235072],
+["FG1","Flynn Gold Limited","Gold","Producer",11564450],
+["FGH","Foresta Group Holding Limited","Chemicals","Producer",22864630],
+["FGR","First Graphene Limited","Graphite","Producer",48780160],
+["FHE","Frontier Energy Limited","Materials","Explorer / Developer",228077296],
+["FHS","Freehill Mining Limited","Iron Ore + Copper + Gold","Producer",4066520],
+["FIN","Fin Resources Limited","Lithium","Explorer / Developer",8470647],
+["FL1","First Lithium Limited","Lithium","Explorer / Developer",18229862],
+["FLG","Flagship Minerals Limited","Lithium + Gold + Copper","Explorer / Developer",60654608],
+["FMG","Fortescue Ltd","Iron Ore","Producer",51326345216],
+["FML","Focus Minerals Limited","Gold","Producer",627563456],
+["FMN","Famien Resources Limited","Gold + Nickel + Copper","Explorer / Developer",49584808],
+["FMR","FMR Resources Limited","Copper","Explorer / Developer",32563216],
+["FNR","Far Northern Resources Limited","Gold + Copper + Base Metals","Explorer / Developer",10004559],
+["FRB","Firebird Metals Limited","Manganese","Explorer / Developer",29177824],
+["FRS","Forrestania Resources Limited","Gold","Producer",867214656],
+["FRSNB","","Materials","Unresolved",null],
+["FUL","Fulcrum Lithium Ltd","Lithium","Explorer / Developer",10728000],
+["FUN","Fortuna Metals Limited","Mineral Sands + Graphite + Gold","Explorer / Developer",38375816],
+["FXG","Felix Gold Limited","Gold","Explorer / Developer",134250272],
+["FXGN","","Materials","Unresolved",null],
+["G11","G11 Resources Limited","Copper + Gold + Nickel","Explorer / Developer",28996470],
+["G50","G50 Corp Limited","Gold","Explorer / Developer",110901016],
+["G6M","Group 6 Metals Limited","Tungsten","Producer",817252544],
+["G88","Golden Mile Resources Limited","Gold + Nickel + Cobalt","Explorer / Developer",6008414],
+["GA8","GoldArc Resources Limited","Gold","Producer",38588544],
+["GAL","Galileo Mining Ltd","Platinum Group Metals + Cobalt + Nickel","Explorer / Developer",22726868],
+["GBE","Globe Metals & Mining Limited","Niobium","Explorer / Developer",58621804],
+["GBM","GBM Resources Limited","Gold","Producer",107984792],
+["GBR","Great Boulder Resources Limited","Gold","Producer",177566368],
+["GCM","GCM Corporation Limited","Graphite","Explorer / Developer",20283386],
+["GCMDA","GCM Corporation Limited","Graphite","Explorer / Developer",20283386],
+["GCR","Golden Cross Resources Limited","Gold","Explorer / Developer",2194512],
+["GDM","Great Divide Mining Ltd","Gold + Antimony + Copper","Explorer / Developer",23268760],
+["GDR","Golden Dragon Mining Ltd","Gold + Nickel + Copper","Explorer / Developer",10229202],
+["GED","Golden Deeps Limited","Gold + Silver + Copper","Producer",12540392],
+["GEN","Genmin Limited","Iron Ore","Explorer / Developer",24216754],
+["GES","Genesis Resources Limited","Copper + Gold + Manganese","Explorer / Developer",9394095],
+["GG1","Green & Gold Minerals Limited","Gold","Explorer / Developer",6001183],
+["GG8","Gorilla Gold Mines Ltd","Gold","Producer",223459184],
+["GGM","Global Gold Mining Limited","Gold","Explorer / Developer",69390264],
+["GGP","Greatland Resources Limited","Gold","Producer",7279661056],
+["GGR","Golden Globe Resources Ltd","Copper","Explorer / Developer",21003632],
+["GHM","Golden Horse Minerals Limited","Gold","Explorer / Developer",94164416],
+["GIB","Gibb River Diamonds Limited","Diamonds + Gold + Potash / Fertiliser","Explorer / Developer",7507830],
+["GL1","Global Lithium Resources Limited","Lithium","Producer",169271856],
+["GLN","Galan Lithium Limited","Lithium","Explorer / Developer",462650880],
+["GMD","Genesis Minerals Limited","Gold","Producer",8988346368],
+["GMDNE","","Materials","Unresolved",null],
+["GML","Gateway Mining Limited","Gold","Explorer / Developer",206730544],
+["GMN","Gold Mountain Limited","Gold","Explorer / Developer",21319854],
+["GNG","GR Engineering Services Limited","Materials","Producer",1294300544],
+["GNM","Great Northern Minerals Limited","Lithium","Producer",16790508],
+["GPR","Geopacific Resources Limited","Gold","Producer",96817856],
+["GR8","Great Dirt Resources Ltd","Manganese","Explorer / Developer",35527236],
+["GRE","GreenTech Metals Limited","Nickel + Copper + Gold","Explorer / Developer",20972166],
+["GRL","Orbit Resources Limited","Gold + Silver + Copper","Producer",16123060],
+["GRR","Grange Resources Limited","Iron Ore","Producer",150454032],
+["GRS","Gwardar Resources Limited","Copper + Gold + Nickel","Explorer / Developer",13860042],
+["GRX","GreenX Metals Limited","Gold","Producer",323185472],
+["GSM","Golden State Mining Limited","Gold + Lithium + Nickel","Explorer / Developer",6272049],
+["GSN","Great Southern Mining Limited","Gold + Silver + Nickel","Producer",31574186],
+["GT1","Green Technology Metals Limited","Materials","Producer",16870384],
+["GT1N","","Materials","Unresolved",null],
+["GT3","Green360 Technologies LImited","Kaolin","Producer",36105308],
+["GTE","Great Western Exploration Limited","Potash / Fertiliser","Producer",8553504],
+["GUE","","Materials","Unresolved",null],
+["GUL","Gullewa Limited","Gold","Producer",17005730],
+["GW1","Greenwing Resources Ltd","Graphite + Base Metals + Lithium","Explorer / Developer",51452444],
+["GWR","GWR Group Limited","Magnesium","Producer",56959728],
+["HAR","Haranga Resources Limited","Gold","Explorer / Developer",30353478],
+["HAS","Hastings Technology Metals Limited","Rare Earths","Explorer / Developer",64437208],
+["HAV","Havilah Resources Limited","Iron Ore + Gold + Copper","Explorer / Developer",290216352],
+["HAW","Hawthorn Resources Limited","Lithium","Producer",27471282],
+["HCH","Hot Chili Limited","Copper","Explorer / Developer",328700704],
+["HFR","Highfield Resources Limited","Potash / Fertiliser","Explorer / Developer",9007464],
+["HGO","Kantra Copper Ltd","Copper","Producer",259550512],
+["HGODB","Kantra Copper Ltd","Copper","Producer",254831424],
+["HIO","Hawsons Iron Limited","Materials","Explorer / Developer",13781353],
+["HLX","Helix Resources Limited","Copper + Gold + Iron Ore","Explorer / Developer",7312900],
+["HLXDA","","Materials","Unresolved",null],
+["HMG","Hamelin Gold Limited","Gold","Explorer / Developer",55772876],
+["HMX","Hammer Metals Limited","Gold","Producer",74098968],
+["HOR","Horseshoe Metals Limited","Copper","Producer",22500272],
+["HRE","Heavy Rare Earths Limited","Rare Earths","Explorer / Developer",10756525],
+["HRN","Horizon Gold Limited","Gold","Explorer / Developer",219103584],
+["HRNN","","Materials","Unresolved",null],
+["HRZ","","Materials","Unresolved",null],
+["HTM","High-Tech Metals Limited","Cobalt + Copper + Gold","Explorer / Developer",25477718],
+["HTMNA","","Materials","Unresolved",null],
+["HVY","Heavy Minerals Limited","Mineral Sands","Explorer / Developer",24953822],
+["HWK","Hawk Resources Limited","Lithium","Explorer / Developer",23459426],
+["HWKNA","","Materials","Unresolved",null],
+["HZR","Hazer Group Limited","Hydrogen + Graphite + Gas","Producer",87050544],
+["I88","Infini Resources Limited","Lithium + Uranium + Niobium","Producer",10820723],
+["IBR","Iron Bear Resources Ltd","Iron Ore","Explorer / Developer",49781400],
+["ICL","Iceni Gold Limited","Gold","Producer",10897681],
+["IDA","Indiana Resources Limited","Rare Earths + Gold + Base Metals","Explorer / Developer",12884649],
+["IGO","IGO Limited","Lithium","Producer",5740090368],
+["ILT","Iltani Resources Limited","Base Metals","Producer",36274596],
+["ILU","Iluka Resources Limited","Mineral Sands","Producer",2690656768],
+["IMA","Image Resources NL","Mineral Sands","Producer",17841754],
+["IMD","Imdex Limited","Materials","Producer",1758556032],
+["IMI","Infinity Mining Limited","Gold + Copper + Zinc / Lead","Explorer / Developer",3919287],
+["IND","Industrial Minerals Ltd","Silica","Explorer / Developer",16269011],
+["INF","Infinity Metals Limited","Lithium + Gold + Silver","Explorer / Developer",5659712],
+["INR","ioneer Ltd","Lithium","Producer",307463392],
+["ION","Iondrive Limited","Rare Earths","Producer",168527776],
+["IPT","Impact Minerals Limited","Bauxite / Alumina","Explorer / Developer",14986730],
+["IPTN","","Materials","Unresolved",null],
+["IPX","IperionX Limited","Titanium + Mineral Sands + Rare Earths","Explorer / Developer",956033984],
+["IR1","Palisade Metals Ltd","Lithium","Explorer / Developer",13843741],
+["IRD","Iron Road Limited","Iron Ore","Explorer / Developer",9242120],
+["ITM","iTech Minerals Ltd","Gold + Antimony + Graphite","Producer",13616467],
+["IVR","Investigator Silver Limited","Silver","Producer",136388608],
+["IXR","Ionic Rare Earths Limited","Rare Earths","Producer",98583040],
+["JAL","Jameson Resources Limited","Coal","Explorer / Developer",33060166],
+["JAV","Javelin Minerals Limited","Gold","Explorer / Developer",23695002],
+["JGH","Jade Gas Holdings Limited","Gas","Explorer / Developer",157443248],
+["JHX","James Hardie Industries plc","Building Materials","Producer",22646181888],
+["JLL","Jindalee Lithium Limited","Lithium","Explorer / Developer",40396312],
+["JLLN","","Materials","Unresolved",null],
+["JMS","Jupiter Mines Limited","Manganese","Producer",491462624],
+["JNO","Juno Minerals Limited","Iron Ore","Producer",5440163],
+["KAI","","Materials","Unresolved",null],
+["KAIDB","","Materials","Unresolved",null],
+["KAL","Kalgoorlie Gold Mining Limited","Gold","Explorer / Developer",10485014],
+["KAN","Kantra Copper Ltd","Copper","Producer",271348256],
+["KAO","Kaoko Metals Limited","Copper + Gold + Tungsten","Explorer / Developer",158205136],
+["KAU","Kaiser Reef Limited","Gold","Producer",139224144],
+["KCC","Kincora Copper Limited","Copper","Explorer / Developer",53779472],
+["KCN","Kingsgate Consolidated Limited","Gold","Producer",1414631808],
+["KFM","Kingfisher Mining Limited","Copper + Gold + Lithium","Producer",8117655],
+["KGD","","Materials","Unresolved",null],
+["KGL","KGL Resources Limited","Copper + Silver + Gold","Explorer / Developer",397493376],
+["KGLN","","Materials","Unresolved",null],
+["KLI","Killi Resources Limited","Copper","Explorer / Developer",93784520],
+["KM1","Kali Metals Limited","Gold + Lithium + Tantalum","Explorer / Developer",19547756],
+["KNB","Koonenberry Gold Limited","Gold","Producer",32067424],
+["KNG","Kingsland Minerals Ltd","Graphite + Gold + Uranium","Explorer / Developer",4168513],
+["KNI","Kuniko Limited","Nickel + Copper + Zinc / Lead","Explorer / Developer",6394182],
+["KOB","Koba Resources Limited","Uranium","Explorer / Developer",9712834],
+["KOR","","Materials","Unresolved",null],
+["KP2","Kore Potash plc","Potash / Fertiliser","Explorer / Developer",351343392],
+["KRM","Kingsrose Mining Limited","Platinum Group Metals + Nickel + Copper","Explorer / Developer",18838164],
+["KRR","King River Resources Limited","Gold","Producer",133945304],
+["KSN","Kingston Resources Limited","Gold + Copper + Zinc / Lead","Producer",40054364],
+["KSNN","","Materials","Unresolved",null],
+["KTA","Krakatoa Resources Limited","Gold + Copper + Lithium","Producer",14085827],
+["KZR","Kalamazoo Resources Limited","Gold","Explorer / Developer",56965388],
+["L1M","Lightning Minerals Ltd","Lithium + Gold + Base Metals","Explorer / Developer",4561273],
+["LAC","Lac Gold Limited","Gold","Explorer / Developer",75217240],
+["LAT","Latitude 66 Limited","Gold","Explorer / Developer",26396664],
+["LCL","LCL Resources Limited","Gold + Copper + Nickel","Explorer / Developer",9644058],
+["LCY","Legacy Iron Ore Limited","Iron Ore + Gold + Base Metals","Producer",48810212],
+["LDR","Lode Resources Ltd","Antimony","Producer",23340508],
+["LEG","Legend Mining Limited","Nickel","Explorer / Developer",24773058],
+["LEL","LE Minerals Limited","Lithium","Explorer / Developer",36120504],
+["LEX","Lefroy Exploration Limited","Gold","Explorer / Developer",34652516],
+["LFT","Li-FT Power Ltd.","Lithium","Explorer / Developer",217706528],
+["LGM","Legacy Minerals Holdings Limited","Gold","Explorer / Developer",24013828],
+["LGMNA","","Materials","Unresolved",null],
+["LIB","Liberty Metals Ltd","Uranium + Zinc / Lead + Cobalt","Explorer / Developer",40564876],
+["LIN","Lindian Resources Limited","Rare Earths","Explorer / Developer",1211354496],
+["LIT","Livium Ltd","Lithium + Chemicals + Potash / Fertiliser","Producer",15232601],
+["LKE","Lake Resources NL","Lithium","Producer",102440456],
+["LKY","Locksley Resources Limited","Copper + Gold + Rare Earths","Explorer / Developer",22919274],
+["LLM","Loyal Metals Limited","Lithium + Copper + Gold","Producer",78542600],
+["LM1","Leeuwin Metals Ltd","Gold","Explorer / Developer",33760624],
+["LM8","Lunnon Metals Limited","Nickel + Gold + Silver","Producer",73910232],
+["LMG","Latrobe Magnesium Limited","Magnesium","Explorer / Developer",30733658],
+["LML","Lincoln Minerals Limited","Graphite","Producer",26130990],
+["LMS","Litchfield Minerals Limited","Copper + Gold + Manganese","Explorer / Developer",12595301],
+["LNQ","LinQ Minerals Limited","Gold","Producer",88185856],
+["LOT","Lotus Resources Limited","Uranium","Producer",117558656],
+["LOTDB","","Materials","Unresolved",null],
+["LPM","Lithium Plus Minerals Ltd","Lithium","Explorer / Developer",19292500],
+["LRD","Lord Resources Limited","Gold + Lithium + Copper","Producer",2480828],
+["LRM","Lion Rock Minerals Ltd","Gold + Copper + Mineral Sands","Explorer / Developer",76942256],
+["LRV","Larvotto Resources Limited","Gold + Antimony + Copper","Producer",563522816],
+["LSA","Lachlan Star Limited","Gold + Silver + Copper","Explorer / Developer",53875696],
+["LSR","Lodestar Minerals Limited","Copper + Lithium + Nickel","Explorer / Developer",11917630],
+["LTR","Liontown Limited","Lithium","Producer",3415256832],
+["LU7","Lithium Universe Limited","Lithium","Explorer / Developer",9292626],
+["LUX","Lux Copper Corp. Ltd","Copper","Explorer / Developer",43528488],
+["LYC","Lynas Rare Earths Limited","Rare Earths","Producer",14463441920],
+["M24","Mamba Exploration Limited","Gold + Copper + Nickel","Explorer / Developer",9750641],
+["M2M","Mt Malcolm Mines NL","Gold","Producer",6197042],
+["M2MNB","","Materials","Unresolved",null],
+["M2R","Miramar Resources Limited","Gold + Nickel + Copper","Explorer / Developer",4219180],
+["M3M","M3 Mining Limited","Copper","Explorer / Developer",5011329],
+["M4M","Macro Metals Limited","Iron Ore","Producer",32029416],
+["M79","Mammoth Minerals Limited","Copper + Zinc / Lead + Lithium","Producer",23474344],
+["M96","Maverick Minerals Australia Ltd","Kaolin + Silica + Niobium","Explorer / Developer",14776852],
+["MAG","Magmatic Resources Limited","Gold","Producer",10546852],
+["MAH","Macmahon Holdings Limited","Materials","Producer",2058011392],
+["MAN","Mandrake Resources Limited","Lithium + Gold + Copper","Producer",11917938],
+["MAT","Matsa Resources Limited","Gold","Producer",45646032],
+["MAU","","Materials","Unresolved",null],
+["MAUCA","","Materials","Unresolved",null],
+["MBG","MB Gold Limited","Gold","Explorer / Developer",null],
+["MBK","Metal Bank Limited","Gold + Copper + Cobalt","Explorer / Developer",10942294],
+["MC2","Marimaca Copper Corp.","Copper","Explorer / Developer",1222494464],
+["MCO","Myeco Group Ltd","Packaging","Producer",12675811],
+["MDI","Middle Island Resources Limited","Copper","Producer",13906506],
+["MDX","Mindax Limited","Gold","Explorer / Developer",89802296],
+["MEG","Megado Minerals Limited","Rare Earths + Lithium + Gold","Explorer / Developer",9368883],
+["MEI","Meteoric Resources Limited","Rare Earths","Explorer / Developer",552257600],
+["MEK","Meeka Metals Limited","Gold","Producer",403252576],
+["MEX","Minerals Exploration Limited","Uranium + Vanadium + Lithium","Explorer / Developer",11325551],
+["MGA","MetalsGrove Mining Limited","Copper + Gold + Zinc / Lead","Explorer / Developer",13782253],
+["MGL","Magontec Limited","Magnesium","Producer",12166309],
+["MGT","Magnetite Mines Limited","Iron Ore","Explorer / Developer",4102626],
+["MGTNH","","Materials","Unresolved",null],
+["MGU","Magnum Mining and Exploration Limited","Iron Ore","Explorer / Developer",17671704],
+["MGX","MGX Resources Limited","Iron Ore","Producer",null],
+["MHK","Metal Hawk Limited","Gold + Lithium + Nickel","Producer",11228723],
+["MHM","Mount Hope Mining Limited","Gold","Producer",11850000],
+["MI6","Minerals 260 Limited","Gold","Explorer / Developer",1999293568],
+["MIN","Mineral Resources Limited","Iron Ore + Lithium + Manganese","Producer",11787156480],
+["MIO","Macarthur Minerals Limited","Diamonds","Explorer / Developer",10468738],
+["MKR","Manuka Resources Limited","Gold + Silver + Vanadium","Explorer / Developer",104729968],
+["ML8","Moonlight Resources Limited","Gold + Copper + Uranium","Explorer / Developer",15509413],
+["MLG","MLG Oz Limited","Building Materials","Producer",133881520],
+["MLS","Metals Australia Ltd","Graphite","Producer",13902671],
+["MLX","Metals X Limited","Tin + Gold + Base Metals","Producer",1622098304],
+["MM1","Midas Minerals Limited","Copper + Silver + Gold","Explorer / Developer",305260000],
+["MM8","Medallion Metals Limited","Gold","Producer",491979008],
+["MMA","Maronan Metals Limited","Zinc / Lead + Silver + Copper","Explorer / Developer",147706688],
+["MMI","Metro Mining Limited","Bauxite / Alumina","Producer",410206048],
+["MMIDA","","Materials","Unresolved",null],
+["MML","McLaren Minerals Limited","Silica","Explorer / Developer",6570995],
+["MNB","Minbos Resources Limited","Potash / Fertiliser","Producer",25386152],
+["MOH","Moho Resources Limited","Gold + Nickel + Copper","Explorer / Developer",5265460],
+["MOM","Moab Minerals Limited","Uranium + Vanadium + Lithium","Explorer / Developer",2015702],
+["MPK","Many Peaks Minerals Limited","Gold","Explorer / Developer",144712688],
+["MQR","Marquee Resources Limited","Lithium","Explorer / Developer",4543186],
+["MQRN","","Materials","Unresolved",null],
+["MRC","","Materials","Unresolved",null],
+["MRD","Mount Ridley Mines Limited","Nickel + Copper + Gold","Producer",55612104],
+["MRQ","MRG Metals Ltd","Mineral Sands + Rare Earths + Uranium","Explorer / Developer",6696302],
+["MRR","MinRex Resources Limited","Gold + Silver + Copper","Explorer / Developer",30004146],
+["MRT","Maritana Minerals Limited","Gold","Producer",283126880],
+["MRZ","Mont Royal Resources Limited","Rare Earths","Explorer / Developer",17324378],
+["MSV","Mitchell Services Limited","Materials","Producer",120034544],
+["MTC","MetalsTech Limited","Gold","Explorer / Developer",45797576],
+["MTH","Mithril Silver and Gold Limited","Silver","Explorer / Developer",44059624],
+["MTL","Mantle Minerals Limited","Gold","Explorer / Developer",7233115],
+["MTM","Metallium Limited","Gold + Niobium + Base Metals","Producer",251982736],
+["MVL","Marvel Gold Limited","Gold","Producer",18488524],
+["MYE","Mastermyne Group Limited","Materials","Producer",202248256],
+["NAG","Nagambie Resources Limited","Antimony","Producer",17700124],
+["NC1","NICO Resources Limited","Nickel","Explorer / Developer",15731345],
+["NEM","Newmont Corporation","Gold","Producer",183985209344],
+["NES","Nelson Resources Limited","Gold","Explorer / Developer",5476522],
+["NFL","Norfolk Metals Limited","Gold + Uranium + Copper","Explorer / Developer",11088126],
+["NFM","New Frontier Minerals Limited","Copper","Explorer / Developer",10429779],
+["NGX","NGX Limited","Graphite","Explorer / Developer",7158335],
+["NH3","NH3 Clean Energy Limited","Graphite + Gold + Nickel","Explorer / Developer",70118280],
+["NIC","Nickel Industries Limited","Nickel","Producer",3451839232],
+["NIM","Nimy Resources Limited","Copper + Silver + Cobalt","Explorer / Developer",16420166],
+["NME","Nex Metals Explorations Limited","Gold","Explorer / Developer",5126754],
+["NMG","New Murchison Gold Limited","Gold","Producer",859931264],
+["NMR","Native Mineral Resources Holdings Limited","Gold","Producer",67902768],
+["NMT","Neometals Ltd","Lithium + Vanadium + Gold","Explorer / Developer",27152820],
+["NMTN","","Materials","Unresolved",null],
+["NNL","Nordic Resources Limited","Gold","Explorer / Developer",74372608],
+["NPM","NewPeak Metals Limited","Gold + Uranium + Rare Earths","Explorer / Developer",6099125],
+["NRX","Noronex Limited","Copper","Producer",10366788],
+["NRZ","NeuRizer Ltd.","Potash / Fertiliser","Explorer / Developer",3402758],
+["NSM","North Stawell Minerals Limited","Gold","Explorer / Developer",7477424],
+["NST","Northern Star Resources Limited","Gold","Producer",31459696640],
+["NTM","NT Minerals Limited","Copper","Explorer / Developer",3632708],
+["NTU","Northern Minerals Limited","Rare Earths","Producer",238712688],
+["NUF","Nufarm Limited","Chemicals","Producer",null],
+["NVA","Nova Minerals Corp","Gold","Explorer / Developer",311557376],
+["NVADC","","Materials","Unresolved",null],
+["NVO","Novo Resources Corp.","Gold","Explorer / Developer",30282178],
+["NWF","","Materials","Unresolved",null],
+["NWM","Norwest Minerals Limited","Gold + Copper + Silver","Explorer / Developer",10690592],
+["NWMN","","Materials","Unresolved",null],
+["NXM","Nexus Minerals Limited","Gold + Copper + Tantalum","Explorer / Developer",35018056],
+["NYM","Narryer Metals Limited","Lithium + Nickel + Copper","Explorer / Developer",9506466],
+["OB1","Orbminco Limited","Lithium","Producer",7683044],
+["OBM","Ora Banda Mining Limited","Gold","Producer",2990775808],
+["OBT","Orbit Resources Limited","Gold + Silver + Copper","Producer",13577315],
+["OCN","Oceana Metals Limited","Lithium","Explorer / Developer",87097080],
+["OCT","Octava Minerals Limited","Copper + Silver + Lithium","Explorer / Developer",2509830],
+["OD6","OD6 Metals Limited","Rare Earths + Copper + Zinc / Lead","Explorer / Developer",32434856],
+["ODE","Odessa Minerals Limited","Lithium","Explorer / Developer",37040184],
+["ODY","Odyssey Gold Limited","Gold","Explorer / Developer",46623088],
+["OKJ","Oakajee Corporation Limited","Gold","Explorer / Developer",3657841],
+["OLY","Olympio Metals Limited","Gold","Producer",9443954],
+["OM1","Omnia Metals Group Ltd","Copper + Gold + Nickel","Explorer / Developer",5696542],
+["OMH","OM Holdings Limited","Manganese","Producer",160913968],
+["OMX","Orange Minerals NL","Gold","Explorer / Developer",15603923],
+["OR3","Ore Resources Limited","Lithium + Cobalt + Nickel","Explorer / Developer",55591840],
+["ORA","Orora Limited","Packaging","Producer",1770620416],
+["ORD","Ordell Minerals Limited","Gold + Lithium + Nickel","Explorer / Developer",40086220],
+["ORE","Orezone Gold Corporation","Gold","Producer",1810559104],
+["ORI","Orica Limited","Chemicals","Producer",null],
+["ORN","Orion Minerals Limited","Copper","Producer",223859504],
+["ORP","Orpheus Uranium Limited","Uranium","Explorer / Developer",55908108],
+["OSM","Osmond Resources Limited","Gold + Uranium + Nickel","Producer",83651952],
+["OZM","OzAurum Resources Limited","Gold","Explorer / Developer",24376958],
+["OZZ","Ozz Resources Limited","Gold","Explorer / Developer",8231627],
+["OZZN","","Materials","Unresolved",null],
+["PAT","Patriot Resources Limited","Lithium","Explorer / Developer",18293564],
+["PBL","Parabellum Resources Limited","Gold + Copper + Nickel","Explorer / Developer",3551100],
+["PC2","PC Gold Limited","Gold","Explorer / Developer",384978784],
+["PDI","PDI Gold Limited","Gold","Explorer / Developer",4604881408],
+["PDIDB","PDI Gold Limited","Gold","Explorer / Developer",4614766592],
+["PEC","Perpetual Resources Limited","Lithium + Niobium + Tantalum","Explorer / Developer",11923276],
+["PEX","Peel Mining Limited","Copper + Silver + Gold","Producer",142689744],
+["PFE","Pantera Minerals Limited","Lithium","Producer",7884449],
+["PGD","Peregrine Gold Limited","Gold","Producer",16303422],
+["PGL","Pilbara Gold Limited","Gold","Explorer / Developer",115837936],
+["PGM","Platina Resources Limited","Platinum Group Metals + Gold + Base Metals","Producer",17263892],
+["PGO","Pacgold Ltd","Gold","Explorer / Developer",82810176],
+["PHO","PhosCo Ltd","Potash / Fertiliser","Explorer / Developer",83823488],
+["PIM","Pinnacle Minerals Limited","Lithium","Explorer / Developer",4272146],
+["PKO","Peako Limited","Gold + Lithium + Rare Earths","Explorer / Developer",33387962],
+["PL3","Patagonia Lithium Limited","Lithium + Boron + Niobium","Explorer / Developer",45882508],
+["PL9","Prairie Lithium Limited","Lithium","Producer",37572044],
+["PLA","Pacific Lime and Cement Limited","Building Materials + Coal + Mineral Sands","Producer",309939744],
+["PLC","PLC Resources Limited","Gold + Copper + Lithium","Explorer / Developer",8214441],
+["PLG","Pearl Gull Iron Limited","Iron Ore","Producer",6340795],
+["PLS","PLS Group Limited","Lithium","Producer",14581279744],
+["PM1","Palisade Metals Ltd","Lithium","Explorer / Developer",15656558],
+["PMM","Pioneer Minerals Limited","Uranium","Explorer / Developer",11983364],
+["PMT","PMET Resources Inc.","Lithium","Explorer / Developer",780959744],
+["PNM","","Materials","Unresolved",null],
+["PNN","Power Minerals Limited","Lithium","Explorer / Developer",67845680],
+["PNR","Pantoro Gold Limited","Gold","Producer",1013290240],
+["PNT","Panther Metals Ltd","Nickel","Explorer / Developer",2041863],
+["POD","Podium Minerals Limited","Platinum Group Metals + Nickel + Copper","Explorer / Developer",34026112],
+["POL","Polymetals Resources Ltd","Gold","Producer",264977760],
+["PPG","Pro-Pac Packaging Limited","Packaging","Producer",3270379],
+["PPK","PPK Group Limited","Lithium","Producer",34508748],
+["PPY","Papyrus Australia Limited","Packaging","Explorer / Developer",6488817],
+["PR1","Pure Resources Limited","Nickel + Gold + Copper","Explorer / Developer",23258016],
+["PRG","PRL Global Ltd.","Potash / Fertiliser","Producer",163910288],
+["PRN","Perenti Limited","Materials","Producer",2037864960],
+["PRU","Perseus Mining Limited","Gold","Producer",8506912768],
+["PRX","Prodigy Gold NL","Gold","Producer",20225602],
+["PSC","Prospect Resources Limited","Copper","Explorer / Developer",187942432],
+["PSL","Paterson Resources Ltd","Gold","Explorer / Developer",22089650],
+["PTN","Patronus Resources Limited","Gold + Base Metals + Uranium","Explorer / Developer",75442864],
+["PTR","PTR Minerals Ltd","Copper","Explorer / Developer",39526476],
+["PUR","Pursuit Minerals Limited","Lithium","Explorer / Developer",21746928],
+["PVT","Pivotal Metals Limited","Copper + Nickel + Platinum Group Metals","Producer",23671718],
+["PVW","","Materials","Unresolved",null],
+["PWN","Parkway Corporate Limited","Materials","Producer",33316928],
+["PXX","PolarX Limited","Gold","Explorer / Developer",59950420],
+["QEM","QEM Limited","Vanadium","Explorer / Developer",5435255],
+["QGL","Quantum Graphite Limited","Graphite","Explorer / Developer",114594992],
+["QML","QMines Limited","Gold + Copper + Zinc / Lead","Explorer / Developer",54811396],
+["QPM","QPM Energy Limited","Chemicals + Coal + Nickel","Producer",35621260],
+["QXR","QX Resources Limited","Lithium + Gold + Copper","Explorer / Developer",6475990],
+["R8R","Regener8 Resources NL","Gold + Silver + Copper","Explorer / Developer",10054364],
+["R8RN","","Materials","Unresolved",null],
+["RAG","Ragnar Metals Limited","Nickel + Gold + Silver","Producer",10746766],
+["RAN","Range International Limited","Materials","Producer",1705106],
+["RANDA","","Materials","Unresolved",null],
+["RAP","Raptor Metals Limited","Silver + Copper + Gold","Producer",17961386],
+["RAS","Ragusa Minerals Limited","Gold + Halloysite + Lithium","Explorer / Developer",3567578],
+["RAU","Resouro Strategic Metals Inc.","Rare Earths","Explorer / Developer",33042814],
+["RB6","Rubix Resources Limited","Lithium + Copper + Cobalt","Explorer / Developer",8910250],
+["RBR","RBR Group Limited","Materials","Producer",2231669],
+["RBX","Resource Base Limited","Gold","Explorer / Developer",3340427],
+["RC1","Redcastle Resources Limited","Gold","Explorer / Developer",11595834],
+["RCM","Rapid Critical Metals Limited","Nickel","Explorer / Developer",34684780],
+["RCR","Rincon Resources Limited","Gold","Explorer / Developer",7311207],
+["RDM","Red Metal Limited","Copper + Gold + Lithium","Producer",50432800],
+["RDN","Raiden Resources Limited","Gold + Copper + Nickel","Explorer / Developer",10352675],
+["RDS","Redstone Resources Limited","Copper + Nickel + Cobalt","Explorer / Developer",3914945],
+["REC","Recharge Metals Limited","Lithium + Copper + Gold","Explorer / Developer",36952808],
+["RECN","","Materials","Unresolved",null],
+["REE","RareX Limited","Rare Earths","Explorer / Developer",14598605],
+["REZ","Resources & Energy Group Limited","Gold","Producer",7434219],
+["RGL","Riversgold Limited","Lithium","Explorer / Developer",27622052],
+["RHI","Red Hill Minerals Limited","Gold","Producer",295453472],
+["RIE","Riedel Resources Limited","Gold","Producer",8508867],
+["RIL","Redivium Limited","Materials","Producer",13577422],
+["RIM","Rimfire Pacific Mining Limited","Gold + Copper + Scandium","Explorer / Developer",35989668],
+["RIO","Rio Tinto Group","Iron Ore + Lithium + Copper","Producer",273523441664],
+["RKB","Rokeby Resources Limited","Gold","Explorer / Developer",8930190],
+["RLC","Reedy Lagoon Corporation Limited","Gold","Explorer / Developer",1553413],
+["RLF","RLF AgTech Ltd","Potash / Fertiliser","Producer",19310268],
+["RMI","Resource Minerals International Ltd","Copper + Gold + Silver","Explorer / Developer",145639536],
+["RML","Resolution Minerals Ltd","Gold + Copper + Nickel","Explorer / Developer",133562744],
+["RMS","Ramelius Resources Limited","Gold","Producer",7064899584],
+["RMX","Red Mountain Mining Limited","Gold + Antimony + Silver","Explorer / Developer",13312260],
+["RND","Rand Mining Limited","Silver","Producer",119439512],
+["RNU","Renascor Resources Limited","Graphite","Explorer / Developer",145135552],
+["RNX","Renegade Exploration Limited","Gold + Antimony + Silver","Explorer / Developer",4139593],
+["RON","Ronin Resources Ltd","Coal + Gold + Copper","Explorer / Developer",6460002],
+["RR1","Reach Resources Limited","Gold + Rare Earths + Lithium","Explorer / Developer",17215518],
+["RR1N","","Materials","Unresolved",null],
+["RRE","Right Resources Limited","Gold + Silver + Copper","Explorer / Developer",11559840],
+["RRL","Regis Resources Limited","Gold","Producer",5857136128],
+["RRR","Revolver Resources Holdings Ltd","Copper","Explorer / Developer",15520535],
+["RSG","Resolute Mining Limited","Gold","Producer",2928262144],
+["RTG","RTG Mining Inc.","Copper","Explorer / Developer",84467040],
+["RTR","Rumble Resources Limited","Zinc / Lead + Copper + Silver","Explorer / Developer",79616304],
+["RVT","Richmond Vanadium Technology Limited","Vanadium","Producer",24234662],
+["RWD","Reward Minerals Ltd","Potash / Fertiliser","Producer",8424587],
+["RXL","Rox Resources Limited","Gold","Explorer / Developer",836261120],
+["RXR","","Materials","Unresolved",null],
+["RYZ","","Materials","Unresolved",null],
+["S2R","S2 Resources Ltd","Gold + Nickel + Copper","Producer",36147876],
+["S32","South32 Limited","Bauxite / Alumina + Manganese + Copper","Producer",22496757760],
+["SBM","St Barbara Limited","Gold","Producer",980846016],
+["SBR","Sabre Resources Limited","Copper + Uranium + Nickel","Explorer / Developer",5486772],
+["SCN","Scorpion Minerals Limited","Lithium + Gold + Copper","Explorer / Developer",10846624],
+["SDV","SciDev Limited","Chemicals","Producer",29463730],
+["SER","Strategic Energy Resources Limited","Copper + Gold + Nickel","Explorer / Developer",13790917],
+["SERDB","","Materials","Unresolved",null],
+["SFM","Santa Fe Minerals Limited","Gold","Explorer / Developer",36634224],
+["SFR","Sandfire Resources Limited","Copper","Producer",9948713984],
+["SFX","Sheffield Resources Limited","Mineral Sands","Explorer / Developer",17821812],
+["SGA","Sarytogan Graphite Limited","Graphite","Explorer / Developer",19595266],
+["SGC","Sinclair Gold Ltd","Gold + Copper + Silver","Explorer / Developer",248799440],
+["SGM","Sims Limited","Steel + Copper + Nickel","Producer",4768990208],
+["SGQ","St George Mining Limited","Lithium + Nickel + Copper","Producer",319207680],
+["SHN","Sunshine Metals Limited","Copper + Gold + Zinc / Lead","Explorer / Developer",143923776],
+["SHP","","Materials","Unresolved",null],
+["SKM","Skylark Minerals Limited","Copper","Explorer / Developer",35307060],
+["SKY","Sky Metals Limited","Gold + Copper + Tungsten","Explorer / Developer",188543200],
+["SLA","Solara Minerals Ltd","Gold + Nickel + Diamonds","Explorer / Developer",6515830],
+["SLB","Stelar Metals Limited","Lithium + Copper + Cobalt","Producer",20580312],
+["SLM","Solis Minerals Ltd.","Copper + Gold + Silver","Producer",10808115],
+["SLS","Solstice Minerals Limited","Gold","Explorer / Developer",408020096],
+["SLSN","","Materials","Unresolved",null],
+["SLZ","Sultan Resources Limited","Gold + Copper + Nickel","Explorer / Developer",4681296],
+["SMI","Santana Minerals Limited","Gold","Explorer / Developer",527381920],
+["SMM","Somerset Minerals Limited","Copper","Producer",16046250],
+["SMMN","","Materials","Unresolved",null],
+["SMR","Stanmore Resources Limited","Coal","Producer",2623049728],
+["SMS","Star Minerals Limited","Gold + Copper + Base Metals","Producer",10691349],
+["SMX","Strata Minerals Limited","Materials","Explorer / Developer",7199156],
+["SNG","Siren Gold Limited","Gold","Explorer / Developer",13200519],
+["SNM","Sentinel Metals Limited","Gold","Explorer / Developer",76577320],
+["SNX","Sierra Nevada Gold Inc.","Gold","Explorer / Developer",67245304],
+["SPD","Southern Palladium Limited","Platinum Group Metals + Nickel + Chromium","Explorer / Developer",251424928],
+["SPN","Sparc Technologies Limited","Graphite","Producer",22176654],
+["SPQ","Superior Resources Limited","Copper + Gold + Nickel","Explorer / Developer",10562684],
+["SQX","SQX Resources Limited","Copper","Explorer / Developer",4395106],
+["SRK","Strike Resources Limited","Iron Ore","Producer",5675000],
+["SRL","Sunrise Energy Metals Limited","Scandium + Nickel + Cobalt","Producer",3748752640],
+["SRN","Surefire Resources NL","Vanadium","Explorer / Developer",null],
+["SRNDB","","Materials","Unresolved",null],
+["SRR","Sarama Resources Ltd","Gold","Explorer / Developer",14604166],
+["SRT","","Materials","Unresolved",null],
+["SRZ","Stellar Resources Limited","Tin + Lithium + Gold","Explorer / Developer",127508848],
+["SRZDA","Stellar Resources Ltd","Tin + Lithium + Gold","Explorer / Developer",108527544],
+["SS1","Sun Silver Limited","Silver","Explorer / Developer",192004832],
+["STK","Strickland Metals Limited","Gold + Base Metals + Zinc / Lead","Producer",176995168],
+["STM","Sunstone Metals Limited","Gold","Explorer / Developer",58225852],
+["STMDB","","Materials","Unresolved",null],
+["STN","Saturn Metals Limited","Gold","Producer",325483968],
+["SUH","Southern Hemisphere Mining Limited","Copper","Explorer / Developer",24295922],
+["SUM","","Materials","Unresolved",null],
+["SVG","Savannah Goldfields Limited","Gold","Producer",13920251],
+["SVL","Silver Mines Limited","Silver","Producer",344002976],
+["SVM","Sovereign Metals Limited","Mineral Sands","Explorer / Developer",337820032],
+["SVY","Stavely Minerals Limited","Copper + Cobalt + Gold","Producer",16521800],
+["SX2","Southern Cross Gold Consolidated Ltd.","Gold","Explorer / Developer",3416510720],
+["SYR","Syrah Resources Limited","Graphite","Producer",null],
+["T88","Taiton Resources Limited","Molybdenum","Explorer / Developer",6068589],
+["TAM","Tanami Gold NL","Gold","Explorer / Developer",159813216],
+["TAMNB","","Materials","Unresolved",null],
+["TAR","Taruga Minerals Limited","Gold + Copper + Silver","Explorer / Developer",21838770],
+["TAS","Tasman Resources Ltd","Gold","Producer",17708198],
+["TAT","Tartana Minerals Limited","Copper + Zinc / Lead + Gold","Producer",6649484],
+["TBR","Tribune Resources Limited","Gold","Producer",278080800],
+["TCG","Turaco Gold Limited","Gold","Explorer / Developer",940020928],
+["TEM","Tempest Minerals Limited","Lithium","Explorer / Developer",4958443],
+["TG1","TechGen Metals Ltd","Gold","Explorer / Developer",5451987],
+["TG6","TG Metals Limited","Lithium","Explorer / Developer",31842278],
+["TGH","Terragen Holdings Limited","Materials","Producer",19756776],
+["TGM","Theta Gold Mines Limited","Gold","Explorer / Developer",254055904],
+["TGN","Tungsten Mining NL","Tungsten","Explorer / Developer",544572672],
+["THR","Thor Energy Plc","Uranium + Vanadium + Tungsten","Explorer / Developer",10300726],
+["TIG","","Materials","Unresolved",null],
+["TIO","Temas Resources Corp.","Chemicals","Explorer / Developer",9851675],
+["TKM","Trek Metals Limited","Gold + Manganese + Lithium","Explorer / Developer",40945736],
+["TLG","Talga Group Ltd","Graphite","Producer",140504864],
+["TLM","Talisman Mining Limited","Copper","Producer",17413706],
+["TMB","Tambourah Metals Limited","Gold + Lithium + Nickel","Producer",9314825],
+["TMS","Tennant Minerals Limited","Gold","Explorer / Developer",12721607],
+["TMX","Terrain Minerals Limited","Gold + Base Metals + Rare Earths","Explorer / Developer",13343314],
+["TNC","True North Copper Limited","Copper + Cobalt + Gold","Producer",64082684],
+["TOK","Tolu Minerals Limited","Gold","Producer",365281696],
+["TON","Triton Minerals Limited","Graphite + Copper + Gold","Explorer / Developer",6273555],
+["TOR","Torque Metals Limited","Gold","Producer",137484272],
+["TR2","Tali Resources Ltd","Copper","Explorer / Developer",47663680],
+["TR8","Tarrina Resources Limited","Gold + Copper + Cobalt","Explorer / Developer",7243406],
+["TRE","Toubani Resources Limited","Gold","Producer",322143168],
+["TRM","Truscott Mining Corporation Limited","Gold","Explorer / Developer",10101074],
+["TSK","Tusker Minerals Ltd","Rare Earths + Niobium + Copper","Explorer / Developer",8270197],
+["TSL","Titanium Sands Limited","Mineral Sands","Explorer / Developer",16413231],
+["TSO","Tesoro Gold Ltd","Gold","Producer",177040128],
+["TSR","Turnstone Resources Ltd","Potash / Fertiliser","Explorer / Developer",4441638],
+["TTM","Titan Minerals Limited","Gold","Explorer / Developer",162729344],
+["TTT","Titomic Limited","Materials","Producer",205499632],
+["TVN","Tivan Limited","Vanadium","Explorer / Developer",457760032],
+["TXR","TalonX Resources Limited","Silver","Explorer / Developer",6523978],
+["TYX","Tyranna Resources Limited","Lithium","Explorer / Developer",7832300],
+["TZN","Terramin Australia Limited","Base Metals","Producer",54916264],
+["UM1","Unity Metals Limited","Gold + Base Metals + Copper","Explorer / Developer",33118564],
+["USC","US1 Critical Minerals Limited","Uranium","Explorer / Developer",25853414],
+["USL","Unico Silver Limited","Silver","Explorer / Developer",507422304],
+["USM","Union Star Metals Ltd","Gold + Silver + Rare Earths","Producer",5179365],
+["VAL","Valiant Gold Limited","Gold","Explorer / Developer",null],
+["VAN","Vantage Metals Limited","Zinc / Lead + Lithium + Copper","Explorer / Developer",11966258],
+["VAR","Variscan Mines Ltd","Copper + Gold + Zinc / Lead","Explorer / Developer",10059226],
+["VAU","Vault Minerals Limited","Gold","Producer",6590184448],
+["VBX","VBX Limited","Bauxite / Alumina","Producer",64106636],
+["VHM","VHM Limited","Rare Earths","Producer",62354380],
+["VKA","Viking Mines Limited","Gold","Producer",25126430],
+["VMC","Venus Metals Corporation Limited","Gold + Base Metals + Vanadium","Producer",30039820],
+["VML","Vital Metals Limited","Rare Earths","Explorer / Developer",21565528],
+["VMM","Viridis Mining and Minerals Limited","Halloysite + Kaolin + Rare Earths","Explorer / Developer",575137280],
+["VMS","Venari Minerals NL","Lithium","Explorer / Developer",15627196],
+["VR8","Vanadium Resources Limited","Vanadium","Explorer / Developer",39513288],
+["VRC","Volt Resources Limited","Graphite","Explorer / Developer",26230320],
+["VRL","Verity Resources Limited","Gold","Explorer / Developer",6382518],
+["VRLN","","Materials","Unresolved",null],
+["VRX","VRX Silica Limited","Silica","Producer",37895836],
+["VRXN","","Materials","Unresolved",null],
+["VSL","Vulcan Steel Limited","Steel","Producer",732649728],
+["VTA","Vita Resources NL","Battery Metals","Explorer / Developer",1531896],
+["VTM","Victory Metals Limited","Rare Earths","Explorer / Developer",181941072],
+["VTX","Vertex Minerals Limited","Gold","Producer",36898560],
+["VUL","Vulcan Energy Resources Limited","Lithium","Producer",1134425856],
+["VYS","Vysarn Limited","Materials","Producer",574718656],
+["WA1","WA1 Resources Ltd","Niobium","Explorer / Developer",789537280],
+["WAF","West African Resources Limited","Gold","Producer",4392011264],
+["WAK","WA Kaolin Limited","Kaolin","Producer",8378141],
+["WAKN","","Materials","Unresolved",null],
+["WAU","WA Gold Limited","Gold","Explorer / Developer",18946554],
+["WC1","West Cobar Metals Limited","Gold + Copper + Rare Earths","Producer",7902534],
+["WC8","Wildcat Resources Limited","Lithium","Producer",493563840],
+["WCE","West Coast Silver Limited","Silver","Explorer / Developer",38345308],
+["WCN","White Cliff Minerals Limited","Lithium + Rare Earths + Gold","Explorer / Developer",56183084],
+["WCNNF","","Materials","Unresolved",null],
+["WGN","Wagners Holding Company Limited","Building Materials","Producer",822862144],
+["WGR","Western Gold Resources Limited","Gold","Explorer / Developer",21036204],
+["WGX","Westgold Resources Limited","Gold","Producer",5315237376],
+["WIA","WIA Gold Limited","Gold","Explorer / Developer",765922880],
+["WIN","WIN Metals Ltd","Nickel + Lithium + Gold","Explorer / Developer",15463355],
+["WLC","WhiteRock Lithium Corp.","Lithium","Explorer / Developer",null],
+["WMG","Western Mines Group Ltd","Nickel + Copper + Lithium","Explorer / Developer",20859442],
+["WR1","","Materials","Unresolved",null],
+["WRX","Western Ridge Resources Limited","Niobium","Explorer / Developer",5565217],
+["WSI","WestStar Industrial Limited","Steel","Producer",9019740],
+["WSR","Westar Resources Limited","Gold + Silver + Copper","Explorer / Developer",3219201],
+["WTM","Waratah Minerals Limited","Copper + Gold + Nickel","Explorer / Developer",236833920],
+["WWI","West Wits Mining Limited","Gold","Producer",173957616],
+["WWIDA","","Materials","Unresolved",null],
+["WYX","Western Yilgarn NL","Bauxite / Alumina","Explorer / Developer",7052099],
+["XPD","Xpedra Resources Limited","Uranium + Lithium + Copper","Producer",17390392],
+["XRA","Xenora Minerals Limited","Gold + Uranium + Lithium","Producer",21619630],
+["YAR","Yari Resources Ltd","Lithium + Zinc / Lead + Silver","Producer",3357855],
+["YRL","Yandal Resources Limited","Gold","Producer",66961976],
+["YUG","Yugo Metals Limited","Nickel + Cobalt + Gold","Producer",20241928],
+["ZAG","Zuleika Gold Limited","Gold","Explorer / Developer",34317188],
+["ZEO","Zeotech Limited","Kaolin","Producer",154299056],
+["ZIM","Zimplats Holdings Limited","Platinum Group Metals + Nickel + Gold","Producer",1777097600],
+["ZMI","Zinc of Ireland Limited","Zinc / Lead","Explorer / Developer",28270234],
+["ZNC","Zenith Minerals Limited","Gold + Lithium + Base Metals","Producer",53788556],
+["ZNO","Zoono Group Limited","Materials","Producer",19904376]
+];
+
+const TOP_COMMODITIES = [
+["Gold",380],["Copper",220],["Lithium",134],["Unclassified / Diversified",120],["Nickel",88],["Silver",70],
+["Rare Earths",49],["Iron Ore",32],["Uranium",30],["Zinc / Lead",30],["Cobalt",27],["Graphite",27],
+["Base Metals",26],["Potash / Fertiliser",20],["Bauxite / Alumina",17],["Vanadium",15],["Mineral Sands",15],
+["Manganese",14],["Coal",13],["Niobium",13],["Chemicals",12],["Tungsten",9],["Antimony",9],["Silica",8],
+["Platinum Group Metals",8],["Kaolin",7],["Tin",7],["Tantalum",6],["Packaging",5],["Steel",5],
+["Building Materials",5],["Magnesium",5],["Battery Metals",4],["Diamonds",4]
+];
+
+const commchips = document.getElementById('commchips');
+commchips.innerHTML = TOP_COMMODITIES.map(([label,count]) => `<button class="commchip" data-metal="${label}"><span>${label}</span><span class="cnt">${count}</span></button>`).join('');
+
+let activeMetal = '';
+function fmtMcap(n){
+  if(n===undefined || n===null) return '—';
+  if(n>=1e9) return '$'+(n/1e9).toFixed(2)+'B';
+  if(n>=1e6) return '$'+(n/1e6).toFixed(1)+'M';
+  if(n>=1e3) return '$'+(n/1e3).toFixed(0)+'K';
+  return '$'+n;
+}
+function median(arr){
+  if(!arr.length) return null;
+  const s = [...arr].sort((a,b)=>a-b);
+  const mid = Math.floor(s.length/2);
+  return s.length%2 ? s[mid] : (s[mid-1]+s[mid])/2;
+}
+function stageClass(stage){
+  if(stage==='Producer') return 'producer';
+  if(stage==='Explorer / Developer') return 'explorer';
+  return 'unresolved';
+}
+
+let sortKey = 'ticker', sortDir = 1;
+let currentRows = [];
+function render(){
+  const q = document.getElementById('filterInput').value.trim().toUpperCase();
+  let rows = DATA.filter(([tk,name,label]) => {
+    const textMatch = tk.toUpperCase().includes(q) || (name||'').toUpperCase().includes(q) || label.toUpperCase().includes(q);
+    if(!textMatch) return false;
+    if(!activeMetal) return true;
+    if(activeMetal==='Unclassified / Diversified') return label.trim()==='Materials';
+    return label.split('+').map(s=>s.trim()).includes(activeMetal);
+  });
+  rows.sort((a,b) => {
+    let av, bv;
+    if(sortKey==='ticker'){ av=a[0]; bv=b[0]; }
+    else if(sortKey==='name'){ av=a[1]||''; bv=b[1]||''; }
+    else if(sortKey==='label'){ av=a[2]; bv=b[2]; }
+    else if(sortKey==='stage'){ av=a[3]; bv=b[3]; }
+    else if(sortKey==='mcap'){ av = a[4] ?? -1; bv = b[4] ?? -1; }
+    if(av<bv) return -1*sortDir;
+    if(av>bv) return 1*sortDir;
+    return 0;
+  });
+  currentRows = rows;
+  document.getElementById('matBody').innerHTML = rows.map(([tk,name,label,stage,mcap]) => {
+    const cls = label.trim()==='Materials' ? 'diversified' : '';
+    const display = label.trim()==='Materials' ? 'Unclassified / diversified' : label;
+    const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
+    return `<tr>
+      <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
+      <td class="cname colname-desktop">${name || '—'}</td>
+      <td class="${cls}">${display}</td>
+      <td><span class="stagechip ${stageClass(stage)}">${stage}</span></td>
+      <td class="mono" style="text-align:right">${fmtMcap(mcap)}</td>
+    </tr>`;
+  }).join('');
+  const caps = rows.map(r=>r[4]).filter(v=>v!=null && v>0);
+  const med = median(caps);
+  document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} tickers${med!==null ? ' · median cap '+fmtMcap(med) : ''}`;
+  document.querySelectorAll('.commchip').forEach(c => c.classList.toggle('active', c.dataset.metal===activeMetal));
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.toggle('active', th.dataset.key===sortKey);
+    th.querySelector('.arrow')?.remove();
+    if(th.dataset.key===sortKey) th.insertAdjacentHTML('beforeend', `<span class="arrow">${sortDir>0?'▲':'▼'}</span>`);
+  });
+}
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    if(sortKey===th.dataset.key){ sortDir*=-1; } else { sortKey=th.dataset.key; sortDir = th.dataset.key==='mcap' ? -1 : 1; }
+    render();
+  });
+});
+commchips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  activeMetal = (activeMetal === btn.dataset.metal) ? '' : btn.dataset.metal;
+  render();
+  document.querySelector('.tablewrap').scrollIntoView({behavior:'smooth', block:'start'});
+});
+document.getElementById('filterInput').addEventListener('input', render);
+render();
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const text = currentRows.map(r => `ASX:${r[0]}`).join(',');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.classList.add('copied');
+    btn.textContent = `✓ Copied ${currentRows.length} tickers`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy TradingView list'; }, 1800);
+  });
+});
+document.getElementById('downloadCsvBtn').addEventListener('click', async () => {
+  const esc = v => /[",\n]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v;
+  const rows = [['Ticker','Company','Commodity','Stage','MarketCap'], ...currentRows.map(r => [r[0], r[1]||'', r[2].trim()==='Materials'?'Unclassified / diversified':r[2], r[3], r[4] ?? ''])];
+  const csv = rows.map(r => r.map(String).map(esc).join(',')).join('\n');
+  let usedCapability = false;
+  if(typeof window.claude !== 'undefined' && window.claude.use){
+    try{
+      const downloads = await window.claude.use('downloads');
+      if(downloads){ await downloads.save({filename:'materials-index.csv', data: csv}); usedCapability = true; }
+    }catch(e){}
+  }
+  if(!usedCapability){
+    const blob = new Blob([csv], {type:'text/csv'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'materials-index.csv'; a.click();
+    URL.revokeObjectURL(url);
+  }
+});
+
+const themeBtn = document.getElementById('themeBtn');
+function applyTheme(t){
+  if(t){ document.documentElement.setAttribute('data-theme', t); } else { document.documentElement.removeAttribute('data-theme'); }
+  themeBtn.textContent = (t==='dark') ? '☀️' : '🌙';
+}
+try{
+  const saved = localStorage.getItem('materialsindex-theme');
+  if(saved) applyTheme(saved);
+}catch(e){}
+themeBtn.addEventListener('click', ()=>{
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current==='dark' ? 'light' : 'dark';
+  applyTheme(next);
+  try{ localStorage.setItem('materialsindex-theme', next); }catch(e){}
+});
+</script>
