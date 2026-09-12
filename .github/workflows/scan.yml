@@ -133,6 +133,7 @@ jobs:
           cp "asx_hh_results.html" _site/higher-high.html
           cp site_index.html _site/index.html
           [ -f materials-index.html ] && cp materials-index.html _site/materials-index.html || true
+          cp craig-bullish-map.html _site/craig-bullish-map.html
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.gate.outputs.should_run == 'true'

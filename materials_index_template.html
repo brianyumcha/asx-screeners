@@ -87,6 +87,9 @@ tbody tr:hover{background:var(--surface2)}
 .stagechip.producer{background:var(--good-bg);color:var(--good)}
 .stagechip.explorer{background:var(--warn-bg);color:var(--ink-soft)}
 .stagechip.unresolved{background:var(--bad-bg);color:var(--bad)}
+.stagechip.careandmaintenance{background:var(--surface2);color:var(--ink-faint)}
+.up{color:var(--good)}
+.down{color:var(--bad)}
 .colname-mobile{display:none}
 
 footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint)}
@@ -116,7 +119,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="source">Commodity: materials_commodity_cache.json, keyword-matched + LLM-reviewed. Name/market cap/stage: fetched live, rebuilt weekly — last rebuilt <<<BUILD_DATE>>>. Stage is a revenue-based read (Producer = reports meaningful revenue, Explorer/Developer = doesn't), not a technical assessment.</div>
+  <div class="source">Commodity: materials_commodity_cache.json, keyword-matched + LLM-reviewed. Name/market cap/price/stage: fetched live, rebuilt daily after ASX close — last rebuilt <<<BUILD_DATE>>>. Stage reads each company's own business description for producer language (falls back to reported revenue only when that's ambiguous) — a company-reported read, not an independently verified one.</div>
 
   <div class="chipsection">
     <h2>Filter by commodity</h2>
@@ -137,6 +140,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
           <th data-key="label">Commodity</th>
           <th data-key="stage">Stage</th>
           <th data-key="mcap" style="text-align:right">Market Cap</th>
+          <th data-key="change1d" class="colname-desktop" style="text-align:right">1D %</th>
+          <th data-key="offhigh" class="colname-desktop" style="text-align:right">Off 52W High</th>
         </tr>
       </thead>
       <tbody id="matBody"></tbody>
@@ -177,14 +182,24 @@ function median(arr){
 function stageClass(stage){
   if(stage==='Producer') return 'producer';
   if(stage==='Explorer / Developer') return 'explorer';
+  if(stage==='Care & Maintenance') return 'careandmaintenance';
   return 'unresolved';
+}
+function fmtPct(n){
+  if(n===undefined || n===null) return '—';
+  const sign = n>0 ? '+' : '';
+  return sign + n.toFixed(1) + '%';
+}
+function pctClass(n){
+  if(n===undefined || n===null) return '';
+  return n > 0 ? 'up' : (n < 0 ? 'down' : '');
 }
 
 let sortKey = 'ticker', sortDir = 1;
 let currentRows = [];
 function render(){
   const q = document.getElementById('filterInput').value.trim().toUpperCase();
-  let rows = DATA.filter(([tk,name,label]) => {
+  let rows = DATA.filter(([tk,name,label,stage,mcap,change1d,offhigh]) => {
     const textMatch = tk.toUpperCase().includes(q) || (name||'').toUpperCase().includes(q) || label.toUpperCase().includes(q);
     if(!textMatch) return false;
     if(!activeMetal) return true;
@@ -198,12 +213,14 @@ function render(){
     else if(sortKey==='label'){ av=a[2]; bv=b[2]; }
     else if(sortKey==='stage'){ av=a[3]; bv=b[3]; }
     else if(sortKey==='mcap'){ av = a[4] ?? -1; bv = b[4] ?? -1; }
+    else if(sortKey==='change1d'){ av = a[5] ?? -999; bv = b[5] ?? -999; }
+    else if(sortKey==='offhigh'){ av = a[6] ?? -999; bv = b[6] ?? -999; }
     if(av<bv) return -1*sortDir;
     if(av>bv) return 1*sortDir;
     return 0;
   });
   currentRows = rows;
-  document.getElementById('matBody').innerHTML = rows.map(([tk,name,label,stage,mcap]) => {
+  document.getElementById('matBody').innerHTML = rows.map(([tk,name,label,stage,mcap,change1d,offhigh]) => {
     const cls = label.trim()==='Materials' ? 'diversified' : '';
     const display = label.trim()==='Materials' ? 'Unclassified / diversified' : label;
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
@@ -213,6 +230,8 @@ function render(){
       <td class="${cls}">${display}</td>
       <td><span class="stagechip ${stageClass(stage)}">${stage}</span></td>
       <td class="mono" style="text-align:right">${fmtMcap(mcap)}</td>
+      <td class="mono colname-desktop ${pctClass(change1d)}" style="text-align:right">${fmtPct(change1d)}</td>
+      <td class="mono colname-desktop ${pctClass(offhigh)}" style="text-align:right">${fmtPct(offhigh)}</td>
     </tr>`;
   }).join('');
   const caps = rows.map(r=>r[4]).filter(v=>v!=null && v>0);
@@ -252,7 +271,7 @@ document.getElementById('copyBtn').addEventListener('click', () => {
 });
 document.getElementById('downloadCsvBtn').addEventListener('click', async () => {
   const esc = v => /[",\n]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v;
-  const rows = [['Ticker','Company','Commodity','Stage','MarketCap'], ...currentRows.map(r => [r[0], r[1]||'', r[2].trim()==='Materials'?'Unclassified / diversified':r[2], r[3], r[4] ?? ''])];
+  const rows = [['Ticker','Company','Commodity','Stage','MarketCap','Change1D','OffFiftyTwoWeekHigh'], ...currentRows.map(r => [r[0], r[1]||'', r[2].trim()==='Materials'?'Unclassified / diversified':r[2], r[3], r[4] ?? '', r[5] ?? '', r[6] ?? ''])];
   const csv = rows.map(r => r.map(String).map(esc).join(',')).join('\n');
   let usedCapability = false;
   if(typeof window.claude !== 'undefined' && window.claude.use){

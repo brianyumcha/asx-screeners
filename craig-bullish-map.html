@@ -1,0 +1,310 @@
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Craig's Bull Map</title>
+<style>
+:root{
+  --bg:#f1efe9; --surface:#e8e4da; --surface2:#ddd7c8; --border:#cdc4ae;
+  --ink:#26231d; --ink-soft:#5a5344; --ink-faint:#8b8271;
+  --accent:#a06a1f; --accent-ink:#fff8ee;
+  --materials:#a06a1f; --energy:#933f34; --health:#2f5566; --industrials:#5a6b57; --it:#5b4a8a; --consumer:#8a4a6b; --unresolved:#8b8271;
+  --shadow: 0 1px 2px rgba(38,35,29,.06), 0 4px 16px rgba(38,35,29,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16181c; --surface:#1e2126; --surface2:#262a30; --border:#383d45;
+    --ink:#ece8de; --ink-soft:#b7b1a2; --ink-faint:#837c6c;
+    --accent:#d9a44e; --accent-ink:#241a08;
+    --materials:#d9a44e; --energy:#e0897c; --health:#7fb0c4; --industrials:#9db197; --it:#a696d6; --consumer:#d191b3; --unresolved:#837c6c;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16181c; --surface:#1e2126; --surface2:#262a30; --border:#383d45;
+  --ink:#ece8de; --ink-soft:#b7b1a2; --ink-faint:#837c6c;
+  --accent:#d9a44e; --accent-ink:#241a08;
+  --materials:#d9a44e; --energy:#e0897c; --health:#7fb0c4; --industrials:#9db197; --it:#a696d6; --consumer:#d191b3; --unresolved:#837c6c;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,sans-serif;font-size:16px;line-height:1.6}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.wrap{max-width:920px;margin:0 auto;padding:2.4rem 1.5rem 5rem}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
+h1{font-size:2.4rem;letter-spacing:-.01em;margin:0 0 .2rem}
+h2{font-size:1.3rem;margin:0}
+h3{font-size:.85rem;font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);margin:1.3rem 0 .6rem;font-weight:600}
+p{color:var(--ink-soft)}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.4rem}
+.themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
+.subtitle{color:var(--ink-faint);font-size:.95rem;margin:.3rem 0 0;max-width:36rem}
+.source{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--ink-faint);margin-top:.7rem}
+
+.statrow{display:flex;gap:.7rem;flex-wrap:wrap;margin:1.4rem 0}
+.statchip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.6rem 1rem;box-shadow:var(--shadow)}
+.statchip .n{font-family:"Fraunces",serif;font-size:1.5rem;font-weight:600}
+.statchip .l{font-size:.7rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;font-family:"IBM Plex Mono",monospace}
+
+.stackbar{display:flex;height:2rem;border-radius:6px;overflow:hidden;margin:1rem 0;border:1px solid var(--border)}
+.stackbar span{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:1rem;font-size:.78rem;color:var(--ink-soft);margin-bottom:2rem;font-family:"IBM Plex Mono",monospace}
+.legend i{display:inline-block;width:.7rem;height:.7rem;border-radius:2px;margin-right:.35rem;vertical-align:-1px}
+
+.sector{margin-top:2.6rem;padding-top:1.4rem;border-top:1px solid var(--border)}
+.sector .sechead{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.3rem}
+.sector .swatch{width:.85rem;height:.85rem;border-radius:3px;flex:none}
+.sector .count{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--ink-faint);margin-left:auto}
+
+.commgroup{margin-top:1rem}
+.commgroup .clabel{font-family:"IBM Plex Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);margin-bottom:.5rem}
+.chiprow{display:flex;flex-wrap:wrap;gap:.5rem}
+.tchip{background:var(--surface);border:1px solid var(--border);border-left-width:3px;border-radius:7px;padding:.45rem .7rem;box-shadow:var(--shadow);min-width:6rem}
+.tchip .tk{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.88rem;display:block}
+.tchip .desc{font-size:.71rem;color:var(--ink-faint);margin-top:.1rem;line-height:1.3;display:block}
+.tchip .lastdate{font-size:.66rem;color:var(--accent2);font-family:"IBM Plex Mono",monospace;margin-top:.3rem;display:block}
+
+.unresolvedbox{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:.9rem 1.1rem;margin-top:1rem;font-size:.87rem;color:var(--ink-soft)}
+
+.methodbox{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:6px;padding:.9rem 1.1rem;box-shadow:var(--shadow);font-size:.88rem}
+.lassondewrap{margin-top:1.4rem}
+.lassondesvg{width:100%;height:120px;display:block}
+.lassondeline{stroke:var(--accent2);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.baseline{stroke:var(--border);stroke-dasharray:3 3}
+.stationdot{fill:var(--accent2);stroke:var(--surface);stroke-width:2}
+.stationgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:.4rem;margin-top:.6rem}
+.stationcol{text-align:center}
+.stationcol .stagename{font-family:"IBM Plex Mono",monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-faint);margin-bottom:.5rem;min-height:2.2em;display:flex;align-items:flex-start;justify-content:center}
+.stationcol .schips{display:flex;flex-direction:column;gap:.3rem;align-items:center}
+.stagechip{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;border:1px solid var(--border);border-radius:5px;padding:.2rem .5rem;width:100%;box-sizing:border-box}
+.stagechip.materials{background:color-mix(in srgb, var(--materials) 12%, var(--surface));color:var(--materials);border-color:var(--materials)}
+.stagechip.energy{background:color-mix(in srgb, var(--energy) 12%, var(--surface));color:var(--energy);border-color:var(--energy)}
+@media (max-width:640px){
+  .stationgrid{grid-template-columns:repeat(3,1fr);row-gap:1.4rem}
+}
+
+.methodbox{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:1.1rem 1.3rem;margin:1.8rem 0;box-shadow:var(--shadow)}
+.methodbox p{font-size:.9rem;margin:.4rem 0}
+.methodbox ul{margin:.4rem 0;padding-left:1.2rem;font-size:.88rem;color:var(--ink-soft)}
+.methodbox li{margin:.35rem 0}
+
+footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--ink-faint)}
+
+@media (max-width:640px){h1{font-size:1.9rem}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>Craig's Bull Map</h1>
+      <p class="subtitle">Every ticker Craig is currently Bullish on — 64 names, grouped by sector and, within Materials, by primary commodity.</p>
+    </div>
+    <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+  </div>
+  <div class="source">Source: The Craig Ledger, resolved against materials_commodity_cache.json + live lookup, September 2026.</div>
+
+  <div class="methodbox">
+    <p>"Currently bullish" excludes anything Craig has since flipped to Bearish (LOT, WCE, RRL, EXR) or that's Bearish-only — see The Craig Ledger for the full call history these are drawn from.</p>
+    <ul>
+      <li>Where a ticker carries 2-3 commodities in its cache label, it's grouped here under whichever single metal Craig's own calls actually emphasise most — not just the first-listed cache label — so the chart reflects how he's actually talking about the name, not a generic multi-metal tag.</li>
+      <li><strong>EMP was dropped as a distinct ticker</strong> — its described trial is Entropy Neurodynamics' (ENP) own program; almost certainly a data-entry duplicate rather than a 65th real name, so it's merged into ENP rather than shown separately.</li>
+      <li><strong>BAR is unresolved</strong> — the code belonged to Barra Resources until it renamed to GSR in 2021, years before these calls; no current listed entity could be confidently matched.</li>
+    </ul>
+  </div>
+
+  <div class="statrow">
+    <div class="statchip"><div class="n">54</div><div class="l">Bullish tickers</div></div>
+    <div class="statchip"><div class="n">36</div><div class="l">Materials</div></div>
+    <div class="statchip"><div class="n">15</div><div class="l">Gold, the biggest cluster</div></div>
+    <div class="statchip"><div class="n">12</div><div class="l">Non-resource names</div></div>
+  </div>
+  <p style="font-size:.85rem;color:var(--ink-faint);margin-top:-.6rem">10 tickers pulled 12 Sep 2026 (AUV, AR1, AUZ, BB1, KGL, KTA, LSR, NTI, PXX, TGN) — each showed as Craig's last DIRECTIONAL call was Bullish, but a full audit found he'd since moved every one of them to "Neutral / Watching" in a later session, a downgrade the underlying Ledger never tracked since it only recorded Bull↔Bear flips. Full reasoning per ticker in the audit notes.</p>
+
+  <div class="stackbar">
+    <span style="width:66.67%;background:var(--materials)" title="Materials 36"></span>
+    <span style="width:11.11%;background:var(--energy)" title="Energy 6"></span>
+    <span style="width:12.96%;background:var(--health)" title="Health Care 7"></span>
+    <span style="width:3.70%;background:var(--industrials)" title="Industrials 2"></span>
+    <span style="width:1.85%;background:var(--it)" title="IT 1"></span>
+    <span style="width:1.85%;background:var(--consumer)" title="Consumer Disc. 1"></span>
+    <span style="width:1.85%;background:var(--unresolved)" title="Unresolved 1"></span>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--materials)"></i>Materials · 36</span>
+    <span><i style="background:var(--energy)"></i>Energy · 6</span>
+    <span><i style="background:var(--health)"></i>Health Care · 7</span>
+    <span><i style="background:var(--industrials)"></i>Industrials · 2</span>
+    <span><i style="background:var(--it)"></i>IT · 1</span>
+    <span><i style="background:var(--consumer)"></i>Consumer Disc. · 1</span>
+    <span><i style="background:var(--unresolved)"></i>Unresolved · 1</span>
+  </div>
+
+  <div class="sector">
+    <div class="sechead"><span class="swatch" style="background:var(--materials)"></span><h2>Materials — 36</h2></div>
+    <p style="margin-top:.3rem">Gold and copper dominate, exactly matching the broader ASX small-cap resources skew this whole season.</p>
+
+    <div class="commgroup"><div class="clabel">Gold · 15</div><div class="chiprow" id="g-gold"></div></div>
+    <div class="commgroup"><div class="clabel">Copper · 13</div><div class="chiprow" id="g-copper"></div></div>
+    <div class="commgroup"><div class="clabel">Silver · 2</div><div class="chiprow" id="g-silver"></div></div>
+    <div class="commgroup"><div class="clabel">Lithium · 2</div><div class="chiprow" id="g-lithium"></div></div>
+    <div class="commgroup"><div class="clabel">Nickel · 1</div><div class="chiprow" id="g-nickel"></div></div>
+    <div class="commgroup"><div class="clabel">Rare Earths · 1</div><div class="chiprow" id="g-ree"></div></div>
+    <div class="commgroup"><div class="clabel">Manganese · 1</div><div class="chiprow" id="g-manganese"></div></div>
+    <div class="commgroup"><div class="clabel">Magnesium · 1</div><div class="chiprow" id="g-magnesium"></div></div>
+    <div class="commgroup"><div class="clabel">Zinc · 1</div><div class="chiprow" id="g-zinc"></div></div>
+    <div class="commgroup"><div class="clabel">Uranium (explorer) · 1</div><div class="chiprow" id="g-uranium-mat"></div></div>
+    <div class="commgroup"><div class="clabel">Fertiliser Minerals · 1</div><div class="chiprow" id="g-fert"></div></div>
+  </div>
+
+  <div class="sector">
+    <div class="sechead"><span class="swatch" style="background:var(--energy)"></span><h2>Energy — 6</h2></div>
+    <p style="margin-top:.3rem">Uranium is the clear theme — same names already tracked in The Cycle File's uranium cycle section.</p>
+    <div class="chiprow" id="g-energy"></div>
+  </div>
+
+  <div class="sector">
+    <div class="sechead"><span class="swatch" style="background:var(--health)"></span><h2>Health Care — 7</h2></div>
+    <p style="margin-top:.3rem">A meaningfully large slice — biotech alone is 9 of the 64, nearly as many as any single Materials commodity cluster.</p>
+    <div class="chiprow" id="g-health"></div>
+  </div>
+
+  <div class="sector">
+    <div class="sechead"><span class="swatch" style="background:var(--industrials)"></span><h2>Industrials — 2</h2></div>
+    <div class="chiprow" id="g-industrials"></div>
+  </div>
+
+  <div class="sector">
+    <div class="sechead"><span class="swatch" style="background:var(--it)"></span><h2>Information Technology — 1</h2></div>
+    <div class="chiprow" id="g-it"></div>
+  </div>
+
+  <div class="sector">
+    <div class="sechead"><span class="swatch" style="background:var(--consumer)"></span><h2>Consumer Discretionary — 1</h2></div>
+    <div class="chiprow" id="g-consumer"></div>
+  </div>
+
+  <div class="sector">
+    <div class="sechead"><span class="swatch" style="background:var(--unresolved)"></span><h2>Unresolved — 1</h2></div>
+    <div class="unresolvedbox"><span class="mono" style="font-weight:600">BAR</span> — Craig's calls describe a small zinc developer, but the ASX code BAR belonged to Barra Resources until it renamed to GSR in 2021, years before these calls. No current listed entity matches confidently — flagged rather than guessed.</div>
+  </div>
+
+  <div class="sector" id="lassonde-section">
+    <div class="sechead"><h2>Where each miner sits on the Lassonde Curve</h2></div>
+    <p style="margin-top:.3rem">The classic exploration-to-production value curve: a speculative re-rate on early discovery, a rough "valley of death" through feasibility and financing while the market waits for economics to prove up, then a re-rate again once cash flow actually starts. 42 of the 54 (Materials + Energy resource names — biotech/industrials/IT/consumer don't fit this curve) placed at their current project stage.</p>
+    <div class="methodbox" style="margin-top:1rem">
+      <p style="margin:0"><strong>This is my read of the project stage from Craig's own calls, not a technical or financial audit</strong> — several of these are genuinely hard judgment calls (a company can straddle two stages at once), and I haven't cross-checked every one against the company's actual technical reports. Treat placement as directionally useful, not precise.</p>
+    </div>
+    <div class="lassondewrap">
+      <svg viewBox="0 0 600 140" class="lassondesvg" preserveAspectRatio="none">
+        <line x1="0" y1="130" x2="600" y2="130" class="baseline"/>
+        <path d="M10,115 L50,115 L150,30 L250,130 L350,118 L450,55 L550,40 L590,38" class="lassondeline" fill="none"/>
+        <circle cx="50" cy="115" r="4" class="stationdot"/>
+        <circle cx="150" cy="30" r="4" class="stationdot"/>
+        <circle cx="250" cy="130" r="4" class="stationdot"/>
+        <circle cx="350" cy="118" r="4" class="stationdot"/>
+        <circle cx="450" cy="55" r="4" class="stationdot"/>
+        <circle cx="550" cy="40" r="4" class="stationdot"/>
+      </svg>
+      <div class="stationgrid" id="stationgrid"></div>
+    </div>
+  </div>
+
+  <footer>
+    Companion to <span style="color:var(--ink-soft)">The Craig Ledger</span>. A ticker's grouping here reflects how Craig is actually discussing it right now, not necessarily its full historical business — several of these are genuinely diversified explorers where the "primary" label is a judgment call.
+  </footer>
+</div>
+
+<script>
+const DATA = {
+  'g-gold': [
+    ['ADD','Adavale — Parkes gold, also copper','2026-09-04'],['AKA','Askari — Walkers/Comstock gold','2026-09-08'],['ALK','Alkane — Tomingley producer','2026-09-08'],
+    ['AS1','Asara gold resource upgrade','2026-05-12'],['EVN','Evolution — also a copper producer','2026-07-28'],['FG1','Fireside — Tasmania, also Ag/Zn/W','2026-05-05'],
+    ['GRL','renamed OBT — also Ag + Cu','2026-07-31'],['HAR','Haranga Resources','2026-05-26'],
+    ['LGM','Lachlan Minerals — near 50/50 Au/Ag','2026-08-11'],['ODY','Odyssey — Tuckanera JV','2026-05-19'],['PGO','Pacgold — White Dam restart','2026-08-28'],
+    ['POL','Polymetals — also a silver producer','2026-07-17'],['RR1','Reach — pivoted from lithium to gold','2026-08-18'],
+    ['SNM','Southern Cross — Montana, US','2026-05-12'],['TGM','Theta Gold Mines — SA restart','2026-08-11'],
+  ],
+  'g-copper': [
+    ['ALV','VMS deposit, also Zn/Pb/Ag','2026-05-22'],['BOA',"Ned's Creek/Clearview consolidation",'2026-08-31'],
+    ['BTM','Turpentine, Mt Isa IOCG','2026-09-01'],['CNB','Carnaby — since acquired by Evolution','2026-07-28'],['CPO','Copper explorer','2026-08-28'],
+    ['PTR','also a manganese angle','2026-06-23'],
+    ['PVT','Horton Lake, Quebec — also Ni + PGMs','2026-09-01'],['QML','Mount Chalmers DFS — long-time Craig favourite','2026-09-01'],['TNC','Mount Oxide — also Co + Au','2026-08-18'],
+    ['AW1','West Desert Zn-Cu-Ag skarn, also In — Craig called it a "silver play" early, later calls lean copper','2026-06-09'],
+  ],
+  'g-silver': [ ['AVM','Mexican silver projects','2026-08-11'],['BHM','also Zn/Pb + Cu','2026-09-01'] ],
+  'g-lithium': [ ['GLN',"Galan — Craig's only personal lithium holding",'2026-08-14'],['SLB','Hilla Leaders — also Cu + Co','2026-07-03'] ],
+  'g-nickel': [ ['KNI','also Cu + Zn/Pb','2026-06-09'] ],
+  'g-ree': [ ['AXL','Brazilian rare earths + gallium','2026-05-12'] ],
+  'g-manganese': [ ['E25','WA manganese developer','2026-09-08'] ],
+  'g-magnesium': [ ['GWR','pivot to magnesium metal','2025-12-02'] ],
+  'g-zinc': [ ['VAR','renamed ARO — Spain zinc mine','2026-04-07'] ],
+  'g-uranium-mat': [ ['XPD','NWC-adjacent explorer, also Li + Cu','2026-04-21'] ],
+  'g-fert': [ ['AGR','fertiliser-focused narrative','2026-07-21'] ],
+  'g-energy': [ ['AEE','Aura — Tiris uranium, Mauritania','2026-07-28'],['AGE','Alligator — Samphire ISR uranium','2026-08-18'],['BMN','Bannerman — Etango, Namibia','2026-08-25'],['PDN','Paladin — Langer Heinrich','2026-08-31'],['JGH','Mongolian gas wells','2026-07-21'],['YAL','Yancoal — coal producer','2026-08-25'] ],
+  'g-health': [ ['ATX','Amplia — oncology','2026-08-04'],['ENP','psychedelic-assisted therapy','2026-08-25'],['PAR','Paradigm — osteoarthritis','2026-09-11'],['PER','Percheron — immuno-oncology','2026-09-01'],['RAC','Race Oncology — bisantrene','2026-05-22'],['FPH','Fisher & Paykel — medical devices','2026-05-26'],['OSL','OncoSil — pancreatic cancer device','2026-09-08'] ],
+  'g-industrials': [ ['BWN','Bhagwan Marine — vessel services','2026-08-04'],['SOP','Synertec — BESS/microgrid engineering','2026-05-19'] ],
+  'g-it': [ ['SKK','Stakk — fintech infrastructure','2026-07-17'] ],
+  'g-consumer': [ ['CEH','Coast Entertainment — Gold Coast land value','2026-07-21'] ],
+};
+const COLOR_BY_GROUP = {
+  'g-gold':'var(--materials)','g-copper':'var(--materials)','g-silver':'var(--materials)','g-lithium':'var(--materials)',
+  'g-nickel':'var(--materials)','g-ree':'var(--materials)','g-manganese':'var(--materials)',
+  'g-magnesium':'var(--materials)','g-zinc':'var(--materials)','g-uranium-mat':'var(--materials)','g-fert':'var(--materials)',
+  'g-energy':'var(--energy)','g-health':'var(--health)','g-industrials':'var(--industrials)','g-it':'var(--it)','g-consumer':'var(--consumer)',
+};
+function fmtDate(iso){
+  const d = new Date(iso+'T00:00:00');
+  return d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'});
+}
+Object.entries(DATA).forEach(([id, tickers]) => {
+  const el = document.getElementById(id);
+  if(!el) return;
+  const color = COLOR_BY_GROUP[id] || 'var(--materials)';
+  el.innerHTML = tickers.map(([tk, desc, date]) => `<div class="tchip" style="border-left-color:${color}"><span class="tk">${tk}</span><span class="desc">${desc}</span><span class="lastdate">Last bullish: ${fmtDate(date)}</span></div>`).join('');
+});
+
+// Flat ticker -> {desc, sector} lookup reused from DATA above, for the Lassonde chips' tooltips/coloring.
+const TICKER_INFO = {};
+Object.entries(DATA).forEach(([id, tickers]) => {
+  const sector = id === 'g-energy' ? 'energy' : (['g-health','g-industrials','g-it','g-consumer'].includes(id) ? 'other' : 'materials');
+  tickers.forEach(([tk, desc]) => { TICKER_INFO[tk] = {desc, sector}; });
+});
+
+const STATIONS = [
+  { name: 'Grassroots Exploration', tickers: ['AGR','BOA','CPO','FG1','SLB','XPD'] },
+  { name: 'Discovery / Resource Definition', tickers: ['ADD','AKA','ALV','AS1','AVM','AW1','GRL','HAR','KNI','PVT','SNM','TNC'] },
+  { name: 'Feasibility & Development', tickers: ['AEE','AGE','AXL','CNB','GWR','LGM','ODY','PTR','QML'] },
+  { name: 'Construction / Financing', tickers: ['BHM','BMN','BTM','E25','TGM','VAR'] },
+  { name: 'Production / Ramp-up', tickers: ['GLN','JGH','PGO','RR1'] },
+  { name: 'Established Producer', tickers: ['ALK','EVN','PDN','POL','YAL'] },
+];
+document.getElementById('stationgrid').innerHTML = STATIONS.map(st => `
+  <div class="stationcol">
+    <div class="stagename">${st.name}</div>
+    <div class="schips">
+      ${st.tickers.map(tk => {
+        const info = TICKER_INFO[tk] || {desc:'', sector:'materials'};
+        const note = tk==='CNB' ? ' (since acquired)' : '';
+        return `<span class="stagechip ${info.sector==='energy'?'energy':'materials'}" title="${(info.desc||'').replace(/"/g,'&quot;')}${note}">${tk}${note}</span>`;
+      }).join('')}
+    </div>
+  </div>
+`).join('');
+
+const themeBtn = document.getElementById('themeBtn');
+function applyTheme(t){
+  if(t){ document.documentElement.setAttribute('data-theme', t); } else { document.documentElement.removeAttribute('data-theme'); }
+  themeBtn.textContent = (t==='dark') ? '☀️' : '🌙';
+}
+try{
+  const saved = localStorage.getItem('bullmap-theme');
+  if(saved) applyTheme(saved);
+}catch(e){}
+themeBtn.addEventListener('click', ()=>{
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current==='dark' ? 'light' : 'dark';
+  applyTheme(next);
+  try{ localStorage.setItem('bullmap-theme', next); }catch(e){}
+});
+</script>
