@@ -842,7 +842,7 @@ def build_html_report(results, excluded, total_scanned, out_path, rs_leaders=Non
         cards=[to_card(r) for r in results],
         excluded_cards=[to_card(r) for r in excluded],
         total_scanned=total_scanned,
-        title='ASX PRE-BREAKOUT SCREENER',
+        title='📈 ASX Pre-Breakout Screener',
         subtitle='ASX stocks quietly building strength before a breakout — not stocks already breaking out.',
         footer_note=(
             'ASX Pre-Breakout Screener · Data via Yahoo Finance (yfinance), ticker universe via SeaBee/Market Index<br>'

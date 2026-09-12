@@ -102,7 +102,8 @@ try {
   --text:#26231d; --muted:#5a5344;
 }
 .themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
-  font-size:.9rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;line-height:1;height:fit-content}
+  width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;
+  display:flex;align-items:center;justify-content:center;flex:none}
 .themebtn:hover{border-color:var(--accent2)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;

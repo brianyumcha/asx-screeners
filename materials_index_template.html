@@ -34,7 +34,7 @@
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,sans-serif;font-size:16px;line-height:1.55}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.55}
 ::selection{background:var(--accent);color:var(--accent-ink)}
 .wrap{max-width:1360px;margin:0 auto;padding:2rem 1.5rem 4rem}
 h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
@@ -46,7 +46,7 @@ p{color:var(--ink-soft)}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.4rem}
 .topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;flex:none}
 .themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
-.copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:.76rem;padding:.5rem .8rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
+.copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
 .reportnav{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:.76rem;padding:.5rem .8rem;border-radius:6px;cursor:pointer;outline:none;height:fit-content}
@@ -109,7 +109,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   <div class="topbar">
     <div>
       <h1>⛏️ ASX Materials Index</h1>
-      <p class="subtitle">Every ASX Materials-sector company — what each one mines, and whether it's actually producing yet.</p>
+      <div class="subtitle">Every ASX Materials-sector company — what each one mines, and whether it's actually producing yet.</div>
     </div>
     <div class="topbar-right">
       <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
@@ -144,6 +144,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 
   <div class="controls">
     <input type="text" id="filterInput" placeholder="Search ticker, name or commodity…">
+    <button class="commchip" id="clearFiltersBtn">✕ Clear all filters</button>
     <span class="hint" id="countLabel"></span>
   </div>
 
@@ -196,7 +197,7 @@ if (noDataCount > 0) TOP_COMMODITIES.push([NO_DATA_LABEL, noDataCount]);
 const commchips = document.getElementById('commchips');
 commchips.innerHTML = TOP_COMMODITIES.map(([label,count]) => `<button class="commchip" data-metal="${label}"><span>${label}</span><span class="cnt">${count}</span></button>`).join('');
 
-let activeMetal = '';
+const activeMetals = new Set();
 
 // Market cap: fixed tiers (not computed from the data like commodities -
 // the boundaries are meaningful thresholds, not a data-driven vocabulary).
@@ -263,9 +264,9 @@ function render(){
   let rows = DATA.filter(([tk,name,label,stage,mcap,price,change1d,high52w]) => {
     const textMatch = tk.toUpperCase().includes(q) || (name||'').toUpperCase().includes(q) || label.toUpperCase().includes(q);
     if(!textMatch) return false;
-    if(activeMetal){
-      if(activeMetal===NO_DATA_LABEL){ if(label.trim()!=='Materials') return false; }
-      else if(!label.split('+').map(s=>s.trim()).includes(activeMetal)) return false;
+    if(activeMetals.size){
+      const rowMetals = label.trim()==='Materials' ? [NO_DATA_LABEL] : label.split('+').map(s=>s.trim());
+      if(!rowMetals.some(m => activeMetals.has(m))) return false;
     }
     if(activeMcapTier){
       const tier = MCAP_TIERS.find(([l]) => l===activeMcapTier);
@@ -307,7 +308,7 @@ function render(){
   const caps = rows.map(r=>r[4]).filter(v=>v!=null && v>0);
   const med = median(caps);
   document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} tickers${med!==null ? ' · median cap '+fmtMcap(med) : ''}`;
-  document.querySelectorAll('#commchips .commchip').forEach(c => c.classList.toggle('active', c.dataset.metal===activeMetal));
+  document.querySelectorAll('#commchips .commchip').forEach(c => c.classList.toggle('active', activeMetals.has(c.dataset.metal)));
   document.querySelectorAll('#mcapchips .commchip').forEach(c => c.classList.toggle('active', c.dataset.mcaptier===activeMcapTier));
   document.querySelectorAll('#stagechips .commchip').forEach(c => c.classList.toggle('active', c.dataset.stage===activeStage));
   document.querySelectorAll('thead th').forEach(th => {
@@ -325,7 +326,8 @@ document.querySelectorAll('thead th').forEach(th => {
 commchips.addEventListener('click', (e) => {
   const btn = e.target.closest('.commchip');
   if(!btn) return;
-  activeMetal = (activeMetal === btn.dataset.metal) ? '' : btn.dataset.metal;
+  const metal = btn.dataset.metal;
+  if(activeMetals.has(metal)) activeMetals.delete(metal); else activeMetals.add(metal);
   render();
 });
 mcapchips.addEventListener('click', (e) => {
@@ -341,6 +343,13 @@ stagechips.addEventListener('click', (e) => {
   render();
 });
 document.getElementById('filterInput').addEventListener('input', render);
+document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+  activeMetals.clear();
+  activeMcapTier = '';
+  activeStage = '';
+  document.getElementById('filterInput').value = '';
+  render();
+});
 render();
 
 document.getElementById('copyBtn').addEventListener('click', () => {

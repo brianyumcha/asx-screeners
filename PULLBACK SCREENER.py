@@ -751,7 +751,7 @@ def build_html_report(results, excluded, total_scanned, out_path):
         cards=[to_card(r) for r in results],
         excluded_cards=[to_card(r) for r in excluded],
         total_scanned=total_scanned,
-        title='ASX PULLBACK SCREENER — ZAG ZONE',
+        title='↩️ ASX Pullback Screener — Zag Zone',
         subtitle='ASX stocks pulling back into the 38.2%-61.8% retracement of their latest swing.',
         footer_note=(
             'ASX Pullback Screener · Data via Yahoo Finance (yfinance), ticker universe via SeaBee/Market Index<br>'

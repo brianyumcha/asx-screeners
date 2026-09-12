@@ -721,12 +721,13 @@ try {
   --row-border:var(--border); --sector-head-bg:#dee9ea;
 }
 .themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
-  font-size:.9rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;line-height:1;height:fit-content}
+  width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;
+  display:flex;align-items:center;justify-content:center;flex:none}
 .themebtn:hover{border-color:var(--accent2)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;padding:1.6rem;}
-.wrap{max-width:1400px;margin:0 auto}
+.wrap{max-width:1560px;margin:0 auto}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
 h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:-.01em;
   text-wrap:balance;color:var(--text)}
@@ -834,7 +835,7 @@ canvas{width:100%;height:100%;display:block}
 <div class="wrap">
   <div class="topbar">
     <div>
-      <h1>ASX HIGHER-HIGH SCREENER</h1>
+      <h1>⬆️ ASX Higher-High Screener</h1>
       <div class="subtitle">Structural breakout of the last swing high, by sector — port of the "HH Indicator (BT)" TradingView scripts, full ASX universe.</div>
       <div class="subtitle">Runs weekdays at 10:30am, 1pm, 3:30pm &amp; 4:30pm intraday, plus 5pm after close — all Sydney time.</div>
     </div>
