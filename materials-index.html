@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
-<title>The Materials Index</title>
+<title>ASX Materials Index</title>
 <style>
 :root{
   --bg:#f1efe9; --surface:#e8e4da; --surface2:#ddd7c8; --border:#cdc4ae;
@@ -64,7 +64,7 @@ p{color:var(--ink-soft)}
 
 .controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:1.1rem 0 .7rem}
 .controls input,.controls select{background:var(--surface);border:1px solid var(--border);color:var(--ink);border-radius:6px;padding:.5rem .7rem;font-family:"IBM Plex Mono",monospace;font-size:.85rem}
-.controls input{width:14rem}
+.controls input{width:20rem}
 .controls select{width:11rem}
 .controls input:focus,.controls select:focus{outline:none;border-color:var(--accent2)}
 .controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
@@ -104,8 +104,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <div class="wrap">
   <div class="topbar">
     <div>
-      <h1>The Materials Index</h1>
-      <p class="subtitle">Every ASX Materials-sector ticker in HH SCREENER's coverage — 890 names, what each one mines, and whether it's actually producing yet.</p>
+      <h1>⛏️ ASX Materials Index</h1>
+      <p class="subtitle">Every ASX Materials-sector company — what each one mines, and whether it's actually producing yet.</p>
     </div>
     <div class="topbar-right">
       <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
@@ -119,10 +119,10 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="source">Commodity: materials_commodity_cache.json, keyword-matched + LLM-reviewed. Name/market cap/price/stage: fetched live, rebuilt daily after ASX close — last rebuilt 12 Sep 2026. Stage reads each company's own business description for producer language (falls back to reported revenue only when that's ambiguous) — a company-reported read, not an independently verified one.</div>
+  <div class="source">Rebuilt daily after ASX close — last rebuilt 12 Sep 2026. Stage reads each company's own business description for producer language (falls back to reported revenue only when that's ambiguous) — a company-reported read, not an independently verified one.</div>
 
   <div class="chipsection">
-    <h2>Filter by commodity</h2>
+    <h2>🧲 Filter by commodity</h2>
     <div class="commchips" id="commchips"></div>
   </div>
 
@@ -149,7 +149,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   </div>
 
   <footer>
-    Built from HH SCREENER's Materials-sector classification work — keyword regex matching against company descriptions, cross-checked with an LLM pass, then manually corrected across several rounds this session. "Unresolved" stage/name/cap = ticker didn't return live data (often a delisted, suspended or deferred-settlement code, not necessarily a fetch error). Compound commodity labels mean "carries exposure to," not a strict ranking.
+    Commodity labels come from each company's own business description, keyword-matched and reviewed by hand. "Unresolved" stage/name/cap means the ticker didn't return live data — often a delisted, suspended or deferred-settlement code, not necessarily a fetch error. Compound commodity labels mean "carries exposure to," not a strict ranking.
   </footer>
 </div>
 
@@ -207,7 +207,7 @@ const DATA = [
 ["AKO","AKORA Resources Limited","Iron Ore","Explorer / Developer",18043780,6.4,-24.5],
 ["AKON","","Materials","Unresolved",null,null,null],
 ["ALB","Albion Resources Limited","Nickel + Copper + Gold","Explorer / Developer",7113983,-18.3,-43.0],
-["ALK","Alkane Resources Ltd","Gold","Producer",null,-1.6,-6.5],
+["ALK","Alkane Resources Ltd","Gold","Producer",2541140967,-1.6,-6.5],
 ["ALR","Altair Minerals Limited","Cobalt","Explorer / Developer",304930912,-6.1,-16.4],
 ["ALU","Alurion Resources Limited","Rare Earths","Explorer / Developer",null,-1.7,-37.9],
 ["ALV","Alvo Minerals Limited","Copper + Zinc / Lead + Silver","Explorer / Developer",6026703,5.0,-77.9],
@@ -219,6 +219,7 @@ const DATA = [
 ["AMCDD","","Materials","Unresolved",null,null,null],
 ["AMD","Arrow Minerals Limited","Bauxite / Alumina","Explorer / Developer",23774878,7.7,-30.0],
 ["AMI","Aurelia Metals Limited","Gold + Silver + Copper","Producer",731205824,-4.5,-12.4],
+["AMK","Almasar Minerals Limited","Materials","Explorer / Developer",29700000,0.0,-21.4],
 ["AMN","Agrimin Limited","Potash / Fertiliser","Producer",20016332,0.0,-50.5],
 ["AMU","American Uranium Limited","Uranium","Explorer / Developer",8727976,-4.3,-77.7],
 ["AMUNA","","Materials","Unresolved",null,null,null],
@@ -319,7 +320,7 @@ const DATA = [
 ["BRX","Belararox Ltd","Zinc / Lead + Lithium + Copper","Explorer / Developer",11247049,null,-76.7],
 ["BRY","Barys Resources Limited","Copper","Explorer / Developer",4488576,0.0,-57.5],
 ["BRYDB","BARYSRES DEF SET [BRYDB]","Copper","Explorer / Developer",3696474,null,-65.0],
-["BSL","BlueScope Steel Limited","Steel","Producer",null,-2.0,-14.3],
+["BSL","BlueScope Steel Limited","Steel","Producer",13234319190,-2.0,-14.3],
 ["BSR","Bison Resources Limited","Gold + Silver + Copper","Explorer / Developer",27162500,0.0,-56.8],
 ["BSX","Blackstone Minerals Limited","Nickel + Cobalt + Copper","Explorer / Developer",80918016,0.0,-45.3],
 ["BTR","Brightstar Resources Limited","Gold","Producer",585000768,-1.9,-18.5],
@@ -429,7 +430,7 @@ const DATA = [
 ["EE1","Earths Energy Limited","Materials","Explorer / Developer",3751622,0.0,-54.5],
 ["EEL","","Materials","Unresolved",null,null,null],
 ["EFE","Eastern Resources Limited","Iron Ore","Explorer / Developer",3760143,-3.3,-47.3],
-["EFR","Everflow Resources Limited","Gold","Explorer / Developer",null,0.0,-62.5],
+["EFR","Everflow Resources Limited","Gold","Explorer / Developer",2368029,0.0,-62.5],
 ["EG1","Evergold Minerals Limited","Lithium","Explorer / Developer",13105360,3.4,-58.3],
 ["EGR","EcoGraf Limited","Graphite","Producer",145388624,1.6,-53.7],
 ["ELK","Elk Range Mining Limited","Gold","Explorer / Developer",null,-2.9,-19.5],
@@ -687,7 +688,7 @@ const DATA = [
 ["MGT","Magnetite Mines Limited","Iron Ore","Explorer / Developer",4102626,0.0,-73.5],
 ["MGTNH","","Materials","Unresolved",null,null,null],
 ["MGU","Magnum Mining and Exploration Limited","Iron Ore","Explorer / Developer",17671704,-8.3,-57.7],
-["MGX","MGX Resources Limited","Iron Ore","Producer",null,0.0,-29.3],
+["MGX","MGX Resources Limited","Iron Ore","Producer",413150057,0.0,-29.3],
 ["MHK","Metal Hawk Limited","Gold + Lithium + Nickel","Explorer / Developer",11228723,-4.2,-53.3],
 ["MHM","Mount Hope Mining Limited","Gold","Explorer / Developer",11850000,-9.1,-42.9],
 ["MI6","Minerals 260 Limited","Gold","Explorer / Developer",1999293568,-2.8,-12.0],
@@ -746,7 +747,7 @@ const DATA = [
 ["NST","Northern Star Resources Limited","Gold","Producer",31459696640,-2.0,-30.9],
 ["NTM","NT Minerals Limited","Copper","Explorer / Developer",3632708,0.0,-93.3],
 ["NTU","Northern Minerals Limited","Rare Earths","Explorer / Developer",238712688,0.0,-69.5],
-["NUF","Nufarm Limited","Chemicals","Producer",null,-1.3,-6.5],
+["NUF","Nufarm Limited","Chemicals","Producer",1210411345,-1.3,-6.5],
 ["NVA","Nova Minerals Corp","Gold","Explorer / Developer",311557376,-5.6,-60.2],
 ["NVADC","","Materials","Unresolved",null,null,null],
 ["NVO","Novo Resources Corp.","Gold","Explorer / Developer",30282178,0.0,-71.4],
@@ -772,7 +773,7 @@ const DATA = [
 ["ORA","Orora Limited","Packaging","Producer",1770620416,-0.3,-40.5],
 ["ORD","Ordell Minerals Limited","Gold + Lithium + Nickel","Explorer / Developer",40086220,-3.6,-50.0],
 ["ORE","Orezone Gold Corporation","Gold","Producer",1810559104,-2.9,-19.3],
-["ORI","Orica Limited","Chemicals","Producer",null,-3.8,-16.7],
+["ORI","Orica Limited","Chemicals","Producer",10221112698,-3.8,-16.7],
 ["ORN","Orion Minerals Limited","Copper","Explorer / Developer",223859504,4.2,-37.5],
 ["ORP","Orpheus Uranium Limited","Uranium","Explorer / Developer",55908108,7.7,-12.5],
 ["OSM","Osmond Resources Limited","Gold + Uranium + Nickel","Explorer / Developer",83651952,-1.6,-46.4],
@@ -922,7 +923,7 @@ const DATA = [
 ["SQX","SQX Resources Limited","Copper","Explorer / Developer",4395106,-4.3,-84.8],
 ["SRK","Strike Resources Limited","Iron Ore","Producer",5675000,0.0,-61.5],
 ["SRL","Sunrise Energy Metals Limited","Scandium + Nickel + Cobalt","Explorer / Developer",3748752640,0.7,-1.2],
-["SRN","Surefire Resources NL","Vanadium","Explorer / Developer",null,0.0,-66.7],
+["SRN","Surefire Resources NL","Vanadium","Explorer / Developer",4529480,0.0,-66.7],
 ["SRNDB","","Materials","Unresolved",null,null,null],
 ["SRR","Sarama Resources Ltd","Gold","Explorer / Developer",14604166,0.0,-46.3],
 ["SRT","","Materials","Unresolved",null,null,null],
@@ -940,7 +941,7 @@ const DATA = [
 ["SVM","Sovereign Metals Limited","Mineral Sands","Explorer / Developer",337820032,-4.6,-45.2],
 ["SVY","Stavely Minerals Limited","Copper + Cobalt + Gold","Explorer / Developer",16521800,0.0,-36.0],
 ["SX2","Southern Cross Gold Consolidated Ltd.","Gold","Explorer / Developer",3416510720,-0.5,-2.5],
-["SYR","Syrah Resources Limited","Graphite","Producer",null,-4.5,-80.2],
+["SYR","Syrah Resources Limited","Graphite","Producer",243802387,-4.5,-80.2],
 ["T88","Taiton Resources Limited","Molybdenum","Explorer / Developer",6068589,-9.3,-74.2],
 ["TAM","Tanami Gold NL","Gold","Explorer / Developer",159813216,-2.9,-49.6],
 ["TAMNB","","Materials","Unresolved",null,null,null],
@@ -1074,6 +1075,12 @@ function stageClass(stage){
   if(stage==='Care & Maintenance') return 'careandmaintenance';
   return 'unresolved';
 }
+function stageIcon(stage){
+  if(stage==='Producer') return '🏭 ';
+  if(stage==='Explorer / Developer') return '🔍 ';
+  if(stage==='Care & Maintenance') return '🧰 ';
+  return '❔ ';
+}
 function fmtPct(n){
   if(n===undefined || n===null) return '—';
   const sign = n>0 ? '+' : '';
@@ -1117,7 +1124,7 @@ function render(){
       <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
       <td class="cname colname-desktop">${name || '—'}</td>
       <td class="${cls}">${display}</td>
-      <td><span class="stagechip ${stageClass(stage)}">${stage}</span></td>
+      <td><span class="stagechip ${stageClass(stage)}">${stageIcon(stage)}${stage}</span></td>
       <td class="mono" style="text-align:right">${fmtMcap(mcap)}</td>
       <td class="mono colname-desktop ${pctClass(change1d)}" style="text-align:right">${fmtPct(change1d)}</td>
       <td class="mono colname-desktop ${pctClass(offhigh)}" style="text-align:right">${fmtPct(offhigh)}</td>
