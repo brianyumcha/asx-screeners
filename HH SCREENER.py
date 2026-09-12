@@ -789,7 +789,7 @@ td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .hh-yes{background:rgba(155,196,127,.16);color:var(--good);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
 .obv-confirm{color:var(--good)} .obv-not{color:var(--bad)} .obv-neutral{color:var(--muted)}
 .rs-yes{color:var(--good);font-weight:700} .rs-no{color:var(--rs-dim);font-weight:600} .rs-na{color:var(--rs-dim);opacity:.6}
-.tier-12M{color:var(--warn);font-weight:700} .tier-6M{color:var(--accent);font-weight:700} .tier-3M{color:var(--accent2)} .tier-1M{color:var(--muted)} .tier-none{color:var(--muted)}
+.tier-12M{color:var(--good);font-weight:700} .tier-6M{color:var(--accent);font-weight:700} .tier-3M{color:var(--warn)} .tier-1M{color:var(--accent2)} .tier-none{color:var(--muted)}
 .empty{text-align:center;color:var(--muted);padding:2rem 0;font-size:.85rem}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
 
@@ -836,16 +836,8 @@ canvas{width:100%;height:100%;display:block}
   <div class="notice">⚠ Static report from a single scan run — not live. The wave/structure validity is NOT auto-verified. Not financial advice.</div>
 
   <div class="controls">
-    <div class="pillgroup" id="modeToggle">
-      <button class="pill" data-mode="chart">📊 Charts</button>
-      <button class="pill active" data-mode="table">☰ Table</button>
-    </div>
-    <div class="pillgroup" id="tfToggle">
-      <button class="pill active" data-tf="daily">Daily</button>
-      <button class="pill" data-tf="weekly">Weekly</button>
-    </div>
-    <label class="ctrllabel" for="tierToggle">Tier</label>
-    <div class="pillgroup" id="tierToggle" title="Only show tickers at or above this High Tier">
+    <label class="ctrllabel" for="tierToggle">New High Strength</label>
+    <div class="pillgroup" id="tierToggle" title="Only show tickers whose new high reaches back at least this far">
       <button class="pill active" data-tier="0">All</button>
       <button class="pill" data-tier="1">1M+</button>
       <button class="pill" data-tier="2">3M+</button>
@@ -857,6 +849,16 @@ canvas{width:100%;height:100%;display:block}
       <button class="pill" data-ctf="21">1M</button>
       <button class="pill" data-ctf="63">3M</button>
       <button class="pill active" data-ctf="126">6M</button>
+    </div>
+  </div>
+  <div class="controls">
+    <div class="pillgroup" id="modeToggle">
+      <button class="pill" data-mode="chart">📊 Charts</button>
+      <button class="pill active" data-mode="table">☰ Table</button>
+    </div>
+    <div class="pillgroup" id="tfToggle">
+      <button class="pill active" data-tf="daily">Daily</button>
+      <button class="pill" data-tf="weekly">Weekly</button>
     </div>
     <input type="text" id="search" placeholder="Search ticker...">
   </div>
