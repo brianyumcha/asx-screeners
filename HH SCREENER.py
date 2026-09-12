@@ -358,6 +358,17 @@ def classify_commodity(summary):
     return min(earliest_pos, key=earliest_pos.get)
 
 
+
+# Non-mining companies deliberately dropped from the Materials universe
+# (2026-09-13): no longer in the Basic Materials GICS sector at all
+# (Consumer Defensive/Utilities/Industrials), so keeping them classified
+# alongside real miners was actively misleading. Without this list, the
+# very next scan.yml run would treat them as "not yet in cache" and
+# silently re-add them via the block below - which is exactly what
+# happened to every ticker pruned by hand until this list existed.
+EXCLUDED_MATERIALS_TICKERS = {"CLV", "FHE", "PWN", "TTT", "ZNO"}
+
+
 def classify_materials_commodities(universe):
     """Mutates `universe` in place: for every Materials-sector ticker,
     replaces the generic "industry" value with its primary commodity.
@@ -369,7 +380,14 @@ def classify_materials_commodities(universe):
     except (FileNotFoundError, json.JSONDecodeError):
         cache = {}
 
-    materials_tickers = [t for t, d in universe.items() if d.get("sector") == "Materials"]
+    # ASX ordinary-equity codes are uniformly 3 letters; anything else is a
+    # deferred-settlement/options/rights code for a company already tracked
+    # under its real code, or junk data - never worth auto-classifying (see
+    # the universe cleanup, 2026-09-13: 73 of these were pure noise).
+    materials_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Materials" and len(t) == 3 and t not in EXCLUDED_MATERIALS_TICKERS
+    ]
     new_tickers = [t for t in materials_tickers if t not in cache]
 
     if new_tickers:

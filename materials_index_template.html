@@ -52,6 +52,9 @@ p{color:var(--ink-soft)}
 .reportnav{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:.76rem;padding:.5rem .8rem;border-radius:6px;cursor:pointer;outline:none;height:fit-content}
 .reportnav:hover{border-color:var(--accent2)}
 .subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0;max-width:44rem}
+.session{font-size:.78rem;color:var(--ink-faint);margin:.6rem 0 1.1rem;letter-spacing:.03em}
+.notice{background:var(--warn-bg);border:1px solid var(--border);border-radius:4px;
+  padding:.7rem .9rem;font-size:.78rem;color:var(--ink-soft);margin-bottom:1rem;line-height:1.6}
 .source{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);margin-top:.6rem}
 
 .chipsection{margin-top:1.3rem}
@@ -120,7 +123,9 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="source">Rebuilt daily after ASX close — last rebuilt <<<BUILD_DATE>>>. Stage reads each company's own business description for producer language (falls back to reported revenue only when that's ambiguous) — a company-reported read, not an independently verified one.</div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt <<<BUILD_DATE>>>.</div>
+
+  <div class="notice">⚠ Stage reads each company's own business description for producer language (falls back to reported revenue only when that's ambiguous) — a company-reported read, not an independently verified one.</div>
 
   <div class="chipsection">
     <h2>🧲 Filter by commodity</h2>
@@ -322,7 +327,6 @@ commchips.addEventListener('click', (e) => {
   if(!btn) return;
   activeMetal = (activeMetal === btn.dataset.metal) ? '' : btn.dataset.metal;
   render();
-  document.querySelector('.tablewrap').scrollIntoView({behavior:'smooth', block:'start'});
 });
 mcapchips.addEventListener('click', (e) => {
   const btn = e.target.closest('.commchip');
