@@ -181,7 +181,6 @@
 "CKA": "Met Coal",
 "CLA": "Copper + Gold + Coal",
 "CLE": "Materials",
-"CLV": "Materials",
 "CLZ": "Gold",
 "CMD": "Lithium",
 "CMG": "Bauxite / Alumina + Vanadium + Molybdenum",
@@ -291,7 +290,6 @@
 "FG1": "Gold",
 "FGH": "Chemicals",
 "FGR": "Graphite",
-"FHE": "Materials",
 "FHS": "Iron Ore + Copper + Gold",
 "FIN": "Lithium",
 "FL1": "Lithium",
@@ -612,7 +610,6 @@
 "PUR": "Lithium",
 "PVT": "Copper + Nickel + Platinum Group Metals",
 "PVW": "Materials",
-"PWN": "Materials",
 "PXX": "Gold",
 "QEM": "Vanadium",
 "QGL": "Graphite",
@@ -754,7 +751,6 @@
 "TSO": "Gold",
 "TSR": "Potash / Fertiliser",
 "TTM": "Gold",
-"TTT": "Materials",
 "TVN": "Vanadium",
 "TXR": "Silver",
 "TYX": "Lithium",
@@ -815,6 +811,5 @@
 "ZEO": "Kaolin",
 "ZIM": "Platinum Group Metals + Nickel + Gold",
 "ZMI": "Zinc / Lead",
-"ZNC": "Gold + Lithium + Manganese",
-"ZNO": "Materials"
+"ZNC": "Gold + Lithium + Manganese"
 }
