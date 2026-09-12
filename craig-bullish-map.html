@@ -38,6 +38,10 @@ p{color:var(--ink-soft)}
 
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.4rem}
 .themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
+.topbar-right{display:flex;gap:.6rem;align-items:center;flex:none}
+.copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
+.copybtn:hover{border-color:var(--accent)}
+.copybtn.copied{border-color:var(--accent);color:var(--accent)}
 .subtitle{color:var(--ink-faint);font-size:.95rem;margin:.3rem 0 0;max-width:36rem}
 .source{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--ink-faint);margin-top:.7rem}
 
@@ -101,20 +105,14 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
   <div class="topbar">
     <div>
       <h1>Craig's Bull Map</h1>
-      <p class="subtitle">Every ticker Craig is currently Bullish on — 64 names, grouped by sector and, within Materials, by primary commodity.</p>
+      <p class="subtitle">54 tickers Craig is currently bullish on, grouped by sector and, within Materials, by primary commodity.</p>
     </div>
-    <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+    <div class="topbar-right">
+      <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
+      <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+    </div>
   </div>
-  <div class="source">Source: The Craig Ledger, resolved against materials_commodity_cache.json + live lookup, September 2026.</div>
-
-  <div class="methodbox">
-    <p>"Currently bullish" excludes anything Craig has since flipped to Bearish (LOT, WCE, RRL, EXR) or that's Bearish-only — see The Craig Ledger for the full call history these are drawn from.</p>
-    <ul>
-      <li>Where a ticker carries 2-3 commodities in its cache label, it's grouped here under whichever single metal Craig's own calls actually emphasise most — not just the first-listed cache label — so the chart reflects how he's actually talking about the name, not a generic multi-metal tag.</li>
-      <li><strong>EMP was dropped as a distinct ticker</strong> — its described trial is Entropy Neurodynamics' (ENP) own program; almost certainly a data-entry duplicate rather than a 65th real name, so it's merged into ENP rather than shown separately.</li>
-      <li><strong>BAR is unresolved</strong> — the code belonged to Barra Resources until it renamed to GSR in 2021, years before these calls; no current listed entity could be confidently matched.</li>
-    </ul>
-  </div>
+  <p class="source">Excludes anything Craig has since turned Bearish or Neutral on.</p>
 
   <div class="statrow">
     <div class="statchip"><div class="n">54</div><div class="l">Bullish tickers</div></div>
@@ -122,7 +120,7 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
     <div class="statchip"><div class="n">15</div><div class="l">Gold, the biggest cluster</div></div>
     <div class="statchip"><div class="n">12</div><div class="l">Non-resource names</div></div>
   </div>
-  <p style="font-size:.85rem;color:var(--ink-faint);margin-top:-.6rem">10 tickers pulled 12 Sep 2026 (AUV, AR1, AUZ, BB1, KGL, KTA, LSR, NTI, PXX, TGN) — each showed as Craig's last DIRECTIONAL call was Bullish, but a full audit found he'd since moved every one of them to "Neutral / Watching" in a later session, a downgrade the underlying Ledger never tracked since it only recorded Bull↔Bear flips. Full reasoning per ticker in the audit notes.</p>
+  <p style="font-size:.85rem;color:var(--ink-faint);margin-top:-.6rem">10 tickers pulled 12 Sep 2026 (AUV, AR1, AUZ, BB1, KGL, KTA, LSR, NTI, PXX, TGN) — each showed Craig's last DIRECTIONAL call as Bullish, but a full audit found he'd since moved every one of them to "Neutral / Watching" in a later session, a downgrade that's easy to miss since it isn't a Bull↔Bear flip.</p>
 
   <div class="stackbar">
     <span style="width:66.67%;background:var(--materials)" title="Materials 36"></span>
@@ -214,7 +212,7 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
   </div>
 
   <footer>
-    Companion to <span style="color:var(--ink-soft)">The Craig Ledger</span>. A ticker's grouping here reflects how Craig is actually discussing it right now, not necessarily its full historical business — several of these are genuinely diversified explorers where the "primary" label is a judgment call.
+    A ticker's grouping here reflects how Craig is actually discussing it right now, not necessarily its full historical business — several of these are genuinely diversified explorers where the "primary" label is a judgment call.
   </footer>
 </div>
 
@@ -272,6 +270,17 @@ const TICKER_INFO = {};
 Object.entries(DATA).forEach(([id, tickers]) => {
   const sector = id === 'g-energy' ? 'energy' : (['g-health','g-industrials','g-it','g-consumer'].includes(id) ? 'other' : 'materials');
   tickers.forEach(([tk, desc]) => { TICKER_INFO[tk] = {desc, sector}; });
+});
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const tickers = Object.keys(TICKER_INFO);
+  const text = tickers.map(tk => `ASX:${tk}`).join(',');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.classList.add('copied');
+    btn.textContent = `✓ Copied ${tickers.length} tickers`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy TradingView list'; }, 1800);
+  });
 });
 
 const STATIONS = [

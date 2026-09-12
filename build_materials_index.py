@@ -100,10 +100,7 @@ def main():
         change1d = info.get("change1d")
         price = info.get("price")
         high52w = info.get("high52w")
-        off_high = None
-        if price is not None and high52w:
-            off_high = round((price - high52w) / high52w * 100, 1)
-        rows.append((ticker, info.get("name"), label, stage, mcap, change1d, off_high))
+        rows.append((ticker, info.get("name"), label, stage, mcap, price, change1d, high52w))
         if i % 50 == 0:
             print(f"  ...{i}/{total} fetched")
         time.sleep(0.1)
@@ -117,12 +114,13 @@ def main():
     print(f"Stage breakdown: {stage_counts}")
 
     data_lines = []
-    for ticker, name, label, stage, mcap, change1d, off_high in rows:
+    for ticker, name, label, stage, mcap, price, change1d, high52w in rows:
         mcap_s = str(int(mcap)) if mcap else "null"
+        price_s = str(price) if price is not None else "null"
         chg_s = str(round(change1d, 1)) if change1d is not None else "null"
-        off_s = str(off_high) if off_high is not None else "null"
+        high52w_s = str(high52w) if high52w is not None else "null"
         data_lines.append(
-            f'["{esc_js(ticker)}","{esc_js(name)}","{esc_js(label)}","{esc_js(stage)}",{mcap_s},{chg_s},{off_s}]'
+            f'["{esc_js(ticker)}","{esc_js(name)}","{esc_js(label)}","{esc_js(stage)}",{mcap_s},{price_s},{chg_s},{high52w_s}]'
         )
     data_block = ",\n".join(data_lines)
 
