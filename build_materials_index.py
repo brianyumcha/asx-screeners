@@ -66,7 +66,7 @@ def fetch_one(ticker):
 # instead of a guess.
 NON_MINING_LABELS = {
     "Mining Services", "Materials Processing", "Chemicals",
-    "Battery Recycling", "Agricultural Inputs", "Geothermal",
+    "Battery Recycling", "Geothermal",
     "Building Materials", "Packaging",
 }
 
