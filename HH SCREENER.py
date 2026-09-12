@@ -343,7 +343,14 @@ def classify_commodity(summary):
             # " + " rather than " / " - a couple of category labels (e.g.
             # "Zinc / Lead") already contain a slash, so joining with the
             # same character would make 3 categories read as 4.
-            top3 = sorted(earliest_pos, key=earliest_pos.get)[:3]
+            # Cap at 5, not 3 - AW1 (zinc, silver, copper, gold, indium)
+            # and CRI (uranium, lithium, antimony, rare earths after
+            # context-filtering) both had a genuinely real commodity
+            # silently dropped by a top-3 cap, found only because the user
+            # happened to know the real answer. Checked this doesn't make
+            # genuine majors unwieldy either - BHP/RIO/S32/FMG/IGO all
+            # naturally sit at 4-5 real matches too (2026-09-13).
+            top3 = sorted(earliest_pos, key=earliest_pos.get)[:5]
             return " + ".join(top3)
         return "Diversified"
     if not earliest_pos:
