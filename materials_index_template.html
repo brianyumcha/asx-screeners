@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
-<title>The Materials Index</title>
+<title>ASX Materials Index</title>
 <style>
 :root{
   --bg:#f1efe9; --surface:#e8e4da; --surface2:#ddd7c8; --border:#cdc4ae;
@@ -64,7 +64,7 @@ p{color:var(--ink-soft)}
 
 .controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:1.1rem 0 .7rem}
 .controls input,.controls select{background:var(--surface);border:1px solid var(--border);color:var(--ink);border-radius:6px;padding:.5rem .7rem;font-family:"IBM Plex Mono",monospace;font-size:.85rem}
-.controls input{width:14rem}
+.controls input{width:20rem}
 .controls select{width:11rem}
 .controls input:focus,.controls select:focus{outline:none;border-color:var(--accent2)}
 .controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
@@ -104,8 +104,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <div class="wrap">
   <div class="topbar">
     <div>
-      <h1>The Materials Index</h1>
-      <p class="subtitle">Every ASX Materials-sector ticker in HH SCREENER's coverage — 890 names, what each one mines, and whether it's actually producing yet.</p>
+      <h1>⛏️ ASX Materials Index</h1>
+      <p class="subtitle">Every ASX Materials-sector company — what each one mines, and whether it's actually producing yet.</p>
     </div>
     <div class="topbar-right">
       <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
@@ -119,10 +119,10 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="source">Commodity: materials_commodity_cache.json, keyword-matched + LLM-reviewed. Name/market cap/price/stage: fetched live, rebuilt daily after ASX close — last rebuilt <<<BUILD_DATE>>>. Stage reads each company's own business description for producer language (falls back to reported revenue only when that's ambiguous) — a company-reported read, not an independently verified one.</div>
+  <div class="source">Rebuilt daily after ASX close — last rebuilt <<<BUILD_DATE>>>. Stage reads each company's own business description for producer language (falls back to reported revenue only when that's ambiguous) — a company-reported read, not an independently verified one.</div>
 
   <div class="chipsection">
-    <h2>Filter by commodity</h2>
+    <h2>🧲 Filter by commodity</h2>
     <div class="commchips" id="commchips"></div>
   </div>
 
@@ -149,7 +149,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   </div>
 
   <footer>
-    Built from HH SCREENER's Materials-sector classification work — keyword regex matching against company descriptions, cross-checked with an LLM pass, then manually corrected across several rounds this session. "Unresolved" stage/name/cap = ticker didn't return live data (often a delisted, suspended or deferred-settlement code, not necessarily a fetch error). Compound commodity labels mean "carries exposure to," not a strict ranking.
+    Commodity labels come from each company's own business description, keyword-matched and reviewed by hand. "Unresolved" stage/name/cap means the ticker didn't return live data — often a delisted, suspended or deferred-settlement code, not necessarily a fetch error. Compound commodity labels mean "carries exposure to," not a strict ranking.
   </footer>
 </div>
 
@@ -184,6 +184,12 @@ function stageClass(stage){
   if(stage==='Explorer / Developer') return 'explorer';
   if(stage==='Care & Maintenance') return 'careandmaintenance';
   return 'unresolved';
+}
+function stageIcon(stage){
+  if(stage==='Producer') return '🏭 ';
+  if(stage==='Explorer / Developer') return '🔍 ';
+  if(stage==='Care & Maintenance') return '🧰 ';
+  return '❔ ';
 }
 function fmtPct(n){
   if(n===undefined || n===null) return '—';
@@ -228,7 +234,7 @@ function render(){
       <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
       <td class="cname colname-desktop">${name || '—'}</td>
       <td class="${cls}">${display}</td>
-      <td><span class="stagechip ${stageClass(stage)}">${stage}</span></td>
+      <td><span class="stagechip ${stageClass(stage)}">${stageIcon(stage)}${stage}</span></td>
       <td class="mono" style="text-align:right">${fmtMcap(mcap)}</td>
       <td class="mono colname-desktop ${pctClass(change1d)}" style="text-align:right">${fmtPct(change1d)}</td>
       <td class="mono colname-desktop ${pctClass(offhigh)}" style="text-align:right">${fmtPct(offhigh)}</td>

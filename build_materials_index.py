@@ -44,7 +44,11 @@ def fetch_one(ticker):
                 "high52w": None, "price": None, "summary": None}
     return {
         "name": info.get("longName") or info.get("shortName"),
-        "mcap": info.get("marketCap"),
+        # Yahoo's own quoteSummary has been intermittently omitting "marketCap"
+        # for some tickers (BSL/NUF/ORI/ALK confirmed 2026-09-13) while still
+        # returning an equivalent value under "nonDilutedMarketCap" in the
+        # same payload - fall back to that rather than a second network call.
+        "mcap": info.get("marketCap") or info.get("nonDilutedMarketCap"),
         "revenue": info.get("totalRevenue"),
         "change1d": info.get("regularMarketChangePercent"),
         "high52w": info.get("fiftyTwoWeekHigh"),
