@@ -785,14 +785,14 @@ def build_rs_leaders_section_html(results, lookback_days, lookback_weeks):
     return f"""
 <section class="rs-section">
   <style>
-    .rs-section {{ max-width:1400px; margin:2.5rem auto 0; padding:0 1.6rem; font-family:'Inter',-apple-system,sans-serif; }}
-    .rs-section h2 {{ font-family:'Syne',sans-serif; font-size:1.3rem; color:#e8edf2; margin-bottom:.2rem; }}
+    .rs-section {{ max-width:1400px; margin:2.5rem auto 0; padding:0 1.6rem; font-family:"IBM Plex Sans",-apple-system,sans-serif; }}
+    .rs-section h2 {{ font-family:"Fraunces",Georgia,serif; font-size:1.3rem; color:#e8edf2; margin-bottom:.2rem; }}
     .rs-section .rs-sub {{ font-size:.78rem; color:#5a6478; margin-bottom:1rem; line-height:1.6; }}
     .rs-table {{ width:100%; border-collapse:collapse; font-size:.82rem; background:#111418; border:1px solid #1e2530; border-radius:10px; overflow:hidden; }}
     .rs-table th {{ text-align:left; padding:.5rem .8rem; font-size:.66rem; color:#5a6478; text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid #1e2530; }}
     .rs-table td {{ padding:.45rem .8rem; border-bottom:1px solid rgba(30,37,48,.6); color:#e8edf2; }}
     .rs-table tr:last-child td {{ border-bottom:none; }}
-    .rs-ticker a {{ color:#00aaff; text-decoration:none; font-weight:700; font-family:'Syne',sans-serif; }}
+    .rs-ticker a {{ color:#00aaff; text-decoration:none; font-weight:700; font-family:"IBM Plex Mono",monospace; }}
     .rs-up {{ color:#00e5a0; }} .rs-dn {{ color:#ff4455; }} .rs-flat {{ color:#5a6478; }}
     .rs-empty {{ text-align:center; color:#5a6478; padding:2rem 0; font-size:.85rem; background:#111418; border:1px solid #1e2530; border-radius:10px; }}
     .rs-dot {{ display:inline-block; width:.5rem; height:.5rem; border-radius:50%; background:#ff2d95; margin-right:.4rem; }}
