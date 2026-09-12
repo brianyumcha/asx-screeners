@@ -49,6 +49,8 @@ p{color:var(--ink-soft)}
 .copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:.76rem;padding:.5rem .8rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
+.reportnav{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:.76rem;padding:.5rem .8rem;border-radius:6px;cursor:pointer;outline:none;height:fit-content}
+.reportnav:hover{border-color:var(--accent2)}
 .subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0;max-width:44rem}
 .source{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);margin-top:.6rem}
 
@@ -103,6 +105,12 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
       <p class="subtitle">Every ASX Materials-sector ticker in HH SCREENER's coverage — 890 names, what each one mines, and whether it's actually producing yet.</p>
     </div>
     <div class="topbar-right">
+      <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
+        <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
+        <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
+        <option value="higher-high.html">⬆️ Higher-High</option>
+        <option value="materials-index.html">⛏️ Materials Index</option>
+      </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="copybtn" id="downloadCsvBtn">⬇ Download CSV</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
@@ -261,6 +269,8 @@ document.getElementById('downloadCsvBtn').addEventListener('click', async () => 
     URL.revokeObjectURL(url);
   }
 });
+
+document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'materials-index.html';
 
 const themeBtn = document.getElementById('themeBtn');
 function applyTheme(t){

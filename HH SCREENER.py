@@ -658,7 +658,7 @@ try {
 } catch (e) {}
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 :root {
   --bg:#0a0c0f; --surface:#111418; --border:#1e2530;
   --accent:#00e5a0; --accent2:#00aaff; --warn:#ffb800; --danger:#ff4455;
@@ -679,17 +679,17 @@ try {
   font-size:.9rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;line-height:1;height:fit-content}
 .themebtn:hover{border-color:var(--accent2)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;padding:1.6rem;}
 .wrap{max-width:1400px;margin:0 auto}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
-h1{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;letter-spacing:-.03em;
+h1{font-family:"Fraunces",Georgia,serif;font-size:1.9rem;font-weight:800;letter-spacing:-.03em;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .subtitle{font-size:.78rem;color:var(--muted);margin-top:.3rem}
 .session{font-size:.68rem;color:var(--muted);margin:.6rem 0 1.1rem}
 .reportnav{background:var(--surface);border:1px solid var(--border);color:var(--text);
-  font-family:'Inter',sans-serif;font-size:.72rem;padding:.5rem .8rem;border-radius:6px;
+  font-family:"IBM Plex Sans",sans-serif;font-size:.72rem;padding:.5rem .8rem;border-radius:6px;
   cursor:pointer;outline:none;height:fit-content}
 .reportnav:hover{border-color:var(--accent2)}
 .topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
@@ -716,7 +716,7 @@ input[type=text]{background:var(--surface);border:1px solid var(--border);color:
 .sector{margin-bottom:.9rem;border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .sector-head{display:flex;justify-content:space-between;align-items:center;padding:.5rem .9rem;
   background:var(--sector-head-bg);cursor:pointer;user-select:none}
-.sector-head h2{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700}
+.sector-head h2{font-family:"IBM Plex Mono",monospace;font-size:.88rem;font-weight:700}
 .sector-head .count{font-size:.68rem;color:var(--muted)}
 table.datatable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.82rem}
 table.datatable thead tr{border-bottom:1px solid var(--border)}
@@ -754,9 +754,9 @@ table.datatable th:nth-child(8), table.datatable td:nth-child(8){width:12%}
   table.datatable th:nth-child(8), table.datatable td:nth-child(8){width:17%}
   table.datatable th, table.datatable td{padding:.32rem .35rem;font-size:.78rem}
 }
-td.ticker-cell{font-family:'Syne',sans-serif;font-weight:700}
+td.ticker-cell{font-family:"IBM Plex Mono",monospace;font-weight:700}
 td.ticker-cell a{color:var(--accent2);text-decoration:none}
-.company-name{font-family:'Inter',sans-serif;font-weight:400;color:var(--muted);font-size:.68rem;margin-left:.5rem}
+.company-name{font-family:"IBM Plex Sans",sans-serif;font-weight:400;color:var(--muted);font-size:.68rem;margin-left:.5rem}
 .up{color:var(--accent)} .dn{color:var(--danger)} .neutral{color:var(--muted)}
 .hh-yes{background:rgba(0,229,160,.14);color:var(--accent);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
 .obv-confirm{color:var(--accent)} .obv-not{color:var(--danger)} .obv-neutral{color:var(--muted)}
@@ -766,14 +766,14 @@ td.ticker-cell a{color:var(--accent2);text-decoration:none}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
-.sectionhead{grid-column:1/-1;font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;
+.sectionhead{grid-column:1/-1;font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
   color:var(--text);margin:1.4rem 0 .2rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
 .sectionhead:first-child{margin-top:0}
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem;
   display:flex;flex-direction:column;gap:.5rem}
 .cardhead{display:flex;justify-content:space-between;align-items:flex-start}
 .cardhead-left{display:flex;align-items:baseline;gap:.4rem}
-.ticker{font-family:'Syne',sans-serif;font-weight:700;font-size:1.02rem;color:var(--text)}
+.ticker{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.02rem;color:var(--text)}
 .ticker a{color:inherit;text-decoration:none}
 .ticker a:hover{color:var(--accent2)}
 .chg{font-size:.72rem;font-weight:600}
@@ -797,6 +797,7 @@ canvas{width:100%;height:100%;display:block}
         <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
         <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
         <option value="higher-high.html">⬆️ Higher-High</option>
+        <option value="materials-index.html">⛏️ Materials Index</option>
       </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
