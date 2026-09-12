@@ -105,64 +105,61 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
   <div class="topbar">
     <div>
       <h1>Craig's Bull Map</h1>
-      <p class="subtitle">95 tickers Craig is currently bullish on, grouped by sector and, within Materials, by primary commodity.</p>
+      <p class="subtitle">91 tickers Craig is currently bullish on, grouped by sector and, within Materials, by primary commodity.</p>
     </div>
     <div class="topbar-right">
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <p class="source">Sourced directly from Craig Dickson's own call log (FA Scans, Market Mornings, FAQ Fridays). Where a ticker has a Fundamental Analysis Scan call, that's used as his current stance over anything said in a more community-driven format — an FA Scan is deliberate ticker coverage, not audience-led. Capped at 100 names.</p>
+  <p class="source">Sourced only from Craig Dickson's own three shows (Fundamental Analysis Scan, Market Mornings, FAQ Fridays) — no other presenter's calls (Craig Tapping, Frank Watkins, Jamie Bell, etc.) count toward this at all. Current stance = his own latest call across those three shows; a ticker is dropped the moment he's gone Neutral or Bearish in any of them, no matter how strong an older Bullish FA Scan call was. Among what's left, an actual FA Scan call is required for inclusion (not just a Market Mornings/FAQ Fridays mention) — capped at 100 names, ranked by FA Scan recency.</p>
 
   <div class="statrow">
-    <div class="statchip"><div class="n">95</div><div class="l">Bullish tickers</div></div>
+    <div class="statchip"><div class="n">91</div><div class="l">Bullish tickers</div></div>
     <div class="statchip"><div class="n">59</div><div class="l">Materials</div></div>
-    <div class="statchip"><div class="n">25</div><div class="l">Gold, the biggest cluster</div></div>
-    <div class="statchip"><div class="n">36</div><div class="l">Non-Materials names</div></div>
+    <div class="statchip"><div class="n">27</div><div class="l">Gold, the biggest cluster</div></div>
+    <div class="statchip"><div class="n">32</div><div class="l">Non-Materials names</div></div>
   </div>
-  <p style="font-size:.85rem;color:var(--ink-faint);margin-top:-.6rem">36 of these 95 have no FA Scan call in the last 6 months — Craig hasn't necessarily reversed on them, but their "current" bullish stance rests on an older call with nothing more recent to confirm or contradict it. Last-bullish dates on each chip below show this directly.</p>
 
   <div class="stackbar">
-    <span style="width:62.11%;background:var(--materials)" title="Materials 59"></span>
-    <span style="width:10.53%;background:var(--energy)" title="Energy 10"></span>
-    <span style="width:10.53%;background:var(--health)" title="Health Care 10"></span>
-    <span style="width:4.21%;background:var(--industrials)" title="Industrials 4"></span>
-    <span style="width:3.16%;background:var(--it)" title="IT 3"></span>
-    <span style="width:4.21%;background:var(--consumer)" title="Consumer Disc. 4"></span>
-    <span style="width:5.26%;background:var(--unresolved)" title="Other 5"></span>
+    <span style="width:64.84%;background:var(--materials)" title="Materials 59"></span>
+    <span style="width:7.69%;background:var(--energy)" title="Energy 7"></span>
+    <span style="width:10.99%;background:var(--health)" title="Health Care 10"></span>
+    <span style="width:4.40%;background:var(--industrials)" title="Industrials 4"></span>
+    <span style="width:3.30%;background:var(--it)" title="IT 3"></span>
+    <span style="width:4.40%;background:var(--consumer)" title="Consumer Disc. 4"></span>
+    <span style="width:4.40%;background:var(--unresolved)" title="Other 4"></span>
   </div>
   <div class="legend">
     <span><i style="background:var(--materials)"></i>Materials · 59</span>
-    <span><i style="background:var(--energy)"></i>Energy · 10</span>
+    <span><i style="background:var(--energy)"></i>Energy · 7</span>
     <span><i style="background:var(--health)"></i>Health Care · 10</span>
     <span><i style="background:var(--industrials)"></i>Industrials · 4</span>
     <span><i style="background:var(--it)"></i>IT · 3</span>
     <span><i style="background:var(--consumer)"></i>Consumer Disc. · 4</span>
-    <span><i style="background:var(--unresolved)"></i>Other · 5</span>
+    <span><i style="background:var(--unresolved)"></i>Other · 4</span>
   </div>
 
   <div class="sector">
     <div class="sechead"><span class="swatch" style="background:var(--materials)"></span><h2>Materials — 59</h2></div>
     <p style="margin-top:.3rem">Gold and copper dominate, exactly matching the broader ASX small-cap resources skew this whole season.</p>
 
-    <div class="commgroup"><div class="clabel"><span class="cname">Gold</span><span class="ccount">25</span></div><div class="chiprow" id="g-gold"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Copper</span><span class="ccount">12</span></div><div class="chiprow" id="g-copper"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Lithium</span><span class="ccount">5</span></div><div class="chiprow" id="g-lithium"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Gold</span><span class="ccount">27</span></div><div class="chiprow" id="g-gold"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Copper</span><span class="ccount">16</span></div><div class="chiprow" id="g-copper"></div></div>
     <div class="commgroup"><div class="clabel"><span class="cname">Silver</span><span class="ccount">4</span></div><div class="chiprow" id="g-silver"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Zinc / Lead</span><span class="ccount">2</span></div><div class="chiprow" id="g-zinc-lead"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Lithium</span><span class="ccount">2</span></div><div class="chiprow" id="g-lithium"></div></div>
     <div class="commgroup"><div class="clabel"><span class="cname">Rare Earths</span><span class="ccount">2</span></div><div class="chiprow" id="g-rare-earths"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Bauxite / Alumina</span><span class="ccount">2</span></div><div class="chiprow" id="g-bauxite-alumina"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Graphite</span><span class="ccount">2</span></div><div class="chiprow" id="g-graphite"></div></div>
     <div class="commgroup"><div class="clabel"><span class="cname">Manganese</span><span class="ccount">1</span></div><div class="chiprow" id="g-manganese"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Nickel</span><span class="ccount">1</span></div><div class="chiprow" id="g-nickel"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Uranium</span><span class="ccount">1</span></div><div class="chiprow" id="g-uranium"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Zinc / Lead</span><span class="ccount">1</span></div><div class="chiprow" id="g-zinc-lead"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Tungsten</span><span class="ccount">1</span></div><div class="chiprow" id="g-tungsten"></div></div>
     <div class="commgroup"><div class="clabel"><span class="cname">Tin</span><span class="ccount">1</span></div><div class="chiprow" id="g-tin"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Hydrogen</span><span class="ccount">1</span></div><div class="chiprow" id="g-hydrogen"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Magnesium</span><span class="ccount">1</span></div><div class="chiprow" id="g-magnesium"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Graphite</span><span class="ccount">1</span></div><div class="chiprow" id="g-graphite"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Iron Ore</span><span class="ccount">1</span></div><div class="chiprow" id="g-iron-ore"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Mining Services</span><span class="ccount">1</span></div><div class="chiprow" id="g-mining-services"></div></div>
   </div>
 
   <div class="sector">
-    <div class="sechead"><span class="swatch" style="background:var(--energy)"></span><h2>Energy — 10</h2></div>
+    <div class="sechead"><span class="swatch" style="background:var(--energy)"></span><h2>Energy — 7</h2></div>
     <div class="chiprow" id="g-energy"></div>
   </div>
 
@@ -187,7 +184,7 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
   </div>
 
   <div class="sector">
-    <div class="sechead"><span class="swatch" style="background:var(--unresolved)"></span><h2>Other — 5</h2></div>
+    <div class="sechead"><span class="swatch" style="background:var(--unresolved)"></span><h2>Other — 4</h2></div>
     <div class="chiprow" id="g-other"></div>
   </div>
 
@@ -198,42 +195,38 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
 
 <script>
 const DATA = {
-  'g-gold': [ ['AKA','Rallied back to 12c, acquired the company owning the operating mill + small mine','2026-09-08'],['ALK','Recap of Nick (Alkane MD) interview - gold producer, biggest Western antimony producer','2026-09-08'],['BKB','Cap raise completed at 55c/share for $12.5M, with CEO personally chipping in $500k','2026-09-01'],['QML','Strong hit: 35m at ~3% copper, a notably higher-grade pocket; ~10,000m infill drilling underway u...','2026-08-18'],['EVN','More than just a gold producer, already a significant copper producer too','2026-07-28'],['POL','New employee profit-sharing scheme (5% of quarterly net free cash flow) endorsed as a genuine pos...','2026-07-14'],['FRS','Craig\'s example of exceptional management execution/acquisitions','2026-06-30'],['AUE','Progressing toward DFS with strong economics, attractive vs peers','2026-06-16'],['AA2','Dukwe project (Zimbabwe): 1Moz+ gold at 0.6g/t cutoff (extendable to ~1.4Moz at 0.3g/t), drilling...','2026-05-19'],['PXX','Two-pronged: (1) staged JV with Northern Star at Alaska Range (Caribou Dome + Stellar) - NST fund...','2026-05-12'],['AS1','Revisited from prior week\'s extension drilling; since then closed a $60M raise against a ~$230M m...','2026-05-12'],['SNM','~920koz gold resource (Montana, US); Craig flagged this early around 40c and wants it to stay on...','2026-05-12'],['HAR','First assays from initial drill campaign validate the historic ~300koz (non-JORC) resource estima...','2026-05-05'],['ODY','Tuckanera project (WA, 80% ODY/20% Monument Mining JV) - ~400koz gold at ~2.5g/t, well above typi...','2026-05-05'],['FG1','Silver assays out from the Northwest Tasmania (silver/zinc/lead/tungsten) side of the portfolio,...','2026-05-05'],['VRL','~$10M cap already underpinned by a known 150koz gold resource (Monument, WA) in a strong district...','2026-04-14'],['SLS','Porphyry copper explorer; headline step-out hit of 317m at 0.51% copper landed significantly outs...','2026-02-10'],['GRL','~630,000oz gold, ~30M oz silver, ~1.7M oz gold-equivalent, back down to ~$25M market cap after th...','2026-02-03'],['AM5','Antares Metals; completed acquisition of Quinn\'s (copper-zinc VMS, historical hits incl. 58m at 2...','2026-02-03'],['PGO','4-6 month case study: entered near 900koz-1Moz gold on a tiny market cap (under ~$15M), a clearly...','2026-01-06'],['KTA','~$14M market cap gold + antimony explorer in Georgia; large NI 43-101 (foreign) resource of 815ko...','2025-10-21'],['AAU','Finally delivered on long-standing promises this period','2025-09-16'],['FXG','Named a recent FA winner: excellent data confirmed the original thesis','2025-09-16'],['TGM','Restarting historical underground gold mines in South Africa, 6.1Moz gold resource','2025-08-26'],['DES','Revisit of April pick: same team as PDI ($1B cap off 5Moz) now repeating the playbook in the Sagi...','2025-08-19'] ],
-  'g-copper': [ ['AR1','New announcement removes legacy financing/offtake restrictions from its original recapitalisation','2026-07-28'],['CNB','Acquired by Evolution Mining, treated as validation of the underlying copper asset','2026-07-28'],['PVT','Significant MRE upgrade at Horton Lake copper-equivalent project','2026-07-07'],['PTR','Advanced manganese project, retraced into attractive valuation zone','2026-06-23'],['LSR','~$20M cap running 3 projects simultaneously (Ned\'s Creek WA gold; Los Loros/Tres Santos Chile Cu-...','2026-04-14'],['ARO','Restart study metrics hit expectations, deliberately conservative base case; ~$50M capex is low s...','2026-04-07'],['EM2','Japanese trader Setsu\'s board approved JV buy-in: EM2 (~$10M cap) free-carried while Setsu funds...','2026-03-31'],['ALV','~$7.5-8M cap despite a defined global MRE: 7.6Mt at 2% copper-equivalent (Cu/Zn/Pb/Ag) VMS deposi...','2026-03-10'],['AKN','Thesis flipped bullish after AKN moved to acquire 100% of Cloncurry Gold Project (was messy 50/50...','2025-10-21'],['CPO','Sold off on "high grade" drill results — Craig says market misread the context','2025-10-14'],['RRR','Named alongside QML and AW1 as one of Craig\'s favourite copper names','2025-10-14'],['SLM','Case study in reading ASX announcements directly rather than trusting AI/chat explanations of pri...','2025-10-14'] ],
-  'g-lithium': [ ['CAV','Kukani Gold Project could reach production in 12-18 months, surrounded by toll-milling options so...','2026-09-01'],['BOA','New copper story near Sandfire\'s DeGrussa; consolidated Ned\'s Creek area via Clearview deal','2026-08-25'],['GT1','Preferred lithium play despite lithium ranking only 5th-6th on Craig\'s commodity list','2026-05-26'],['FIN','Canadian gold project; today\'s result 26m at 12g/t gold from ~15m depth prompted Craig to revisit...','2026-04-28'],['MAN','Not a lithium play despite market excitement over a non-binding US refinery letter of intent - ye...','2025-11-04'] ],
-  'g-silver': [ ['BHM','$90M placement (2 tranches) plus $5M SPP at same price, ~$130M package including working capital...','2026-09-01'],['AVM','Step-out drilling confirmed mineralisation extends beyond the defined Gavilanes area','2026-08-11'],['ILT','New drilling: 100m @ 73g/t AgEq, 167m open-pitable, 42m @ 140g/t AgEq - consistent widths support...','2026-08-11'],['WCE','Cap raise at a slight premium (vs SS1\'s 15% discount) read as a strong confidence signal','2025-08-26'] ],
-  'g-zinc-lead': [ ['AW1','West Desert (Utah): new drilling confirmed indium mineralisation ~400m east of current resource b...','2026-06-09'],['DVP','Raise funded expansion of the Woodlawn and Sulphur Springs projects','2025-07-08'] ],
-  'g-rare-earths': [ ['AXL','Rare earths project notably rich in dysprosium and terbium (higher-value, less common heavy rare...','2026-05-12'],['CAZ','~$15M market cap, sits directly next to GGA\'s Comet Vale ground on the same Northwest-trending fa...','2025-12-16'] ],
-  'g-bauxite-alumina': [ ['VBX','Longtime favourite; latest met test work showed a significant recovery increase - the key value d...','2026-02-03'],['S32','Good silver exposure alongside manganese (coming back online) and other critical metals','2025-11-25'] ],
+  'g-gold': [ ['AKA','Rallied back to 12c, acquired the company owning the operating mill + small mine','2026-09-08'],['ALK','Recap of Nick (Alkane MD) interview - gold producer, biggest Western antimony producer','2026-09-08'],['CAV','Kukani Gold Project could reach production in 12-18 months, surrounded by toll-milling options so...','2026-09-01'],['POL','New employee profit-sharing scheme (5% of quarterly net free cash flow) endorsed as a genuine pos...','2026-07-14'],['FRS','Craig\'s example of exceptional management execution/acquisitions','2026-06-30'],['AUE','Progressing toward DFS with strong economics, attractive vs peers','2026-06-16'],['KNI','Farming into IPT\'s Commonwealth Gold & Silver Project (NSW), earning up to 70%, nearing 51% thres...','2026-06-09'],['AGR','Gold project materially behind schedule and small-scale (hand-worked tunnels), a fair drag on price','2026-05-26'],['AA2','Dukwe project (Zimbabwe): 1Moz+ gold at 0.6g/t cutoff (extendable to ~1.4Moz at 0.3g/t), drilling...','2026-05-19'],['AS1','Revisited from prior week\'s extension drilling; since then closed a $60M raise against a ~$230M m...','2026-05-12'],['SNM','~920koz gold resource (Montana, US); Craig flagged this early around 40c and wants it to stay on...','2026-05-12'],['HAR','First assays from initial drill campaign validate the historic ~300koz (non-JORC) resource estima...','2026-05-05'],['ODY','Tuckanera project (WA, 80% ODY/20% Monument Mining JV) - ~400koz gold at ~2.5g/t, well above typi...','2026-05-05'],['LGM','Scoping study released, stock sold off 15-20% on higher-than-hoped CapEx (~$220M vs Craig\'s $150-...','2026-05-05'],['FIN','Canadian gold project; today\'s result 26m at 12g/t gold from ~15m depth prompted Craig to revisit...','2026-04-28'],['XPD','Catalyst play drilled in an area with proven historic gold hits rather than a speculative hunch,...','2026-04-21'],['LSR','~$20M cap running 3 projects simultaneously (Ned\'s Creek WA gold; Los Loros/Tres Santos Chile Cu-...','2026-04-14'],['VRL','~$10M cap already underpinned by a known 150koz gold resource (Monument, WA) in a strong district...','2026-04-14'],['RR1','Scoping study (originally guided Oct/Nov last year) still delayed - management deliberately infil...','2026-02-10'],['GRL','~630,000oz gold, ~30M oz silver, ~1.7M oz gold-equivalent, back down to ~$25M market cap after th...','2026-02-03'],['PGO','4-6 month case study: entered near 900koz-1Moz gold on a tiny market cap (under ~$15M), a clearly...','2026-01-06'],['CAZ','~$15M market cap, sits directly next to GGA\'s Comet Vale ground on the same Northwest-trending fa...','2025-12-16'],['AKN','Thesis flipped bullish after AKN moved to acquire 100% of Cloncurry Gold Project (was messy 50/50...','2025-10-21'],['AAU','Finally delivered on long-standing promises this period','2025-09-16'],['FXG','Named a recent FA winner: excellent data confirmed the original thesis','2025-09-16'],['TGM','Restarting historical underground gold mines in South Africa, 6.1Moz gold resource','2025-08-26'],['DES','Revisit of April pick: same team as PDI ($1B cap off 5Moz) now repeating the playbook in the Sagi...','2025-08-19'] ],
+  'g-copper': [ ['BOA','New copper story near Sandfire\'s DeGrussa; consolidated Ned\'s Creek area via Clearview deal','2026-08-25'],['QML','Strong hit: 35m at ~3% copper, a notably higher-grade pocket; ~10,000m infill drilling underway u...','2026-08-18'],['AVM','Step-out drilling confirmed mineralisation extends beyond the defined Gavilanes area','2026-08-11'],['EVN','More than just a gold producer, already a significant copper producer too','2026-07-28'],['CNB','Acquired by Evolution Mining, treated as validation of the underlying copper asset','2026-07-28'],['PVT','Significant MRE upgrade at Horton Lake copper-equivalent project','2026-07-07'],['BTM','Potential beneficiary of regional copper processing consolidation','2026-06-16'],['TNC','Mount Oxide/Cloncurry Copper Project pathway, solid resource base','2026-06-16'],['ARO','Restart study metrics hit expectations, deliberately conservative base case; ~$50M capex is low s...','2026-04-07'],['EM2','Japanese trader Setsu\'s board approved JV buy-in: EM2 (~$10M cap) free-carried while Setsu funds...','2026-03-31'],['ALV','~$7.5-8M cap despite a defined global MRE: 7.6Mt at 2% copper-equivalent (Cu/Zn/Pb/Ag) VMS deposi...','2026-03-10'],['SLS','Porphyry copper explorer; headline step-out hit of 317m at 0.51% copper landed significantly outs...','2026-02-10'],['AM5','Antares Metals; completed acquisition of Quinn\'s (copper-zinc VMS, historical hits incl. 58m at 2...','2026-02-03'],['CPO','Sold off on "high grade" drill results — Craig says market misread the context','2025-10-14'],['RRR','Named alongside QML and AW1 as one of Craig\'s favourite copper names','2025-10-14'],['SLM','Case study in reading ASX announcements directly rather than trusting AI/chat explanations of pri...','2025-10-14'] ],
+  'g-silver': [ ['BHM','$90M placement (2 tranches) plus $5M SPP at same price, ~$130M package including working capital...','2026-09-01'],['BKB','Cap raise completed at 55c/share for $12.5M, with CEO personally chipping in $500k','2026-09-01'],['ILT','New drilling: 100m @ 73g/t AgEq, 167m open-pitable, 42m @ 140g/t AgEq - consistent widths support...','2026-08-11'],['S32','Good silver exposure alongside manganese (coming back online) and other critical metals','2025-11-25'] ],
+  'g-lithium': [ ['GT1','Preferred lithium play despite lithium ranking only 5th-6th on Craig\'s commodity list','2026-05-26'],['MAN','Not a lithium play despite market excitement over a non-binding US refinery letter of intent - ye...','2025-11-04'] ],
+  'g-rare-earths': [ ['AXL','Rare earths project notably rich in dysprosium and terbium (higher-value, less common heavy rare...','2026-05-12'],['VBX','Longtime favourite; latest met test work showed a significant recovery increase - the key value d...','2026-02-03'] ],
+  'g-graphite': [ ['TLG','~$150M cap; first time in TLG\'s history Craig sees the valuation as even remotely reasonable','2026-03-10'],['BKT','Completed a $10m capital raise; financing/JV still taking a long time but fundamentals still look...','2025-09-02'] ],
   'g-manganese': [ ['E25','Favourite manganese near-term producer, just closed $50M NAIF financing','2026-09-08'] ],
-  'g-nickel': [ ['KNI','Farming into IPT\'s Commonwealth Gold & Silver Project (NSW), earning up to 70%, nearing 51% thres...','2026-06-09'] ],
-  'g-uranium': [ ['XPD','Catalyst play drilled in an area with proven historic gold hits rather than a speculative hunch,...','2026-04-21'] ],
+  'g-zinc-lead': [ ['AW1','West Desert (Utah): new drilling confirmed indium mineralisation ~400m east of current resource b...','2026-06-09'] ],
+  'g-tungsten': [ ['FG1','Silver assays out from the Northwest Tasmania (silver/zinc/lead/tungsten) side of the portfolio,...','2026-05-05'] ],
   'g-tin': [ ['MLX','The clear leader/only large-cap way to play tin on the ASX - globally significant producer via it...','2026-01-13'] ],
-  'g-hydrogen': [ ['HZR','Pivoted flagship messaging from hydrogen vehicles to battery-swap EVs - Craig reads this as hydro...','2025-12-23'] ],
-  'g-magnesium': [ ['GWR','~$42M market cap vs ~$37M cash plus a TGN stake now worth ~$40-45M (TGN ran from 8.3c to 27c sinc...','2025-12-02'] ],
-  'g-graphite': [ ['BKT','Completed a $10m capital raise; financing/JV still taking a long time but fundamentals still look...','2025-09-02'] ],
-  'g-energy': [ ['YAL','1H FY26 record production, revenue and EBITDA up; non-cash impairments (~m Middle Mount) dragged...','2026-08-25'],['BMN','Funding deal with CNNC expected to close within weeks, dilutes project ownership but brings capital','2026-08-25'],['AEE','Still one of the better development projects in uranium by a fair way','2026-07-28'],['EXR','Craig genuinely enthusiastic - rare well-managed, well-picked project','2026-07-07'],['PDN','Ramp-up update: mined/processed tonnes trending up, recoveries now low-to-high 90%s','2026-06-09'],['SRJ','Continued positive momentum flagged early in the session','2026-06-02'],['AGE','Field-trial (not lab/bench) data confirms the in-situ leach (ISR) uranium extraction method works...','2026-04-21'],['JGH','First-of-their-kind commercial gas wells in Mongolia, supported by partners with directly relevan...','2025-12-02'],['BPT','Years of poor fundamentals despite always being a popular trading stock; latest quarter shows ear...','2025-11-18'],['NGY','First mover in commercial-scale coalbed methane gas in Indonesia, ~$40M market cap','2025-07-01'] ],
-  'g-health': [ ['PAR','Interim futility/continuation analysis due in 3-4 weeks, timing unknown even to company','2026-08-25'],['PER','Tiny ~$8M market cap name Craig previously held before a 2023/24 trial failure, has watched since','2026-08-11'],['NTI','Approaching transformative Phase 3 autism trial readout','2026-06-16'],['MEM','Progress commercialising IVF/fertility tech after revising its commercialisation strategy','2026-06-02'],['FPH','Strong results provide rare strength in an otherwise weak healthcare sector','2026-05-26'],['ENP','Psilocybin treatment trials for IBS, binge eating disorder and fibromyalgia; oral phase 2a data a...','2026-05-12'],['ATX','Phase 1/2 trial data: multiple complete responses + 11-month median overall survival, comparing f...','2026-03-24'],['BOT','Cited as a story that got ahead of itself and corrected - was significantly overvalued and has be...','2026-01-13'],['ILA','Galidesivir preclinical data: 94% survival in Marburg-infected primates (vs 0% placebo), 100% in...','2025-11-25'],['CMB','Described as a "fantastic copper project" with potential to reach production by mid-2026','2025-10-14'] ],
+  'g-iron-ore': [ ['GWR','~$42M market cap vs ~$37M cash plus a TGN stake now worth ~$40-45M (TGN ran from 8.3c to 27c sinc...','2025-12-02'] ],
+  'g-mining-services': [ ['DVP','Raise funded expansion of the Woodlawn and Sulphur Springs projects','2025-07-08'] ],
+  'g-energy': [ ['BMN','Funding deal with CNNC expected to close within weeks, dilutes project ownership but brings capital','2026-08-25'],['YAL','1H FY26 record production, revenue and EBITDA up; non-cash impairments (~m Middle Mount) dragged...','2026-08-25'],['AEE','Still one of the better development projects in uranium by a fair way','2026-07-28'],['STO','Ranked clearly below Woodside on quality/execution/capital discipline; a takeover consortium walk...','2026-04-07'],['JGH','First-of-their-kind commercial gas wells in Mongolia, supported by partners with directly relevan...','2025-12-02'],['BPT','Years of poor fundamentals despite always being a popular trading stock; latest quarter shows ear...','2025-11-18'],['NGY','First mover in commercial-scale coalbed methane gas in Indonesia, ~$40M market cap','2025-07-01'] ],
+  'g-health': [ ['PAR','Interim futility/continuation analysis due in 3-4 weeks, timing unknown even to company','2026-08-25'],['PER','Tiny ~$8M market cap name Craig previously held before a 2023/24 trial failure, has watched since','2026-08-11'],['ATH','Treating multiple system atrophy (MSA), no currently approved therapies; Phase 3 trial expected l...','2026-06-09'],['FPH','Strong results provide rare strength in an otherwise weak healthcare sector','2026-05-26'],['ENP','Psilocybin treatment trials for IBS, binge eating disorder and fibromyalgia; oral phase 2a data a...','2026-05-12'],['ATX','Phase 1/2 trial data: multiple complete responses + 11-month median overall survival, comparing f...','2026-03-24'],['BOT','Cited as a story that got ahead of itself and corrected - was significantly overvalued and has be...','2026-01-13'],['ILA','Galidesivir preclinical data: 94% survival in Marburg-infected primates (vs 0% placebo), 100% in...','2025-11-25'],['CMB','Described as a "fantastic copper project" with potential to reach production by mid-2026','2025-10-14'],['RAC','Rare biotech Craig rates: Bisantrene remains derisked with strong protective/anti-cancer properties','2025-09-16'] ],
   'g-industrials': [ ['BWN','Strong operational update after prior guidance downgrade and sell-off','2026-08-04'],['VYS','Long-time favourite followed since it was an under-the-radar water trucking/facilities business a...','2026-07-28'],['IPH','Cash-generative business with AI-driven cost reduction potential','2026-06-23'],['LIT','Livium has pivoted fully to lithium-ion battery/PV/black mass/rare earth recycling, no longer a l...','2026-04-28'] ],
   'g-it': [ ['DDR','Positioned for AI infrastructure demand via Nvidia distribution','2026-06-23'],['SKK','Signed ~$8M contract (half paid upfront) alone exceeding prior full-year revenue (~$1.5M); other...','2026-03-24'],['AUA','Hearing tech - personalises audio to an individual\'s specific hearing profile, not generic noise...','2026-01-13'] ],
   'g-consumer': [ ['SHV','Prior FA thesis (almond price recovery) has played out, share price responded','2026-09-08'],['CEH','Thesis is the 55-hectare land bank around Dreamworld/White Water World, not the parks themselves','2026-07-21'],['NCK','Turnaround opportunity via UK acquisition integration','2026-06-23'],['RIC','Craig\'s preferred way to play the soft-commodity rotation theme - strong standalone business with...','2026-03-31'] ],
-  'g-other': [ ['GMG','Evolving from industrial property developer into data centre/energy infrastructure play','2026-06-02'],['PLY','Quarterly delivered exactly as previously flagged - hit high-grade silver lode on schedule, produ...','2026-05-12'],['FTI','AI data-processing company; latest quarterly showed positive net operating cash flow for the firs...','2026-02-03'],['LRT','Investment/holding vehicle in micro/small-cap explorer-developer space; preferred over LSX for it...','2025-12-23'],['AXP','Unusual model: stranded gas assets feeding directly into Bitcoin mining facilities in partnership...','2025-12-02'] ],
+  'g-other': [ ['PLY','Quarterly delivered exactly as previously flagged - hit high-grade silver lode on schedule, produ...','2026-05-12'],['FTI','AI data-processing company; latest quarterly showed positive net operating cash flow for the firs...','2026-02-03'],['LRT','Investment/holding vehicle in micro/small-cap explorer-developer space; preferred over LSX for it...','2025-12-23'],['AXP','Unusual model: stranded gas assets feeding directly into Bitcoin mining facilities in partnership...','2025-12-02'] ],
 };
 const COLOR_BY_GROUP = {
   'g-gold':'var(--materials)',
   'g-copper':'var(--materials)',
-  'g-lithium':'var(--materials)',
   'g-silver':'var(--materials)',
-  'g-zinc-lead':'var(--materials)',
+  'g-lithium':'var(--materials)',
   'g-rare-earths':'var(--materials)',
-  'g-bauxite-alumina':'var(--materials)',
-  'g-manganese':'var(--materials)',
-  'g-nickel':'var(--materials)',
-  'g-uranium':'var(--materials)',
-  'g-tin':'var(--materials)',
-  'g-hydrogen':'var(--materials)',
-  'g-magnesium':'var(--materials)',
   'g-graphite':'var(--materials)',
+  'g-manganese':'var(--materials)',
+  'g-zinc-lead':'var(--materials)',
+  'g-tungsten':'var(--materials)',
+  'g-tin':'var(--materials)',
+  'g-iron-ore':'var(--materials)',
+  'g-mining-services':'var(--materials)',
   'g-energy':'var(--energy)','g-health':'var(--health)','g-industrials':'var(--industrials)','g-it':'var(--it)','g-consumer':'var(--consumer)','g-other':'var(--unresolved)',
 };
 function fmtDate(iso){

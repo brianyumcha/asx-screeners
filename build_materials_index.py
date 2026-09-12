@@ -20,6 +20,19 @@ TEMPLATE = "materials_index_template.html"
 OUTPUT = "materials-index.html"
 REVENUE_OVERRIDE = 10_000_000  # AUD - large enough that it can't be incidental interest/fee income
 
+# Yahoo's revenue field and business summary can lag well behind reality for
+# a company that only recently started production - PDI's own summary still
+# read "explores for, identifies, and develops" with revenue reported as
+# None despite Kiniero Gold Mine hitting commercial production in Feb 2026
+# and pouring 54,252oz in the Jun 2026 quarter alone (confirmed via the
+# company's own ASX announcements, 2026-09-13). No revenue-based signal in
+# this script can catch a case where Yahoo simply hasn't updated the field
+# at all, so these are hand-verified overrides, checked against real news
+# rather than guessed.
+MANUAL_STAGE_OVERRIDES = {
+    "PDI": "Producer",
+}
+
 # Phrases that mean "producer" when a company's own description uses them.
 # Built from spot-checking known producers/explorers against real
 # longBusinessSummary text (2026-09-13) - see the corrected AAJ case (a
@@ -71,7 +84,9 @@ NON_MINING_LABELS = {
 }
 
 
-def classify_stage(summary, revenue, resolved, label=None):
+def classify_stage(summary, revenue, resolved, label=None, ticker=None):
+    if ticker in MANUAL_STAGE_OVERRIDES:
+        return MANUAL_STAGE_OVERRIDES[ticker]
     if label is not None and any(part.strip() in NON_MINING_LABELS for part in label.split("+")):
         return "—"
     s = (summary or "").lower()
@@ -127,7 +142,7 @@ def main():
         label = commodity[ticker]
         info = fetch_one(ticker)
         resolved = bool(info.get("name") or info.get("mcap"))
-        stage = classify_stage(info.get("summary"), info.get("revenue"), resolved, label)
+        stage = classify_stage(info.get("summary"), info.get("revenue"), resolved, label, ticker)
         mcap = info.get("mcap")
         change1d = info.get("change1d")
         price = info.get("price")
