@@ -158,9 +158,23 @@ const DATA = [
 <<<FULL_DATA>>>
 ];
 
-const TOP_COMMODITIES = [
-["Antimony",9],["Base Metals",26],["Battery Metals",4],["Bauxite / Alumina",17],["Building Materials",5],["Chemicals",12],["Coal",13],["Cobalt",27],["Copper",220],["Diamonds",4],["Gold",380],["Graphite",27],["Iron Ore",32],["Kaolin",7],["Lithium",134],["Magnesium",5],["Manganese",14],["Mineral Sands",15],["Nickel",88],["Niobium",13],["Packaging",5],["Platinum Group Metals",8],["Potash / Fertiliser",20],["Rare Earths",49],["Silica",8],["Silver",70],["Steel",5],["Tantalum",6],["Tin",7],["Tungsten",9],["Unclassified / Diversified",120],["Uranium",30],["Vanadium",15],["Zinc / Lead",30]
-];
+// Computed from DATA itself (not hand-maintained) so counts never drift out
+// of sync with the actual daily rebuild - a compound label like "Silver +
+// Indium" contributes to both "Silver" and "Indium" individually. The
+// no-live-data bucket ("Materials" internally) is pulled out and always
+// sorted last since it's not a real commodity, just an unresolved ticker.
+const NO_DATA_LABEL = 'No Live Data';
+const commodityCounts = {};
+let noDataCount = 0;
+DATA.forEach(([tk, name, label]) => {
+  const trimmed = label.trim();
+  if (trimmed === 'Materials') { noDataCount++; return; }
+  trimmed.split('+').map(s => s.trim()).forEach(part => {
+    commodityCounts[part] = (commodityCounts[part] || 0) + 1;
+  });
+});
+const TOP_COMMODITIES = Object.entries(commodityCounts).sort((a, b) => a[0].localeCompare(b[0]));
+if (noDataCount > 0) TOP_COMMODITIES.push([NO_DATA_LABEL, noDataCount]);
 
 const commchips = document.getElementById('commchips');
 commchips.innerHTML = TOP_COMMODITIES.map(([label,count]) => `<button class="commchip" data-metal="${label}"><span>${label}</span><span class="cnt">${count}</span></button>`).join('');
@@ -209,7 +223,7 @@ function render(){
     const textMatch = tk.toUpperCase().includes(q) || (name||'').toUpperCase().includes(q) || label.toUpperCase().includes(q);
     if(!textMatch) return false;
     if(!activeMetal) return true;
-    if(activeMetal==='Unclassified / Diversified') return label.trim()==='Materials';
+    if(activeMetal===NO_DATA_LABEL) return label.trim()==='Materials';
     return label.split('+').map(s=>s.trim()).includes(activeMetal);
   });
   rows.sort((a,b) => {
@@ -228,7 +242,7 @@ function render(){
   currentRows = rows;
   document.getElementById('matBody').innerHTML = rows.map(([tk,name,label,stage,mcap,change1d,offhigh]) => {
     const cls = label.trim()==='Materials' ? 'diversified' : '';
-    const display = label.trim()==='Materials' ? 'Unclassified / diversified' : label;
+    const display = label.trim()==='Materials' ? NO_DATA_LABEL : label;
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
     return `<tr>
       <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
@@ -277,7 +291,7 @@ document.getElementById('copyBtn').addEventListener('click', () => {
 });
 document.getElementById('downloadCsvBtn').addEventListener('click', async () => {
   const esc = v => /[",\n]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v;
-  const rows = [['Ticker','Company','Commodity','Stage','MarketCap','Change1D','OffFiftyTwoWeekHigh'], ...currentRows.map(r => [r[0], r[1]||'', r[2].trim()==='Materials'?'Unclassified / diversified':r[2], r[3], r[4] ?? '', r[5] ?? '', r[6] ?? ''])];
+  const rows = [['Ticker','Company','Commodity','Stage','MarketCap','Change1D','OffFiftyTwoWeekHigh'], ...currentRows.map(r => [r[0], r[1]||'', r[2].trim()==='Materials'?NO_DATA_LABEL:r[2], r[3], r[4] ?? '', r[5] ?? '', r[6] ?? ''])];
   const csv = rows.map(r => r.map(String).map(esc).join(',')).join('\n');
   let usedCapability = false;
   if(typeof window.claude !== 'undefined' && window.claude.use){

@@ -207,6 +207,7 @@ COMMODITY_KEYWORDS = [
     ("Boron", ["boron", "borates?"], False),
     ("Zinc / Lead", ["zinc", "lead"], True),
     ("Silver", ["silver"], False),
+    ("Indium", ["indium"], False),
     ("Tin", ["tin"], True),
     ("Manganese", ["manganese"], False),
     ("Graphite", ["graphite", "graphene"], False),
