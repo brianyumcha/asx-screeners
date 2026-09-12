@@ -127,6 +127,16 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
     <div class="commchips" id="commchips"></div>
   </div>
 
+  <div class="chipsection">
+    <h2>💰 Filter by market cap</h2>
+    <div class="commchips" id="mcapchips"></div>
+  </div>
+
+  <div class="chipsection">
+    <h2>🏗️ Filter by stage</h2>
+    <div class="commchips" id="stagechips"></div>
+  </div>
+
   <div class="controls">
     <input type="text" id="filterInput" placeholder="Search ticker, name or commodity…">
     <span class="hint" id="countLabel"></span>
@@ -182,6 +192,24 @@ const commchips = document.getElementById('commchips');
 commchips.innerHTML = TOP_COMMODITIES.map(([label,count]) => `<button class="commchip" data-metal="${label}"><span>${label}</span><span class="cnt">${count}</span></button>`).join('');
 
 let activeMetal = '';
+
+// Market cap: fixed tiers (not computed from the data like commodities -
+// the boundaries are meaningful thresholds, not a data-driven vocabulary).
+const MCAP_TIERS = [
+  ['Micro (<$10M)', v => v != null && v < 10e6],
+  ['Small ($10-100M)', v => v != null && v >= 10e6 && v < 100e6],
+  ['Mid ($100M-1B)', v => v != null && v >= 100e6 && v < 1e9],
+  ['Large ($1B+)', v => v != null && v >= 1e9],
+];
+const mcapchips = document.getElementById('mcapchips');
+mcapchips.innerHTML = MCAP_TIERS.map(([label]) => `<button class="commchip" data-mcaptier="${label}"><span>${label}</span></button>`).join('');
+let activeMcapTier = '';
+
+const STAGE_ORDER = ['Producer', 'Explorer / Developer', 'Care & Maintenance', 'Unresolved', '—'];
+const presentStages = new Set(DATA.map(([,,,stage]) => stage));
+const stagechips = document.getElementById('stagechips');
+stagechips.innerHTML = STAGE_ORDER.filter(s => presentStages.has(s)).map(stage => `<button class="commchip" data-stage="${stage}"><span>${stageIcon(stage)}${stage}</span></button>`).join('');
+let activeStage = '';
 function fmtMcap(n){
   if(n===undefined || n===null) return '—';
   if(n>=1e9) return '$'+(n/1e9).toFixed(2)+'B';
@@ -230,9 +258,16 @@ function render(){
   let rows = DATA.filter(([tk,name,label,stage,mcap,price,change1d,high52w]) => {
     const textMatch = tk.toUpperCase().includes(q) || (name||'').toUpperCase().includes(q) || label.toUpperCase().includes(q);
     if(!textMatch) return false;
-    if(!activeMetal) return true;
-    if(activeMetal===NO_DATA_LABEL) return label.trim()==='Materials';
-    return label.split('+').map(s=>s.trim()).includes(activeMetal);
+    if(activeMetal){
+      if(activeMetal===NO_DATA_LABEL){ if(label.trim()!=='Materials') return false; }
+      else if(!label.split('+').map(s=>s.trim()).includes(activeMetal)) return false;
+    }
+    if(activeMcapTier){
+      const tier = MCAP_TIERS.find(([l]) => l===activeMcapTier);
+      if(!tier || !tier[1](mcap)) return false;
+    }
+    if(activeStage && stage !== activeStage) return false;
+    return true;
   });
   rows.sort((a,b) => {
     let av, bv;
@@ -267,7 +302,9 @@ function render(){
   const caps = rows.map(r=>r[4]).filter(v=>v!=null && v>0);
   const med = median(caps);
   document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} tickers${med!==null ? ' · median cap '+fmtMcap(med) : ''}`;
-  document.querySelectorAll('.commchip').forEach(c => c.classList.toggle('active', c.dataset.metal===activeMetal));
+  document.querySelectorAll('#commchips .commchip').forEach(c => c.classList.toggle('active', c.dataset.metal===activeMetal));
+  document.querySelectorAll('#mcapchips .commchip').forEach(c => c.classList.toggle('active', c.dataset.mcaptier===activeMcapTier));
+  document.querySelectorAll('#stagechips .commchip').forEach(c => c.classList.toggle('active', c.dataset.stage===activeStage));
   document.querySelectorAll('thead th').forEach(th => {
     th.classList.toggle('active', th.dataset.key===sortKey);
     th.querySelector('.arrow')?.remove();
@@ -286,6 +323,18 @@ commchips.addEventListener('click', (e) => {
   activeMetal = (activeMetal === btn.dataset.metal) ? '' : btn.dataset.metal;
   render();
   document.querySelector('.tablewrap').scrollIntoView({behavior:'smooth', block:'start'});
+});
+mcapchips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  activeMcapTier = (activeMcapTier === btn.dataset.mcaptier) ? '' : btn.dataset.mcaptier;
+  render();
+});
+stagechips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  activeStage = (activeStage === btn.dataset.stage) ? '' : btn.dataset.stage;
+  render();
 });
 document.getElementById('filterInput').addEventListener('input', render);
 render();
