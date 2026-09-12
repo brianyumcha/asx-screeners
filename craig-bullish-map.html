@@ -57,7 +57,10 @@ p{color:var(--ink-soft)}
 .sector .count{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--ink-faint);margin-left:auto}
 
 .commgroup{margin-top:1rem}
-.commgroup .clabel{font-family:"IBM Plex Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);margin-bottom:.5rem}
+.commgroup .clabel{margin-bottom:.5rem;display:flex;align-items:baseline;gap:.4rem}
+.commgroup .clabel .cname{font-family:"Fraunces",Georgia,serif;font-size:1.25rem;font-weight:600;color:var(--ink)}
+.commgroup .clabel .ccount{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-faint)}
+.commgroup .clabel .ccount::before{content:'· '}
 .chiprow{display:flex;flex-wrap:wrap;gap:.5rem}
 .tchip{background:var(--surface);border:1px solid var(--border);border-left-width:3px;border-radius:7px;padding:.45rem .7rem;box-shadow:var(--shadow);min-width:6rem}
 .tchip .tk{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.88rem;display:block}
@@ -144,17 +147,17 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
     <div class="sechead"><span class="swatch" style="background:var(--materials)"></span><h2>Materials — 36</h2></div>
     <p style="margin-top:.3rem">Gold and copper dominate, exactly matching the broader ASX small-cap resources skew this whole season.</p>
 
-    <div class="commgroup"><div class="clabel">Gold · 15</div><div class="chiprow" id="g-gold"></div></div>
-    <div class="commgroup"><div class="clabel">Copper · 13</div><div class="chiprow" id="g-copper"></div></div>
-    <div class="commgroup"><div class="clabel">Silver · 2</div><div class="chiprow" id="g-silver"></div></div>
-    <div class="commgroup"><div class="clabel">Lithium · 2</div><div class="chiprow" id="g-lithium"></div></div>
-    <div class="commgroup"><div class="clabel">Nickel · 1</div><div class="chiprow" id="g-nickel"></div></div>
-    <div class="commgroup"><div class="clabel">Rare Earths · 1</div><div class="chiprow" id="g-ree"></div></div>
-    <div class="commgroup"><div class="clabel">Manganese · 1</div><div class="chiprow" id="g-manganese"></div></div>
-    <div class="commgroup"><div class="clabel">Magnesium · 1</div><div class="chiprow" id="g-magnesium"></div></div>
-    <div class="commgroup"><div class="clabel">Zinc · 1</div><div class="chiprow" id="g-zinc"></div></div>
-    <div class="commgroup"><div class="clabel">Uranium (explorer) · 1</div><div class="chiprow" id="g-uranium-mat"></div></div>
-    <div class="commgroup"><div class="clabel">Fertiliser Minerals · 1</div><div class="chiprow" id="g-fert"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Gold</span><span class="ccount">15</span></div><div class="chiprow" id="g-gold"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Copper</span><span class="ccount">13</span></div><div class="chiprow" id="g-copper"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Silver</span><span class="ccount">2</span></div><div class="chiprow" id="g-silver"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Lithium</span><span class="ccount">2</span></div><div class="chiprow" id="g-lithium"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Nickel</span><span class="ccount">1</span></div><div class="chiprow" id="g-nickel"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Rare Earths</span><span class="ccount">1</span></div><div class="chiprow" id="g-ree"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Manganese</span><span class="ccount">1</span></div><div class="chiprow" id="g-manganese"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Magnesium</span><span class="ccount">1</span></div><div class="chiprow" id="g-magnesium"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Zinc</span><span class="ccount">1</span></div><div class="chiprow" id="g-zinc"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Uranium (explorer)</span><span class="ccount">1</span></div><div class="chiprow" id="g-uranium-mat"></div></div>
+    <div class="commgroup"><div class="clabel"><span class="cname">Fertiliser Minerals</span><span class="ccount">1</span></div><div class="chiprow" id="g-fert"></div></div>
   </div>
 
   <div class="sector">
