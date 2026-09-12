@@ -660,20 +660,18 @@ try {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 :root {
-  --bg:#0a0c0f; --surface:#111418; --border:#1e2530;
-  --accent:#00e5a0; --accent2:#00aaff; --warn:#ffb800; --danger:#ff4455;
-  --text:#e8edf2; --muted:#5a6478; --card:#141820; --rs-dim:#9aa4b8;
-  --row-border:rgba(30,37,48,.6); --sector-head-bg:var(--surface);
+  --bg:#16181c; --surface:#1e2126; --border:#383d45; --card:#262a30;
+  --accent:#d9a44e; --accent-ink:#241a08; --accent2:#7fb0c4; --accent2-ink:#0b1e26;
+  --good:#9bc47f; --bad:#e08f83; --warn:#e0bd6f;
+  --text:#ece8de; --muted:#b7b1a2; --rs-dim:#837c6c;
+  --row-border:var(--border); --sector-head-bg:var(--surface);
 }
 [data-theme="light"] {
-  --bg:#f4f6f9; --surface:#ffffff; --border:#dde3ea;
-  --accent:#00a37b; --accent2:#0077b3; --warn:#a66a00; --danger:#d6293a;
-  --text:#1a2029; --muted:#65707f; --card:#ffffff; --rs-dim:#4a5568;
-  /* The dark theme's row divider (a translucent dark navy) reads as a
-     harsh, heavy line once it's sitting on a white background instead of
-     near-black - swap to the theme's own soft border color instead of
-     letting the dark-mode rgba leak through. */
-  --row-border:var(--border); --sector-head-bg:#e3f5f0;
+  --bg:#f1efe9; --surface:#e8e4da; --border:#cdc4ae; --card:#ddd7c8;
+  --accent:#a06a1f; --accent-ink:#fff8ee; --accent2:#2f5566; --accent2-ink:#eef7fa;
+  --good:#4b6b3a; --bad:#933f34; --warn:#93701f;
+  --text:#26231d; --muted:#5a5344; --rs-dim:#8b8271;
+  --row-border:var(--border); --sector-head-bg:#dee9ea;
 }
 .themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.9rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;line-height:1;height:fit-content}
@@ -698,19 +696,19 @@ h1{font-family:"Fraunces",Georgia,serif;font-size:1.9rem;font-weight:800;letter-
   display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
-.notice{background:rgba(255,184,0,.05);border:1px solid rgba(255,184,0,.15);border-radius:4px;
+.notice{background:rgba(217,164,78,.08);border:1px solid rgba(217,164,78,.25);border-radius:4px;
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
 .controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.7rem}
 .sectorrow{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
 .sectorpill{background:var(--surface);border:1px solid var(--border);color:var(--muted);
   font-size:.68rem;padding:.35rem .7rem;border-radius:20px;cursor:pointer}
 .sectorpill:hover{color:var(--text)}
-.sectorpill.active{background:rgba(0,229,160,.12);border-color:var(--accent);color:var(--accent)}
+.sectorpill.active{background:rgba(217,164,78,.12);border-color:var(--accent);color:var(--accent)}
 .pillgroup{display:flex;gap:.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.2rem}
 .pill{background:transparent;border:none;color:var(--muted);font-size:.72rem;
   padding:.4rem .8rem;border-radius:6px;cursor:pointer;white-space:nowrap}
 .pill:hover{color:var(--text)}
-.pill.active{background:var(--accent2);color:#04121a;font-weight:600}
+.pill.active{background:var(--accent2);color:var(--accent2-ink);font-weight:600}
 input[type=text]{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.75rem;padding:.5rem .8rem;border-radius:8px;outline:none;width:170px}
 .sector{margin-bottom:.9rem;border:1px solid var(--border);border-radius:10px;overflow:hidden}
@@ -723,7 +721,7 @@ table.datatable thead tr{border-bottom:1px solid var(--border)}
 table.datatable th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--muted);text-transform:uppercase;
   letter-spacing:.06em;white-space:nowrap;font-weight:600}
 table.datatable tbody tr{border-bottom:1px solid var(--row-border)}
-table.datatable tbody tr:hover{background:rgba(0,229,160,.03)}
+table.datatable tbody tr:hover{background:rgba(217,164,78,.05)}
 table.datatable td{padding:.38rem .6rem;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Fixed column widths, identical across every sector's table regardless of
    that sector's own content lengths (table-layout:auto let each sector's
@@ -757,10 +755,10 @@ table.datatable th:nth-child(8), table.datatable td:nth-child(8){width:12%}
 td.ticker-cell{font-family:"IBM Plex Mono",monospace;font-weight:700}
 td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .company-name{font-family:"IBM Plex Sans",sans-serif;font-weight:400;color:var(--muted);font-size:.68rem;margin-left:.5rem}
-.up{color:var(--accent)} .dn{color:var(--danger)} .neutral{color:var(--muted)}
-.hh-yes{background:rgba(0,229,160,.14);color:var(--accent);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
-.obv-confirm{color:var(--accent)} .obv-not{color:var(--danger)} .obv-neutral{color:var(--muted)}
-.rs-yes{color:var(--accent);font-weight:700} .rs-no{color:var(--rs-dim);font-weight:600} .rs-na{color:var(--rs-dim);opacity:.6}
+.up{color:var(--good)} .dn{color:var(--bad)} .neutral{color:var(--muted)}
+.hh-yes{background:rgba(155,196,127,.16);color:var(--good);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
+.obv-confirm{color:var(--good)} .obv-not{color:var(--bad)} .obv-neutral{color:var(--muted)}
+.rs-yes{color:var(--good);font-weight:700} .rs-no{color:var(--rs-dim);font-weight:600} .rs-na{color:var(--rs-dim);opacity:.6}
 .tier-12M{color:var(--warn);font-weight:700} .tier-6M{color:var(--accent);font-weight:700} .tier-3M{color:var(--accent2)} .tier-1M{color:var(--muted)} .tier-none{color:var(--muted)}
 .empty{text-align:center;color:var(--muted);padding:2rem 0;font-size:.85rem}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
@@ -985,12 +983,12 @@ function drawChart(canvas, r, tf) {
     ctx.stroke();
     ctx.setLineDash([]);
   }
-  line(sma50, isLightTheme() ? 'rgba(70,80,95,0.55)' : 'rgba(180,190,200,0.55)', true);
-  line(sma20, 'rgba(0,170,255,0.85)', false);
+  line(sma50, isLightTheme() ? 'rgba(90,83,68,0.55)' : 'rgba(183,177,162,0.55)', true);
+  line(sma20, isLightTheme() ? 'rgba(47,85,102,0.85)' : 'rgba(127,176,196,0.85)', false);
 
   for (let i = 0; i < n2; i++) {
     const up = closes[i] >= opens[i];
-    ctx.strokeStyle = ctx.fillStyle = up ? '#00e5a0' : '#ff4455';
+    ctx.strokeStyle = ctx.fillStyle = up ? (isLightTheme() ? '#4b6b3a' : '#9bc47f') : (isLightTheme() ? '#933f34' : '#e08f83');
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(x(i), y(highs[i]));
@@ -1004,13 +1002,15 @@ function drawChart(canvas, r, tf) {
 
   const lastPrice = closes[closes.length - 1];
   const up = r.change_1d >= 0;
-  ctx.font = '600 10px Inter, sans-serif';
+  ctx.font = '600 10px "IBM Plex Mono", monospace';
   const label = lastPrice.toFixed(lastPrice < 1 ? 3 : 2);
   const tw = ctx.measureText(label).width;
   const bx = W - tw - 10, by = y(lastPrice);
-  ctx.fillStyle = up ? 'rgba(0,229,160,0.9)' : 'rgba(255,68,85,0.9)';
+  ctx.fillStyle = up
+    ? (isLightTheme() ? 'rgba(75,107,58,0.9)' : 'rgba(155,196,127,0.9)')
+    : (isLightTheme() ? 'rgba(147,63,52,0.9)' : 'rgba(224,143,131,0.9)');
   ctx.fillRect(bx - 4, by - 8, tw + 8, 16);
-  ctx.fillStyle = '#04121a';
+  ctx.fillStyle = isLightTheme() ? '#fff8ee' : '#241a08';
   ctx.fillText(label, bx, by + 3);
 }
 

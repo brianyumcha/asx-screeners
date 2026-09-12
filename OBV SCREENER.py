@@ -786,18 +786,18 @@ def build_rs_leaders_section_html(results, lookback_days, lookback_weeks):
 <section class="rs-section">
   <style>
     .rs-section {{ max-width:1400px; margin:2.5rem auto 0; padding:0 1.6rem; font-family:"IBM Plex Sans",-apple-system,sans-serif; }}
-    .rs-section h2 {{ font-family:"Fraunces",Georgia,serif; font-size:1.3rem; color:#e8edf2; margin-bottom:.2rem; }}
-    .rs-section .rs-sub {{ font-size:.78rem; color:#5a6478; margin-bottom:1rem; line-height:1.6; }}
-    .rs-table {{ width:100%; border-collapse:collapse; font-size:.82rem; background:#111418; border:1px solid #1e2530; border-radius:10px; overflow:hidden; }}
-    .rs-table th {{ text-align:left; padding:.5rem .8rem; font-size:.66rem; color:#5a6478; text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid #1e2530; }}
-    .rs-table td {{ padding:.45rem .8rem; border-bottom:1px solid rgba(30,37,48,.6); color:#e8edf2; }}
+    .rs-section h2 {{ font-family:"Fraunces",Georgia,serif; font-size:1.3rem; color:#ece8de; margin-bottom:.2rem; }}
+    .rs-section .rs-sub {{ font-size:.78rem; color:#b7b1a2; margin-bottom:1rem; line-height:1.6; }}
+    .rs-table {{ width:100%; border-collapse:collapse; font-size:.82rem; background:#1e2126; border:1px solid #383d45; border-radius:10px; overflow:hidden; }}
+    .rs-table th {{ text-align:left; padding:.5rem .8rem; font-size:.66rem; color:#b7b1a2; text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid #383d45; }}
+    .rs-table td {{ padding:.45rem .8rem; border-bottom:1px solid rgba(56,61,69,.6); color:#ece8de; }}
     .rs-table tr:last-child td {{ border-bottom:none; }}
-    .rs-ticker a {{ color:#00aaff; text-decoration:none; font-weight:700; font-family:"IBM Plex Mono",monospace; }}
-    .rs-up {{ color:#00e5a0; }} .rs-dn {{ color:#ff4455; }} .rs-flat {{ color:#5a6478; }}
-    .rs-empty {{ text-align:center; color:#5a6478; padding:2rem 0; font-size:.85rem; background:#111418; border:1px solid #1e2530; border-radius:10px; }}
+    .rs-ticker a {{ color:#7fb0c4; text-decoration:none; font-weight:700; font-family:"IBM Plex Mono",monospace; }}
+    .rs-up {{ color:#9bc47f; }} .rs-dn {{ color:#e08f83; }} .rs-flat {{ color:#b7b1a2; }}
+    .rs-empty {{ text-align:center; color:#b7b1a2; padding:2rem 0; font-size:.85rem; background:#1e2126; border:1px solid #383d45; border-radius:10px; }}
     .rs-dot {{ display:inline-block; width:.5rem; height:.5rem; border-radius:50%; background:#ff2d95; margin-right:.4rem; }}
     .rs-tf-weekly {{ color:#ff2d95; font-weight:700; }}
-    .rs-tf-daily {{ color:#5a6478; }}
+    .rs-tf-daily {{ color:#b7b1a2; }}
   </style>
   <h2>📶 RS Leaders</h2>
   <div class="rs-sub">

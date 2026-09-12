@@ -90,14 +90,16 @@ try {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 :root {
-  --bg:#0a0c0f; --surface:#111418; --border:#1e2530;
-  --accent:#00e5a0; --accent2:#00aaff; --warn:#ffb800; --danger:#ff4455;
-  --text:#e8edf2; --muted:#5a6478; --card:#141820;
+  --bg:#16181c; --surface:#1e2126; --border:#383d45; --card:#262a30;
+  --accent:#d9a44e; --accent-ink:#241a08; --accent2:#7fb0c4; --accent2-ink:#0b1e26;
+  --good:#9bc47f; --bad:#e08f83; --warn:#e0bd6f;
+  --text:#ece8de; --muted:#b7b1a2;
 }
 [data-theme="light"] {
-  --bg:#f4f6f9; --surface:#ffffff; --border:#dde3ea;
-  --accent:#00a37b; --accent2:#0077b3; --warn:#a66a00; --danger:#d6293a;
-  --text:#1a2029; --muted:#65707f; --card:#ffffff;
+  --bg:#f1efe9; --surface:#e8e4da; --border:#cdc4ae; --card:#ddd7c8;
+  --accent:#a06a1f; --accent-ink:#fff8ee; --accent2:#2f5566; --accent2-ink:#eef7fa;
+  --good:#4b6b3a; --bad:#933f34; --warn:#93701f;
+  --text:#26231d; --muted:#5a5344;
 }
 .themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.9rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;line-height:1;height:fit-content}
@@ -106,8 +108,8 @@ try {
 body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;padding:1.6rem;}
 body::before{content:'';position:fixed;inset:0;
-  background-image:linear-gradient(rgba(0,229,160,.03) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(0,229,160,.03) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(217,164,78,.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(217,164,78,.03) 1px,transparent 1px);
   background-size:40px 40px;pointer-events:none;z-index:0}
 .wrap{max-width:1560px;margin:0 auto;position:relative;z-index:1}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
@@ -132,10 +134,10 @@ h1{font-family:"Fraunces",Georgia,serif;font-size:1.9rem;font-weight:800;letter-
 .pill{background:transparent;border:none;color:var(--muted);font-size:.72rem;
   padding:.4rem .8rem;border-radius:6px;cursor:pointer;white-space:nowrap}
 .pill:hover{color:var(--text)}
-.pill.active{background:var(--accent2);color:#04121a;font-weight:600}
+.pill.active{background:var(--accent2);color:var(--accent2-ink);font-weight:600}
 input[type=text]{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.75rem;padding:.5rem .8rem;border-radius:8px;outline:none;width:170px}
-input[type=text]:focus{border-color:rgba(0,229,160,.4)}
+input[type=text]:focus{border-color:rgba(217,164,78,.4)}
 .checkline{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted);cursor:pointer}
 .checkline input{cursor:pointer}
 
@@ -143,7 +145,7 @@ input[type=text]:focus{border-color:rgba(0,229,160,.4)}
 .sectorpill{background:var(--surface);border:1px solid var(--border);color:var(--muted);
   font-size:.68rem;padding:.35rem .7rem;border-radius:20px;cursor:pointer}
 .sectorpill:hover{color:var(--text)}
-.sectorpill.active{background:rgba(0,229,160,.12);border-color:var(--accent);color:var(--accent)}
+.sectorpill.active{background:rgba(217,164,78,.12);border-color:var(--accent);color:var(--accent)}
 
 .countline{font-size:.7rem;color:var(--muted);margin-bottom:.8rem}
 
@@ -161,7 +163,7 @@ input[type=text]:focus{border-color:rgba(0,229,160,.4)}
 .ticker a{color:inherit;text-decoration:none}
 .ticker a:hover{color:var(--accent2)}
 .chg{font-size:.72rem;font-weight:600}
-.up{color:var(--accent)} .dn{color:var(--danger)} .neutral{color:var(--muted)}
+.up{color:var(--good)} .dn{color:var(--bad)} .neutral{color:var(--muted)}
 .scorebar{display:flex;align-items:center;gap:.4rem}
 .scorebar .bg{width:42px;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
 .scorebar .fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
@@ -184,14 +186,14 @@ table.datatable th{text-align:left;padding:.6rem .8rem;font-size:.66rem;color:va
   letter-spacing:.06em;cursor:pointer;white-space:nowrap;user-select:none;font-weight:600}
 table.datatable th:hover{color:var(--text)}
 table.datatable th.sorted{color:var(--accent)}
-table.datatable tbody tr{border-bottom:1px solid rgba(30,37,48,.6);transition:background .1s}
-table.datatable tbody tr:hover{background:rgba(0,229,160,.03)}
+table.datatable tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+table.datatable tbody tr:hover{background:rgba(217,164,78,.05)}
 table.datatable tbody tr.seen{opacity:.5}
 table.datatable td{padding:.65rem .8rem;vertical-align:middle;white-space:nowrap}
 table.datatable td.ticker-cell{font-family:"IBM Plex Mono",monospace;font-weight:700}
 table.datatable td.ticker-cell a{color:var(--accent2);text-decoration:none}
 table.datatable td.sector-cell{color:var(--muted);font-size:.74rem}
-.notice{background:rgba(255,184,0,.05);border:1px solid rgba(255,184,0,.15);border-radius:4px;
+.notice{background:rgba(217,164,78,.08);border:1px solid rgba(217,164,78,.25);border-radius:4px;
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
 </style>
@@ -403,12 +405,12 @@ function drawChart(canvas, card, tf) {
     ctx.stroke();
     ctx.setLineDash([]);
   }
-  line(sma50, isLightTheme() ? 'rgba(70,80,95,0.55)' : 'rgba(180,190,200,0.55)', true);
-  line(sma20, 'rgba(0,170,255,0.85)', false);
+  line(sma50, isLightTheme() ? 'rgba(90,83,68,0.55)' : 'rgba(183,177,162,0.55)', true);
+  line(sma20, isLightTheme() ? 'rgba(47,85,102,0.85)' : 'rgba(127,176,196,0.85)', false);
 
   for (let i = 0; i < n2; i++) {
     const up = closes[i] >= opens[i];
-    ctx.strokeStyle = ctx.fillStyle = up ? '#00e5a0' : '#ff4455';
+    ctx.strokeStyle = ctx.fillStyle = up ? (isLightTheme() ? '#4b6b3a' : '#9bc47f') : (isLightTheme() ? '#933f34' : '#e08f83');
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(x(i), y(highs[i]));
@@ -423,13 +425,15 @@ function drawChart(canvas, card, tf) {
   // floating last-price badge
   const lastPrice = closes[closes.length - 1];
   const up = card.change_1d >= 0;
-  ctx.font = '600 10px Inter, sans-serif';
+  ctx.font = '600 10px "IBM Plex Mono", monospace';
   const label = lastPrice.toFixed(lastPrice < 1 ? 3 : 2);
   const tw = ctx.measureText(label).width;
   const bx = W - tw - 10, by = y(lastPrice);
-  ctx.fillStyle = up ? 'rgba(0,229,160,0.9)' : 'rgba(255,68,85,0.9)';
+  ctx.fillStyle = up
+    ? (isLightTheme() ? 'rgba(75,107,58,0.9)' : 'rgba(155,196,127,0.9)')
+    : (isLightTheme() ? 'rgba(147,63,52,0.9)' : 'rgba(224,143,131,0.9)');
   ctx.fillRect(bx - 4, by - 8, tw + 8, 16);
-  ctx.fillStyle = '#04121a';
+  ctx.fillStyle = isLightTheme() ? '#fff8ee' : '#241a08';
   ctx.fillText(label, bx, by + 3);
 }
 
