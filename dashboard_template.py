@@ -120,13 +120,13 @@ h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-
 .subtitle{font-size:.92rem;color:var(--muted);margin-top:.3rem;max-width:44rem}
 .session{font-size:.68rem;color:var(--muted);margin:.6rem 0 1.1rem;letter-spacing:.03em}
 .copybtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
-  font-family:"IBM Plex Mono",monospace;font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;
+  font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;
   display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
 .topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
 .reportnav{background:var(--surface);border:1.5px solid var(--accent2);color:var(--text);
-  font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;padding:.5rem .8rem;border-radius:6px;
+  font-size:.72rem;font-weight:600;padding:.5rem .8rem;border-radius:6px;
   cursor:pointer;outline:none;height:fit-content}
 .reportnav:hover{border-color:var(--accent)}
 
