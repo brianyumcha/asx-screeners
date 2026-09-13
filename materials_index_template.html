@@ -44,14 +44,14 @@ h2{font-size:1.15rem;margin:0 0 .5rem}
 p{color:var(--ink-soft)}
 .mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
 
-.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.4rem}
-.topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;flex:none}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem;flex-wrap:wrap;gap:1rem}
+.topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;flex:none;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
 .themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
 .copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
-.reportnav{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:.76rem;padding:.5rem .8rem;border-radius:6px;cursor:pointer;outline:none;height:fit-content}
-.reportnav:hover{border-color:var(--accent2)}
+.reportnav{background:var(--surface);border:1.5px solid var(--accent2);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:.76rem;font-weight:600;padding:.5rem .8rem;border-radius:6px;cursor:pointer;outline:none;height:fit-content}
+.reportnav:hover{border-color:var(--accent)}
 .subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0;max-width:44rem}
 .session{font-size:.78rem;color:var(--ink-faint);margin:.6rem 0 1.1rem;letter-spacing:.03em}
 .notice{background:var(--warn-bg);border:1px solid var(--border);border-radius:4px;
@@ -59,7 +59,8 @@ p{color:var(--ink-soft)}
 .source{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);margin-top:.6rem}
 
 .chipsection{margin-top:1.3rem}
-.chipsection h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);font-family:"IBM Plex Mono",monospace;font-weight:600}
+.chipsection h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);font-family:"IBM Plex Mono",monospace;font-weight:700;margin-bottom:.6rem}
+.divider{border:none;border-top:1px solid var(--border);margin:1.4rem 0}
 .commchips{display:flex;flex-wrap:wrap;gap:.4rem}
 .commchip{font-family:"IBM Plex Mono",monospace;font-size:.78rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
 .commchip:hover{border-color:var(--accent);color:var(--accent)}
@@ -101,6 +102,11 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 
 @media (max-width:900px){
   .cname, .colname-desktop{display:none}
+  /* A compound label ("Gold + Silver + Lithium + Copper + Zinc / Lead") has
+     no width cap and inherits tbody td's nowrap otherwise - on a narrow
+     phone that alone forces the whole table into horizontal scroll before
+     showing anything useful. Let just this column wrap instead. */
+  #matTable td:nth-child(3){white-space:normal;max-width:11rem}
 }
 @media (max-width:640px){h1{font-size:1.8rem}}
 </style>
@@ -143,6 +149,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
     <h2>🏗️ Filter by stage</h2>
     <div class="commchips" id="stagechips"></div>
   </div>
+
+  <hr class="divider">
 
   <div class="controls">
     <input type="text" id="filterInput" placeholder="Search ticker, name or commodity…">
