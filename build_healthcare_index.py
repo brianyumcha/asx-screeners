@@ -73,31 +73,68 @@ APPROVED_SIGNALS = [
 # reach Materials-scale production economics.
 HEALTHCARE_REVENUE_THRESHOLD = 5_000_000
 
+# Only companies actually developing a DRUG (small molecule/biologic) go
+# through the Phase 1/2/3/Preclinical ladder - a device, diagnostic, or
+# digital-health company follows a completely different regulatory pathway
+# (TGA/FDA clearance based on validation studies, not sequential numbered
+# trial phases) even when it targets a named condition and even when it
+# does run its own "clinical studies". Confirmed via the user 2026-09-14:
+# BB1/BlinkLab (a smartphone neurobehavioural-testing app, industry
+# "Health Information Services") was defaulting to "Preclinical" purely
+# because no phase/approval/revenue signal was found - a meaningless label
+# for software that was never going to have an animal-testing phase in the
+# first place. Checked against the Yahoo industry field (far more reliable
+# than text heuristics - see the 12 devices/diagnostics/health-IT tickers
+# that had zero drug-development language in their summary yet were still
+# defaulting to "Preclinical" before this fix).
+DRUG_DEVELOPMENT_INDUSTRIES = {
+    "Biotechnology", "Drug Manufacturers - Specialty & Generic", "Drug Manufacturers - General",
+}
 
-def classify_clinical_stage(summary, revenue, resolved, label, ticker):
+
+def classify_clinical_stage(summary, revenue, resolved, label, ticker, industry=None):
     if ticker in MANUAL_STAGE_OVERRIDES:
         return MANUAL_STAGE_OVERRIDES[ticker]
     if not resolved:
         return "Unresolved"
     s = (summary or "").lower()
 
+    # Only these three checks are trusted regardless of industry - each is
+    # a concrete, hard-to-fake signal (an explicit phase number, an actual
+    # approval claim, or real revenue) rather than a bare keyword that could
+    # describe something other than the company's own stage.
     found_phases = [n for n, pat in PHASE_PATTERNS.items() if re.search(pat, s)]
     if found_phases:
         return f"Phase {max(found_phases)}"
-    if re.search(r"pre-?clinical", s):
-        return "Preclinical"
     if any(re.search(p, s) for p in APPROVED_SIGNALS):
         return "Approved / Commercial"
     if revenue is not None and revenue >= HEALTHCARE_REVENUE_THRESHOLD:
         return "Approved / Commercial"
     if label in NON_CLINICAL_FALLBACK_LABELS:
         return "—"
-    # Described as "clinical-stage" but no specific phase number disclosed -
-    # a conservative floor guess (at least dosing patients, not "Preclinical"
-    # which implies no human trials yet at all).
-    if "clinical-stage" in s or "clinical stage" in s:
-        return "Phase 1"
-    return "Preclinical"
+    # Everything below here is a bare-keyword self-description check
+    # ("preclinical", "clinical-stage") that a non-drug company can trigger
+    # for reasons that have nothing to do with ITS OWN stage - e.g. CGS/
+    # Cogstate (a digital cognitive-assessment tool, industry "Health
+    # Information Services") names "preclinical Alzheimer's disease" only
+    # as one of several THERAPEUTIC AREAS its assessment tool is used to
+    # study in other companies' trials, not a claim about Cogstate's own
+    # stage - confirmed 2026-09-14. Gating both checks behind
+    # DRUG_DEVELOPMENT_INDUSTRIES avoids exactly that failure mode; a
+    # device/diagnostic/digital-health company with a named indication
+    # (e.g. EPI targeting epilepsy, EYE targeting glaucoma) gets "-"
+    # instead once it falls through both, honest about not fitting the
+    # pharma phase ladder rather than a wrong specific claim.
+    if industry in DRUG_DEVELOPMENT_INDUSTRIES:
+        if re.search(r"pre-?clinical", s):
+            return "Preclinical"
+        # Described as "clinical-stage" but no specific phase number
+        # disclosed - a conservative floor guess (at least dosing patients,
+        # not "Preclinical" which implies no human trials yet at all).
+        if "clinical-stage" in s or "clinical stage" in s:
+            return "Phase 1"
+        return "Preclinical"
+    return "—"
 
 
 def fetch_one(ticker):
@@ -105,7 +142,7 @@ def fetch_one(ticker):
         info = yf.Ticker(ticker + ".AX").get_info()
     except Exception:
         return {"name": None, "mcap": None, "revenue": None, "change1d": None,
-                "high52w": None, "price": None, "summary": None}
+                "high52w": None, "price": None, "summary": None, "industry": None}
     return {
         "name": info.get("longName") or info.get("shortName"),
         "mcap": info.get("marketCap") or info.get("nonDilutedMarketCap"),
@@ -114,6 +151,7 @@ def fetch_one(ticker):
         "high52w": info.get("fiftyTwoWeekHigh"),
         "price": info.get("currentPrice") or info.get("regularMarketPrice"),
         "summary": info.get("longBusinessSummary"),
+        "industry": info.get("industry"),
     }
 
 
@@ -133,7 +171,7 @@ def main():
         label = indication[ticker]
         info = fetch_one(ticker)
         resolved = bool(info.get("name") or info.get("mcap"))
-        stage = classify_clinical_stage(info.get("summary"), info.get("revenue"), resolved, label, ticker)
+        stage = classify_clinical_stage(info.get("summary"), info.get("revenue"), resolved, label, ticker, info.get("industry"))
         mcap = info.get("mcap")
         change1d = info.get("change1d")
         price = info.get("price")
