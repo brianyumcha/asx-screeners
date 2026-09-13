@@ -406,6 +406,188 @@ def classify_materials_commodities(universe):
         universe[t]["industry"] = cache.get(t, "Materials")
 
 
+# ─── HEALTHCARE INDICATION CLASSIFICATION ──────────────────────────────────
+# Same problem as Materials: GICS only gives Healthcare two Industry Groups
+# ("Pharmaceuticals, Biotechnology & Life Sciences" and "Health Care
+# Equipment & Services" - see SECTOR_MAP), so every Healthcare ticker's
+# "industry" column would otherwise say one of two things for all ~170 of
+# them. Keyword-match each company's Yahoo business summary against what
+# disease/condition it's actually trying to treat instead, cached to disk
+# (healthcare_indication_cache.json) the same way as the commodity cache.
+HEALTHCARE_INDICATION_CACHE_PATH = os.path.join(SCRIPT_DIR, "healthcare_indication_cache.json")
+
+# (label, [regex fragments (word-boundary-wrapped automatically)]).
+# Ordered specific-before-generic where one condition's name is a substring
+# concern of another (e.g. "genetic diseases" vs "disease" alone isn't a
+# pattern used here, so no ordering conflict yet - kept in mind for future
+# additions). A company gets its top 2 earliest-mentioned matches (not 1) -
+# see AVE (human AND animal health) and ANR (IBS + a second GI condition) -
+# capped at 2 rather than Materials' 5 because ASX biotechs are
+# overwhelmingly single-lead-asset companies; a genuine 3rd indication this
+# early would likely be a side program, not worth diluting the label over.
+HEALTHCARE_INDICATION_KEYWORDS = [
+    ("Cancer", [r"cancers?", r"oncolog\w*", r"tumou?rs?", "carcinoma", "leukemia", "lymphoma", "melanoma", "sarcoma"]),
+    ("Neurological / CNS", ["neurolog\\w*", "neurodegenerat\\w*", "neuroprotect\\w*", "neurodiagnostic\\w*",
+                             "parkinson\\w*", "alzheimer\\w*", "epilep\\w*", r"\bstroke\b",
+                             "multiple system atrophy", "dementia"]),
+    ("Mental Health", ["mental health", "psychiatric", "depression", r"\banxiety\b",
+                        "psilocin", "psychotherapy", "behavioural health", "behavioral health"]),
+    ("Cardiovascular", ["cardiovascular", "cardiac", r"\bheart\b", "hemodynamic", "cardioprotect\\w*"]),
+    ("Respiratory", ["respiratory", r"\basthma\b", r"\bcopd\b", "pulmonary", r"\blung\b"]),
+    ("Infectious Disease", ["infectious diseases?", "antiviral", "antibacterial", "anti-?infectives?",
+                             "viral diseases?", "antimicrobial"]),
+    ("Autoimmune / Inflammatory", ["autoimmune", "inflammatory diseases?", r"\binflammation\b"]),
+    ("Rare / Genetic Disease", ["rare diseases?", "genetic diseases?", "orphan drug", "lymphangioleiomyomatosis"]),
+    ("Gastrointestinal", ["gastrointestinal", "irritable bowel", "glomerulosclerosis"]),
+    ("Metabolic / Diabetes", [r"\bdiabetes\b", "metabolic diseases?"]),
+    ("Dermatology / Skin", ["dermatolog\\w*", "skin diseases?", "skin conditions?", "skin infections?"]),
+    ("Ophthalmology / Eye", ["ophthalmolog\\w*", r"\bglaucoma\b", r"\bocular\b", "eye diseases?"]),
+    ("Women's Health / Fertility", ["women's health", r"\bfertility\b", "reproductive", "obstetric\\w*",
+                                     "gynecolog\\w*", "gynaecolog\\w*", r"\bmaternity\b"]),
+    ("Men's / Sexual Health", ["erectile dysfunction"]),
+    ("Wound Care / Regenerative Medicine", ["wound (?:care|healing)", "tissue repair", "regenerative medicine",
+                                             "soft tissue repair"]),
+    ("Pain Management", ["pain management", "pain relief", "analgesic\\w*"]),
+    ("Sleep Disorders", ["sleep-?related disorders?", "sleep apnea", r"\bsleep\b disorders?"]),
+    ("Hearing", [r"\bhearing\b", "cochlear"]),
+    ("Bone / Orthopaedic", [r"\bbone\b", "orthop(?:a)?edic\\w*"]),
+    ("Renal / Kidney", [r"\brenal\b", r"\bkidney\b"]),
+    ("Medicinal Cannabis", ["medicinal cannabis", r"\bcannabis\b", "cannabinoid\\w*"]),
+    ("Animal Health", ["animal health", "veterinary"]),
+    ("Aged Care", ["aged care", "retirement villages?", "rest homes?"]),
+]
+
+# Last-resort fallback when nothing in HEALTHCARE_INDICATION_KEYWORDS
+# matches: Yahoo's own "industry" field is actually informative for
+# Healthcare (unlike Materials, where it's useless), so a company that
+# genuinely isn't developing a treatment for a named condition - a
+# diagnostics lab, a health-IT vendor, a distributor - gets a real
+# business-type label off that field instead of a guess.
+HEALTHCARE_BUSINESS_TYPE_MAP = {
+    "Health Information Services": "Digital Health / Health IT",
+    "Software - Infrastructure": "Digital Health / Health IT",
+    "Diagnostics & Research": "Diagnostics & Pathology",
+    "Medical Devices": "Medical Devices (General)",
+    "Medical Instruments & Supplies": "Medical Devices (General)",
+    "Scientific & Technical Instruments": "Medical Devices (General)",
+    "Medical Distribution": "Medical Distribution",
+    "Medical Care Facilities": "Care Facilities & Services",
+    "Drug Manufacturers - Specialty & Generic": "Pharmaceutical Manufacturing",
+    "Drug Manufacturers - General": "Pharmaceutical Manufacturing",
+    "Household & Personal Products": "Consumer Health & Wellness",
+}
+
+
+def _drop_enumerated_sentences(text):
+    """Drops any sentence containing 5+ commas before indication matching.
+    A full-service pathology lab or a multi-category medical distributor
+    routinely lists a dozen+ unrelated service/product lines in one
+    sentence ("...cardiac testing, gastroenterology, haematology, ...
+    veterinary pathology, molecular cancer services..." - see ACL), and a
+    single incidental catalog entry among that many otherwise wins the
+    earliest-match race despite describing none of the company's actual
+    focus - confirmed false positives this way for ANN (glove maker -
+    "veterinary clinics" was 1 of 15 customer types), SHL, ACL and PGC
+    (2026-09-14). A real, deliberate "therapeutic areas" statement (e.g.
+    CSL's "...Immunology, Immunology Haematology, Cardiovascular and
+    Renal, and Vaccines" - 4 commas) stays under this threshold and is
+    kept. This is a blunt instrument - it can also strip a real secondary
+    indication out of a busy multi-drug pipeline biotech's paragraph (see
+    TLX/Telix, SPL/Starpharma), pushing them toward a vaguer fallback
+    label - a deliberate trade-off, since an overly specific WRONG label
+    (Ansell under "Animal Health") is worse than an under-specific one.
+    Known residual gaps this doesn't catch (single short sentence, low
+    comma count, but still just one of several unrelated product lines):
+    OIL/Optiscan ("InSpecta ... for veterinary medicine" - 1 of 4 imaging
+    products), NXN/Nexsen (kidney-disease test is 1 of 4 unrelated POC
+    diagnostic SKUs), ACL/Australian Clinical Labs (matches "Veterinary"
+    only because it's part of a brand name, "Gribbles Veterinary
+    Pathology", in a low-comma sentence listing service brands) - all
+    confirmed 2026-09-14, left for a future pass."""
+    sentences = re.split(r"(?<=[.])\s+", text)
+    return " ".join(s for s in sentences if s.count(",") < 5)
+
+
+def classify_indication(summary, industry=None):
+    """Keyword-matches a Yahoo longBusinessSummary against
+    HEALTHCARE_INDICATION_KEYWORDS, returning up to 2 earliest-mentioned
+    matches joined by " + ". Falls back to a business-type label off Yahoo's
+    "industry" field (HEALTHCARE_BUSINESS_TYPE_MAP) when no condition is
+    named, and to "Diversified Healthcare" if even that doesn't resolve.
+    Returns None only when summary is empty/missing (caller decides the
+    unresolved-ticker label)."""
+    text = summary or ""
+    if not text:
+        return None
+
+    cleaned = _drop_enumerated_sentences(text)
+
+    earliest_pos = {}
+    for label, patterns in HEALTHCARE_INDICATION_KEYWORDS:
+        for pat in patterns:
+            m = re.search(r"\b" + pat + r"\b", cleaned, re.IGNORECASE)
+            if m and (label not in earliest_pos or m.start() < earliest_pos[label]):
+                earliest_pos[label] = m.start()
+
+    if earliest_pos:
+        top2 = sorted(earliest_pos, key=earliest_pos.get)[:2]
+        return " + ".join(top2)
+
+    return HEALTHCARE_BUSINESS_TYPE_MAP.get(industry, "Diversified Healthcare")
+
+
+EXCLUDED_HEALTHCARE_TICKERS = set()
+
+# Hand-corrections for cases the keyword classifier gets wrong even after
+# _drop_enumerated_sentences - checked against the real business, not
+# guessed. RAD/Radiopharm Theranostics: every one of its ~10 pipeline
+# products (brain metastasis, breast, non-small-cell lung, pancreatic,
+# prostate, glioblastoma) is an oncology diagnostic/therapeutic pair, but
+# the whole product list is one long comma-heavy sentence that the
+# enumeration guard strips as a catalog - confirmed 2026-09-14.
+MANUAL_INDICATION_OVERRIDES = {
+    "RAD": "Cancer",
+}
+
+
+def classify_healthcare_indications(universe):
+    """Mutates `universe` in place: for every Healthcare-sector ticker,
+    replaces the generic "industry" value with its primary indication (or
+    business-type fallback). Only fetches Yahoo's .info for tickers not
+    already in the on-disk cache."""
+    try:
+        with open(HEALTHCARE_INDICATION_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    healthcare_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Healthcare" and len(t) == 3 and t not in EXCLUDED_HEALTHCARE_TICKERS
+    ]
+    new_tickers = [t for t in healthcare_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Healthcare ticker(s) by indication...")
+        for t in new_tickers:
+            if t in MANUAL_INDICATION_OVERRIDES:
+                cache[t] = MANUAL_INDICATION_OVERRIDES[t]
+                continue
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                summary = info.get("longBusinessSummary", "")
+                industry = info.get("industry")
+                cache[t] = classify_indication(summary, industry) or "Healthcare"
+            except Exception:
+                cache[t] = "Healthcare"
+        with open(HEALTHCARE_INDICATION_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in healthcare_tickers:
+        universe[t]["industry"] = cache.get(t, "Healthcare")
+
+
 # ─── INDICATORS ───────────────────────────────────────────────────────────────
 
 def calc_obv_series(closes, volumes):
@@ -845,6 +1027,7 @@ canvas{width:100%;height:100%;display:block}
         <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
         <option value="higher-high.html">⬆️ Higher-High</option>
         <option value="materials-index.html">⛏️ Materials Index</option>
+        <option value="healthcare-index.html">🩺 Healthcare Index</option>
       </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
@@ -1340,6 +1523,7 @@ def main():
         print(f"  Using custom list: {len(universe)} tickers")
 
     classify_materials_commodities(universe)
+    classify_healthcare_indications(universe)
 
     results, usable, fresh_today = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])
