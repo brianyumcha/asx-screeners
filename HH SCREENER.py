@@ -450,7 +450,13 @@ HEALTHCARE_INDICATION_KEYWORDS = [
     ("Pain Management", ["pain management", "pain relief", "analgesic\\w*"]),
     ("Sleep Disorders", ["sleep-?related disorders?", "sleep apnea", r"\bsleep\b disorders?"]),
     ("Hearing", [r"\bhearing\b", "cochlear"]),
-    ("Bone / Orthopaedic", [r"\bbone\b", "orthop(?:a)?edic\\w*", "osteoarthritis"]),
+    # Negative lookahead so "bone conduction" (a hearing-aid transmission
+    # mechanism - Cochlear's Baha/Osia devices, and any similar hearing
+    # implant maker - not an orthopaedic product) doesn't match. Flagged
+    # by the user 2026-09-14: COH/Cochlear (100% hearing implants, zero
+    # orthopaedic business) was wrongly showing "Hearing + Bone /
+    # Orthopaedic" purely from "bone conduction systems" in its summary.
+    ("Bone / Orthopaedic", [r"\bbone\b(?!\s*conduction)", "orthop(?:a)?edic\\w*", "osteoarthritis"]),
     ("Renal / Kidney", [r"\brenal\b", r"\bkidney\b"]),
     ("Medicinal Cannabis", ["medicinal cannabis", r"\bcannabis\b", "cannabinoid\\w*"]),
     # Bare "veterinary" alone matched too broadly - a full-service
