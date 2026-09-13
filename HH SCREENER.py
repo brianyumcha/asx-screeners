@@ -439,7 +439,17 @@ HEALTHCARE_INDICATION_KEYWORDS = [
     ("Autoimmune / Inflammatory", ["autoimmune", "inflammatory diseases?", r"\binflammation\b"]),
     ("Rare / Genetic Disease", ["rare diseases?", "genetic diseases?", "orphan drug", "lymphangioleiomyomatosis"]),
     ("Gastrointestinal", ["gastrointestinal", "irritable bowel", "glomerulosclerosis"]),
-    ("Metabolic / Diabetes", [r"\bdiabetes\b", "metabolic diseases?"]),
+    # "diabetic" (adjective) is deliberately only matched in these specific
+    # compound forms - the name of a diabetes COMPLICATION being itself
+    # diagnosed/treated (PIQ/Proteomics International: PromarkerD predicts
+    # "diabetic kidney disease", plus diabetic retinopathy/neuropathy
+    # programs) - not the bare word, which would also catch a company
+    # treating something else IN a diabetic patient (RCE/Recce: its R327
+    # antibiotic treats "diabetic foot infections" - the infection is what
+    # it treats, not diabetes; confirmed 2026-09-14 this distinction
+    # matters via user review).
+    ("Metabolic / Diabetes", [r"\bdiabetes\b", "metabolic diseases?", "type\\s*[12]\\s*diabetes",
+                               "diabetic (?:kidney disease|nephropathy|retinopathy|neuropathy)"]),
     ("Dermatology / Skin", ["dermatolog\\w*", "skin diseases?", "skin conditions?", "skin infections?"]),
     ("Ophthalmology / Eye", ["ophthalmolog\\w*", r"\bglaucoma\b", r"\bocular\b", "eye diseases?"]),
     ("Women's Health / Fertility", ["women's health", r"\bfertility\b", "reproductive", "obstetric\\w*",
@@ -642,6 +652,15 @@ MANUAL_INDICATION_OVERRIDES = {
     "OIL": "Medical Devices (General)",
     "NXN": "Diagnostics & Pathology",
     "ENP": "Mental Health + Gastrointestinal",
+    # UBI/Universal Biosensors: its "diabetes" match is from "a license
+    # agreement... for the detection and monitoring of diabetes in
+    # non-humans" - an animal-health side license, not its core business.
+    # Its actual business (INR/coagulation test strips and Xprecia devices
+    # for monitoring human anticoagulant therapy, plus unrelated Sentia
+    # wine-testing products) has no clean single human indication - a
+    # genuine mixed bag, matching its own "Medical Devices" industry field.
+    # Flagged by the user 2026-09-14.
+    "UBI": "Medical Devices (General)",
 }
 
 
