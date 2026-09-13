@@ -207,6 +207,7 @@ COMMODITY_KEYWORDS = [
     ("Boron", ["boron", "borates?"], False),
     ("Zinc / Lead", ["zinc", "lead"], True),
     ("Silver", ["silver"], False),
+    ("Gallium", ["gallium"], False),
     ("Indium", ["indium"], False),
     ("Tin", ["tin"], True),
     ("Manganese", ["manganese"], False),
@@ -340,19 +341,47 @@ def classify_commodity(summary):
 
     if self_described_diversified or len(earliest_pos) >= 3:
         if earliest_pos:
+            # A generic umbrella label ("Battery Metals", "Base Metals")
+            # adds no information once 2+ of its own specific constituents
+            # are already separately listed (AUZ: "Battery Metals" alongside
+            # Lithium + Cobalt + Nickel, all literally battery metals) - drop
+            # it so a real cap slot isn't wasted on a redundant catch-all.
+            GENERIC_UMBRELLA_LABELS = {"Battery Metals", "Base Metals"}
+            specific_count = sum(1 for l in earliest_pos if l not in GENERIC_UMBRELLA_LABELS)
+            if specific_count >= 2:
+                for generic in GENERIC_UMBRELLA_LABELS:
+                    earliest_pos.pop(generic, None)
             # " + " rather than " / " - a couple of category labels (e.g.
             # "Zinc / Lead") already contain a slash, so joining with the
             # same character would make 3 categories read as 4.
-            # Cap at 5, not 3 - AW1 (zinc, silver, copper, gold, indium)
-            # and CRI (uranium, lithium, antimony, rare earths after
-            # context-filtering) both had a genuinely real commodity
-            # silently dropped by a top-3 cap, found only because the user
-            # happened to know the real answer. Checked this doesn't make
-            # genuine majors unwieldy either - BHP/RIO/S32/FMG/IGO all
-            # naturally sit at 4-5 real matches too (2026-09-13).
-            top3 = sorted(earliest_pos, key=earliest_pos.get)[:5]
+            # Cap at 7, not 5 - AUZ/Australian Mines (rare earths, lithium,
+            # niobium, cobalt, nickel, gold, scandium - all 7 explicitly
+            # named as exploration targets in one sentence) had scandium
+            # silently dropped by a top-5 cap, found only because the user
+            # happened to know the real answer, the same way AW1/CRI forced
+            # the cap from 3 to 5 earlier. Checked this doesn't make genuine
+            # majors unwieldy either - BHP/RIO/S32/FMG/IGO all naturally sit
+            # at 4-5 real matches, well under this cap (2026-09-13/14).
+            top3 = sorted(earliest_pos, key=earliest_pos.get)[:7]
             return " + ".join(top3)
         return "Diversified"
+    # KNOWN LIMITATION (found auditing "Gallium" additions, 2026-09-14):
+    # a company with exactly 2 real commodities falls through to the
+    # single-earliest-match branch below instead of this join branch,
+    # silently dropping the second one even when it's genuinely core (AXL/
+    # Axel REE: "Caladão REE-Gallium Project" names both rare earths AND
+    # gallium in its own flagship project name, but only "Rare Earths"
+    # survives since len(earliest_pos)==2 < 3). Separately, the
+    # "explores? for" clause-stripper can remove a pure explorer's ONLY
+    # real commodity list when nothing else in the summary restates it
+    # (REE/RareX: "explores for rare earths and gallium, niobium, and
+    # scandium" is entirely stripped, leaving only a coincidental "Rare
+    # Earths" match from its unrelated project name) - the PLS-style
+    # re-fallback only fires when stripping leaves ZERO matches, not when
+    # it leaves a partial/misleading one. Both AXL and REE were hand-
+    # corrected directly in the cache rather than risking a broader logic
+    # change here under time pressure - worth a proper fix in a future
+    # pass if more cases like this turn up.
     if not earliest_pos:
         return None
     return min(earliest_pos, key=earliest_pos.get)
