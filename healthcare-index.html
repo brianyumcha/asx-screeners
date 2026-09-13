@@ -77,6 +77,29 @@ p{color:var(--ink-soft)}
 .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow);max-height:calc(100vh - 2rem)}
 table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--surface)}
 thead th{position:sticky;top:0;background:var(--surface2);text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);padding:.55rem .7rem;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none;z-index:2}
+thead th.tip{position:sticky}
+thead th.tip:hover::after{
+  content:attr(data-tip);
+  position:absolute;
+  top:100%;
+  left:0;
+  z-index:10;
+  margin-top:.3rem;
+  background:var(--ink);
+  color:var(--bg);
+  padding:.55rem .75rem;
+  border-radius:6px;
+  font-family:"IBM Plex Sans",sans-serif;
+  font-size:.75rem;
+  font-weight:400;
+  text-transform:none;
+  letter-spacing:normal;
+  white-space:normal;
+  width:20rem;
+  max-width:70vw;
+  box-shadow:var(--shadow);
+  pointer-events:none;
+}
 thead th:hover{color:var(--accent)}
 thead th.active{color:var(--accent2)}
 thead th .arrow{font-size:.65rem;margin-left:.15rem}
@@ -167,7 +190,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
           <th data-key="ticker">Ticker</th>
           <th data-key="name" class="colname-desktop">Company</th>
           <th data-key="label">Indication</th>
-          <th data-key="stage" title="Phase 1/2/3/Preclinical only applies to drug developers (biotechs and drug manufacturers) - devices, diagnostics and digital health show — instead">Stage ⓘ</th>
+          <th data-key="stage" class="tip" data-tip="Phase 1/2/3/Preclinical only applies to drug developers (biotechs and drug manufacturers) - devices, diagnostics and digital health show — instead">Stage ⓘ</th>
           <th data-key="mcap" style="text-align:right">Market Cap</th>
           <th data-key="price" class="colname-desktop" style="text-align:right">Price</th>
           <th data-key="change1d" class="colname-desktop" style="text-align:right">1D %</th>
