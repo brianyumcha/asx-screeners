@@ -18,10 +18,15 @@ TEMPLATE = "healthcare_index_template.html"
 OUTPUT = "healthcare-index.html"
 
 # Hand-verified corrections the keyword/regex stage classifier gets wrong -
-# checked against the real company, not guessed. Empty for now; add entries
-# here the same way MANUAL_INDICATION_OVERRIDES works in HH SCREENER.py,
-# once a specific ticker is confirmed wrong.
-MANUAL_STAGE_OVERRIDES = {}
+# checked against the real company, not guessed.
+# PAR/Paradigm Biopharmaceuticals: Yahoo's cached business summary predates
+# the current state of its program (no "Phase" mention at all in the text
+# this classifier reads) - verified via web search 2026-09-14 that Zilosul
+# is in PARA_OA_012, a global pivotal Phase 3 trial for knee osteoarthritis
+# with enrolment complete and topline data due Q1 CY2027.
+MANUAL_STAGE_OVERRIDES = {
+    "PAR": "Phase 3",
+}
 
 # Labels that come from HEALTHCARE_BUSINESS_TYPE_MAP's fallback path (or a
 # disease-adjacent-but-non-pharma category) rather than a real drug/device
@@ -33,7 +38,7 @@ NON_CLINICAL_FALLBACK_LABELS = {
     "Digital Health / Health IT", "Diagnostics & Pathology", "Medical Devices (General)",
     "Medical Distribution", "Care Facilities & Services", "Consumer Health & Wellness",
     "Pharmaceutical Manufacturing", "Diversified Healthcare", "Aged Care",
-    "Animal Health", "Medicinal Cannabis", "Healthcare",
+    "Animal Health", "Medicinal Cannabis", "Healthcare", "Shell Company",
 }
 
 # Checked highest-phase-first so a company that mentions multiple programs

@@ -1,11 +1,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASX Healthcare Index</title>
+<title>Index: Healthcare Stocks</title>
 <style>
 :root{
   --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
   --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
-  --accent:#7a4a0f; --accent-ink:#fdf8ef;
+  --accent:#1f6b42; --accent-ink:#f0f9f2;
   --accent2:#163540; --accent2-ink:#eaf5f7;
   --good:#33481f; --good-bg:#d5dfc4;
   --warn:#6b4a0f; --warn-bg:#ecdfc0;
@@ -16,7 +16,7 @@
   :root:not([data-theme="light"]){
     --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
     --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
-    --accent:#e8b355; --accent-ink:#1c1204;
+    --accent:#6fd9a0; --accent-ink:#0a2416;
     --accent2:#8fc4db; --accent2-ink:#0a1f26;
     --good:#a8d491; --good-bg:#233022;
     --warn:#eec27a; --warn-bg:#332a1a;
@@ -27,7 +27,7 @@
 :root[data-theme="dark"]{
   --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
   --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
-  --accent:#e8b355; --accent-ink:#1c1204;
+  --accent:#6fd9a0; --accent-ink:#0a2416;
   --accent2:#8fc4db; --accent2-ink:#0a1f26;
   --good:#a8d491; --good-bg:#233022;
   --warn:#eec27a; --warn-bg:#332a1a;
@@ -117,7 +117,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <div class="wrap">
   <div class="topbar">
     <div>
-      <h1>🩺 ASX Healthcare Index</h1>
+      <h1>🩺 Index: Healthcare Stocks</h1>
       <div class="subtitle">Every ASX Healthcare-sector company — what it's trying to cure or help with, and how far along its clinical/commercial pipeline it is.</div>
     </div>
     <div class="topbar-right">
@@ -125,8 +125,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
         <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
         <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
         <option value="higher-high.html">⬆️ Higher-High</option>
-        <option value="materials-index.html">⛏️ Materials Index</option>
-        <option value="healthcare-index.html">🩺 Healthcare Index</option>
+        <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
+        <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
       </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="copybtn" id="downloadCsvBtn">⬇ Download CSV</button>

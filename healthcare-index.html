@@ -1,11 +1,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASX Healthcare Index</title>
+<title>Index: Healthcare Stocks</title>
 <style>
 :root{
   --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
   --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
-  --accent:#7a4a0f; --accent-ink:#fdf8ef;
+  --accent:#1f6b42; --accent-ink:#f0f9f2;
   --accent2:#163540; --accent2-ink:#eaf5f7;
   --good:#33481f; --good-bg:#d5dfc4;
   --warn:#6b4a0f; --warn-bg:#ecdfc0;
@@ -16,7 +16,7 @@
   :root:not([data-theme="light"]){
     --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
     --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
-    --accent:#e8b355; --accent-ink:#1c1204;
+    --accent:#6fd9a0; --accent-ink:#0a2416;
     --accent2:#8fc4db; --accent2-ink:#0a1f26;
     --good:#a8d491; --good-bg:#233022;
     --warn:#eec27a; --warn-bg:#332a1a;
@@ -27,7 +27,7 @@
 :root[data-theme="dark"]{
   --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
   --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
-  --accent:#e8b355; --accent-ink:#1c1204;
+  --accent:#6fd9a0; --accent-ink:#0a2416;
   --accent2:#8fc4db; --accent2-ink:#0a1f26;
   --good:#a8d491; --good-bg:#233022;
   --warn:#eec27a; --warn-bg:#332a1a;
@@ -117,7 +117,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <div class="wrap">
   <div class="topbar">
     <div>
-      <h1>🩺 ASX Healthcare Index</h1>
+      <h1>🩺 Index: Healthcare Stocks</h1>
       <div class="subtitle">Every ASX Healthcare-sector company — what it's trying to cure or help with, and how far along its clinical/commercial pipeline it is.</div>
     </div>
     <div class="topbar-right">
@@ -125,8 +125,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
         <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
         <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
         <option value="higher-high.html">⬆️ Higher-High</option>
-        <option value="materials-index.html">⛏️ Materials Index</option>
-        <option value="healthcare-index.html">🩺 Healthcare Index</option>
+        <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
+        <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
       </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="copybtn" id="downloadCsvBtn">⬇ Download CSV</button>
@@ -186,12 +186,12 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <script>
 const DATA = [
 ["1AD","AdAlta Limited","Cancer + Respiratory","Phase 1",9636507,0.003,0.0,0.008],
-["1AI","Algorae Pharmaceuticals Limited","Diversified Healthcare","—",20275708,0.01,11.1,0.024],
+["1AI","Algorae Pharmaceuticals Limited","Neurological / CNS","Preclinical",20275708,0.01,11.1,0.024],
 ["4DX","4DMedical Limited","Respiratory","Approved / Commercial",2021280512,3.36,-3.4,7.55],
-["ACL","Australian Clinical Labs Limited","Animal Health","Approved / Commercial",509196864,2.73,-1.1,3.03],
-["ACR","Acrux Limited","Diversified Healthcare","Approved / Commercial",6669789,0.011,0.0,0.021],
+["ACL","Australian Clinical Labs Limited","Diagnostics & Pathology","Approved / Commercial",509196864,2.73,-1.1,3.03],
+["ACR","Acrux Limited","Pharmaceutical Manufacturing","Approved / Commercial",6669789,0.011,0.0,0.021],
 ["ACW","Actinogen Medical Limited","Neurological / CNS","Approved / Commercial",228203152,0.06,3.4,0.072],
-["ADO","AnteoTech Limited","Diversified Healthcare","—",65195344,0.02,0.0,0.049],
+["ADO","AnteoTech Limited","Diagnostics & Pathology","—",65195344,0.02,0.0,0.049],
 ["ADR","Adherium Limited","Respiratory","Preclinical",4665452,0.085,0.0,0.672],
 ["AFP","AFT Pharmaceuticals Limited","Pharmaceutical Manufacturing","Approved / Commercial",359166912,3.425,-1.9,4.13],
 ["AGN","Argenica Therapeutics Limited","Neurological / CNS","Phase 2",20553074,0.16,0.0,0.345],
@@ -203,13 +203,13 @@ const DATA = [
 ["AN1","Anagenics Limited","Consumer Health & Wellness","Approved / Commercial",5912705,0.006,0.0,0.009],
 ["ANN","Ansell Limited","Medical Devices (General)","Approved / Commercial",5818973696,41.34,0.1,42.63],
 ["ANR","Anatara Lifesciences Ltd","Gastrointestinal","Preclinical",2846793,0.009,0.0,0.019],
-["ARX","Aroa Biosurgery Limited","Wound Care / Regenerative Medicine","Approved / Commercial",192656624,0.55,2.8,0.8],
-["AT1","Atomo Diagnostics Limited","Medical Devices (General)","Approved / Commercial",15341359,0.017,-10.5,0.048],
+["ARX","Aroa Biosurgery Limited","Wound Care / Regenerative Medicine","Approved / Commercial",192864384,0.55,2.8,0.8],
+["AT1","Atomo Diagnostics Limited","Medical Devices (General)","Approved / Commercial",15792574,0.017,-10.5,0.048],
 ["ATH","Alterity Therapeutics Limited","Neurological / CNS","Phase 2",100510192,0.46,-4.2,0.785],
 ["ATX","Amplia Therapeutics Limited","Cancer","Phase 2",61597440,0.12,0.0,0.275],
 ["AVE","Avecho Biotechnology Limited","Medicinal Cannabis","Phase 3",85001968,0.022,4.8,0.027],
 ["AVH","AVITA Medical, Inc.","Medical Devices (General)","Approved / Commercial",417512448,2.7,-2.9,3.08],
-["AVR","Anteris Technologies Global Corp.","Cardiovascular","Preclinical",1111026560,11.4,-1.8,15.47],
+["AVR","Anteris Technologies Global Corp.","Cardiovascular","Preclinical",1109700992,11.4,-1.8,15.47],
 ["AYA","Artrya Limited","Cardiovascular","Preclinical",535695072,3.27,0.6,6.49],
 ["BB1","BlinkLab Limited","Neurological / CNS","Preclinical",121664512,0.69,-5.5,1.105],
 ["BDX","BCAL Diagnostics Limited","Cancer","Preclinical",27651248,0.075,-1.3,0.155],
@@ -218,7 +218,7 @@ const DATA = [
 ["BOT","Botanix Pharmaceuticals Limited","Dermatology / Skin","Phase 3",51995644,0.019,0.0,0.17],
 ["BP8","BPH Global Ltd","Pharmaceutical Manufacturing","—",2353484,0.001,0.0,0.003],
 ["CAN","Cann Group Limited","Medicinal Cannabis","Approved / Commercial",8302967,0.005,0.0,0.023],
-["CBL","Control Bionics Limited","Medical Devices (General)","—",27164378,0.061,1.7,0.095],
+["CBL","Control Bionics Limited","Medical Devices (General)","—",33128412,0.061,1.7,0.095],
 ["CC5","Clever Culture Systems Limited","Infectious Disease","Preclinical",41462844,0.019,0.0,0.037],
 ["CGS","Cogstate Limited","Digital Health / Health IT","Preclinical",515967072,3.0,-0.3,3.23],
 ["CHM","Chimeric Therapeutics Limited","Cancer","Phase 1",767251,0.008,0.0,0.4],
@@ -241,18 +241,18 @@ const DATA = [
 ["DOC","Doctor Care Anywhere Group PLC","Digital Health / Health IT","Approved / Commercial",47722392,0.13,0.0,0.21],
 ["DVL","dorsaVi Ltd","Medical Devices (General)","—",27170626,0.022,0.0,0.069],
 ["DXB","Dimerix Limited","Gastrointestinal + Renal / Kidney","Approved / Commercial",150099200,0.25,0.0,0.665],
-["EBO","EBOS Group Limited","Animal Health","Approved / Commercial",3394469376,16.4,0.9,26.75],
+["EBO","EBOS Group Limited","Medical Distribution","Approved / Commercial",3394469376,16.4,0.9,26.75],
 ["EBR","EBR Systems, Inc.","Cardiovascular","Approved / Commercial",192105664,0.255,-7.3,1.47],
 ["ECS","ECS Botanics Holdings Ltd","Medicinal Cannabis","—",8005248,0.005,-9.1,0.01],
 ["EMD","Emyria Limited","Mental Health + Neurological / CNS","Preclinical",38714928,0.048,0.0,0.078],
 ["EMV","EMVision Medical Devices Ltd","Neurological / CNS","Approved / Commercial",162207456,1.745,0.0,2.36],
 ["ENL","Enlitic, Inc.","Digital Health / Health IT","—",28332928,0.04,0.0,0.45],
-["ENP","Entropy Neurodynamics Limited","Gastrointestinal","Phase 2",65343748,0.04,-2.4,0.046],
+["ENP","Entropy Neurodynamics Limited","Mental Health + Gastrointestinal","Phase 2",65343748,0.04,-2.4,0.046],
 ["EPI","Epiminder Limited","Neurological / CNS","Preclinical",65001496,0.3,-1.6,1.49],
 ["EPN","Epsilon Healthcare Limited","Pharmaceutical Manufacturing","Approved / Commercial",10505808,0.027,8.0,0.04],
 ["EYE","Nova Eye Medical Limited","Ophthalmology / Eye","Approved / Commercial",39882540,0.14,3.7,0.205],
 ["FCG","Freedom Care Group Holdings Limited","Care Facilities & Services","—",4007738,0.037,0.0,0.059],
-["FPH","Fisher & Paykel Healthcare Corporation Limited","Respiratory + Sleep Disorders","Approved / Commercial",20673058816,35.2,-0.2,37.71],
+["FPH","Fisher & Paykel Healthcare Corporation Limited","Respiratory + Sleep Disorders","Approved / Commercial",20706148352,35.2,-0.2,37.71],
 ["FRE","Firebrick Pharma Limited","Pharmaceutical Manufacturing","—",8615969,0.03,0.0,0.074],
 ["GLH","Global Health Limited","Digital Health / Health IT","Approved / Commercial",2822137,0.048,0.0,0.135],
 ["GSS","Genetic Signatures Limited","Diagnostics & Pathology","Approved / Commercial",18171106,0.08,-1.2,0.43],
@@ -260,13 +260,13 @@ const DATA = [
 ["HIQ","HITIQ Limited","Digital Health / Health IT","—",5793417,0.005,0.0,0.04],
 ["HLS","Healius Limited","Diagnostics & Pathology","Approved / Commercial",312256896,0.43,0.0,1.07],
 ["HMD","HeraMED Limited","Women's Health / Fertility + Cardiovascular","Preclinical",38235004,0.033,-2.9,0.055],
-["HXL","Hexima Limited","Diversified Healthcare","—",542878,0.013,0.0,0.052],
+["HXL","Hexima Limited","Shell Company","—",542878,0.013,0.0,0.052],
 ["IBX","Imagion Biosystems Limited","Cancer","Phase 2",6408055,0.008,0.0,0.055],
 ["ICR","Intelicare Holdings Limited","Aged Care","—",18597976,0.026,0.0,0.035],
 ["IDT","IDT Australia Limited","Medicinal Cannabis","Approved / Commercial",20136126,0.047,0.0,0.07],
 ["IDX","Integral Diagnostics Limited","Diagnostics & Pathology","Approved / Commercial",850591680,2.28,-0.4,2.965],
 ["IIQ","INOVIQ Ltd","Cancer","Preclinical",25339584,0.18,0.0,0.565],
-["ILA","Island Pharmaceuticals Limited","Infectious Disease","Phase 1",128723752,0.435,0.0,0.63],
+["ILA","Island Pharmaceuticals Limited","Infectious Disease","Phase 1",128802056,0.435,0.0,0.63],
 ["IMC","Immuron Limited","Gastrointestinal","Phase 2",16788102,0.052,-10.3,0.098],
 ["IME","ImExHS Limited","Diagnostics & Pathology","Approved / Commercial",17678606,0.325,0.0,0.47],
 ["IMM","Immutep Limited","Cancer + Autoimmune / Inflammatory","Phase 2",82528400,0.056,27.3,0.47],
@@ -274,14 +274,13 @@ const DATA = [
 ["IMU","Imugene Limited","Cancer + Respiratory","Phase 2",30092554,0.054,-6.9,0.46],
 ["IPD","ImpediMed Limited","Cardiovascular + Cancer","Approved / Commercial",18312468,0.005,0.0,0.055],
 ["IRX","","Healthcare","Unresolved",null,null,null,null],
-["IVG","InVert Graphite Ltd","Diversified Healthcare","—",18757966,0.035,-10.3,0.055],
 ["IVX","Invion Limited","Cancer + Infectious Disease","Phase 2",4914029,0.045,0.0,0.125],
 ["IXC","Invex Therapeutics Ltd","Neurological / CNS","Phase 3",8642693,0.115,0.0,0.18],
-["LDX","Lumos Diagnostics Holdings Limited","Medical Devices (General)","Approved / Commercial",94512384,0.1,0.0,0.33],
+["LDX","Lumos Diagnostics Holdings Limited","Medical Devices (General)","Approved / Commercial",94482040,0.1,0.0,0.33],
 ["LGP","Little Green Pharma Ltd","Medicinal Cannabis","Approved / Commercial",57958508,0.07,-4.1,0.145],
 ["LTP","LTR Pharma Limited","Men's / Sexual Health","Phase 1",82794560,0.455,-2.2,0.81],
 ["M7T","Mach7 Technologies Limited","Digital Health / Health IT","Approved / Commercial",59927476,0.255,-1.9,0.685],
-["MAP","Microba Life Sciences Limited","Autoimmune / Inflammatory","Approved / Commercial",39217224,0.056,0.0,0.105],
+["MAP","Microba Life Sciences Limited","Autoimmune / Inflammatory","Approved / Commercial",40158568,0.056,0.0,0.105],
 ["MEM","Memphasys Limited","Medical Devices (General)","—",15436169,0.005,-16.7,0.009],
 ["MSB","Mesoblast Limited","Wound Care / Regenerative Medicine + Cardiovascular","Phase 3",2791879936,2.15,-0.9,3.31],
 ["MVF","Monash IVF Group Limited","Women's Health / Fertility","Approved / Commercial",309759712,0.795,-1.9,0.895],
@@ -289,25 +288,24 @@ const DATA = [
 ["MX1","Micro-X Limited","Neurological / CNS","Approved / Commercial",14296300,0.019,5.6,0.12],
 ["MYX","Mayne Pharma Group Limited","Women's Health / Fertility + Dermatology / Skin","Approved / Commercial",242397024,2.96,-1.3,6.5],
 ["NAN","Nanosonics Limited","Medical Devices (General)","Approved / Commercial",824994048,2.76,0.4,4.76],
-["NC6","Nanollose Limited","Diversified Healthcare","—",31927500,0.078,0.0,0.083],
 ["NEU","Neuren Pharmaceuticals Limited","Neurological / CNS","Phase 2",2567173120,20.25,0.2,23.76],
 ["NOX","Noxopharm Limited","Cancer + Autoimmune / Inflammatory","Preclinical",22121132,0.072,-1.4,0.11],
 ["NSB","NeuroScientific Biopharmaceuticals Limited","Neurological / CNS + Autoimmune / Inflammatory","Preclinical",24162550,0.062,0.0,0.18],
-["NTI","Neurotech International Limited","Neurological / CNS + Medicinal Cannabis","Phase 1",17195642,0.013,0.0,0.029],
+["NTI","Neurotech International Limited","Neurological / CNS + Medicinal Cannabis","Phase 1",21008910,0.013,0.0,0.029],
 ["NUZ","Neurizon Therapeutics Limited","Neurological / CNS","Phase 2",60165576,0.076,-2.6,0.165],
 ["NX1","Nexalis Therapeutics Limited","Cancer + Mental Health","Preclinical",3289485,0.013,0.0,0.036],
-["NXN","Nexsen Limited","Animal Health","—",35349332,0.175,-2.8,0.345],
+["NXN","Nexsen Limited","Diagnostics & Pathology","—",35349332,0.175,-2.8,0.345],
 ["NXS","","Healthcare","Unresolved",null,null,null,null],
 ["NYR","Nyrada Inc.","Neurological / CNS + Cardiovascular","Phase 2",175790912,0.71,-1.4,1.435],
 ["OCA","Oceania Healthcare Limited","Aged Care + Neurological / CNS","Approved / Commercial",443951008,0.61,0.0,0.82],
 ["OCC","Orthocell Limited","Wound Care / Regenerative Medicine + Bone / Orthopaedic","Approved / Commercial",193355696,0.71,-2.1,1.6],
-["OIL","Optiscan Imaging Limited","Animal Health","Preclinical",156752464,0.15,-3.2,0.2],
+["OIL","Optiscan Imaging Limited","Medical Devices (General)","Preclinical",156752464,0.15,-3.2,0.2],
 ["ONE","Oneview Healthcare PLC","Digital Health / Health IT","Approved / Commercial",149606512,0.17,0.0,0.41],
 ["OPT","","Healthcare","Unresolved",null,null,null,null],
 ["OSL","OncoSil Medical Limited","Cancer","Approved / Commercial",35786048,0.975,-2.5,2.09],
 ["OSX","Osteopore Limited","Bone / Orthopaedic","Preclinical",2774371,0.004,0.0,0.029],
 ["PAB","Patrys Limited","Cancer + Autoimmune / Inflammatory","Preclinical",10864376,0.031,-3.1,0.052],
-["PAR","Paradigm Biopharmaceuticals Limited","Diversified Healthcare","—",150174032,0.24,-15.8,0.47],
+["PAR","Paradigm Biopharmaceuticals Limited","Bone / Orthopaedic","Phase 3",150174032,0.24,-15.8,0.47],
 ["PCK","PainChek Limited","Digital Health / Health IT","—",24035842,0.115,-8.0,1.05],
 ["PEB","Pacific Edge Limited","Cancer","Approved / Commercial",254579792,0.205,0.0,0.265],
 ["PER","Percheron Therapeutics Limited","Cancer + Rare / Genetic Disease","Phase 1",7289662,0.004,-11.1,0.011],
@@ -327,8 +325,8 @@ const DATA = [
 ["RHT","Resonance Health Limited","Digital Health / Health IT","Approved / Commercial",27672972,0.058,-1.7,0.068],
 ["RHY","Rhythm Biosciences Limited","Cancer","Preclinical",29370948,0.083,-4.6,0.28],
 ["RMD","ResMed Inc.","Sleep Disorders","Approved / Commercial",43722870784,30.31,0.0,43.29],
-["RNV","ReNerve Limited","Diversified Healthcare","—",12822456,0.074,8.8,0.22],
-["RYM","Ryman Healthcare Limited","Aged Care","Approved / Commercial",1620087936,1.595,0.9,2.64],
+["RNV","ReNerve Limited","Wound Care / Regenerative Medicine","Preclinical",12822456,0.074,8.8,0.22],
+["RYM","Ryman Healthcare Limited","Aged Care","Approved / Commercial",1620113920,1.595,0.9,2.64],
 ["SDI","","Healthcare","Unresolved",null,null,null,null],
 ["SHG","Singular Health Group Ltd","Digital Health / Health IT","—",61957344,0.19,-2.6,0.345],
 ["SHL","Sonic Healthcare Limited","Diagnostics & Pathology","Approved / Commercial",9390521344,19.0,-1.9,24.27],
@@ -339,7 +337,7 @@ const DATA = [
 ["SOM","SomnoMed Limited","Medical Devices (General)","Approved / Commercial",72523528,0.33,-1.5,0.945],
 ["SPL","Starpharma Holdings Limited","Infectious Disease + Cancer","Phase 2",336323712,0.705,-10.2,0.83],
 ["TD1","TALi Digital Limited","Mental Health","Preclinical",5373660,0.1,-9.1,0.15],
-["TLX","Telix Pharmaceuticals Limited","Cancer + Renal / Kidney","Phase 3",5308636672,15.67,-6.5,18.32],
+["TLX","Telix Pharmaceuticals Limited","Cancer + Renal / Kidney","Phase 3",5324419584,15.67,-6.5,18.32],
 ["TRI","TrivarX Limited","Mental Health","Preclinical",13844321,0.012,0.0,0.035],
 ["TRJ","Trajan Group Holdings Limited","Medical Devices (General)","Approved / Commercial",23693864,0.155,-3.1,0.865],
 ["TRP","Tissue Repair Ltd","Wound Care / Regenerative Medicine","Phase 3",4837187,0.08,0.0,0.48],

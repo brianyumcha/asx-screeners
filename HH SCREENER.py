@@ -446,14 +446,23 @@ HEALTHCARE_INDICATION_KEYWORDS = [
                                      "gynecolog\\w*", "gynaecolog\\w*", r"\bmaternity\b"]),
     ("Men's / Sexual Health", ["erectile dysfunction"]),
     ("Wound Care / Regenerative Medicine", ["wound (?:care|healing)", "tissue repair", "regenerative medicine",
-                                             "soft tissue repair"]),
+                                             "soft tissue repair", "nerve repair", "dermal matrix", "nerve graft"]),
     ("Pain Management", ["pain management", "pain relief", "analgesic\\w*"]),
     ("Sleep Disorders", ["sleep-?related disorders?", "sleep apnea", r"\bsleep\b disorders?"]),
     ("Hearing", [r"\bhearing\b", "cochlear"]),
-    ("Bone / Orthopaedic", [r"\bbone\b", "orthop(?:a)?edic\\w*"]),
+    ("Bone / Orthopaedic", [r"\bbone\b", "orthop(?:a)?edic\\w*", "osteoarthritis"]),
     ("Renal / Kidney", [r"\brenal\b", r"\bkidney\b"]),
     ("Medicinal Cannabis", ["medicinal cannabis", r"\bcannabis\b", "cannabinoid\\w*"]),
-    ("Animal Health", ["animal health", "veterinary"]),
+    # Bare "veterinary" alone matched too broadly - a full-service
+    # pathology lab's brand name ("Gribbles Veterinary Pathology" - ACL), a
+    # distributor's one product line among many (EBO, PGC), or a diagnostics
+    # device maker's one of several application areas (OIL, NXN) all
+    # incidentally contain the word without being an animal-health company.
+    # Every current match against "veterinary" alone turned out wrong
+    # (confirmed 2026-09-14, all fixed via MANUAL_INDICATION_OVERRIDES
+    # below) - requiring the actual phrase "animal health" is how a company
+    # whose real business this is actually self-describes.
+    ("Animal Health", ["animal health"]),
     ("Aged Care", ["aged care", "retirement villages?", "rest homes?"]),
 ]
 
@@ -475,6 +484,7 @@ HEALTHCARE_BUSINESS_TYPE_MAP = {
     "Drug Manufacturers - Specialty & Generic": "Pharmaceutical Manufacturing",
     "Drug Manufacturers - General": "Pharmaceutical Manufacturing",
     "Household & Personal Products": "Consumer Health & Wellness",
+    "Shell Companies": "Shell Company",
 }
 
 
@@ -536,17 +546,96 @@ def classify_indication(summary, industry=None):
     return HEALTHCARE_BUSINESS_TYPE_MAP.get(industry, "Diversified Healthcare")
 
 
-EXCLUDED_HEALTHCARE_TICKERS = set()
+# IVG (Invert Graphite) and NC6 (Nanollose) carry a "Healthcare" sector tag
+# from SeaBee but are not healthcare companies at all by real business:
+# IVG explores graphite/rare earths in Tanzania (its own Yahoo industry
+# field says "Other Industrial Metals & Mining"; formerly Dominion
+# Minerals, renamed Jan 2025), NC6 makes microbial-cellulose textile fibre
+# and horticultural products (industry "Textile Manufacturing") - a
+# GICS-sector staleness issue, same failure mode as PDI/ATM in Materials.
+# Confirmed 2026-09-14, prompted by the user asking to properly research
+# every "Diversified Healthcare" ticker.
+EXCLUDED_HEALTHCARE_TICKERS = {"IVG", "NC6"}
 
 # Hand-corrections for cases the keyword classifier gets wrong even after
 # _drop_enumerated_sentences - checked against the real business, not
-# guessed. RAD/Radiopharm Theranostics: every one of its ~10 pipeline
-# products (brain metastasis, breast, non-small-cell lung, pancreatic,
-# prostate, glioblastoma) is an oncology diagnostic/therapeutic pair, but
-# the whole product list is one long comma-heavy sentence that the
-# enumeration guard strips as a catalog - confirmed 2026-09-14.
+# guessed.
+# - RAD/Radiopharm Theranostics: every one of its ~10 pipeline products
+#   (brain metastasis, breast, non-small-cell lung, pancreatic, prostate,
+#   glioblastoma) is an oncology diagnostic/therapeutic pair, but the whole
+#   product list is one long comma-heavy sentence that the enumeration
+#   guard strips as a catalog - confirmed 2026-09-14.
+# - ACL/Australian Clinical Labs: a full-service pathology lab (cardiac
+#   testing, gastroenterology, haematology, cervical screening, molecular
+#   cancer services, etc.) that only matched "Animal Health" because
+#   "Veterinary" is part of one of its brand names, "Gribbles Veterinary
+#   Pathology", in a low-comma sentence listing service brands - flagged by
+#   the user 2026-09-14, verified against ACL's real business.
+# - OIL/Optiscan Imaging: sells 4 different imaging devices (InVue for
+#   surgery, InForm for pathology, InVivage for oral imaging, ViewnVivo for
+#   life-science research) - "InSpecta ... for veterinary medicine" is 1 of
+#   the 4, not its primary focus - confirmed 2026-09-14.
+# - NXN/Nexsen: a diversified point-of-care diagnostics platform (human GBS
+#   testing, kidney disease, bovine mastitis, biosecurity pathogens) -
+#   "kidney disease" and "bovine mastitis" are 2 of 4 unrelated product
+#   SKUs, not a primary renal or animal-health focus - confirmed
+#   2026-09-14.
+# - EBO/EBOS Group: one of the largest healthcare/pharma distributors in
+#   Australia/NZ ("operates through the Healthcare and Animal Care
+#   segments", Healthcare listed first) - matches its own Yahoo industry
+#   field, "Medical Distribution", exactly. Animal Care is a real but
+#   secondary segment, not the primary business - confirmed 2026-09-14.
+# The remaining 5 were the "Diversified Healthcare" tickers researched via
+# web search 2026-09-14 at the user's request:
+# - PAR/Paradigm Biopharmaceuticals: flagship (and only clinically advanced)
+#   program is Zilosul for knee osteoarthritis pain, in a global pivotal
+#   Phase 3 trial with topline data due Q1 2027 - the other 5 conditions
+#   named in its summary (mucopolysaccharidosis, chikungunya, heart failure,
+#   two respiratory diseases) are earlier-stage extensions of the same
+#   anti-inflammatory drug, not co-equal programs. Verified via web search.
+# - 1AI/Algorae Pharmaceuticals: 2 of its 3 named candidates are CNS disease
+#   programs (AI-116 for Alzheimer's/dementia, NTCELL in Phase IIb for
+#   Parkinson's - its most clinically advanced program); only AI-168
+#   (hypertension) is cardiovascular. Verified via web search.
+# - ACR/Acrux: a generic transdermal/topical pharmaceutical manufacturer
+#   (confirmed via web search) - its products span dermatology, pain and
+#   women's health via one shared delivery-technology platform, not a
+#   disease focus, so the business-type label fits better than an
+#   indication guess.
+# - ADO/AnteoTech: genuinely two unrelated businesses (confirmed via web
+#   search) - a life-sciences/diagnostics-reagent division (AnteoBind) and
+#   a silicon-anode battery-materials division for EVs/drones, the latter
+#   not healthcare at all. Diagnostics & Pathology covers its
+#   healthcare-relevant half; the battery half has no home in this index.
+# - HXL/Hexima: "does not have significant operations... focuses on
+#   exploration of transactions with third parties" per its own summary -
+#   a dormant shell (previously did real plant-protein therapeutics R&D).
+#   Given its own "Shell Companies" Yahoo industry field.
+# - ENP/Entropy Neurodynamics: lead program (psilocin/psilocybin +
+#   psychotherapy) targets binge eating disorder (mental health) AND
+#   fibromyalgia/IBS/abdominal pain (gastrointestinal/pain) in parallel
+#   trials - genuinely both, but the sentence naming psilocin/psychotherapy
+#   got dropped by _drop_enumerated_sentences purely because of a trailing
+#   "in Australia, Canada, Switzerland, and the United States" geography
+#   clause pushing its comma count over threshold, not because it's a real
+#   catalog list. Flagged by the user 2026-09-14 (spotted the binge-eating/
+#   mental-health angle was missing). NOTE: this trailing-country-list
+#   pattern likely causes the same silent loss of an otherwise-clean
+#   sentence's signal elsewhere in the dataset - a targeted fix (stripping
+#   a trailing geography clause before counting commas, rather than
+#   counting the whole sentence) is a good candidate for a future pass.
 MANUAL_INDICATION_OVERRIDES = {
     "RAD": "Cancer",
+    "ACL": "Diagnostics & Pathology",
+    "EBO": "Medical Distribution",
+    "PAR": "Bone / Orthopaedic",
+    "1AI": "Neurological / CNS",
+    "ACR": "Pharmaceutical Manufacturing",
+    "ADO": "Diagnostics & Pathology",
+    "HXL": "Shell Company",
+    "OIL": "Medical Devices (General)",
+    "NXN": "Diagnostics & Pathology",
+    "ENP": "Mental Health + Gastrointestinal",
 }
 
 
@@ -1026,8 +1115,8 @@ canvas{width:100%;height:100%;display:block}
         <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
         <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
         <option value="higher-high.html">⬆️ Higher-High</option>
-        <option value="materials-index.html">⛏️ Materials Index</option>
-        <option value="healthcare-index.html">🩺 Healthcare Index</option>
+        <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
+        <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
       </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
