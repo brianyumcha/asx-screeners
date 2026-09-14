@@ -1,0 +1,552 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index: Tech Stocks</title>
+<style>
+:root{
+  --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
+  --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
+  --accent:#5a2d82; --accent-ink:#faf5ff;
+  --accent2:#163540; --accent2-ink:#eaf5f7;
+  --good:#33481f; --good-bg:#d5dfc4;
+  --warn:#6b4a0f; --warn-bg:#ecdfc0;
+  --bad:#6b241c; --bad-bg:#e3c6bc;
+  --shadow: 0 1px 2px rgba(20,18,9,.06), 0 4px 16px rgba(20,18,9,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
+    --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
+    --accent:#c9a0f0; --accent-ink:#2a1240;
+    --accent2:#8fc4db; --accent2-ink:#0a1f26;
+    --good:#a8d491; --good-bg:#233022;
+    --warn:#eec27a; --warn-bg:#332a1a;
+    --bad:#f0998a; --bad-bg:#3d2420;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
+  --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
+  --accent:#c9a0f0; --accent-ink:#2a1240;
+  --accent2:#8fc4db; --accent2-ink:#0a1f26;
+  --good:#a8d491; --good-bg:#233022;
+  --warn:#eec27a; --warn-bg:#332a1a;
+  --bad:#f0998a; --bad-bg:#3d2420;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.55}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.wrap{max-width:1560px;margin:0 auto;padding:2rem 1.5rem 4rem}
+h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
+h1{font-size:2.2rem;letter-spacing:-.01em;margin:0 0 .2rem}
+h2{font-size:1.15rem;margin:0 0 .5rem}
+p{color:var(--ink-soft)}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem;flex-wrap:wrap;gap:1rem}
+.topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;flex:none;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
+.themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
+.copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
+.copybtn:hover{border-color:var(--accent)}
+.copybtn.copied{border-color:var(--accent);color:var(--accent)}
+.reportnav{background:var(--surface);border:1.5px solid var(--accent2);color:var(--ink);font-size:.76rem;font-weight:600;padding:.5rem .8rem;border-radius:6px;cursor:pointer;outline:none;height:fit-content}
+.reportnav:hover{border-color:var(--accent)}
+.subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0;max-width:44rem}
+.session{font-size:.78rem;color:var(--ink-faint);margin:.6rem 0 1.1rem;letter-spacing:.03em}
+.notice{background:var(--warn-bg);border:1px solid var(--border);border-radius:4px;
+  padding:.7rem .9rem;font-size:.78rem;color:var(--ink-soft);margin-bottom:1rem;line-height:1.6}
+.source{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);margin-top:.6rem}
+
+.chipsection{margin-top:1.3rem}
+.chipsection h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);font-weight:700;margin-bottom:.6rem}
+.divider{border:none;border-top:1px solid var(--border);margin:1.4rem 0}
+.commchips{display:flex;flex-wrap:wrap;gap:.4rem}
+.commchip{font-size:.78rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+.commchip:hover{border-color:var(--accent);color:var(--accent)}
+.commchip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.commchip .cnt{opacity:.7;font-size:.85em}
+
+.controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:1.1rem 0 .7rem}
+.controls input,.controls select{background:var(--surface);border:1px solid var(--border);color:var(--ink);border-radius:6px;padding:.5rem .7rem;font-size:.85rem}
+.controls input{width:20rem}
+.controls select{width:11rem}
+.controls input:focus,.controls select:focus{outline:none;border-color:var(--accent2)}
+.controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow);max-height:calc(100vh - 2rem)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--surface)}
+thead th{position:sticky;top:0;background:var(--surface2);text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);padding:.55rem .7rem;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none;z-index:2}
+thead th:hover{color:var(--accent)}
+thead th.active{color:var(--accent2)}
+thead th .arrow{font-size:.65rem;margin-left:.15rem}
+tbody td{padding:.4rem .7rem;border-bottom:1px solid var(--border);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--surface2)}
+.tk{font-family:"IBM Plex Mono",monospace;font-weight:600}
+.tk a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
+.tk a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.cname{color:var(--ink-soft);max-width:16rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.diversified{color:var(--ink-faint);font-style:italic}
+.stagechip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;padding:.15rem .5rem;border-radius:99px;white-space:nowrap}
+.stagechip.established{background:var(--good-bg);color:var(--good)}
+.stagechip.scaling{background:color-mix(in srgb, var(--accent) 20%, var(--surface));color:var(--accent)}
+.stagechip.early{background:var(--warn-bg);color:var(--warn)}
+.stagechip.prerevenue{background:var(--surface2);color:var(--ink-faint)}
+.stagechip.unresolved{background:var(--bad-bg);color:var(--bad)}
+.stagechip.notapplicable{background:transparent;color:var(--ink-faint);border:none;padding:.15rem 0}
+.up{color:var(--good)}
+.down{color:var(--bad)}
+.colname-mobile{display:none}
+
+footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint)}
+
+@media (max-width:900px){
+  .cname, .colname-desktop{display:none}
+  /* A compound label ("Cybersecurity + Artificial Intelligence / Machine
+     Learning") has no width cap and inherits tbody td's nowrap otherwise -
+     on a narrow phone that alone forces the whole table into horizontal
+     scroll before showing anything useful. Let just this column wrap
+     instead. */
+  #matTable td:nth-child(3){white-space:normal;max-width:11rem}
+}
+@media (max-width:640px){h1{font-size:1.8rem}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>💻 Index: Tech Stocks</h1>
+      <div class="subtitle">Every ASX Info Tech-sector company — what the software/hardware actually does, and its real revenue scale.</div>
+    </div>
+    <div class="topbar-right">
+      <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
+        <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
+        <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
+        <option value="higher-high.html">⬆️ Higher-High</option>
+        <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
+        <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
+        <option value="energy-index.html">⚡ Index: Energy Stocks</option>
+        <option value="tech-index.html">💻 Index: Tech Stocks</option>
+      </select>
+      <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
+      <button class="copybtn" id="downloadCsvBtn">⬇ Download CSV</button>
+      <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+    </div>
+  </div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt 14 Sep 2026.</div>
+
+  <div class="notice">⚠ Category reads each company's own business description (falls back to its general business type when nothing specific is named); unlike Materials/Healthcare/Energy, Tech has no natural explorer/producer or clinical-trial lifecycle, so Stage here is a data-driven revenue tier instead of an inferred one — almost every ASX tech company already reports some real revenue, just across a huge range.</div>
+
+  <div class="chipsection">
+    <h2>💻 Filter by category</h2>
+    <div class="commchips" id="commchips"></div>
+  </div>
+
+  <div class="chipsection">
+    <h2>💰 Filter by market cap</h2>
+    <div class="commchips" id="mcapchips"></div>
+  </div>
+
+  <div class="chipsection">
+    <h2>📊 Filter by revenue tier</h2>
+    <div class="commchips" id="stagechips"></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="controls">
+    <input type="text" id="filterInput" placeholder="Search ticker, name or category…">
+    <button class="commchip" id="clearFiltersBtn">✕ Clear all filters</button>
+    <span class="hint" id="countLabel"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table id="matTable">
+      <thead>
+        <tr>
+          <th data-key="ticker">Ticker</th>
+          <th data-key="name" class="colname-desktop">Company</th>
+          <th data-key="label">Category</th>
+          <th data-key="stage">Revenue Tier</th>
+          <th data-key="mcap" style="text-align:right">Market Cap</th>
+          <th data-key="price" class="colname-desktop" style="text-align:right">Price</th>
+          <th data-key="change1d" class="colname-desktop" style="text-align:right">1D %</th>
+          <th data-key="high52w" class="colname-desktop" style="text-align:right">52W High</th>
+        </tr>
+      </thead>
+      <tbody id="matBody"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    Category labels come from each company's own business description, keyword-matched and reviewed by hand; a company whose niche doesn't cleanly match a category gets a general business-type label instead of a guess. "Unclassified" means the ticker didn't return live data — often a delisted, suspended or deferred-settlement code, not necessarily a fetch error. Compound category labels mean "also does," not a strict ranking. Revenue tier reads each company's actual reported total revenue, not an independently audited figure.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+["1TT","Thrive Tribe Technologies Limited","Software / Technology","Pre-Revenue (<$1M)",5753286,0.001,0.0,0.005],
+["360","Life360, Inc.","Software / Technology","Established ($50M+)",4776379392,19.54,-1.0,55.87],
+["3DP","Pointerra Limited","Software / Technology","Early Revenue ($1-10M)",22104274,0.027,0.0,0.062],
+["4DS","4DS Memory Limited","Semiconductors","Pre-Revenue (<$1M)",18548088,0.009,0.0,0.015],
+["5GN","5G Networks Limited","Telecommunications / Connectivity + Data Centers / Cloud Infrastructure","Established ($50M+)",15053724,0.057,0.0,0.15],
+["8CO","8common Limited","Fintech / Payments","Early Revenue ($1-10M)",7843321,0.035,0.0,0.047],
+["ACE","Acusensus Limited","IoT / Hardware","Established ($50M+)",205024352,1.2,0.0,2.13],
+["AD8","Audinate Group Limited","IoT / Hardware","Established ($50M+)",200701984,2.38,2.6,7.18],
+["ADS","Adslot Limited","Gaming / Media / Entertainment + Advertising / Marketing Technology","Early Revenue ($1-10M)",5970091,0.001,0.0,0.002],
+["AI1","Adisyn Ltd","Cybersecurity + Data Centers / Cloud Infrastructure","Early Revenue ($1-10M)",141285744,0.12,0.0,0.335],
+["AIM","Ai-Media Technologies Limited","Gaming / Media / Entertainment + Education Technology","Established ($50M+)",49581936,0.235,-2.1,0.95],
+["AMO","Ambertech Limited","Gaming / Media / Entertainment","Established ($50M+)",6582930,0.069,0.0,0.19],
+["APX","Appen Limited","HR / Workforce Software","Established ($50M+)",256440080,0.955,-1.0,1.975],
+["AR9","archTIS Limited","Software / Technology","Scaling ($10-50M)",27576750,0.056,12.0,0.165],
+["ATA","Atturra Limited","Cybersecurity + Artificial Intelligence / Machine Learning","Established ($50M+)",141714784,0.385,0.0,0.85],
+["ATV","ActivePort Group Ltd","IT Services / Consulting","Early Revenue ($1-10M)",17041460,0.013,0.0,0.044],
+["AV1","Adveritas Limited","Advertising / Marketing Technology","Scaling ($10-50M)",64866104,0.07,6.1,0.19],
+["AVA","AVA Risk Group Limited","Cybersecurity","Scaling ($10-50M)",12517261,0.043,0.0,0.092],
+["AXE","Archer Materials Limited","Semiconductors","Early Revenue ($1-10M)",52500272,0.185,2.8,0.505],
+["BCC","Beam Communications Holdings Limited","Telecommunications / Connectivity","Scaling ($10-50M)",3370455,0.039,0.0,0.215],
+["BEO","Beonic Limited","Advertising / Marketing Technology + Education Technology","Scaling ($10-50M)",11602200,0.11,-8.3,0.25],
+["BGE","Bridge SaaS Limited","Software / Technology","Early Revenue ($1-10M)",2598169,0.013,-27.8,0.027],
+["BLG","BluGlass Limited","Semiconductors","Early Revenue ($1-10M)",43147352,0.225,-6.3,0.55],
+["BPG","Black Pearl Group Limited","Software / Technology","Unresolved",22316536,0.23,0.0,1.14],
+["BRN","BrainChip Holdings Ltd","Artificial Intelligence / Machine Learning","Early Revenue ($1-10M)",314048864,0.13,-3.7,0.27],
+["BVS","Bravura Solutions Limited","Fintech / Payments","Established ($50M+)",1362831872,3.04,-0.3,3.63],
+["CAT","Catapult Sports Ltd","Gaming / Media / Entertainment + IoT / Hardware","Established ($50M+)",916329024,2.9,-2.0,7.72],
+["CCR","Credit Clear Limited","IT Services / Consulting","Established ($50M+)",70456664,0.14,-3.4,0.3],
+["CDA","Codan Limited","IoT / Hardware","Established ($50M+)",8151616512,44.71,-0.9,50.9],
+["CF1","Complii FinTech Solutions Ltd","Fintech / Payments","Early Revenue ($1-10M)",13466443,0.022,4.8,0.032],
+["CGO","CPT Global Limited","Telecommunications / Connectivity","Scaling ($10-50M)",3770763,0.09,0.0,0.1],
+["COS","COSOL Limited","Fintech / Payments","Established ($50M+)",34577872,0.19,2.7,0.65],
+["CT1","Constellation Technologies Limited","IoT / Hardware + Artificial Intelligence / Machine Learning","Early Revenue ($1-10M)",2974467,0.002,-20.0,0.006],
+["CXZ","Connexion Mobility Ltd","Logistics / Supply Chain Technology","Scaling ($10-50M)",14640725,0.021,0.0,0.028],
+["CYB","AUCyber Limited","Cybersecurity","Scaling ($10-50M)",8767400,0.042,0.0,0.084],
+["DCC","DigitalX Limited","Fintech / Payments","Early Revenue ($1-10M)",41887740,0.03,0.0,0.072],
+["DDR","Dicker Data Limited","IoT / Hardware + Cybersecurity","Established ($50M+)",2603920640,14.34,1.8,15.65],
+["DTI","","Info Tech","Unresolved",null,null,null,null],
+["DTL","Data#3 Limited","Data Centers / Cloud Infrastructure + IoT / Hardware","Established ($50M+)",1638735360,10.56,0.9,11.81],
+["DTZ","Dotz Nano Limited","Software / Technology","Pre-Revenue (<$1M)",23554384,0.03,11.1,0.1],
+["DUB","Dubber Corporation Limited","Artificial Intelligence / Machine Learning + Telecommunications / Connectivity","Scaling ($10-50M)",21694222,0.008,0.0,0.022],
+["DUG","DUG Technology Ltd","IT Services / Consulting","Established ($50M+)",235194720,1.735,0.0,2.85],
+["DWG","DataWorks Group Limited","Gaming / Media / Entertainment","Early Revenue ($1-10M)",15458150,0.15,0.0,0.235],
+["DXN","DXN Limited","Data Centers / Cloud Infrastructure + Telecommunications / Connectivity","Scaling ($10-50M)",150073680,0.4,-7.0,0.48],
+["EIQ","Echo IQ Limited","Artificial Intelligence / Machine Learning + Healthcare Technology","Pre-Revenue (<$1M)",359324256,0.485,-5.8,1.875],
+["ELS","Elsight Limited","Telecommunications / Connectivity","Scaling ($10-50M)",1015039872,4.56,0.0,8.56],
+["EOL","Energy One Limited","Logistics / Supply Chain Technology","Established ($50M+)",476207040,15.0,-0.2,20.19],
+["EPX","EPX Limited","IoT / Hardware","Scaling ($10-50M)",14700976,0.17,0.0,0.43],
+["ERD","EROAD Limited","Logistics / Supply Chain Technology","Established ($50M+)",148589360,0.79,-6.0,2.63],
+["ESK","Etherstack plc","Telecommunications / Connectivity","Scaling ($10-50M)",78011832,0.55,2.8,0.82],
+["EXT","Excite Technology Services Limited","Cybersecurity","Scaling ($10-50M)",16063989,0.006,20.0,0.014],
+["FCL","FINEOS Corporation Holdings plc","Fintech / Payments + Education Technology","Established ($50M+)",779793920,2.26,-0.4,3.34],
+["FCT","FirstWave Cloud Technology Limited","Cybersecurity","Early Revenue ($1-10M)",14888167,0.007,0.0,0.019],
+["FLX","Felix Group Holdings Ltd","Software / Technology","Scaling ($10-50M)",11343028,0.038,0.0,0.235],
+["FND","Findi Limited","Fintech / Payments","Established ($50M+)",40487492,0.405,0.0,3.56],
+["GTI","Gratifii Limited","Software / Technology","Established ($50M+)",22079730,0.032,6.7,0.11],
+["GTK","Gentrack Group Limited","Enterprise Software / ERP","Established ($50M+)",359868736,3.2,-1.2,9.92],
+["HSN","Hansen Technologies Limited","Enterprise Software / ERP + Gaming / Media / Entertainment","Established ($50M+)",677570240,3.31,0.0,6.5],
+["HTG","Harvest Technology Group Ltd","Telecommunications / Connectivity","Early Revenue ($1-10M)",21357344,0.011,null,0.027],
+["HYD","Hydrix Limited","Healthcare Technology","Early Revenue ($1-10M)",4349248,0.003,0.0,0.035],
+["ICE","icetana Limited","Artificial Intelligence / Machine Learning + Education Technology","Early Revenue ($1-10M)",21258430,0.032,3.2,0.08],
+["ID8","Identitii Limited","Software / Technology","Pre-Revenue (<$1M)",4459122,0.925,2.8,2.4],
+["IFG","InFocus Group Holdings Limited","IT Services / Consulting","Early Revenue ($1-10M)",3634244,0.007,0.0,0.024],
+["IKE","ikeGPS Group Limited","Artificial Intelligence / Machine Learning","Scaling ($10-50M)",178339760,0.915,-0.5,1.15],
+["IOD","IODM Limited","Software / Technology","Early Revenue ($1-10M)",60927304,0.096,0.0,0.2],
+["IOV","Ion Video Ltd","Software / Technology","Pre-Revenue (<$1M)",52775988,0.395,0.0,0.67],
+["IRE","Iress Limited","Fintech / Payments","Established ($50M+)",1055360512,5.65,0.2,10.38],
+["IRI","Integrated Research Limited","Fintech / Payments + Telecommunications / Connectivity","Established ($50M+)",54177544,0.3,5.3,0.415],
+["IS3","I Synergy Group Limited","Advertising / Marketing Technology + Data Centers / Cloud Infrastructure","Pre-Revenue (<$1M)",10103870,0.145,-3.3,0.7],
+["ITS","Infotrust Ltd","Cybersecurity + IoT / Hardware","Established ($50M+)",51259528,0.265,0.0,0.63],
+["JAN","Janison Education Group Limited","Education Technology","Scaling ($10-50M)",36384356,0.14,7.7,0.295],
+["JCS","JCurve Solutions Limited","Enterprise Software / ERP + Telecommunications / Connectivity","Scaling ($10-50M)",12047677,0.034,0.0,0.057],
+["KNO","Knosys Limited","Software / Technology","Scaling ($10-50M)",4755052,0.022,0.0,0.035],
+["KYP","Kinatico Ltd","HR / Workforce Software","Scaling ($10-50M)",54578684,0.125,0.0,0.415],
+["LVE","Love Group Global Ltd","Software / Technology","Early Revenue ($1-10M)",3850746,0.095,0.0,0.135],
+["MAQ","Macquarie Technology Group Limited","Telecommunications / Connectivity + Data Centers / Cloud Infrastructure","Established ($50M+)",1333017472,51.72,-2.4,78.77],
+["MNV","Monvia Limited","Software / Technology","Scaling ($10-50M)",96016304,1.02,0.0,1.16],
+["MP1","Megaport Limited","Telecommunications / Connectivity + Data Centers / Cloud Infrastructure","Established ($50M+)",3971235584,16.35,-8.3,22.98],
+["NNG","Nexion Group Ltd","Info Tech","Unresolved",4046157,0.02,0.0,0.02],
+["NOR","Norwood Systems Limited","Cybersecurity","Early Revenue ($1-10M)",8118711,0.014,0.0,0.048],
+["NOV","Novatti Group Limited","Fintech / Payments + Telecommunications / Connectivity","Scaling ($10-50M)",10597294,0.017,6.3,0.046],
+["NS1","Nodestream Ltd","Telecommunications / Connectivity","Early Revenue ($1-10M)",13901969,0.007,0.0,0.027],
+["NVQ","NoviqTech Limited","Software / Technology","Pre-Revenue (<$1M)",15810705,0.039,0.0,0.059],
+["NVU","Nanoveu Limited","Semiconductors + Gaming / Media / Entertainment","Pre-Revenue (<$1M)",65238888,0.06,1.7,0.11],
+["NVX","NOVONIX Limited","Software / Technology","Early Revenue ($1-10M)",119734144,0.12,14.3,1.015],
+["NXL","Nuix Limited","Software / Technology","Established ($50M+)",611503488,1.78,-2.2,3.35],
+["NXT","NEXTDC Limited","Data Centers / Cloud Infrastructure","Established ($50M+)",8905320448,11.71,-2.9,18.22],
+["OAK","Oakridge International Limited","Healthcare Technology + IoT / Hardware","Early Revenue ($1-10M)",2047862,0.064,3.2,0.145],
+["OCL","Objective Corporation Limited","Education Technology","Established ($50M+)",568899136,5.95,0.7,21.37],
+["ODA","Orcoda Limited","Logistics / Supply Chain Technology","Scaling ($10-50M)",11625881,0.062,0.0,0.155],
+["OLL","OpenLearning Limited","Education Technology","Early Revenue ($1-10M)",10167817,0.013,-7.1,0.054],
+["PFM","Platformo Ltd","Software / Technology","Pre-Revenue (<$1M)",1423624,0.015,0.0,0.053],
+["PHX","Pharmx Technologies Limited","Healthcare Technology","Early Revenue ($1-10M)",58618440,0.088,1.1,0.2],
+["PIL","","Info Tech","Unresolved",null,null,null,null],
+["PKY","Pathkey.AI Ltd","Semiconductors","Pre-Revenue (<$1M)",40547188,0.03,-6.3,0.075],
+["PPS","Praemium Limited","Fintech / Payments","Established ($50M+)",282734016,0.58,0.0,0.945],
+["PRO","Prophecy International Holdings Limited","Software / Technology","Scaling ($10-50M)",5881094,0.073,-2.7,0.255],
+["QOR","","Info Tech","Unresolved",null,null,null,null],
+["RCL","ReadCloud Limited","Education Technology + Logistics / Supply Chain Technology","Scaling ($10-50M)",7680988,0.05,-16.7,0.125],
+["RDY","ReadyTech Holdings Limited","Education Technology + HR / Workforce Software","Established ($50M+)",180403616,1.46,-2.7,2.72],
+["RKN","Reckon Limited","Fintech / Payments","Established ($50M+)",49849724,0.44,-2.2,0.65],
+["RKT","RocketDNA Ltd.","IoT / Hardware","Early Revenue ($1-10M)",27171660,0.022,-4.3,0.037],
+["ROC","RocketBoots Limited","Artificial Intelligence / Machine Learning","Pre-Revenue (<$1M)",41092672,0.2,-7.0,0.49],
+["RUL","","Info Tech","Unresolved",null,null,null,null],
+["RWL","Rubicon Water Limited","Software / Technology","Established ($50M+)",47645984,0.195,18.2,0.31],
+["SCX","SCX.ai Holdings Limited","IT Services / Consulting","Pre-Revenue (<$1M)",61280484,0.245,14.0,0.295],
+["SDR","SiteMinder Limited","Fintech / Payments","Established ($50M+)",761498304,2.69,-0.7,7.96],
+["SEN","Senetas Corporation Limited","Cybersecurity + Gaming / Media / Entertainment","Scaling ($10-50M)",40448832,2.44,-1.6,3.59],
+["SIS","Simble Solutions Limited","Logistics / Supply Chain Technology","Early Revenue ($1-10M)",11091652,0.005,0.0,0.009],
+["SKO","Serko Limited","Software / Technology","Established ($50M+)",155151312,1.23,0.0,2.72],
+["SMN","Structural Monitoring Systems Plc","IoT / Hardware","Scaling ($10-50M)",60686644,0.39,0.0,0.555],
+["SN8","","Info Tech","Unresolved",null,null,null,null],
+["SNS","SenSen Networks Limited","Artificial Intelligence / Machine Learning","Scaling ($10-50M)",26557836,0.032,0.0,0.13],
+["SOC","SOCO Corporation Ltd","Enterprise Software / ERP + Artificial Intelligence / Machine Learning","Scaling ($10-50M)",5574204,0.04,0.0,0.069],
+["SP3","Spectur Limited","Cybersecurity","Early Revenue ($1-10M)",3327382,0.008,0.0,0.036],
+["SPA","Spacetalk Limited","IoT / Hardware","Scaling ($10-50M)",23709690,0.078,0.0,0.195],
+["SPX","Spenda Limited","Fintech / Payments + Logistics / Supply Chain Technology","Early Revenue ($1-10M)",2416302,0.002,-20.0,0.12],
+["STH","StepChange Holdings Limited","Enterprise Software / ERP + Cybersecurity","Established ($50M+)",20546792,0.125,0.0,0.175],
+["TAL","Talius Group Limited","IoT / Hardware + Artificial Intelligence / Machine Learning","Early Revenue ($1-10M)",19967794,0.058,0.0,0.095],
+["TNE","Technology One Limited","Enterprise Software / ERP + HR / Workforce Software","Established ($50M+)",9254709248,28.27,0.6,39.99],
+["TZL","TZ Limited","Data Centers / Cloud Infrastructure + Logistics / Supply Chain Technology","Early Revenue ($1-10M)",11933081,0.033,0.0,0.051],
+["UBN","Urbanise.com Limited","HR / Workforce Software + Education Technology","Scaling ($10-50M)",52649280,0.665,0.0,0.785],
+["VGL","Vista Group International Limited","Gaming / Media / Entertainment + Advertising / Marketing Technology","Established ($50M+)",536006688,2.24,3.9,2.8],
+["VIG","Victor Group Holdings Limited","Education Technology","Scaling ($10-50M)",30752488,0.041,0.0,0.062],
+["VNL","Vinyl Group Ltd","Gaming / Media / Entertainment","Scaling ($10-50M)",65259748,0.044,4.8,0.105],
+["VR1","Vection Technologies Limited","Artificial Intelligence / Machine Learning + Education Technology","Scaling ($10-50M)",44903704,0.019,5.6,0.08],
+["W2V","Way 2 Vat Ltd","Fintech / Payments","Early Revenue ($1-10M)",12007283,0.046,9.5,0.15],
+["WBT","Weebit Nano Limited","IoT / Hardware + Artificial Intelligence / Machine Learning","Scaling ($10-50M)",765565568,3.18,-3.3,8.89],
+["WHK","WhiteHawk Limited","Cybersecurity + Logistics / Supply Chain Technology","Early Revenue ($1-10M)",3446985,0.003,-14.3,0.013],
+["WRK","Wrkr Ltd","Fintech / Payments","Scaling ($10-50M)",141527088,0.065,-1.5,0.175],
+["WTC","WiseTech Global Limited","Logistics / Supply Chain Technology","Established ($50M+)",10909670400,32.44,-0.8,99.53],
+["X2M","X2M Connect Limited","Artificial Intelligence / Machine Learning","Early Revenue ($1-10M)",15503446,0.008,0.0,0.017],
+["XF1","Xref Limited","HR / Workforce Software","Scaling ($10-50M)",12545116,0.057,-3.4,0.185],
+["XPN","XPON Technologies Group Limited","Gaming / Media / Entertainment + Education Technology","Scaling ($10-50M)",6068276,0.012,0.0,0.026],
+["XRO","Xero Limited","Fintech / Payments","Established ($50M+)",11947621376,67.63,0.9,166.0],
+["YOJ","Yojee Limited","Logistics / Supply Chain Technology","Pre-Revenue (<$1M)",95725128,0.225,-2.2,0.54],
+["ZMM","Zimi Limited","Software / Technology","Early Revenue ($1-10M)",4599348,0.004,0.0,0.017]
+];
+
+// Computed from DATA itself (not hand-maintained) so counts never drift out
+// of sync with the actual daily rebuild - a compound label like
+// "Cybersecurity + Artificial Intelligence / Machine Learning" contributes
+// to both individually. The no-live-data bucket ("Info Tech" internally)
+// is pulled out and always sorted last since it's not a real category,
+// just an unresolved ticker.
+const NO_DATA_LABEL = 'Unclassified';
+const categoryCounts = {};
+let noDataCount = 0;
+DATA.forEach(([tk, name, label]) => {
+  const trimmed = label.trim();
+  if (trimmed === 'Info Tech') { noDataCount++; return; }
+  trimmed.split('+').map(s => s.trim()).forEach(part => {
+    categoryCounts[part] = (categoryCounts[part] || 0) + 1;
+  });
+});
+const TOP_CATEGORIES = Object.entries(categoryCounts).sort((a, b) => a[0].localeCompare(b[0]));
+if (noDataCount > 0) TOP_CATEGORIES.push([NO_DATA_LABEL, noDataCount]);
+
+const commchips = document.getElementById('commchips');
+commchips.innerHTML = TOP_CATEGORIES.map(([label,count]) => `<button class="commchip" data-metal="${label}"><span>${label}</span><span class="cnt">${count}</span></button>`).join('');
+
+const activeMetals = new Set();
+
+// Market cap: fixed tiers (not computed from the data like categories -
+// the boundaries are meaningful thresholds, not a data-driven vocabulary).
+const MCAP_TIERS = [
+  ['Micro (<$10M)', v => v != null && v < 10e6],
+  ['Small ($10-100M)', v => v != null && v >= 10e6 && v < 100e6],
+  ['Mid ($100M-1B)', v => v != null && v >= 100e6 && v < 1e9],
+  ['Large ($1B+)', v => v != null && v >= 1e9],
+];
+const mcapchips = document.getElementById('mcapchips');
+mcapchips.innerHTML = MCAP_TIERS.map(([label]) => `<button class="commchip" data-mcaptier="${label}"><span>${label}</span></button>`).join('');
+let activeMcapTier = '';
+
+const STAGE_ORDER = ['Established ($50M+)', 'Scaling ($10-50M)', 'Early Revenue ($1-10M)', 'Pre-Revenue (<$1M)', 'Unresolved'];
+const presentStages = new Set(DATA.map(([,,,stage]) => stage));
+const stagechips = document.getElementById('stagechips');
+stagechips.innerHTML = STAGE_ORDER.filter(s => presentStages.has(s)).map(stage => `<button class="commchip" data-stage="${stage}"><span>${stageIcon(stage)}${stage}</span></button>`).join('');
+let activeStage = '';
+function fmtMcap(n){
+  if(n===undefined || n===null) return '—';
+  if(n>=1e9) return '$'+(n/1e9).toFixed(2)+'B';
+  if(n>=1e6) return '$'+(n/1e6).toFixed(1)+'M';
+  if(n>=1e3) return '$'+(n/1e3).toFixed(0)+'K';
+  return '$'+n;
+}
+function median(arr){
+  if(!arr.length) return null;
+  const s = [...arr].sort((a,b)=>a-b);
+  const mid = Math.floor(s.length/2);
+  return s.length%2 ? s[mid] : (s[mid-1]+s[mid])/2;
+}
+function stageClass(stage){
+  if(stage==='Established ($50M+)') return 'established';
+  if(stage==='Scaling ($10-50M)') return 'scaling';
+  if(stage==='Early Revenue ($1-10M)') return 'early';
+  if(stage==='Pre-Revenue (<$1M)') return 'prerevenue';
+  return 'unresolved';
+}
+function stageIcon(stage){
+  if(stage==='Established ($50M+)') return '🏆 ';
+  if(stage==='Scaling ($10-50M)') return '📈 ';
+  if(stage==='Early Revenue ($1-10M)') return '🌱 ';
+  if(stage==='Pre-Revenue (<$1M)') return '🥚 ';
+  return '❔ ';
+}
+function fmtPrice(n){
+  if(n===undefined || n===null) return '—';
+  return '$' + n.toFixed(n < 1 ? 3 : 2);
+}
+function fmtPct(n){
+  if(n===undefined || n===null) return '—';
+  const sign = n>0 ? '+' : '';
+  return sign + n.toFixed(1) + '%';
+}
+function pctClass(n){
+  if(n===undefined || n===null) return '';
+  return n > 0 ? 'up' : (n < 0 ? 'down' : '');
+}
+
+let sortKey = 'ticker', sortDir = 1;
+let currentRows = [];
+function render(){
+  const q = document.getElementById('filterInput').value.trim().toUpperCase();
+  let rows = DATA.filter(([tk,name,label,stage,mcap,price,change1d,high52w]) => {
+    const textMatch = tk.toUpperCase().includes(q) || (name||'').toUpperCase().includes(q) || label.toUpperCase().includes(q);
+    if(!textMatch) return false;
+    if(activeMetals.size){
+      const rowMetals = label.trim()==='Info Tech' ? [NO_DATA_LABEL] : label.split('+').map(s=>s.trim());
+      if(!rowMetals.some(m => activeMetals.has(m))) return false;
+    }
+    if(activeMcapTier){
+      const tier = MCAP_TIERS.find(([l]) => l===activeMcapTier);
+      if(!tier || !tier[1](mcap)) return false;
+    }
+    if(activeStage && stage !== activeStage) return false;
+    return true;
+  });
+  rows.sort((a,b) => {
+    let av, bv;
+    if(sortKey==='ticker'){ av=a[0]; bv=b[0]; }
+    else if(sortKey==='name'){ av=a[1]||''; bv=b[1]||''; }
+    else if(sortKey==='label'){ av=a[2]; bv=b[2]; }
+    else if(sortKey==='stage'){ av=a[3]; bv=b[3]; }
+    else if(sortKey==='mcap'){ av = a[4] ?? -1; bv = b[4] ?? -1; }
+    else if(sortKey==='price'){ av = a[5] ?? -1; bv = b[5] ?? -1; }
+    else if(sortKey==='change1d'){ av = a[6] ?? -999; bv = b[6] ?? -999; }
+    else if(sortKey==='high52w'){ av = a[7] ?? -1; bv = b[7] ?? -1; }
+    if(av<bv) return -1*sortDir;
+    if(av>bv) return 1*sortDir;
+    return 0;
+  });
+  currentRows = rows;
+  document.getElementById('matBody').innerHTML = rows.map(([tk,name,label,stage,mcap,price,change1d,high52w]) => {
+    const cls = label.trim()==='Info Tech' ? 'diversified' : '';
+    const display = label.trim()==='Info Tech' ? NO_DATA_LABEL : label;
+    const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
+    return `<tr>
+      <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
+      <td class="cname colname-desktop">${name || '—'}</td>
+      <td class="${cls}">${display}</td>
+      <td><span class="stagechip ${stageClass(stage)}">${stageIcon(stage)}${stage}</span></td>
+      <td class="mono" style="text-align:right">${fmtMcap(mcap)}</td>
+      <td class="mono colname-desktop" style="text-align:right">${fmtPrice(price)}</td>
+      <td class="mono colname-desktop ${pctClass(change1d)}" style="text-align:right">${fmtPct(change1d)}</td>
+      <td class="mono colname-desktop" style="text-align:right">${fmtPrice(high52w)}</td>
+    </tr>`;
+  }).join('');
+  const caps = rows.map(r=>r[4]).filter(v=>v!=null && v>0);
+  const med = median(caps);
+  document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} tickers${med!==null ? ' · median cap '+fmtMcap(med) : ''}`;
+  document.querySelectorAll('#commchips .commchip').forEach(c => c.classList.toggle('active', activeMetals.has(c.dataset.metal)));
+  document.querySelectorAll('#mcapchips .commchip').forEach(c => c.classList.toggle('active', c.dataset.mcaptier===activeMcapTier));
+  document.querySelectorAll('#stagechips .commchip').forEach(c => c.classList.toggle('active', c.dataset.stage===activeStage));
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.toggle('active', th.dataset.key===sortKey);
+    th.querySelector('.arrow')?.remove();
+    if(th.dataset.key===sortKey) th.insertAdjacentHTML('beforeend', `<span class="arrow">${sortDir>0?'▲':'▼'}</span>`);
+  });
+}
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    if(sortKey===th.dataset.key){ sortDir*=-1; } else { sortKey=th.dataset.key; sortDir = th.dataset.key==='mcap' ? -1 : 1; }
+    render();
+  });
+});
+commchips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  const metal = btn.dataset.metal;
+  if(activeMetals.has(metal)) activeMetals.delete(metal); else activeMetals.add(metal);
+  render();
+});
+mcapchips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  activeMcapTier = (activeMcapTier === btn.dataset.mcaptier) ? '' : btn.dataset.mcaptier;
+  render();
+});
+stagechips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  activeStage = (activeStage === btn.dataset.stage) ? '' : btn.dataset.stage;
+  render();
+});
+document.getElementById('filterInput').addEventListener('input', render);
+document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+  activeMetals.clear();
+  activeMcapTier = '';
+  activeStage = '';
+  document.getElementById('filterInput').value = '';
+  render();
+});
+render();
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const text = currentRows.map(r => `ASX:${r[0]}`).join(',');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.classList.add('copied');
+    btn.textContent = `✓ Copied ${currentRows.length} tickers`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy TradingView list'; }, 1800);
+  });
+});
+document.getElementById('downloadCsvBtn').addEventListener('click', async () => {
+  const esc = v => /[",\n]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v;
+  const rows = [['Ticker','Company','Category','RevenueTier','MarketCap','Price','Change1D','FiftyTwoWeekHigh'], ...currentRows.map(r => [r[0], r[1]||'', r[2].trim()==='Info Tech'?NO_DATA_LABEL:r[2], r[3], r[4] ?? '', r[5] ?? '', r[6] ?? '', r[7] ?? ''])];
+  const csv = rows.map(r => r.map(String).map(esc).join(',')).join('\n');
+  let usedCapability = false;
+  if(typeof window.claude !== 'undefined' && window.claude.use){
+    try{
+      const downloads = await window.claude.use('downloads');
+      if(downloads){ await downloads.save({filename:'tech-index.csv', data: csv}); usedCapability = true; }
+    }catch(e){}
+  }
+  if(!usedCapability){
+    const blob = new Blob([csv], {type:'text/csv'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'tech-index.csv'; a.click();
+    URL.revokeObjectURL(url);
+  }
+});
+
+document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'tech-index.html';
+
+const themeBtn = document.getElementById('themeBtn');
+function applyTheme(t){
+  if(t){ document.documentElement.setAttribute('data-theme', t); } else { document.documentElement.removeAttribute('data-theme'); }
+  themeBtn.textContent = (t==='dark') ? '☀️' : '🌙';
+}
+try{
+  const saved = localStorage.getItem('techindex-theme');
+  if(saved) applyTheme(saved);
+}catch(e){}
+themeBtn.addEventListener('click', ()=>{
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current==='dark' ? 'light' : 'dark';
+  applyTheme(next);
+  try{ localStorage.setItem('techindex-theme', next); }catch(e){}
+});
+</script>

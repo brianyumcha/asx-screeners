@@ -876,6 +876,122 @@ def classify_energy_fuels(universe):
         universe[t]["industry"] = cache.get(t, "Energy")
 
 
+# ─── TECH CATEGORY CLASSIFICATION ──────────────────────────────────────────
+# Same problem as Materials/Healthcare: GICS gives Info Tech only 3 coarse
+# Industry values (Software & Services, Semiconductors & Semiconductor
+# Equipment, Technology Hardware & Equipment), so every ticker's "industry"
+# column would otherwise say one of 3 things for all ~130 of them.
+# Keyword-match each company's Yahoo business summary against what the
+# software/tech actually DOES instead.
+TECH_CATEGORY_CACHE_PATH = os.path.join(SCRIPT_DIR, "tech_category_cache.json")
+
+# CML/Connected Minerals is a genuine uranium/lead/copper/gold explorer
+# with a stale "Info Tech" sector tag - same GICS-staleness failure mode
+# as CXU/DEV were nearly wrongly excluded from (Energy) and IVG/NC6
+# (Healthcare). Confirmed 2026-09-14.
+EXCLUDED_TECH_TICKERS = {"CML"}
+
+# Ordered specific-before-generic. "Artificial intelligence"/"machine
+# learning" require the full phrase rather than bare "AI" - a 2-letter
+# token is too prone to incidental matches (company names, other
+# acronyms) to trust bare.
+TECH_CATEGORY_KEYWORDS = [
+    ("Cybersecurity", ["cyber ?security", "cyber risk", "network security", "information security"], False),
+    ("Artificial Intelligence / Machine Learning",
+     ["artificial intelligence", "machine learning", "computer vision"], False),
+    ("Semiconductors", ["semiconductor"], False),
+    ("Data Centers / Cloud Infrastructure",
+     ["data center", "data centre", "cloud computing", "cloud infrastructure"], False),
+    ("Telecommunications / Connectivity",
+     ["telecommunications?", "wireless technology", "satellite", "network interconnection"], False),
+    ("Fintech / Payments", ["fintech", "payments?", "digital asset", "cryptocurrency",
+                            "wealth management", "financial services industry"], False),
+    ("Enterprise Software / ERP",
+     ["enterprise resource planning", r"\berp\b", "enterprise (?:business )?software", "billing and customer"], False),
+    ("HR / Workforce Software", ["workforce management", "human resources", "recruitment"], False),
+    ("Education Technology", ["education", "learning platform", "assessment software"], False),
+    ("Healthcare Technology", ["healthcare technology", "medical technology", "cardiac diagnostics"], False),
+    ("Advertising / Marketing Technology", ["advertising", "marketing solutions", "affiliate marketing"], False),
+    ("Logistics / Supply Chain Technology", ["logistics", "supply chain", "freight",
+                                              "fleet management", "telematics", "transport industry"], False),
+    ("Gaming / Media / Entertainment", ["gaming", "entertainment", r"\bmedia\b"], False),
+    ("IoT / Hardware", ["internet of things", r"\biot\b", "wearables?"], False),
+]
+
+# Last-resort fallback off Yahoo's own "industry" field when no category
+# keyword matches at all.
+TECH_BUSINESS_TYPE_MAP = {
+    "Information Technology Services": "IT Services / Consulting",
+    "Electronics & Computer Distribution": "Hardware Distribution",
+    "Computer Hardware": "IoT / Hardware",
+    "Electronic Components": "IoT / Hardware",
+    "Communication Equipment": "Telecommunications / Connectivity",
+    "Scientific & Technical Instruments": "IoT / Hardware",
+    "Security & Protection Services": "Cybersecurity",
+    "Health Information Services": "Healthcare Technology",
+}
+
+
+def classify_tech_category(summary, industry=None):
+    """Keyword-matches a Yahoo longBusinessSummary against
+    TECH_CATEGORY_KEYWORDS, returning up to 2 earliest-mentioned matches
+    joined by " + ". Falls back to a business-type label off Yahoo's
+    "industry" field (TECH_BUSINESS_TYPE_MAP) when no category is named,
+    and to "Software / Technology" as a last resort. Returns None only
+    when summary is empty/missing."""
+    text = summary or ""
+    if not text:
+        return None
+
+    earliest_pos = {}
+    for label, patterns, needs_context in TECH_CATEGORY_KEYWORDS:
+        for pat in patterns:
+            m = re.search(r"\b" + pat + r"\b", text, re.IGNORECASE)
+            if m and (label not in earliest_pos or m.start() < earliest_pos[label]):
+                earliest_pos[label] = m.start()
+
+    if earliest_pos:
+        top2 = sorted(earliest_pos, key=earliest_pos.get)[:2]
+        return " + ".join(top2)
+
+    return TECH_BUSINESS_TYPE_MAP.get(industry, "Software / Technology")
+
+
+def classify_tech_categories(universe):
+    """Mutates `universe` in place: for every Info Tech-sector ticker,
+    replaces the generic "industry" value with its primary category (or
+    business-type fallback). Only fetches Yahoo's .info for tickers not
+    already in the on-disk cache."""
+    try:
+        with open(TECH_CATEGORY_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    tech_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Info Tech" and len(t) == 3 and t not in EXCLUDED_TECH_TICKERS
+    ]
+    new_tickers = [t for t in tech_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Tech ticker(s) by category...")
+        for t in new_tickers:
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                summary = info.get("longBusinessSummary", "")
+                industry = info.get("industry")
+                cache[t] = classify_tech_category(summary, industry) or "Info Tech"
+            except Exception:
+                cache[t] = "Info Tech"
+        with open(TECH_CATEGORY_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in tech_tickers:
+        universe[t]["industry"] = cache.get(t, "Info Tech")
+
+
 # ─── INDICATORS ───────────────────────────────────────────────────────────────
 
 def calc_obv_series(closes, volumes):
@@ -1317,6 +1433,7 @@ canvas{width:100%;height:100%;display:block}
         <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
         <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
         <option value="energy-index.html">⚡ Index: Energy Stocks</option>
+        <option value="tech-index.html">💻 Index: Tech Stocks</option>
       </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
@@ -1814,6 +1931,7 @@ def main():
     classify_materials_commodities(universe)
     classify_healthcare_indications(universe)
     classify_energy_fuels(universe)
+    classify_tech_categories(universe)
 
     results, usable, fresh_today = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])

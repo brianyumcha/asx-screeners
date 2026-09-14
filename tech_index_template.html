@@ -1,11 +1,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Index: Energy Stocks</title>
+<title>Index: Tech Stocks</title>
 <style>
 :root{
   --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
   --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
-  --accent:#8a3a12; --accent-ink:#fdf6f0;
+  --accent:#5a2d82; --accent-ink:#faf5ff;
   --accent2:#163540; --accent2-ink:#eaf5f7;
   --good:#33481f; --good-bg:#d5dfc4;
   --warn:#6b4a0f; --warn-bg:#ecdfc0;
@@ -16,7 +16,7 @@
   :root:not([data-theme="light"]){
     --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
     --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
-    --accent:#f0a06a; --accent-ink:#2b1206;
+    --accent:#c9a0f0; --accent-ink:#2a1240;
     --accent2:#8fc4db; --accent2-ink:#0a1f26;
     --good:#a8d491; --good-bg:#233022;
     --warn:#eec27a; --warn-bg:#332a1a;
@@ -27,7 +27,7 @@
 :root[data-theme="dark"]{
   --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
   --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
-  --accent:#f0a06a; --accent-ink:#2b1206;
+  --accent:#c9a0f0; --accent-ink:#2a1240;
   --accent2:#8fc4db; --accent2-ink:#0a1f26;
   --good:#a8d491; --good-bg:#233022;
   --warn:#eec27a; --warn-bg:#332a1a;
@@ -89,10 +89,11 @@ tbody tr:hover{background:var(--surface2)}
 .cname{color:var(--ink-soft);max-width:16rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .diversified{color:var(--ink-faint);font-style:italic}
 .stagechip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;padding:.15rem .5rem;border-radius:99px;white-space:nowrap}
-.stagechip.producer{background:var(--good-bg);color:var(--good)}
-.stagechip.explorer{background:var(--warn-bg);color:var(--ink-soft)}
+.stagechip.established{background:var(--good-bg);color:var(--good)}
+.stagechip.scaling{background:color-mix(in srgb, var(--accent) 20%, var(--surface));color:var(--accent)}
+.stagechip.early{background:var(--warn-bg);color:var(--warn)}
+.stagechip.prerevenue{background:var(--surface2);color:var(--ink-faint)}
 .stagechip.unresolved{background:var(--bad-bg);color:var(--bad)}
-.stagechip.careandmaintenance{background:var(--surface2);color:var(--ink-faint)}
 .stagechip.notapplicable{background:transparent;color:var(--ink-faint);border:none;padding:.15rem 0}
 .up{color:var(--good)}
 .down{color:var(--bad)}
@@ -102,10 +103,11 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 
 @media (max-width:900px){
   .cname, .colname-desktop{display:none}
-  /* A compound label ("Oil & Gas + Coal Seam Gas / CBM") has no width cap
-     and inherits tbody td's nowrap otherwise - on a narrow phone that
-     alone forces the whole table into horizontal scroll before showing
-     anything useful. Let just this column wrap instead. */
+  /* A compound label ("Cybersecurity + Artificial Intelligence / Machine
+     Learning") has no width cap and inherits tbody td's nowrap otherwise -
+     on a narrow phone that alone forces the whole table into horizontal
+     scroll before showing anything useful. Let just this column wrap
+     instead. */
   #matTable td:nth-child(3){white-space:normal;max-width:11rem}
 }
 @media (max-width:640px){h1{font-size:1.8rem}}
@@ -115,8 +117,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <div class="wrap">
   <div class="topbar">
     <div>
-      <h1>⚡ Index: Energy Stocks</h1>
-      <div class="subtitle">Every ASX Energy-sector company — what fuel it's actually in, and whether it's producing yet.</div>
+      <h1>💻 Index: Tech Stocks</h1>
+      <div class="subtitle">Every ASX Info Tech-sector company — what the software/hardware actually does, and its real revenue scale.</div>
     </div>
     <div class="topbar-right">
       <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
@@ -135,10 +137,10 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   </div>
   <div class="session">Rebuilt daily after ASX close — last rebuilt <<<BUILD_DATE>>>.</div>
 
-  <div class="notice">⚠ Fuel type reads each company's own business description (falls back to its general business type when no specific fuel is named); Stage reads the same producer-language/revenue signal Materials Index uses — a company-reported read, not an independently verified one.</div>
+  <div class="notice">⚠ Category reads each company's own business description (falls back to its general business type when nothing specific is named); unlike Materials/Healthcare/Energy, Tech has no natural explorer/producer or clinical-trial lifecycle, so Stage here is a data-driven revenue tier instead of an inferred one — almost every ASX tech company already reports some real revenue, just across a huge range.</div>
 
   <div class="chipsection">
-    <h2>⚡ Filter by fuel type / category</h2>
+    <h2>💻 Filter by category</h2>
     <div class="commchips" id="commchips"></div>
   </div>
 
@@ -148,14 +150,14 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   </div>
 
   <div class="chipsection">
-    <h2>🏗️ Filter by stage</h2>
+    <h2>📊 Filter by revenue tier</h2>
     <div class="commchips" id="stagechips"></div>
   </div>
 
   <hr class="divider">
 
   <div class="controls">
-    <input type="text" id="filterInput" placeholder="Search ticker, name or fuel type…">
+    <input type="text" id="filterInput" placeholder="Search ticker, name or category…">
     <button class="commchip" id="clearFiltersBtn">✕ Clear all filters</button>
     <span class="hint" id="countLabel"></span>
   </div>
@@ -166,8 +168,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
         <tr>
           <th data-key="ticker">Ticker</th>
           <th data-key="name" class="colname-desktop">Company</th>
-          <th data-key="label">Fuel Type</th>
-          <th data-key="stage">Stage</th>
+          <th data-key="label">Category</th>
+          <th data-key="stage">Revenue Tier</th>
           <th data-key="mcap" style="text-align:right">Market Cap</th>
           <th data-key="price" class="colname-desktop" style="text-align:right">Price</th>
           <th data-key="change1d" class="colname-desktop" style="text-align:right">1D %</th>
@@ -179,7 +181,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   </div>
 
   <footer>
-    Fuel-type labels come from each company's own business description, keyword-matched and reviewed by hand; a company that doesn't name a specific fuel (a downstream refiner/marketer, an oilfield-services provider) gets a business-type label instead of a guess. "Unclassified" means the ticker didn't return live data — often a delisted, suspended or deferred-settlement code, not necessarily a fetch error. Compound fuel labels mean "also targets," not a strict ranking.
+    Category labels come from each company's own business description, keyword-matched and reviewed by hand; a company whose niche doesn't cleanly match a category gets a general business-type label instead of a guess. "Unclassified" means the ticker didn't return live data — often a delisted, suspended or deferred-settlement code, not necessarily a fetch error. Compound category labels mean "also does," not a strict ranking. Revenue tier reads each company's actual reported total revenue, not an independently audited figure.
   </footer>
 </div>
 
@@ -189,29 +191,30 @@ const DATA = [
 ];
 
 // Computed from DATA itself (not hand-maintained) so counts never drift out
-// of sync with the actual daily rebuild - a compound label like "Oil & Gas
-// + Hydrogen" contributes to both individually. The no-live-data bucket
-// ("Energy" internally) is pulled out and always sorted last since it's
-// not a real fuel type, just an unresolved ticker.
+// of sync with the actual daily rebuild - a compound label like
+// "Cybersecurity + Artificial Intelligence / Machine Learning" contributes
+// to both individually. The no-live-data bucket ("Info Tech" internally)
+// is pulled out and always sorted last since it's not a real category,
+// just an unresolved ticker.
 const NO_DATA_LABEL = 'Unclassified';
-const fuelCounts = {};
+const categoryCounts = {};
 let noDataCount = 0;
 DATA.forEach(([tk, name, label]) => {
   const trimmed = label.trim();
-  if (trimmed === 'Energy') { noDataCount++; return; }
+  if (trimmed === 'Info Tech') { noDataCount++; return; }
   trimmed.split('+').map(s => s.trim()).forEach(part => {
-    fuelCounts[part] = (fuelCounts[part] || 0) + 1;
+    categoryCounts[part] = (categoryCounts[part] || 0) + 1;
   });
 });
-const TOP_FUELS = Object.entries(fuelCounts).sort((a, b) => a[0].localeCompare(b[0]));
-if (noDataCount > 0) TOP_FUELS.push([NO_DATA_LABEL, noDataCount]);
+const TOP_CATEGORIES = Object.entries(categoryCounts).sort((a, b) => a[0].localeCompare(b[0]));
+if (noDataCount > 0) TOP_CATEGORIES.push([NO_DATA_LABEL, noDataCount]);
 
 const commchips = document.getElementById('commchips');
-commchips.innerHTML = TOP_FUELS.map(([label,count]) => `<button class="commchip" data-metal="${label}"><span>${label}</span><span class="cnt">${count}</span></button>`).join('');
+commchips.innerHTML = TOP_CATEGORIES.map(([label,count]) => `<button class="commchip" data-metal="${label}"><span>${label}</span><span class="cnt">${count}</span></button>`).join('');
 
 const activeMetals = new Set();
 
-// Market cap: fixed tiers (not computed from the data like fuel types -
+// Market cap: fixed tiers (not computed from the data like categories -
 // the boundaries are meaningful thresholds, not a data-driven vocabulary).
 const MCAP_TIERS = [
   ['Micro (<$10M)', v => v != null && v < 10e6],
@@ -223,7 +226,7 @@ const mcapchips = document.getElementById('mcapchips');
 mcapchips.innerHTML = MCAP_TIERS.map(([label]) => `<button class="commchip" data-mcaptier="${label}"><span>${label}</span></button>`).join('');
 let activeMcapTier = '';
 
-const STAGE_ORDER = ['Producer', 'Explorer / Developer', 'Care & Maintenance', 'Unresolved', '—'];
+const STAGE_ORDER = ['Established ($50M+)', 'Scaling ($10-50M)', 'Early Revenue ($1-10M)', 'Pre-Revenue (<$1M)', 'Unresolved'];
 const presentStages = new Set(DATA.map(([,,,stage]) => stage));
 const stagechips = document.getElementById('stagechips');
 stagechips.innerHTML = STAGE_ORDER.filter(s => presentStages.has(s)).map(stage => `<button class="commchip" data-stage="${stage}"><span>${stageIcon(stage)}${stage}</span></button>`).join('');
@@ -242,17 +245,17 @@ function median(arr){
   return s.length%2 ? s[mid] : (s[mid-1]+s[mid])/2;
 }
 function stageClass(stage){
-  if(stage==='Producer') return 'producer';
-  if(stage==='Explorer / Developer') return 'explorer';
-  if(stage==='Care & Maintenance') return 'careandmaintenance';
-  if(stage==='—') return 'notapplicable';
+  if(stage==='Established ($50M+)') return 'established';
+  if(stage==='Scaling ($10-50M)') return 'scaling';
+  if(stage==='Early Revenue ($1-10M)') return 'early';
+  if(stage==='Pre-Revenue (<$1M)') return 'prerevenue';
   return 'unresolved';
 }
 function stageIcon(stage){
-  if(stage==='Producer') return '🏭 ';
-  if(stage==='Explorer / Developer') return '🔍 ';
-  if(stage==='Care & Maintenance') return '🧰 ';
-  if(stage==='—') return '';
+  if(stage==='Established ($50M+)') return '🏆 ';
+  if(stage==='Scaling ($10-50M)') return '📈 ';
+  if(stage==='Early Revenue ($1-10M)') return '🌱 ';
+  if(stage==='Pre-Revenue (<$1M)') return '🥚 ';
   return '❔ ';
 }
 function fmtPrice(n){
@@ -277,7 +280,7 @@ function render(){
     const textMatch = tk.toUpperCase().includes(q) || (name||'').toUpperCase().includes(q) || label.toUpperCase().includes(q);
     if(!textMatch) return false;
     if(activeMetals.size){
-      const rowMetals = label.trim()==='Energy' ? [NO_DATA_LABEL] : label.split('+').map(s=>s.trim());
+      const rowMetals = label.trim()==='Info Tech' ? [NO_DATA_LABEL] : label.split('+').map(s=>s.trim());
       if(!rowMetals.some(m => activeMetals.has(m))) return false;
     }
     if(activeMcapTier){
@@ -303,8 +306,8 @@ function render(){
   });
   currentRows = rows;
   document.getElementById('matBody').innerHTML = rows.map(([tk,name,label,stage,mcap,price,change1d,high52w]) => {
-    const cls = label.trim()==='Energy' ? 'diversified' : '';
-    const display = label.trim()==='Energy' ? NO_DATA_LABEL : label;
+    const cls = label.trim()==='Info Tech' ? 'diversified' : '';
+    const display = label.trim()==='Info Tech' ? NO_DATA_LABEL : label;
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
     return `<tr>
       <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
@@ -375,25 +378,25 @@ document.getElementById('copyBtn').addEventListener('click', () => {
 });
 document.getElementById('downloadCsvBtn').addEventListener('click', async () => {
   const esc = v => /[",\n]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v;
-  const rows = [['Ticker','Company','FuelType','Stage','MarketCap','Price','Change1D','FiftyTwoWeekHigh'], ...currentRows.map(r => [r[0], r[1]||'', r[2].trim()==='Energy'?NO_DATA_LABEL:r[2], r[3], r[4] ?? '', r[5] ?? '', r[6] ?? '', r[7] ?? ''])];
+  const rows = [['Ticker','Company','Category','RevenueTier','MarketCap','Price','Change1D','FiftyTwoWeekHigh'], ...currentRows.map(r => [r[0], r[1]||'', r[2].trim()==='Info Tech'?NO_DATA_LABEL:r[2], r[3], r[4] ?? '', r[5] ?? '', r[6] ?? '', r[7] ?? ''])];
   const csv = rows.map(r => r.map(String).map(esc).join(',')).join('\n');
   let usedCapability = false;
   if(typeof window.claude !== 'undefined' && window.claude.use){
     try{
       const downloads = await window.claude.use('downloads');
-      if(downloads){ await downloads.save({filename:'energy-index.csv', data: csv}); usedCapability = true; }
+      if(downloads){ await downloads.save({filename:'tech-index.csv', data: csv}); usedCapability = true; }
     }catch(e){}
   }
   if(!usedCapability){
     const blob = new Blob([csv], {type:'text/csv'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = 'energy-index.csv'; a.click();
+    a.href = url; a.download = 'tech-index.csv'; a.click();
     URL.revokeObjectURL(url);
   }
 });
 
-document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'energy-index.html';
+document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'tech-index.html';
 
 const themeBtn = document.getElementById('themeBtn');
 function applyTheme(t){
@@ -401,13 +404,13 @@ function applyTheme(t){
   themeBtn.textContent = (t==='dark') ? '☀️' : '🌙';
 }
 try{
-  const saved = localStorage.getItem('energyindex-theme');
+  const saved = localStorage.getItem('techindex-theme');
   if(saved) applyTheme(saved);
 }catch(e){}
 themeBtn.addEventListener('click', ()=>{
   const current = document.documentElement.getAttribute('data-theme');
   const next = current==='dark' ? 'light' : 'dark';
   applyTheme(next);
-  try{ localStorage.setItem('energyindex-theme', next); }catch(e){}
+  try{ localStorage.setItem('techindex-theme', next); }catch(e){}
 });
 </script>
