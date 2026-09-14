@@ -111,7 +111,9 @@ jobs:
             git push && break
             echo "Push rejected (concurrent commit to main) - rebasing and retrying (attempt $i)"
             git fetch origin main
+            git stash -u
             git rebase origin/main
+            git stash pop || true
           done
 
       - name: Commit updated cooldown state
@@ -125,7 +127,9 @@ jobs:
             git push && break
             echo "Push rejected (concurrent commit to main) - rebasing and retrying (attempt $i)"
             git fetch origin main
+            git stash -u
             git rebase origin/main
+            git stash pop || true
           done
 
       - name: Build Pages site
