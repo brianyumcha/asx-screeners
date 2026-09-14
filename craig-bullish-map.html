@@ -53,12 +53,12 @@ p{color:var(--ink-soft)}
 
 .stackbar{display:flex;height:2rem;border-radius:6px;overflow:hidden;margin:1rem 0;border:1px solid var(--border)}
 .stackbar span{display:block;height:100%}
-.legend{display:flex;flex-wrap:wrap;gap:1rem;font-size:.78rem;color:var(--ink-soft);margin-bottom:2rem;font-family:"IBM Plex Mono",monospace}
-.legend i{display:inline-block;width:.7rem;height:.7rem;border-radius:2px;margin-right:.35rem;vertical-align:-1px}
-
 .sectorfilter{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem}
 .sectorchip{font-family:"IBM Plex Mono",monospace;font-size:.72rem;border:1px solid var(--border);
-  background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .8rem;cursor:pointer}
+  background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .8rem;cursor:pointer;
+  display:inline-flex;align-items:center}
+.sectorchip i{display:inline-block;width:.7rem;height:.7rem;border-radius:2px;margin-right:.4rem}
+.sectorchip .cnt{opacity:.7;margin-left:.35rem;font-size:.85em}
 .sectorchip:hover{border-color:var(--accent);color:var(--accent)}
 .sectorchip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
 
@@ -148,24 +148,14 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
     <span style="width:4.44%;background:var(--consumer)" title="Consumer Disc. 4"></span>
     <span style="width:4.44%;background:var(--unresolved)" title="Other 4"></span>
   </div>
-  <div class="legend">
-    <span><i style="background:var(--materials)"></i>Materials · 59</span>
-    <span><i style="background:var(--energy)"></i>Energy · 7</span>
-    <span><i style="background:var(--health)"></i>Health Care · 9</span>
-    <span><i style="background:var(--industrials)"></i>Industrials · 4</span>
-    <span><i style="background:var(--it)"></i>IT · 3</span>
-    <span><i style="background:var(--consumer)"></i>Consumer Disc. · 4</span>
-    <span><i style="background:var(--unresolved)"></i>Other · 4</span>
-  </div>
-
   <div class="sectorfilter" id="sectorFilter">
-    <button class="sectorchip" data-sector="materials">Materials</button>
-    <button class="sectorchip" data-sector="energy">Energy</button>
-    <button class="sectorchip" data-sector="health">Health Care</button>
-    <button class="sectorchip" data-sector="industrials">Industrials</button>
-    <button class="sectorchip" data-sector="it">IT</button>
-    <button class="sectorchip" data-sector="consumer">Consumer Disc.</button>
-    <button class="sectorchip" data-sector="other">Other</button>
+    <button class="sectorchip" data-sector="materials"><i style="background:var(--materials)"></i>Materials<span class="cnt">59</span></button>
+    <button class="sectorchip" data-sector="energy"><i style="background:var(--energy)"></i>Energy<span class="cnt">7</span></button>
+    <button class="sectorchip" data-sector="health"><i style="background:var(--health)"></i>Health Care<span class="cnt">9</span></button>
+    <button class="sectorchip" data-sector="industrials"><i style="background:var(--industrials)"></i>Industrials<span class="cnt">4</span></button>
+    <button class="sectorchip" data-sector="it"><i style="background:var(--it)"></i>IT<span class="cnt">3</span></button>
+    <button class="sectorchip" data-sector="consumer"><i style="background:var(--consumer)"></i>Consumer Disc.<span class="cnt">4</span></button>
+    <button class="sectorchip" data-sector="other"><i style="background:var(--unresolved)"></i>Other<span class="cnt">4</span></button>
   </div>
 
   <div class="sector" data-sector="materials">
