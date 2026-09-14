@@ -731,6 +731,151 @@ def classify_healthcare_indications(universe):
         universe[t]["industry"] = cache.get(t, "Healthcare")
 
 
+# ─── ENERGY FUEL-TYPE CLASSIFICATION ───────────────────────────────────────
+# Unlike Materials/Healthcare, Yahoo's own "industry" field for Energy is
+# already fairly granular (Oil & Gas E&P, Uranium, Thermal Coal, Oil & Gas
+# Refining & Marketing, Oil & Gas Equipment & Services, Utilities -
+# Renewable/Regulated Gas) - so the keyword scan here exists mainly to
+# split out fuel types Yahoo lumps into the generic "Oil & Gas E&P" bucket
+# (coal seam gas, hydrogen, helium, geothermal), not to replace the
+# industry field entirely the way Materials/Healthcare needed to.
+ENERGY_FUEL_CACHE_PATH = os.path.join(SCRIPT_DIR, "energy_fuel_cache.json")
+
+# ~17 tickers carry a stale "Energy" sector tag from SeaBee but are
+# genuinely metals explorers with zero uranium/oil/gas/coal/hydrogen
+# content in their own business description - the same GICS-staleness
+# failure mode as PDI/ATM (Materials) and IVG/NC6 (Healthcare). Checked
+# individually against real text, not assumed from the generic "Other
+# Industrial Metals & Mining" GICS sub-industry alone - several tickers
+# that sub-industry label would suggest excluding (CXU, DEV, EPM, MEU,
+# MHC, T92, ZEU) turned out to explicitly name uranium as a real
+# exploration target and are correctly KEPT, flagged by the user
+# 2026-09-14 after an initial overly-broad first pass.
+EXCLUDED_ENERGY_TICKERS = {"BLZ", "BTM", "FME", "KLR", "NAE", "TM1", "ALM", "SSH"}
+
+# Checked highest-specificity-first: coal seam gas/CBM before bare "coal"
+# (a CSG play isn't a thermal-coal producer), hydrogen with a negative
+# lookahead so "hydrogen sulfide" (an industrial pollutant, not a hydrogen
+# product) doesn't match, same guard Materials already uses.
+ENERGY_FUEL_KEYWORDS = [
+    ("Uranium", ["uranium"], False),
+    ("Coal Seam Gas / CBM", [r"coal\s*(?:bed|seam)\s*(?:gas|methane)", r"\bcbm\b"], False),
+    ("Thermal Coal", [r"\bcoal\b(?!\s*(?:bed|seam)\s*(?:gas|methane))"], False),
+    ("Hydrogen", [r"hydrogen(?!\s*sulph?ide)"], False),
+    ("Helium", ["helium"], False),
+    ("Geothermal", ["geothermal"], False),
+    ("Solar / Wind", ["solar power", "wind power", r"\bsolar\b", r"wind farms?"], False),
+    ("Oil & Gas", ["oil and gas", "petroleum", "hydrocarbons?", "crude oil", r"\bnatural gas\b", r"\boil\b", r"\bgas\b"], False),
+]
+
+# Last-resort fallback off Yahoo's own "industry" field when no fuel
+# keyword matches at all (a downstream/services/utility company describing
+# its business in terms that don't name a specific fuel).
+ENERGY_BUSINESS_TYPE_MAP = {
+    "Oil & Gas Refining & Marketing": "Refining & Marketing",
+    "Oil & Gas Equipment & Services": "Energy Services",
+    "Utilities - Renewable": "Solar / Wind",
+    "Utilities - Regulated Gas": "Oil & Gas",
+}
+
+# Hand-corrections for real energy-services/technology businesses that
+# don't self-describe with any ENERGY_FUEL_KEYWORDS term and whose Yahoo
+# industry field is a generic metals/engineering bucket that would
+# otherwise misclassify or exclude them - verified against their real
+# business, not guessed.
+# - GBL/Great Bear Exploration: an oil & gas well-remediation/chemical-
+#   technology company ("PhaseShift technology... reliquifies hydrocarbon
+#   solids... remediation technology for oil and gas wells"), not a metals
+#   explorer despite Yahoo's "Other Precious Metals & Mining" tag.
+# - MCE/Matrix Composites & Engineering: makes subsea buoyancy and drill-
+#   riser buoyancy systems for offshore oil & gas rigs, despite Yahoo's
+#   "Engineering & Construction" tag.
+MANUAL_ENERGY_FUEL_OVERRIDES = {
+    "GBL": "Energy Services",
+    "MCE": "Energy Services",
+}
+
+
+def classify_energy_fuel(summary, industry=None):
+    """Keyword-matches a Yahoo longBusinessSummary against
+    ENERGY_FUEL_KEYWORDS, returning up to 2 earliest-mentioned matches
+    joined by " + ". Falls back to a business-type label off Yahoo's
+    "industry" field (ENERGY_BUSINESS_TYPE_MAP) when no fuel is named, and
+    to the industry field itself (or "Oil & Gas" as a last resort) if even
+    that doesn't resolve. Returns None only when summary is empty/missing."""
+    text = summary or ""
+    if not text:
+        return None
+
+    # Same "serves ... markets" exclusion Materials already needed - a
+    # services/equipment company's customer industries, not its own
+    # output (SRJ/SRJ Technologies: "serves oil and gas, desalination,
+    # mining, utilities, shipping, and power generation industries" - an
+    # engineering-services company for containment/leak-repair hardware,
+    # not an oil & gas producer - confirmed 2026-09-14).
+    no_customers = re.sub(r"\bserves\b[^.]*\.", " ", text, flags=re.IGNORECASE)
+    no_customers = re.sub(r"\bcustomers?\b[^.]*\.", " ", no_customers, flags=re.IGNORECASE)
+
+    earliest_pos = {}
+    for label, patterns, needs_context in ENERGY_FUEL_KEYWORDS:
+        for pat in patterns:
+            m = re.search(r"\b" + pat + r"\b", no_customers, re.IGNORECASE)
+            if m and (label not in earliest_pos or m.start() < earliest_pos[label]):
+                earliest_pos[label] = m.start()
+
+    if earliest_pos:
+        top2 = sorted(earliest_pos, key=earliest_pos.get)[:2]
+        return " + ".join(top2)
+
+    if industry in ENERGY_BUSINESS_TYPE_MAP:
+        return ENERGY_BUSINESS_TYPE_MAP[industry]
+    # Any unmapped "Oil & Gas ..." GICS sub-industry (e.g. "Oil & Gas E&P")
+    # normalizes to the same "Oil & Gas" label the keyword scan itself
+    # produces, rather than leaking Yahoo's raw sub-industry string as a
+    # separate, differently-worded bucket.
+    if industry and industry.startswith("Oil & Gas"):
+        return "Oil & Gas"
+    return industry or "Oil & Gas"
+
+
+def classify_energy_fuels(universe):
+    """Mutates `universe` in place: for every Energy-sector ticker,
+    replaces the generic "industry" value with its primary fuel type (or
+    business-type fallback). Only fetches Yahoo's .info for tickers not
+    already in the on-disk cache."""
+    try:
+        with open(ENERGY_FUEL_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    energy_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Energy" and len(t) == 3 and t not in EXCLUDED_ENERGY_TICKERS
+    ]
+    new_tickers = [t for t in energy_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Energy ticker(s) by fuel type...")
+        for t in new_tickers:
+            if t in MANUAL_ENERGY_FUEL_OVERRIDES:
+                cache[t] = MANUAL_ENERGY_FUEL_OVERRIDES[t]
+                continue
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                summary = info.get("longBusinessSummary", "")
+                industry = info.get("industry")
+                cache[t] = classify_energy_fuel(summary, industry) or "Energy"
+            except Exception:
+                cache[t] = "Energy"
+        with open(ENERGY_FUEL_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in energy_tickers:
+        universe[t]["industry"] = cache.get(t, "Energy")
+
+
 # ─── INDICATORS ───────────────────────────────────────────────────────────────
 
 def calc_obv_series(closes, volumes):
@@ -1171,6 +1316,7 @@ canvas{width:100%;height:100%;display:block}
         <option value="higher-high.html">⬆️ Higher-High</option>
         <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
         <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
+        <option value="energy-index.html">⚡ Index: Energy Stocks</option>
       </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
@@ -1667,6 +1813,7 @@ def main():
 
     classify_materials_commodities(universe)
     classify_healthcare_indications(universe)
+    classify_energy_fuels(universe)
 
     results, usable, fresh_today = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])

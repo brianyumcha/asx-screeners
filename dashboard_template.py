@@ -213,6 +213,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
         <option value="higher-high.html">⬆️ Higher-High</option>
         <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
         <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
+        <option value="energy-index.html">⚡ Index: Energy Stocks</option>
       </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
