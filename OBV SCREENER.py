@@ -237,6 +237,17 @@ def _find_ticker_column(columns):
     return None
 
 
+# Populated as a side effect of get_asx_tickers() when the SeaBee source
+# succeeds (it already returns industry per ticker, previously discarded).
+# analyse_ticker() reads this via get_sector_map() instead of paying for a
+# slow, unreliable per-ticker yfinance .info call for every result.
+_SECTOR_MAP_CACHE = {}
+
+
+def get_sector_map():
+    return _SECTOR_MAP_CACHE
+
+
 def get_asx_tickers():
     """
     Get the full ASX ticker list, trying sources in this order:
@@ -299,9 +310,13 @@ def get_asx_tickers():
                 
                 # Clean the list (allows alphanumeric codes up to 5 characters)
                 tickers = [str(t).strip().upper() for t in raw_tickers if len(str(t).strip()) <= 5 and str(t).strip().isalnum()]
-                
+
                 if len(tickers) > 500:
                     print(f"  ✓ Fetched {len(tickers)} tickers from SeaBee API!")
+                    for raw_t, c_info in json_resp["data"]["companies"].items():
+                        t = str(raw_t).strip().upper()
+                        industry = (c_info or {}).get("industry") or "Other"
+                        _SECTOR_MAP_CACHE[t] = rs_utils.SECTOR_MAP.get(industry, "Other")
                     return tickers
             else:
                 print("  ⚠ SeaBee API returned an unexpected JSON structure.")
@@ -463,7 +478,7 @@ def calc_sma(closes, period):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
-def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS, latest_date=None):
+def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS, latest_date=None, sector_map=None):
     """
     Apply screening criteria to an already-fetched price_cache frame (see
     that module - all three screeners share one cache now, refreshed once
@@ -575,14 +590,17 @@ def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LO
 
         obv_chg_pct = (obv_window[-1] - obv_window[0]) / (abs(obv_window[0]) + 1) * 100
 
-        # Sector is only fetched for tickers that already passed every other
-        # filter - yfinance's full .info scrape is much slower than
-        # fast_info, so doing this for every ticker in a 300-stock bulk scan
-        # would be costly. Only the handful of actual results pay that cost.
-        try:
-            sector = ticker_obj.info.get('sector') or 'Other'
-        except Exception:
-            sector = 'Other'
+        # Prefer the bulk SeaBee-derived sector map (already fetched once for
+        # the whole universe, keyed by clean GICS-style sector names via
+        # SECTOR_MAP) over yfinance's full .info scrape, which is much
+        # slower than fast_info and was silently failing/returning nothing
+        # useful often enough that every result ended up tagged "Other".
+        sector = (sector_map or {}).get(sym)
+        if not sector:
+            try:
+                sector = ticker_obj.info.get('sector') or 'Other'
+            except Exception:
+                sector = 'Other'
 
         trim = slice(-CHART_TRIM_BARS, None)
 
@@ -615,7 +633,7 @@ def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LO
 
 # ─── SCAN ALL TICKERS ─────────────────────────────────────────────────────────
 
-def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
+def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS, sector_map=None):
     total = len(tickers)
     t0 = time.time()
 
@@ -645,7 +663,7 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS):
     print(f"\n🔍 Scoring {total} ASX tickers  |  {workers} threads  |  OBV window: {obv_days}d\n")
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(analyse_ticker, t, price_cache.get_ticker_frame(cache, t), obv_days, latest_date=latest_date): t for t in tickers}
+        futures = {pool.submit(analyse_ticker, t, price_cache.get_ticker_frame(cache, t), obv_days, latest_date=latest_date, sector_map=sector_map): t for t in tickers}
 
         for fut in as_completed(futures):
             done += 1
@@ -1015,7 +1033,7 @@ def main():
     else:
         tickers = get_asx_tickers()
 
-    results, usable, cache, index_series = run_scan(tickers, obv_days=args.days, workers=args.workers)
+    results, usable, cache, index_series = run_scan(tickers, obv_days=args.days, workers=args.workers, sector_map=get_sector_map())
 
     # Circuit breaker: on a full-universe run, if the shared price cache
     # doesn't have usable data for most of the universe - whether from

@@ -1629,9 +1629,15 @@ function drawChart(canvas, r, tf) {
   line(sma50, isLightTheme() ? 'rgba(61,56,41,0.55)' : 'rgba(201,194,176,0.55)', true);
   line(sma20, isLightTheme() ? 'rgba(22,53,64,0.85)' : 'rgba(143,196,219,0.85)', false);
 
+  // Deliberately more saturated than the --good/--bad text tokens (those
+  // are tuned to sit quietly inline in prose; a candlestick needs to read
+  // as up/down at a glance, so it gets its own punchier pair here).
+  const CANDLE_UP   = isLightTheme() ? '#15803d' : '#4ade80';
+  const CANDLE_DOWN = isLightTheme() ? '#b91c1c' : '#f87171';
+
   for (let i = 0; i < n2; i++) {
     const up = closes[i] >= opens[i];
-    ctx.strokeStyle = ctx.fillStyle = up ? (isLightTheme() ? '#33481f' : '#a8d491') : (isLightTheme() ? '#6b241c' : '#f0998a');
+    ctx.strokeStyle = ctx.fillStyle = up ? CANDLE_UP : CANDLE_DOWN;
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(x(i), y(highs[i]));
@@ -1649,9 +1655,7 @@ function drawChart(canvas, r, tf) {
   const label = lastPrice.toFixed(lastPrice < 1 ? 3 : 2);
   const tw = ctx.measureText(label).width;
   const bx = W - tw - 10, by = y(lastPrice);
-  ctx.fillStyle = up
-    ? (isLightTheme() ? 'rgba(51,72,31,0.9)' : 'rgba(168,212,145,0.9)')
-    : (isLightTheme() ? 'rgba(107,36,28,0.9)' : 'rgba(240,153,138,0.9)');
+  ctx.fillStyle = up ? CANDLE_UP : CANDLE_DOWN;
   ctx.fillRect(bx - 4, by - 8, tw + 8, 16);
   ctx.fillStyle = isLightTheme() ? '#fdf8ef' : '#1c1204';
   ctx.fillText(label, bx, by + 3);
