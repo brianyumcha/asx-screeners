@@ -54,6 +54,8 @@ p{color:var(--ink-soft)}
 .stackbar{display:flex;height:2rem;border-radius:6px;overflow:hidden;margin:1rem 0;border:1px solid var(--border)}
 .stackbar span{display:block;height:100%}
 .sectorfilter{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem}
+.commodityfilter{margin-top:.9rem;margin-bottom:1.1rem}
+.commodityfilter .sectorchip{font-size:.68rem;padding:.3rem .7rem}
 .sectorchip{font-family:"IBM Plex Mono",monospace;font-size:.72rem;border:1px solid var(--border);
   background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .8rem;cursor:pointer;
   display:inline-flex;align-items:center}
@@ -162,17 +164,31 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
     <div class="sechead"><span class="swatch" style="background:var(--materials)"></span><h2>Materials — 59</h2></div>
     <p style="margin-top:.3rem">Gold and copper dominate, exactly matching the broader ASX small-cap resources skew this whole season.</p>
 
-    <div class="commgroup"><div class="clabel"><span class="cname">Gold</span><span class="ccount">27</span></div><div class="grouptablewrap" id="g-gold"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Copper</span><span class="ccount">15</span></div><div class="grouptablewrap" id="g-copper"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Silver</span><span class="ccount">5</span></div><div class="grouptablewrap" id="g-silver"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Lithium</span><span class="ccount">2</span></div><div class="grouptablewrap" id="g-lithium"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Rare Earths</span><span class="ccount">2</span></div><div class="grouptablewrap" id="g-rare-earths"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Zinc / Lead</span><span class="ccount">2</span></div><div class="grouptablewrap" id="g-zinc-lead"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Graphite</span><span class="ccount">2</span></div><div class="grouptablewrap" id="g-graphite"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Manganese</span><span class="ccount">1</span></div><div class="grouptablewrap" id="g-manganese"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Tungsten</span><span class="ccount">1</span></div><div class="grouptablewrap" id="g-tungsten"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Tin</span><span class="ccount">1</span></div><div class="grouptablewrap" id="g-tin"></div></div>
-    <div class="commgroup"><div class="clabel"><span class="cname">Magnesium</span><span class="ccount">1</span></div><div class="grouptablewrap" id="g-magnesium"></div></div>
+    <div class="sectorfilter commodityfilter" id="commodityFilter">
+      <button class="sectorchip" data-commodity="gold">Gold<span class="cnt">27</span></button>
+      <button class="sectorchip" data-commodity="copper">Copper<span class="cnt">15</span></button>
+      <button class="sectorchip" data-commodity="silver">Silver<span class="cnt">5</span></button>
+      <button class="sectorchip" data-commodity="lithium">Lithium<span class="cnt">2</span></button>
+      <button class="sectorchip" data-commodity="rare-earths">Rare Earths<span class="cnt">2</span></button>
+      <button class="sectorchip" data-commodity="zinc-lead">Zinc / Lead<span class="cnt">2</span></button>
+      <button class="sectorchip" data-commodity="graphite">Graphite<span class="cnt">2</span></button>
+      <button class="sectorchip" data-commodity="manganese">Manganese<span class="cnt">1</span></button>
+      <button class="sectorchip" data-commodity="tungsten">Tungsten<span class="cnt">1</span></button>
+      <button class="sectorchip" data-commodity="tin">Tin<span class="cnt">1</span></button>
+      <button class="sectorchip" data-commodity="magnesium">Magnesium<span class="cnt">1</span></button>
+    </div>
+
+    <div class="commgroup" data-commodity="gold"><div class="clabel"><span class="cname">Gold</span><span class="ccount">27</span></div><div class="grouptablewrap" id="g-gold"></div></div>
+    <div class="commgroup" data-commodity="copper"><div class="clabel"><span class="cname">Copper</span><span class="ccount">15</span></div><div class="grouptablewrap" id="g-copper"></div></div>
+    <div class="commgroup" data-commodity="silver"><div class="clabel"><span class="cname">Silver</span><span class="ccount">5</span></div><div class="grouptablewrap" id="g-silver"></div></div>
+    <div class="commgroup" data-commodity="lithium"><div class="clabel"><span class="cname">Lithium</span><span class="ccount">2</span></div><div class="grouptablewrap" id="g-lithium"></div></div>
+    <div class="commgroup" data-commodity="rare-earths"><div class="clabel"><span class="cname">Rare Earths</span><span class="ccount">2</span></div><div class="grouptablewrap" id="g-rare-earths"></div></div>
+    <div class="commgroup" data-commodity="zinc-lead"><div class="clabel"><span class="cname">Zinc / Lead</span><span class="ccount">2</span></div><div class="grouptablewrap" id="g-zinc-lead"></div></div>
+    <div class="commgroup" data-commodity="graphite"><div class="clabel"><span class="cname">Graphite</span><span class="ccount">2</span></div><div class="grouptablewrap" id="g-graphite"></div></div>
+    <div class="commgroup" data-commodity="manganese"><div class="clabel"><span class="cname">Manganese</span><span class="ccount">1</span></div><div class="grouptablewrap" id="g-manganese"></div></div>
+    <div class="commgroup" data-commodity="tungsten"><div class="clabel"><span class="cname">Tungsten</span><span class="ccount">1</span></div><div class="grouptablewrap" id="g-tungsten"></div></div>
+    <div class="commgroup" data-commodity="tin"><div class="clabel"><span class="cname">Tin</span><span class="ccount">1</span></div><div class="grouptablewrap" id="g-tin"></div></div>
+    <div class="commgroup" data-commodity="magnesium"><div class="clabel"><span class="cname">Magnesium</span><span class="ccount">1</span></div><div class="grouptablewrap" id="g-magnesium"></div></div>
   </div>
 
   <div class="sector" data-sector="energy">
@@ -292,7 +308,7 @@ function applySectorFilter(){
   document.querySelectorAll('.sector').forEach(sec => {
     sec.style.display = (activeSectors.size === 0 || activeSectors.has(sec.dataset.sector)) ? '' : 'none';
   });
-  document.querySelectorAll('.sectorchip').forEach(c => c.classList.toggle('active', activeSectors.has(c.dataset.sector)));
+  document.querySelectorAll('#sectorFilter .sectorchip').forEach(c => c.classList.toggle('active', activeSectors.has(c.dataset.sector)));
 }
 sectorFilter.addEventListener('click', (e) => {
   const btn = e.target.closest('.sectorchip');
@@ -300,6 +316,28 @@ sectorFilter.addEventListener('click', (e) => {
   const s = btn.dataset.sector;
   if(activeSectors.has(s)) activeSectors.delete(s); else activeSectors.add(s);
   applySectorFilter();
+});
+
+// Sub-filter within Materials only - lets you narrow the 11 commodity
+// group tables (Gold/Copper/Silver/...) down to one or more, the same
+// multi-select toggle pattern as the top-level sector filter. Scoped to
+// its own #commodityFilter container/".commgroup" elements so it never
+// interferes with the sector filter above, even though both reuse the
+// same ".sectorchip" pill styling.
+const activeCommodities = new Set();
+const commodityFilter = document.getElementById('commodityFilter');
+function applyCommodityFilter(){
+  document.querySelectorAll('.commgroup').forEach(g => {
+    g.style.display = (activeCommodities.size === 0 || activeCommodities.has(g.dataset.commodity)) ? '' : 'none';
+  });
+  document.querySelectorAll('#commodityFilter .sectorchip').forEach(c => c.classList.toggle('active', activeCommodities.has(c.dataset.commodity)));
+}
+commodityFilter.addEventListener('click', (e) => {
+  const btn = e.target.closest('.sectorchip');
+  if(!btn) return;
+  const c = btn.dataset.commodity;
+  if(activeCommodities.has(c)) activeCommodities.delete(c); else activeCommodities.add(c);
+  applyCommodityFilter();
 });
 
 const themeBtn = document.getElementById('themeBtn');
