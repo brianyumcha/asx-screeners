@@ -70,10 +70,15 @@ p{color:var(--ink-soft)}
 
 .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow);max-height:calc(100vh - 2rem)}
 table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--surface)}
-thead th{position:sticky;top:0;background:var(--surface2);text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);padding:.55rem .7rem;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none;z-index:2}
+thead th{position:sticky;top:1.55rem;background:var(--surface2);text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);padding:.55rem .7rem;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none;z-index:2}
 thead th:hover{color:var(--accent)}
 thead th.active{color:var(--accent2)}
 thead th .arrow{font-size:.65rem;margin-left:.15rem}
+thead tr.grouprow th{position:sticky;top:0;background:var(--surface2);text-align:center;
+  font-size:.62rem;letter-spacing:.08em;padding:.3rem .7rem;cursor:default;
+  border-bottom:1px solid transparent;z-index:3}
+thead tr.grouprow th.groupcell{color:var(--ink-faint);border-bottom-color:var(--border)}
+thead tr.grouprow th:hover{color:var(--ink-faint)}
 tbody td{padding:.4rem .7rem;border-bottom:1px solid var(--border);white-space:nowrap}
 tbody tr:last-child td{border-bottom:none}
 tbody tr:hover{background:var(--surface2)}
@@ -81,7 +86,6 @@ tbody tr:hover{background:var(--surface2)}
 .tk a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
 .tk a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 .cname{color:var(--ink-soft);max-width:16rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.insiders{color:var(--ink-soft);max-width:14rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bullmap{display:inline-block;font-size:.9rem}
 .up{color:var(--good)}
 .down{color:var(--bad)}
@@ -220,14 +224,19 @@ document.addEventListener('keydown', function(e){
   <div class="tablewrap">
     <table id="matTable">
       <thead>
-        <tr>
+        <tr class="grouprow">
+          <th colspan="3"></th>
+          <th colspan="8" class="groupcell">Insider Buy</th>
+          <th colspan="3" class="groupcell">Price</th>
+          <th></th>
+        </tr>
+        <tr class="colrow">
           <th data-key="ticker">Ticker</th>
           <th data-key="name" class="colname-desktop">Company</th>
           <th data-key="sector">Sector</th>
           <th data-key="lastdate">Last Purchase</th>
           <th data-key="numpurchases" style="text-align:right">Buys</th>
           <th data-key="numinsiders" style="text-align:right" class="colname-desktop">Directors</th>
-          <th data-key="insiders" class="colname-desktop">Who</th>
           <th data-key="value" style="text-align:right">Total $</th>
           <th data-key="buyprice" style="text-align:right" title="Implied average price paid (Total $ ÷ shares bought) - not today's price">Buy Price</th>
           <th data-key="valuepctmc" style="text-align:right" title="Total purchase value as a % of market cap">$/MC %</th>
@@ -360,7 +369,6 @@ function render(){
     else if(sortKey==='lastdate'){ av=a[3]||''; bv=b[3]||''; }
     else if(sortKey==='numpurchases'){ av=a[4]; bv=b[4]; }
     else if(sortKey==='numinsiders'){ av=a[5]; bv=b[5]; }
-    else if(sortKey==='insiders'){ av=(a[6]||[]).join(', '); bv=(b[6]||[]).join(', '); }
     else if(sortKey==='value'){ av = a[7] ?? -1; bv = b[7] ?? -1; }
     else if(sortKey==='mcap'){ av = a[9] ?? -1; bv = b[9] ?? -1; }
     else if(sortKey==='price'){ av = a[10] ?? -1; bv = b[10] ?? -1; }
@@ -378,6 +386,7 @@ function render(){
   document.getElementById('matBody').innerHTML = rows.map(([tk,name,sector,lastdate,numpurchases,numinsiders,insiders,value,shares,mcap,price,change1d,bullmap,valuepctmc,stakepctco,stakedelta,topinsider]) => {
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
     const stakeTitle = topinsider ? ` title="${topinsider}"` : '';
+    const whoTitle = (insiders||[]).length ? ` title="${(insiders||[]).join(', ')}"` : '';
     const avgBuyPrice = (value && shares) ? value / shares : null;
     return `<tr>
       <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
@@ -385,8 +394,7 @@ function render(){
       <td>${sector}</td>
       <td class="mono">${fmtDate(lastdate)}</td>
       <td class="mono" style="text-align:right">${numpurchases}</td>
-      <td class="mono colname-desktop" style="text-align:right">${numinsiders}</td>
-      <td class="insiders colname-desktop">${(insiders||[]).join(', ') || '—'}</td>
+      <td class="mono colname-desktop" style="text-align:right;cursor:help"${whoTitle}>${numinsiders}</td>
       <td class="mono" style="text-align:right">${fmtMcap(value)}</td>
       <td class="mono" style="text-align:right" title="${numpurchases>1 ? 'Average across '+numpurchases+' buys' : ''}">${fmtPrice(avgBuyPrice)}</td>
       <td class="mono" style="text-align:right">${fmtSmallPct(valuepctmc)}</td>
@@ -405,13 +413,13 @@ function render(){
   document.querySelectorAll('#mcapchips .commchip').forEach(c => c.classList.toggle('active', c.dataset.mcaptier===activeMcapTier));
   document.querySelectorAll('#recencychips .commchip').forEach(c => c.classList.toggle('active', c.dataset.recency===activeRecency));
   document.getElementById('bullMapToggle').classList.toggle('active', bullMapOnly);
-  document.querySelectorAll('thead th').forEach(th => {
+  document.querySelectorAll('thead tr.colrow th').forEach(th => {
     th.classList.toggle('active', th.dataset.key===sortKey);
     th.querySelector('.arrow')?.remove();
     if(th.dataset.key===sortKey) th.insertAdjacentHTML('beforeend', `<span class="arrow">${sortDir>0?'▲':'▼'}</span>`);
   });
 }
-document.querySelectorAll('thead th').forEach(th => {
+document.querySelectorAll('thead tr.colrow th').forEach(th => {
   th.addEventListener('click', () => {
     if(sortKey===th.dataset.key){ sortDir*=-1; } else { sortKey=th.dataset.key; sortDir = (th.dataset.key==='mcap'||th.dataset.key==='value'||th.dataset.key==='lastdate'||th.dataset.key==='numpurchases'||th.dataset.key==='valuepctmc'||th.dataset.key==='stakepctco'||th.dataset.key==='stakedelta'||th.dataset.key==='buyprice') ? -1 : 1; }
     render();
