@@ -76,14 +76,35 @@ def fetch_company_info(ticker):
     try:
         info = yf.Ticker(ticker + ".AX").get_info()
     except Exception:
-        return {"name": None, "mcap": None, "price": None, "change1d": None, "sector": None}
+        return {"name": None, "mcap": None, "price": None, "change1d": None, "sector": None, "shares_out": None}
     return {
         "name": info.get("longName") or info.get("shortName"),
         "mcap": info.get("marketCap") or info.get("nonDilutedMarketCap"),
         "price": info.get("currentPrice") or info.get("regularMarketPrice"),
         "change1d": info.get("regularMarketChangePercent"),
         "sector": info.get("sector"),
+        "shares_out": info.get("sharesOutstanding") or info.get("impliedSharesOutstanding"),
     }
+
+
+def fetch_insider_roster(ticker):
+    """Current total 'Shares Owned Directly' per insider, as of their most
+    recent reported transaction - this is a resulting-balance disclosure
+    (ASX Appendix 3Y convention: filings report the holding AFTER a change,
+    not before), so treated as the holding *after* their latest purchase."""
+    try:
+        df = yf.Ticker(ticker + ".AX").insider_roster_holders
+    except Exception:
+        return {}
+    if df is None or len(df) == 0:
+        return {}
+    out = {}
+    for _, r in df.iterrows():
+        name = r.get("Name")
+        shares = r.get("Shares Owned Directly")
+        if name and shares == shares:  # NaN check
+            out[name] = int(shares)
+    return out
 
 
 def esc_js(s):
@@ -123,9 +144,18 @@ def main():
     rows = []
     for i, (t, purchases) in enumerate(sorted(hits.items()), 1):
         info = fetch_company_info(t)
+        roster = fetch_insider_roster(t)
         univ_entry = universe.get(t, {})
-        sector = info.get("sector") or univ_entry.get("sector") or "Other"
+        # Universe sector (SeaBee industry -> rs_utils.SECTOR_MAP) takes
+        # priority - it's the same GICS-style taxonomy every other page on
+        # the site uses (Consumer Discretionary/Staples, Info Tech,
+        # Financials, etc). Only fall back to yfinance's raw .info sector
+        # (Yahoo's own taxonomy - Consumer Cyclical/Defensive, Technology,
+        # Financial Services) for the handful of tickers missing from the
+        # universe fetch, so at least something is shown.
+        sector = univ_entry.get("sector") or info.get("sector") or "Other"
         mcap = info.get("mcap") or univ_entry.get("market_cap")
+        shares_out = info.get("shares_out")
         purchases.sort(key=lambda p: p["date"], reverse=True)
         most_recent = purchases[0]["date"]
         num_purchases = len(purchases)
@@ -133,14 +163,40 @@ def main():
         total_value = sum(p["value"] for p in purchases if p["value"])
         total_shares = sum(p["shares"] for p in purchases if p["shares"])
         in_bull_map = t in bull_map_tickers
+
+        # Per-insider stake-increase %: this insider's shares bought (in the
+        # lookback window) vs. their prior holding, estimated as their
+        # current roster balance minus what they just bought (roster is a
+        # resulting/after-transaction balance - see fetch_insider_roster).
+        shares_bought_by = {}
+        for p in purchases:
+            if p["insider"] and p["shares"]:
+                shares_bought_by[p["insider"]] = shares_bought_by.get(p["insider"], 0) + p["shares"]
+
+        top_insider, top_pct_increase, top_current_shares = None, None, None
+        for name, bought in shares_bought_by.items():
+            current = roster.get(name)
+            if current is None:
+                continue
+            prior = current - bought
+            if prior <= 0:
+                continue  # can't compute a sane % increase (e.g. brand-new holder)
+            pct = bought / prior * 100
+            if top_pct_increase is None or pct > top_pct_increase:
+                top_insider, top_pct_increase, top_current_shares = name, pct, current
+
+        value_pct_mc = (total_value / mcap * 100) if (total_value and mcap) else None
+        stake_pct_co = (top_current_shares / shares_out * 100) if (top_current_shares and shares_out) else None
+
         rows.append((
             t, info.get("name"), sector, most_recent, num_purchases,
             len(distinct_insiders), distinct_insiders, total_value, total_shares,
             mcap, info.get("price"), info.get("change1d"), in_bull_map,
+            value_pct_mc, stake_pct_co, top_pct_increase, top_insider,
         ))
         if i % 50 == 0:
             print(f"  ...pass 2: {i}/{len(hits)} enriched")
-        time.sleep(0.1)
+        time.sleep(0.12)
 
     print(f"Done. {len(rows)} tickers with director purchases in the last {LOOKBACK_DAYS} days.")
     bull_map_overlap = sum(1 for r in rows if r[12])
@@ -148,17 +204,23 @@ def main():
 
     data_lines = []
     for (t, name, sector, most_recent, num_purchases, num_insiders, insiders,
-         total_value, total_shares, mcap, price, change1d, in_bull_map) in rows:
+         total_value, total_shares, mcap, price, change1d, in_bull_map,
+         value_pct_mc, stake_pct_co, top_pct_increase, top_insider) in rows:
         mcap_s = str(int(mcap)) if mcap else "null"
         price_s = str(price) if price is not None else "null"
         chg_s = str(round(change1d, 1)) if change1d is not None else "null"
         value_s = str(int(total_value)) if total_value else "null"
         shares_s = str(int(total_shares)) if total_shares else "null"
         insiders_s = json.dumps(insiders)
+        value_pct_mc_s = str(round(value_pct_mc, 3)) if value_pct_mc is not None else "null"
+        stake_pct_co_s = str(round(stake_pct_co, 3)) if stake_pct_co is not None else "null"
+        top_pct_increase_s = str(round(top_pct_increase, 1)) if top_pct_increase is not None else "null"
+        top_insider_s = json.dumps(top_insider) if top_insider else "null"
         data_lines.append(
             f'["{esc_js(t)}","{esc_js(name)}","{esc_js(sector)}","{esc_js(most_recent)}",'
             f'{num_purchases},{num_insiders},{insiders_s},{value_s},{shares_s},'
-            f'{mcap_s},{price_s},{chg_s},{"true" if in_bull_map else "false"}]'
+            f'{mcap_s},{price_s},{chg_s},{"true" if in_bull_map else "false"},'
+            f'{value_pct_mc_s},{stake_pct_co_s},{top_pct_increase_s},{top_insider_s}]'
         )
     data_block = ",\n".join(data_lines)
 
