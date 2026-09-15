@@ -225,6 +225,21 @@ document.addEventListener('keydown', function(e){
     <div class="commchips" id="mcapchips"></div>
   </div>
 
+  <div class="chipsection">
+    <h2>🎯 Filter by buy size (% of market cap)</h2>
+    <div class="commchips" id="valuepctmcchips"></div>
+  </div>
+
+  <div class="chipsection">
+    <h2>🤝 Filter by cluster buying</h2>
+    <div class="commchips" id="directorschips"></div>
+  </div>
+
+  <div class="chipsection">
+    <h2>💵 Filter by dollar value</h2>
+    <div class="commchips" id="valuechips"></div>
+  </div>
+
   <hr class="divider">
 
   <div class="controls">
@@ -307,6 +322,32 @@ const recencychips = document.getElementById('recencychips');
 recencychips.innerHTML = RECENCY_TIERS.map(([label]) => `<button class="commchip" data-recency="${label}"><span>${label}</span></button>`).join('');
 let activeRecency = '';
 
+const VALUEPCTMC_TIERS = [
+  ['0.3%+ of MC', v => v != null && v >= 0.3],
+  ['1%+ of MC', v => v != null && v >= 1],
+  ['3%+ of MC', v => v != null && v >= 3],
+];
+const valuepctmcchips = document.getElementById('valuepctmcchips');
+valuepctmcchips.innerHTML = VALUEPCTMC_TIERS.map(([label]) => `<button class="commchip" data-valuepctmctier="${label}"><span>${label}</span></button>`).join('');
+let activeValuePctMcTier = '';
+
+const DIRECTORS_TIERS = [
+  ['2+ directors', d => d >= 2],
+  ['3+ directors', d => d >= 3],
+];
+const directorschips = document.getElementById('directorschips');
+directorschips.innerHTML = DIRECTORS_TIERS.map(([label]) => `<button class="commchip" data-directorstier="${label}"><span>${label}</span></button>`).join('');
+let activeDirectorsTier = '';
+
+const VALUE_TIERS = [
+  ['$50K+', v => v != null && v >= 50000],
+  ['$250K+', v => v != null && v >= 250000],
+  ['$1M+', v => v != null && v >= 1000000],
+];
+const valuechips = document.getElementById('valuechips');
+valuechips.innerHTML = VALUE_TIERS.map(([label]) => `<button class="commchip" data-valuetier="${label}"><span>${label}</span></button>`).join('');
+let activeValueTier = '';
+
 let bullMapOnly = false;
 
 function fmtMcap(n){
@@ -370,6 +411,18 @@ function render(){
       const tier = RECENCY_TIERS.find(([l]) => l===activeRecency);
       if(!tier || !tier[1](daysSince(lastdate))) return false;
     }
+    if(activeValuePctMcTier){
+      const tier = VALUEPCTMC_TIERS.find(([l]) => l===activeValuePctMcTier);
+      if(!tier || !tier[1](valuepctmc)) return false;
+    }
+    if(activeDirectorsTier){
+      const tier = DIRECTORS_TIERS.find(([l]) => l===activeDirectorsTier);
+      if(!tier || !tier[1](numinsiders)) return false;
+    }
+    if(activeValueTier){
+      const tier = VALUE_TIERS.find(([l]) => l===activeValueTier);
+      if(!tier || !tier[1](value)) return false;
+    }
     if(bullMapOnly && !bullmap) return false;
     return true;
   });
@@ -424,6 +477,9 @@ function render(){
   document.querySelectorAll('#sectorchips .commchip').forEach(c => c.classList.toggle('active', activeSectors.has(c.dataset.sector)));
   document.querySelectorAll('#mcapchips .commchip').forEach(c => c.classList.toggle('active', c.dataset.mcaptier===activeMcapTier));
   document.querySelectorAll('#recencychips .commchip').forEach(c => c.classList.toggle('active', c.dataset.recency===activeRecency));
+  document.querySelectorAll('#valuepctmcchips .commchip').forEach(c => c.classList.toggle('active', c.dataset.valuepctmctier===activeValuePctMcTier));
+  document.querySelectorAll('#directorschips .commchip').forEach(c => c.classList.toggle('active', c.dataset.directorstier===activeDirectorsTier));
+  document.querySelectorAll('#valuechips .commchip').forEach(c => c.classList.toggle('active', c.dataset.valuetier===activeValueTier));
   document.getElementById('bullMapToggle').classList.toggle('active', bullMapOnly);
   document.querySelectorAll('thead tr.colrow th').forEach(th => {
     th.classList.toggle('active', th.dataset.key===sortKey);
@@ -456,6 +512,24 @@ recencychips.addEventListener('click', (e) => {
   activeRecency = (activeRecency === btn.dataset.recency) ? '' : btn.dataset.recency;
   render();
 });
+valuepctmcchips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  activeValuePctMcTier = (activeValuePctMcTier === btn.dataset.valuepctmctier) ? '' : btn.dataset.valuepctmctier;
+  render();
+});
+directorschips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  activeDirectorsTier = (activeDirectorsTier === btn.dataset.directorstier) ? '' : btn.dataset.directorstier;
+  render();
+});
+valuechips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  activeValueTier = (activeValueTier === btn.dataset.valuetier) ? '' : btn.dataset.valuetier;
+  render();
+});
 document.getElementById('bullMapToggle').addEventListener('click', () => {
   bullMapOnly = !bullMapOnly;
   render();
@@ -465,6 +539,9 @@ document.getElementById('clearFiltersBtn').addEventListener('click', () => {
   activeSectors.clear();
   activeMcapTier = '';
   activeRecency = '';
+  activeValuePctMcTier = '';
+  activeDirectorsTier = '';
+  activeValueTier = '';
   bullMapOnly = false;
   document.getElementById('filterInput').value = '';
   render();
