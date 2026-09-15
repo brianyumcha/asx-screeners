@@ -889,14 +889,20 @@ TECH_CATEGORY_CACHE_PATH = os.path.join(SCRIPT_DIR, "tech_category_cache.json")
 # with a stale "Info Tech" sector tag - same GICS-staleness failure mode
 # as CXU/DEV were nearly wrongly excluded from (Energy) and IVG/NC6
 # (Healthcare). Confirmed 2026-09-14.
-EXCLUDED_TECH_TICKERS = {"CML"}
+# DTZ/Dotz Nano (nanotech carbon-capture/authentication, industry
+# "Specialty Chemicals") and NVX/Novonix (battery materials/technology,
+# industry "Electrical Equipment & Parts") are the same failure mode -
+# genuine materials/industrials businesses with a stale "Info Tech" tag,
+# not software/tech companies. Confirmed 2026-09-15.
+EXCLUDED_TECH_TICKERS = {"CML", "DTZ", "NVX"}
 
 # Ordered specific-before-generic. "Artificial intelligence"/"machine
 # learning" require the full phrase rather than bare "AI" - a 2-letter
 # token is too prone to incidental matches (company names, other
 # acronyms) to trust bare.
 TECH_CATEGORY_KEYWORDS = [
-    ("Cybersecurity", ["cyber ?security", "cyber risk", "network security", "information security"], False),
+    ("Cybersecurity", ["cyber ?security", "cyber risk", "network security", "information security",
+                        "secure information sharing", "classified file", "data security", "encryption"], False),
     ("Artificial Intelligence / Machine Learning",
      ["artificial intelligence", "machine learning", "computer vision"], False),
     ("Semiconductors", ["semiconductor"], False),
@@ -913,9 +919,10 @@ TECH_CATEGORY_KEYWORDS = [
     ("Healthcare Technology", ["healthcare technology", "medical technology", "cardiac diagnostics"], False),
     ("Advertising / Marketing Technology", ["advertising", "marketing solutions", "affiliate marketing"], False),
     ("Logistics / Supply Chain Technology", ["logistics", "supply chain", "freight",
-                                              "fleet management", "telematics", "transport industry"], False),
+                                              "fleet management", "telematics", "transport industry",
+                                              "procurement", "vendor management"], False),
     ("Gaming / Media / Entertainment", ["gaming", "entertainment", r"\bmedia\b"], False),
-    ("IoT / Hardware", ["internet of things", r"\biot\b", "wearables?"], False),
+    ("IoT / Hardware", ["internet of things", r"\biot\b", "wearables?", "scada", "telemetry"], False),
 ]
 
 # Last-resort fallback off Yahoo's own "industry" field when no category
@@ -929,6 +936,7 @@ TECH_BUSINESS_TYPE_MAP = {
     "Scientific & Technical Instruments": "IoT / Hardware",
     "Security & Protection Services": "Cybersecurity",
     "Health Information Services": "Healthcare Technology",
+    "Electrical Equipment & Parts": "IoT / Hardware",
 }
 
 
