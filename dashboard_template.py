@@ -101,7 +101,7 @@ def render_nav(active_href):
         ).format(label, items)
     return (
         '<nav class="sitenav">\n'
-        '<a class="sitenav-brand" href="index.html">ASX Trading</a>\n'
+        '<a class="sitenav-brand" href="index.html">Brian Yum Cha</a>\n'
         '<span class="sitenav-divider"></span>\n'
         '<div class="sitenav-links">\n'
         + group('Screeners', NAV_SCREENER_LINKS) + "\n"

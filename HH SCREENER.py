@@ -1450,7 +1450,7 @@ canvas{width:100%;height:100%;display:block}
 </head>
 <body>
 <nav class="sitenav">
-<a class="sitenav-brand" href="index.html">ASX Trading</a>
+<a class="sitenav-brand" href="index.html">Brian Yum Cha</a>
 <span class="sitenav-divider"></span>
 <div class="sitenav-links">
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
