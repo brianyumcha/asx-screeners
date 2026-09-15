@@ -1,11 +1,16 @@
-name: Materials Index
+name: Insider Index
 
 on:
   schedule:
-    # Weekdays, evening Sydney-ish (well after ASX close either way, so DST
-    # precision doesn't matter here the way it does for scan.yml's intraday
-    # runs) - 08:00 UTC ~= 6pm AEST / 7pm AEDT.
-    - cron: '0 8 * * 1-5'
+    # Weekly, Monday evening Sydney-ish (same UTC slot as materials_index.yml)
+    # - 08:00 UTC ~= 6pm AEST / 7pm AEDT. Director purchases are lumpy and
+    # the tracker's own lookback window is 180 days, so day-to-day the
+    # dataset barely moves - weekly instead of daily saves ~30-45min of
+    # compute and ~3000 Yahoo API calls per run without losing much
+    # freshness. Was bundled into materials_index.yml's daily job; split
+    # out because its long runtime was holding up that job's own daily
+    # deploy too.
+    - cron: '0 8 * * 1'
   workflow_dispatch: {}
 
 permissions:
@@ -30,24 +35,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Build materials index (fresh name/market-cap/revenue fetch)
-        run: python3 build_materials_index.py
+      - name: Build insider buying tracker (fresh director-purchase scan)
+        run: python3 build_insider_index.py
 
-      - name: Build healthcare index (fresh name/market-cap/revenue fetch)
-        run: python3 build_healthcare_index.py
-
-      - name: Build energy index (fresh name/market-cap/revenue fetch)
-        run: python3 build_energy_index.py
-
-      - name: Build tech index (fresh name/market-cap/revenue fetch)
-        run: python3 build_tech_index.py
-
-      - name: Commit generated pages
+      - name: Commit generated page
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f materials-index.html healthcare-index.html energy-index.html tech-index.html
-          git diff --staged --quiet || git commit -m "Daily materials/healthcare/energy/tech index rebuild"
+          git add -f insider-index.html
+          git diff --staged --quiet || git commit -m "Weekly insider buying tracker rebuild"
           for i in 1 2 3; do
             git push && break
             echo "Push rejected (concurrent commit to main) - rebasing and retrying (attempt $i)"
@@ -58,12 +54,12 @@ jobs:
           done
 
       - name: Preserve existing screener pages
-        # This workflow only regenerates materials-index.html,
-        # healthcare-index.html, energy-index.html and tech-index.html -
-        # without this, deploying _site/ here would wipe the other 3 pages
-        # off the live site until scan.yml's next run restored them. `-f`
-        # (fail on HTTP error) with `|| true` so a first-ever run before
-        # these pages exist doesn't break the build.
+        # This workflow only regenerates insider-index.html - without this,
+        # deploying _site/ here would wipe the gitignored screener pages
+        # (materials/healthcare/energy/tech-index.html are git-tracked so
+        # checkout already restores those) off the live site. `-f` with
+        # `|| true` so a first-ever run before these pages exist doesn't
+        # break the build.
         run: |
           curl -sf -o pre-breakout.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html || true
           curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true

@@ -13,11 +13,14 @@ Two-pass design to keep runtime reasonable across ~1900 tickers:
 
 Unlike Materials/Healthcare/Energy/Tech, there's no keyword classification
 step here (insider_transactions IS the live signal, not something to
-classify), so this doesn't need a persistent cache or a scan.yml hook -
-it's a standalone weekday build like build_materials_index.py.
+classify), so this doesn't need a persistent cache or a scan.yml hook.
 
-Runs on the same schedule as the other index builds (see
-.github/workflows/materials_index.yml).
+Runs weekly, not daily like the other index builds - it now fetches
+each hit ticker's insider_roster_holders too (for stake-delta/%-of-
+company), which pushes a full run to ~30-45min, and the 180-day
+lookback window means the dataset barely moves day to day anyway. See
+.github/workflows/insider_index.yml (split out from materials_index.yml
+since its runtime was holding up that job's daily deploy).
 """
 import datetime
 import json
