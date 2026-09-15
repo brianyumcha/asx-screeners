@@ -76,14 +76,14 @@ def render_dashboard_html(
 
 
 NAV_SCREENER_LINKS = [
+    ('higher-high.html', 'Higher-High'),
     ('pre-breakout.html', 'Pre-Breakout (OBV)'),
     ('pullback.html', 'Pullback (Zag Zone)'),
-    ('higher-high.html', 'Higher-High'),
 ]
 NAV_INDEX_LINKS = [
-    ('materials-index.html', 'Materials'),
-    ('healthcare-index.html', 'Healthcare'),
     ('energy-index.html', 'Energy'),
+    ('healthcare-index.html', 'Healthcare'),
+    ('materials-index.html', 'Materials'),
     ('tech-index.html', 'Tech'),
 ]
 
