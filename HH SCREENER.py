@@ -1313,8 +1313,8 @@ try {
 .themebtn:hover{border-color:var(--accent2)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
-  font-variant-numeric:tabular-nums;padding:1.6rem;}
-.wrap{max-width:1560px;margin:0 auto}
+  font-variant-numeric:tabular-nums;margin:0;}
+.wrap{max-width:1560px;margin:0 auto;padding:0 1.6rem 1.6rem}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
 h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:-.01em;
   text-wrap:balance;color:var(--text)}
@@ -1413,11 +1413,12 @@ canvas{width:100%;height:100%;display:block}
   border-top:1px solid var(--border);padding-top:.5rem}
 .cardfoot .v{color:var(--text)}
 .sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
-  background:var(--surface);border-bottom:1px solid var(--border);
-  padding:.55rem 1.1rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif}
-.sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:600;
-  letter-spacing:.02em;color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
-.sitenav-brand:hover{color:var(--accent)}
+  background:var(--card, var(--surface2, var(--surface)));border-bottom:1px solid var(--border);
+  padding:.7rem 1.1rem;margin-bottom:1.5rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
+  letter-spacing:.02em;color:var(--accent);text-decoration:none;white-space:nowrap}
+.sitenav-brand:hover{opacity:.8}
 .sitenav-links{display:flex;gap:.2rem}
 .sitenav-drop{position:relative}
 .sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));
@@ -1446,14 +1447,14 @@ canvas{width:100%;height:100%;display:block}
 </head>
 <body>
 <nav class="sitenav">
-<a class="sitenav-brand" href="index.html">ASX Screeners</a>
+<a class="sitenav-brand" href="index.html">ASX Trading</a>
 <div class="sitenav-links">
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="higher-high.html" class="active">Higher-High</a>
 </div></div>
-<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="materials-index.html">Materials</a>
 <a href="healthcare-index.html">Healthcare</a>
 <a href="energy-index.html">Energy</a>

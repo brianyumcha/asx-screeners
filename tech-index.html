@@ -111,11 +111,12 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 }
 @media (max-width:640px){h1{font-size:1.8rem}}
 .sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
-  background:var(--surface);border-bottom:1px solid var(--border);
-  padding:.55rem 1.1rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif}
-.sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:600;
-  letter-spacing:.02em;color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
-.sitenav-brand:hover{color:var(--accent)}
+  background:var(--card, var(--surface2, var(--surface)));border-bottom:1px solid var(--border);
+  padding:.7rem 1.1rem;margin-bottom:1.5rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
+  letter-spacing:.02em;color:var(--accent);text-decoration:none;white-space:nowrap}
+.sitenav-brand:hover{opacity:.8}
 .sitenav-links{display:flex;gap:.2rem}
 .sitenav-drop{position:relative}
 .sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));
@@ -144,14 +145,14 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
 <nav class="sitenav">
-<a class="sitenav-brand" href="index.html">ASX Screeners</a>
+<a class="sitenav-brand" href="index.html">ASX Trading</a>
 <div class="sitenav-links">
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="higher-high.html">Higher-High</a>
 </div></div>
-<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="materials-index.html">Materials</a>
 <a href="healthcare-index.html">Healthcare</a>
 <a href="energy-index.html">Energy</a>

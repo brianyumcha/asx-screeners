@@ -101,10 +101,10 @@ def render_nav(active_href):
         ).format(label, items)
     return (
         '<nav class="sitenav">\n'
-        '<a class="sitenav-brand" href="index.html">ASX Screeners</a>\n'
+        '<a class="sitenav-brand" href="index.html">ASX Trading</a>\n'
         '<div class="sitenav-links">\n'
         + group('Screeners', NAV_SCREENER_LINKS) + "\n"
-        + group('Sector Indexes', NAV_INDEX_LINKS) + "\n"
+        + group('ASX Sector Indexes', NAV_INDEX_LINKS) + "\n"
         + '</div>\n</nav>\n'
         '<script>\n'
         "document.querySelectorAll('.sitenav-drop').forEach(function(drop){\n"
@@ -161,12 +161,12 @@ try {
 .themebtn:hover{border-color:var(--accent2)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
-  font-variant-numeric:tabular-nums;padding:1.6rem;}
+  font-variant-numeric:tabular-nums;margin:0;}
 body::before{content:'';position:fixed;inset:0;
   background-image:linear-gradient(rgba(232,179,85,.03) 1px,transparent 1px),
   linear-gradient(90deg,rgba(232,179,85,.03) 1px,transparent 1px);
   background-size:40px 40px;pointer-events:none;z-index:0}
-.wrap{max-width:1560px;margin:0 auto;position:relative;z-index:1}
+.wrap{max-width:1560px;margin:0 auto;position:relative;z-index:1;padding:0 1.6rem 1.6rem}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
 h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:-.01em;
   text-wrap:balance;color:var(--text)}
@@ -247,11 +247,12 @@ table.datatable td.sector-cell{color:var(--muted);font-size:.74rem}
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
 .sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
-  background:var(--surface);border-bottom:1px solid var(--border);
-  padding:.55rem 1.1rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif}
-.sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:600;
-  letter-spacing:.02em;color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
-.sitenav-brand:hover{color:var(--accent)}
+  background:var(--card, var(--surface2, var(--surface)));border-bottom:1px solid var(--border);
+  padding:.7rem 1.1rem;margin-bottom:1.5rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
+  letter-spacing:.02em;color:var(--accent);text-decoration:none;white-space:nowrap}
+.sitenav-brand:hover{opacity:.8}
 .sitenav-links{display:flex;gap:.2rem}
 .sitenav-drop{position:relative}
 .sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));
