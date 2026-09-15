@@ -1355,7 +1355,7 @@ input[type=text]{background:var(--surface);border:1px solid var(--border);color:
   background:var(--sector-head-bg);cursor:pointer;user-select:none}
 .sector-head h2{font-family:"IBM Plex Mono",monospace;font-size:.88rem;font-weight:700}
 .sector-head .count{font-size:.68rem;color:var(--muted)}
-table.datatable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.82rem}
+table.datatable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.8rem}
 table.datatable thead tr{border-bottom:1px solid var(--border)}
 table.datatable th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--muted);text-transform:uppercase;
   letter-spacing:.06em;white-space:nowrap;font-weight:600}
@@ -1785,8 +1785,8 @@ function renderTable(visible, sigKey, obvKey) {
       const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${r.ticker}`;
       return `<tr>
         <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a><span class="company-name">${esc(titleCase(r.name))}</span></td>
-        <td style="color:var(--muted);font-size:.72rem">${esc(r.industry)}</td>
-        <td style="color:var(--muted);font-size:.72rem">${fmtMcap(r.market_cap)}</td>
+        <td style="color:var(--muted)">${esc(r.industry)}</td>
+        <td style="color:var(--muted)">${fmtMcap(r.market_cap)}</td>
         <td>$${r.price.toFixed(r.price < 1 ? 3 : 2)}</td>
         <td class="${chgClass}">${chgSign}${r.change_1d.toFixed(1)}%</td>
         <td class="${obvClass}" title="${obv ? esc(obv) : 'No OBV read'}">${obvShort}</td>

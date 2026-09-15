@@ -247,11 +247,10 @@ table.datatable th:hover{color:var(--text)}
 table.datatable th.sorted{color:var(--accent)}
 table.datatable tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
 table.datatable tbody tr:hover{background:rgba(232,179,85,.05)}
-table.datatable tbody tr.seen{opacity:.5}
 table.datatable td{padding:.65rem .8rem;vertical-align:middle;white-space:nowrap}
 table.datatable td.ticker-cell{font-family:"IBM Plex Mono",monospace;font-weight:700}
 table.datatable td.ticker-cell a{color:var(--accent2);text-decoration:none}
-table.datatable td.sector-cell{color:var(--muted);font-size:.74rem}
+table.datatable td.sector-cell{color:var(--muted)}
 .notice{background:rgba(232,179,85,.08);border:1px solid rgba(232,179,85,.25);border-radius:4px;
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
