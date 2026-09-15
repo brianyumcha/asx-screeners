@@ -106,6 +106,7 @@ def render_nav(active_href):
         '<div class="sitenav-links">\n'
         + group('Screeners', NAV_SCREENER_LINKS) + "\n"
         + group('ASX Sector Indexes', NAV_INDEX_LINKS) + "\n"
+        + '<a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>\n'
         + '</div>\n</nav>\n'
         '<script>\n'
         "document.querySelectorAll('.sitenav-drop').forEach(function(drop){\n"
@@ -275,6 +276,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
   color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
 .sitenav-menu a:hover{background:var(--bg);color:var(--accent)}
 .sitenav-menu a.active{color:var(--accent);font-weight:600}
+.sitenav-toggle.active{background:var(--bg);color:var(--accent)}
 @media (max-width:640px){
   .sitenav{padding:.5rem .7rem;gap:.7rem}
   .sitenav-brand{font-size:.7rem}

@@ -31,7 +31,7 @@ try {
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.55}
 ::selection{background:var(--accent);color:var(--accent-ink)}
-.wrap{max-width:1560px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.wrap{max-width:1560px;margin:0 auto;padding:0 1.5rem 4rem}
 h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
 h1{font-size:2.2rem;letter-spacing:-.01em;margin:0 0 .2rem}
 h2{font-size:1.15rem;margin:0 0 .5rem}
@@ -44,8 +44,6 @@ p{color:var(--ink-soft)}
 .copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
-.reportnav{background:var(--surface);border:1.5px solid var(--accent2);color:var(--ink);font-size:.76rem;font-weight:600;padding:.5rem .8rem;border-radius:6px;cursor:pointer;outline:none;height:fit-content}
-.reportnav:hover{border-color:var(--accent)}
 .subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0;max-width:44rem}
 .session{font-size:.78rem;color:var(--ink-faint);margin:.6rem 0 1.1rem;letter-spacing:.03em}
 .notice{background:var(--warn-bg);border:1px solid var(--border);border-radius:4px;
@@ -93,8 +91,81 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   .cname, .colname-desktop{display:none}
 }
 @media (max-width:640px){h1{font-size:1.8rem}}
+.sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
+  background:var(--card, var(--surface2, var(--surface)));border-bottom:1px solid var(--border);
+  padding:.7rem 1.1rem;margin-bottom:1.5rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
+  letter-spacing:.02em;color:var(--accent);text-decoration:none;white-space:nowrap}
+.sitenav-brand:hover{opacity:.8}
+.sitenav-divider{width:1px;align-self:stretch;background:var(--border);flex:none}
+.sitenav-links{display:flex;gap:.2rem}
+.sitenav-drop{position:relative}
+.sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));
+  font-family:inherit;font-size:.8rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;
+  display:flex;align-items:center;gap:.3rem}
+.sitenav-toggle:hover,.sitenav-drop.open .sitenav-toggle{background:var(--bg);color:var(--accent)}
+.sitenav-toggle.active{background:var(--bg);color:var(--accent)}
+.sitenav-caret{font-size:.85rem;opacity:1;color:var(--accent);display:inline-block;
+  transition:transform .15s ease}
+.sitenav-drop:hover .sitenav-caret,.sitenav-drop.open .sitenav-caret{transform:rotate(180deg)}
+.sitenav-menu{position:absolute;top:100%;left:0;margin-top:.3rem;min-width:190px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);padding:.3rem;
+  opacity:0;visibility:hidden;transform:translateY(-4px);
+  transition:opacity .12s ease,transform .12s ease,visibility .12s}
+.sitenav-drop:hover .sitenav-menu,.sitenav-drop.open .sitenav-menu{
+  opacity:1;visibility:visible;transform:translateY(0)}
+.sitenav-menu a{display:block;padding:.5rem .6rem;border-radius:6px;font-size:.78rem;
+  color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
+.sitenav-menu a:hover{background:var(--bg);color:var(--accent)}
+.sitenav-menu a.active{color:var(--accent);font-weight:600}
+@media (max-width:640px){
+  .sitenav{padding:.5rem .7rem;gap:.7rem}
+  .sitenav-brand{font-size:.7rem}
+  .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
+  .sitenav-menu{min-width:170px}
+}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<nav class="sitenav">
+<a class="sitenav-brand" href="index.html">Brian Yum Cha</a>
+<span class="sitenav-divider"></span>
+<div class="sitenav-links">
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button>
+<div class="sitenav-menu">
+<a href="higher-high.html">Higher-High</a>
+<a href="pre-breakout.html">Pre-Breakout (OBV)</a>
+<a href="pullback.html">Pullback (Zag Zone)</a>
+</div></div>
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button>
+<div class="sitenav-menu">
+<a href="energy-index.html">Energy</a>
+<a href="healthcare-index.html">Healthcare</a>
+<a href="materials-index.html">Materials</a>
+<a href="tech-index.html">Tech</a>
+</div></div>
+<a class="sitenav-toggle active" href="insider-index.html">Insider Buying</a>
+</div>
+</nav>
+<script>
+document.querySelectorAll('.sitenav-drop').forEach(function(drop){
+  var toggle = drop.querySelector('.sitenav-toggle');
+  toggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    var willOpen = !drop.classList.contains('open');
+    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+    if (willOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', function(){
+  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+});
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+});
+</script>
 
 <div class="wrap">
   <div class="topbar">
@@ -103,16 +174,6 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
       <div class="subtitle">Every ASX company with a genuine on-market director share purchase in the last <<<LOOKBACK_DAYS>>> days — real money, not option grants or vesting.</div>
     </div>
     <div class="topbar-right">
-      <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
-        <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
-        <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
-        <option value="higher-high.html">⬆️ Higher-High</option>
-        <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
-        <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
-        <option value="energy-index.html">⚡ Index: Energy Stocks</option>
-        <option value="tech-index.html">💻 Index: Tech Stocks</option>
-        <option value="insider-index.html">🕵️ Insider Buying Tracker</option>
-      </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="copybtn" id="downloadCsvBtn">⬇ Download CSV</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
@@ -410,7 +471,6 @@ document.getElementById('downloadCsvBtn').addEventListener('click', async () => 
   }
 });
 
-document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'insider-index.html';
 
 const themeBtn = document.getElementById('themeBtn');
 function isLightTheme(){ return document.documentElement.getAttribute('data-theme') === 'light'; }

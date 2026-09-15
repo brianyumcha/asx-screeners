@@ -1440,6 +1440,7 @@ canvas{width:100%;height:100%;display:block}
   color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
 .sitenav-menu a:hover{background:var(--bg);color:var(--accent)}
 .sitenav-menu a.active{color:var(--accent);font-weight:600}
+.sitenav-toggle.active{background:var(--bg);color:var(--accent)}
 @media (max-width:640px){
   .sitenav{padding:.5rem .7rem;gap:.7rem}
   .sitenav-brand{font-size:.7rem}
@@ -1464,6 +1465,7 @@ canvas{width:100%;height:100%;display:block}
 <a href="materials-index.html">Materials</a>
 <a href="tech-index.html">Tech</a>
 </div></div>
+<a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
 </div>
 </nav>
 <script>
