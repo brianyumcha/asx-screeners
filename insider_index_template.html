@@ -79,6 +79,19 @@ thead tr.grouprow th{position:sticky;top:0;background:var(--surface2);text-align
   border-bottom:1px solid transparent;z-index:3}
 thead tr.grouprow th.groupcell{color:var(--ink-faint);border-bottom-color:var(--border)}
 thead tr.grouprow th:hover{color:var(--ink-faint)}
+th.groupbound,td.groupbound{border-left:1px solid var(--border)}
+th[data-tip]{cursor:help;border-bottom:1px dotted var(--ink-faint)}
+th[data-tip]::after{
+  content:attr(data-tip);position:absolute;top:100%;margin-top:.4rem;left:0;
+  background:var(--ink);color:var(--bg);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:.7rem;font-weight:400;text-transform:none;letter-spacing:normal;
+  padding:.45rem .65rem;border-radius:6px;line-height:1.4;
+  white-space:normal;width:max-content;max-width:220px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .05s ease;z-index:10;
+  box-shadow:0 4px 14px rgba(0,0,0,.35)}
+th[data-tip]:hover::after{opacity:1;visibility:visible}
 tbody td{padding:.4rem .7rem;border-bottom:1px solid var(--border);white-space:nowrap}
 tbody tr:last-child td{border-bottom:none}
 tbody tr:hover{background:var(--surface2)}
@@ -225,27 +238,26 @@ document.addEventListener('keydown', function(e){
     <table id="matTable">
       <thead>
         <tr class="grouprow">
-          <th colspan="3"></th>
-          <th colspan="8" class="groupcell">Insider Buy</th>
-          <th colspan="3" class="groupcell">Price</th>
-          <th></th>
+          <th colspan="4"></th>
+          <th colspan="8" class="groupcell groupbound">Insider Buy</th>
+          <th colspan="3" class="groupcell groupbound">Price</th>
         </tr>
         <tr class="colrow">
+          <th data-key="bullmap" style="text-align:center">⭐</th>
           <th data-key="ticker">Ticker</th>
           <th data-key="name" class="colname-desktop">Company</th>
           <th data-key="sector">Sector</th>
-          <th data-key="lastdate">Last Purchase</th>
+          <th data-key="lastdate" class="groupbound">Last Purchase</th>
           <th data-key="numpurchases" style="text-align:right">Buys</th>
-          <th data-key="numinsiders" style="text-align:right" class="colname-desktop">Directors</th>
+          <th data-key="numinsiders" style="text-align:right" class="colname-desktop" data-tip="Hover a row's number to see the director names">Directors</th>
           <th data-key="value" style="text-align:right">Total $</th>
-          <th data-key="buyprice" style="text-align:right" title="Implied average price paid (Total $ ÷ shares bought) - not today's price">Buy Price</th>
-          <th data-key="valuepctmc" style="text-align:right" title="Total purchase value as a % of market cap">$/MC %</th>
-          <th data-key="stakepctco" style="text-align:right" class="colname-desktop" title="Top buyer's current holding as a % of the company">Stake %Co</th>
-          <th data-key="stakedelta" style="text-align:right" class="colname-desktop" title="Top buyer's stake increase from this purchase">Stake Δ%</th>
-          <th data-key="mcap" style="text-align:right" class="colname-desktop">Market Cap</th>
-          <th data-key="price" class="colname-desktop" style="text-align:right" title="Today's live price, not what they paid">Now</th>
+          <th data-key="buyprice" style="text-align:right" data-tip="Implied average price paid: Total $ ÷ shares bought - not today's price">Buy Price</th>
+          <th data-key="valuepctmc" style="text-align:right" data-tip="Total purchase value as a % of market cap">$/MC %</th>
+          <th data-key="stakepctco" style="text-align:right" class="colname-desktop" data-tip="The top buyer's current total holding, as a % of the whole company">Stake %Co</th>
+          <th data-key="stakedelta" style="text-align:right" class="colname-desktop" data-tip="How much this purchase increased the top buyer's own stake, in %">Stake Δ%</th>
+          <th data-key="mcap" style="text-align:right" class="colname-desktop groupbound">Market Cap</th>
+          <th data-key="price" class="colname-desktop" style="text-align:right" data-tip="Today's live price - not what they paid">Now</th>
           <th data-key="change1d" class="colname-desktop" style="text-align:right">1D %</th>
-          <th data-key="bullmap" style="text-align:center">⭐</th>
         </tr>
       </thead>
       <tbody id="matBody"></tbody>
@@ -389,10 +401,11 @@ function render(){
     const whoTitle = (insiders||[]).length ? ` title="${(insiders||[]).join(', ')}"` : '';
     const avgBuyPrice = (value && shares) ? value / shares : null;
     return `<tr>
+      <td style="text-align:center" class="bullmap">${bullmap ? '⭐' : ''}</td>
       <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
       <td class="cname colname-desktop">${name || '—'}</td>
       <td>${sector}</td>
-      <td class="mono">${fmtDate(lastdate)}</td>
+      <td class="mono groupbound">${fmtDate(lastdate)}</td>
       <td class="mono" style="text-align:right">${numpurchases}</td>
       <td class="mono colname-desktop" style="text-align:right;cursor:help"${whoTitle}>${numinsiders}</td>
       <td class="mono" style="text-align:right">${fmtMcap(value)}</td>
@@ -400,10 +413,9 @@ function render(){
       <td class="mono" style="text-align:right">${fmtSmallPct(valuepctmc)}</td>
       <td class="mono colname-desktop" style="text-align:right"${stakeTitle}>${fmtSmallPct(stakepctco)}</td>
       <td class="mono colname-desktop" style="text-align:right"${stakeTitle}>${fmtStakeDelta(stakedelta)}</td>
-      <td class="mono colname-desktop" style="text-align:right">${fmtMcap(mcap)}</td>
+      <td class="mono colname-desktop groupbound" style="text-align:right">${fmtMcap(mcap)}</td>
       <td class="mono colname-desktop" style="text-align:right">${fmtPrice(price)}</td>
       <td class="mono colname-desktop ${pctClass(change1d)}" style="text-align:right">${fmtPct(change1d)}</td>
-      <td style="text-align:center" class="bullmap">${bullmap ? '⭐' : ''}</td>
     </tr>`;
   }).join('');
   const caps = rows.map(r=>r[9]).filter(v=>v!=null && v>0);
