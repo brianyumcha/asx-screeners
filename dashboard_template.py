@@ -102,6 +102,7 @@ def render_nav(active_href):
     return (
         '<nav class="sitenav">\n'
         '<a class="sitenav-brand" href="index.html">ASX Trading</a>\n'
+        '<span class="sitenav-divider"></span>\n'
         '<div class="sitenav-links">\n'
         + group('Screeners', NAV_SCREENER_LINKS) + "\n"
         + group('ASX Sector Indexes', NAV_INDEX_LINKS) + "\n"
@@ -253,6 +254,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 .sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
   letter-spacing:.02em;color:var(--accent);text-decoration:none;white-space:nowrap}
 .sitenav-brand:hover{opacity:.8}
+.sitenav-divider{width:1px;height:1.3rem;background:var(--border);flex:none}
 .sitenav-links{display:flex;gap:.2rem}
 .sitenav-drop{position:relative}
 .sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));

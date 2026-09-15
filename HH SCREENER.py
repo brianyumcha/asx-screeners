@@ -1419,6 +1419,7 @@ canvas{width:100%;height:100%;display:block}
 .sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
   letter-spacing:.02em;color:var(--accent);text-decoration:none;white-space:nowrap}
 .sitenav-brand:hover{opacity:.8}
+.sitenav-divider{width:1px;height:1.3rem;background:var(--border);flex:none}
 .sitenav-links{display:flex;gap:.2rem}
 .sitenav-drop{position:relative}
 .sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));
@@ -1450,6 +1451,7 @@ canvas{width:100%;height:100%;display:block}
 <body>
 <nav class="sitenav">
 <a class="sitenav-brand" href="index.html">ASX Trading</a>
+<span class="sitenav-divider"></span>
 <div class="sitenav-links">
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="higher-high.html" class="active">Higher-High</a>
