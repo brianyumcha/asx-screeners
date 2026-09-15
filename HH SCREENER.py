@@ -1320,10 +1320,6 @@ h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-
   text-wrap:balance;color:var(--text)}
 .subtitle{font-size:.92rem;color:var(--muted);margin-top:.3rem;max-width:44rem}
 .session{font-size:.68rem;color:var(--muted);margin:.6rem 0 1.1rem}
-.reportnav{background:var(--surface);border:1.5px solid var(--accent2);color:var(--text);
-  font-size:.72rem;font-weight:600;padding:.5rem .8rem;border-radius:6px;
-  cursor:pointer;outline:none;height:fit-content}
-.reportnav:hover{border-color:var(--accent)}
 .topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
 .copybtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
   font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;
@@ -1416,9 +1412,74 @@ canvas{width:100%;height:100%;display:block}
 .cardfoot{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);
   border-top:1px solid var(--border);padding-top:.5rem}
 .cardfoot .v{color:var(--text)}
+.sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:.55rem 1.1rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif}
+.sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:600;
+  letter-spacing:.02em;color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
+.sitenav-brand:hover{color:var(--accent)}
+.sitenav-links{display:flex;gap:.2rem}
+.sitenav-drop{position:relative}
+.sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));
+  font-family:inherit;font-size:.8rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;
+  display:flex;align-items:center;gap:.3rem}
+.sitenav-toggle:hover,.sitenav-drop.open .sitenav-toggle{background:var(--bg);color:var(--accent)}
+.sitenav-caret{font-size:.6rem;opacity:.7}
+.sitenav-menu{position:absolute;top:100%;left:0;margin-top:.3rem;min-width:190px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);padding:.3rem;
+  opacity:0;visibility:hidden;transform:translateY(-4px);
+  transition:opacity .12s ease,transform .12s ease,visibility .12s}
+.sitenav-drop:hover .sitenav-menu,.sitenav-drop.open .sitenav-menu{
+  opacity:1;visibility:visible;transform:translateY(0)}
+.sitenav-menu a{display:block;padding:.5rem .6rem;border-radius:6px;font-size:.78rem;
+  color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
+.sitenav-menu a:hover{background:var(--bg);color:var(--accent)}
+.sitenav-menu a.active{color:var(--accent);font-weight:600}
+@media (max-width:640px){
+  .sitenav{padding:.5rem .7rem;gap:.7rem}
+  .sitenav-brand{font-size:.7rem}
+  .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
+  .sitenav-menu{min-width:170px}
+}
 </style>
 </head>
 <body>
+<nav class="sitenav">
+<a class="sitenav-brand" href="index.html">ASX Screeners</a>
+<div class="sitenav-links">
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="pre-breakout.html">Pre-Breakout (OBV)</a>
+<a href="pullback.html">Pullback (Zag Zone)</a>
+<a href="higher-high.html" class="active">Higher-High</a>
+</div></div>
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="materials-index.html">Materials</a>
+<a href="healthcare-index.html">Healthcare</a>
+<a href="energy-index.html">Energy</a>
+<a href="tech-index.html">Tech</a>
+</div></div>
+</div>
+</nav>
+<script>
+document.querySelectorAll('.sitenav-drop').forEach(function(drop){
+  var toggle = drop.querySelector('.sitenav-toggle');
+  toggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    var willOpen = !drop.classList.contains('open');
+    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+    if (willOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', function(){
+  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+});
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+});
+</script>
+
+
 <div class="wrap">
   <div class="topbar">
     <div>
@@ -1427,15 +1488,6 @@ canvas{width:100%;height:100%;display:block}
       <div class="subtitle">Runs weekdays at 10:30am, 1pm, 3:30pm &amp; 4:30pm intraday, plus 5pm after close — all Sydney time.</div>
     </div>
     <div class="topbar-right">
-      <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
-        <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
-        <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
-        <option value="higher-high.html">⬆️ Higher-High</option>
-        <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
-        <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
-        <option value="energy-index.html">⚡ Index: Energy Stocks</option>
-        <option value="tech-index.html">💻 Index: Tech Stocks</option>
-      </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
@@ -1480,8 +1532,6 @@ canvas{width:100%;height:100%;display:block}
 </div>
 
 <script>
-document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'higher-high.html';
-
 const themeBtn = document.getElementById('themeBtn');
 function isLightTheme() { return document.documentElement.getAttribute('data-theme') === 'light'; }
 function syncThemeBtn() { themeBtn.textContent = isLightTheme() ? '☀️' : '🌙'; }

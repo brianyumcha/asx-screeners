@@ -60,7 +60,9 @@ def render_dashboard_html(
         f"last run {now.strftime('%Y-%m-%d %H:%M')} Sydney time"
     )
 
+    active_href = 'pullback.html' if 'Pullback' in title else 'pre-breakout.html'
     html = HTML_TEMPLATE
+    html = html.replace('##NAV##', render_nav(active_href))
     html = html.replace('##TITLE##', title)
     html = html.replace('##SUBTITLE##', subtitle)
     html = html.replace('##SESSION_LINE##', session_line)
@@ -71,6 +73,57 @@ def render_dashboard_html(
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(html)
     return out_path
+
+
+NAV_SCREENER_LINKS = [
+    ('pre-breakout.html', 'Pre-Breakout (OBV)'),
+    ('pullback.html', 'Pullback (Zag Zone)'),
+    ('higher-high.html', 'Higher-High'),
+]
+NAV_INDEX_LINKS = [
+    ('materials-index.html', 'Materials'),
+    ('healthcare-index.html', 'Healthcare'),
+    ('energy-index.html', 'Energy'),
+    ('tech-index.html', 'Tech'),
+]
+
+
+def render_nav(active_href):
+    def group(label, links):
+        items = "\n".join(
+            '<a href="{0}"{1}>{2}</a>'.format(href, ' class="active"' if href == active_href else '', text)
+            for href, text in links
+        )
+        return (
+            '<div class="sitenav-drop"><button class="sitenav-toggle" type="button">{0} '
+            '<span class="sitenav-caret">&#9662;</span></button>'
+            '<div class="sitenav-menu">\n{1}\n</div></div>'
+        ).format(label, items)
+    return (
+        '<nav class="sitenav">\n'
+        '<a class="sitenav-brand" href="index.html">ASX Screeners</a>\n'
+        '<div class="sitenav-links">\n'
+        + group('Screeners', NAV_SCREENER_LINKS) + "\n"
+        + group('Sector Indexes', NAV_INDEX_LINKS) + "\n"
+        + '</div>\n</nav>\n'
+        '<script>\n'
+        "document.querySelectorAll('.sitenav-drop').forEach(function(drop){\n"
+        "  var toggle = drop.querySelector('.sitenav-toggle');\n"
+        "  toggle.addEventListener('click', function(e){\n"
+        "    e.stopPropagation();\n"
+        "    var willOpen = !drop.classList.contains('open');\n"
+        "    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });\n"
+        "    if (willOpen) drop.classList.add('open');\n"
+        "  });\n"
+        "});\n"
+        "document.addEventListener('click', function(){\n"
+        "  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });\n"
+        "});\n"
+        "document.addEventListener('keydown', function(e){\n"
+        "  if (e.key === 'Escape') document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });\n"
+        "});\n"
+        '</script>\n'
+    )
 
 
 HTML_TEMPLATE = r"""<!DOCTYPE html>
@@ -126,11 +179,6 @@ h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
 .topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
-.reportnav{background:var(--surface);border:1.5px solid var(--accent2);color:var(--text);
-  font-size:.72rem;font-weight:600;padding:.5rem .8rem;border-radius:6px;
-  cursor:pointer;outline:none;height:fit-content}
-.reportnav:hover{border-color:var(--accent)}
-
 .controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.7rem}
 .pillgroup{display:flex;gap:.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.2rem}
 .pill{background:transparent;border:none;color:var(--muted);font-size:.72rem;
@@ -198,9 +246,41 @@ table.datatable td.sector-cell{color:var(--muted);font-size:.74rem}
 .notice{background:rgba(232,179,85,.08);border:1px solid rgba(232,179,85,.25);border-radius:4px;
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
+.sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:.55rem 1.1rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif}
+.sitenav-brand{font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:600;
+  letter-spacing:.02em;color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
+.sitenav-brand:hover{color:var(--accent)}
+.sitenav-links{display:flex;gap:.2rem}
+.sitenav-drop{position:relative}
+.sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));
+  font-family:inherit;font-size:.8rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;
+  display:flex;align-items:center;gap:.3rem}
+.sitenav-toggle:hover,.sitenav-drop.open .sitenav-toggle{background:var(--bg);color:var(--accent)}
+.sitenav-caret{font-size:.6rem;opacity:.7}
+.sitenav-menu{position:absolute;top:100%;left:0;margin-top:.3rem;min-width:190px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);padding:.3rem;
+  opacity:0;visibility:hidden;transform:translateY(-4px);
+  transition:opacity .12s ease,transform .12s ease,visibility .12s}
+.sitenav-drop:hover .sitenav-menu,.sitenav-drop.open .sitenav-menu{
+  opacity:1;visibility:visible;transform:translateY(0)}
+.sitenav-menu a{display:block;padding:.5rem .6rem;border-radius:6px;font-size:.78rem;
+  color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
+.sitenav-menu a:hover{background:var(--bg);color:var(--accent)}
+.sitenav-menu a.active{color:var(--accent);font-weight:600}
+@media (max-width:640px){
+  .sitenav{padding:.5rem .7rem;gap:.7rem}
+  .sitenav-brand{font-size:.7rem}
+  .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
+  .sitenav-menu{min-width:170px}
+}
 </style>
 </head>
 <body>
+##NAV##
+
 <div class="wrap">
   <div class="topbar">
     <div>
@@ -208,15 +288,6 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
       <div class="subtitle">##SUBTITLE##</div>
     </div>
     <div class="topbar-right">
-      <select class="reportnav" id="reportNav" onchange="if(this.value) location.href=this.value">
-        <option value="pre-breakout.html">📈 Pre-Breakout (OBV)</option>
-        <option value="pullback.html">↩️ Pullback (Zag Zone)</option>
-        <option value="higher-high.html">⬆️ Higher-High</option>
-        <option value="materials-index.html">⛏️ Index: Materials Stocks</option>
-        <option value="healthcare-index.html">🩺 Index: Healthcare Stocks</option>
-        <option value="energy-index.html">⚡ Index: Energy Stocks</option>
-        <option value="tech-index.html">💻 Index: Tech Stocks</option>
-      </select>
       <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
@@ -257,8 +328,6 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 </div>
 
 <script>
-document.getElementById('reportNav').value = location.pathname.split('/').pop() || 'pre-breakout.html';
-
 const themeBtn = document.getElementById('themeBtn');
 function isLightTheme() { return document.documentElement.getAttribute('data-theme') === 'light'; }
 function syncThemeBtn() { themeBtn.textContent = isLightTheme() ? '☀️' : '🌙'; }
