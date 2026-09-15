@@ -1425,7 +1425,9 @@ canvas{width:100%;height:100%;display:block}
   font-family:inherit;font-size:.8rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;
   display:flex;align-items:center;gap:.3rem}
 .sitenav-toggle:hover,.sitenav-drop.open .sitenav-toggle{background:var(--bg);color:var(--accent)}
-.sitenav-caret{font-size:.6rem;opacity:.7}
+.sitenav-caret{font-size:.85rem;opacity:1;color:var(--accent);display:inline-block;
+  transition:transform .15s ease}
+.sitenav-drop:hover .sitenav-caret,.sitenav-drop.open .sitenav-caret{transform:rotate(180deg)}
 .sitenav-menu{position:absolute;top:100%;left:0;margin-top:.3rem;min-width:190px;
   background:var(--surface);border:1px solid var(--border);border-radius:8px;
   box-shadow:0 8px 24px rgba(0,0,0,.25);padding:.3rem;
