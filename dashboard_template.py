@@ -85,9 +85,11 @@ NAV_SCREENER_LINKS = [
 ]
 NAV_INDEX_LINKS = [
     ('energy-index.html', 'Energy'),
+    ('financials-index.html', 'Financials'),
     ('healthcare-index.html', 'Healthcare'),
     ('materials-index.html', 'Materials'),
     ('real-estate-index.html', 'Real Estate'),
+    ('staples-index.html', 'Consumer Staples'),
     ('tech-index.html', 'Tech'),
 ]
 

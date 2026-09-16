@@ -1065,6 +1065,122 @@ def classify_realestate_categories(universe):
         universe[t]["industry"] = cache.get(t, "Real Estate")
 
 
+# ─── FINANCIALS CATEGORY CLASSIFICATION ────────────────────────────────────
+# Same approach as Real Estate - Yahoo's own "industry" field is already a
+# clean, specific taxonomy for most Financials-sector tickers (Asset
+# Management, Credit Services, Capital Markets, Banks - Regional/
+# Diversified, Insurance - Property & Casualty/Life/Specialty, Insurance
+# Brokers, Financial Conglomerates, Mortgage Finance), confirmed by
+# inspecting all 121 Financials-sector tickers' real Yahoo industry +
+# longBusinessSummary text, 2026-09-17. The one gap: a real cluster of
+# payments/lending fintechs Yahoo tags as generic "Software" industries
+# (EML, TYR, CCL, B4P, QFE, RZI, plus Block Inc's ASX CDI listing) - these
+# are genuinely financial services, not tech, so get their own category.
+FINANCIALS_CATEGORY_CACHE_PATH = os.path.join(SCRIPT_DIR, "financials_category_cache.json")
+
+FINANCIALS_EXCLUDED_TICKERS = {"EVE", "MPR"}  # EVE Health (health co) and MPR Australia (solar) - stale GICS tags, same failure mode as CML/DTZ/NVX
+
+FINANCIALS_MANUAL_OVERRIDES = {
+    "B4P": "Fintech / Payments", "CCA": "Fintech / Payments", "CCL": "Fintech / Payments",
+    "EML": "Fintech / Payments", "QFE": "Fintech / Payments", "RZI": "Fintech / Payments",
+    "TYR": "Fintech / Payments", "XYZ": "Fintech / Payments",
+    "CCV": "Consumer Finance", "FPR": "Consumer Finance",
+    "8IH": "Asset Management", "SCP": "Asset Management", "HAL": "Asset Management",
+    "HMC": "Asset Management", "NWL": "Asset Management", "IFL": "Asset Management",
+    "MQG": "Financial Conglomerates",
+}
+
+
+def classify_financials_category(ticker, industry):
+    if ticker in FINANCIALS_MANUAL_OVERRIDES:
+        return FINANCIALS_MANUAL_OVERRIDES[ticker]
+    if industry and (industry.startswith("Banks") or industry.startswith("Insurance") or industry in (
+            "Asset Management", "Credit Services", "Capital Markets", "Financial Conglomerates",
+            "Mortgage Finance", "Financial Data & Stock Exchanges")):
+        return industry
+    return "Financials"
+
+
+def classify_financials_categories(universe):
+    try:
+        with open(FINANCIALS_CATEGORY_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    fin_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Financials" and len(t) == 3 and t not in FINANCIALS_EXCLUDED_TICKERS
+    ]
+    new_tickers = [t for t in fin_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Financials ticker(s) by category...")
+        for t in new_tickers:
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                cache[t] = classify_financials_category(t, info.get("industry"))
+            except Exception:
+                cache[t] = "Financials"
+        with open(FINANCIALS_CATEGORY_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in fin_tickers:
+        universe[t]["industry"] = cache.get(t, "Financials")
+
+
+# ─── CONSUMER STAPLES CATEGORY CLASSIFICATION ──────────────────────────────
+# Yahoo's own "industry" field is already clean for Consumer Staples too
+# (Packaged Foods, Farm Products, Beverages - Wineries & Distilleries/Non-
+# Alcoholic, Household & Personal Products, Grocery Stores, Confectioners,
+# Food Distribution) - confirmed by inspecting all 57 Consumer Staples-
+# sector tickers' real Yahoo industry + longBusinessSummary text,
+# 2026-09-17. A handful of genuinely unrelated businesses (pharma/biotech/
+# AI) carry a stale Consumer Staples sector tag, same failure mode as
+# CML/DTZ/NVX for Tech.
+STAPLES_CATEGORY_CACHE_PATH = os.path.join(SCRIPT_DIR, "staples_category_cache.json")
+
+STAPLES_EXCLUDED_TICKERS = {"BLS", "DAI", "EXL"}  # BLS Pharmaceuticals, Decidr AI Industries, Elixinol Wellness (drug manufacturer) - stale GICS tags
+
+
+def classify_staples_category(industry):
+    if industry and (industry.startswith("Beverages") or industry in (
+            "Packaged Foods", "Farm Products", "Household & Personal Products",
+            "Grocery Stores", "Confectioners", "Food Distribution")):
+        return industry
+    return "Consumer Staples"
+
+
+def classify_staples_categories(universe):
+    try:
+        with open(STAPLES_CATEGORY_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    staples_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Consumer Staples" and len(t) == 3 and t not in STAPLES_EXCLUDED_TICKERS
+    ]
+    new_tickers = [t for t in staples_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Consumer Staples ticker(s) by category...")
+        for t in new_tickers:
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                cache[t] = classify_staples_category(info.get("industry"))
+            except Exception:
+                cache[t] = "Consumer Staples"
+        with open(STAPLES_CATEGORY_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in staples_tickers:
+        universe[t]["industry"] = cache.get(t, "Consumer Staples")
+
+
 # ─── INDICATORS ───────────────────────────────────────────────────────────────
 
 def calc_obv_series(closes, volumes):
@@ -1560,9 +1676,11 @@ canvas{width:100%;height:100%;display:block}
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="energy-index.html">Energy</a>
+<a href="financials-index.html">Financials</a>
 <a href="healthcare-index.html">Healthcare</a>
 <a href="materials-index.html">Materials</a>
 <a href="real-estate-index.html">Real Estate</a>
+<a href="staples-index.html">Consumer Staples</a>
 <a href="tech-index.html">Tech</a>
 </div></div>
 <a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
@@ -2110,6 +2228,8 @@ def main():
     classify_energy_fuels(universe)
     classify_tech_categories(universe)
     classify_realestate_categories(universe)
+    classify_financials_categories(universe)
+    classify_staples_categories(universe)
 
     results, usable, fresh_today = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])

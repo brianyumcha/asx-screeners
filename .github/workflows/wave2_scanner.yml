@@ -67,6 +67,8 @@ jobs:
           cp energy-index.html _site/energy-index.html
           cp tech-index.html _site/tech-index.html
           cp real-estate-index.html _site/real-estate-index.html
+          cp financials-index.html _site/financials-index.html
+          cp staples-index.html _site/staples-index.html
           cp insider-index.html _site/insider-index.html
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           cp wave2-scanner.html _site/wave2-scanner.html
