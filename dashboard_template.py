@@ -209,6 +209,18 @@ h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-
 .controls{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:flex-end;margin-bottom:.7rem}
 .pillgroupwrap{display:flex;flex-direction:column;gap:.25rem}
 .pillgroup-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+.pillgroup-label[data-tip]{position:relative;cursor:help;border-bottom:1px dotted var(--muted)}
+.pillgroup-label[data-tip]::after{
+  content:attr(data-tip);position:absolute;top:100%;margin-top:.4rem;left:0;
+  background:var(--text);color:var(--bg);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:.7rem;font-weight:400;text-transform:none;letter-spacing:normal;
+  padding:.45rem .65rem;border-radius:6px;line-height:1.4;
+  white-space:normal;width:max-content;max-width:220px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .05s ease;z-index:10;
+  box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.pillgroup-label[data-tip]:hover::after{opacity:1;visibility:visible}
 .pillgroup{display:flex;gap:.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.2rem}
 .pill{background:transparent;border:none;color:var(--muted);font-size:.72rem;
   padding:.4rem .8rem;border-radius:6px;cursor:pointer;white-space:nowrap}
@@ -220,6 +232,7 @@ input[type=text]:focus{border-color:rgba(232,179,85,.4)}
 .checkline{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted);cursor:pointer}
 .checkline input{cursor:pointer}
 
+.ctrllabel{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
 .sectorrow{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
 .sectorpill{background:var(--surface);border:1px solid var(--border);color:var(--muted);
   font-size:.68rem;padding:.35rem .7rem;border-radius:20px;cursor:pointer}
@@ -355,12 +368,12 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
       <button class="pill active" data-view="ranked">Ranked</button>
       <button class="pill" data-view="sector">Sector</button>
     </div></div>
-    <div class="pillgroupwrap"><span class="pillgroup-label">Size</span><div class="pillgroup" id="sizeToggle">
+    <div class="pillgroupwrap"><span class="pillgroup-label" data-tip="S: under $300M · M: $300M-$2B · L: $2B+">Market Cap</span><div class="pillgroup" id="sizeToggle">
       <button class="pill active" data-size="S">S</button>
       <button class="pill active" data-size="M">M</button>
       <button class="pill active" data-size="L">L</button>
     </div></div>
-    <div class="pillgroupwrap"><span class="pillgroup-label">Window</span><div class="pillgroup" id="tfToggle">
+    <div class="pillgroupwrap"><span class="pillgroup-label">Chart Range</span><div class="pillgroup" id="tfToggle">
       <button class="pill" data-tf="63">3M</button>
       <button class="pill active" data-tf="126">6M</button>
       <button class="pill" data-tf="252">12M</button>
@@ -369,6 +382,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
     <label class="checkline"><input type="checkbox" id="showSeen"> Show already seen</label>
   </div>
 
+  <div class="ctrllabel" style="margin-bottom:.4rem">Sector</div>
   <div class="sectorrow" id="sectorRow"></div>
   <div class="countline" id="countLine"></div>
   <div class="grid" id="grid"></div>

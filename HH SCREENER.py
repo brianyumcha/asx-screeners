@@ -1632,10 +1632,12 @@ document.addEventListener('keydown', function(e){
     </div>
   </div>
   <div class="controls">
+    <label class="ctrllabel" for="modeToggle">Mode</label>
     <div class="pillgroup" id="modeToggle">
       <button class="pill" data-mode="chart">📊 Charts</button>
       <button class="pill active" data-mode="table">☰ Table</button>
     </div>
+    <label class="ctrllabel" for="tfToggle">Signal</label>
     <div class="pillgroup" id="tfToggle">
       <button class="pill active" data-tf="daily">Daily</button>
       <button class="pill" data-tf="weekly">Weekly</button>
@@ -1643,6 +1645,7 @@ document.addEventListener('keydown', function(e){
     <input type="text" id="search" placeholder="Search ticker...">
   </div>
 
+  <div class="ctrllabel" style="margin-bottom:.4rem">Sector</div>
   <div class="sectorrow" id="sectorRow"></div>
 
   <div id="sectors"></div>
