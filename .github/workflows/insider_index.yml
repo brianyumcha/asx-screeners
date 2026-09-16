@@ -75,6 +75,7 @@ jobs:
           cp tech-index.html _site/tech-index.html
           cp real-estate-index.html _site/real-estate-index.html
           cp insider-index.html _site/insider-index.html
+          [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           cp craig-bullish-map.html _site/craig-bullish-map.html
           [ -f pre-breakout.html ] && cp pre-breakout.html _site/pre-breakout.html || true
           [ -f pullback.html ] && cp pullback.html _site/pullback.html || true

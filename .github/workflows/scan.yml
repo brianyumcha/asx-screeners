@@ -82,6 +82,13 @@ jobs:
           curl -sf -o asx_breakout_results.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html
           curl -sf -o asx_pullback_results.html https://brianyumcha.github.io/asx-screeners/pullback.html
 
+      - name: Build conviction stack (cross-references insider/FA-pick/HH/OBV/pullback)
+        # Reads this run's fresh (or just-preserved) OBV/Pullback/HH result
+        # files plus the git-tracked insider-index.html/craig-bullish-map.html
+        # already restored by checkout - no extra network calls.
+        if: steps.gate.outputs.should_run == 'true'
+        run: python3 build_conviction_stack.py
+
       - name: Commit updated price cache
         # Every successful run (including intraday HH-only ones) refreshes
         # price_cache.parquet - it has to be committed every time too, or
@@ -92,7 +99,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f price_cache.parquet seen_tickers_hh_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json
+          git add -f price_cache.parquet seen_tickers_hh_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json conviction-stack.html
           git diff --staged --quiet || git commit -m "Update price cache"
           for i in 1 2 3; do
             git push && break
@@ -133,6 +140,7 @@ jobs:
           [ -f tech-index.html ] && cp tech-index.html _site/tech-index.html || true
           [ -f real-estate-index.html ] && cp real-estate-index.html _site/real-estate-index.html || true
           [ -f insider-index.html ] && cp insider-index.html _site/insider-index.html || true
+          [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           cp craig-bullish-map.html _site/craig-bullish-map.html
 
       - uses: actions/upload-pages-artifact@v3
