@@ -141,6 +141,7 @@ jobs:
           [ -f real-estate-index.html ] && cp real-estate-index.html _site/real-estate-index.html || true
           [ -f insider-index.html ] && cp insider-index.html _site/insider-index.html || true
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
+          [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
           cp craig-bullish-map.html _site/craig-bullish-map.html
 
       - uses: actions/upload-pages-artifact@v3

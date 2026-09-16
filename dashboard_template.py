@@ -566,6 +566,30 @@ function drawChart(canvas, card, tf) {
     ctx.fillRect(x(i) - bw / 2, bodyTop, bw, Math.max(1, bodyBot - bodyTop));
   }
 
+  // Optional wave-count overlay (Wave 2 scanner only - absent/no-op for
+  // every other card type). Point indices are relative to the FULL
+  // closes array the card was built with, same as `start` above, so
+  // the same view-window math applies to them.
+  if (card.wave_points && card.wave_points.length) {
+    const HIGH_LABELS = new Set(['1', '3', '5', 'B']);
+    ctx.font = '700 10px "IBM Plex Mono", monospace';
+    ctx.textAlign = 'center';
+    card.wave_points.forEach(pt => {
+      const vi = pt.idx - start;
+      if (vi < 0 || vi >= n2) return;
+      const px = x(vi), py = y(pt.price);
+      const above = HIGH_LABELS.has(pt.label);
+      ctx.beginPath();
+      ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = isLightTheme() ? '#7a4a0f' : '#e8b355';
+      ctx.fill();
+      const ly = above ? py - 8 : py + 15;
+      ctx.fillStyle = isLightTheme() ? '#141209' : '#f5f2e8';
+      ctx.fillText(pt.label, px, ly);
+    });
+    ctx.textAlign = 'left';
+  }
+
   // floating last-price badge
   const lastPrice = closes[closes.length - 1];
   const up = card.change_1d >= 0;
