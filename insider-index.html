@@ -146,11 +146,24 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
 .sitenav-menu a:hover{background:var(--bg);color:var(--nav-accent)}
 .sitenav-menu a.active{color:var(--nav-accent);font-weight:600}
+.navburger{display:none;background:transparent;border:1px solid var(--border);color:var(--text, var(--ink));
+  width:2.1rem;height:2.1rem;border-radius:6px;cursor:pointer;font-size:1rem;
+  align-items:center;justify-content:center;flex:none;margin-left:auto}
+.navburger:hover{border-color:var(--nav-accent);color:var(--nav-accent)}
 @media (max-width:640px){
   .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}
   .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
   .sitenav-menu{min-width:170px}
+  .navburger{display:flex}
+  .sitenav-links{display:none;flex-basis:100%;flex-direction:column;align-items:stretch;gap:.15rem;margin-top:.4rem}
+  .sitenav.menu-open .sitenav-links{display:flex}
+  .sitenav-drop{width:100%}
+  .sitenav-toggle{width:100%}
+  .sitenav-menu{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;
+    border:none;background:transparent;margin-top:0;padding:0 0 0 .8rem;
+    max-height:0;overflow:hidden;transition:max-height .15s ease}
+  .sitenav-drop.open .sitenav-menu{max-height:220px;padding-top:.2rem;padding-bottom:.2rem}
 }
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -162,6 +175,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <span class="brand-tag">Reading the charts. Timing the carts.</span>
 </a>
 <span class="sitenav-divider"></span>
+<button class="navburger" type="button" aria-label="Toggle menu">&#9776;</button>
 <div class="sitenav-links">
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button>
 <div class="sitenav-menu">
@@ -189,11 +203,23 @@ document.querySelectorAll('.sitenav-drop').forEach(function(drop){
     if (willOpen) drop.classList.add('open');
   });
 });
+var sitenavEl = document.querySelector('.sitenav');
+var navburgerEl = document.querySelector('.navburger');
+if (navburgerEl && sitenavEl) {
+  navburgerEl.addEventListener('click', function(e){
+    e.stopPropagation();
+    sitenavEl.classList.toggle('menu-open');
+  });
+}
 document.addEventListener('click', function(){
   document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+  if (sitenavEl) sitenavEl.classList.remove('menu-open');
 });
 document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+    if (sitenavEl) sitenavEl.classList.remove('menu-open');
+  }
 });
 </script>
 

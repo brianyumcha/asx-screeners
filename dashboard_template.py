@@ -110,6 +110,7 @@ def render_nav(active_href):
         '<span class="brand-tag">Reading the charts. Timing the carts.</span>\n'
         '</a>\n'
         '<span class="sitenav-divider"></span>\n'
+        '<button class="navburger" type="button" aria-label="Toggle menu">&#9776;</button>\n'
         '<div class="sitenav-links">\n'
         + group('Screeners', NAV_SCREENER_LINKS) + "\n"
         + group('ASX Sector Indexes', NAV_INDEX_LINKS) + "\n"
@@ -125,11 +126,23 @@ def render_nav(active_href):
         "    if (willOpen) drop.classList.add('open');\n"
         "  });\n"
         "});\n"
+        "var sitenavEl = document.querySelector('.sitenav');\n"
+        "var navburgerEl = document.querySelector('.navburger');\n"
+        "if (navburgerEl && sitenavEl) {\n"
+        "  navburgerEl.addEventListener('click', function(e){\n"
+        "    e.stopPropagation();\n"
+        "    sitenavEl.classList.toggle('menu-open');\n"
+        "  });\n"
+        "}\n"
         "document.addEventListener('click', function(){\n"
         "  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });\n"
+        "  if (sitenavEl) sitenavEl.classList.remove('menu-open');\n"
         "});\n"
         "document.addEventListener('keydown', function(e){\n"
-        "  if (e.key === 'Escape') document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });\n"
+        "  if (e.key === 'Escape') {\n"
+        "    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });\n"
+        "    if (sitenavEl) sitenavEl.classList.remove('menu-open');\n"
+        "  }\n"
         "});\n"
         '</script>\n'
     )
@@ -288,11 +301,24 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 .sitenav-menu a:hover{background:var(--bg);color:var(--accent)}
 .sitenav-menu a.active{color:var(--accent);font-weight:600}
 .sitenav-toggle.active{background:var(--bg);color:var(--accent)}
+.navburger{display:none;background:transparent;border:1px solid var(--border);color:var(--text, var(--ink));
+  width:2.1rem;height:2.1rem;border-radius:6px;cursor:pointer;font-size:1rem;
+  align-items:center;justify-content:center;flex:none;margin-left:auto}
+.navburger:hover{border-color:var(--accent);color:var(--accent)}
 @media (max-width:640px){
   .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}
   .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
   .sitenav-menu{min-width:170px}
+  .navburger{display:flex}
+  .sitenav-links{display:none;flex-basis:100%;flex-direction:column;align-items:stretch;gap:.15rem;margin-top:.4rem}
+  .sitenav.menu-open .sitenav-links{display:flex}
+  .sitenav-drop{width:100%}
+  .sitenav-toggle{width:100%}
+  .sitenav-menu{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;
+    border:none;background:transparent;margin-top:0;padding:0 0 0 .8rem;
+    max-height:0;overflow:hidden;transition:max-height .15s ease}
+  .sitenav-drop.open .sitenav-menu{max-height:220px;padding-top:.2rem;padding-bottom:.2rem}
 }
 </style>
 </head>
