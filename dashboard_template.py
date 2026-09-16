@@ -261,8 +261,25 @@ input[type=text]:focus{border-color:rgba(232,179,85,.4)}
 .scorebar .fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
 .scorebar .num{font-size:.68rem;color:var(--muted)}
 
-.chartwrap{position:relative;width:100%;height:150px}
+.chartwrap{position:relative;width:100%;height:150px;cursor:zoom-in}
 canvas{width:100%;height:100%;display:block}
+
+.lightbox-overlay{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.72);
+  display:none;align-items:center;justify-content:center;padding:2rem}
+.lightbox-overlay.open{display:flex}
+.lightbox-box{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:1.2rem;width:min(1100px,100%);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lightbox-head{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem}
+.lightbox-head .lbticker{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.1rem}
+.lightbox-head .lbprice{font-size:.85rem;color:var(--muted)}
+.lightbox-close{margin-left:auto;background:transparent;border:1px solid var(--border);
+  color:var(--text);width:2.1rem;height:2.1rem;border-radius:6px;cursor:pointer;font-size:1rem}
+.lightbox-close:hover{border-color:var(--accent2);color:var(--accent2)}
+.lightbox-chartwrap{position:relative;width:100%;height:min(60vh,520px)}
+.lightbox-controls{display:flex;align-items:center;gap:.7rem;margin-top:.8rem}
+.lightbox-controls input[type=range]{flex:1;accent-color:var(--accent2)}
+.lightbox-controls .lbbars{font-size:.72rem;color:var(--muted);min-width:9rem;text-align:right;
+  font-family:"IBM Plex Mono",monospace}
 
 .statrow{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);
   border-top:1px solid var(--border);padding-top:.5rem}
@@ -389,6 +406,21 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
   <div id="tableWrap" style="display:none;overflow-x:auto;"></div>
 
   <footer>##FOOTER_NOTE##</footer>
+</div>
+
+<div class="lightbox-overlay" id="lightbox">
+  <div class="lightbox-box">
+    <div class="lightbox-head">
+      <span class="lbticker" id="lbTicker"></span>
+      <span class="lbprice" id="lbPrice"></span>
+      <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+    </div>
+    <div class="lightbox-chartwrap"><canvas id="lbCanvas"></canvas></div>
+    <div class="lightbox-controls">
+      <input type="range" id="lbSlider" min="20" max="100" value="100">
+      <span class="lbbars" id="lbBarsLabel"></span>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -720,8 +752,42 @@ function render() {
     const c = DATA.find(d => d.ticker === el.dataset.ticker);
     const canvas = el.querySelector('canvas');
     requestAnimationFrame(() => drawChart(canvas, c, state.tf));
+    canvas.addEventListener('click', () => openLightbox(c));
   });
 }
+
+const lightbox = document.getElementById('lightbox');
+const lbCanvas = document.getElementById('lbCanvas');
+const lbSlider = document.getElementById('lbSlider');
+let lbCard = null;
+function openLightbox(card) {
+  lbCard = card;
+  document.getElementById('lbTicker').textContent = card.ticker;
+  const chg = card.change_1d;
+  const chgClass = chg > 0 ? 'up' : chg < 0 ? 'dn' : 'neutral';
+  const chgSign = chg > 0 ? '+' : '';
+  document.getElementById('lbPrice').innerHTML =
+    `$${card.price.toFixed(card.price < 1 ? 3 : 2)} <span class="${chgClass}">${chgSign}${chg.toFixed(1)}%</span>`;
+  const n = card.closes.length;
+  lbSlider.min = Math.min(20, n);
+  lbSlider.max = n;
+  // Default to the full exported window so a multi-month wave structure
+  // isn't cropped the way the fixed 3M/6M/12M card view can crop it -
+  // the whole point of the lightbox is seeing the full count at once.
+  lbSlider.value = n;
+  lightbox.classList.add('open');
+  drawLightbox();
+}
+function drawLightbox() {
+  if (!lbCard) return;
+  document.getElementById('lbBarsLabel').textContent = `${lbSlider.value} bars`;
+  drawChart(lbCanvas, lbCard, parseInt(lbSlider.value, 10));
+}
+lbSlider.addEventListener('input', drawLightbox);
+document.getElementById('lbClose').addEventListener('click', () => lightbox.classList.remove('open'));
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lightbox.classList.remove('open'); });
+window.addEventListener('resize', () => { if (lightbox.classList.contains('open')) drawLightbox(); });
 
 render();
 </script>
