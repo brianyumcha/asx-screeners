@@ -1387,9 +1387,12 @@ try {
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;margin:0;}
-html,body{overflow-x:hidden}
+html,body{overflow-x:clip}
 .wrap{max-width:1560px;margin:0 auto;padding:0 1.6rem 1.6rem}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
+@media (min-width:641px){
+  .topbar{position:sticky;top:65px;z-index:400;background:var(--bg);padding:.9rem 0 .7rem;border-bottom:1px solid var(--border)}
+}
 h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:-.01em;
   text-wrap:balance;color:var(--text)}
 .subtitle{font-size:.92rem;color:var(--muted);margin-top:.3rem;max-width:44rem}
@@ -1600,7 +1603,7 @@ document.addEventListener('keydown', function(e){
   <div class="topbar">
     <div>
       <h1>⬆️ ASX Higher-High Screener</h1>
-      <div class="subtitle">Structural breakout of the last swing high, by sector — port of the "HH Indicator (BT)" TradingView scripts, full ASX universe.</div>
+      <div class="subtitle">Flags ASX stocks breaking out to a new swing high — a close crossing back above the last confirmed pivot high, by sector, across the full ASX universe.</div>
       <div class="subtitle">Runs weekdays at 10:30am, 1pm, 3:30pm &amp; 4:30pm intraday, plus 5pm after close — all Sydney time.</div>
     </div>
     <div class="topbar-right">

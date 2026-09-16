@@ -185,13 +185,16 @@ try {
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;margin:0;}
-html,body{overflow-x:hidden}
+html,body{overflow-x:clip}
 body::before{content:'';position:fixed;inset:0;
   background-image:linear-gradient(rgba(232,179,85,.03) 1px,transparent 1px),
   linear-gradient(90deg,rgba(232,179,85,.03) 1px,transparent 1px);
   background-size:40px 40px;pointer-events:none;z-index:0}
 .wrap{max-width:1560px;margin:0 auto;position:relative;z-index:1;padding:0 1.6rem 1.6rem}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
+@media (min-width:641px){
+  .topbar{position:sticky;top:65px;z-index:400;background:var(--bg);padding:.9rem 0 .7rem;border-bottom:1px solid var(--border)}
+}
 h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:-.01em;
   text-wrap:balance;color:var(--text)}
 @media (max-width:640px){h1{font-size:1.8rem}}
