@@ -18,9 +18,11 @@ Signal definitions (each independent of the others):
   - Insider Buying: has any row in insider-index.html (already scoped to
     the last 180 days by that tracker itself).
   - FA Pick: ticker appears anywhere in the current FA bull map.
-  - HH Breakout: hh_daily or hh_weekly fired on this run - a fresh new-high
-    signal, not just "still sitting at an old high" (see high_tier, which
-    persists longer and isn't used here for that reason).
+  - HH Breakout: hh_daily fired on this run - a fresh new-high signal on
+    the most recent trading day, not just "still sitting at an old high"
+    (see high_tier, which persists longer and isn't used here for that
+    reason) and not hh_weekly, which stays True for the whole trading
+    week once it fires, not just the day it crossed.
   - Pre-Breakout (OBV): ticker passed the OBV screener's own criteria this
     run (rising OBV, below 30d high, RSI 45-70, etc).
   - Pullback (Zag Zone): ticker passed the Pullback screener's own
@@ -107,7 +109,14 @@ def main():
         return info[t]
 
     for r in hh_rows:
-        if not (r.get("hh_daily") or r.get("hh_weekly")):
+        # Daily only, not weekly - hh_weekly stays True for the entire
+        # trading week once it fires (the weekly candle hasn't closed yet),
+        # not just the day it crossed. Folded into a single "did this
+        # already break out" boolean, that reads as "broke out today" when
+        # it might have been Monday - genuinely OK on the HH screener's own
+        # page (Daily/Weekly is an explicit toggle there) but misleading
+        # here without that context.
+        if not r.get("hh_daily"):
             continue
         d = get(r["ticker"])
         d["hh"] = True
