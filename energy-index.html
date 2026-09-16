@@ -178,9 +178,11 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="energy-index.html" class="active">Energy</a>
+<a href="financials-index.html">Financials</a>
 <a href="healthcare-index.html">Healthcare</a>
 <a href="materials-index.html">Materials</a>
 <a href="real-estate-index.html">Real Estate</a>
+<a href="staples-index.html">Consumer Staples</a>
 <a href="tech-index.html">Tech</a>
 </div></div>
 <a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
@@ -296,7 +298,7 @@ const DATA = [
 ["BMN","Bannerman Energy Ltd","Uranium","Explorer / Developer",900319680,3.77,-1.3,5.25],
 ["BNL","Blue Star Helium Limited","Helium + Oil & Gas","Explorer / Developer",24611660,0.004,-20.0,0.012],
 ["BOE","Boss Energy Limited","Uranium","Producer",633142336,1.525,2.3,2.2],
-["BPT","Beach Energy Limited","Oil & Gas","Producer",2053200290,0.9,3.4,1.335],
+["BPT","Beach Energy Limited","Oil & Gas","Producer",2053200384,0.9,3.4,1.335],
 ["BRK","Brookside Energy Limited","Oil & Gas","Producer",41151000,0.435,3.6,0.635],
 ["BRU","Buru Energy Limited","Oil & Gas","Producer",19021248,0.014,0.0,0.027],
 ["BSN","Basin Energy Limited","Uranium","Explorer / Developer",7294579,0.031,-6.1,0.069],
@@ -315,7 +317,7 @@ const DATA = [
 ["DEV","DevEx Resources Limited","Uranium","Explorer / Developer",145617744,0.205,-2.4,0.325],
 ["DYL","Deep Yellow Limited","Uranium","Explorer / Developer",1271389952,1.305,0.8,2.97],
 ["ECH","Echelon Resources Limited","Oil & Gas","Producer",79579144,0.35,-2.8,0.44],
-["EDE","Eden Innovations Ltd","Hydrogen + Oil & Gas","Explorer / Developer",38544660,0.061,-1.6,0.275],
+["EDE","Eden Innovations Ltd","Hydrogen + Oil & Gas","Explorer / Developer",37281056,0.061,-1.6,0.275],
 ["EGA","Eastern Gas Corporation Limited","Oil & Gas + Coal Seam Gas / CBM","Explorer / Developer",14400000,0.16,0.0,0.22],
 ["EL8","Elevate Uranium Ltd","Uranium","Explorer / Developer",115537264,0.245,2.1,0.495],
 ["EME","Energy Metals Limited","Uranium","Explorer / Developer",16774665,0.08,0.0,0.115],
@@ -340,7 +342,7 @@ const DATA = [
 ["HHR","","Energy","—",null,null,null,null],
 ["HPR","High Peak Royalties Limited","Oil & Gas + Geothermal","Explorer / Developer",19187494,0.092,-2.1,0.096],
 ["HYT","Hyterra Ltd","Hydrogen + Helium","Explorer / Developer",12857268,0.006,0.0,0.027],
-["HZN","Horizon Oil Limited","Oil & Gas","Producer",410068096,0.23,0.0,0.295],
+["HZN","Horizon Oil Limited","Oil & Gas","Producer",408130080,0.23,0.0,0.295],
 ["IPB","","Energy","—",null,null,null,null],
 ["IVZ","Invictus Energy Limited","Oil & Gas","Explorer / Developer",126829960,0.071,-1.4,0.24],
 ["JPR","Jupiter Energy Limited","Oil & Gas","Producer",32059638,0.025,0.0,0.042],
@@ -349,7 +351,7 @@ const DATA = [
 ["KKO","Kinetiko Energy Limited","Oil & Gas","Explorer / Developer",57102020,0.036,-5.3,0.084],
 ["LAM","Laramide Resources Ltd.","Uranium","Explorer / Developer",188827952,0.645,0.0,0.93],
 ["LIO","Lion Energy Limited","Oil & Gas + Hydrogen","Explorer / Developer",4973944,0.011,-15.4,0.026],
-["LKO","Lakes Blue Energy NL","Oil & Gas","Explorer / Developer",24268680,0.26,-3.7,1.69],
+["LKO","Lakes Blue Energy NL","Oil & Gas","Explorer / Developer",24138282,0.26,-3.7,1.69],
 ["MAY","Melbana Energy Limited","Oil & Gas","Explorer / Developer",17018860,0.0045,0.0,0.02],
 ["MCE","","Energy Services","—",null,null,null,null],
 ["MCM","MC Mining Limited","Thermal Coal","Producer",223905168,0.265,-3.6,0.37],
@@ -360,9 +362,9 @@ const DATA = [
 ["MNE","Macallum New Energy Limited","Oil & Gas","Explorer / Developer",21029754,0.15,3.4,0.26],
 ["NGY","NuEnergy Gas Limited","Oil & Gas + Coal Seam Gas / CBM","Explorer / Developer",59993020,0.03,0.0,0.095],
 ["NHC","New Hope Corporation Limited","Thermal Coal + Oil & Gas","Producer",5476086784,6.49,0.3,6.61],
-["NHE","Noble Helium Limited","Helium","Explorer / Developer",33669736,0.027,0.0,0.061],
+["NHE","Noble Helium Limited","Helium","Explorer / Developer",19911314,0.027,0.0,0.061],
 ["NHU","Neu Horizon Uranium Limited","Uranium","Explorer / Developer",10557800,0.066,0.0,0.1475],
-["NXG","NexGen Energy Ltd.","Uranium","Explorer / Developer",9018307584,13.45,1.1,20.47],
+["NXG","NexGen Energy Ltd.","Uranium","Explorer / Developer",8902681600,13.45,1.1,20.47],
 ["OEL","Otto Energy Limited","Oil & Gas","Producer",33565068,0.007,-6.7,0.008],
 ["OMA","Omega Oil & Gas Limited","Oil & Gas","Explorer / Developer",459630944,0.85,4.3,1.08],
 ["P1E","Pure One Corporation Limited","Oil & Gas + Hydrogen","Explorer / Developer",17887554,0.044,0.0,0.098],
@@ -379,7 +381,7 @@ const DATA = [
 ["SAN","Sagalio Energy Limited","Oil & Gas","Explorer / Developer",1841941,0.009,0.0,0.022],
 ["SHE","Stonehorse Energy Limited","Oil & Gas","Producer",7529063,0.011,0.0,0.015],
 ["SRJ","SRJ Technologies Group Plc","Energy Services","—",6964004,0.004,-20.0,0.026],
-["STO","Santos Limited","Oil & Gas","Producer",28353057949,8.73,2.1,8.81],
+["STO","Santos Limited","Oil & Gas","Producer",28353056768,8.73,2.1,8.81],
 ["STX","Strike Energy Limited","Oil & Gas","Producer",413930688,0.115,4.5,0.145],
 ["T92","Terra Critical Minerals Limited","Uranium","Explorer / Developer",7269912,0.049,4.3,0.16],
 ["TBN","Tamboran Resources Corporation","Oil & Gas","Explorer / Developer",2021671808,0.29,5.5,0.338528],

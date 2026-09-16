@@ -167,13 +167,14 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="energy-index.html">Energy</a>
+<a href="financials-index.html">Financials</a>
 <a href="healthcare-index.html">Healthcare</a>
 <a href="materials-index.html">Materials</a>
 <a href="real-estate-index.html" class="active">Real Estate</a>
+<a href="staples-index.html">Consumer Staples</a>
 <a href="tech-index.html">Tech</a>
 </div></div>
 <a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
-<a class="sitenav-toggle" href="conviction-stack.html">Conviction Stack</a>
 </div>
 </nav>
 <script>
@@ -265,12 +266,12 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["ABG","Abacus Group","REIT - Diversified",741735872,0.83,2.5,1.265,10.49],
+["ABG","Abacus Group","REIT - Diversified",741735872,0.83,2.5,1.265,10.24],
 ["ACU","Acumentis Group Limited","Real Estate Services",21626640,0.097,0.0,0.15,4.64],
 ["AOF","","Real Estate",null,null,null,null,null],
 ["APW","Aims Property Securities Fund","REIT - Diversified",173624112,3.9,0.0,4.2,null],
-["APZ","Aspen Group","Real Estate - Diversified",1084277888,4.73,1.7,6.43,2.37],
-["ARF","Arena REIT","REIT - Specialty",878332288,2.16,-0.5,4.05,8.91],
+["APZ","Aspen Group","Real Estate - Diversified",1084277888,4.73,1.7,6.43,2.33],
+["ARF","Arena REIT","REIT - Specialty",881920640,2.16,-0.5,4.05,null],
 ["ASK","","Real Estate",null,null,null,null,null],
 ["AU1","The Agency Group Australia Limited","Real Estate Services",13187278,0.03,0.0,0.038,null],
 ["AXI","Axtec Limited","Real Estate Services",5456136,0.01,0.0,0.058,null],
@@ -279,25 +280,25 @@ const DATA = [
 ["CDP","Carindale Property Trust","REIT - Retail",449263072,5.43,0.0,5.88,5.5],
 ["CHC","Charter Hall Group","REIT - Diversified",8712607744,18.42,0.4,25.95,2.81],
 ["CIP","Centuria Industrial REIT","REIT - Industrial",1779506048,2.85,-0.3,3.59,6.07],
-["CLW","Charter Hall Long WALE REIT","REIT - Diversified",2456011520,3.4,0.3,4.61,7.52],
+["CLW","Charter Hall Long WALE REIT","REIT - Diversified",2456011520,3.4,0.3,4.61,7.5],
 ["CMW","Cromwell Property Group","REIT - Office",916603328,0.35,-1.4,0.5,8.57],
 ["CNI","Centuria Capital Group","REIT - Diversified",1329574528,1.325,3.9,2.44,7.85],
 ["COF","Centuria Office REIT","REIT - Office",513709856,0.86,-0.6,1.28,10.47],
 ["CQE","Charter Hall Social Infrastructure REIT","REIT - Specialty",872105600,2.35,0.0,3.46,7.23],
-["CQR","Charter Hall Retail REIT","REIT - Retail",2173798912,3.74,0.5,4.27,6.84],
-["CWP","Cedar Woods Properties Limited","Real Estate - Development",558188224,6.53,0.5,9.2,5.97],
+["CQR","Charter Hall Retail REIT","REIT - Retail",2173798912,3.74,0.5,4.27,null],
+["CWP","Cedar Woods Properties Limited","Real Estate - Development",555544704,6.53,0.5,9.2,5.97],
 ["DGH","Desane Group Holdings Limited","Real Estate Services",31500694,0.77,0.0,0.975,null],
-["DXC","Dexus Convenience Retail REIT","REIT - Retail",378826432,2.8,0.0,3.1,7.46],
-["DXI","Dexus Industria REIT","REIT - Industrial",730276480,2.35,0.4,3.0,7.06],
+["DXC","Dexus Convenience Retail REIT","REIT - Retail",379888320,2.8,0.0,3.1,7.46],
+["DXI","Dexus Industria REIT","REIT - Industrial",734341760,2.35,0.4,3.0,7.06],
 ["DXS","DEXUS","REIT - Office",5931422720,5.53,-1.1,7.73,6.69],
 ["ECF","","Real Estate",null,null,null,null,null],
 ["EGH","Eureka Group Holdings Limited","Real Estate Services",335862240,0.615,-1.6,0.795,2.37],
 ["FRI","Finbar Group Limited","Real Estate - Development",193207424,0.71,0.0,0.95,7.75],
 ["G1C","Group One Capital Limited","Real Estate - Diversified",20808408,0.059,0.0,0.15,null],
-["GDF","Garda Property Group","Real Estate Services",203695168,1.015,1.0,1.25,8.96],
+["GDF","Garda Property Group","Real Estate Services",203695168,1.015,1.0,1.25,8.87],
 ["GDI","GDI Property Group","Real Estate Services",342787264,0.635,-0.8,0.695,7.87],
 ["GLF","GemLife Communities Group","Real Estate - Development",1616225920,4.25,1.0,5.44,0.52],
-["GMG","Goodman Group","REIT - Diversified",53033213952,25.81,-0.9,34.78,1.15],
+["GMG","Goodman Group","REIT - Diversified",53033213952,25.81,-0.9,34.78,1.16],
 ["GOZ","Growthpoint Properties Australia","REIT - Office",1509217536,2.0,-1.0,2.68,9.2],
 ["GPT","The GPT Group","REIT - Diversified",8620098560,4.5,-1.1,5.75,5.39],
 ["HCW","HealthCo Healthcare and Wellness REIT","REIT - Healthcare Facilities",423635456,0.77,-0.6,0.845,null],
@@ -316,18 +317,18 @@ const DATA = [
 ["REP","RAM Essential Services Property Fund","REIT - Diversified",106476352,0.425,-1.2,0.63,10.71],
 ["RFF","Rural Funds Group","REIT - Specialty",759959872,1.95,-0.3,2.275,6.02],
 ["RGN","Region Group","REIT - Retail",2562688512,2.23,0.0,2.495,6.32],
-["SCG","Scentre Group","REIT - Retail",18093805568,3.46,-0.6,4.27,5.3],
+["SCG","Scentre Group","REIT - Retail",18093805568,3.46,-0.6,4.27,5.33],
 ["SGP","Stockland","REIT - Diversified",10067006464,4.14,-0.7,6.75,6.09],
-["SKG","Storage King Group","REIT - Industrial",1419231360,1.08,-0.5,1.61,5.71],
+["SKG","Storage King Group","REIT - Industrial",1419231360,1.08,-0.5,1.61,5.74],
 ["SRV","Servcorp Limited","Real Estate Services",591776896,5.81,-1.2,8.16,5.51],
 ["SSL","Sietel Limited","Real Estate Services",68864328,8.6,0.0,8.89,null],
 ["TIA","Tian An Australia Limited","Real Estate - Development",14723502,0.17,0.0,0.35,null],
-["TOT","360 Capital REIT","REIT - Diversified",88328464,0.4,-3.6,0.475,7.23],
+["TOT","360 Capital REIT","REIT - Diversified",88328464,0.4,-3.6,0.475,7.5],
 ["UOS","United Overseas Australia Ltd","Real Estate - Development",1174334720,0.67,0.0,0.79,3.73],
 ["URF","US Masters Residential Property Fund","REIT - Residential",77450768,0.1125,2.3,0.305,null],
 ["VCX","Vicinity Centres","REIT - Retail",10904790016,2.35,0.0,2.73,5.28],
 ["WOT","WOTSO","Real Estate",84354224,0.53,0.0,0.69,null],
-["WPR","Waypoint REIT","REIT - Specialty",1462885760,2.24,0.0,2.82,7.59],
+["WPR","Waypoint REIT","REIT - Specialty",1462885760,2.24,0.0,2.82,null],
 ["WTN","Winton Land Limited","Real Estate - Development",269918496,0.91,-6.7,2.27,null]
 ];
 
