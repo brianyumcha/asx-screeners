@@ -54,6 +54,8 @@ p{color:var(--ink-soft)}
 
 .chipsection{margin-top:1.3rem}
 .chipsection h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);font-weight:700;margin-bottom:.6rem}
+.chipgrid{display:flex;flex-wrap:wrap;gap:1.1rem 2.2rem;margin-top:1.3rem}
+.chipgrid .chipsection{margin-top:0;flex:1 1 200px;min-width:180px}
 .divider{border:none;border-top:1px solid var(--border);margin:1.4rem 0}
 .commchips{display:flex;flex-wrap:wrap;gap:.4rem}
 .commchip{font-size:.78rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
@@ -211,33 +213,35 @@ document.addEventListener('keydown', function(e){
   <div class="notice">⚠ "Purchase" means an on-market buy disclosed in the company's own ASX Appendix 3Y filing (Change of Director's Interest Notice), as aggregated by Yahoo Finance — option exercises, stock grants, and vesting are deliberately excluded. ⭐ marks an FA Pick. This is a real disclosed transaction, not a recommendation — a director can buy for reasons that have nothing to do with conviction (tax planning, board policy windows), and this list isn't independently verified against the ASX's own announcements platform.</div>
 
   <div class="chipsection">
-    <h2>🕐 Filter by recency</h2>
-    <div class="commchips" id="recencychips"></div>
-  </div>
-
-  <div class="chipsection">
     <h2>🏷️ Filter by sector</h2>
     <div class="commchips" id="sectorchips"></div>
   </div>
 
-  <div class="chipsection">
-    <h2>💰 Filter by market cap</h2>
-    <div class="commchips" id="mcapchips"></div>
-  </div>
+  <div class="chipgrid">
+    <div class="chipsection">
+      <h2>🕐 Recency</h2>
+      <div class="commchips" id="recencychips"></div>
+    </div>
 
-  <div class="chipsection">
-    <h2>🎯 Filter by buy size (% of market cap)</h2>
-    <div class="commchips" id="valuepctmcchips"></div>
-  </div>
+    <div class="chipsection">
+      <h2>💰 Market cap</h2>
+      <div class="commchips" id="mcapchips"></div>
+    </div>
 
-  <div class="chipsection">
-    <h2>🤝 Filter by cluster buying</h2>
-    <div class="commchips" id="directorschips"></div>
-  </div>
+    <div class="chipsection">
+      <h2>🎯 Buy size (% of MC)</h2>
+      <div class="commchips" id="valuepctmcchips"></div>
+    </div>
 
-  <div class="chipsection">
-    <h2>💵 Filter by dollar value</h2>
-    <div class="commchips" id="valuechips"></div>
+    <div class="chipsection">
+      <h2>🤝 Cluster buying</h2>
+      <div class="commchips" id="directorschips"></div>
+    </div>
+
+    <div class="chipsection">
+      <h2>💵 Dollar value</h2>
+      <div class="commchips" id="valuechips"></div>
+    </div>
   </div>
 
   <hr class="divider">
