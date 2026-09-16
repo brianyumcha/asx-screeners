@@ -1559,6 +1559,7 @@ canvas{width:100%;height:100%;display:block}
 <a href="energy-index.html">Energy</a>
 <a href="healthcare-index.html">Healthcare</a>
 <a href="materials-index.html">Materials</a>
+<a href="real-estate-index.html">Real Estate</a>
 <a href="tech-index.html">Tech</a>
 </div></div>
 <a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>

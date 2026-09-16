@@ -73,6 +73,7 @@ jobs:
           cp healthcare-index.html _site/healthcare-index.html
           cp energy-index.html _site/energy-index.html
           cp tech-index.html _site/tech-index.html
+          cp real-estate-index.html _site/real-estate-index.html
           cp insider-index.html _site/insider-index.html
           cp craig-bullish-map.html _site/craig-bullish-map.html
           [ -f pre-breakout.html ] && cp pre-breakout.html _site/pre-breakout.html || true

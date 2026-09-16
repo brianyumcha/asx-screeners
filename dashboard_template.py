@@ -87,6 +87,7 @@ NAV_INDEX_LINKS = [
     ('energy-index.html', 'Energy'),
     ('healthcare-index.html', 'Healthcare'),
     ('materials-index.html', 'Materials'),
+    ('real-estate-index.html', 'Real Estate'),
     ('tech-index.html', 'Tech'),
 ]
 

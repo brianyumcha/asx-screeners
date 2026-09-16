@@ -131,6 +131,7 @@ jobs:
           [ -f healthcare-index.html ] && cp healthcare-index.html _site/healthcare-index.html || true
           [ -f energy-index.html ] && cp energy-index.html _site/energy-index.html || true
           [ -f tech-index.html ] && cp tech-index.html _site/tech-index.html || true
+          [ -f real-estate-index.html ] && cp real-estate-index.html _site/real-estate-index.html || true
           [ -f insider-index.html ] && cp insider-index.html _site/insider-index.html || true
           cp craig-bullish-map.html _site/craig-bullish-map.html
 
