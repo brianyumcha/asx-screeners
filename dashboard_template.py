@@ -206,7 +206,9 @@ h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-
 .copybtn:hover{border-color:var(--accent)}
 .copybtn.copied{border-color:var(--accent);color:var(--accent)}
 .topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
-.controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.7rem}
+.controls{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:flex-end;margin-bottom:.7rem}
+.pillgroupwrap{display:flex;flex-direction:column;gap:.25rem}
+.pillgroup-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
 .pillgroup{display:flex;gap:.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.2rem}
 .pill{background:transparent;border:none;color:var(--muted);font-size:.72rem;
   padding:.4rem .8rem;border-radius:6px;cursor:pointer;white-space:nowrap}
@@ -345,24 +347,24 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
   <div class="notice">⚠ Static report from a single scan run — not live. Re-run the script for fresh data. Nothing here is a trade recommendation.</div>
 
   <div class="controls">
-    <div class="pillgroup" id="modeToggle">
+    <div class="pillgroupwrap"><span class="pillgroup-label">Mode</span><div class="pillgroup" id="modeToggle">
       <button class="pill active" data-mode="chart">📊 Charts</button>
       <button class="pill" data-mode="table">☰ Table</button>
-    </div>
-    <div class="pillgroup" id="viewToggle">
+    </div></div>
+    <div class="pillgroupwrap"><span class="pillgroup-label">View</span><div class="pillgroup" id="viewToggle">
       <button class="pill active" data-view="ranked">Ranked</button>
       <button class="pill" data-view="sector">Sector</button>
-    </div>
-    <div class="pillgroup" id="sizeToggle">
+    </div></div>
+    <div class="pillgroupwrap"><span class="pillgroup-label">Size</span><div class="pillgroup" id="sizeToggle">
       <button class="pill active" data-size="S">S</button>
       <button class="pill active" data-size="M">M</button>
       <button class="pill active" data-size="L">L</button>
-    </div>
-    <div class="pillgroup" id="tfToggle">
+    </div></div>
+    <div class="pillgroupwrap"><span class="pillgroup-label">Window</span><div class="pillgroup" id="tfToggle">
       <button class="pill" data-tf="63">3M</button>
       <button class="pill active" data-tf="126">6M</button>
       <button class="pill" data-tf="252">12M</button>
-    </div>
+    </div></div>
     <input type="text" id="search" placeholder="Search ticker...">
     <label class="checkline"><input type="checkbox" id="showSeen"> Show already seen</label>
   </div>
@@ -419,8 +421,8 @@ document.getElementById('modeToggle').addEventListener('click', e => {
   state.mode = e.target.dataset.mode;
   document.querySelectorAll('#modeToggle .pill').forEach(x => x.classList.remove('active'));
   e.target.classList.add('active');
-  document.getElementById('viewToggle').style.display = state.mode === 'chart' ? '' : 'none';
-  document.getElementById('tfToggle').style.display = state.mode === 'chart' ? '' : 'none';
+  document.getElementById('viewToggle').closest('.pillgroupwrap').style.display = state.mode === 'chart' ? '' : 'none';
+  document.getElementById('tfToggle').closest('.pillgroupwrap').style.display = state.mode === 'chart' ? '' : 'none';
   render();
 });
 document.getElementById('viewToggle').addEventListener('click', e => {

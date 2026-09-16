@@ -739,7 +739,7 @@ def build_html_report(results, excluded, total_scanned, out_path):
             'change_1d': r['change_1d'],
             'score': r['confluence_score'],
             'stats': [
-                {'label': 'Retr', 'value': f"{r['retracement_pct']:.1f}%"},
+                {'label': 'Retrace', 'value': f"{r['retracement_pct']:.1f}%"},
                 {'label': 'RSI', 'value': f"{r['rsi']:.0f}" if r['rsi'] is not None else '—'},
                 {'label': 'Vol PB/Imp', 'value': f"{r['vol_ratio_pullback_vs_impulse']:.2f}×"},
             ],
