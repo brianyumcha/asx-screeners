@@ -122,12 +122,16 @@ def find_current_setup(df, pct):
             continue  # wave4 overlaps wave1 territory
         if wave3 <= wave1 and wave3 <= wave5:
             continue  # wave3 is the shortest - invalid
+        if p5[2] <= p3[2]:
+            continue  # truncated fifth - wave 5 didn't make a new high past wave 3
         j = i + 5
         if j + 3 >= len(pivots):
             continue
         qA, qB, qC = pivots[j + 1], pivots[j + 2], pivots[j + 3]
         if [qA[3], qB[3], qC[3]] != ['L', 'H', 'L']:
             continue
+        if qC[2] >= qA[2]:
+            continue  # C didn't extend past A - not a real correction leg down
         impulse_range = p5[2] - p0[2]
         if impulse_range <= 0:
             continue
@@ -303,8 +307,9 @@ def build_html_report(triggered, forming, total_scanned):
                   'followed by an ABC correction, not just any retracement.',
         footer_note=(
             f'ASX Wave 2 Scanner · Data via Yahoo Finance (yfinance), ticker universe via SeaBee/Market Index · rebuilt {build_date}<br>'
-            'Method: zigzag pivots (10% threshold) form a 5-wave impulse (wave 2 &lt; wave1 start, wave 4 above wave 1, wave 3 not shortest), '
-            'then an ABC correction retracing 38.2%-78.6% of the impulse. "Triggered" = price closed back above the ABC\'s point-C high within '
+            'Method: zigzag pivots (10% threshold) form a 5-wave impulse (wave 2 &lt; wave1 start, wave 4 above wave 1, wave 3 not shortest, '
+            'wave 5 makes a new high past wave 3), then an ABC correction (C beyond A) retracing 38.2%-78.6% of the impulse. '
+            '"Triggered" = price closed back above the ABC\'s point-C high within '
             'the last 10 trading days and hasn\'t hit the stop (point-C low) since. "Forming" = the setup is valid but hasn\'t triggered yet - a '
             'watchlist, not a signal. Backtested on real ASX data with a thin-but-real edge (~28-35% win rate vs a 25% breakeven for the 3R target '
             'used here) - not financial advice, and this scanner is not yet linked from site navigation while it\'s being reviewed.'
