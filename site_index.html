@@ -2,12 +2,32 @@
 <style>
   body{font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;background:#0a0c0f;color:#e8edf2;margin:0;}
   html,body{overflow-x:clip;}
-  .hero{padding:0 2rem 3rem;max-width:640px;margin:0 auto;}
-  h1{font-size:1.6rem;font-family:"Fraunces",Georgia,serif;font-weight:600;}
-  p.lead{color:#c9c2b0;line-height:1.6;font-size:.95rem;}
-  p.tagline{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:1.15rem;
-    color:#e8b355;margin:.3rem 0 1.1rem;}
-  .note{color:#5a6478;font-size:.8rem;margin-top:1.6rem;line-height:1.6;}
+  .wrap{padding:0 1.5rem 3.5rem;max-width:1160px;margin:0 auto;}
+  .hero{padding:1.6rem 0 .4rem;max-width:640px;}
+  h1{font-size:1.9rem;font-family:"Fraunces",Georgia,serif;font-weight:600;margin:0;}
+  p.lead{color:#c9c2b0;line-height:1.6;font-size:.92rem;margin:.6rem 0 0;}
+  p.tagline{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:1.1rem;
+    color:#e8b355;margin:.25rem 0 .5rem;}
+  .note{color:#5a6478;font-size:.78rem;margin:2.4rem 0 0;line-height:1.6;
+    padding-top:1.2rem;border-top:1px solid #1e2530;}
+
+  section.grp{margin-top:2.4rem;}
+  section.grp h2{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:.08em;color:#8b95a3;margin:0 0 .9rem;
+    display:flex;align-items:center;gap:.5rem;}
+  section.grp h2::after{content:"";flex:1;height:1px;background:#1e2530;}
+  .cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.85rem;}
+  .sitecard{display:block;background:#141820;border:1px solid #1e2530;border-radius:10px;
+    padding:1.1rem 1.15rem;text-decoration:none;color:inherit;transition:border-color .12s ease,transform .12s ease;}
+  .sitecard:hover{border-color:#e8b355;transform:translateY(-2px);}
+  .sitecard .cicon{font-size:1.3rem;display:block;margin-bottom:.55rem;}
+  .sitecard .ctitle{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.02rem;
+    color:#f3f1ea;margin-bottom:.35rem;}
+  .sitecard .cdesc{font-size:.8rem;color:#9aa3b0;line-height:1.5;}
+  .sitecard.featured{display:flex;align-items:flex-start;gap:1rem;padding:1.3rem 1.4rem;}
+  .sitecard.featured .cicon{font-size:1.9rem;margin-bottom:0;flex:none;}
+  .sitecard.featured .ctitle{font-size:1.15rem;}
+  .sitecard.featured .cdesc{font-size:.85rem;}
 
   .sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
     background:#1c222c;border-bottom:1px solid #1e2530;padding:.7rem 1.1rem;margin-bottom:1.5rem;
@@ -116,10 +136,76 @@ document.addEventListener('keydown', function(e){
   }
 });
 </script>
-<div class="hero">
-  <h1>Brian Yum Cha</h1>
-  <p class="tagline">Reading the charts. Timing the carts.</p>
-  <p class="lead">Screeners for spotting setups early, sector indexes for scanning a whole industry at once, and an insider buying tracker — use the menus above to jump in.</p>
+<div class="wrap">
+  <div class="hero">
+    <h1>Brian Yum Cha</h1>
+    <p class="tagline">Reading the charts. Timing the carts.</p>
+    <p class="lead">Screeners for spotting setups early, sector indexes for scanning a whole industry at once, and an insider buying tracker.</p>
+  </div>
+
+  <section class="grp">
+    <h2>📊 Screeners</h2>
+    <div class="cardgrid">
+      <a class="sitecard" href="higher-high.html">
+        <span class="cicon">⬆️</span>
+        <div class="ctitle">Higher-High</div>
+        <div class="cdesc">Flags ASX stocks breaking out to a new swing high — a close crossing back above the last confirmed pivot high, by sector, across the full ASX universe.</div>
+      </a>
+      <a class="sitecard" href="pre-breakout.html">
+        <span class="cicon">📈</span>
+        <div class="ctitle">Pre-Breakout (OBV)</div>
+        <div class="cdesc">ASX stocks quietly building strength before a breakout — not stocks already breaking out.</div>
+      </a>
+      <a class="sitecard" href="pullback.html">
+        <span class="cicon">↩️</span>
+        <div class="ctitle">Pullback (Zag Zone)</div>
+        <div class="cdesc">ASX stocks pulling back into the 38.2%-61.8% retracement of their latest swing.</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="grp">
+    <h2>🏷️ ASX Sector Indexes</h2>
+    <div class="cardgrid">
+      <a class="sitecard" href="materials-index.html">
+        <span class="cicon">⛏️</span>
+        <div class="ctitle">Materials</div>
+        <div class="cdesc">What each company actually mines, and whether it's producing yet.</div>
+      </a>
+      <a class="sitecard" href="healthcare-index.html">
+        <span class="cicon">🩺</span>
+        <div class="ctitle">Healthcare</div>
+        <div class="cdesc">What it's trying to cure or help with, and how far along its pipeline it is.</div>
+      </a>
+      <a class="sitecard" href="energy-index.html">
+        <span class="cicon">⚡</span>
+        <div class="ctitle">Energy</div>
+        <div class="cdesc">What fuel it's actually in, and whether it's producing yet.</div>
+      </a>
+      <a class="sitecard" href="real-estate-index.html">
+        <span class="cicon">🏢</span>
+        <div class="ctitle">Real Estate</div>
+        <div class="cdesc">REIT type or developer/services category, market cap and distribution yield.</div>
+      </a>
+      <a class="sitecard" href="tech-index.html">
+        <span class="cicon">💻</span>
+        <div class="ctitle">Tech</div>
+        <div class="cdesc">What the software or hardware actually does, and its real revenue scale.</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="grp">
+    <h2>🕵️ Insider Buying</h2>
+    <a class="sitecard featured" href="insider-index.html">
+      <span class="cicon">🕵️</span>
+      <div>
+        <div class="ctitle">Insider Buying Tracker</div>
+        <div class="cdesc">Every ASX company with a genuine on-market director share purchase in the last 180 days — real money, not option grants or vesting.</div>
+      </div>
+    </a>
+  </section>
+
   <div class="note">OBV + Pullback run once on weekday afternoons (after ASX close). Higher-High also runs intraday at 10:30am/1pm/3:30pm/4:30pm local Sydney time. Sector indexes rebuild daily after ASX close. All via GitHub Actions, DST-adjusted automatically. Not financial advice.</div>
 </div>
 </body></html>
