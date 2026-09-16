@@ -1,5 +1,5 @@
 """Builds conviction-stack.html: cross-references every independent signal
-this site tracks - insider buying, Craig's FA bull map, HH breakout, OBV
+this site tracks - insider buying, the FA bull map, HH breakout, OBV
 pre-breakout, Pullback (Zag Zone) - into one ranked view of which tickers
 currently have the most signals agreeing.
 
@@ -17,7 +17,7 @@ signal in noise rather than surface it).
 Signal definitions (each independent of the others):
   - Insider Buying: has any row in insider-index.html (already scoped to
     the last 180 days by that tracker itself).
-  - FA Pick: ticker appears anywhere in Craig's current bull map.
+  - FA Pick: ticker appears anywhere in the current FA bull map.
   - HH Breakout: hh_daily or hh_weekly fired on this run - a fresh new-high
     signal, not just "still sitting at an old high" (see high_tier, which
     persists longer and isn't used here for that reason).
