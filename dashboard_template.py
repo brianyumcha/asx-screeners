@@ -171,6 +171,7 @@ try {
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;margin:0;}
+html,body{overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;
   background-image:linear-gradient(rgba(232,179,85,.03) 1px,transparent 1px),
   linear-gradient(90deg,rgba(232,179,85,.03) 1px,transparent 1px);
@@ -288,7 +289,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 .sitenav-menu a.active{color:var(--accent);font-weight:600}
 .sitenav-toggle.active{background:var(--bg);color:var(--accent)}
 @media (max-width:640px){
-  .sitenav{padding:.5rem .7rem;gap:.7rem}
+  .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}
   .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
   .sitenav-menu{min-width:170px}

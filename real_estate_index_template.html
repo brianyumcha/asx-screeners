@@ -1,0 +1,432 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index: Real Estate Stocks</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAPH0lEQVR4nO1ba4xd11X+1t77nHPvnTuPO+/xMw0BUqdEqiUUqAIuaRpTyh9aOYIfIPVHhVq1oLa4iQPiehCipSFIUAmpRUJqo0rI04YfUBXJVV6taGmTAHFjXNrGsRNnbM943nfuveexN1prn3Pn2nFCxpk7jkOXdH3O7LMfa3167fW6x8BP6fqRc3XFv+vIwk/pulCx6/OP3f8h/nW3bTep67Eovjir5Up0UH7dbW81AFydzzmIxXX572luh7St8q+7LW8nHsNj8Vam+SeP/D3/ricP1KuJ3bFDmu6dyS4+fv+hWn/5/pW1NuuB4gUdHJFsMvbkTJztauMOdqAa0eJq87Pj7/7sTDFXL/g06BWN7RNwFeG9pi/aH7QTBPpyjY4TL1MY6JHu9iSzMH0R1FrzvQBmirluLAByUqQskgxJYl1uCzqkRB+AOLXdzUhT65BkJGN7TKZH89LT/zNLxwCdtJNnk2Y8B2dtklhNgGNV504Z+SucEyT4GLARJCBLmrHisTwHz5UfV7fljGKLqM4e5QDU0XE4NYPsMk6NkrMg7POK7ZQOAPp2/K24vmfxB9kTgEVkbKePdUCXZkjTIeijF0F4Anaa+78ZAKgD6jaA7gW6jRT93vDwjp+p6ptqpfBtobU7DdFkqNSoIgwaUAVEEcFF3NnBteGoncE1MoeV2Nr5xLnZWKnZpTR+/idL2QtfXlh4uVsDHKCOAnijQNAbGXwI0DO54IdqtT37a+Fd40FwV3+g95c13VRVuq9PK4SKzT9dpsOuuMt33D/d0HPrHGLr0Mgs1tKs0XTuheUke2YuSR57aqH96CNLS2eu5GFbAagDitH/+M7hX9odhZ/cVQ7ela0UrIQEksDb+GnLZo6q47TX6DGwSUb1YGBk+HGmiULvC5oaZgxA9+jQoQrO7dsBrA+K3z6+G+qjW1jZ+HKS3xUPgYQCe1/uHNo57bqjH+9biuq6VUeMdmt5abogo9BvE1B9DIfIq9lwOo7Zl+MOWuXsxYupTgn05m5o/OL/2QrsFOEcVhfBHAPzrkT/f88EQdgFo+FR2tRZR9WI9lWkgKvfyzsxKwOX3JDW5PIA0OzYA42MgDaK4jJIliZFECaGmqhAAgorAFC1UI0DZyDGYGkGtNrAeQq0lwGkZqFcO4Rd3/6nvQP0PgFtWFxdaLLZEbNe8+9WMB1o5Zt7T2ByL0IsjWMPo1WokxqCbW3zh0Ur8H6c68f7DOfbXJXpKC9brBTOlvHnDGCkS0AaR9AJgFRhtCagvTbsjmH0X4Pnr6chGA/rV+kfjXmMPq2gGIhWIYECIiI4EOI0ItYo0yhIzYjaipUEqNUEqMh4l0K8YFn8y3LK89n1r6QW/vcbGKPtQu80mV6mkjfBUsPElHNKZUJ6VBApwHqxBhVwG0zjF1XU9dGtQ9OFuKzOSJ8NxHtI3sJoLVK9BER/RmATxHR3wI4Bo9Zrsr+jHtGRJ0f0TXW5j0AjOP6/RAJcuP6YEQu8x3+F+iCFPjeXWNvPXLPnvfP1s2gAgKlNSj0FROTCEnBcuxbjQKQkGXKVBBIu1P2E4DfL1i2c6fWFn7DGvsHhcW3F4Yr1jrAwXsBIt+lANeMWEuChgnQ0BM0DTvSJ2WY0EmBpAeUHRAlgLKQlsAd9YtnO95vf6C4QxlXO/G0OJvcRW3fRUR/DuBoOTEwCe9K8YVFEnRhqnWWMSHRcgHUEqBRsMh9E7yb/1L2OWiZGXV0LNc5PVvC/K5Frit9dTPBhtogEUUlKUIsRWLtCkyRhP1sQZaSj7QsWtIydTAM48qsxD4uNENy3ZzmztjRUY9vlSJi9eZoZLKuoUgg+3F5IMB6JDT5JoR6fCa2j+9d0/GjmSpFhTVTh9BNwSbmY41Dwr2FZ8Fs/E56/iiuP9WHBEfHUmdaCVEnEhRJPqvXCuF7Db4Rl9Wv5jT/1PLmXwzXqCF3XdHDgIzIpjlGrGRZLuQEHQ6RKgqQ6ydJi53nOn7GRSPWuOtVoOVnHF7CqcMwzS+lXAdlOoOF2mgb6DK7GVLxZjTFEnzTnh8UEzPqcvhWmNyKuazTt6IyuiFhYRErrTIf0PsQqkOJUp6mSFJBFhoIVAaSDgi9RWL1ZoiFktEfWCFuu05kgYVXFtnMhpjE6iSCRIioAvB6iILtJvxAr/vwftKfwSicb3fyPRnn2GTxRgVMV0G3nzy/lFwCf+DPjHR4V6zQE4L03djfFB2t26BF8QSNzwSAQqfd8odjcRJj0kSPSQGDVA0PSBABzM+HXGz8Jxpon0/QuKrCcOd0OW5/gvGr9Yn2FhBQ+IVdFAKzxwZI44uT1cCXvKCXCZOc2SNiUEEqHb2wLXwbSyaMxjF5vYPFvBcz8vAcbnHnrpwrOTZfCLnwqBrpiP1UJmg9CyIhZzz+wI//8ZeXHmvHV6PnPmwWFYFobLK9CIpQD8FpVAEEwBBJ4gZ5eEZ07TvJi3jGmSJI5MSkfj9GjcnJEcM9+YR6UeG0eaBnTZJrqeMDxNZaDcVIQ2mQbG4rDCDNvmr1kK8JmZ4CqDBSlUKWEomEidVoc+DVs1cwrRUgcYNKMhKJc2llMHZlfKKDo0S0z9QqL1DRr9IN1V8LKCV/M53fXqjb52NUu5eG9NlAdrmU/gcMJdMdNBz51q3ZM3cfXqDWCwtGjkeXxVptmMj0i4cGB5MxupdvvyRlsxfPX/x8Z5D9d8sZ+3fMTZ0d0EPFhZbMbatb0Ss/mmt5vfNZfaHzZGaW1yPfE7yjs2m/Qs/hn0PXpZgFwXtA8bfxx/wUJI3l1v42PSC1Ru2uebeUlx7vvj2mvXhTgtnAy09VVpm4gMhrOF3nQ/rB0EAxTPMdCJs4WMt6ZtWLXaVUmqdlPqxIH2DiFYD0AgW8j2Ub7YQ3AbgpQNTrbPHf3AqfeUXHrq97d8/JJ4wPTdC7L4TIrO0PDs2vjTFVPO/AAKlG0Z1n0KDAAAAAElFTkSuQmCC">
+<script>
+try {
+  if (localStorage.getItem('realestateindex-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');
+} catch (e) {}
+</script>
+<style>
+:root{
+  --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
+  --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
+  --accent:#5fbfb5; --accent-ink:#082421;
+  --nav-accent:#e8b355;
+  --accent2:#8fc4db; --accent2-ink:#0a1f26;
+  --good:#a8d491; --good-bg:#233022;
+  --warn:#eec27a; --warn-bg:#332a1a;
+  --bad:#f0998a; --bad-bg:#3d2420;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
+  --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
+  --accent:#1f6b63; --accent-ink:#f0fbf9;
+  --nav-accent:#7a4a0f;
+  --accent2:#163540; --accent2-ink:#eaf5f7;
+  --good:#33481f; --good-bg:#d5dfc4;
+  --warn:#6b4a0f; --warn-bg:#ecdfc0;
+  --bad:#6b241c; --bad-bg:#e3c6bc;
+  --shadow: 0 1px 2px rgba(20,18,9,.06), 0 4px 16px rgba(20,18,9,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.55}
+html,body{overflow-x:hidden}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.wrap{max-width:1560px;margin:0 auto;padding:0 1.5rem 4rem}
+h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
+h1{font-size:2.2rem;letter-spacing:-.01em;margin:0 0 .2rem}
+h2{font-size:1.15rem;margin:0 0 .5rem}
+p{color:var(--ink-soft)}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem;flex-wrap:wrap;gap:1rem}
+.topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;flex:none;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
+.themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
+.copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
+.copybtn:hover{border-color:var(--accent)}
+.copybtn.copied{border-color:var(--accent);color:var(--accent)}
+.subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0;max-width:44rem}
+.session{font-size:.78rem;color:var(--ink-faint);margin:.6rem 0 1.1rem;letter-spacing:.03em}
+.notice{background:var(--warn-bg);border:1px solid var(--border);border-radius:4px;
+  padding:.7rem .9rem;font-size:.78rem;color:var(--ink-soft);margin-bottom:1rem;line-height:1.6}
+.source{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);margin-top:.6rem}
+
+.chipsection{margin-top:1.3rem}
+.chipsection h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);font-weight:700;margin-bottom:.6rem}
+.divider{border:none;border-top:1px solid var(--border);margin:1.4rem 0}
+.commchips{display:flex;flex-wrap:wrap;gap:.4rem}
+.commchip{font-size:.78rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+.commchip:hover{border-color:var(--accent);color:var(--accent)}
+.commchip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.commchip .cnt{opacity:.7;font-size:.85em}
+
+.controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:1.1rem 0 .7rem}
+.controls input,.controls select{background:var(--surface);border:1px solid var(--border);color:var(--ink);border-radius:6px;padding:.5rem .7rem;font-size:.85rem}
+.controls input{width:20rem}
+.controls select{width:11rem}
+.controls input:focus,.controls select:focus{outline:none;border-color:var(--accent2)}
+.controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow);max-height:calc(100vh - 2rem)}
+table{width:100%;border-collapse:collapse;font-size:.8rem;background:var(--surface)}
+thead th{position:sticky;top:0;background:var(--surface2);text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);padding:.55rem .7rem;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none;z-index:2}
+thead th:hover{color:var(--accent)}
+thead th.active{color:var(--accent2)}
+thead th .arrow{font-size:.65rem;margin-left:.15rem}
+tbody td{padding:.4rem .7rem;border-bottom:1px solid var(--border);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--surface2)}
+.tk{font-family:"IBM Plex Mono",monospace;font-weight:600}
+.tk a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
+.tk a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.cname{color:var(--ink-soft);max-width:16rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.diversified{color:var(--ink-faint);font-style:italic}
+.up{color:var(--good)}
+.down{color:var(--bad)}
+.colname-mobile{display:none}
+
+footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint)}
+
+@media (max-width:900px){
+  .cname, .colname-desktop{display:none}
+}
+@media (max-width:640px){h1{font-size:1.8rem}}
+.sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
+  background:var(--card, var(--surface2, var(--surface)));border-bottom:1px solid var(--border);
+  padding:.7rem 1.1rem;margin-bottom:1.5rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.navicon{display:block;flex:none;width:42px;height:42px;border-radius:8px}
+.sitenav-brand{display:flex;flex-direction:column;gap:.05rem;text-decoration:none}
+.sitenav-brand .brand-main{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
+  letter-spacing:.02em;color:var(--nav-accent);white-space:nowrap}
+.sitenav-brand .brand-tag{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:.62rem;
+  color:var(--ink-faint, var(--muted, #8b95a3));white-space:nowrap}
+.sitenav-brand:hover{opacity:.8}
+.sitenav-divider{width:1px;height:1.3rem;background:var(--border);flex:none}
+.sitenav-links{display:flex;gap:.2rem}
+.sitenav-drop{position:relative}
+.sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));
+  font-family:inherit;font-size:.8rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;
+  display:flex;align-items:center;gap:.3rem}
+.sitenav-toggle:hover,.sitenav-drop.open .sitenav-toggle{background:var(--bg);color:var(--nav-accent)}
+.sitenav-caret{font-size:.85rem;opacity:1;color:var(--nav-accent);display:inline-block;
+  transition:transform .15s ease}
+.sitenav-drop:hover .sitenav-caret,.sitenav-drop.open .sitenav-caret{transform:rotate(180deg)}
+.sitenav-menu{position:absolute;top:100%;left:0;margin-top:.3rem;min-width:190px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);padding:.3rem;
+  opacity:0;visibility:hidden;transform:translateY(-4px);
+  transition:opacity .12s ease,transform .12s ease,visibility .12s}
+.sitenav-drop:hover .sitenav-menu,.sitenav-drop.open .sitenav-menu{
+  opacity:1;visibility:visible;transform:translateY(0)}
+.sitenav-menu a{display:block;padding:.5rem .6rem;border-radius:6px;font-size:.78rem;
+  color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
+.sitenav-menu a:hover{background:var(--bg);color:var(--nav-accent)}
+.sitenav-menu a.active{color:var(--nav-accent);font-weight:600}
+.sitenav-toggle.active{background:var(--bg);color:var(--nav-accent)}
+@media (max-width:640px){
+  .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
+  .sitenav-brand{font-size:.7rem}
+  .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
+  .sitenav-menu{min-width:170px}
+}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<nav class="sitenav">
+<img class="navicon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAk0klEQVR4nO19eaxdx3nf982cc5e3r3wkRUkmFUUJ6QYOJCNOkJZSKgttujgp/FT0D1cG6tr1BiSWZTcu4Ec6SIF4ieE0+SNK6sZAnKBkksK1EMuyY5GJ3CCyZcu2RFuqTYmLuD2+fbv3LDPF75uZc987JEWl4n3WId8H3HvPvfcsc+Y33/7NHKIt2qIt2qIt2qIt2qIuk7WHNF5bHb1F1w0xXedkrWVmtucfn+qr6fT38FuSx++buOfgcviPrmNSdINQo6dejyL9AF7YphuEIrpByOZtm2X5AraZ2tc1196QAIOsv9/rXi/diCL6RqXKDmZ7aFLT+N6rt79/J9PSGbtco5E0T4/jp1jHe/oSmg3/XfUc08cs3384vzYt36KukLWWZ//mI0t4YftG6ebK3WhwbU48+oE3bxvuu2+tnTEJYJe/FUvEjMMUN9jY/yi/Kf5DNrYV/rvClfCvbdYje2Fu+bFb/9nvfKWKblWljCw7NaWY2bz45Qd39zXqX2701Llei4gB09WOtZYWlluyPdRXf88rPYYjTX2t7MEXv/zgbcz8grTh4EFDFaFKAUz7jgkq/c3azkYt4pmZ5ZTVK5dCTCz3O7e0lr3SY6wh22zEMbHdSUQvhDZUhaoFsCcbR5m1ZJkpYpGy/zBiD/Qr29mCkS2uSRWkLTfpOqdKcjCnWaRqMVtLKXF3LWJrYZNRzElWyb6qVqOf3SsW7NJacoaJzOhoX2yz/BUZWf8/FIysubllg2uW21AVqpTBAAquyukvffDe0ZHe+9baKYf7MCX/ljf4usas/67UenfHltwf1dm2zXpsZ2ZXHtv1zz/51Sq6SVUjniJShyZp05P2hyZJ49pVY4rXcmN5kkjt3e/aeOAo5ZcEJda1HkLb8I677mrelkzXd7RMTyPOddZSdaXyeMhygyLrjMqMzTzbFtsoMbUsTbMoe75Hr0Q3jyVPffFftkh9zKy7lL00BHJgvxtkx46SPUwEv/g1ydmvKYCFQ/aTOnCUDOC6zC69/2bb4MRELb65l/nWXs231BXvjFlti5gnYkX9MfGgZm5qpl7NrJgoZmYdMSn2t2vJUmYhtW1miXJjbZ5ZWjZk26mxC5mlhdTaC4k159u5PdMy9vSStS+eT9JTf3lh4TwRrWxsmCVSB/aToqNkDl6+7TcmwMINRPoArefQnyAa2D8x8lMjsb6rP1Zv6NV6b6/i3T1ajQ9GOu6LFDWUAnpATm4EAAI8f971n+t/Luyy0AGdT3cO7GgsUWottYyh5czQQpana8ZcWMnzF5Zz+/2VzHz7XDv/9tcvzB77IdEilc71UaJo4z3dUAAD2MNE6n6iIkvzjonhfUM1/eZBHd07GKs7R+No+0Qtoj6tKPL8J7LQkiFrTZCL/gW3SXbCdvlavO6j04SNPR/AwKd/yUEi1yENmBS2sVNmLC3nhi4kGc2k2dn5NHtqITd/PZvkX/3s+blnwjkPEelJEolkbxiAJ4n0YQ/sA+Pj28ea9v5+pf7tcKzftKdZVyOxppgVesSytTmANESch7727d6sxtv1mwK+Rs7CWd8a7UmtoZk0pxfX2mY2yb+xYsyfXWjx//zc9PS5jfd8XQOMEQ2ufXBiYpuu5x/o0/odN9Xj0ZvqMQ1EmiLmLLc2gPnqgeSXOwOG0LUBXhMZzQSlHi1mOb3UTumlVnpxyeR/1Eqi3/lv585N/zhA3lSAww1+6Jbxt8bMn7mpHu0cijTtrMdZUyvOLCmfwnv1FIBlp1cvOStCVAXArw7o4pRevAPo1dyYc+00mhews5dSa3/t4yen/3yzQVabaSHjxj5867YHm0od3l6Ldg5olQ3FkW1oHaVW3I5rGJNyZxJrSitirYmjyL20dr8VV7s2Vw26HgO1R+sI9zaoVba9Ft2Ee8a9ow+8P339cHAYtf/5lm331hV/JWLKdzdihITUzc061RiW6zUksY4UiZOktANXKyIAC8pzgma3eU5kcrIwl+161/daNCGxlk6ttcVDf6GVQnzrtdze9/FTF74SVBV1mTZlJO0trFP7X9CVTcVI9aH7r30DPLgUwI0iUvWYOI6d3QxTO47db1Ek+zg/S/2DhnvJer8iBSMC94p7xtUV29/Af89uklW9GckGhuP/67uoScx3ZNayYqVdRQyyudeIewvHlj3nKlIQxwJkTPHYCDV23yq7tF44QenFWcScnb+LcAc8LxOcoMs5USVENqpz/8Yb9bG/P5xLM+vMGjTtjgdupcbBE4TyEhxiK83BofVtPT7IRH34Hnkw9JUa4Ie9e4GzvL6U18Z9OwaUdCg8VaWcrq3FpBoNyQg17/gJ2vXge+WFbfwm/9UCJ0Okl/Ry6bxyH94pDqAxd/Z3L79PiVTp/rQfTJZ4oJfGh/Db1CaoyK5z8AE/SvsoHyaKPMAOeHDQJUNYOtXXaZRNLolkhE17KddiO3AudC2qbGoQxXXRwSqOyaytye7Y1j09ooPxchESqOPcgWhQwuHEOc6N6zmjnKWMZP1AcxzKhuU8Fo303Mwe2Nzazj0T9TZtPkJE4h9XHuBjwWFhNY7yuMRYgxixA3jDzsGlQdTKdyS4xHU2glfWxYSkE63fp6NzhaMiTdAAhM84JtVskKrVSPX0FAMC27qvl0ySkElTYgBrLVKIhPyyZSMgF9f0bpbjYjeILIw2PxgIBhsGAYCFrcYYIJ6DPbDa6SITKVY5q7Fy31Qa4L0BYMMTYCzcJkSzG82OU9FHru89uPJyFi8Cks7ViYiNISOdXxbjTlSK2xM+63UBMBroJz0wQKpeo2igr5AV2I63jZFpJ/JftrhE+fIK2TYsXslKOdAkwGgEKAFXlcAVYC3ZyA+uDFY52uqADjFP3KMA7AUAwl6U83i5b66Lig5LtM1bzRZiCyQ3WxLS6FynR8GFiqJmk+rDw5S1WpTMz5PBf3AslA9ShH0jN3LAqRqg9vU40VyrkYojN1jA5UWqAYMBYjsi29NDcRSR7u2hfHmV8sUl4WyJOmfg7E4EAw22USQopTuGyfQ1KT47S3phTYS4s5M9Zp7z3T06UY0WeNG9Y7P6vftu0n73wUQoO3XBe6e2RAd3SIa74wYNI9tSz/bttPstb6Ftb3yjAxAuTwhSFIEL5+dGQ4MUb5+gaHDABTJKOpSE80rXCt+9hSviHucYHHDnGBp058fg0JHzn+UVka05g2zxrT9P5z86Se3bd7qoWKzJgrs3pKnEUpd77bCrJSnBLfqm2hx81H0w8Y5gQQNHaK3y6PJ2sHCwQkdBuOEzyxwAANOV5bg6u6Cj44jikWFSvT2e24zjPgluaKeX5bMDsKgAAAYDC4MJ2xDLUAfIXI0MiehOZ+e8DeXYWMQxgMRJAFqSibgG6MKvBYodqeQVjYhq3LtTTWp7uW+qbmQFwbgdaktDqvq0nxPVHQvVGU3ezfHiV/5SjntdzBgAewMnisS/5UbDgVO4SAA3chwIaxrHhigWyHO/C3rAyIJlZMXAgp6H3le9vRRHWvxlhqiGbo0UGagDGGNhwERauFd0spcKwZLGW1BHQThJJQDbbfjYtwnBjq4DfMjZvaAx3JxMrRdcoZ822BjBzwyRJeFkpzOVF9sKyWBwlFYUj44Q12sdcEV0O2DBgarRKHxduEaBlLeuwbkuq0xk2q4BNs9c8wByvU7x+Bgls7OOw+HrQG+HwShpJBhd0PGQHBt8Zy+iQ9IDnb3mxugE/keeuOoAi5Z7JxGmfowJByuveYNa7NRYdMRu4ETPJQK652AxxKyhaGRQwBM/NuyvI1IS3KiLH6wadWJxk5xPXBhz2KfZIAP/GLFoRJqUIsNtMgkAcJMYBORGXVRAsjAv4plEGjhrWpQrLGqIbthj0o4gibwY7+ALEc1GvAIaRZ8wUdrtaFZXAQ7GZ7yzf4CJh7xYLrSUuBDyDSI3RIecH+sSBF6sel0beiLq6XN+rbgl/liABSC99Qw3SPf3OT84jikaHCyij7K9PRUf2Ky1KF9apvTCRXFvRH2EVCI5Hxz6XZOhPGkR1WOX6Q9BmliTQds4c2ALyBD57tiiptdxsxPRlofRJ3RmaSb0USUBDlGsmmoME9EAOBhSrmxNlwMbAhJCiOiwCGLVNQ+Gj67XnbED8Ts4gIodLyod54je9Zza98afpb43vN5fqBR69OK4vvsWqr/uZve7R3356Wdo6clveR84c3oepqCcn0gNDRCvKqKacsYWwIS4hYHVrBElimw7E9eKEdP2/juCJwFAHOZV9UC/9MnSTOijSrpJIVKjNY9HLAalhZgKo1aCO0EsA1wfUlQCrksSOB9DiT7Eb/HgoOjXEAt2bpWzlLFfPDrswJVIE7uGXC7LXP5PKzkGx2JbkhT+3OR1LDfrpIYHyTZqqIZ3+l4AjgVgW4/I4LMWiegX3ewDHcEbA5+7PiCVWjVa7qNKcvAkER0GwCYf0+LmGJS1aFFdki/s6FyAK6FFWMYDA6QbDYoRL4aIjGKqDw5Jh5lYU4aIE6zZ1MWlnYHlLGPEmIXAKnSVEoLQ835fHItziGvmy+vEWoZhBeAHByivGcoxVKHTc0NmqJfSnSOkltcohtuEwZeZIs+svDGJeLQUb5E1ESutlJ3YjGhWVwF+1jfest7uBBWDg+U/KVEsIleOa+D/Dt5+Ow3dfrv3ZzWZLKO4r5dG9u4latQoMznNff/7lK4aront5RaTQoAznNff/7lK4aront5RaTQoAznNff/7lK4aront5RaTQoAznNff/7lK4aront5RaTQoAznNff/7lK4arg==" alt="">
+<a class="sitenav-brand" href="index.html">
+<span class="brand-main">Brian Yum Cha &mdash; ASX Trading</span>
+<span class="brand-tag">Reading the charts. Timing the carts.</span>
+</a>
+<span class="sitenav-divider"></span>
+<div class="sitenav-links">
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="higher-high.html">Higher-High</a>
+<a href="pre-breakout.html">Pre-Breakout (OBV)</a>
+<a href="pullback.html">Pullback (Zag Zone)</a>
+</div></div>
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="energy-index.html">Energy</a>
+<a href="healthcare-index.html">Healthcare</a>
+<a href="materials-index.html">Materials</a>
+<a href="real-estate-index.html" class="active">Real Estate</a>
+<a href="tech-index.html">Tech</a>
+</div></div>
+<a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
+</div>
+</nav>
+<script>
+document.querySelectorAll('.sitenav-drop').forEach(function(drop){
+  var toggle = drop.querySelector('.sitenav-toggle');
+  toggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    var willOpen = !drop.classList.contains('open');
+    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+    if (willOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', function(){
+  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+});
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+});
+</script>
+
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>🏢 Index: Real Estate Stocks</h1>
+      <div class="subtitle">Every ASX Real Estate-sector company — REIT type or developer/services category, market cap and distribution yield.</div>
+    </div>
+    <div class="topbar-right">
+      <button class="copybtn" id="copyBtn">📋 Copy TradingView list</button>
+      <button class="copybtn" id="downloadCsvBtn">⬇ Download CSV</button>
+      <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+    </div>
+  </div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt <<<BUILD_DATE>>>.</div>
+
+  <div class="notice">⚠ 'Category' is mostly Yahoo's own industry classification passed through as-is (it's already a specific REIT/Real Estate taxonomy for most tickers here — 'REIT - Diversified', 'REIT - Retail', 'REIT - Industrial', 'REIT - Office', 'REIT - Residential', 'REIT - Specialty', 'REIT - Healthcare Facilities', 'Real Estate - Development', 'Real Estate Services'), with a small hand-checked override for the handful of tickers Yahoo tags with an unrelated industry. Real Estate has no natural explorer/producer or clinical-trial lifecycle the way Materials or Healthcare do, so this index skips an inferred 'Stage' column and shows distribution yield instead — the metric that actually matters for this sector.</div>
+
+  <div class="chipsection">
+    <h2>🏢 Filter by category</h2>
+    <div class="commchips" id="commchips"></div>
+  </div>
+
+  <div class="chipsection">
+    <h2>💰 Filter by market cap</h2>
+    <div class="commchips" id="mcapchips"></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="controls">
+    <input type="text" id="filterInput" placeholder="Search ticker, name or category…">
+    <button class="commchip" id="clearFiltersBtn">✕ Clear all filters</button>
+    <span class="hint" id="countLabel"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table id="matTable">
+      <thead>
+        <tr>
+          <th data-key="ticker">Ticker</th>
+          <th data-key="name" class="colname-desktop">Company</th>
+          <th data-key="label">Category</th>
+          <th data-key="mcap" style="text-align:right">Market Cap</th>
+          <th data-key="price" class="colname-desktop" style="text-align:right">Price</th>
+          <th data-key="change1d" class="colname-desktop" style="text-align:right">1D %</th>
+          <th data-key="high52w" class="colname-desktop" style="text-align:right">52W High</th>
+          <th data-key="yield" style="text-align:right">Yield</th>
+        </tr>
+      </thead>
+      <tbody id="matBody"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    Category labels come mostly from Yahoo's own industry classification, with a small hand-checked override map for known stale/generic tags (see notice above). "Unclassified" means the ticker didn't return live data — often a delisted, suspended or deferred-settlement code, not necessarily a fetch error. Yield is Yahoo's trailing dividend/distribution yield, not a forecast.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+<<<FULL_DATA>>>
+];
+
+// Computed from DATA itself (not hand-maintained) so counts never drift out
+// of sync with the actual daily rebuild. The no-live-data bucket ("Real
+// Estate" internally) is pulled out and always sorted last since it's not
+// a real category, just an unresolved ticker.
+const NO_DATA_LABEL = 'Unclassified';
+const categoryCounts = {};
+let noDataCount = 0;
+DATA.forEach(([tk, name, label]) => {
+  const trimmed = label.trim();
+  if (trimmed === 'Real Estate') { noDataCount++; return; }
+  categoryCounts[trimmed] = (categoryCounts[trimmed] || 0) + 1;
+});
+const TOP_CATEGORIES = Object.entries(categoryCounts).sort((a, b) => a[0].localeCompare(b[0]));
+if (noDataCount > 0) TOP_CATEGORIES.push([NO_DATA_LABEL, noDataCount]);
+
+const commchips = document.getElementById('commchips');
+commchips.innerHTML = TOP_CATEGORIES.map(([label,count]) => `<button class="commchip" data-cat="${label}"><span>${label}</span><span class="cnt">${count}</span></button>`).join('');
+
+const activeCats = new Set();
+
+const MCAP_TIERS = [
+  ['Micro (<$10M)', v => v != null && v < 10e6],
+  ['Small ($10-100M)', v => v != null && v >= 10e6 && v < 100e6],
+  ['Mid ($100M-1B)', v => v != null && v >= 100e6 && v < 1e9],
+  ['Large ($1B+)', v => v != null && v >= 1e9],
+];
+const mcapchips = document.getElementById('mcapchips');
+mcapchips.innerHTML = MCAP_TIERS.map(([label]) => `<button class="commchip" data-mcaptier="${label}"><span>${label}</span></button>`).join('');
+let activeMcapTier = '';
+
+function fmtMcap(n){
+  if(n===undefined || n===null) return '—';
+  if(n>=1e9) return '$'+(n/1e9).toFixed(2)+'B';
+  if(n>=1e6) return '$'+(n/1e6).toFixed(1)+'M';
+  if(n>=1e3) return '$'+(n/1e3).toFixed(0)+'K';
+  return '$'+n;
+}
+function median(arr){
+  if(!arr.length) return null;
+  const s = [...arr].sort((a,b)=>a-b);
+  const mid = Math.floor(s.length/2);
+  return s.length%2 ? s[mid] : (s[mid-1]+s[mid])/2;
+}
+function fmtPrice(n){
+  if(n===undefined || n===null) return '—';
+  return '$' + n.toFixed(n < 1 ? 3 : 2);
+}
+function fmtPct(n){
+  if(n===undefined || n===null) return '—';
+  const sign = n>0 ? '+' : '';
+  return sign + n.toFixed(1) + '%';
+}
+function fmtYield(n){
+  if(n===undefined || n===null || n===0) return '—';
+  return n.toFixed(1) + '%';
+}
+function pctClass(n){
+  if(n===undefined || n===null) return '';
+  return n > 0 ? 'up' : (n < 0 ? 'down' : '');
+}
+
+let sortKey = 'ticker', sortDir = 1;
+let currentRows = [];
+function render(){
+  const q = document.getElementById('filterInput').value.trim().toUpperCase();
+  let rows = DATA.filter(([tk,name,label,mcap,price,change1d,high52w,yld]) => {
+    const textMatch = tk.toUpperCase().includes(q) || (name||'').toUpperCase().includes(q) || label.toUpperCase().includes(q);
+    if(!textMatch) return false;
+    if(activeCats.size){
+      const rowCat = label.trim()==='Real Estate' ? NO_DATA_LABEL : label.trim();
+      if(!activeCats.has(rowCat)) return false;
+    }
+    if(activeMcapTier){
+      const tier = MCAP_TIERS.find(([l]) => l===activeMcapTier);
+      if(!tier || !tier[1](mcap)) return false;
+    }
+    return true;
+  });
+  rows.sort((a,b) => {
+    let av, bv;
+    if(sortKey==='ticker'){ av=a[0]; bv=b[0]; }
+    else if(sortKey==='name'){ av=a[1]||''; bv=b[1]||''; }
+    else if(sortKey==='label'){ av=a[2]; bv=b[2]; }
+    else if(sortKey==='mcap'){ av = a[3] ?? -1; bv = b[3] ?? -1; }
+    else if(sortKey==='price'){ av = a[4] ?? -1; bv = b[4] ?? -1; }
+    else if(sortKey==='change1d'){ av = a[5] ?? -999; bv = b[5] ?? -999; }
+    else if(sortKey==='high52w'){ av = a[6] ?? -1; bv = b[6] ?? -1; }
+    else if(sortKey==='yield'){ av = a[7] ?? -1; bv = b[7] ?? -1; }
+    if(av<bv) return -1*sortDir;
+    if(av>bv) return 1*sortDir;
+    return 0;
+  });
+  currentRows = rows;
+  document.getElementById('matBody').innerHTML = rows.map(([tk,name,label,mcap,price,change1d,high52w,yld]) => {
+    const cls = label.trim()==='Real Estate' ? 'diversified' : '';
+    const display = label.trim()==='Real Estate' ? NO_DATA_LABEL : label;
+    const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
+    return `<tr>
+      <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
+      <td class="cname colname-desktop">${name || '—'}</td>
+      <td class="${cls}">${display}</td>
+      <td class="mono" style="text-align:right">${fmtMcap(mcap)}</td>
+      <td class="mono colname-desktop" style="text-align:right">${fmtPrice(price)}</td>
+      <td class="mono colname-desktop ${pctClass(change1d)}" style="text-align:right">${fmtPct(change1d)}</td>
+      <td class="mono colname-desktop" style="text-align:right">${fmtPrice(high52w)}</td>
+      <td class="mono" style="text-align:right">${fmtYield(yld)}</td>
+    </tr>`;
+  }).join('');
+  const caps = rows.map(r=>r[3]).filter(v=>v!=null && v>0);
+  const med = median(caps);
+  document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} tickers${med!==null ? ' · median cap '+fmtMcap(med) : ''}`;
+  document.querySelectorAll('#commchips .commchip').forEach(c => c.classList.toggle('active', activeCats.has(c.dataset.cat)));
+  document.querySelectorAll('#mcapchips .commchip').forEach(c => c.classList.toggle('active', c.dataset.mcaptier===activeMcapTier));
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.toggle('active', th.dataset.key===sortKey);
+    th.querySelector('.arrow')?.remove();
+    if(th.dataset.key===sortKey) th.insertAdjacentHTML('beforeend', `<span class="arrow">${sortDir>0?'▲':'▼'}</span>`);
+  });
+}
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    if(sortKey===th.dataset.key){ sortDir*=-1; } else { sortKey=th.dataset.key; sortDir = th.dataset.key==='mcap' ? -1 : 1; }
+    render();
+  });
+});
+commchips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  const cat = btn.dataset.cat;
+  if(activeCats.has(cat)) activeCats.delete(cat); else activeCats.add(cat);
+  render();
+});
+mcapchips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  activeMcapTier = (activeMcapTier === btn.dataset.mcaptier) ? '' : btn.dataset.mcaptier;
+  render();
+});
+document.getElementById('filterInput').addEventListener('input', render);
+document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+  activeCats.clear();
+  activeMcapTier = '';
+  document.getElementById('filterInput').value = '';
+  render();
+});
+render();
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const text = currentRows.map(r => `ASX:${r[0]}`).join(',');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.classList.add('copied');
+    btn.textContent = `✓ Copied ${currentRows.length} tickers`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy TradingView list'; }, 1800);
+  });
+});
+document.getElementById('downloadCsvBtn').addEventListener('click', async () => {
+  const esc = v => /[",\n]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v;
+  const rows = [['Ticker','Company','Category','MarketCap','Price','Change1D','FiftyTwoWeekHigh','Yield'], ...currentRows.map(r => [r[0], r[1]||'', r[2].trim()==='Real Estate'?NO_DATA_LABEL:r[2], r[3] ?? '', r[4] ?? '', r[5] ?? '', r[6] ?? '', r[7] ?? ''])];
+  const csv = rows.map(r => r.map(String).map(esc).join(',')).join('\n');
+  let usedCapability = false;
+  if(typeof window.claude !== 'undefined' && window.claude.use){
+    try{
+      const downloads = await window.claude.use('downloads');
+      if(downloads){ await downloads.save({filename:'real-estate-index.csv', data: csv}); usedCapability = true; }
+    }catch(e){}
+  }
+  if(!usedCapability){
+    const blob = new Blob([csv], {type:'text/csv'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'real-estate-index.csv'; a.click();
+    URL.revokeObjectURL(url);
+  }
+});
+
+const themeBtn = document.getElementById('themeBtn');
+function isLightTheme(){ return document.documentElement.getAttribute('data-theme') === 'light'; }
+function applyTheme(t){
+  if(t === 'light'){ document.documentElement.setAttribute('data-theme','light'); } else { document.documentElement.removeAttribute('data-theme'); }
+  themeBtn.textContent = isLightTheme() ? '☀️' : '🌙';
+}
+themeBtn.textContent = isLightTheme() ? '☀️' : '🌙';
+themeBtn.addEventListener('click', ()=>{
+  const next = isLightTheme() ? null : 'light';
+  applyTheme(next);
+  try{
+    if(next) localStorage.setItem('realestateindex-theme', next);
+    else localStorage.removeItem('realestateindex-theme');
+  }catch(e){}
+});
+</script>

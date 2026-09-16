@@ -32,6 +32,7 @@ try {
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.55}
+html,body{overflow-x:hidden}
 ::selection{background:var(--accent);color:var(--accent-ink)}
 .wrap{max-width:1560px;margin:0 auto;padding:0 1.5rem 4rem}
 h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
@@ -137,7 +138,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 .sitenav-menu a.active{color:var(--nav-accent);font-weight:600}
 .sitenav-toggle.active{background:var(--bg);color:var(--nav-accent)}
 @media (max-width:640px){
-  .sitenav{padding:.5rem .7rem;gap:.7rem}
+  .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}
   .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
   .sitenav-menu{min-width:170px}

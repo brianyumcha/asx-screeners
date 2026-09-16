@@ -1000,6 +1000,71 @@ def classify_tech_categories(universe):
         universe[t]["industry"] = cache.get(t, "Info Tech")
 
 
+# ─── REAL ESTATE CATEGORY CLASSIFICATION ───────────────────────────────────
+# Unlike Materials/Healthcare/Energy/Tech, Real Estate doesn't need a
+# business-summary keyword classifier - Yahoo's own "industry" field is
+# already a clean, specific taxonomy for most tickers in this sector (REIT
+# - Diversified/Retail/Industrial/Office/Residential/Specialty/Healthcare
+# Facilities, Real Estate - Development/Diversified, Real Estate Services),
+# confirmed by inspecting all 64 Real Estate-sector tickers' real Yahoo
+# industry + longBusinessSummary text, 2026-09-16. This mostly just passes
+# that field through, with a small manual-override map for the handful of
+# tickers Yahoo tags with an unrelated industry (a proptech company tagged
+# "Software", a property fund manager tagged "Asset Management", etc).
+REALESTATE_CATEGORY_CACHE_PATH = os.path.join(SCRIPT_DIR, "realestate_category_cache.json")
+
+REALESTATE_MANUAL_OVERRIDES = {
+    "PXA": "Real Estate Services",  # PEXA - e-conveyancing/property settlement platform, Yahoo tags "Software - Application"
+    "AXI": "Real Estate Services",  # Axtec - property management/workflow software + payments, Yahoo tags "Specialty Industrial Machinery"
+    "QAL": "Real Estate Services",  # Qualitas - alternative real estate fund manager (not a REIT itself), Yahoo tags "Asset Management"
+    "REP": "REIT - Diversified",    # RAM Essential Services - stapled REIT, healthcare-weighted, Yahoo mistags "Asset Management"
+}
+
+
+def classify_realestate_category(ticker, industry):
+    """Passes Yahoo's own "industry" through when it's already a specific
+    REIT/Real-Estate category, applies REALESTATE_MANUAL_OVERRIDES for
+    known stale/generic tags, and falls back to "Real Estate"
+    (unclassified) when industry is missing entirely."""
+    if ticker in REALESTATE_MANUAL_OVERRIDES:
+        return REALESTATE_MANUAL_OVERRIDES[ticker]
+    if industry and (industry.startswith("REIT") or industry.startswith("Real Estate")):
+        return industry
+    return "Real Estate"
+
+
+def classify_realestate_categories(universe):
+    """Mutates `universe` in place: for every Real Estate-sector ticker,
+    replaces the generic "industry" value with its specific category. Only
+    fetches Yahoo's .info for tickers not already in the on-disk cache."""
+    try:
+        with open(REALESTATE_CATEGORY_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    re_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Real Estate" and len(t) == 3
+    ]
+    new_tickers = [t for t in re_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Real Estate ticker(s) by category...")
+        for t in new_tickers:
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                cache[t] = classify_realestate_category(t, info.get("industry"))
+            except Exception:
+                cache[t] = "Real Estate"
+        with open(REALESTATE_CATEGORY_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in re_tickers:
+        universe[t]["industry"] = cache.get(t, "Real Estate")
+
+
 # ─── INDICATORS ───────────────────────────────────────────────────────────────
 
 def calc_obv_series(closes, volumes):
@@ -1322,6 +1387,7 @@ try {
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   font-variant-numeric:tabular-nums;margin:0;}
+html,body{overflow-x:hidden}
 .wrap{max-width:1560px;margin:0 auto;padding:0 1.6rem 1.6rem}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;flex-wrap:wrap;gap:1rem}
 h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:-.01em;
@@ -1454,7 +1520,7 @@ canvas{width:100%;height:100%;display:block}
 .sitenav-menu a.active{color:var(--accent);font-weight:600}
 .sitenav-toggle.active{background:var(--bg);color:var(--accent)}
 @media (max-width:640px){
-  .sitenav{padding:.5rem .7rem;gap:.7rem}
+  .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}
   .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
   .sitenav-menu{min-width:170px}
@@ -2010,6 +2076,7 @@ def main():
     classify_healthcare_indications(universe)
     classify_energy_fuels(universe)
     classify_tech_categories(universe)
+    classify_realestate_categories(universe)
 
     results, usable, fresh_today = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])
