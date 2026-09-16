@@ -1566,7 +1566,6 @@ canvas{width:100%;height:100%;display:block}
 <a href="tech-index.html">Tech</a>
 </div></div>
 <a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
-<a class="sitenav-toggle" href="conviction-stack.html">Conviction Stack</a>
 </div>
 </nav>
 <script>

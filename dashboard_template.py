@@ -116,7 +116,6 @@ def render_nav(active_href):
         + group('Screeners', NAV_SCREENER_LINKS) + "\n"
         + group('ASX Sector Indexes', NAV_INDEX_LINKS) + "\n"
         + '<a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>\n'
-        + '<a class="sitenav-toggle" href="conviction-stack.html">Conviction Stack</a>\n'
         + '</div>\n</nav>\n'
         '<script>\n'
         "document.querySelectorAll('.sitenav-drop').forEach(function(drop){\n"
