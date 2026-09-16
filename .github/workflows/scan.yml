@@ -82,22 +82,6 @@ jobs:
           curl -sf -o asx_breakout_results.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html
           curl -sf -o asx_pullback_results.html https://brianyumcha.github.io/asx-screeners/pullback.html
 
-      - name: Preserve existing materials/healthcare/energy/tech/insider index pages
-        # This workflow never regenerates materials-index.html,
-        # healthcare-index.html, energy-index.html, tech-index.html or
-        # insider-index.html (that's materials_index.yml's job, weekly) -
-        # without this, every scan run here would deploy a _site/ missing
-        # those pages and wipe them off the live site. `-f` with `|| true`
-        # so a first-ever run before those pages exist doesn't break this
-        # build.
-        if: steps.gate.outputs.should_run == 'true'
-        run: |
-          curl -sf -o materials-index.html https://brianyumcha.github.io/asx-screeners/materials-index.html || true
-          curl -sf -o healthcare-index.html https://brianyumcha.github.io/asx-screeners/healthcare-index.html || true
-          curl -sf -o energy-index.html https://brianyumcha.github.io/asx-screeners/energy-index.html || true
-          curl -sf -o tech-index.html https://brianyumcha.github.io/asx-screeners/tech-index.html || true
-          curl -sf -o insider-index.html https://brianyumcha.github.io/asx-screeners/insider-index.html || true
-
       - name: Commit updated price cache
         # Every successful run (including intraday HH-only ones) refreshes
         # price_cache.parquet - it has to be committed every time too, or
