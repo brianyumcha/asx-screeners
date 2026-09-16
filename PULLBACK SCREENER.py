@@ -743,6 +743,7 @@ def build_html_report(results, excluded, total_scanned, out_path):
                 {'label': 'RSI', 'value': f"{r['rsi']:.0f}" if r['rsi'] is not None else '—'},
                 {'label': 'Vol PB/Imp', 'value': f"{r['vol_ratio_pullback_vs_impulse']:.2f}×"},
             ],
+            'signals_present': r['signals_present'],
             'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
             'lows': r['lows'], 'closes': r['closes'], 'volumes': r['volumes'],
         }

@@ -401,6 +401,8 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 
   <div class="ctrllabel" style="margin-bottom:.4rem">Sector</div>
   <div class="sectorrow" id="sectorRow"></div>
+  <div class="ctrllabel" id="signalLabel" style="margin:.7rem 0 .4rem;display:none">Confluence signal</div>
+  <div class="sectorrow" id="signalRow" style="display:none"></div>
   <div class="countline" id="countLine"></div>
   <div class="grid" id="grid"></div>
   <div id="tableWrap" style="display:none;overflow-x:auto;"></div>
@@ -462,6 +464,33 @@ sectorRow.querySelectorAll('.sectorpill').forEach(el => el.addEventListener('cli
   render();
 }));
 
+// Confluence-signal filter - only present for screeners whose cards carry
+// a signals_present array (Pullback today). A no-op section for anything
+// else, since DATA won't have the field at all there.
+state.signals = new Set();
+const SIGNAL_LABELS = {
+  volume_declining: 'Volume declining',
+  hidden_bull_div_rsi: 'RSI divergence',
+  hidden_bull_div_stochrsi: 'StochRSI divergence',
+  stochrsi_cross_imminent: 'StochRSI cross imminent',
+  obv_healthy: 'OBV healthy',
+};
+const allSignalKeys = [...new Set(DATA.flatMap(c => c.signals_present || []))];
+const signalRow = document.getElementById('signalRow');
+const signalLabel = document.getElementById('signalLabel');
+if (allSignalKeys.length) {
+  signalRow.style.display = '';
+  signalLabel.style.display = '';
+  signalRow.innerHTML = allSignalKeys.map(k =>
+    `<button class="sectorpill" data-signal="${esc(k)}">${esc(SIGNAL_LABELS[k] || k)}</button>`).join('');
+  signalRow.querySelectorAll('.sectorpill').forEach(el => el.addEventListener('click', () => {
+    const k = el.dataset.signal;
+    if (state.signals.has(k)) state.signals.delete(k); else state.signals.add(k);
+    el.classList.toggle('active');
+    render();
+  }));
+}
+
 document.getElementById('modeToggle').addEventListener('click', e => {
   if (!e.target.dataset.mode) return;
   state.mode = e.target.dataset.mode;
@@ -518,7 +547,8 @@ function filteredCards() {
     (state.showSeen || !c.already_seen) &&
     state.sizes.has(c.size) &&
     (!state.sector || c.sector === state.sector) &&
-    (!state.search || c.ticker.includes(state.search))
+    (!state.search || c.ticker.includes(state.search)) &&
+    (state.signals.size === 0 || [...state.signals].every(k => (c.signals_present || []).includes(k)))
   );
 }
 
