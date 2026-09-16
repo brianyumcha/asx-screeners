@@ -1395,7 +1395,7 @@ html,body{overflow-x:clip}
 }
 h1{font-family:"Fraunces",Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:-.01em;
   text-wrap:balance;color:var(--text)}
-.subtitle{font-size:.92rem;color:var(--muted);margin-top:.3rem;max-width:44rem}
+.subtitle{font-size:.92rem;color:var(--muted);margin-top:.3rem;max-width:60rem}
 .session{font-size:.68rem;color:var(--muted);margin:.6rem 0 1.1rem}
 .topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
 .copybtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
