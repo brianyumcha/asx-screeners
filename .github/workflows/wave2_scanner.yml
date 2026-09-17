@@ -56,6 +56,7 @@ jobs:
         run: |
           curl -sf -o pre-breakout.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html || true
           curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true
+          curl -sf -o momentum.html https://brianyumcha.github.io/asx-screeners/momentum.html || true
           curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
 
       - name: Build Pages site
@@ -71,12 +72,14 @@ jobs:
           cp staples-index.html _site/staples-index.html
           cp discretionary-index.html _site/discretionary-index.html
           cp industrials-index.html _site/industrials-index.html
+          cp red-folder-news.html _site/red-folder-news.html
           cp insider-index.html _site/insider-index.html
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           cp wave2-scanner.html _site/wave2-scanner.html
           cp craig-bullish-map.html _site/craig-bullish-map.html
           [ -f pre-breakout.html ] && cp pre-breakout.html _site/pre-breakout.html || true
           [ -f pullback.html ] && cp pullback.html _site/pullback.html || true
+          [ -f momentum.html ] && cp momentum.html _site/momentum.html || true
           [ -f higher-high.html ] && cp higher-high.html _site/higher-high.html || true
 
       - uses: actions/upload-pages-artifact@v3

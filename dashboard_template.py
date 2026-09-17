@@ -88,6 +88,7 @@ NAV_SCREENER_LINKS = [
     ('momentum.html', 'Momentum'),
     ('pre-breakout.html', 'Pre-Breakout (OBV)'),
     ('pullback.html', 'Pullback (Zag Zone)'),
+    ('red-folder-news.html', 'Red Folder News'),
 ]
 NAV_INDEX_LINKS = [
     ('discretionary-index.html', 'Consumer Discretionary'),

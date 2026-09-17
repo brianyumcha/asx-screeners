@@ -149,6 +149,7 @@ jobs:
           [ -f staples-index.html ] && cp staples-index.html _site/staples-index.html || true
           [ -f discretionary-index.html ] && cp discretionary-index.html _site/discretionary-index.html || true
           [ -f industrials-index.html ] && cp industrials-index.html _site/industrials-index.html || true
+          [ -f red-folder-news.html ] && cp red-folder-news.html _site/red-folder-news.html || true
           [ -f insider-index.html ] && cp insider-index.html _site/insider-index.html || true
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true

@@ -57,11 +57,14 @@ jobs:
       - name: Build industrials index (fresh name/market-cap/yield fetch)
         run: python3 build_industrials_index.py
 
+      - name: Build red folder news (economic calendar)
+        run: python3 build_red_folder_news.py
+
       - name: Commit generated pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html discretionary-index.html industrials-index.html
+          git add -f materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html discretionary-index.html industrials-index.html red-folder-news.html
           git diff --staged --quiet || git commit -m "Daily sector index rebuild"
           for i in 1 2 3; do
             git push && break
@@ -73,15 +76,15 @@ jobs:
           done
 
       - name: Preserve existing screener pages
-        # This workflow only regenerates materials-index.html,
-        # healthcare-index.html, energy-index.html and tech-index.html -
-        # without this, deploying _site/ here would wipe the other 3 pages
-        # off the live site until scan.yml's next run restored them. `-f`
-        # (fail on HTTP error) with `|| true` so a first-ever run before
-        # these pages exist doesn't break the build.
+        # This workflow only regenerates the sector-index/red-folder pages -
+        # without this, deploying _site/ here would wipe these 4 gitignored
+        # screener pages off the live site until scan.yml's next run
+        # restored them. `-f` (fail on HTTP error) with `|| true` so a
+        # first-ever run before these pages exist doesn't break the build.
         run: |
           curl -sf -o pre-breakout.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html || true
           curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true
+          curl -sf -o momentum.html https://brianyumcha.github.io/asx-screeners/momentum.html || true
           curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
 
       - name: Build Pages site
@@ -97,12 +100,14 @@ jobs:
           cp staples-index.html _site/staples-index.html
           cp discretionary-index.html _site/discretionary-index.html
           cp industrials-index.html _site/industrials-index.html
+          cp red-folder-news.html _site/red-folder-news.html
           cp insider-index.html _site/insider-index.html
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
           cp craig-bullish-map.html _site/craig-bullish-map.html
           [ -f pre-breakout.html ] && cp pre-breakout.html _site/pre-breakout.html || true
           [ -f pullback.html ] && cp pullback.html _site/pullback.html || true
+          [ -f momentum.html ] && cp momentum.html _site/momentum.html || true
           [ -f higher-high.html ] && cp higher-high.html _site/higher-high.html || true
 
       - uses: actions/upload-pages-artifact@v3
