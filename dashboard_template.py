@@ -84,12 +84,14 @@ NAV_SCREENER_LINKS = [
     ('pullback.html', 'Pullback (Zag Zone)'),
 ]
 NAV_INDEX_LINKS = [
+    ('discretionary-index.html', 'Consumer Discretionary'),
+    ('staples-index.html', 'Consumer Staples'),
     ('energy-index.html', 'Energy'),
     ('financials-index.html', 'Financials'),
     ('healthcare-index.html', 'Healthcare'),
+    ('industrials-index.html', 'Industrials'),
     ('materials-index.html', 'Materials'),
     ('real-estate-index.html', 'Real Estate'),
-    ('staples-index.html', 'Consumer Staples'),
     ('tech-index.html', 'Tech'),
 ]
 

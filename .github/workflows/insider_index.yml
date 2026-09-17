@@ -76,6 +76,8 @@ jobs:
           cp real-estate-index.html _site/real-estate-index.html
           cp financials-index.html _site/financials-index.html
           cp staples-index.html _site/staples-index.html
+          cp discretionary-index.html _site/discretionary-index.html
+          cp industrials-index.html _site/industrials-index.html
           cp insider-index.html _site/insider-index.html
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true

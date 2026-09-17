@@ -1181,6 +1181,113 @@ def classify_staples_categories(universe):
         universe[t]["industry"] = cache.get(t, "Consumer Staples")
 
 
+# ─── CONSUMER DISCRETIONARY CATEGORY CLASSIFICATION ────────────────────────
+# Same pass-through approach as Real Estate: unlike Financials/Staples,
+# inspecting all 109 Consumer Discretionary-sector tickers' real Yahoo
+# industry + longBusinessSummary text (2026-09-17) found no real cluster of
+# systematically mistagged tickers - every industry value present is a
+# genuine (if sometimes niche) description of what the company does, just
+# narrower than the 11 GICS sectors. So there's no need for a curated
+# whitelist here: pass Yahoo's own industry straight through, and only the
+# genuine gaps (no industry data at all - usually a thin/inactive ticker)
+# fall back to the generic sector-name bucket.
+DISCRETIONARY_CATEGORY_CACHE_PATH = os.path.join(SCRIPT_DIR, "discretionary_category_cache.json")
+
+DISCRETIONARY_MANUAL_OVERRIDES = {}
+
+
+def classify_discretionary_category(industry):
+    if industry:
+        return industry
+    return "Consumer Discretionary"
+
+
+def classify_discretionary_categories(universe):
+    try:
+        with open(DISCRETIONARY_CATEGORY_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    disc_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Consumer Discretionary" and len(t) == 3
+    ]
+    new_tickers = [t for t in disc_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Consumer Discretionary ticker(s) by category...")
+        for t in new_tickers:
+            if t in DISCRETIONARY_MANUAL_OVERRIDES:
+                cache[t] = DISCRETIONARY_MANUAL_OVERRIDES[t]
+                continue
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                cache[t] = classify_discretionary_category(info.get("industry"))
+            except Exception:
+                cache[t] = "Consumer Discretionary"
+        with open(DISCRETIONARY_CATEGORY_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in disc_tickers:
+        universe[t]["industry"] = cache.get(t, "Consumer Discretionary")
+
+
+# ─── INDUSTRIALS CATEGORY CLASSIFICATION ───────────────────────────────────
+# Same pass-through approach - inspecting all 148 Industrials-sector
+# tickers' real Yahoo industry + longBusinessSummary text (2026-09-17)
+# found no systematic mistagging cluster either, just the usual handful of
+# niche businesses with no industry data at all. One deliberate override:
+# SGH (Seven Group Holdings, ~$15B mcap - WesTrac/Coates Hire/Boral/Seven
+# West Media) comes back from Yahoo with industry=None despite being the
+# sector's largest constituent by far, so it would otherwise silently land
+# in the generic catch-all bucket.
+INDUSTRIALS_CATEGORY_CACHE_PATH = os.path.join(SCRIPT_DIR, "industrials_category_cache.json")
+
+INDUSTRIALS_MANUAL_OVERRIDES = {
+    "SGH": "Conglomerates",
+}
+
+
+def classify_industrials_category(industry):
+    if industry:
+        return industry
+    return "Industrials"
+
+
+def classify_industrials_categories(universe):
+    try:
+        with open(INDUSTRIALS_CATEGORY_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    ind_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Industrials" and len(t) == 3
+    ]
+    new_tickers = [t for t in ind_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Industrials ticker(s) by category...")
+        for t in new_tickers:
+            if t in INDUSTRIALS_MANUAL_OVERRIDES:
+                cache[t] = INDUSTRIALS_MANUAL_OVERRIDES[t]
+                continue
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                cache[t] = classify_industrials_category(info.get("industry"))
+            except Exception:
+                cache[t] = "Industrials"
+        with open(INDUSTRIALS_CATEGORY_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in ind_tickers:
+        universe[t]["industry"] = cache.get(t, "Industrials")
+
+
 # ─── INDICATORS ───────────────────────────────────────────────────────────────
 
 def calc_obv_series(closes, volumes):
@@ -1675,12 +1782,14 @@ canvas{width:100%;height:100%;display:block}
 <a href="pullback.html">Pullback (Zag Zone)</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="discretionary-index.html">Consumer Discretionary</a>
+<a href="staples-index.html">Consumer Staples</a>
 <a href="energy-index.html">Energy</a>
 <a href="financials-index.html">Financials</a>
 <a href="healthcare-index.html">Healthcare</a>
+<a href="industrials-index.html">Industrials</a>
 <a href="materials-index.html">Materials</a>
 <a href="real-estate-index.html">Real Estate</a>
-<a href="staples-index.html">Consumer Staples</a>
 <a href="tech-index.html">Tech</a>
 </div></div>
 <a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
@@ -2230,6 +2339,8 @@ def main():
     classify_realestate_categories(universe)
     classify_financials_categories(universe)
     classify_staples_categories(universe)
+    classify_discretionary_categories(universe)
+    classify_industrials_categories(universe)
 
     results, usable, fresh_today = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])

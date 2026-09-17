@@ -51,12 +51,18 @@ jobs:
       - name: Build consumer staples index (fresh name/market-cap/yield fetch)
         run: python3 build_staples_index.py
 
+      - name: Build consumer discretionary index (fresh name/market-cap/yield fetch)
+        run: python3 build_discretionary_index.py
+
+      - name: Build industrials index (fresh name/market-cap/yield fetch)
+        run: python3 build_industrials_index.py
+
       - name: Commit generated pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html
-          git diff --staged --quiet || git commit -m "Daily materials/healthcare/energy/tech/real-estate/financials/staples index rebuild"
+          git add -f materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html discretionary-index.html industrials-index.html
+          git diff --staged --quiet || git commit -m "Daily sector index rebuild"
           for i in 1 2 3; do
             git push && break
             echo "Push rejected (concurrent commit to main) - rebasing and retrying (attempt $i)"
@@ -89,6 +95,8 @@ jobs:
           cp real-estate-index.html _site/real-estate-index.html
           cp financials-index.html _site/financials-index.html
           cp staples-index.html _site/staples-index.html
+          cp discretionary-index.html _site/discretionary-index.html
+          cp industrials-index.html _site/industrials-index.html
           cp insider-index.html _site/insider-index.html
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
