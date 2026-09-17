@@ -168,6 +168,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="red-folder-news.html">Red Folder News</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="comms-index.html">Communication Services</a>
 <a href="discretionary-index.html" class="active">Consumer Discretionary</a>
 <a href="staples-index.html">Consumer Staples</a>
 <a href="energy-index.html">Energy</a>
@@ -177,6 +178,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="materials-index.html">Materials</a>
 <a href="real-estate-index.html">Real Estate</a>
 <a href="tech-index.html">Tech</a>
+<a href="utilities-index.html">Utilities</a>
 </div></div>
 <a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
 </div>
@@ -286,7 +288,7 @@ const DATA = [
 ["ASG","Autosports Group Limited","Auto & Truck Dealerships",269979712,1.265,-1.6,4.7,6.32],
 ["ATG","Articore Group Limited","Internet Retail",114931224,0.375,0.0,0.445,null],
 ["ATP","Atlas Pearls Limited","Luxury Goods",35123408,0.08,1.3,0.225,5.63],
-["AUA","Audeara Limited","Consumer Electronics",4892528,0.024,0.0,0.12,null],
+["AUA","Audeara Limited","Consumer Electronics",4343437,0.024,0.0,0.12,null],
 ["AUK","","Consumer Discretionary",null,null,null,null,null],
 ["AX1","Accent Group Limited","Apparel Retail",396782560,0.66,-1.5,1.39,6.82],
 ["BAP","Bapcor Limited","Specialty Retail",548293760,0.815,4.5,3.35,9.84],
@@ -311,14 +313,14 @@ const DATA = [
 ["ENN","Elanor Investors Group","Asset Management",11081404,0.084,null,0.82,null],
 ["EVO","Embark Early Education Limited","Education & Training Services",85537736,0.42,1.2,0.7,14.29],
 ["EXP","Experience Co Limited","Leisure",67920064,0.09,0.0,0.16,2.78],
-["EZZ","EZZ Life Science Holdings Limited","Biotechnology",19522928,0.415,0.0,3.38,7.34],
+["EZZ","EZZ Life Science Holdings Limited","Biotechnology",19522928,0.415,0.0,3.38,6.25],
 ["FLT","Flight Centre Travel Group Limited","Travel Services",2203501056,10.76,0.2,16.56,3.9],
 ["FWD","Fleetwood Limited","Engineering & Construction",247824848,2.75,-2.1,3.26,6.91],
 ["GAP","Gale Pacific Limited","Textile Manufacturing",29175358,0.1025,-6.8,0.115,null],
 ["GEM","G8 Education Limited","Education & Training Services",88729264,0.115,0.0,0.87,45.83],
 ["GLB","Globe International Limited","Apparel Manufacturing",112366944,2.71,0.0,3.3,9.59],
 ["GLE","GLG Corp Ltd","Apparel Manufacturing",10374000,0.14,0.0,0.155,null],
-["GYG","Guzman y Gomez Limited","Restaurants",2493755136,25.04,0.7,34.065,1.34],
+["GYG","Guzman y Gomez Limited","Restaurants",2497563392,25.04,0.7,34.065,1.34],
 ["HLO","Helloworld Travel Limited","Travel Services",229970624,1.405,-0.4,2.1,7.12],
 ["HVN","Harvey Norman Holdings Limited","Specialty Retail",5195847680,4.17,-0.7,7.7,6.24],
 ["IEL","IDP Education Limited","Education & Training Services",434204480,1.56,2.0,6.735,5.77],
@@ -337,7 +339,7 @@ const DATA = [
 ["MHJ","Michael Hill International Limited","Luxury Goods",130846480,0.34,3.0,0.475,11.76],
 ["MNC","Merino & Co. Limited","Apparel Manufacturing",7982524,0.095,0.0,0.27,null],
 ["MTO","MotorCycle Holdings Limited","Auto & Truck Dealerships",192782416,2.61,1.6,4.0,5.36],
-["MYR","Myer Holdings Limited","Department Stores",302880584,0.175,-2.8,0.66,8.57],
+["MYR","Myer Holdings Limited","Department Stores",302880576,0.175,-2.8,0.66,8.57],
 ["NCK","Nick Scali Limited","Specialty Retail",1227365504,14.35,1.1,26.08,5.44],
 ["NDO","Nido Education Limited","Education & Training Services",49924352,0.22,-15.4,0.67,43.18],
 ["NTD","NTAW Holdings Limited","Auto Parts",30187372,0.18,0.0,0.35,null],
@@ -348,11 +350,11 @@ const DATA = [
 ["PMV","Premier Investments Limited","Apparel Retail",1795156352,11.25,-0.1,22.05,8.44],
 ["PWH","PWR Holdings Limited","Auto Parts",1030884736,10.25,-0.4,12.5,0.78],
 ["PWR","Peter Warren Automotive Holdings Limited","Auto & Truck Dealerships",130914608,0.76,2.7,2.05,1.58],
-["RCT","Reef Casino Trust","Resorts & Casinos",170732400,3.48,0.0,3.86,6.24],
+["RCT","Reef Casino Trust","Resorts & Casinos",173307600,3.48,0.0,3.86,6.24],
 ["RFG","Retail Food Group Limited","Restaurants",68320160,1.08,-0.5,1.66,null],
 ["RPM","RPM Automotive Group Limited","Auto Parts",3269073,0.012,0.0,0.067,null],
 ["SCT","Scout Security Limited","Consumer Discretionary",118675,0.0052,0.0,0.52,null],
-["SFC","Schaffer Corporation Limited","Auto Parts",250136128,18.6,0.4,21.9,4.84],
+["SFC","Schaffer Corporation Limited","Auto Parts",251465872,18.6,0.4,21.9,4.84],
 ["SGR","The Star Entertainment Group Limited","Resorts & Casinos",895887424,0.135,0.0,0.195,null],
 ["SHJ","Shine Justice Ltd","Personal Services",127042800,0.75,2.0,0.78,6.67],
 ["SHM","Shriro Holdings Limited","Specialty Retail",50516488,0.79,1.3,0.835,2.53],
@@ -362,7 +364,7 @@ const DATA = [
 ["SKC","SkyCity Entertainment Group Limited","Resorts & Casinos",568073344,0.515,-1.0,0.8625,null],
 ["SNL","Supply Network Limited","Auto Parts",1488874624,33.94,3.6,39.66,2.36],
 ["SSG","Shaver Shop Group Limited","Specialty Retail",174246624,1.33,1.9,1.575,8.27],
-["STP","Step One Clothing Limited","Apparel Retail",22802830,0.125,0.0,0.57,50.37],
+["STP","Step One Clothing Limited","Apparel Retail",23167536,0.125,0.0,0.57,50.37],
 ["SUL","Super Retail Group Limited","Specialty Retail",2802506752,12.41,-1.8,17.65,5.24],
 ["TAH","Tabcorp Holdings Limited","Gambling",2086306432,0.91,-1.1,1.19,3.3],
 ["TCO","Transmetro Corporation Limited","Lodging",34795220,2.6,0.0,3.65,2.31],
@@ -373,7 +375,7 @@ const DATA = [
 ["UNI","Universal Store Holdings Limited","Apparel Retail",546252160,7.12,3.0,9.88,6.04],
 ["VMT","Vmoto Limited","Recreational Vehicles",40297852,0.1,3.1,0.165,null],
 ["VVA","Viva Leisure Limited","Leisure",154722384,1.565,3.0,1.85,1.92],
-["WAT","Waterco Limited","Pollution & Treatment Controls",210073200,6.0,0.0,6.38,3.33],
+["WAT","Waterco Limited","Pollution & Treatment Controls",210103872,6.0,0.0,6.38,3.33],
 ["WEB","WebBeds Group Limited","Travel Services",1277814528,3.53,1.4,5.04,null],
 ["WES","Wesfarmers Limited","Home Improvement Retail",82716696576,72.86,0.8,94.7,3.05],
 ["WJL","Webjet Group Limited","Travel Services",123511496,0.315,1.6,0.925,12.7],
