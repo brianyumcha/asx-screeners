@@ -93,6 +93,11 @@ tbody tr.bigus:hover{background:var(--bad-bg);filter:brightness(1.12)}
 .bigus-tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;
   font-weight:700;letter-spacing:.04em;color:var(--bad);border:1px solid var(--bad);
   border-radius:4px;padding:.05rem .35rem;margin-left:.4rem;vertical-align:middle}
+tbody tr.past{opacity:.5}
+tbody tr.past:hover{opacity:.8}
+.past-tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;
+  font-weight:700;letter-spacing:.04em;color:var(--ink-faint);border:1px solid var(--ink-faint);
+  border-radius:4px;padding:.05rem .35rem;margin-left:.4rem;vertical-align:middle}
 .colname-mobile{display:none}
 
 footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint)}
@@ -223,7 +228,7 @@ document.addEventListener('keydown', function(e){
   <div class="topbar">
     <div>
       <h1>🔴 Red Folder News</h1>
-      <div class="subtitle">Upcoming high-impact ("red folder") economic calendar events — the releases that actually move forex and index markets.</div>
+      <div class="subtitle">High-impact ("red folder") economic calendar events for the current week — the releases that actually move forex and index markets.</div>
     </div>
     <div class="topbar-right">
       <button class="copybtn" id="downloadCsvBtn">⬇ Download CSV</button>
@@ -232,7 +237,7 @@ document.addEventListener('keydown', function(e){
   </div>
   <div class="session">Rebuilt daily — last rebuilt <<<BUILD_DATE>>> Sydney time.</div>
 
-  <div class="notice">⚠ "Red folder" is ForexFactory's own term for its highest ("High") impact tier — the events most likely to move price on release. This page shows only that tier, sourced from the same public calendar feed ForexFactory's own widget uses. Only a "this week" window is available (no further-ahead feed exists), so it naturally rolls forward as the underlying feed updates for the new week. All times are Sydney local (AEST/AEDT), computed at build time — not your browser's timezone.</div>
+  <div class="notice">⚠ "Red folder" is ForexFactory's own term for its highest ("High") impact tier — the events most likely to move price on release. This page shows the full Sunday-Saturday calendar week, sourced from the same feed ForexFactory's own site exports — no month-ahead feed exists (checked directly against forexfactory.com). Already-released events this week are shown dimmed for context — this feed has no "actual" outcome field, so only forecast/previous are ever shown either way. All times are Sydney local (AEST/AEDT), computed at build time — not your browser's timezone.</div>
 
   <div class="chipsection">
     <h2>🌏 Filter by country</h2>
@@ -273,7 +278,7 @@ const DATA = [
 <<<FULL_DATA>>>
 ];
 
-// [unixTs, dateLabel, timeLabel, country, title, forecast, previous, isBigUS]
+// [unixTs, dateLabel, timeLabel, country, title, forecast, previous, isBigUS, isPast]
 
 const CURRENCY_FLAGS = {
   USD: '🇺🇸', EUR: '🇪🇺', GBP: '🇬🇧', JPY: '🇯🇵', AUD: '🇦🇺', NZD: '🇳🇿',
@@ -318,19 +323,20 @@ function render(){
   });
   currentRows = rows;
   let lastDateLabel = null;
-  document.getElementById('matBody').innerHTML = rows.map(([ts, dateLabel, timeLabel, country, title, forecast, previous, isBigUS]) => {
+  document.getElementById('matBody').innerHTML = rows.map(([ts, dateLabel, timeLabel, country, title, forecast, previous, isBigUS, isPast]) => {
     const showDate = dateLabel !== lastDateLabel;
     lastDateLabel = dateLabel;
-    return `<tr class="${isBigUS ? 'bigus' : ''}">
+    const cls = [isBigUS ? 'bigus' : '', isPast ? 'past' : ''].filter(Boolean).join(' ');
+    return `<tr class="${cls}">
       <td class="tk">${showDate ? dateLabel : ''}</td>
       <td class="mono">${timeLabel}</td>
       <td class="mono">${flagFor(country)}${country}</td>
-      <td>${title}${isBigUS ? ' <span class="bigus-tag">KEY US</span>' : ''}</td>
+      <td>${title}${isBigUS ? ' <span class="bigus-tag">KEY US</span>' : ''}${isPast ? ' <span class="past-tag">Released</span>' : ''}</td>
       <td class="mono colname-desktop" style="text-align:right">${forecast || '—'}</td>
       <td class="mono colname-desktop" style="text-align:right">${previous || '—'}</td>
     </tr>`;
   }).join('');
-  document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} upcoming event(s)`;
+  document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} event(s) this week`;
   document.querySelectorAll('#countrychips .commchip').forEach(c => c.classList.toggle('active', activeCountries.has(c.dataset.country)));
   document.querySelectorAll('thead th').forEach(th => {
     th.classList.toggle('active', th.dataset.key===sortKey);

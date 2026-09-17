@@ -5,11 +5,21 @@ the standard source retail EA developers pull this exact feed from), and
 renders a static page listing every upcoming HIGH-impact ("red folder")
 event.
 
-Only a "this week" feed is available (no "next week" endpoint exists on
-this source as of 2026-09-17), so the visible window is capped at the
-end of the current calendar week - it naturally rolls forward as the
-feed itself updates for the new week. Only future events (Sydney time)
-are shown - anything already released this week is dropped.
+Only a "this week" feed is available - confirmed 2026-09-18 that even
+ForexFactory's own site only exports this same weekly feed (its "Weekly
+Export" JSON/CSV/ICS/XML links all point at this exact URL); a real
+month-ahead view exists on forexfactory.com itself, but only as an HTML
+table behind Cloudflare, not as any kind of export - scraping that would
+need a full headless browser in the GitHub Actions job instead of a
+plain HTTP fetch, and could silently break if Cloudflare ever blocks the
+runner. Not worth that fragility for this.
+
+Shows the FULL Sunday-Saturday calendar week the feed currently covers,
+not just what's left of it - filtering to "upcoming only" meant the page
+showed almost nothing by Friday/Saturday, since the feed is anchored to
+the calendar week rather than rolling from today. Past events in the
+week are still shown (dimmed) for context, even though this feed has no
+"actual" outcome field to report - only forecast/previous either way.
 
 Times are rendered in Sydney local time, computed server-side at build
 time (not left to the viewer's browser), matching the rest of the site's
@@ -89,8 +99,7 @@ def main():
         except Exception:
             continue
         dt_syd = dt.astimezone(SYDNEY_TZ)
-        if dt_syd < now_syd:
-            continue  # only upcoming events
+        is_past = dt_syd < now_syd
 
         d = dt_syd.date()
         if d == today_syd:
@@ -112,16 +121,19 @@ def main():
             item.get("forecast") or "",
             item.get("previous") or "",
             is_big_us_event(country, title),
+            is_past,
         ))
 
     rows.sort(key=lambda r: r[0])
-    print(f"{len(rows)} upcoming High-impact ('red folder') event(s).")
+    upcoming_count = sum(1 for r in rows if not r[8])
+    print(f"{len(rows)} High-impact ('red folder') event(s) this week ({upcoming_count} still upcoming).")
 
     data_lines = []
-    for ts, date_label, time_label, country, title, forecast, previous, is_key in rows:
+    for ts, date_label, time_label, country, title, forecast, previous, is_key, is_past in rows:
         data_lines.append(
             f'[{ts},"{esc_js(date_label)}","{esc_js(time_label)}","{esc_js(country)}",'
-            f'"{esc_js(title)}","{esc_js(forecast)}","{esc_js(previous)}",{"true" if is_key else "false"}]'
+            f'"{esc_js(title)}","{esc_js(forecast)}","{esc_js(previous)}",'
+            f'{"true" if is_key else "false"},{"true" if is_past else "false"}]'
         )
     data_block = ",\n".join(data_lines)
 
