@@ -240,7 +240,7 @@ document.addEventListener('keydown', function(e){
   </div>
   <div class="session">Rebuilt daily after ASX close — last rebuilt 17 Sep 2026.</div>
 
-  <div class="notice">⚠ Each sector's return is a market-cap-weighted average of its own constituent stocks' price changes (not a raw ASX sector-index symbol — those reliably fail to fetch in this site's automated pipeline, see the build script's own notes). "vs XJO" compares that to STW.AX (the ASX 200 ETF this site uses as its market-wide benchmark) over the same window. The quadrant below plots 3-month relative performance (medium-term position) against 1-month relative performance (recent momentum).</div>
+  <div class="notice">⚠ Each sector's return is a market-cap-weighted average of its own constituent stocks' price changes (not a raw ASX sector-index symbol — those reliably fail to fetch in this site's automated pipeline, see the build script's own notes). "vs XJO" compares that to STW.AX (the ASX 200 ETF this site uses as its market-wide benchmark) over the same window. The quadrant below plots 3-month relative performance (medium-term position) against 1-month relative performance (recent momentum) — the faint trailing line behind each dot is that same position 1-4 weeks ago, so you can see which way a sector is actually rotating, not just where it sits today.</div>
 
   <div class="quadwrap">
     <canvas id="quadCanvas" width="640" height="640"></canvas>
@@ -249,6 +249,7 @@ document.addEventListener('keydown', function(e){
       <span><span class="dot" style="background:#e8b355"></span> Weakening — ahead but cooling</span>
       <span><span class="dot" style="background:#e0847a"></span> Lagging — behind &amp; still falling</span>
       <span><span class="dot" style="background:#7ba7d9"></span> Improving — behind but catching up</span>
+      <span>Faint tail = last 4 weekly snapshots</span>
     </div>
   </div>
 
@@ -277,19 +278,20 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["Energy",69,-1.2,1.4,13.18,0.77,1.23,4.59,14.5,-1.44],
-["Healthcare",108,2.3,0.1,25.27,16.03,4.72,3.3,26.58,13.82],
-["Utilities",18,0.69,-1.91,1.01,1.94,3.11,1.28,2.33,-0.27],
-["Consumer Staples",31,0.51,-2.08,0.08,4.93,2.93,1.11,1.4,2.72],
-["Financials",92,1.21,-2.2,-0.96,-1.2,3.63,0.99,0.36,-3.41],
-["Communication Services",36,1.52,-2.42,2.9,0.07,3.94,0.77,4.22,-2.14],
-["Materials",455,-5.17,-2.85,2.5,18.18,-2.75,0.34,3.82,15.97],
-["Industrials",106,0.08,-3.75,-5.17,9.15,2.5,-0.56,-3.86,6.94],
-["Real Estate",54,-1.14,-7.47,-11.63,-1.76,1.28,-4.28,-10.31,-3.97],
-["Consumer Discretionary",83,-0.4,-8.21,-6.79,5.9,2.03,-5.02,-5.47,3.69],
-["Tech",78,-1.93,-10.16,-3.54,13.03,0.5,-6.97,-2.22,10.82]
+["Energy",69,-1.2,1.4,13.18,0.77,1.23,4.59,14.5,-1.44,[[-1.67,2.59],[-1.26,2.2],[0.65,8.36],[10.62,6.97],[14.5,4.59]]],
+["Healthcare",108,2.3,0.1,25.27,16.03,4.72,3.3,26.58,13.82,[[31.69,18.25],[29.24,11.86],[31.19,12.54],[24.22,7.33],[26.58,3.3]]],
+["Utilities",18,0.69,-1.91,1.01,1.94,3.11,1.28,2.33,-0.27,[[-1.53,1.81],[-3.71,0.15],[-2.59,3.75],[-1.98,3.19],[2.33,1.28]]],
+["Consumer Staples",31,0.51,-2.08,0.08,4.93,2.93,1.11,1.4,2.72,[[6.37,-3.07],[5.62,-5.04],[7.2,0.4],[-1.04,-0.08],[1.4,1.11]]],
+["Financials",92,1.21,-2.2,-0.96,-1.2,3.63,0.99,0.36,-3.41,[[-4.63,-7.24],[-5.44,-10.15],[1.49,-5.48],[-2.55,-3.9],[0.36,0.99]]],
+["Communication Services",36,1.52,-2.42,2.9,0.07,3.94,0.77,4.22,-2.14,[[-3.42,-0.8],[-3.8,-3.65],[-1.65,-0.8],[-2.27,-3.1],[4.22,0.77]]],
+["Materials",455,-5.17,-2.85,2.5,18.18,-2.75,0.34,3.82,15.97,[[6.0,12.58],[3.81,15.63],[4.96,9.55],[2.86,3.67],[3.82,0.34]]],
+["Industrials",106,0.08,-3.75,-5.17,9.15,2.5,-0.56,-3.86,6.94,[[0.88,-4.19],[-3.47,-4.26],[-2.82,-4.43],[-5.95,-2.89],[-3.86,-0.56]]],
+["Real Estate",54,-1.14,-7.47,-11.63,-1.76,1.28,-4.28,-10.31,-3.97,[[-4.23,-3.7],[-10.65,-8.62],[-6.88,-7.63],[-13.35,-6.59],[-10.31,-4.28]]],
+["Consumer Discretionary",83,-0.4,-8.21,-6.79,5.9,2.03,-5.02,-5.47,3.69,[[8.88,-4.62],[0.52,-10.0],[2.09,-8.71],[-6.78,-9.25],[-5.47,-5.02]]],
+["Tech",78,-1.93,-10.16,-3.54,13.03,0.5,-6.97,-2.22,10.82,[[10.94,8.02],[3.35,6.38],[-7.78,-2.76],[-8.02,-7.42],[-2.22,-6.97]]]
 ];
-// [label, count, w1w, w1m, w3m, w6m, rel1w, rel1m, rel3m, rel6m]
+// [label, count, w1w, w1m, w3m, w6m, rel1w, rel1m, rel3m, rel6m, tail]
+// tail: [[rel3m, rel1m], ...] weekly snapshots, oldest first, last entry = today
 
 const BENCH = [-2.42,-3.19,-1.32,2.21];
 // [b1w, b1m, b3m, b6m]
@@ -410,6 +412,41 @@ function drawQuadrant(){
   ctx.fillText('WEAKENING', size-pad-8, size-pad-8);
   ctx.textAlign = 'left';
   ctx.fillText('LAGGING', pad+8, size-pad-8);
+
+  // Trailing tail (weekly snapshots, oldest to newest) drawn first, under
+  // everything else - a faint, thin, fading line + small dots showing the
+  // actual rotation path, not just today's static position.
+  pts.forEach(r => {
+    const tail = r[10] || [];
+    const validTail = tail.filter(([r3, r1]) => r3 !== null && r1 !== null);
+    if (validTail.length < 2) return;
+    const n = validTail.length;
+    for (let i = 1; i < n; i++) {
+      const [pr3, pr1] = validTail[i-1];
+      const [cr3, cr1] = validTail[i];
+      const alpha = 0.12 + 0.55 * (i / (n-1));
+      ctx.strokeStyle = quadrantColor(cr3, cr1);
+      ctx.globalAlpha = alpha;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(X(pr3), Y(pr1));
+      ctx.lineTo(X(cr3), Y(cr1));
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    // small dots for every tail point except the last (today's gets its
+    // own larger, bordered dot in the pass below)
+    for (let i = 0; i < n - 1; i++) {
+      const [r3, r1] = validTail[i];
+      const alpha = 0.15 + 0.5 * (i / (n-1));
+      ctx.globalAlpha = alpha;
+      ctx.beginPath();
+      ctx.arc(X(r3), Y(r1), 2.5, 0, Math.PI*2);
+      ctx.fillStyle = quadrantColor(r3, r1);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  });
 
   // Dots first (all of them), then labels in a separate pass with simple
   // collision avoidance - with up to 11 sectors often clustered near the
