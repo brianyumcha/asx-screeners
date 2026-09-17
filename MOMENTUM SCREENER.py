@@ -11,22 +11,30 @@ Criteria (a stock must pass ALL of these):
   2. 30-day median daily volume >= 500,000 shares (median, not mean - a
      single spike day can drag a 30-day MEAN above threshold on an
      otherwise-dead stock; see HH/OBV SCREENER.py's identical fix)
-  3. Relative volume (today's volume / 20-day average) >= 1.5
-  4. Price above the 20-day SMA, which is itself above the 50-day SMA
+  3. Price above the 20-day SMA, which is itself above the 50-day SMA
      ("stacked" moving averages)
-  5. RSI (14-period) between 50 and 65 - healthy momentum, not yet
+  4. RSI (14-period) between 50 and 65 - healthy momentum, not yet
      overbought
-  6. 1-week change between +2% and +10%
-  7. 1-month change > 0%
-  8. Market cap >= $20M (site-wide floor, see HH SCREENER.py)
+  5. 1-week change between +2% and +10%
+  6. 1-month change > 0%
+  7. Market cap >= $20M (site-wide floor, see HH SCREENER.py)
 
-One filter from Craig's original spec was dropped after checking real
-data: short float % (5-15%). yfinance returns shortPercentOfFloat=None
-for every ASX ticker tested (BHP, CBA, CSL, PLS, ZIP and others -
-including stocks known to carry heavy short interest), so this field is
-simply not populated for the ASX market via this data source. Building
-it as a working filter would mean shipping a checkbox that silently
-never fires - so it's left out rather than faked.
+Two filters from Craig's original spec were NOT built as hard gates:
+
+- Relative volume (today's volume / 20-day average) >= 1.5. Checked
+  against 6 real TradingView Momentum Screener hits (2026-09-17: BVS,
+  CCL, ACL, ASB, NUF, LGF) - every one passed every other criterion above
+  cleanly, but landed well under 1.5x on my calc across every averaging
+  window tried (5/10/20/30-day). TradingView's screener column isn't
+  reproducible from daily close/volume bars alone, so gating on it would
+  silently drop real setups. Still computed and shown per card, and used
+  as the default sort key - just not a pass/fail gate.
+- Short float % (5-15%). yfinance returns shortPercentOfFloat=None for
+  every ASX ticker tested (BHP, CBA, CSL, PLS, ZIP and others - including
+  stocks known to carry heavy short interest), so this field is simply
+  not populated for the ASX market via this data source. Building it as
+  a working filter would mean shipping a checkbox that silently never
+  fires - so it's left out rather than faked.
 
 The other optional filter (EPS/revenue growth > 0%) IS implemented, but
 as a confluence-signal filter chip rather than a hard scan-time gate -
@@ -68,7 +76,6 @@ CHART_TRIM_BARS  = 260
 
 MIN_PRICE        = 2.0
 MIN_AVG_VOLUME   = 500_000
-REL_VOL_MIN      = 1.5
 RSI_PERIOD       = 14
 RSI_MIN          = 50
 RSI_MAX          = 65
@@ -129,11 +136,18 @@ def analyse_ticker(ticker, frame, market_cap, min_market_cap):
         return None
     avg_vol = sum(volumes[-30:]) / min(30, len(volumes))
 
+    # Relative volume is shown and sorted on, but NOT gated on - checked
+    # against 6 real TradingView Momentum Screener hits (2026-09-17: BVS,
+    # CCL, ACL, ASB, NUF, LGF) and every one of them cleared every other
+    # criterion below cleanly while landing well under 1.5x on every
+    # averaging window tried (5/10/20/30-day, all from the same cached
+    # OHLCV data used elsewhere on this site). TradingView's screener
+    # column isn't reproducible from daily close/volume bars alone - so
+    # gating on it would silently drop real setups rather than just rank
+    # them lower.
     vol_today = volumes[-1]
     vol_avg20 = sum(volumes[-20:]) / min(20, len(volumes))
     rel_vol = vol_today / (vol_avg20 + 1)
-    if rel_vol < REL_VOL_MIN:
-        return None
 
     sma20 = calc_sma(closes, SMA_SHORT)
     sma50 = calc_sma(closes, SMA_LONG)
@@ -251,12 +265,13 @@ def build_html_report(results, excluded, total_scanned, out_path):
         excluded_cards=[to_card(r) for r in excluded],
         total_scanned=total_scanned,
         title='🚀 ASX Momentum Screener',
-        subtitle='ASX stocks with a confirmed uptrend, healthy RSI and a real relative-volume pickup — not already overbought.',
+        subtitle='ASX stocks with a confirmed uptrend and healthy RSI — not already overbought. Sorted by relative volume.',
         footer_note=(
             'ASX Momentum Screener · Data via Yahoo Finance (yfinance), ticker universe via SeaBee<br>'
-            'Criteria: price &gt; $2 AND 30d median volume &ge; 500,000 AND relative volume &ge; 1.5&times; AND '
-            'price above 20d SMA above 50d SMA AND RSI 50-65 AND 1wk change +2% to +10% AND 1mo change &gt; 0% '
-            'AND market cap &ge; $20M. Earnings/revenue growth is shown as a filter chip, not a hard gate.'
+            'Criteria: price &gt; $2 AND 30d median volume &ge; 500,000 AND price above 20d SMA above 50d SMA AND '
+            'RSI 50-65 AND 1wk change +2% to +10% AND 1mo change &gt; 0% AND market cap &ge; $20M. Relative volume '
+            'is shown and sorted on, not gated on (TradingView\'s exact formula isn\'t reproducible from daily bars). '
+            'Earnings/revenue growth is shown as a filter chip, not a hard gate.'
         ),
         out_path=out_path + '.html',
     )
