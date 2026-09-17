@@ -60,7 +60,12 @@ def render_dashboard_html(
         f"last run {now.strftime('%Y-%m-%d %H:%M')} Sydney time"
     )
 
-    active_href = 'pullback.html' if 'Pullback' in title else 'pre-breakout.html'
+    if 'Pullback' in title:
+        active_href = 'pullback.html'
+    elif 'Momentum' in title:
+        active_href = 'momentum.html'
+    else:
+        active_href = 'pre-breakout.html'
     html = HTML_TEMPLATE
     html = html.replace('##NAV##', render_nav(active_href))
     html = html.replace('##TITLE##', title)
@@ -80,6 +85,7 @@ NAV_ICON_B64 = 'iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAk0klEQVR4nO19eaxd
 
 NAV_SCREENER_LINKS = [
     ('higher-high.html', 'Higher-High'),
+    ('momentum.html', 'Momentum'),
     ('pre-breakout.html', 'Pre-Breakout (OBV)'),
     ('pullback.html', 'Pullback (Zag Zone)'),
 ]
@@ -478,6 +484,7 @@ const SIGNAL_LABELS = {
   hidden_bull_div_stochrsi: 'StochRSI divergence',
   stochrsi_cross_imminent: 'StochRSI cross imminent',
   obv_healthy: 'OBV healthy',
+  earnings_growth: 'Earnings/Revenue growth',
 };
 const allSignalKeys = [...new Set(DATA.flatMap(c => c.signals_present || []))];
 const signalRow = document.getElementById('signalRow');

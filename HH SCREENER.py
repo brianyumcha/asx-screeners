@@ -1778,6 +1778,7 @@ canvas{width:100%;height:100%;display:block}
 <div class="sitenav-links">
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="higher-high.html" class="active">Higher-High</a>
+<a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
 </div></div>
