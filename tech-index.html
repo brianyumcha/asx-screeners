@@ -178,7 +178,6 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
-<a href="red-folder-news.html">Red Folder News</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -193,7 +192,11 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="tech-index.html" class="active">Tech</a>
 <a href="utilities-index.html">Utilities</a>
 </div></div>
-<a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Trading Tools <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="insider-index.html">Insider Buying</a>
+<a href="red-folder-news.html">Red Folder News</a>
+<a href="sector-rotation.html">Sector Rotation</a>
+</div></div>
 </div>
 </nav>
 <script>
@@ -302,10 +305,10 @@ const DATA = [
 ["AI1","Adisyn Ltd","Cybersecurity + Data Centers / Cloud Infrastructure","Early Revenue ($1-10M)",153059552,0.13,13.0,0.335],
 ["AIM","Ai-Media Technologies Limited","Gaming / Media / Entertainment + Education Technology","Established ($50M+)",50636868,0.24,6.7,0.95],
 ["AMO","Ambertech Limited","Gaming / Media / Entertainment","Established ($50M+)",6582930,0.069,0.0,0.19],
-["APX","Appen Limited","HR / Workforce Software","Established ($50M+)",279015584,1.04,1.5,1.975],
+["APX","Appen Limited","HR / Workforce Software","Established ($50M+)",279264576,1.04,1.5,1.975],
 ["AR9","archTIS Limited","Cybersecurity","Scaling ($10-50M)",33486054,0.068,7.9,0.165],
 ["ATA","Atturra Limited","Cybersecurity + Artificial Intelligence / Machine Learning","Established ($50M+)",145395696,0.395,1.3,0.85],
-["ATV","ActivePort Group Ltd","IT Services / Consulting","Early Revenue ($1-10M)",18235676,0.014,7.7,0.044],
+["ATV","ActivePort Group Ltd","IT Services / Consulting","Early Revenue ($1-10M)",18352342,0.014,7.7,0.044],
 ["AV1","Adveritas Limited","Advertising / Marketing Technology","Scaling ($10-50M)",61159468,0.066,-1.5,0.19],
 ["AVA","AVA Risk Group Limited","Cybersecurity","Scaling ($10-50M)",11935062,0.041,2.5,0.092],
 ["AXE","Archer Materials Limited","Semiconductors","Early Revenue ($1-10M)",51081348,0.18,-2.7,0.505],
@@ -326,7 +329,7 @@ const DATA = [
 ["CXZ","Connexion Mobility Ltd","Logistics / Supply Chain Technology","Scaling ($10-50M)",15337903,0.022,0.0,0.028],
 ["CYB","AUCyber Limited","Cybersecurity","Scaling ($10-50M)",10518480,0.05,0.0,0.084],
 ["DCC","DigitalX Limited","Fintech / Payments","Early Revenue ($1-10M)",44465400,0.032,6.7,0.071],
-["DDR","Dicker Data Limited","IoT / Hardware + Cybersecurity","Established ($50M+)",2688067584,14.82,0.2,15.65],
+["DDR","Dicker Data Limited","IoT / Hardware + Cybersecurity","Established ($50M+)",2691080960,14.82,0.2,15.65],
 ["DTI","","Info Tech","Unresolved",null,null,null,null],
 ["DTL","Data#3 Limited","Data Centers / Cloud Infrastructure + IoT / Hardware","Established ($50M+)",1665116288,10.73,0.8,11.81],
 ["DUB","Dubber Corporation Limited","Artificial Intelligence / Machine Learning + Telecommunications / Connectivity","Scaling ($10-50M)",21694222,0.008,0.0,0.022],
@@ -350,7 +353,7 @@ const DATA = [
 ["HTG","Harvest Technology Group Ltd","Telecommunications / Connectivity","Early Revenue ($1-10M)",21357344,0.011,null,0.027],
 ["HYD","Hydrix Limited","Healthcare Technology","Early Revenue ($1-10M)",4349248,0.003,0.0,0.035],
 ["ICE","icetana Limited","Artificial Intelligence / Machine Learning + Education Technology","Early Revenue ($1-10M)",23915730,0.036,5.9,0.08],
-["ID8","Identitii Limited","Software / Technology","Pre-Revenue (<$1M)",3697013,0.8,0.0,2.4],
+["ID8","Identitii Limited","Software / Technology","Pre-Revenue (<$1M)",3856538,0.8,0.0,2.4],
 ["IFG","InFocus Group Holdings Limited","IT Services / Consulting","Early Revenue ($1-10M)",5509600,0.009,28.6,0.024],
 ["IKE","ikeGPS Group Limited","Artificial Intelligence / Machine Learning","Scaling ($10-50M)",178339760,0.915,0.0,1.15],
 ["IOD","IODM Limited","Software / Technology","Early Revenue ($1-10M)",59657980,0.094,0.0,0.2],
@@ -366,10 +369,10 @@ const DATA = [
 ["LVE","Love Group Global Ltd","Software / Technology","Early Revenue ($1-10M)",3850746,0.095,0.0,0.135],
 ["MAQ","Macquarie Technology Group Limited","Telecommunications / Connectivity + Data Centers / Cloud Infrastructure","Established ($50M+)",1311367552,50.88,-1.1,78.77],
 ["MNV","Monvia Limited","Software / Technology","Scaling ($10-50M)",96016304,1.02,0.0,1.16],
-["MP1","Megaport Limited","Telecommunications / Connectivity + Data Centers / Cloud Infrastructure","Established ($50M+)",4176009728,17.23,1.8,22.98],
+["MP1","Megaport Limited","Telecommunications / Connectivity + Data Centers / Cloud Infrastructure","Established ($50M+)",4184977664,17.23,1.8,22.98],
 ["NNG","Nexion Group Ltd","Info Tech","Unresolved",4046157,0.02,0.0,0.02],
 ["NOR","Norwood Systems Limited","Cybersecurity","Early Revenue ($1-10M)",8698618,0.015,0.0,0.048],
-["NOV","Novatti Group Limited","Fintech / Payments + Telecommunications / Connectivity","Scaling ($10-50M)",9970312,0.016,0.0,0.046],
+["NOV","Novatti Group Limited","Fintech / Payments + Telecommunications / Connectivity","Scaling ($10-50M)",9973923,0.016,0.0,0.046],
 ["NS1","Nodestream Ltd","Telecommunications / Connectivity","Early Revenue ($1-10M)",13901969,0.007,16.7,0.027],
 ["NVQ","NoviqTech Limited","Software / Technology","Pre-Revenue (<$1M)",15810705,0.039,0.0,0.059],
 ["NVU","Nanoveu Limited","Semiconductors + Gaming / Media / Entertainment","Pre-Revenue (<$1M)",60889632,0.056,1.8,0.11],
@@ -381,7 +384,7 @@ const DATA = [
 ["OLL","OpenLearning Limited","Education Technology","Early Revenue ($1-10M)",10167817,0.013,0.0,0.054],
 ["PFM","Platformo Ltd","Software / Technology","Pre-Revenue (<$1M)",1423624,0.015,0.0,0.053],
 ["PHX","Pharmx Technologies Limited","Healthcare Technology","Early Revenue ($1-10M)",59950680,0.09,9.8,0.2],
-["PIL","Peppermint Innovation Limited","Info Tech","Pre-Revenue (<$1M)",12890263,0.004,0.0,0.006],
+["PIL","","Info Tech","Unresolved",null,null,null,null],
 ["PKY","Pathkey.AI Ltd","Semiconductors","Pre-Revenue (<$1M)",41898764,0.031,0.0,0.075],
 ["PPS","Praemium Limited","Fintech / Payments","Established ($50M+)",280296640,0.575,-0.9,0.945],
 ["PRO","Prophecy International Holdings Limited","Software / Technology","Scaling ($10-50M)",4914339,0.061,-10.3,0.24],
@@ -416,7 +419,7 @@ const DATA = [
 ["VR1","Vection Technologies Limited","Artificial Intelligence / Machine Learning + Education Technology","Scaling ($10-50M)",44903704,0.019,5.6,0.08],
 ["W2V","Way 2 Vat Ltd","Fintech / Payments","Early Revenue ($1-10M)",13037939,0.043,2.4,0.15],
 ["WBT","Weebit Nano Limited","IoT / Hardware + Artificial Intelligence / Machine Learning","Scaling ($10-50M)",784825088,3.26,6.9,8.89],
-["WHK","WhiteHawk Limited","Cybersecurity + Logistics / Supply Chain Technology","Early Revenue ($1-10M)",3401985,0.003,0.0,0.013],
+["WHK","WhiteHawk Limited","Cybersecurity + Logistics / Supply Chain Technology","Early Revenue ($1-10M)",3446985,0.003,0.0,0.013],
 ["WRK","Wrkr Ltd","Fintech / Payments","Scaling ($10-50M)",132817736,0.061,-1.6,0.175],
 ["WTC","WiseTech Global Limited","Logistics / Supply Chain Technology","Established ($50M+)",10724703232,31.89,-1.2,99.53],
 ["X2M","X2M Connect Limited","Artificial Intelligence / Machine Learning","Early Revenue ($1-10M)",15379788,0.006,0.0,0.017],

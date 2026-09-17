@@ -88,6 +88,11 @@ tbody tr:hover{background:var(--surface2)}
 .diversified{color:var(--ink-faint);font-style:italic}
 .up{color:var(--good)}
 .down{color:var(--bad)}
+tbody tr.bigus{background:var(--bad-bg);border-left:3px solid var(--bad)}
+tbody tr.bigus:hover{background:var(--bad-bg);filter:brightness(1.12)}
+.bigus-tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;
+  font-weight:700;letter-spacing:.04em;color:var(--bad);border:1px solid var(--bad);
+  border-radius:4px;padding:.05rem .35rem;margin-left:.4rem;vertical-align:middle}
 .colname-mobile{display:none}
 
 footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint)}
@@ -165,7 +170,6 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
-<a href="red-folder-news.html" class="active">Red Folder News</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="discretionary-index.html">Consumer Discretionary</a>
@@ -178,7 +182,11 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="real-estate-index.html" class="active">Real Estate</a>
 <a href="tech-index.html">Tech</a>
 </div></div>
-<a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Trading Tools <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="insider-index.html">Insider Buying</a>
+<a href="red-folder-news.html" class="active">Red Folder News</a>
+<a href="sector-rotation.html">Sector Rotation</a>
+</div></div>
 </div>
 </nav>
 <script>
@@ -222,7 +230,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily — last rebuilt 17 Sep 2026, 11:27PM Sydney time.</div>
+  <div class="session">Rebuilt daily — last rebuilt 18 Sep 2026, 5:27AM Sydney time.</div>
 
   <div class="notice">⚠ "Red folder" is ForexFactory's own term for its highest ("High") impact tier — the events most likely to move price on release. This page shows only that tier, sourced from the same public calendar feed ForexFactory's own widget uses. Only a "this week" window is available (no further-ahead feed exists), so it naturally rolls forward as the underlying feed updates for the new week. All times are Sydney local (AEST/AEDT), computed at build time — not your browser's timezone.</div>
 
@@ -262,12 +270,18 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-[1789698600,"Tomorrow","12:30pm","JPY","BOJ Policy Rate","<1.25%","<1.00%"],
-[1789698600,"Tomorrow","12:30pm","JPY","Monetary Policy Statement","",""],
-[1789709400,"Tomorrow","3:30pm","JPY","BOJ Press Conference","",""]
+[1789698600,"Today","12:30pm","JPY","BOJ Policy Rate","<1.25%","<1.00%",false],
+[1789698600,"Today","12:30pm","JPY","Monetary Policy Statement","","",false],
+[1789709400,"Today","3:30pm","JPY","BOJ Press Conference","","",false]
 ];
 
-// [unixTs, dateLabel, timeLabel, country, title, forecast, previous]
+// [unixTs, dateLabel, timeLabel, country, title, forecast, previous, isBigUS]
+
+const CURRENCY_FLAGS = {
+  USD: '🇺🇸', EUR: '🇪🇺', GBP: '🇬🇧', JPY: '🇯🇵', AUD: '🇦🇺', NZD: '🇳🇿',
+  CAD: '🇨🇦', CHF: '🇨🇭', CNY: '🇨🇳', MXN: '🇲🇽', ZAR: '🇿🇦', All: '🌐',
+};
+function flagFor(c){ return CURRENCY_FLAGS[c] ? CURRENCY_FLAGS[c] + ' ' : ''; }
 
 const PINNED_COUNTRIES = ['USD', 'AUD'];
 const countryCounts = {};
@@ -277,7 +291,7 @@ const ORDERED_COUNTRIES = [...PINNED_COUNTRIES.filter(c => countryCounts[c]), ..
 
 const countrychips = document.getElementById('countrychips');
 countrychips.innerHTML = ORDERED_COUNTRIES.map(c =>
-  `<button class="commchip" data-country="${c}"><span>${c}</span><span class="cnt">${countryCounts[c]}</span></button>`
+  `<button class="commchip" data-country="${c}"><span>${flagFor(c)}${c}</span><span class="cnt">${countryCounts[c]}</span></button>`
 ).join('');
 
 const activeCountries = new Set();
@@ -306,14 +320,14 @@ function render(){
   });
   currentRows = rows;
   let lastDateLabel = null;
-  document.getElementById('matBody').innerHTML = rows.map(([ts, dateLabel, timeLabel, country, title, forecast, previous]) => {
+  document.getElementById('matBody').innerHTML = rows.map(([ts, dateLabel, timeLabel, country, title, forecast, previous, isBigUS]) => {
     const showDate = dateLabel !== lastDateLabel;
     lastDateLabel = dateLabel;
-    return `<tr>
+    return `<tr class="${isBigUS ? 'bigus' : ''}">
       <td class="tk">${showDate ? dateLabel : ''}</td>
       <td class="mono">${timeLabel}</td>
-      <td class="mono">${country}</td>
-      <td>${title}</td>
+      <td class="mono">${flagFor(country)}${country}</td>
+      <td>${title}${isBigUS ? ' <span class="bigus-tag">KEY US</span>' : ''}</td>
       <td class="mono colname-desktop" style="text-align:right">${forecast || '—'}</td>
       <td class="mono colname-desktop" style="text-align:right">${previous || '—'}</td>
     </tr>`;
