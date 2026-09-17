@@ -88,7 +88,6 @@ NAV_SCREENER_LINKS = [
     ('momentum.html', 'Momentum'),
     ('pre-breakout.html', 'Pre-Breakout (OBV)'),
     ('pullback.html', 'Pullback (Zag Zone)'),
-    ('red-folder-news.html', 'Red Folder News'),
 ]
 NAV_INDEX_LINKS = [
     ('discretionary-index.html', 'Consumer Discretionary'),
@@ -100,6 +99,11 @@ NAV_INDEX_LINKS = [
     ('materials-index.html', 'Materials'),
     ('real-estate-index.html', 'Real Estate'),
     ('tech-index.html', 'Tech'),
+]
+NAV_TOOLS_LINKS = [
+    ('insider-index.html', 'Insider Buying'),
+    ('red-folder-news.html', 'Red Folder News'),
+    ('sector-rotation.html', 'Sector Rotation'),
 ]
 
 
@@ -126,7 +130,7 @@ def render_nav(active_href):
         '<div class="sitenav-links">\n'
         + group('Screeners', NAV_SCREENER_LINKS) + "\n"
         + group('ASX Sector Indexes', NAV_INDEX_LINKS) + "\n"
-        + '<a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>\n'
+        + group('Trading Tools', NAV_TOOLS_LINKS) + "\n"
         + '</div>\n</nav>\n'
         '<script>\n'
         "document.querySelectorAll('.sitenav-drop').forEach(function(drop){\n"

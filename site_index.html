@@ -96,7 +96,6 @@
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
-<a href="red-folder-news.html">Red Folder News</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button>
 <div class="sitenav-menu">
@@ -112,7 +111,11 @@
 <a href="tech-index.html">Tech</a>
 <a href="utilities-index.html">Utilities</a>
 </div></div>
-<a class="sitenav-toggle" href="insider-index.html">Insider Buying</a>
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Trading Tools <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="insider-index.html">Insider Buying</a>
+<a href="red-folder-news.html">Red Folder News</a>
+<a href="sector-rotation.html">Sector Rotation</a>
+</div></div>
 </div>
 </nav>
 <script>
@@ -173,11 +176,6 @@ document.addEventListener('keydown', function(e){
         <span class="cicon">↩️</span>
         <div class="ctitle">Pullback (Zag Zone)</div>
         <div class="cdesc">ASX stocks pulling back into the 38.2%-61.8% retracement of their latest swing.</div>
-      </a>
-      <a class="sitecard" href="red-folder-news.html">
-        <span class="cicon">🔴</span>
-        <div class="ctitle">Red Folder News</div>
-        <div class="cdesc">Upcoming high-impact economic calendar events — the releases that actually move forex and index markets.</div>
       </a>
     </div>
   </section>
@@ -244,14 +242,24 @@ document.addEventListener('keydown', function(e){
   </section>
 
   <section class="grp">
-    <h2>🕵️ Insider Buying</h2>
-    <a class="sitecard featured" href="insider-index.html">
-      <span class="cicon">🕵️</span>
-      <div>
+    <h2>🛠️ Trading Tools</h2>
+    <div class="cardgrid">
+      <a class="sitecard" href="insider-index.html">
+        <span class="cicon">🕵️</span>
         <div class="ctitle">Insider Buying Tracker</div>
         <div class="cdesc">Every ASX company with a genuine on-market director share purchase in the last 180 days — real money, not option grants or vesting.</div>
-      </div>
-    </a>
+      </a>
+      <a class="sitecard" href="red-folder-news.html">
+        <span class="cicon">🔴</span>
+        <div class="ctitle">Red Folder News</div>
+        <div class="cdesc">Upcoming high-impact economic calendar events — the releases that actually move forex and index markets.</div>
+      </a>
+      <a class="sitecard" href="sector-rotation.html">
+        <span class="cicon">🔄</span>
+        <div class="ctitle">Sector Rotation</div>
+        <div class="cdesc">Which ASX sectors are leading or lagging the market, and whether that's accelerating or fading.</div>
+      </a>
+    </div>
   </section>
 
   <div class="note">OBV + Pullback run once on weekday afternoons (after ASX close). Higher-High also runs intraday at 10:30am/1pm/3:30pm/4:30pm local Sydney time. Sector indexes rebuild daily after ASX close. All via GitHub Actions, DST-adjusted automatically. Not financial advice.</div>
