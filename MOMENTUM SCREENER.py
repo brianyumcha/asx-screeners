@@ -7,20 +7,29 @@ them - the opposite intent of Pre-Breakout (OBV), which looks for
 strength building BEFORE a move.
 
 Criteria (a stock must pass ALL of these):
-  1. Price > $2
-  2. 30-day median daily volume >= 500,000 shares (median, not mean - a
-     single spike day can drag a 30-day MEAN above threshold on an
-     otherwise-dead stock; see HH/OBV SCREENER.py's identical fix)
-  3. Price above the 20-day SMA, which is itself above the 50-day SMA
+  1. 30-day average (mean) daily volume >= 500,000 shares - literally
+     Craig's spec, confirmed against real TradingView hits 2026-09-17:
+     an earlier median-based version (matching HH/OBV's anti-spike
+     convention) excluded CDA and DDR, whose 30d MEDIAN volume sits just
+     under 500k but whose 30d MEAN clears it comfortably
+  2. Price above the 20-day SMA, which is itself above the 50-day SMA
      ("stacked" moving averages)
-  4. RSI (14-period) between 50 and 65 - healthy momentum, not yet
+  3. RSI (14-period) between 50 and 65 - healthy momentum, not yet
      overbought
-  5. 1-week change between +2% and +10%
-  6. 1-month change > 0%
-  7. Market cap >= $20M (site-wide floor, see HH SCREENER.py)
+  4. 1-week change between +2% and +10%
+  5. 1-month change > 0%
+  6. Market cap >= $20M (site-wide floor, see HH SCREENER.py)
 
-Two filters from Craig's original spec were NOT built as hard gates:
+Three filters from Craig's original spec were NOT built as hard gates:
 
+- Price > $2. Built as a UI toggle ("Price >= $2 only", default off) in
+  dashboard_template.py instead of a scan-time filter, per the site
+  owner 2026-09-17: several real TradingView "micro cap" hits (ENR, AL3,
+  IVZ, TAM, NH3, EWC, PAR, TER, WZR) trade well under $2, so TV's own
+  micro-cap tier apparently doesn't enforce this floor even though
+  Craig's spec text states it - gating on it here would have hidden
+  real matches in that tier. Sub-$2 tickers now show by default; the
+  toggle is there for whoever wants Craig's original, stricter view.
 - Relative volume (today's volume / 20-day average) >= 1.5. Checked
   against 6 real TradingView Momentum Screener hits (2026-09-17: BVS,
   CCL, ACL, ASB, NUF, LGF) - every one passed every other criterion above
@@ -59,7 +68,6 @@ import csv
 import importlib.util
 import json
 import os
-import statistics
 import sys
 import time
 from datetime import date, timedelta
@@ -74,7 +82,6 @@ DEFAULT_WORKERS  = 15
 HISTORY_PERIOD   = "1y"
 CHART_TRIM_BARS  = 260
 
-MIN_PRICE        = 2.0
 MIN_AVG_VOLUME   = 500_000
 RSI_PERIOD       = 14
 RSI_MIN          = 50
@@ -128,13 +135,15 @@ def analyse_ticker(ticker, frame, market_cap, min_market_cap):
     dates   = [d.strftime('%Y-%m-%d') for d in frame['date'].tolist()]
 
     price = closes[-1]
-    if price < MIN_PRICE:
-        return None
 
-    median_vol = statistics.median(volumes[-30:])
-    if median_vol < MIN_AVG_VOLUME:
-        return None
+    # Mean, not median - unlike HH/OBV's anti-spike-manipulation floor,
+    # Craig's own spec is literally "avg vol 30D > 500k" (confirmed by the
+    # site owner 2026-09-17), and median was verified to exclude real
+    # TradingView hits over it: CDA's 30d median volume is 485k (fails)
+    # but its mean is 550k (passes) - same pattern on DDR (452k vs 569k).
     avg_vol = sum(volumes[-30:]) / min(30, len(volumes))
+    if avg_vol < MIN_AVG_VOLUME:
+        return None
 
     # Relative volume is shown and sorted on, but NOT gated on - checked
     # against 6 real TradingView Momentum Screener hits (2026-09-17: BVS,
@@ -268,10 +277,11 @@ def build_html_report(results, excluded, total_scanned, out_path):
         subtitle='ASX stocks with a confirmed uptrend and healthy RSI — not already overbought. Sorted by relative volume.',
         footer_note=(
             'ASX Momentum Screener · Data via Yahoo Finance (yfinance), ticker universe via SeaBee<br>'
-            'Criteria: price &gt; $2 AND 30d median volume &ge; 500,000 AND price above 20d SMA above 50d SMA AND '
+            'Criteria: 30d average volume &ge; 500,000 AND price above 20d SMA above 50d SMA AND '
             'RSI 50-65 AND 1wk change +2% to +10% AND 1mo change &gt; 0% AND market cap &ge; $20M. Relative volume '
             'is shown and sorted on, not gated on (TradingView\'s exact formula isn\'t reproducible from daily bars). '
-            'Earnings/revenue growth is shown as a filter chip, not a hard gate.'
+            'Earnings/revenue growth is shown as a filter chip, not a hard gate. Price &ge; $2 is a toggle above '
+            '(default off) - real TradingView micro-cap hits trade well under $2, so it isn\'t enforced by default.'
         ),
         out_path=out_path + '.html',
     )

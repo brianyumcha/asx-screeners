@@ -412,6 +412,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
     </div></div>
     <input type="text" id="search" placeholder="Search ticker...">
     <label class="checkline"><input type="checkbox" id="showSeen"> Show already seen</label>
+    <label class="checkline"><input type="checkbox" id="priceFloor"> Price &ge; $2 only</label>
   </div>
 
   <div class="ctrllabel" style="margin-bottom:.4rem">Sector</div>
@@ -464,6 +465,7 @@ let state = {
   tf: 126,
   search: '',
   showSeen: false,
+  priceFloor: false,
   sector: null,
   sortKey: 'score',
   sortDir: -1,
@@ -545,6 +547,10 @@ document.getElementById('showSeen').addEventListener('change', e => {
   state.showSeen = e.target.checked;
   render();
 });
+document.getElementById('priceFloor').addEventListener('change', e => {
+  state.priceFloor = e.target.checked;
+  render();
+});
 document.getElementById('copyBtn').addEventListener('click', () => {
   const visible = filteredCards();
   const text = visible.map(c => `ASX:${c.ticker}`).join(',');
@@ -561,6 +567,7 @@ function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&l
 function filteredCards() {
   return DATA.filter(c =>
     (state.showSeen || !c.already_seen) &&
+    (!state.priceFloor || c.price >= 2) &&
     state.sizes.has(c.size) &&
     (!state.sector || c.sector === state.sector) &&
     (!state.search || c.ticker.includes(state.search)) &&
