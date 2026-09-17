@@ -27,6 +27,13 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+# ⚠ Don't manually trigger this workflow twice in quick succession (or
+# alongside another of these 4 workflows while this one is still
+# building) - see materials_index.yml for the full explanation. This one
+# regenerates higher-high/pre-breakout/pullback/momentum.html plus the
+# price cache and category caches, so a collision here is the most
+# likely to actually hit real conflicting content.
+
 jobs:
   scan:
     runs-on: ubuntu-latest

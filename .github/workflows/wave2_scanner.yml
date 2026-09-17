@@ -15,6 +15,12 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+# ⚠ Don't manually trigger this workflow twice in quick succession (or
+# alongside another of these 4 workflows while this one is still
+# building) - see materials_index.yml for the full explanation. This one
+# only regenerates wave2-scanner.html, so the collision risk here is
+# smaller, but the same failure mode applies.
+
 jobs:
   build:
     runs-on: ubuntu-latest

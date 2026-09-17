@@ -17,6 +17,18 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+# ⚠ Don't manually trigger this workflow twice in quick succession (or
+# alongside another of these 4 workflows while this one is still
+# building) - `cancel-in-progress: false` only serializes the deploy
+# step (GitHub's own "github-pages" environment has its own concurrency
+# limit), NOT the build job's git push. Every build here fully
+# regenerates every page from fresh data each run, so two overlapping
+# runs produce genuinely different content for the same files - a real
+# conflict the retry/rebase loop below can't resolve, not just a clean
+# rebase. Found 2026-09-17: two manual triggers ~1 minute apart made the
+# second run fail outright (safely - no partial/bad deploy, just a
+# no-op that needs re-triggering once the first run finishes).
+
 jobs:
   build:
     runs-on: ubuntu-latest
