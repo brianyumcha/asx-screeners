@@ -374,13 +374,27 @@ function drawQuadrant(){
   ctx.clearRect(0,0,size,size);
 
   const pts = DATA.filter(r => r[8] !== null && r[7] !== null);
-  const maxAbs = Math.max(2, ...pts.map(r => Math.max(Math.abs(r[8]), Math.abs(r[7]))));
+  // Independent X/Y scaling - rel3m (X) naturally swings much wider than
+  // rel1m (Y) over a quarter vs a month, so a single shared scale left
+  // every point crammed into a thin horizontal band. Each axis now uses
+  // its own data range (including tail points, so the trailing line never
+  // runs off-canvas), which spreads points out on both axes independently.
+  let maxX = 2, maxY = 2;
+  pts.forEach(r => {
+    maxX = Math.max(maxX, Math.abs(r[8]));
+    maxY = Math.max(maxY, Math.abs(r[7]));
+    (r[10] || []).forEach(([r3, r1]) => {
+      if (r3 !== null) maxX = Math.max(maxX, Math.abs(r3));
+      if (r1 !== null) maxY = Math.max(maxY, Math.abs(r1));
+    });
+  });
   const pad = 60;
   const plotSize = size - pad*2;
-  const scale = (plotSize/2) / (maxAbs * 1.15);
+  const scaleX = (plotSize/2) / (maxX * 1.15);
+  const scaleY = (plotSize/2) / (maxY * 1.15);
   const cx = size/2, cy = size/2;
-  const X = v => cx + v*scale;
-  const Y = v => cy - v*scale;
+  const X = v => cx + v*scaleX;
+  const Y = v => cy - v*scaleY;
 
   const gridColor = isLightTheme() ? '#c8bc98' : '#3a4250';
   const textColor = isLightTheme() ? '#3d3829' : '#c7c1b2';
@@ -485,12 +499,17 @@ function drawQuadrant(){
       let ly = p.py + 4;
       // push this label down past any already-placed label whose
       // horizontal range would overlap it
+      // +0.5px margin on the bump: without it, `ly` can land at a value
+      // that floating-point rounding makes indistinguishable from exactly
+      // LABEL_H away from `other.ly` (diff comes out 14.999999999999943,
+      // not 15) - the comparison then re-triggers on the same pair forever,
+      // an infinite loop found for real with 11 sectors' worth of data.
       let moved = true;
       while (moved) {
         moved = false;
         for (const other of placed) {
           if (Math.abs(other.ly - ly) < LABEL_H && Math.abs(other.px - p.px) < 140) {
-            ly = other.ly + LABEL_H;
+            ly = other.ly + LABEL_H + 0.5;
             moved = true;
           }
         }
@@ -528,7 +547,7 @@ function drawLineChart(){
   const textColor = isLightTheme() ? '#3d3829' : '#c7c1b2';
   const faintColor = isLightTheme() ? '#6b6552' : '#8b8672';
 
-  const padL = 46, padR = 12, padT = 14, padB = 26;
+  const padL = 46, padR = 140, padT = 14, padB = 26;
   const plotW = w - padL - padR, plotH = h - padT - padB;
 
   const allSeries = DATA.map(r => r[11]).filter(s => s && s.length);
@@ -580,7 +599,10 @@ function drawLineChart(){
   ctx.stroke();
   ctx.setLineDash([]);
 
-  // sector lines
+  // sector lines - collect each one's endpoint so labels can be placed
+  // in a separate, decluttered pass afterward (every line ends at the
+  // same x, so raw endpoints overlap constantly without this).
+  const endpoints = [];
   DATA.forEach((r, idx) => {
     const series = r[11];
     if (!series || !series.length) return;
@@ -595,15 +617,54 @@ function drawLineChart(){
       if (!started) { ctx.moveTo(x,y); started = true; } else { ctx.lineTo(x,y); }
     });
     ctx.stroke();
-    // endpoint dot + inline label
     for (let i = series.length-1; i >= 0; i--) {
       if (series[i] !== null) {
         const x = X(i), y = Y(series[i]);
         ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fillStyle = color; ctx.fill();
+        endpoints.push({ label: r[0], x, y, color });
         break;
       }
     }
   });
+  for (let i = BENCH_LINE.length-1; i >= 0; i--) {
+    if (BENCH_LINE[i] !== null) {
+      const x = X(i), y = Y(BENCH_LINE[i]);
+      ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fillStyle = faintColor; ctx.fill();
+      endpoints.push({ label: 'XJO', x, y, color: faintColor });
+      break;
+    }
+  }
+
+  ctx.font = '600 10.5px "IBM Plex Sans", sans-serif';
+  ctx.textAlign = 'left';
+  const LABEL_H = 14;
+  const placed = [];
+  endpoints
+    .slice()
+    .sort((a,b) => a.y - b.y)
+    .forEach(p => {
+      let ly = p.y + 3.5;
+      let moved = true;
+      while (moved) {
+        moved = false;
+        for (const other of placed) {
+          if (Math.abs(other.ly - ly) < LABEL_H) { ly = other.ly + LABEL_H + 0.5; moved = true; }
+        }
+      }
+      placed.push({ ly });
+      if (Math.abs(ly - (p.y+3.5)) > 2) {
+        ctx.strokeStyle = p.color;
+        ctx.globalAlpha = 0.5;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(p.x+5, p.y);
+        ctx.lineTo(p.x+9, ly-3.5);
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+      ctx.fillStyle = p.color;
+      ctx.fillText(p.label, p.x+11, ly);
+    });
 }
 
 const lineLegend = document.getElementById('lineLegend');
