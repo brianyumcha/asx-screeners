@@ -177,6 +177,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button>
 <div class="sitenav-menu">
 <a href="higher-high.html">Higher-High</a>
+<a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
 </div></div>
@@ -298,6 +299,7 @@ const DATA = [
 ["AWJ","Auric Mining Limited","Materials",3,true,false,false,true,true,46848400,0.255,2.0,"2026-08-03",null,null],
 ["BPM","BPM Minerals Limited","Materials",3,true,false,false,true,true,31304460,0.235,0.0,"2026-07-01",null,null],
 ["BUB","Bubs Australia Limited","Consumer Staples",3,true,false,false,true,true,98354304,0.115,4.5,"2026-09-03",null,null],
+["BWN","Bhagwan Marine Limited","Other",3,true,true,false,false,true,115401160,0.29,0.0,"2026-06-04","2026-08-04",null],
 ["CAF","Centrepoint Alliance Limited","Financials",3,true,false,false,true,true,78798152,0.385,2.7,"2026-06-05",null,null],
 ["CTP","Central Petroleum Limited","Energy",3,true,false,false,true,true,47800512,0.065,2.4,"2026-05-22",null,null],
 ["DDR","Dicker Data Limited","Info Tech",3,true,true,false,true,false,2682626304,14.905,0.8,"2026-05-01","2026-06-23",null],
@@ -308,6 +310,7 @@ const DATA = [
 ["P1E","Pure One Corporation Limited","Energy",3,true,false,false,true,true,17887554,0.05,13.6,"2026-07-16",null,null],
 ["SLS","Solstice Minerals Limited","Materials",3,true,true,false,true,false,414384928,2.36,-1.7,"2026-03-27","2026-02-10",null],
 ["STX","Strike Energy Limited","Energy",3,true,false,false,true,true,413930688,0.115,0.0,"2026-05-14",null,null],
+["TAM","Tanami Gold NL","Materials",3,true,false,false,true,true,159813216,0.07,2.9,"2026-06-03",null,null],
 ["VBX","VBX Limited","Other",3,true,true,false,false,true,60360148,0.68,-6.2,"2026-03-23","2026-02-03",null],
 ["29M","29Metals Limited","Other",2,true,false,false,false,true,603776384,0.34,-1.4,"2026-05-20",null,null],
 ["49M","49 Metals Limited","Materials",2,true,false,false,true,false,10279582,0.125,0.0,"2026-09-01",null,null],
@@ -326,7 +329,7 @@ const DATA = [
 ["AMH","AMCIL Limited","Other",2,true,false,false,false,true,284769792,0.9,0.0,"2026-08-09",null,null],
 ["AMP","AMP Limited","Financials",2,true,false,false,true,false,6081980416,2.51,0.4,"2026-06-12",null,null],
 ["ARX","Aroa Biosurgery Limited","Other",2,true,false,false,false,true,189153776,0.55,1.9,"2026-06-26",null,null],
-["ASB","","Industrials",2,false,false,false,true,true,null,4.555,5.0,null,null,null],
+["ASB","","Industrials",2,false,false,false,true,true,1922547963,4.555,5.0,null,null,null],
 ["ASX","ASX Limited","Other",2,true,false,false,false,true,10378217472,55.26,4.0,"2026-09-08",null,null],
 ["ATH","","Other",2,false,true,false,false,true,null,0.425,-1.2,null,"2026-06-09",null],
 ["AUA","Audeara Limited","Consumer Discretionary",2,true,true,false,false,false,4343437,0.024,0.0,"2026-05-26","2026-01-13",null],
@@ -348,8 +351,8 @@ const DATA = [
 ["BTL","Beetaloo Energy Australia Limited","Other",2,true,false,false,false,true,392087936,0.252,-3.1,"2026-08-13",null,null],
 ["BVR","Bellavista Resources Limited","Materials",2,true,false,false,true,false,87469560,0.405,0.0,"2026-06-26",null,null],
 ["BVS","Bravura Solutions Limited","Info Tech",2,true,false,false,true,false,1425593984,3.265,2.7,"2026-04-01",null,null],
-["BWN","Bhagwan Marine Limited","Industrials",2,true,true,false,false,false,115401160,0.29,0.0,"2026-06-04","2026-08-04",null],
 ["BWP","BWP Trust","Other",2,true,false,false,false,true,2811899136,3.625,1.3,"2026-06-30",null,null],
+["C1X","EAU Lithium Limited","Materials",2,true,false,false,true,false,24193318,0.135,-3.6,"2026-06-05",null,null],
 ["CAZ","Cazaly Resources Limited","Materials",2,true,true,false,false,false,12958677,0.022,10.0,"2026-06-26","2025-12-16",null],
 ["CBA","Commonwealth Bank of Australia","Other",2,true,false,false,false,true,253393633280,153.825,1.5,"2026-08-13",null,null],
 ["CBL","Control Bionics Limited","Other",2,true,false,false,false,true,26719060,0.06,0.0,"2026-09-01",null,null],
@@ -364,7 +367,7 @@ const DATA = [
 ["CPM","Cooper Metals Limited","Materials",2,true,false,false,true,false,9659543,0.087,3.6,"2026-07-31",null,null],
 ["CSL","CSL LIMITED","Healthcare",2,true,false,true,false,false,83624633587,177.825,2.0,"2026-08-21",null,"6M"],
 ["CUP","Count Limited","Industrials",2,true,false,false,true,false,323789184,1.47,-2.0,"2026-05-25",null,null],
-["CY5","","Materials",2,false,false,false,true,true,216184490,0.17,0.0,null,null,null],
+["CY5","","Materials",2,false,false,false,true,true,null,0.17,0.0,null,null,null],
 ["DAL","Dalaroo Metals Ltd","Other",2,true,false,false,false,true,26071926,0.068,1.5,"2026-06-19",null,null],
 ["DEM","De.mem Limited","Utilities",2,true,false,false,true,false,37636624,0.11,-4.3,"2026-08-28",null,null],
 ["DJW","Djerriwarrh Investments Limited","Other",2,true,false,false,false,true,754016896,2.88,-0.3,"2026-08-03",null,null],
@@ -420,10 +423,12 @@ const DATA = [
 ["NST","Northern Star Resources Limited","Other",2,true,false,false,false,true,31473944576,21.52,-2.6,"2026-09-04",null,null],
 ["NUF","Nufarm Limited","Materials",2,true,false,false,true,false,1214253952,3.27,3.5,"2026-06-30",null,null],
 ["NVA","Nova Minerals Corp","Materials",2,true,false,false,true,false,309266528,0.72,6.7,"2026-07-16",null,null],
+["NYR","Nyrada Inc.","Other",2,true,false,false,false,true,180742768,0.73,0.0,"2026-06-11",null,null],
 ["ODY","Odyssey Gold Limited","Materials",2,true,true,false,false,false,42384624,0.03,-3.2,"2026-07-23","2026-05-05",null],
 ["OMA","Omega Oil & Gas Limited","Energy",2,true,false,false,true,false,459630944,0.82,-3.5,"2026-07-07",null,null],
 ["ORA","Orora Limited","Other",2,true,false,false,false,true,1713674880,1.41,0.7,"2026-06-09",null,null],
 ["ORD","","Materials",2,false,false,false,true,true,null,0.545,11.2,null,null,null],
+["OZM","","Materials",2,false,false,false,true,true,null,0.086,0.0,null,null,null],
 ["PAR","","Healthcare",2,false,true,false,true,false,null,0.25,0.0,null,"2026-08-25",null],
 ["PLS","PLS Group Limited","Other",2,true,false,false,false,true,13710274560,4.22,-0.7,"2026-06-10",null,null],
 ["PLY","PlaySide Studios Limited","Communication Services",2,true,true,false,false,false,51056392,0.1125,-2.2,"2026-06-16","2026-05-12",null],
@@ -446,7 +451,20 @@ const DATA = [
 ["SRV","Servcorp Limited","Other",2,true,false,false,false,true,591776896,5.79,-0.3,"2026-09-02",null,null],
 ["STO","","Energy",2,false,true,false,true,false,null,8.57,-1.8,null,"2026-04-07",null],
 ["SVR","Solvar Limited","Other",2,true,false,false,false,true,279660000,1.49,-0.3,"2026-06-10",null,null],
-["SYL","Symal Group Limited","Other",2,true,false,false,false,true,640905920,2.62,-2.2,"2026-08-27",null,null]
+["SYL","Symal Group Limited","Other",2,true,false,false,false,true,640905920,2.62,-2.2,"2026-08-27",null,null],
+["T92","Terra Critical Minerals Limited","Energy",2,true,false,false,true,false,7269912,0.051,4.1,"2026-08-14",null,null],
+["TAH","Tabcorp Holdings Limited","Consumer Discretionary",2,true,false,false,true,false,2109232896,0.91,-1.1,"2026-09-03",null,null],
+["TGM","","Other",2,false,true,false,false,true,null,0.185,5.7,null,"2025-08-26",null],
+["TLG","","Other",2,false,true,false,false,true,null,0.27,-1.8,null,"2026-03-10",null],
+["TLX","Telix Pharmaceuticals Limited","Healthcare",2,true,false,false,true,false,5715169280,17.45,3.4,"2026-04-29",null,null],
+["TM1","Terra Metals Limited","Other",2,true,false,false,false,true,195868384,0.205,7.9,"2026-05-12",null,null],
+["TMK","","Energy",2,false,false,false,true,true,null,0.14,3.7,null,null,null],
+["TNE","Technology One Limited","Other",2,true,false,false,false,true,9451129856,28.79,-0.3,"2026-07-08",null,null],
+["TRJ","Trajan Group Holdings Limited","Other",2,true,false,false,false,true,24458180,0.175,9.4,"2026-03-31",null,null],
+["TUA","TUAS LIMITED","Communication Services",2,false,false,true,true,false,1168083844,2.24,4.7,null,null,"1M"],
+["UWC","Underwood Capital Limited","Other",2,true,false,false,false,true,11601256,0.058,1.8,"2026-07-22",null,null],
+["VBC","Verbrec Limited","Industrials",2,true,false,false,true,false,58231460,0.195,2.6,"2026-09-03",null,null],
+["VEA","Viva Energy Group Limited","Energy",2,true,false,false,true,false,5173941248,3.11,-1.3,"2026-04-21",null,null]
 ];
 
 const SECTOR_IDX = 2, COUNT_IDX = 3, MCAP_IDX = 9;
