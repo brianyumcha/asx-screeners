@@ -30,6 +30,16 @@ position) against 1-month relative performance (recent momentum):
   Weakening (bottom-right): ahead of the market but recently cooling
   Lagging   (bottom-left):  behind the market and still falling further
   Improving (top-left):     behind the market but recently catching up
+
+Each sector also carries a trailing tail: the same (3M relative, 1M
+relative) position recomputed as of TAIL_WEEKS weekly snapshots back,
+so the chart shows the actual rotation path (like a real RRG's tail),
+not just today's static point. Started at 8 weeks; the first real render
+(2026-09-17) showed several sectors' tails swinging across most of the
+chart's width, drowning out the current-position dots - raw relative
+returns are noisier than a real RRG's smoothed/normalized RS-Ratio line,
+so a shorter tail reads much cleaner. Dropped to 4 weeks. Still a single
+constant if it ever needs revisiting.
 """
 import datetime
 import json
@@ -41,18 +51,50 @@ WINDOWS = [("1W", 5), ("1M", 21), ("3M", 63), ("6M", 126)]
 TEMPLATE = "sector_rotation_template.html"
 OUTPUT = "sector-rotation.html"
 BENCHMARK_SYMBOL = "STW.AX"
+TAIL_WEEKS = 4
+TAIL_STEP_DAYS = 5  # 1 trading week
 
 DISPLAY_LABEL = {"Info Tech": "Tech"}
 
 
-def pct_change_n(closes, n):
-    if len(closes) < n + 1:
+def pct_change_at(closes, offset, n):
+    """% change over an n-bar window ending `offset` trading days before
+    the most recent bar (offset=0 -> the window ending today) - the same
+    calculation pct_change_n did, generalised so the tail can ask for the
+    same window as of an earlier date without re-slicing every caller."""
+    end_idx = len(closes) - 1 - offset
+    start_idx = end_idx - n
+    if start_idx < 0 or end_idx < 0:
         return None
-    base = closes[-1 - n]
-    latest = closes[-1]
+    base = closes[start_idx]
+    latest = closes[end_idx]
     if not base or math.isnan(base) or math.isnan(latest):
         return None
     return (latest - base) / base * 100
+
+
+def pct_change_n(closes, n):
+    return pct_change_at(closes, 0, n)
+
+
+def weighted_relative(items, bench_closes, offset):
+    """Market-cap-weighted 1M/3M relative-to-benchmark return for one
+    sector, as of `offset` trading days before today. Returns (rel_1m,
+    rel_3m), either possibly None if there isn't enough history that far
+    back for either side."""
+    result = {}
+    for label, n in (("1M", 21), ("3M", 63)):
+        weighted_sum, weight_used = 0.0, 0.0
+        for mcap, closes in items:
+            chg = pct_change_at(closes, offset, n)
+            if chg is None:
+                continue
+            weighted_sum += mcap * chg
+            weight_used += mcap
+        sector_ret = (weighted_sum / weight_used) if weight_used > 0 else None
+        bench_ret = pct_change_at(bench_closes, offset, n)
+        result[label] = (sector_ret - bench_ret) if (sector_ret is not None and bench_ret is not None) else None
+    return result["1M"], result["3M"]
 
 
 def esc_js(s):
@@ -119,6 +161,14 @@ def main():
                 row[f"{label}_rel"] = row[label] - bench_return[label]
             else:
                 row[f"{label}_rel"] = None
+
+        tail = []
+        for week in range(TAIL_WEEKS, -1, -1):  # oldest first, today (week=0) last
+            offset = week * TAIL_STEP_DAYS
+            rel1m, rel3m = weighted_relative(items, bench_closes, offset)
+            tail.append((rel3m, rel1m))
+        row["tail"] = tail
+
         rows.append(row)
 
     rows.sort(key=lambda r: (r["1M_rel"] if r["1M_rel"] is not None else -999), reverse=True)
@@ -135,7 +185,8 @@ def main():
         vals = ",".join(
             js_num(r[k]) for k in ["1W", "1M", "3M", "6M", "1W_rel", "1M_rel", "3M_rel", "6M_rel"]
         )
-        data_lines.append(f'["{esc_js(label)}",{r["count"]},{vals}]')
+        tail_json = "[" + ",".join(f"[{js_num(rel3m)},{js_num(rel1m)}]" for rel3m, rel1m in r["tail"]) + "]"
+        data_lines.append(f'["{esc_js(label)}",{r["count"]},{vals},{tail_json}]')
     data_block = ",\n".join(data_lines)
 
     bench_vals = ",".join(js_num(bench_return[label]) for label, _ in WINDOWS)
