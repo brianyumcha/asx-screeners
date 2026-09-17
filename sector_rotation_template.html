@@ -219,7 +219,10 @@ document.addEventListener('keydown', function(e){
 <style>
 .quadwrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.1rem;
   box-shadow:var(--shadow);margin-bottom:1.6rem}
-.quadwrap canvas{display:block;width:100%;max-width:640px;margin:0 auto}
+.quadwrap canvas{display:block;width:100%;max-width:920px;margin:0 auto}
+#lineCanvas{max-width:100%}
+.linehead{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.05rem;margin:0 0 .3rem;color:var(--ink)}
+.linesub{font-size:.82rem;color:var(--ink-faint);margin-bottom:.9rem;max-width:56rem}
 .quad-legend{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;justify-content:center;margin-top:.7rem;
   font-size:.76rem;color:var(--ink-faint)}
 .quad-legend span{display:inline-flex;align-items:center;gap:.4rem}
@@ -243,7 +246,7 @@ document.addEventListener('keydown', function(e){
   <div class="notice">⚠ Each sector's return is a market-cap-weighted average of its own constituent stocks' price changes (not a raw ASX sector-index symbol — those reliably fail to fetch in this site's automated pipeline, see the build script's own notes). "vs XJO" compares that to STW.AX (the ASX 200 ETF this site uses as its market-wide benchmark) over the same window. The quadrant below plots 3-month relative performance (medium-term position) against 1-month relative performance (recent momentum) — the faint trailing line behind each dot is that same position 1-4 weeks ago, so you can see which way a sector is actually rotating, not just where it sits today.</div>
 
   <div class="quadwrap">
-    <canvas id="quadCanvas" width="640" height="640"></canvas>
+    <canvas id="quadCanvas" width="920" height="920"></canvas>
     <div class="quad-legend">
       <span><span class="dot" style="background:#7bc0a8"></span> Leading — ahead &amp; accelerating</span>
       <span><span class="dot" style="background:#e8b355"></span> Weakening — ahead but cooling</span>
@@ -271,6 +274,13 @@ document.addEventListener('keydown', function(e){
     </table>
   </div>
 
+  <div class="quadwrap">
+    <h2 class="linehead">📈 Sector performance, last <<<LINE_CHART_WEEKS>>> weeks</h2>
+    <div class="linesub">Every sector's own cumulative % change, all on the same scale, indexed to 0% <<<LINE_CHART_WEEKS>>> weeks ago — not relative to XJO, just who's actually up or down and by how much. XJO itself is the dashed reference line.</div>
+    <canvas id="lineCanvas" width="1400" height="520"></canvas>
+    <div class="quad-legend" id="lineLegend"></div>
+  </div>
+
   <footer>
     "Stocks" is the number of constituents used in that sector's weighted average (market cap ≥ the site-wide floor, with enough price history). Sector returns and XJO's own returns are both computed from the same trailing daily closes as of the rebuild date. Not financial advice.
   </footer>
@@ -280,11 +290,19 @@ document.addEventListener('keydown', function(e){
 const DATA = [
 <<<FULL_DATA>>>
 ];
-// [label, count, w1w, w1m, w3m, w6m, rel1w, rel1m, rel3m, rel6m, tail]
+// [label, count, w1w, w1m, w3m, w6m, rel1w, rel1m, rel3m, rel6m, tail, lineSeries]
 // tail: [[rel3m, rel1m], ...] weekly snapshots, oldest first, last entry = today
+// lineSeries: [pct, ...] one point per trading day, index 0 = 0% baseline N weeks ago, last = today
 
 const BENCH = [<<<BENCH_DATA>>>];
 // [b1w, b1m, b3m, b6m]
+const BENCH_LINE = [<<<BENCH_LINE_DATA>>>];
+const LINE_CHART_WEEKS = <<<LINE_CHART_WEEKS>>>;
+
+const LINE_COLORS = [
+  '#7bc0a8', '#e8b355', '#e0847a', '#7ba7d9', '#b98fd9',
+  '#d97ba8', '#8fd9c4', '#d9a97b', '#7b9ed9', '#c4d97b', '#d97bc4',
+];
 
 function fmtPct(n){
   if(n===null || n===undefined) return '—';
@@ -346,7 +364,7 @@ function isLightTheme(){ return document.documentElement.getAttribute('data-them
 function drawQuadrant(){
   const canvas = document.getElementById('quadCanvas');
   const dpr = window.devicePixelRatio || 1;
-  const size = Math.min(canvas.parentElement.clientWidth, 640);
+  const size = Math.min(canvas.parentElement.clientWidth, 920);
   canvas.style.width = size + 'px';
   canvas.style.height = size + 'px';
   canvas.width = size * dpr;
@@ -455,7 +473,7 @@ function drawQuadrant(){
     ctx.stroke();
   });
 
-  ctx.font = '600 11px "IBM Plex Sans", sans-serif';
+  ctx.font = '600 10px "IBM Plex Sans", sans-serif';
   ctx.fillStyle = textColor;
   ctx.textAlign = 'left';
   const LABEL_H = 15;
@@ -492,14 +510,117 @@ function drawQuadrant(){
   });
 }
 
+function drawLineChart(){
+  const canvas = document.getElementById('lineCanvas');
+  const dpr = window.devicePixelRatio || 1;
+  const wrapW = canvas.parentElement.clientWidth;
+  const w = Math.max(320, wrapW - 8);
+  const h = Math.round(w * (520/1400));
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,w,h);
+
+  const gridColor = isLightTheme() ? '#c8bc98' : '#3a4250';
+  const textColor = isLightTheme() ? '#3d3829' : '#c7c1b2';
+  const faintColor = isLightTheme() ? '#6b6552' : '#8b8672';
+
+  const padL = 46, padR = 12, padT = 14, padB = 26;
+  const plotW = w - padL - padR, plotH = h - padT - padB;
+
+  const allSeries = DATA.map(r => r[11]).filter(s => s && s.length);
+  allSeries.push(BENCH_LINE);
+  const n = (allSeries[0] || []).length;
+  if (!n) return;
+  let minV = 0, maxV = 0;
+  allSeries.forEach(s => s.forEach(v => { if(v!==null){ if(v<minV) minV=v; if(v>maxV) maxV=v; } }));
+  const padPct = (maxV - minV) * 0.08 || 1;
+  minV -= padPct; maxV += padPct;
+
+  const X = i => padL + (i/(n-1)) * plotW;
+  const Y = v => padT + plotH - ((v - minV)/(maxV - minV)) * plotH;
+
+  // gridlines + y labels (0% always included)
+  ctx.strokeStyle = gridColor; ctx.lineWidth = 1;
+  ctx.font = '600 10px "IBM Plex Mono", monospace';
+  ctx.fillStyle = faintColor;
+  ctx.textAlign = 'right';
+  const steps = 5;
+  for (let i = 0; i <= steps; i++) {
+    const v = minV + (maxV-minV) * (i/steps);
+    const y = Y(v);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w-padR, y); ctx.stroke();
+    ctx.fillText(v.toFixed(0)+'%', padL-6, y+3);
+  }
+  // zero line, emphasized
+  if (minV < 0 && maxV > 0) {
+    ctx.strokeStyle = textColor; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(padL, Y(0)); ctx.lineTo(w-padR, Y(0)); ctx.stroke();
+  }
+
+  // x-axis week labels
+  ctx.textAlign = 'center';
+  ctx.fillStyle = faintColor;
+  const daysPerWeek = (n-1) / LINE_CHART_WEEKS;
+  for (let wk = 0; wk <= LINE_CHART_WEEKS; wk += 2) {
+    const idx = wk * daysPerWeek;
+    const label = wk === 0 ? `${LINE_CHART_WEEKS}w ago` : (wk === LINE_CHART_WEEKS ? 'Today' : `${LINE_CHART_WEEKS-wk}w ago`);
+    ctx.fillText(label, X(idx), h-8);
+  }
+
+  // benchmark (dashed)
+  ctx.setLineDash([5,4]);
+  ctx.strokeStyle = faintColor;
+  ctx.lineWidth = 1.8;
+  ctx.beginPath();
+  BENCH_LINE.forEach((v,i) => { if(v===null) return; const x=X(i), y=Y(v); i===0||BENCH_LINE[i-1]===null ? ctx.moveTo(x,y) : ctx.lineTo(x,y); });
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // sector lines
+  DATA.forEach((r, idx) => {
+    const series = r[11];
+    if (!series || !series.length) return;
+    const color = LINE_COLORS[idx % LINE_COLORS.length];
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    let started = false;
+    series.forEach((v,i) => {
+      if (v===null) { started = false; return; }
+      const x = X(i), y = Y(v);
+      if (!started) { ctx.moveTo(x,y); started = true; } else { ctx.lineTo(x,y); }
+    });
+    ctx.stroke();
+    // endpoint dot + inline label
+    for (let i = series.length-1; i >= 0; i--) {
+      if (series[i] !== null) {
+        const x = X(i), y = Y(series[i]);
+        ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fillStyle = color; ctx.fill();
+        break;
+      }
+    }
+  });
+}
+
+const lineLegend = document.getElementById('lineLegend');
+lineLegend.innerHTML = DATA.map((r,idx) =>
+  `<span><span class="dot" style="background:${LINE_COLORS[idx % LINE_COLORS.length]}"></span> ${r[0]}</span>`
+).join('') + `<span><span class="dot" style="background:none;border-top:2px dashed var(--ink-faint);width:.9rem;height:0;border-radius:0"></span> XJO</span>`;
+
 render();
-window.addEventListener('resize', drawQuadrant);
+window.addEventListener('resize', () => { drawQuadrant(); drawLineChart(); });
+drawLineChart();
 
 const themeBtn = document.getElementById('themeBtn');
 function applyTheme(t){
   if(t === 'light'){ document.documentElement.setAttribute('data-theme','light'); } else { document.documentElement.removeAttribute('data-theme'); }
   themeBtn.textContent = isLightTheme() ? '☀️' : '🌙';
   drawQuadrant();
+  drawLineChart();
 }
 themeBtn.textContent = isLightTheme() ? '☀️' : '🌙';
 themeBtn.addEventListener('click', ()=>{

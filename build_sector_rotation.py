@@ -40,6 +40,13 @@ chart's width, drowning out the current-position dots - raw relative
 returns are noisier than a real RRG's smoothed/normalized RS-Ratio line,
 so a shorter tail reads much cleaner. Dropped to 4 weeks. Still a single
 constant if it ever needs revisiting.
+
+Below the quadrant/table, a second chart plots every sector's own
+cumulative % change (not relative to XJO - each sector's own absolute
+move) on one shared scale, all indexed to 0% at LINE_CHART_WEEKS ago,
+plus XJO itself as a dashed reference line - the "who's actually up or
+down, and by how much" view the quadrant's relative-performance framing
+doesn't answer directly.
 """
 import datetime
 import json
@@ -53,6 +60,8 @@ OUTPUT = "sector-rotation.html"
 BENCHMARK_SYMBOL = "STW.AX"
 TAIL_WEEKS = 4
 TAIL_STEP_DAYS = 5  # 1 trading week
+LINE_CHART_WEEKS = 8
+LINE_CHART_DAYS = LINE_CHART_WEEKS * TAIL_STEP_DAYS
 
 DISPLAY_LABEL = {"Info Tech": "Tech"}
 
@@ -95,6 +104,31 @@ def weighted_relative(items, bench_closes, offset):
         bench_ret = pct_change_at(bench_closes, offset, n)
         result[label] = (sector_ret - bench_ret) if (sector_ret is not None and bench_ret is not None) else None
     return result["1M"], result["3M"]
+
+
+def cumulative_series(closes_list, days, weights=None):
+    """Market-cap-weighted cumulative % change series, one point per
+    trading day from `days` ago (always 0%, the indexed baseline) through
+    today inclusive - length days+1. `closes_list` is a list of individual
+    tickers' close-price lists; `weights` (market caps) defaults to equal
+    weight (used for the single-symbol benchmark case)."""
+    if weights is None:
+        weights = [1.0] * len(closes_list)
+    series = []
+    for d in range(days, -1, -1):
+        weighted_sum, weight_used = 0.0, 0.0
+        for w, closes in zip(weights, closes_list):
+            end_idx = len(closes) - 1 - d
+            start_idx = len(closes) - 1 - days
+            if start_idx < 0 or end_idx < 0:
+                continue
+            base, cur = closes[start_idx], closes[end_idx]
+            if not base or math.isnan(base) or math.isnan(cur):
+                continue
+            weighted_sum += w * (cur - base) / base * 100
+            weight_used += w
+        series.append((weighted_sum / weight_used) if weight_used > 0 else None)
+    return series
 
 
 def esc_js(s):
@@ -169,10 +203,16 @@ def main():
             tail.append((rel3m, rel1m))
         row["tail"] = tail
 
+        weights = [mcap for mcap, _ in items]
+        closes_list = [closes for _, closes in items]
+        row["line_series"] = cumulative_series(closes_list, LINE_CHART_DAYS, weights=weights)
+
         rows.append(row)
 
     rows.sort(key=lambda r: (r["1M_rel"] if r["1M_rel"] is not None else -999), reverse=True)
     print(f"Computed rotation for {len(rows)} sector(s).")
+
+    bench_line_series = cumulative_series([bench_closes], LINE_CHART_DAYS)
 
     def js_num(v):
         if v is None or (isinstance(v, float) and math.isnan(v)):
@@ -186,17 +226,23 @@ def main():
             js_num(r[k]) for k in ["1W", "1M", "3M", "6M", "1W_rel", "1M_rel", "3M_rel", "6M_rel"]
         )
         tail_json = "[" + ",".join(f"[{js_num(rel3m)},{js_num(rel1m)}]" for rel3m, rel1m in r["tail"]) + "]"
-        data_lines.append(f'["{esc_js(label)}",{r["count"]},{vals},{tail_json}]')
+        line_json = "[" + ",".join(js_num(v) for v in r["line_series"]) + "]"
+        data_lines.append(f'["{esc_js(label)}",{r["count"]},{vals},{tail_json},{line_json}]')
     data_block = ",\n".join(data_lines)
 
     bench_vals = ",".join(js_num(bench_return[label]) for label, _ in WINDOWS)
+    bench_line_json = "[" + ",".join(js_num(v) for v in bench_line_series) + "]"
 
     with open(TEMPLATE) as f:
         template = f.read()
     assert "<<<FULL_DATA>>>" in template, "template placeholder missing"
     assert "<<<BENCH_DATA>>>" in template, "template placeholder missing"
+    assert "<<<BENCH_LINE_DATA>>>" in template, "template placeholder missing"
+    assert "<<<LINE_CHART_WEEKS>>>" in template, "template placeholder missing"
     html = template.replace("<<<FULL_DATA>>>", data_block)
     html = html.replace("<<<BENCH_DATA>>>", bench_vals)
+    html = html.replace("<<<BENCH_LINE_DATA>>>", bench_line_json)
+    html = html.replace("<<<LINE_CHART_WEEKS>>>", str(LINE_CHART_WEEKS))
     build_date = datetime.date.today().strftime("%-d %b %Y")
     html = html.replace("<<<BUILD_DATE>>>", build_date)
 
