@@ -52,15 +52,16 @@ this site. It's checked once per ticker that already passed every
 technical filter above (a much smaller set than the full universe), via
 one extra yfinance .info call per hit.
 
-Cooldown: a stock that appeared in your results stays hidden from future
-runs for 5 trading days. Tracked in seen_tickers_momentum.json next to
-this script. Use --fresh to ignore this, or --cooldown 0 to disable it.
+Nothing is ever hidden: every stock that qualifies shows up every run,
+tagged with a "Since" stat (how many trading days it's been continuously
+flagging). Tracked in seen_tickers_momentum.json next to this script - a
+gap of more than STREAK_GAP_DAYS trading days between appearances resets
+the streak, since that's a new setup, not a continuation of the old one.
 
 Usage:
     python "MOMENTUM SCREENER.py"                 # full ASX scan
     python "MOMENTUM SCREENER.py" --workers 20    # faster
     python "MOMENTUM SCREENER.py" --tickers BHP,CBA,RIO
-    python "MOMENTUM SCREENER.py" --fresh
 """
 
 import argparse
@@ -70,7 +71,7 @@ import json
 import os
 import sys
 import time
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 import yfinance as yf
 
@@ -92,7 +93,6 @@ WEEK_CHANGE_MIN  = 2.0
 WEEK_CHANGE_MAX  = 10.0
 MONTH_CHANGE_MIN = 0.0
 
-COOLDOWN_DAYS    = 5
 HISTORY_FILENAME = 'seen_tickers_momentum.json'
 
 
@@ -248,10 +248,14 @@ def run_scan(universe, tickers, workers=DEFAULT_WORKERS, min_market_cap=20_000_0
     return results, usable
 
 
-def build_html_report(results, excluded, total_scanned, out_path):
+def build_html_report(results, total_scanned, out_path):
     from dashboard_template import render_dashboard_html
 
     def to_card(r):
+        first_seen_date = datetime.strptime(r['first_seen'], '%Y-%m-%d').date()
+        days_flagging = _weekdays_between(first_seen_date, date.today())
+        since_label = 'Today' if days_flagging == 0 else f'{days_flagging}d'
+        first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
         return {
             'ticker': r['ticker'],
             'sector': r['sector'],
@@ -259,10 +263,12 @@ def build_html_report(results, excluded, total_scanned, out_path):
             'price': r['price'],
             'change_1d': r['change_1d'],
             'score': int(round(min(r['rel_vol'] / 5, 1.0) * 100)),
+            'first_seen_ts': first_seen_ts,
             'stats': [
                 {'label': 'RSI', 'value': f"{r['rsi']:.0f}"},
                 {'label': '1wk', 'value': f"{r['change_1wk']:+.1f}%"},
                 {'label': 'Rel Vol', 'value': f"{r['rel_vol']:.1f}×"},
+                {'label': 'Since', 'value': since_label},
             ],
             'signals_present': r.get('signals_present', []),
             'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
@@ -271,7 +277,6 @@ def build_html_report(results, excluded, total_scanned, out_path):
 
     render_dashboard_html(
         cards=[to_card(r) for r in results],
-        excluded_cards=[to_card(r) for r in excluded],
         total_scanned=total_scanned,
         title='🚀 ASX Momentum Screener',
         subtitle='ASX stocks with a confirmed uptrend and healthy RSI — not already overbought. Sorted by relative volume.',
@@ -306,7 +311,16 @@ def build_tradingview_watchlist(results, out_path):
     print(f"  📥 TradingView watchlist → {out_path}_tradingview_watchlist.txt")
 
 
-# ─── COOLDOWN / SEEN-TICKER HISTORY ─────────────────────────────────────────
+# ─── STREAK HISTORY (first-seen tracking, not a hide/cooldown) ─────────────
+# A stock that keeps qualifying run after run is more interesting, not
+# less - persistence is part of the momentum signal itself. So this no
+# longer hides recently-seen tickers; it tracks how long each one has
+# been continuously flagging (a "Since" stat on the card) instead. A gap
+# of more than STREAK_GAP_DAYS trading days between appearances resets
+# the streak - that's a new setup, not a continuation of the old one.
+
+STREAK_GAP_DAYS = 5
+
 
 def _weekdays_between(d1, d2):
     if d2 < d1:
@@ -342,30 +356,27 @@ def save_seen_history(history):
         print(f"  ⚠ Could not save {HISTORY_FILENAME}: {e}")
 
 
-def get_excluded_tickers(history, cooldown_days):
-    if cooldown_days <= 0:
-        return set()
+def apply_streaks(history, results, gap_days=STREAK_GAP_DAYS):
+    """Tags each result with 'first_seen' (the date its current streak
+    started) and updates `history` in place - no filtering, every result
+    stays in the list. A ticker continues its streak if it last appeared
+    within `gap_days` trading days; otherwise today counts as a fresh
+    first sighting."""
     today = date.today()
-    excluded = set()
-    for ticker, last_seen_str in history.items():
-        try:
-            last_seen = datetime_strptime(last_seen_str)
-        except Exception:
-            continue
-        if _weekdays_between(last_seen, today) < cooldown_days:
-            excluded.add(ticker)
-    return excluded
-
-
-def datetime_strptime(s):
-    from datetime import datetime
-    return datetime.strptime(s, '%Y-%m-%d').date()
-
-
-def update_seen_history(history, results):
-    today_str = date.today().strftime('%Y-%m-%d')
+    today_str = today.strftime('%Y-%m-%d')
     for r in results:
-        history[r['ticker']] = today_str
+        ticker = r['ticker']
+        entry = history.get(ticker)
+        first_seen = today_str
+        if entry:
+            try:
+                last_seen = datetime.strptime(entry['last_seen'], '%Y-%m-%d').date()
+                if _weekdays_between(last_seen, today) <= gap_days:
+                    first_seen = entry['first_seen']
+            except Exception:
+                pass
+        r['first_seen'] = first_seen
+        history[ticker] = {'first_seen': first_seen, 'last_seen': today_str}
     return history
 
 
@@ -376,8 +387,6 @@ def main():
     parser.add_argument('--workers', type=int, default=DEFAULT_WORKERS)
     parser.add_argument('--out', type=str, default='asx_momentum_results')
     parser.add_argument('--tickers', type=str, default='')
-    parser.add_argument('--fresh', action='store_true')
-    parser.add_argument('--cooldown', type=int, default=COOLDOWN_DAYS)
     args = parser.parse_args()
 
     spec = importlib.util.spec_from_file_location("hh", "HH SCREENER.py")
@@ -409,17 +418,7 @@ def main():
     results.sort(key=lambda r: r['rel_vol'], reverse=True)
 
     history = load_seen_history()
-    skipped = []
-    if args.fresh:
-        print(f"\n  🔄 --fresh used: showing all results, ignoring cooldown history")
-    else:
-        excluded_tickers = get_excluded_tickers(history, args.cooldown)
-        skipped = [r for r in results if r['ticker'] in excluded_tickers]
-        results = [r for r in results if r['ticker'] not in excluded_tickers]
-        if skipped:
-            print(f"\n  🔁 Hid {len(skipped)} stock(s) already seen within the last {args.cooldown} trading days")
-
-    history = update_seen_history(history, results)
+    history = apply_streaks(history, results)
     save_seen_history(history)
 
     if results:
@@ -432,8 +431,8 @@ def main():
             print(f"  ... and {len(results)-20} more in the report")
 
     out_base = os.path.join(SCRIPT_DIR, 'asx_momentum_results')
-    build_html_report(results, skipped, len(tickers), out_base)
-    build_csv(results + skipped, out_base)
+    build_html_report(results, len(tickers), out_base)
+    build_csv(results, out_base)
     build_tradingview_watchlist(results, out_base)
 
 

@@ -34,11 +34,16 @@ Output includes a TradingView watchlist .txt export (ASX:TICKER,ASX:TICKER,...)
 so you can paste the shortlist straight into TradingView and mark up the
 chart / confirm the wave count yourself, per your own workflow.
 
+Nothing is ever hidden: every stock that qualifies shows up every run,
+tagged with a "Since" stat (how many trading days it's been continuously
+flagging). Tracked in seen_tickers_pullback.json next to this script - a
+gap of more than STREAK_GAP_DAYS trading days between appearances resets
+the streak, since that's a new setup, not a continuation of the old one.
+
 Usage:
     python "PULLBACK SCREENER.py"                    # full ASX scan
     python "PULLBACK SCREENER.py" --workers 20        # faster
     python "PULLBACK SCREENER.py" --tickers BHP,CBA,RIO
-    python "PULLBACK SCREENER.py" --fresh              # ignore cooldown
     python "PULLBACK SCREENER.py" --min-score 40        # raise/lower the bar
 
 Requirements:
@@ -100,7 +105,7 @@ ZAG_ZONE_HIGH          = 0.618
 
 DEFAULT_MIN_SCORE = 30   # confluence_score floor for a result to be shown
 
-COOLDOWN_DAYS    = 5
+STREAK_GAP_DAYS  = 5
 HISTORY_FILENAME = 'seen_tickers_pullback.json'
 
 # ─── GET ASX TICKER LIST ──────────────────────────────────────────────────────
@@ -727,10 +732,14 @@ def run_scan(tickers, min_score=DEFAULT_MIN_SCORE, workers=DEFAULT_WORKERS):
 # shared with OBV SCREENER.py. This just adapts this screener's result dicts
 # into the shared card schema.
 
-def build_html_report(results, excluded, total_scanned, out_path):
+def build_html_report(results, total_scanned, out_path):
     from dashboard_template import render_dashboard_html
 
     def to_card(r):
+        first_seen_date = datetime.strptime(r['first_seen'], '%Y-%m-%d').date()
+        days_flagging = _weekdays_between(first_seen_date, date.today())
+        since_label = 'Today' if days_flagging == 0 else f'{days_flagging}d'
+        first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
         return {
             'ticker': r['ticker'],
             'sector': r['sector'],
@@ -738,10 +747,12 @@ def build_html_report(results, excluded, total_scanned, out_path):
             'price': r['price'],
             'change_1d': r['change_1d'],
             'score': r['confluence_score'],
+            'first_seen_ts': first_seen_ts,
             'stats': [
                 {'label': 'Retrace', 'value': f"{r['retracement_pct']:.1f}%"},
                 {'label': 'RSI', 'value': f"{r['rsi']:.0f}" if r['rsi'] is not None else '—'},
                 {'label': 'Vol PB/Imp', 'value': f"{r['vol_ratio_pullback_vs_impulse']:.2f}×"},
+                {'label': 'Since', 'value': since_label},
             ],
             'signals_present': r['signals_present'],
             'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
@@ -750,7 +761,6 @@ def build_html_report(results, excluded, total_scanned, out_path):
 
     render_dashboard_html(
         cards=[to_card(r) for r in results],
-        excluded_cards=[to_card(r) for r in excluded],
         total_scanned=total_scanned,
         title='↩️ ASX Pullback Screener — Zag Zone',
         subtitle='ASX stocks pulling back into the 38.2%-61.8% retracement of their latest swing.',
@@ -788,7 +798,13 @@ def build_tradingview_watchlist(results, out_path):
     print(f"  📥 TradingView watchlist → {out_path}_tradingview_watchlist.txt")
 
 
-# ─── COOLDOWN / SEEN-TICKER HISTORY ───────────────────────────────────────────
+# ─── STREAK HISTORY (first-seen tracking, not a hide/cooldown) ─────────────
+# A stock that keeps qualifying run after run is more interesting, not
+# less - persistence is part of the setup itself. So this no longer hides
+# recently-seen tickers; it tracks how long each one has been continuously
+# flagging (a "Since" stat on the card) instead. A gap of more than
+# STREAK_GAP_DAYS trading days between appearances resets the streak -
+# that's a new setup, not a continuation of the old one.
 
 def _weekdays_between(d1, d2):
     if d2 < d1:
@@ -824,25 +840,27 @@ def save_seen_history(history):
         print(f"  ⚠ Could not save {HISTORY_FILENAME}: {e}")
 
 
-def get_excluded_tickers(history, cooldown_days):
-    if cooldown_days <= 0:
-        return set()
+def apply_streaks(history, results, gap_days=STREAK_GAP_DAYS):
+    """Tags each result with 'first_seen' (the date its current streak
+    started) and updates `history` in place - no filtering, every result
+    stays in the list. A ticker continues its streak if it last appeared
+    within `gap_days` trading days; otherwise today counts as a fresh
+    first sighting."""
     today = date.today()
-    excluded = set()
-    for ticker, last_seen_str in history.items():
-        try:
-            last_seen = datetime.strptime(last_seen_str, '%Y-%m-%d').date()
-        except Exception:
-            continue
-        if _weekdays_between(last_seen, today) < cooldown_days:
-            excluded.add(ticker)
-    return excluded
-
-
-def update_seen_history(history, results):
-    today_str = date.today().strftime('%Y-%m-%d')
+    today_str = today.strftime('%Y-%m-%d')
     for r in results:
-        history[r['ticker']] = today_str
+        ticker = r['ticker']
+        entry = history.get(ticker)
+        first_seen = today_str
+        if entry:
+            try:
+                last_seen = datetime.strptime(entry['last_seen'], '%Y-%m-%d').date()
+                if _weekdays_between(last_seen, today) <= gap_days:
+                    first_seen = entry['first_seen']
+            except Exception:
+                pass
+        r['first_seen'] = first_seen
+        history[ticker] = {'first_seen': first_seen, 'last_seen': today_str}
     return history
 
 
@@ -861,8 +879,6 @@ def main():
     parser.add_argument('--min-vol', type=int, default=MIN_AVG_VOLUME)
     parser.add_argument('--min-price', type=float, default=MIN_PRICE)
     parser.add_argument('--min-mcap', type=float, default=MIN_MARKET_CAP)
-    parser.add_argument('--fresh', action='store_true')
-    parser.add_argument('--cooldown', type=int, default=COOLDOWN_DAYS)
     args = parser.parse_args()
 
     import __main__ as _m
@@ -876,12 +892,6 @@ def main():
     print(f"  Filters: price ≥ ${args.min_price:.2f}  |  mkt cap ≥ ${args.min_mcap/1e6:.0f}M  |  avg vol ≥ {args.min_vol:,}")
     print(f"  Required: latest swing retracement in Zag Zone, impulse ≥ {MIN_IMPULSE_PCT}%")
     print(f"  Confluence floor: score ≥ {args.min_score}")
-    if args.fresh:
-        print(f"  Cooldown: OFF for this run (--fresh)")
-    elif args.cooldown <= 0:
-        print(f"  Cooldown: disabled (--cooldown 0)")
-    else:
-        print(f"  Cooldown: hiding stocks seen in the last {args.cooldown} trading days")
 
     if args.tickers:
         tickers = [t.strip().upper() for t in args.tickers.split(',') if t.strip()]
@@ -909,19 +919,7 @@ def main():
     results.sort(key=lambda x: x['confluence_score'], reverse=True)
 
     history = load_seen_history()
-    skipped = []
-    if args.fresh:
-        print(f"\n  🔄 --fresh used: showing all results, ignoring cooldown history")
-    else:
-        excluded_tickers = get_excluded_tickers(history, args.cooldown)
-        skipped = [r for r in results if r['ticker'] in excluded_tickers]
-        results = [r for r in results if r['ticker'] not in excluded_tickers]
-        if skipped:
-            print(f"\n  🔁 Hid {len(skipped)} stock(s) already seen within the last {args.cooldown} trading days:")
-            print(f"     {', '.join(sorted(r['ticker'] for r in skipped))}")
-            print(f"     (use --fresh to include them, or --cooldown 0 to disable this)")
-
-    history = update_seen_history(history, results)
+    history = apply_streaks(history, results)
     save_seen_history(history)
 
     if results:
@@ -942,7 +940,7 @@ def main():
     print(f"\n💾 Saving to:\n   {html_path}\n   {csv_path}\n   {tv_path}\n")
 
     try:
-        build_html_report(results, skipped, len(tickers), out_base)
+        build_html_report(results, len(tickers), out_base)
     except Exception as e:
         print(f"  ⚠ HTML save error: {e}")
     try:

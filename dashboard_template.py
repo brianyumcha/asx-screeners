@@ -1,9 +1,10 @@
 """
-Shared card-grid HTML dashboard renderer, used by both OBV SCREENER.py and
-PULLBACK SCREENER.py so the two reports look and behave consistently
-(styled after traders-hub.luk.com.au/pre-breakout-screener - card grid with
-a mini candlestick+SMA chart per stock, sector/size/timeframe filters,
-ranked/sector view toggle, cooldown history reveal).
+Shared card-grid HTML dashboard renderer, used by OBV SCREENER.py,
+PULLBACK SCREENER.py and MOMENTUM SCREENER.py so all three reports look
+and behave consistently (styled after
+traders-hub.luk.com.au/pre-breakout-screener - card grid with a mini
+candlestick+SMA chart per stock, sector/size/timeframe filters,
+ranked/sector view toggle, alpha/recency/score sort).
 
 This is a STATIC file only - there's no backend, no live "run scan now", no
 accounts. Every value baked into the page comes from the scan that produced
@@ -26,7 +27,6 @@ def size_bucket(market_cap):
 
 def render_dashboard_html(
     cards,               # list of dicts, see card schema below
-    excluded_cards,       # cooldown-hidden cards, same schema, shown via "already seen" toggle
     total_scanned,
     title,
     subtitle,
@@ -34,29 +34,36 @@ def render_dashboard_html(
     out_path,
 ):
     """
-    Card schema (each item in `cards` / `excluded_cards`):
+    Card schema (each item in `cards`):
       {
         'ticker': str, 'sector': str, 'market_cap': int,
         'price': float, 'change_1d': float, 'score': int (0-100),
-        'stats': [ {'label': str, 'value': str}, ... up to 3 ],
+        'first_seen_ts': int (epoch seconds, midnight of first-flagged date -
+            used for the Recency sort; NOT the same as "today" unless this
+            is the ticker's first appearance, see each screener's own
+            streak-tracking function for how it's computed),
+        'stats': [ {'label': str, 'value': str}, ... up to 3 - by
+            convention the last one is {'label': 'Since', 'value': 'Xd'}
+            (or 'Today'), same underlying date as first_seen_ts ],
         'dates': [...], 'opens': [...], 'highs': [...], 'lows': [...],
         'closes': [...], 'volumes': [...],   # trailing ~260 daily bars
       }
+
+    No cards are ever hidden here - a stock that keeps qualifying run
+    after run stays visible with a growing "Since" streak instead of
+    disappearing behind a cooldown, since for these screeners persistence
+    is itself part of the signal (a setup that's held up for several days
+    is more informative than one that vanishes after its first showing).
     """
     for c in cards:
         c['size'] = size_bucket(c['market_cap'])
-        c['already_seen'] = False
-    for c in excluded_cards:
-        c['size'] = size_bucket(c['market_cap'])
-        c['already_seen'] = True
 
-    all_cards = cards + excluded_cards
-    sectors = sorted({c['sector'] for c in all_cards})
+    sectors = sorted({c['sector'] for c in cards})
 
     now = datetime.now(SYDNEY_TZ)
     session_line = (
         f"Session {now.strftime('%Y-%m-%d')} · {total_scanned} scanned · "
-        f"{len(cards)} new · {len(excluded_cards)} already seen · "
+        f"{len(cards)} flagging · "
         f"last run {now.strftime('%Y-%m-%d %H:%M')} Sydney time"
     )
 
@@ -73,7 +80,7 @@ def render_dashboard_html(
     html = html.replace('##SESSION_LINE##', session_line)
     html = html.replace('##FOOTER_NOTE##', footer_note)
     html = html.replace('##SECTORS_JSON##', json.dumps(sectors))
-    html = html.replace('##DATA_JSON##', json.dumps(all_cards))
+    html = html.replace('##DATA_JSON##', json.dumps(cards))
 
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(html)
@@ -263,7 +270,6 @@ input[type=text]:focus{border-color:rgba(232,179,85,.4)}
 
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem;
   display:flex;flex-direction:column;gap:.5rem}
-.card.seen{opacity:.55}
 .cardhead{display:flex;justify-content:space-between;align-items:flex-start}
 .cardhead-left{display:flex;align-items:baseline;gap:.4rem}
 .ticker{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.02rem;color:var(--text)}
@@ -400,6 +406,11 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
       <button class="pill active" data-view="ranked">Ranked</button>
       <button class="pill" data-view="sector">Sector</button>
     </div></div>
+    <div class="pillgroupwrap"><span class="pillgroup-label">Sort</span><div class="pillgroup" id="sortToggle">
+      <button class="pill" data-sortkey="ticker" data-sortdir="1">Alpha</button>
+      <button class="pill" data-sortkey="first_seen_ts" data-sortdir="-1">Recency</button>
+      <button class="pill active" data-sortkey="score" data-sortdir="-1">Score</button>
+    </div></div>
     <div class="pillgroupwrap"><span class="pillgroup-label" data-tip="S: under $300M · M: $300M-$2B · L: $2B+">Market Cap</span><div class="pillgroup" id="sizeToggle">
       <button class="pill active" data-size="S">S</button>
       <button class="pill active" data-size="M">M</button>
@@ -411,7 +422,6 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
       <button class="pill" data-tf="252">12M</button>
     </div></div>
     <input type="text" id="search" placeholder="Search ticker...">
-    <label class="checkline"><input type="checkbox" id="showSeen"> Show already seen</label>
     <label class="checkline"><input type="checkbox" id="priceFloor"> Price &ge; $2 only</label>
   </div>
 
@@ -464,7 +474,6 @@ let state = {
   sizes: new Set(['S','M','L']),
   tf: 126,
   search: '',
-  showSeen: false,
   priceFloor: false,
   sector: null,
   sortKey: 'score',
@@ -543,8 +552,12 @@ document.getElementById('search').addEventListener('input', e => {
   state.search = e.target.value.toUpperCase();
   render();
 });
-document.getElementById('showSeen').addEventListener('change', e => {
-  state.showSeen = e.target.checked;
+document.getElementById('sortToggle').addEventListener('click', e => {
+  if (!e.target.dataset.sortkey) return;
+  state.sortKey = e.target.dataset.sortkey;
+  state.sortDir = parseInt(e.target.dataset.sortdir, 10);
+  document.querySelectorAll('#sortToggle .pill').forEach(x => x.classList.remove('active'));
+  e.target.classList.add('active');
   render();
 });
 document.getElementById('priceFloor').addEventListener('change', e => {
@@ -566,7 +579,6 @@ function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&l
 
 function filteredCards() {
   return DATA.filter(c =>
-    (state.showSeen || !c.already_seen) &&
     (!state.priceFloor || c.price >= 2) &&
     state.sizes.has(c.size) &&
     (!state.sector || c.sector === state.sector) &&
@@ -693,7 +705,7 @@ function cardHtml(c) {
   const chgSign = c.change_1d > 0 ? '+' : '';
   const statsHtml = c.stats.map(s => `<span>${esc(s.label)} <span class="v">${esc(s.value)}</span></span>`).join('');
   const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${c.ticker}`;
-  return `<div class="card${c.already_seen ? ' seen' : ''}" data-ticker="${c.ticker}">
+  return `<div class="card" data-ticker="${c.ticker}">
     <div class="cardhead">
       <div class="cardhead-left">
         <span class="ticker"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(c.ticker)} ↗</a></span>
@@ -712,6 +724,24 @@ function statNumeric(value) {
   return m ? parseFloat(m[0]) : NaN;
 }
 
+function sortCards(list, statLabels) {
+  const sorters = {
+    ticker: c => c.ticker,
+    sector: c => c.sector,
+    price: c => c.price,
+    change_1d: c => c.change_1d,
+    score: c => c.score,
+    first_seen_ts: c => c.first_seen_ts,
+  };
+  (statLabels || []).forEach((label, i) => { sorters['stat' + i] = c => statNumeric(c.stats[i].value); });
+  const getVal = sorters[state.sortKey] || sorters.score;
+  return [...list].sort((a, b) => {
+    const av = getVal(a), bv = getVal(b);
+    if (typeof av === 'string') return state.sortDir * av.localeCompare(bv);
+    return state.sortDir * ((av ?? -Infinity) - (bv ?? -Infinity));
+  });
+}
+
 function renderTable(visible) {
   const wrap = document.getElementById('tableWrap');
   if (visible.length === 0) {
@@ -719,21 +749,7 @@ function renderTable(visible) {
     return;
   }
   const statLabels = visible[0].stats.map(s => s.label);
-  const sorters = {
-    ticker: c => c.ticker,
-    sector: c => c.sector,
-    price: c => c.price,
-    change_1d: c => c.change_1d,
-    score: c => c.score,
-  };
-  statLabels.forEach((label, i) => { sorters['stat' + i] = c => statNumeric(c.stats[i].value); });
-
-  const getVal = sorters[state.sortKey] || sorters.score;
-  const sorted = [...visible].sort((a, b) => {
-    const av = getVal(a), bv = getVal(b);
-    if (typeof av === 'string') return state.sortDir * av.localeCompare(bv);
-    return state.sortDir * ((av ?? -Infinity) - (bv ?? -Infinity));
-  });
+  const sorted = sortCards(visible, statLabels);
 
   const headers = [
     ['ticker', 'Ticker'], ['sector', 'Sector'], ['price', 'Price'],
@@ -749,7 +765,7 @@ function renderTable(visible) {
     const chgSign = c.change_1d > 0 ? '+' : '';
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${c.ticker}`;
     const statCells = c.stats.map(s => `<td>${esc(s.value)}</td>`).join('');
-    return `<tr class="${c.already_seen ? 'seen' : ''}">
+    return `<tr>
       <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(c.ticker)}</a></td>
       <td class="sector-cell">${esc(c.sector)}</td>
       <td>$${c.price.toFixed(c.price < 1 ? 3 : 2)}</td>
@@ -787,15 +803,16 @@ function render() {
     return;
   }
 
+  const statLabels = visible[0].stats.map(s => s.label);
   let html = '';
   if (state.view === 'ranked') {
-    const sorted = [...visible].sort((a, b) => b.score - a.score);
+    const sorted = sortCards(visible, statLabels);
     html = sorted.map(cardHtml).join('');
   } else {
     const bySector = {};
     visible.forEach(c => { (bySector[c.sector] = bySector[c.sector] || []).push(c); });
     Object.keys(bySector).sort().forEach(sec => {
-      const list = bySector[sec].sort((a, b) => b.score - a.score);
+      const list = sortCards(bySector[sec], statLabels);
       html += `<div class="sectionhead">${esc(sec)} (${list.length})</div>` + list.map(cardHtml).join('');
     });
   }

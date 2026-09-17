@@ -19,19 +19,17 @@ Note: distance to the 30-day high (gap_pct) is NOT a screening criterion —
 it's calculated purely as an output column so you can sort/rank results
 by how "tight" the setup is after the fact.
 
-Cooldown: a stock that appeared in your results stays hidden from future runs
-for 5 trading days (so you're not re-reviewing the same charts on TradingView
-day after day). This is tracked in a small local file, seen_tickers.json,
-saved next to this script. Use --fresh for a one-off run that ignores this
-and shows everything, or --cooldown 0 to disable it entirely.
+Nothing is ever hidden: every stock that qualifies shows up every run,
+tagged with a "Since" stat (how many trading days it's been continuously
+flagging). Tracked in seen_tickers.json next to this script - a gap of
+more than STREAK_GAP_DAYS trading days between appearances resets the
+streak, since that's a new setup, not a continuation of the old one.
 
 Usage:
     python breakout_screener.py                  # full ASX scan
     python breakout_screener.py --workers 20     # faster (more parallel threads)
     python breakout_screener.py --out results    # custom output filename
     python breakout_screener.py --tickers BHP,CBA,RIO  # scan specific tickers only
-    python breakout_screener.py --fresh          # ignore cooldown, show everything
-    python breakout_screener.py --cooldown 10    # use a 10-day cooldown instead of 5
 
 Requirements:
     pip install yfinance pandas requests tqdm
@@ -94,7 +92,6 @@ MIN_UNIVERSE_FOR_CHECK = 500
 # Avoids re-showing a stock you already reviewed recently. A ticker only gets
 # logged here if it actually appeared in your RESULTS (i.e. passed every
 # criterion) - not just because the script looked at it while scanning.
-COOLDOWN_DAYS    = 5    # trading days a ticker stays excluded after last appearing
 HISTORY_FILENAME = 'seen_tickers.json'
 
 # ─── GET ASX TICKER LIST ──────────────────────────────────────────────────────
@@ -836,10 +833,14 @@ def build_rs_leaders_section_html(results, lookback_days, lookback_weeks):
 # shared with PULLBACK SCREENER.py. This just adapts this screener's result
 # dicts into the shared card schema.
 
-def build_html_report(results, excluded, total_scanned, out_path, rs_leaders=None):
+def build_html_report(results, total_scanned, out_path, rs_leaders=None):
     from dashboard_template import render_dashboard_html
 
     def to_card(r):
+        first_seen_date = datetime.strptime(r['first_seen'], '%Y-%m-%d').date()
+        days_flagging = _weekdays_between(first_seen_date, date.today())
+        since_label = 'Today' if days_flagging == 0 else f'{days_flagging}d'
+        first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
         return {
             'ticker': r['ticker'],
             'sector': r['sector'],
@@ -847,10 +848,12 @@ def build_html_report(results, excluded, total_scanned, out_path, rs_leaders=Non
             'price': r['price'],
             'change_1d': r['change_1d'],
             'score': r['obv_score'],
+            'first_seen_ts': first_seen_ts,
             'stats': [
                 {'label': 'RSI', 'value': f"{r['rsi']:.0f}"},
                 {'label': 'Gap', 'value': f"{r['gap_pct']:.1f}%"},
                 {'label': 'Vol', 'value': f"{r['vol_ratio']:.1f}×"},
+                {'label': 'Since', 'value': since_label},
             ],
             'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
             'lows': r['lows'], 'closes': r['closes'], 'volumes': r['volumes'],
@@ -858,7 +861,6 @@ def build_html_report(results, excluded, total_scanned, out_path, rs_leaders=Non
 
     render_dashboard_html(
         cards=[to_card(r) for r in results],
-        excluded_cards=[to_card(r) for r in excluded],
         total_scanned=total_scanned,
         title='📈 ASX Pre-Breakout Screener',
         subtitle='ASX stocks quietly building strength before a breakout — not stocks already breaking out.',
@@ -912,14 +914,24 @@ def build_tradingview_watchlist(results, out_path):
     print(f"  📥 TradingView watchlist → {out_path}_tradingview_watchlist.txt")
 
 
-# ─── COOLDOWN / SEEN-TICKER HISTORY ───────────────────────────────────────────
+# ─── STREAK HISTORY (first-seen tracking, not a hide/cooldown) ─────────────
+# A stock that keeps qualifying run after run is more interesting, not
+# less - persistence is part of the signal itself. So this no longer
+# hides recently-seen tickers; it tracks how long each one has been
+# continuously flagging (a "Since" stat on the card) instead. A gap of
+# more than STREAK_GAP_DAYS trading days between appearances resets the
+# streak - that's a new setup, not a continuation of the old one.
+
+STREAK_GAP_DAYS = 5
+
 
 def _weekdays_between(d1, d2):
     """
     Approximate trading-day count between two dates (Mon-Fri only). This
     ignores public holidays - a full ASX trading calendar would be needed for
-    perfect accuracy, but for a cooldown filter this is close enough (off by
-    at most a day or two around a holiday, never enough to matter here).
+    perfect accuracy, but for a streak-continuity check this is close enough
+    (off by at most a day or two around a holiday, never enough to matter
+    here).
     """
     if d2 < d1:
         d1, d2 = d2, d1
@@ -933,8 +945,9 @@ def _weekdays_between(d1, d2):
 
 
 def load_seen_history():
-    """Load the {ticker: last_seen_date} history from disk. Returns {} if the
-    file doesn't exist yet (e.g. first ever run) or can't be read."""
+    """Load the {ticker: {first_seen, last_seen}} history from disk.
+    Returns {} if the file doesn't exist yet (e.g. first ever run) or
+    can't be read."""
     path = os.path.join(SCRIPT_DIR, HISTORY_FILENAME)
     if not os.path.isfile(path):
         return {}
@@ -956,30 +969,27 @@ def save_seen_history(history):
         print(f"  ⚠ Could not save {HISTORY_FILENAME}: {e}")
 
 
-def get_excluded_tickers(history, cooldown_days):
-    """Tickers that appeared in results within the last `cooldown_days`
-    trading days, and should be skipped this run's output."""
-    if cooldown_days <= 0:
-        return set()
+def apply_streaks(history, results, gap_days=STREAK_GAP_DAYS):
+    """Tags each result with 'first_seen' (the date its current streak
+    started) and updates `history` in place - no filtering, every result
+    stays in the list. A ticker continues its streak if it last appeared
+    within `gap_days` trading days; otherwise today counts as a fresh
+    first sighting."""
     today = date.today()
-    excluded = set()
-    for ticker, last_seen_str in history.items():
-        try:
-            last_seen = datetime.strptime(last_seen_str, '%Y-%m-%d').date()
-        except Exception:
-            continue
-        if _weekdays_between(last_seen, today) < cooldown_days:
-            excluded.add(ticker)
-    return excluded
-
-
-def update_seen_history(history, results):
-    """Mark every ticker that made it into today's final results as 'seen
-    today'. Only tickers that actually PASSED every criterion get logged -
-    not every ticker the script merely scanned internally."""
-    today_str = date.today().strftime('%Y-%m-%d')
+    today_str = today.strftime('%Y-%m-%d')
     for r in results:
-        history[r['ticker']] = today_str
+        ticker = r['ticker']
+        entry = history.get(ticker)
+        first_seen = today_str
+        if entry:
+            try:
+                last_seen = datetime.strptime(entry['last_seen'], '%Y-%m-%d').date()
+                if _weekdays_between(last_seen, today) <= gap_days:
+                    first_seen = entry['first_seen']
+            except Exception:
+                pass
+        r['first_seen'] = first_seen
+        history[ticker] = {'first_seen': first_seen, 'last_seen': today_str}
     return history
 
 
@@ -1003,11 +1013,6 @@ def main():
                         help=f'Min price filter in dollars (default: {MIN_PRICE})')
     parser.add_argument('--min-mcap', type=float, default=MIN_MARKET_CAP,
                         help=f'Min market cap in dollars (default: {MIN_MARKET_CAP:,.0f})')
-    parser.add_argument('--fresh', action='store_true',
-                        help=f'Ignore the {COOLDOWN_DAYS}-day cooldown and show ALL matching '
-                             f'stocks, including ones you already saw recently')
-    parser.add_argument('--cooldown', type=int, default=COOLDOWN_DAYS,
-                        help=f'Trading days a stock stays hidden after last appearing (default: {COOLDOWN_DAYS}). Ignored if --fresh is used.')
     args = parser.parse_args()
 
     import __main__ as _m
@@ -1020,12 +1025,6 @@ def main():
     print("=" * 60)
     print(f"  Filters: price ≥ ${args.min_price:.2f}  |  mkt cap ≥ ${args.min_mcap/1e6:.0f}M  |  avg vol ≥ {args.min_vol:,}")
     print(f"  Criteria: OBV rising ({args.days}d) · below {args.days}d high · RSI {RSI_MIN}-{RSI_MAX} · price > 20d & 50d SMA")
-    if args.fresh:
-        print(f"  Cooldown: OFF for this run (--fresh)")
-    elif args.cooldown <= 0:
-        print(f"  Cooldown: disabled (--cooldown 0)")
-    else:
-        print(f"  Cooldown: hiding stocks seen in the last {args.cooldown} trading days")
 
     if args.tickers:
         tickers = [t.strip().upper() for t in args.tickers.split(',') if t.strip()]
@@ -1053,27 +1052,8 @@ def main():
     # Sort by score descending
     results.sort(key=lambda x: x['obv_score'], reverse=True)
 
-    # ─── Cooldown filter: hide stocks you already reviewed recently ───────────
-    # `skipped` also feeds the dashboard's "Show already seen" toggle, so it's
-    # tracked even on a --fresh run (as an empty list) rather than left undefined.
     history = load_seen_history()
-    skipped = []
-    if args.fresh:
-        print(f"\n  🔄 --fresh used: showing all results, ignoring cooldown history")
-    else:
-        excluded_tickers = get_excluded_tickers(history, args.cooldown)
-        before_count = len(results)
-        skipped = [r for r in results if r['ticker'] in excluded_tickers]
-        results = [r for r in results if r['ticker'] not in excluded_tickers]
-        if skipped:
-            print(f"\n  🔁 Hid {len(skipped)} stock(s) already seen within the last {args.cooldown} trading days:")
-            print(f"     {', '.join(sorted(r['ticker'] for r in skipped))}")
-            print(f"     (use --fresh to include them, or --cooldown 0 to disable this)")
-
-    # Log today's results (whatever's actually being shown) so tomorrow's run
-    # knows to hide them - this happens even on a --fresh run, since you did
-    # review them again just now.
-    history = update_seen_history(history, results)
+    history = apply_streaks(history, results)
     save_seen_history(history)
 
     if results:
@@ -1100,7 +1080,7 @@ def main():
         rs_leaders = []
 
     try:
-        build_html_report(results, skipped, len(tickers), out_base, rs_leaders)
+        build_html_report(results, len(tickers), out_base, rs_leaders)
     except Exception as e:
         print(f"  ⚠ HTML save error: {e}")
 
