@@ -104,7 +104,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f price_cache.parquet seen_tickers_hh_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json conviction-stack.html
+          git add -f price_cache.parquet seen_tickers_hh_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json realestate_category_cache.json financials_category_cache.json staples_category_cache.json discretionary_category_cache.json industrials_category_cache.json utilities_category_cache.json comms_category_cache.json conviction-stack.html
           git diff --staged --quiet || git commit -m "Update price cache"
           for i in 1 2 3; do
             git push && break
@@ -149,6 +149,8 @@ jobs:
           [ -f staples-index.html ] && cp staples-index.html _site/staples-index.html || true
           [ -f discretionary-index.html ] && cp discretionary-index.html _site/discretionary-index.html || true
           [ -f industrials-index.html ] && cp industrials-index.html _site/industrials-index.html || true
+          [ -f utilities-index.html ] && cp utilities-index.html _site/utilities-index.html || true
+          [ -f comms-index.html ] && cp comms-index.html _site/comms-index.html || true
           [ -f red-folder-news.html ] && cp red-folder-news.html _site/red-folder-news.html || true
           [ -f insider-index.html ] && cp insider-index.html _site/insider-index.html || true
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true

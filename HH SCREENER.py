@@ -1288,6 +1288,107 @@ def classify_industrials_categories(universe):
         universe[t]["industry"] = cache.get(t, "Industrials")
 
 
+# ─── UTILITIES CATEGORY CLASSIFICATION ─────────────────────────────────────
+# Pass-through, same as Discretionary/Industrials - inspecting all 20
+# Utilities-sector tickers' real Yahoo industry + longBusinessSummary text
+# (2026-09-17) found a clean, specific taxonomy already ('Utilities -
+# Renewable', 'Utilities - Independent Power Producers', 'Utilities -
+# Diversified', 'Utilities - Regulated Gas', 'Utilities - Regulated
+# Electric'), no systematic mistagging cluster to whitelist against.
+UTILITIES_CATEGORY_CACHE_PATH = os.path.join(SCRIPT_DIR, "utilities_category_cache.json")
+
+UTILITIES_MANUAL_OVERRIDES = {}
+
+
+def classify_utilities_category(industry):
+    if industry:
+        return industry
+    return "Utilities"
+
+
+def classify_utilities_categories(universe):
+    try:
+        with open(UTILITIES_CATEGORY_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    util_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Utilities" and len(t) == 3
+    ]
+    new_tickers = [t for t in util_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Utilities ticker(s) by category...")
+        for t in new_tickers:
+            if t in UTILITIES_MANUAL_OVERRIDES:
+                cache[t] = UTILITIES_MANUAL_OVERRIDES[t]
+                continue
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                cache[t] = classify_utilities_category(info.get("industry"))
+            except Exception:
+                cache[t] = "Utilities"
+        with open(UTILITIES_CATEGORY_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in util_tickers:
+        universe[t]["industry"] = cache.get(t, "Utilities")
+
+
+# ─── COMMUNICATION SERVICES CATEGORY CLASSIFICATION ────────────────────────
+# Pass-through, same as Discretionary/Industrials/Utilities - inspecting
+# all 53 Communication Services-sector tickers' real Yahoo industry +
+# longBusinessSummary text (2026-09-17) found no systematic mistagging
+# cluster - a handful of digital-marketing/content/fintech-comms names
+# carry a generic 'Software' industry from Yahoo, but that's still a
+# genuine (if narrow) description of what they do, not a wrong sector the
+# way Financials' fintech-as-Software cluster was, so no whitelist needed.
+COMMS_CATEGORY_CACHE_PATH = os.path.join(SCRIPT_DIR, "comms_category_cache.json")
+
+COMMS_MANUAL_OVERRIDES = {}
+
+
+def classify_comms_category(industry):
+    if industry:
+        return industry
+    return "Communication Services"
+
+
+def classify_comms_categories(universe):
+    try:
+        with open(COMMS_CATEGORY_CACHE_PATH) as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+
+    comms_tickers = [
+        t for t, d in universe.items()
+        if d.get("sector") == "Communication Services" and len(t) == 3
+    ]
+    new_tickers = [t for t in comms_tickers if t not in cache]
+
+    if new_tickers:
+        print(f"   Classifying {len(new_tickers)} new Communication Services ticker(s) by category...")
+        for t in new_tickers:
+            if t in COMMS_MANUAL_OVERRIDES:
+                cache[t] = COMMS_MANUAL_OVERRIDES[t]
+                continue
+            try:
+                yahoo_sym = t if t.endswith(".AX") else t + ".AX"
+                info = yf.Ticker(yahoo_sym).info
+                cache[t] = classify_comms_category(info.get("industry"))
+            except Exception:
+                cache[t] = "Communication Services"
+        with open(COMMS_CATEGORY_CACHE_PATH, "w") as f:
+            json.dump(cache, f, indent=0, sort_keys=True)
+
+    for t in comms_tickers:
+        universe[t]["industry"] = cache.get(t, "Communication Services")
+
+
 # ─── INDICATORS ───────────────────────────────────────────────────────────────
 
 def calc_obv_series(closes, volumes):
@@ -2343,6 +2444,8 @@ def main():
     classify_staples_categories(universe)
     classify_discretionary_categories(universe)
     classify_industrials_categories(universe)
+    classify_utilities_categories(universe)
+    classify_comms_categories(universe)
 
     results, usable, fresh_today = run_scan(universe, workers=args.workers)
     results.sort(key=lambda r: r['ticker'])

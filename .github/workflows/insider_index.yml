@@ -79,6 +79,8 @@ jobs:
           cp staples-index.html _site/staples-index.html
           cp discretionary-index.html _site/discretionary-index.html
           cp industrials-index.html _site/industrials-index.html
+          cp utilities-index.html _site/utilities-index.html
+          cp comms-index.html _site/comms-index.html
           cp red-folder-news.html _site/red-folder-news.html
           cp insider-index.html _site/insider-index.html
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true

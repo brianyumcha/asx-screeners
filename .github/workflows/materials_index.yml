@@ -57,6 +57,12 @@ jobs:
       - name: Build industrials index (fresh name/market-cap/yield fetch)
         run: python3 build_industrials_index.py
 
+      - name: Build utilities index (fresh name/market-cap/yield fetch)
+        run: python3 build_utilities_index.py
+
+      - name: Build communication services index (fresh name/market-cap/yield fetch)
+        run: python3 build_comms_index.py
+
       - name: Build red folder news (economic calendar)
         run: python3 build_red_folder_news.py
 
@@ -64,7 +70,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html discretionary-index.html industrials-index.html red-folder-news.html
+          git add -f materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html discretionary-index.html industrials-index.html utilities-index.html comms-index.html red-folder-news.html
           git diff --staged --quiet || git commit -m "Daily sector index rebuild"
           for i in 1 2 3; do
             git push && break
@@ -100,6 +106,8 @@ jobs:
           cp staples-index.html _site/staples-index.html
           cp discretionary-index.html _site/discretionary-index.html
           cp industrials-index.html _site/industrials-index.html
+          cp utilities-index.html _site/utilities-index.html
+          cp comms-index.html _site/comms-index.html
           cp red-folder-news.html _site/red-folder-news.html
           cp insider-index.html _site/insider-index.html
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
