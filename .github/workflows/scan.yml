@@ -160,6 +160,7 @@ jobs:
           [ -f comms-index.html ] && cp comms-index.html _site/comms-index.html || true
           [ -f red-folder-news.html ] && cp red-folder-news.html _site/red-folder-news.html || true
           [ -f sector-rotation.html ] && cp sector-rotation.html _site/sector-rotation.html || true
+          [ -f earnings-calendar.html ] && cp earnings-calendar.html _site/earnings-calendar.html || true
           [ -f insider-index.html ] && cp insider-index.html _site/insider-index.html || true
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true

@@ -81,11 +81,14 @@ jobs:
       - name: Build sector rotation (reads the already-committed price_cache.parquet, no bulk fetch)
         run: python3 build_sector_rotation.py
 
+      - name: Build earnings calendar (ASX reporting season, scraped from CommSec)
+        run: python3 build_earnings_calendar.py
+
       - name: Commit generated pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html discretionary-index.html industrials-index.html utilities-index.html comms-index.html red-folder-news.html sector-rotation.html
+          git add -f materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html discretionary-index.html industrials-index.html utilities-index.html comms-index.html red-folder-news.html sector-rotation.html earnings-calendar.html
           git diff --staged --quiet || git commit -m "Daily sector index rebuild"
           for i in 1 2 3; do
             git push && break
@@ -125,6 +128,7 @@ jobs:
           cp comms-index.html _site/comms-index.html
           cp red-folder-news.html _site/red-folder-news.html
           cp sector-rotation.html _site/sector-rotation.html
+          cp earnings-calendar.html _site/earnings-calendar.html
           cp insider-index.html _site/insider-index.html
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
