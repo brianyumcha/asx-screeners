@@ -4,3 +4,4 @@ pyarrow
 requests
 openpyxl
 pdfplumber
+beautifulsoup4

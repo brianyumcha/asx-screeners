@@ -1,0 +1,655 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnings Calendar</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<script>
+try {
+  if (localStorage.getItem('earningscalendar-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');
+} catch (e) {}
+</script>
+<style>
+:root{
+  --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
+  --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
+  --accent:#5fbfb5; --accent-ink:#082421;
+  --nav-accent:#e8b355;
+  --accent2:#8fc4db; --accent2-ink:#0a1f26;
+  --good:#a8d491; --good-bg:#233022;
+  --warn:#eec27a; --warn-bg:#332a1a;
+  --bad:#f0998a; --bad-bg:#3d2420;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
+  --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
+  --accent:#1f6b63; --accent-ink:#f0fbf9;
+  --nav-accent:#7a4a0f;
+  --accent2:#163540; --accent2-ink:#eaf5f7;
+  --good:#33481f; --good-bg:#d5dfc4;
+  --warn:#6b4a0f; --warn-bg:#ecdfc0;
+  --bad:#6b241c; --bad-bg:#e3c6bc;
+  --shadow: 0 1px 2px rgba(20,18,9,.06), 0 4px 16px rgba(20,18,9,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.55}
+html,body{overflow-x:clip}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.wrap{max-width:1560px;margin:0 auto;padding:0 1.5rem 4rem}
+h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
+h1{font-size:2.2rem;letter-spacing:-.01em;margin:0 0 .2rem}
+h2{font-size:1.15rem;margin:0 0 .5rem}
+p{color:var(--ink-soft)}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem;flex-wrap:wrap;gap:1rem}
+@media (min-width:641px){
+  .topbar{position:sticky;top:65px;z-index:400;background:var(--bg);padding:.9rem 0 .7rem;border-bottom:1px solid var(--border)}
+}
+.topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;flex:none;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
+.themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
+.copybtn{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:.72rem;padding:.5rem .9rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;height:fit-content}
+.copybtn:hover{border-color:var(--accent)}
+.copybtn.copied{border-color:var(--accent);color:var(--accent)}
+.subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0;max-width:60rem}
+.session{font-size:.78rem;color:var(--ink-faint);margin:.6rem 0 1.1rem;letter-spacing:.03em}
+.notice{background:var(--warn-bg);border:1px solid var(--border);border-radius:4px;
+  padding:.7rem .9rem;font-size:.78rem;color:var(--ink-soft);margin-bottom:1rem;line-height:1.6}
+
+.chipsection{margin-top:1.3rem}
+.chipsection h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);font-weight:700;margin-bottom:.6rem}
+.divider{border:none;border-top:1px solid var(--border);margin:1.4rem 0}
+.commchips{display:flex;flex-wrap:wrap;gap:.4rem}
+.commchip{font-size:.78rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+.commchip:hover{border-color:var(--accent);color:var(--accent)}
+.commchip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.commchip .cnt{opacity:.7;font-size:.85em}
+
+.controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:1.1rem 0 .7rem}
+.controls input,.controls select{background:var(--surface);border:1px solid var(--border);color:var(--ink);border-radius:6px;padding:.5rem .7rem;font-size:.85rem}
+.controls input{width:20rem}
+.controls input:focus{outline:none;border-color:var(--accent2)}
+.controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow);max-height:calc(100vh - 2rem)}
+table{width:100%;border-collapse:collapse;font-size:.8rem;background:var(--surface)}
+thead th{position:sticky;top:0;background:var(--surface2);text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);padding:.55rem .7rem;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none;z-index:2}
+thead th:hover{color:var(--accent)}
+thead th.active{color:var(--accent2)}
+thead th .arrow{font-size:.65rem;margin-left:.15rem}
+tbody td{padding:.4rem .7rem;border-bottom:1px solid var(--border);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--surface2)}
+.tk{font-family:"IBM Plex Mono",monospace;font-weight:700}
+.tk a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
+.tk a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.cname{color:var(--ink-soft);max-width:16rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.up{color:var(--good)}
+.down{color:var(--bad)}
+tbody tr.upcoming{border-left:3px solid var(--accent2)}
+tbody tr.awaiting{opacity:.6}
+tbody tr.awaiting:hover{opacity:.85}
+.status-tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;
+  font-weight:700;letter-spacing:.04em;border-radius:4px;padding:.05rem .35rem;vertical-align:middle}
+.status-tag.upcoming{color:var(--accent2);border:1px solid var(--accent2)}
+.status-tag.awaiting{color:var(--ink-faint);border:1px solid var(--ink-faint)}
+.status-tag.reported{color:var(--good);border:1px solid var(--good)}
+.colname-mobile{display:none}
+
+footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint)}
+
+@media (max-width:900px){
+  .cname, .colname-desktop{display:none}
+}
+@media (max-width:640px){h1{font-size:1.8rem}}
+.sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
+  background:var(--card, var(--surface2, var(--surface)));border-bottom:1px solid var(--border);
+  padding:.7rem 1.1rem;margin-bottom:1.5rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.navicon{display:block;flex:none;width:42px;height:42px;border-radius:8px}
+.sitenav-brand{display:flex;flex-direction:column;gap:.05rem;text-decoration:none}
+.sitenav-brand .brand-main{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
+  letter-spacing:.02em;color:var(--nav-accent);white-space:nowrap}
+.sitenav-brand .brand-tag{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:.62rem;
+  color:var(--ink-faint, var(--muted, #8b95a3));white-space:nowrap}
+.sitenav-brand:hover{opacity:.8}
+.sitenav-divider{width:1px;height:1.3rem;background:var(--border);flex:none}
+.sitenav-links{display:flex;gap:.2rem}
+.sitenav-drop{position:relative}
+.sitenav-toggle{background:transparent;border:none;color:var(--text, var(--ink));
+  font-family:inherit;font-size:.8rem;padding:.5rem .65rem;border-radius:6px;cursor:pointer;
+  display:flex;align-items:center;gap:.3rem}
+.sitenav-toggle:hover,.sitenav-drop.open .sitenav-toggle{background:var(--bg);color:var(--nav-accent)}
+.sitenav-caret{font-size:.85rem;opacity:1;color:var(--nav-accent);display:inline-block;
+  transition:transform .15s ease}
+.sitenav-drop:hover .sitenav-caret,.sitenav-drop.open .sitenav-caret{transform:rotate(180deg)}
+.sitenav-menu{position:absolute;top:100%;left:0;margin-top:.3rem;min-width:190px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);padding:.3rem;
+  opacity:0;visibility:hidden;transform:translateY(-4px);
+  transition:opacity .12s ease,transform .12s ease,visibility .12s}
+.sitenav-drop:hover .sitenav-menu,.sitenav-drop.open .sitenav-menu{
+  opacity:1;visibility:visible;transform:translateY(0)}
+.sitenav-menu a{display:block;padding:.5rem .6rem;border-radius:6px;font-size:.78rem;
+  color:var(--text, var(--ink));text-decoration:none;white-space:nowrap}
+.sitenav-menu a:hover{background:var(--bg);color:var(--nav-accent)}
+.sitenav-menu a.active{color:var(--nav-accent);font-weight:600}
+.sitenav-toggle.active{background:var(--bg);color:var(--nav-accent)}
+.navburger{display:none;background:transparent;border:1px solid var(--border);color:var(--text, var(--ink));
+  width:2.1rem;height:2.1rem;border-radius:6px;cursor:pointer;font-size:1rem;
+  align-items:center;justify-content:center;flex:none;margin-left:auto}
+.navburger:hover{border-color:var(--nav-accent);color:var(--nav-accent)}
+@media (max-width:640px){
+  .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
+  .sitenav-brand{font-size:.7rem}
+  .sitenav-toggle{font-size:.74rem;padding:.45rem .5rem}
+  .sitenav-menu{min-width:170px}
+  .navburger{display:flex}
+  .sitenav-links{display:none;flex-basis:100%;flex-direction:column;align-items:stretch;gap:.15rem;margin-top:.4rem}
+  .sitenav.menu-open .sitenav-links{display:flex}
+  .sitenav-drop{width:100%}
+  .sitenav-toggle{width:100%}
+  .sitenav-menu{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;
+    border:none;background:transparent;margin-top:0;padding:0 0 0 .8rem;
+    max-height:0;overflow:hidden;transition:max-height .15s ease}
+  .sitenav-drop.open .sitenav-menu{max-height:220px;padding-top:.2rem;padding-bottom:.2rem}
+}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<nav class="sitenav">
+<img class="navicon" src="data:image/png;base64,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" alt="">
+<a class="sitenav-brand" href="index.html">
+<span class="brand-main">Brian Yum Cha &mdash; ASX Trading</span>
+<span class="brand-tag">Reading the charts. Timing the carts.</span>
+</a>
+<span class="sitenav-divider"></span>
+<button class="navburger" type="button" aria-label="Toggle menu">&#9776;</button>
+<div class="sitenav-links">
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Screeners <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="higher-high.html">Higher-High</a>
+<a href="momentum.html">Momentum</a>
+<a href="pre-breakout.html">Pre-Breakout (OBV)</a>
+<a href="pullback.html">Pullback (Zag Zone)</a>
+</div></div>
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="discretionary-index.html">Consumer Discretionary</a>
+<a href="staples-index.html">Consumer Staples</a>
+<a href="energy-index.html">Energy</a>
+<a href="financials-index.html">Financials</a>
+<a href="healthcare-index.html">Healthcare</a>
+<a href="industrials-index.html">Industrials</a>
+<a href="materials-index.html">Materials</a>
+<a href="real-estate-index.html">Real Estate</a>
+<a href="tech-index.html">Tech</a>
+</div></div>
+<div class="sitenav-drop"><button class="sitenav-toggle" type="button">Trading Tools <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="insider-index.html">Insider Buying</a>
+<a href="red-folder-news.html">Red Folder News</a>
+<a href="sector-rotation.html">Sector Rotation</a>
+<a href="earnings-calendar.html" class="active">Earnings Calendar</a>
+</div></div>
+</div>
+</nav>
+<script>
+document.querySelectorAll('.sitenav-drop').forEach(function(drop){
+  var toggle = drop.querySelector('.sitenav-toggle');
+  toggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    var willOpen = !drop.classList.contains('open');
+    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+    if (willOpen) drop.classList.add('open');
+  });
+});
+var sitenavEl = document.querySelector('.sitenav');
+var navburgerEl = document.querySelector('.navburger');
+if (navburgerEl && sitenavEl) {
+  navburgerEl.addEventListener('click', function(e){
+    e.stopPropagation();
+    sitenavEl.classList.toggle('menu-open');
+  });
+}
+document.addEventListener('click', function(){
+  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+  if (sitenavEl) sitenavEl.classList.remove('menu-open');
+});
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+    if (sitenavEl) sitenavEl.classList.remove('menu-open');
+  }
+});
+</script>
+
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>📅 Earnings Calendar</h1>
+      <div class="subtitle">ASX reporting season calendar — who's reporting when, with DPS/NPAT filled in as results actually land.</div>
+    </div>
+    <div class="topbar-right">
+      <button class="copybtn" id="downloadCsvBtn">⬇ Download CSV</button>
+      <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+    </div>
+  </div>
+  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 20 Sep 2026, 8:17AM Sydney time.</div>
+
+  <div class="notice" id="seasonNotice" style="display:none"></div>
+
+  <div class="chipsection">
+    <h2>Status</h2>
+    <div class="commchips" id="statuschips"></div>
+  </div>
+
+  <div class="chipsection">
+    <h2>Sector</h2>
+    <div class="commchips" id="sectorchips"></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="controls">
+    <input type="text" id="filterInput" placeholder="Search ticker or company…">
+    <button class="commchip" id="clearFiltersBtn">✕ Clear all filters</button>
+    <span class="hint" id="countLabel"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table id="matTable">
+      <thead>
+        <tr>
+          <th data-key="date">Date</th>
+          <th data-key="ticker">Ticker</th>
+          <th data-key="company" class="colname-desktop">Company</th>
+          <th data-key="period" class="colname-desktop">Period</th>
+          <th data-key="sector">Sector</th>
+          <th data-key="dps" style="text-align:right">DPS</th>
+          <th data-key="npat" style="text-align:right">NPAT</th>
+        </tr>
+      </thead>
+      <tbody id="matBody"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    Data via CommSec's public Reporting Season page. DPS/NPAT shown as published there — blank means not yet reported. Foreign-currency figures keep their original currency suffix (US/NZ/CAD) as shown on the source. Not financial advice.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+[1785106800,"Mon 27 Jul","WEEK 1 (27th July – 7th August)","AFI","Australian Foundation Investment Company","FY26","Financials","0.17","293.1M","reported"],
+[1785279600,"Wed 29 Jul","WEEK 1 (27th July – 7th August)","RIO","Rio Tinto Ltd","HY26","Materials","2.11 US","6.6B US","reported"],
+[1785366000,"Thu 30 Jul","WEEK 1 (27th July – 7th August)","CIA","Champion Iron Ltd","Q127","Materials","-","-42M CAD","reported"],
+[1785798000,"Tue 4 Aug","WEEK 1 (27th July – 7th August)","CCP","Credit Corp Group","FY26","Financials","0.455","105.5M","reported"],
+[1785798000,"Tue 4 Aug","WEEK 1 (27th July – 7th August)","COF","Centuria Office REIT","FY26","Real Estate","0.02525","55.2M","reported"],
+[1785798000,"Tue 4 Aug","WEEK 1 (27th July – 7th August)","CQE","Charter Hall Social Infrastructure Reit","FY26","Real Estate","-","90.5M","reported"],
+[1785798000,"Tue 4 Aug","WEEK 1 (27th July – 7th August)","PNI","Pinnacle Investment Management Group Ltd","FY26","Financials","0.31","176.7M","reported"],
+[1785884400,"Wed 5 Aug","WEEK 1 (27th July – 7th August)","ARG","Argo Investments Ltd","FY26","Financials","0.20","260.2M","reported"],
+[1785884400,"Wed 5 Aug","WEEK 1 (27th July – 7th August)","LNW","Light & Wonder Inc","HY26","Cons. Disc","-","172M US","reported"],
+[1785970800,"Thu 6 Aug","WEEK 1 (27th July – 7th August)","AMP","AMP Ltd","HY26","Financials","0.03","154M","reported"],
+[1785970800,"Thu 6 Aug","WEEK 1 (27th July – 7th August)","BPT","Beach Energy Ltd","FY26","Energy","0.02","281M","reported"],
+[1785970800,"Thu 6 Aug","WEEK 1 (27th July – 7th August)","NWS","News Corporation","FY26","Comm. Services","0.10 US","743M US","reported"],
+[1785970800,"Thu 6 Aug","WEEK 1 (27th July – 7th August)","REA","REA Group Ltd","FY26","Comm. Services","1.73","552M","reported"],
+[1785970800,"Thu 6 Aug","WEEK 1 (27th July – 7th August)","XYZ","Block Inc","HY26","Financials","-","-222M US","reported"],
+[1786057200,"Fri 7 Aug","WEEK 1 (27th July – 7th August)","AVH","Avita Medical Inc","HY26","Health Care","-","-18.3M US","reported"],
+[1786057200,"Fri 7 Aug","WEEK 1 (27th July – 7th August)","CQR","Charter Hall Retail REIT","FY26","Real Estate","0.064","389.4M","reported"],
+[1786057200,"Fri 7 Aug","WEEK 1 (27th July – 7th August)","JHX","James Hardie Industries PLC","Q127","Materials","-","104M US","reported"],
+[1786057200,"Fri 7 Aug","WEEK 1 (27th July – 7th August)","NCK","Nick Scali Ltd","FY26","Cons. Disc","0.39","75.7M","reported"],
+[1786057200,"Fri 7 Aug","WEEK 1 (27th July – 7th August)","RMD","ResMed Inc","FY26","Health Care","0.066 US","1.5B US","reported"],
+[1786316400,"Mon 10 Aug","WEEK 2 (10th August – 14th August)","CAR","Car Group Ltd","FY26","Comm. Services","0.435","314M","reported"],
+[1786316400,"Mon 10 Aug","WEEK 2 (10th August – 14th August)","WBC","Westpac Banking Corporation","Q326","Financials","-","1.8B","reported"],
+[1786402800,"Tue 11 Aug","WEEK 2 (10th August – 14th August)","360","Life360 Inc","HY26","Info Tech","-","7.8M US","reported"],
+[1786402800,"Tue 11 Aug","WEEK 2 (10th August – 14th August)","AOV","Amotiv Ltd","FY26","Cons. Disc","0.23","75.1M","reported"],
+[1786402800,"Tue 11 Aug","WEEK 2 (10th August – 14th August)","CIP","Centuria Industrial REIT","FY26","Real Estate","0.042","160.4M","reported"],
+[1786402800,"Tue 11 Aug","WEEK 2 (10th August – 14th August)","CPU","Computershare Ltd","FY26","Industrials","0.65","618.7M","reported"],
+[1786402800,"Tue 11 Aug","WEEK 2 (10th August – 14th August)","CRN","Coronado Global Resources","HY26","Materials","-","-418M US","reported"],
+[1786402800,"Tue 11 Aug","WEEK 2 (10th August – 14th August)","HLI","Helia Group","HY26","Financials","0.43","100M","reported"],
+[1786402800,"Tue 11 Aug","WEEK 2 (10th August – 14th August)","SGH","SGH Ltd","FY26","Industrials","0.32","655M","reported"],
+[1786402800,"Tue 11 Aug","WEEK 2 (10th August – 14th August)","SXL","Southern Cross Media Group","FY26","Comm. Services","-","9.9M","reported"],
+[1786489200,"Wed 12 Aug","WEEK 2 (10th August – 14th August)","AGL","AGL Energy Ltd","FY26","Utilities","0.26","756M","reported"],
+[1786489200,"Wed 12 Aug","WEEK 2 (10th August – 14th August)","BVS","Bravura Solutions Ltd","FY26","Info Tech","0.15","110.9M","reported"],
+[1786489200,"Wed 12 Aug","WEEK 2 (10th August – 14th August)","CBA","Commonwealth Bank of Australia","FY26","Financials","2.70","10.9B","reported"],
+[1786489200,"Wed 12 Aug","WEEK 2 (10th August – 14th August)","SEK","SEEK Ltd","FY26","Comm. Services","0.25","-307M","reported"],
+[1786489200,"Wed 12 Aug","WEEK 2 (10th August – 14th August)","SUN","Suncorp Group Ltd","FY26","Financials","0.62","1B","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","AMC","Amcor PLC","FY26","Materials","0.65 US","1.1B US","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","ANZ","ANZ Group Holdings","Q326","Financials","-","1.95B","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","ASX","ASX Ltd","FY26","Financials","1.047","484.9M","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","CLW","Charter Hall Long Wale REIT","FY26","Real Estate","0.06375","275.9M","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","HDN","Homeco Daily Needs REIT","FY26","Real Estate","0.0215","361.6M","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","IAG","Insurance Australia Group Ltd","FY26","Financials","0.20","1.02B","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","MFF","MFF Capital Investments Ltd","FY26","Financials","0.11","159.6M","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","ORA","Orora Ltd","FY26","Materials","0.04","-616.6M","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","ORG","Origin Energy Ltd","FY26","Energy","0.30","1.57B","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","TCL","Transurban Group","FY26","Industrials","0.35","432M","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","TLS","Telstra Group Ltd","FY26","Comm. Services","0.105","2.4B","reported"],
+[1786575600,"Thu 13 Aug","WEEK 2 (10th August – 14th August)","TWE","Treasury Wine Estates Ltd","FY26","Cons. Staple","-","-1.08B","reported"],
+[1786662000,"Fri 14 Aug","WEEK 2 (10th August – 14th August)","BBN","Baby Bunting Group","FY26","Cons. Disc","-","11.2M","reported"],
+[1786662000,"Fri 14 Aug","WEEK 2 (10th August – 14th August)","QBE","QBE Insurance Group Ltd","HY26","Financials","0.33","1.03B US","reported"],
+[1786662000,"Fri 14 Aug","WEEK 2 (10th August – 14th August)","SKG","Storage King Group","FY26","Real Estate","0.031","154.3M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","A2M","The a2 Milk Company","FY26","Cons. Staple","0.095 NZ","208M NZ","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","ACL","Australian Clinical Labs Ltd","FY26","Health Care","0.0925","23.7M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","AZJ","Aurizon Holdings Ltd","FY26","Industrials","0.105","433M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","BSL","BlueScope Steel Ltd","FY26","Materials","1.35","802M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","GOZ","Growthpoint Properties Australia","FY26","Real Estate","0.092","90.1M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","GPT","GPT Group","HY26","Real Estate","0.1225","400.1M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","IRE","IRESS Ltd","HY26","Info Tech","0.14","32M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","JBH","JB Hi-Fi Ltd","FY26","Cons. Disc","1.27","489.9M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","L1G","L1 Group Ltd","FY26","Financials","0.02","145.2M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","LLC","Lendlease Group","FY26","Real Estate","0.09547","-749M","reported"],
+[1786921200,"Mon 17 Aug","WEEK 3 (17th August – 21st August)","NAB","National Australia Bank","Q326","Financials","-","1.81B","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","BHP","BHP Group Ltd","FY26","Materials","0.99 US","9.8B US","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","CGF","Challenger Ltd","FY26","Financials","0.175","506M","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","COH","Cochlear Ltd","FY26","Health Care","1.30","147.3M","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","CSL","CSL Ltd","FY26","Health Care","1.62US","-2.6B US","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","EML","EML Payments Ltd","FY26","Financials","-","-19.7M","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","HCW","HealthCo Healthcare & Wellness REIT","FY26","Real Estate","-","-49.7M","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","HUB","HUB24 Ltd","FY26","Financials","0.42","120.2M","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","JDO","Judo Capital Holdings Ltd","FY26","Financials","-","111.1M","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","MAH","Macmahon Holdings Ltd","FY26","Materials","0.0125","101.1M","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","PME","Pro Medicus Ltd","FY26","Health Care","0.37","265.3M","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","RGN","Region Group","FY26","Real Estate","0.072","268.8M","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","RWC","Reliance Worldwide Corp","FY26","Industrials","-","6.3M US","reported"],
+[1787007600,"Tue 18 Aug","WEEK 3 (17th August – 21st August)","SGM","Sims Ltd","FY26","Materials","0.20","245.3M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","BRG","Breville Group Ltd","FY26","Cons. Disc","0.19","138.1M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","BWP","BWP Group","FY26","Real Estate","0.0983","408.4M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","EVN","Evolution Mining Ltd","FY26","Materials","0.21","1.47B","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","FBU","Fletcher Building Ltd","FY26","Industrials","-","228M NZ","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","HLS","Healius Ltd","FY26","Health Care","-","-415.6M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","ILU","Iluka Resources Ltd","HY26","Materials","0.03","-24M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","MGR","Mirvac Group","FY26","Real Estate","0.048","677M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","SGP","Stockland","FY26","Real Estate","0.162","994M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","SLC","Superloop Ltd","FY26","Comm. Services","-","17.5M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","STO","Santos Ltd","HY26","Energy","0.116 US","355M US","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","SXE","Southern Cross Electrical Engineering Ltd","FY26","Industrials","0.075","7M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","TLC","The Lottery Corporation Ltd","FY26","Cons. Disc","0.085","284.6M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","TPW","Temple & Webster Group","FY26","Cons. Disc","-","4.3M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","WHC","Whitehaven Coal Ltd","FY26","Energy","0.06","385M","reported"],
+[1787094000,"Wed 19 Aug","WEEK 3 (17th August – 21st August)","YAL","Yancoal Australia Ltd","HY26","Energy","0.07","17M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","AIA","Auckland International Airport Ltd","FY26","Industrials","0.0794 NZ","335M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","APA","APA Group","FY26","Utilities","0.305","234M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","BGA","Bega Cheese Ltd","FY26","Cons. Staple","0.075","54.8M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","BXB","Brambles Ltd","FY26","Industrials","0.2315 US","954M US","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","CWY","Cleanaway Waste Management Ltd","FY26","Industrials","0.035","223.1M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","DOW","Downer EDI Ltd","FY26","Industrials","0.163","225.4M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","DXS","Dexus","FY26","Real Estate","0.177","-124M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","EHL","Emeco Holdings Ltd","FY26","Industrials","-","76.7M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","FMG","Fortescue Ltd","FY26","Materials","0.46","2.9B US","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","GMG","Goodman Group","FY26","Real Estate","0.15","2.8B","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","IEL","IDP Education Ltd","FY26","Cons. Disc","0.06","13.3M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","IPH","IPH Limited","FY26","Industrials","0.195","80.4M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","MGH","Maas Group Holdings Ltd","FY26","Industrials","-","136.1M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","MP1","Megaport Ltd","FY26","Info Tech","-","-39M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","MPL","Medibank Pvt Ltd","FY26","Financials","0.109","638.7M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","NST","Northern Star Resources Ltd","FY26","Materials","0.30","1.66B","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","PPM","Pepper Money Ltd","HY26","Financials","0.072","50.4M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","RIC","Ridley Corp Ltd","FY26","Cons. Staple","0.0535","27.6M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","SHL","Sonic Healthcare Ltd","FY26","Health Care","0.63","608M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","SKC","SkyCity Entertainment Group","FY26","Cons. Disc","-","18.2M NZ","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","SPK","Spark New Zealand Ltd","FY26","Comm. Services","0.087 NZ","499M NZ","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","SUL","Super Retail Group Ltd","FY26","Cons. Disc","0.33","206.M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","TLX","Telix Pharmaceuticals Ltd","HY26","Health Care","-","38M US","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","UNI","Universal Store Holdings Ltd","FY26","Cons. Disc","0.17","18.2M","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","VCX","Vicinity Centres","FY26","Real Estate","0.062","1.39B","reported"],
+[1787180400,"Thu 20 Aug","WEEK 3 (17th August – 21st August)","ZIP","Zip Co Ltd","FY26","Financials","-","89M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","A1N","ARN Media Ltd","HY26","Comm. Services","-","-27.6M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","CEH","Coast Entertainment Holdings Ltd","FY26","Cons. Disc","-","6.1M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","CHC","Charter Hall Group","FY26","Real Estate","0.2584","427.9M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","DGT","DigiCo Infrastructure REIT","FY26","Real Estate","0.06","-47.1M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","EGG","Enero Group Ltd","FY26","Comm. Services","0.014","-374M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","GQG","GQG Partners","HY26","Financials","0.0362 US","228M US","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","GYG","Guzman y Gomez Ltd","FY26","Cons. Disc","0.406","-26.7M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","ING","Inghams Group","FY26","Cons. Staple","0.061","34.6M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","LFS","Latitude Group Holdings","HY26","Financials","0.055","54.4M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","LIC","Lifestyle Communities Ltd","FY26","Real Estate","-","46.9M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","PWR","Peter Warren Automotive Holdings","FY26","Cons. Disc","0.006","6.3M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","RMS","Ramelius Resources Ltd","FY26","Materials","0.03","118.8M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","RRL","Regis Resources Ltd","FY26","Materials","0.20","715M","reported"],
+[1787266800,"Fri 21 Aug","WEEK 3 (17th August – 21st August)","TPG","TPG Telecom Ltd","HY26","Comm. Services","0.10","35M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","ABB","Aussie Broadband Ltd","FY26","Comm. Services","0.036","35.3M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","ABY","Adore Beauty Group Ltd","FY26","Cons. Disc","-","-4.4M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","ADH","Adairs Ltd","FY26","Cons. Disc","0.06","-39.4M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","ALD","Ampol Ltd","HY26","Energy","1.85","1.36B","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","ANN","Ansell Ltd","FY26","Health Care","0.415 US","207M US","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","BEN","Bendigo and Adelaide Bank Ltd","FY26","Financials","0.33","375.1M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","CCX","City Chic Collective Ltd","FY26","Cons. Disc","-","-6.6M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","CNU","Chorus Ltd","FY26","Comm. Services","0.36","37M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","DTL","Data#3 Ltd","FY26","Info Tech","0.1825","54.5M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","EDV","Endeavour Group","FY26","Cons. Staple","0.012","52M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","EVT","EVT Ltd","FY26","Comm. Services","0.23","50.7M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","NHF","NIB Holdings Ltd","FY26","Financials","0.21","186.9M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","NXL","Nuix Ltd","FY26","Info Tech","-","16.4M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","PLS","PLS Group","FY26","Materials","0.05","526M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","REG","Regis Healthcare Ltd","FY26","Health Care","0.094","55.7M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","REH","Reece Ltd","FY26","Industrials","0.134","308M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","RPL","Regal Partners Ltd","HY26","Financials","0.12","94.1M","reported"],
+[1787526000,"Mon 24 Aug","WEEK 4 (24th August – 31st August)","VNT","Ventia Services Group Ltd","HY26","Industrials","0.1176","127.6M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","ARB","ARB Corporation Ltd","FY26","Cons. Disc","0.35","92.4M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","AUB","AUB Group Ltd","FY26","Financials","0.71","96M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","COL","Coles Group Ltd","FY26","Cons. Staple","0.37","1.09B","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","DBI","Dalrymple Bay Infrastructure Ltd","HY26","Industrials","0.0675","49.2M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","EOS","Electro Optic Systems Ltd","FY26","Industrials","-","-32.9M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","GEM","G8 Education Ltd","HY26","Cons. Disc","-","-38.8M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","INA","Ingenia Communities Group","FY26","Real Estate","0.048","186.4M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","MND","Monadelphous Group Ltd","FY26","Industrials","0.59","127.3M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","SCG","Scentre Group","HY26","Real Estate","0.09215","975M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","SDR","SiteMinder Ltd","FY26","Info Tech","-","-11.3M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","TYR","Tyro Payments Ltd","FY26","Financials","-","21.3M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","VEA","Viva Energy Group Ltd","HY26","Energy","0.0773","371.1M","reported"],
+[1787612400,"Tue 25 Aug","WEEK 4 (24th August – 31st August)","WDS","Woodside Energy Group","HY26","Energy","0.57 US","1.67B US","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","ART","Airtasker Ltd","FY26","Comm. Services","-","1.2M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","CTT","Cettire Ltd","FY26","Cons. Disc","-","-8.5M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","DMP","Domino's Pizza Enterprises Ltd","FY26","Cons. Disc","0.325","-134.2M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","DRO","DroneShield Ltd","FY26","Industrials","-","-32.2M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","FLT","Flight Centre Travel Group","FY26","Cons. Disc","0.30","149M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","HLO","Helloworld Travel Ltd","FY26","Cons. Disc","0.05","29.9M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","HMC","HMC Capital","FY26","Real Estate","0.06","-49.1M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","KLS","Kelsian Group","FY26","Industrials","0.10","63.5M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","KOA","The Koala Company Ltd","FY26","Cons. Disc","-","24.6M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","LOV","Lovisa Holdings Ltd","FY26","Cons. Disc","0.33","95.6M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","NEC","Nine Entertainment Co","FY26","Comm. Services","0.03","511M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","NEU","Neuren Pharmaceuticals Ltd","HY26","Health Care","0.15","4.8M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","NIC","Nickel Industries","HY26","Materials","-","52.5M US","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","NWL","Netwealth Group Ltd","FY26","Financials","0.21","60.6M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","PDN","Paladin Energy Ltd","FY26","Energy","-","-9.1M US","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","PNV","Polynovo Ltd","FY26","Health Care","-","7.3M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","PRU","Perseus Mining Ltd","FY26","Materials","0.09","480.5M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","SDF","Steadfast Group Ltd","FY26","Financials","0.1275","210.1M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","SFR","Sandfire Resources Ltd","FY26","Materials","0.35","356M US","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","TAH","Tabcorp Holdings Ltd","FY26","Cons. Disc","0.015","46.3M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","WOR","Worley Ltd","FY26","Industrials","0.25","306M","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","WOW","Woolworths Group Ltd","FY26","Cons. Staple","0.52","1.1B","reported"],
+[1787698800,"Wed 26 Aug","WEEK 4 (24th August – 31st August)","WTC","WiseTech Global Ltd","FY26","Info Tech","0.088 US","179M US","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","ALX","Atlas Arteria","HY26","Industrials","-","-73.3M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","APE","Eagers Automotive Ltd","HY26","Cons. Disc","0.25","126.6M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","APX","Appen Limited","HY26","Info Tech","-","-4.45M US","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","BAP","Bapcor Ltd","FY26","Cons. Disc","-","-431.6M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","BLX","Beacon Lighting Group Ltd","FY26","Cons. Disc","0.034","26.9M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","BUB","Bubs Australia Ltd","FY26","Cons. Staple","-","-4.6M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","CMW","Cromwell Property Group","FY26","Real Estate","-","135.8M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","CNI","Centuria Capital Group","FY26","Real Estate","0.052","56.5M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","GDG","Generation Development Group Ltd","FY26","Financials","0.01","31.9M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","IGO","IGO Ltd","FY26","Materials","0.05","145M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","KAR","Karoon Energy Ltd","HY26","Energy","0.012","26.7M US","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","MFG","Magellan Financial Group","FY26","Financials","0.255","146M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","MIN","Mineral Resources Ltd","FY26","Materials","0.83","1.2B","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","MYX","Mayne Pharma Group Ltd","FY26","Health Care","-","31.2M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","PPT","Perpetual Ltd","FY26","Financials","0.63","88.9M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","QAN","Qantas Airways Ltd","FY26","Industrials","0.198","1.29B","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","RHC","Ramsay Health Care Ltd","FY26","Health Care","0.485","329.2M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","S32","South32 Ltd","FY26","Materials","0.054US","1.1B US","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","SIG","Sigma Healthcare Ltd","FY26","Health Care","0.02","708.7M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","SIQ","Smartgroup Corporation","HY26","Industrials","0.215","42.4M","reported"],
+[1787785200,"Thu 27 Aug","WEEK 4 (24th August – 31st August)","WES","Wesfarmers Ltd","FY26","Cons. Disc","1.20","2.87B","reported"],
+[1787871600,"Fri 28 Aug","WEEK 4 (24th August – 31st August)","AIZ","Air New Zealand Ltd","FY26","Industrials","-","-242M NZ","reported"],
+[1787871600,"Fri 28 Aug","WEEK 4 (24th August – 31st August)","ATG","Articore Group Ltd","FY26","Cons. Disc","-","10.9M","reported"],
+[1787871600,"Fri 28 Aug","WEEK 4 (24th August – 31st August)","CBO","Cobram Estates Olives Ltd","FY26","Cons. Staple","0.045","-4.2M","reported"],
+[1787871600,"Fri 28 Aug","WEEK 4 (24th August – 31st August)","DDR","Dicker Data Ltd","HY26","Info Tech","0.115","60.7M","reported"],
+[1787871600,"Fri 28 Aug","WEEK 4 (24th August – 31st August)","HVN","Harvey Norman Holdings Ltd","FY26","Cons. Disc","0.13","414M","reported"],
+[1787871600,"Fri 28 Aug","WEEK 4 (24th August – 31st August)","MMS","McMillan Shakespeare Ltd","FY26","Industrials","0.70","106.1M","reported"],
+[1787871600,"Fri 28 Aug","WEEK 4 (24th August – 31st August)","PXA","PEXA Group Ltd","FY26","Real Estate","-","-25.5M","reported"],
+[1787871600,"Fri 28 Aug","WEEK 4 (24th August – 31st August)","VGN","Virgin Australia Holdings Ltd","FY26","Industrials","0.076","501M","reported"],
+[1787871600,"Fri 28 Aug","WEEK 4 (24th August – 31st August)","WAM","WAM Capital Ltd","FY26","Financials","0.0775","-125.9M","reported"],
+[1788130800,"Mon 31 Aug","WEEK 4 (24th August – 31st August)","ASB","Austal Ltd","FY26","Industrials","-","-53.6M","reported"],
+[1788130800,"Mon 31 Aug","WEEK 4 (24th August – 31st August)","CYG","Coventry Group","FY26","Industrials","-","-15.2M","reported"],
+[1788130800,"Mon 31 Aug","WEEK 4 (24th August – 31st August)","LTR","Liontown Ltd","FY26","Materials","-","93M","reported"],
+[1788130800,"Mon 31 Aug","WEEK 4 (24th August – 31st August)","MHJ","Michael Hill International Ltd","FY26","Cons. Disc","0.02","10M","reported"],
+[1788130800,"Mon 31 Aug","WEEK 4 (24th August – 31st August)","MVF","Monash IVF Group Ltd","FY26","Health Care","0.013","8.3M","reported"],
+[1788130800,"Mon 31 Aug","WEEK 4 (24th August – 31st August)","SGR","The Star Entertainment Group","FY26","Cons. Disc","-","-307.3M","reported"],
+[1789426800,"Tue 15 Sep","Beyond August","NHC","New Hope Corporation Ltd","FY26","Energy","","","awaiting"],
+[1790204400,"Thu 24 Sep","Beyond August","SOL","Washington H Soul Pattinson & Company Ltd","FY26","Financials","","","upcoming"],
+[1792015200,"Thu 15 Oct","Beyond August","BOQ","Bank of Queensland","FY26","Financials","","","upcoming"],
+[1794434400,"Thu 12 Nov","Beyond August","ALL","Aristocrat Leisure Ltd","FY26","Cons. Disc","","","upcoming"],
+[1794434400,"Thu 12 Nov","Beyond August","GNC","GrainCorp Ltd","FY26","Cons. Staple","","","upcoming"],
+[1794434400,"Thu 12 Nov","Beyond August","ORI","Orica Ltd","FY26","Materials","","","upcoming"],
+[1794780000,"Mon 16 Nov","Beyond August","ELD","Elders Ltd","FY26","Cons. Staple","","","upcoming"],
+[1794866400,"Tue 17 Nov","Beyond August","TNE","TechnologyOne Ltd","FY26","Info Tech","","","upcoming"],
+[1794952800,"Wed 18 Nov","Beyond August","WJL","Webjet Group Ltd","HY27","Cons. Disc","","","upcoming"],
+[1795039200,"Thu 19 Nov","Beyond August","NUF","Nufarm Limited","FY26","Materials","","","upcoming"]
+];
+// [unixTs, dateLabel, weekLabel, ticker, company, period, sector, dps, npat, status]
+// status: 'reported' | 'upcoming' | 'awaiting' (date passed but CommSec hasn't posted the result yet)
+
+const SEASON_LABEL = "August 2026";
+const SEASON_ACTIVE = true;
+const NEXT_SEASON_NOTE = "";
+
+document.getElementById('sessionLine').textContent =
+  `Rebuilt daily — last rebuilt 20 Sep 2026, 8:17AM Sydney time. ${SEASON_LABEL} reporting season.`;
+
+if (!SEASON_ACTIVE) {
+  const notice = document.getElementById('seasonNotice');
+  notice.style.display = '';
+  notice.textContent = `⚠ The ${SEASON_LABEL} reporting season has concluded — every company below has already reported. Shown here as a historical record.` +
+    (NEXT_SEASON_NOTE ? ` Next season expected: ${NEXT_SEASON_NOTE}.` : '');
+}
+
+const STATUS_LABELS = { reported: 'Reported', upcoming: 'Upcoming', awaiting: 'Awaiting update' };
+
+const statusCounts = {};
+DATA.forEach(r => { statusCounts[r[9]] = (statusCounts[r[9]] || 0) + 1; });
+const statuschips = document.getElementById('statuschips');
+statuschips.innerHTML = Object.keys(STATUS_LABELS).filter(s => statusCounts[s]).map(s =>
+  `<button class="commchip" data-status="${s}"><span>${STATUS_LABELS[s]}</span><span class="cnt">${statusCounts[s]}</span></button>`
+).join('');
+
+const sectorCounts = {};
+DATA.forEach(r => { sectorCounts[r[6]] = (sectorCounts[r[6]] || 0) + 1; });
+const sectors = Object.keys(sectorCounts).sort();
+const sectorchips = document.getElementById('sectorchips');
+sectorchips.innerHTML = sectors.map(s =>
+  `<button class="commchip" data-sector="${s}"><span>${s}</span><span class="cnt">${sectorCounts[s]}</span></button>`
+).join('');
+
+const activeStatuses = new Set();
+const activeSectors = new Set();
+
+let sortKey = 'date', sortDir = 1;
+let currentRows = [];
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function render(){
+  const q = document.getElementById('filterInput').value.trim().toUpperCase();
+  let rows = DATA.filter(([ts, dateLabel, weekLabel, ticker, company, period, sector, dps, npat, status]) => {
+    const textMatch = ticker.toUpperCase().includes(q) || company.toUpperCase().includes(q);
+    if(!textMatch) return false;
+    if(activeStatuses.size && !activeStatuses.has(status)) return false;
+    if(activeSectors.size && !activeSectors.has(sector)) return false;
+    return true;
+  });
+  rows.sort((a,b) => {
+    const idx = {date:0, ticker:3, company:4, period:5, sector:6, dps:7, npat:8}[sortKey];
+    let av = a[idx], bv = b[idx];
+    if(av<bv) return -1*sortDir;
+    if(av>bv) return 1*sortDir;
+    return 0;
+  });
+  currentRows = rows;
+  let lastDateLabel = null;
+  document.getElementById('matBody').innerHTML = rows.map(([ts, dateLabel, weekLabel, ticker, company, period, sector, dps, npat, status]) => {
+    const showDate = dateLabel !== lastDateLabel;
+    lastDateLabel = dateLabel;
+    const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${ticker}`;
+    return `<tr class="${status}">
+      <td class="tk">${showDate ? dateLabel : ''}</td>
+      <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(ticker)}</a>${status !== 'reported' ? ` <span class="status-tag ${status}">${STATUS_LABELS[status]}</span>` : ''}</td>
+      <td class="cname colname-desktop">${esc(company)}</td>
+      <td class="mono colname-desktop">${esc(period)}</td>
+      <td class="mono">${esc(sector)}</td>
+      <td class="mono" style="text-align:right">${dps || '—'}</td>
+      <td class="mono" style="text-align:right">${npat || '—'}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} companies`;
+  document.querySelectorAll('#statuschips .commchip').forEach(c => c.classList.toggle('active', activeStatuses.has(c.dataset.status)));
+  document.querySelectorAll('#sectorchips .commchip').forEach(c => c.classList.toggle('active', activeSectors.has(c.dataset.sector)));
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.toggle('active', th.dataset.key===sortKey);
+    th.querySelector('.arrow')?.remove();
+    if(th.dataset.key===sortKey) th.insertAdjacentHTML('beforeend', `<span class="arrow">${sortDir>0?'▲':'▼'}</span>`);
+  });
+}
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    if(sortKey===th.dataset.key){ sortDir*=-1; } else { sortKey=th.dataset.key; sortDir = 1; }
+    render();
+  });
+});
+statuschips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  const s = btn.dataset.status;
+  if(activeStatuses.has(s)) activeStatuses.delete(s); else activeStatuses.add(s);
+  render();
+});
+sectorchips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  const s = btn.dataset.sector;
+  if(activeSectors.has(s)) activeSectors.delete(s); else activeSectors.add(s);
+  render();
+});
+document.getElementById('filterInput').addEventListener('input', render);
+document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+  activeStatuses.clear();
+  activeSectors.clear();
+  document.getElementById('filterInput').value = '';
+  render();
+});
+render();
+
+document.getElementById('downloadCsvBtn').addEventListener('click', async () => {
+  const escCsv = v => /[",\n]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v;
+  const rows = [['Date','Ticker','Company','Period','Sector','DPS','NPAT','Status'],
+    ...currentRows.map(r => [r[1], r[3], r[4], r[5], r[6], r[7] || '', r[8] || '', STATUS_LABELS[r[9]]])];
+  const csv = rows.map(r => r.map(String).map(escCsv).join(',')).join('\n');
+  let usedCapability = false;
+  if(typeof window.claude !== 'undefined' && window.claude.use){
+    try{
+      const downloads = await window.claude.use('downloads');
+      if(downloads){ await downloads.save({filename:'earnings-calendar.csv', data: csv}); usedCapability = true; }
+    }catch(e){}
+  }
+  if(!usedCapability){
+    const blob = new Blob([csv], {type:'text/csv'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'earnings-calendar.csv'; a.click();
+    URL.revokeObjectURL(url);
+  }
+});
+
+const themeBtn = document.getElementById('themeBtn');
+function isLightTheme(){ return document.documentElement.getAttribute('data-theme') === 'light'; }
+function applyTheme(t){
+  if(t === 'light'){ document.documentElement.setAttribute('data-theme','light'); } else { document.documentElement.removeAttribute('data-theme'); }
+  themeBtn.textContent = isLightTheme() ? '☀️' : '🌙';
+}
+themeBtn.textContent = isLightTheme() ? '☀️' : '🌙';
+themeBtn.addEventListener('click', ()=>{
+  const next = isLightTheme() ? null : 'light';
+  applyTheme(next);
+  try{
+    if(next) localStorage.setItem('earningscalendar-theme', next);
+    else localStorage.removeItem('earningscalendar-theme');
+  }catch(e){}
+});
+</script>

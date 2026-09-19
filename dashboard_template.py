@@ -111,6 +111,7 @@ NAV_TOOLS_LINKS = [
     ('insider-index.html', 'Insider Buying'),
     ('red-folder-news.html', 'Red Folder News'),
     ('sector-rotation.html', 'Sector Rotation'),
+    ('earnings-calendar.html', 'Earnings Calendar'),
 ]
 
 
