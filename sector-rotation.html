@@ -219,7 +219,7 @@ document.addEventListener('keydown', function(e){
 <style>
 .quadwrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.1rem;
   box-shadow:var(--shadow);margin-bottom:1.6rem}
-.quadwrap canvas{display:block;width:100%;max-width:920px;margin:0 auto}
+.quadwrap canvas{display:block;width:100%;max-width:1400px;margin:0 auto}
 #lineCanvas{max-width:100%}
 .linehead{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.05rem;margin:0 0 .3rem;color:var(--ink)}
 .linesub{font-size:.82rem;color:var(--ink-faint);margin-bottom:.9rem;max-width:56rem}
@@ -227,6 +227,15 @@ document.addEventListener('keydown', function(e){
   font-size:.76rem;color:var(--ink-faint)}
 .quad-legend span{display:inline-flex;align-items:center;gap:.4rem}
 .quad-legend .dot{width:.6rem;height:.6rem;border-radius:50%;display:inline-block}
+.quad-hint{font-style:italic}
+.quad-hint.active{color:var(--accent);font-style:normal;font-weight:600}
+.linehead-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.6rem .9rem;margin-bottom:.3rem}
+.linehead{margin:0}
+.lookback{display:inline-flex;gap:.3rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.25rem}
+.lookback button{font-family:"IBM Plex Mono",monospace;font-size:.74rem;font-weight:600;border:none;background:transparent;
+  color:var(--ink-faint);padding:.3rem .6rem;border-radius:6px;cursor:pointer}
+.lookback button.active{background:var(--accent);color:var(--accent-ink)}
+.lookback button:hover:not(.active){color:var(--ink)}
 .rel-pos{color:var(--good)}
 .rel-neg{color:var(--bad)}
 </style>
@@ -241,18 +250,19 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily after ASX close — last rebuilt 18 Sep 2026.</div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt 19 Sep 2026.</div>
 
   <div class="notice">⚠ Each sector's return is a market-cap-weighted average of its own constituent stocks' price changes (not a raw ASX sector-index symbol — those reliably fail to fetch in this site's automated pipeline, see the build script's own notes). "vs XJO" compares that to STW.AX (the ASX 200 ETF this site uses as its market-wide benchmark) over the same window. The quadrant below plots 3-month relative performance (medium-term position) against 1-month relative performance (recent momentum) — the faint trailing line behind each dot is that same position 1-4 weeks ago, so you can see which way a sector is actually rotating, not just where it sits today.</div>
 
   <div class="quadwrap">
-    <canvas id="quadCanvas" width="920" height="920"></canvas>
+    <canvas id="quadCanvas" width="1400" height="620"></canvas>
     <div class="quad-legend">
       <span><span class="dot" style="background:#7bc0a8"></span> Leading — ahead &amp; accelerating</span>
       <span><span class="dot" style="background:#e8b355"></span> Weakening — ahead but cooling</span>
       <span><span class="dot" style="background:#e0847a"></span> Lagging — behind &amp; still falling</span>
       <span><span class="dot" style="background:#7ba7d9"></span> Improving — behind but catching up</span>
       <span>Faint tail = last 4 weekly snapshots</span>
+      <span id="quadHint" class="quad-hint">Click a dot to isolate its trail</span>
     </div>
   </div>
 
@@ -275,8 +285,11 @@ document.addEventListener('keydown', function(e){
   </div>
 
   <div class="quadwrap">
-    <h2 class="linehead">📈 Sector performance, last 8 weeks</h2>
-    <div class="linesub">Every sector's own cumulative % change, all on the same scale, indexed to 0% 8 weeks ago — not relative to XJO, just who's actually up or down and by how much. XJO itself is the dashed reference line.</div>
+    <div class="linehead-row">
+      <h2 class="linehead">📈 Sector performance, last <span id="lineWeeksLabel">8</span> weeks</h2>
+      <div class="lookback" id="lookbackToggle"></div>
+    </div>
+    <div class="linesub">Every sector's own cumulative % change, all on the same scale, indexed to 0% at the start of the window above — not relative to XJO, just who's actually up or down and by how much. XJO itself is the dashed reference line.</div>
     <canvas id="lineCanvas" width="1400" height="520"></canvas>
     <div class="quad-legend" id="lineLegend"></div>
   </div>
@@ -288,17 +301,17 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["Energy",69,-0.74,0.85,13.58,1.14,-0.56,3.9,14.12,-2.92,[[-0.12,2.4],[0.72,3.17],[-0.83,8.38],[13.17,7.77],[14.12,3.9]],[0.0,-0.55,-2.21,-1.14,-0.58,0.38,-0.25,-0.78,-0.34,-1.8,-1.29,-0.8,1.1,2.96,2.54,1.68,2.41,3.54,3.83,4.77,4.77,6.08,6.16,5.67,3.8,4.13,4.33,5.66,5.47,6.06,4.63,4.78,6.17,6.63,7.5,6.27,6.01,5.73,5.54,6.17,5.5]],
-["Financials",92,-0.04,-0.92,-1.8,-1.21,0.14,2.14,-1.26,-5.28,[[-3.27,-6.6],[-2.64,-8.63],[-0.32,-5.37],[1.07,-1.81],[-1.26,2.14]],[0.0,1.12,2.08,2.44,1.92,1.72,1.98,3.81,3.78,4.17,3.44,1.8,0.68,0.23,0.16,0.28,-1.39,-2.32,-3.01,-4.65,-4.55,-5.23,-4.45,-4.77,-5.47,-5.0,-4.13,-4.22,-4.07,-3.52,-3.24,-3.1,-4.49,-5.45,-6.17,-5.58,-5.14,-5.97,-6.39,-5.25,-5.58]],
-["Utilities",18,1.63,-1.14,1.8,1.94,1.81,1.91,2.35,-2.13,[[0.31,1.99],[-1.58,1.77],[-4.17,3.86],[0.49,2.86],[2.35,1.91]],[0.0,0.5,1.05,0.9,-0.54,-0.2,1.83,1.61,0.32,0.04,-0.48,-0.66,-0.02,1.07,2.67,3.66,3.29,3.8,4.42,4.38,5.31,4.34,4.93,4.83,3.46,3.12,3.46,3.64,2.82,2.8,2.18,1.37,1.71,1.92,1.71,1.54,1.67,1.04,2.14,2.41,3.1]],
-["Healthcare",108,3.27,-1.54,25.52,15.96,3.45,1.52,26.07,11.9,[[31.18,18.46],[33.98,13.08],[27.57,12.12],[26.09,7.44],[26.07,1.52]],[0.0,1.35,3.4,7.37,6.97,5.35,6.46,8.93,10.79,11.45,9.77,11.53,13.98,13.88,14.09,13.45,12.55,19.51,22.28,24.38,22.38,22.92,24.45,23.19,23.16,23.37,22.91,23.31,22.97,23.55,23.39,22.45,22.84,21.0,19.89,18.64,20.09,21.73,22.0,23.06,22.91]],
-["Consumer Staples",31,-0.26,-2.45,-0.6,4.34,-0.08,0.6,-0.06,0.27,[[6.92,-2.82],[7.72,-3.98],[4.9,0.38],[2.38,1.01],[-0.06,0.6]],[0.0,0.78,1.77,3.22,3.71,3.15,2.66,3.38,3.34,3.68,3.58,3.58,3.76,2.52,2.25,2.45,2.58,2.64,1.57,1.58,0.32,-0.4,0.93,1.44,2.36,1.58,1.89,2.37,1.92,1.86,2.29,2.74,1.95,0.42,-0.35,-0.74,-0.43,0.35,0.02,-0.38,-0.97]],
-["Industrials",106,0.26,-3.02,-4.33,10.32,0.44,0.03,-3.79,6.25,[[0.82,-3.46],[-1.81,-3.03],[-5.41,-3.93],[-2.62,-1.41],[-3.79,0.03]],[0.0,1.42,1.56,1.86,0.86,0.93,2.17,3.37,4.55,4.62,4.04,4.05,3.42,2.93,2.66,1.9,1.65,1.11,1.15,0.59,0.17,0.12,0.54,0.52,-0.15,-0.48,-0.15,-0.81,-1.74,-1.42,-1.37,-1.14,-1.85,-1.69,-2.68,-2.78,-3.47,-3.95,-3.52,-2.77,-2.39]],
-["Communication Services",36,0.68,-3.09,2.86,-1.44,0.86,-0.04,3.4,-5.5,[[-1.44,1.1],[-1.06,-2.54],[-3.71,-0.68],[0.97,-0.26],[3.4,-0.04]],[0.0,1.5,4.07,5.88,5.84,4.62,4.36,5.95,6.32,7.6,7.36,7.97,8.1,7.74,5.94,6.21,6.51,5.61,5.99,5.76,5.74,6.31,7.14,6.02,4.99,5.32,5.77,4.04,4.07,4.11,5.01,3.87,3.04,1.74,1.26,1.16,1.51,2.28,2.7,2.79,1.88]],
-["Materials",455,-0.3,-4.71,6.14,24.97,-0.12,-1.66,6.68,20.9,[[4.61,12.1],[6.28,19.19],[6.37,8.2],[2.61,2.5],[6.68,-1.66]],[0.0,2.18,0.58,1.34,-0.33,1.4,1.55,2.92,6.79,8.65,10.32,12.53,13.64,13.93,13.24,10.78,12.96,12.89,12.51,17.06,17.77,20.4,20.63,20.9,19.42,20.33,17.88,18.35,14.77,15.61,15.74,15.57,15.41,16.81,15.51,11.93,11.42,9.1,10.46,9.87,11.63]],
-["Real Estate",54,-0.97,-8.1,-11.88,-1.19,-0.8,-5.05,-11.33,-5.26,[[-5.74,-5.51],[-8.65,-8.11],[-9.3,-6.31],[-10.62,-5.89],[-11.33,-5.05]],[0.0,1.65,2.62,3.45,2.62,3.12,3.24,4.43,5.32,4.53,4.49,4.26,4.15,3.12,2.9,2.11,1.07,1.1,0.12,0.04,-1.76,-1.55,-1.51,-1.44,-2.76,-3.74,-3.6,-3.74,-4.68,-4.23,-3.86,-3.65,-5.12,-5.75,-6.37,-7.22,-7.29,-7.69,-8.28,-7.7,-8.13]],
-["Consumer Discretionary",83,-0.62,-8.65,-6.97,4.09,-0.45,-5.6,-6.42,0.03,[[8.83,-4.09],[2.68,-8.81],[-0.24,-8.44],[-3.24,-8.12],[-6.42,-5.6]],[0.0,0.44,2.47,5.31,5.41,4.38,4.87,5.65,6.41,7.06,6.97,6.39,6.37,5.33,5.07,4.95,4.25,1.73,0.64,0.5,0.1,-0.55,0.34,0.34,-0.1,-1.71,-1.79,-2.25,-3.93,-3.72,-3.66,-3.53,-4.36,-5.91,-6.71,-7.39,-7.66,-7.21,-7.08,-7.86,-8.01]],
-["Tech",78,0.05,-10.78,-0.58,15.84,0.22,-7.73,-0.04,11.77,[[9.81,9.01],[3.61,8.1],[-8.33,-1.36],[-5.49,-7.38],[-0.04,-7.73]],[0.0,0.73,2.06,3.58,4.34,7.35,6.76,10.02,12.92,14.25,13.88,14.93,14.26,15.72,15.92,17.27,18.96,16.82,15.44,15.55,16.61,16.64,18.7,19.28,14.58,14.54,14.83,13.56,11.26,9.63,10.37,9.33,6.98,5.97,4.4,2.64,0.8,1.4,2.64,1.93,2.81]]
+["Energy",71,-0.72,0.86,13.6,1.15,-0.54,3.91,14.14,-2.91,[[-0.11,2.41],[0.74,3.19],[-0.82,8.38],[13.16,7.75],[14.14,3.91]],[0.0,0.62,1.31,1.53,1.68,1.66,1.5,0.89,1.4,4.08,5.27,4.86,5.43,7.21,6.01,4.92,7.03,8.17,9.84,11.57,11.98,11.39,9.55,10.87,11.57,12.57,11.92,11.25,11.69,9.98,10.49,11.02,13.09,15.22,14.75,13.85,14.62,15.85,16.27,17.34,17.34,18.72,18.76,18.15,16.01,16.37,16.7,18.16,18.04,18.67,16.95,17.06,18.62,19.15,20.18,18.88,18.72,18.47,18.21,19.01,18.24]],
+["Financials",92,-0.03,-0.9,-1.79,-1.31,0.14,2.15,-1.25,-5.38,[[-3.3,-6.61],[-2.65,-8.65],[-0.31,-5.37],[1.09,-1.81],[-1.25,2.15]],[0.0,0.64,1.13,-0.21,0.47,1.72,1.66,2.45,3.36,3.23,3.63,4.32,3.95,3.96,4.93,4.88,4.7,4.15,4.12,4.39,5.16,6.34,7.36,7.74,7.21,7.0,7.26,9.18,9.13,9.55,8.79,7.04,5.87,5.39,5.3,5.43,3.63,2.66,1.93,0.2,0.3,-0.41,0.39,0.05,-0.67,-0.16,0.76,0.68,0.85,1.44,1.73,1.89,0.42,-0.61,-1.38,-0.73,-0.27,-1.16,-1.6,-0.37,-0.74]],
+["Utilities",18,1.64,-1.14,1.71,1.92,1.82,1.91,2.26,-2.14,[[0.26,1.91],[-1.66,1.7],[-4.24,3.8],[0.39,2.82],[2.26,1.91]],[0.0,-1.21,-0.16,-0.43,-2.46,-2.88,-3.3,-3.21,-2.84,-2.68,-2.26,-2.59,-2.7,-2.68,-2.08,-0.86,-0.91,-1.4,-1.73,-0.38,-1.05,-0.57,-0.06,-0.22,-1.68,-1.36,0.64,0.45,-0.82,-1.08,-1.6,-1.78,-1.16,-0.14,1.4,2.38,2.04,2.54,3.14,3.11,4.05,3.08,3.68,3.53,2.16,1.86,2.26,2.46,1.61,1.6,1.02,0.23,0.55,0.76,0.52,0.34,0.44,-0.21,0.92,1.2,1.9]],
+["Healthcare",109,3.34,-1.47,25.79,16.23,3.52,1.58,26.33,12.16,[[31.49,18.64],[34.35,13.29],[27.91,12.27],[26.34,7.54],[26.33,1.58]],[0.0,2.01,1.72,2.27,2.79,5.47,6.99,7.05,6.58,6.56,4.75,3.96,4.36,3.81,4.45,4.18,3.55,2.56,0.98,-0.21,-1.14,0.17,2.16,6.1,5.72,4.1,5.19,7.62,9.5,10.16,8.61,10.36,12.79,12.67,12.86,12.23,11.36,18.25,21.03,23.07,21.13,21.68,23.2,21.96,21.98,22.14,21.67,22.08,21.8,22.41,22.23,21.32,21.73,19.91,18.77,17.55,18.98,20.58,20.83,21.89,21.75]],
+["Consumer Staples",31,-0.25,-2.43,-0.57,4.42,-0.08,0.62,-0.03,0.36,[[6.91,-2.79],[7.72,-3.96],[4.88,0.4],[2.38,1.02],[-0.03,0.62]],[0.0,0.56,0.96,-0.8,-1.95,-1.69,-1.16,-1.83,-1.67,-0.8,-0.33,-1.11,-1.9,-2.64,-2.79,-2.17,-1.8,-1.79,-1.47,-1.77,-2.16,-1.39,-0.41,1.01,1.47,0.93,0.45,1.13,1.08,1.43,1.33,1.35,1.52,0.32,0.06,0.26,0.39,0.44,-0.59,-0.56,-1.81,-2.5,-1.22,-0.74,0.17,-0.55,-0.26,0.22,-0.19,-0.24,0.18,0.63,-0.13,-1.64,-2.41,-2.8,-2.51,-1.75,-2.08,-2.46,-3.04]],
+["Industrials",108,0.31,-2.96,-4.18,10.68,0.49,0.09,-3.64,6.61,[[1.12,-3.38],[-1.69,-2.87],[-5.24,-3.83],[-2.5,-1.32],[-3.64,0.09]],[0.0,-0.46,-0.41,-0.81,-1.73,-0.79,-0.99,-1.4,-2.02,-1.58,-1.84,-1.89,-2.47,-2.18,-2.07,-1.88,-1.83,-1.86,-1.85,-2.4,-3.25,-1.92,-1.8,-1.49,-2.45,-2.39,-1.2,-0.05,1.09,1.16,0.59,0.6,0.03,-0.53,-0.76,-1.46,-1.75,-2.28,-2.17,-2.71,-3.09,-3.16,-2.8,-2.85,-3.5,-3.78,-3.43,-4.06,-4.88,-4.59,-4.56,-4.36,-5.08,-4.91,-5.83,-5.92,-6.56,-7.02,-6.59,-5.86,-5.51]],
+["Communication Services",36,0.68,-3.09,2.87,-1.4,0.86,-0.04,3.41,-5.47,[[-1.43,1.12],[-1.05,-2.51],[-3.7,-0.67],[0.98,-0.26],[3.41,-0.04]],[0.0,1.41,0.95,-0.03,0.33,1.12,1.32,2.64,1.55,2.06,2.14,2.69,3.07,2.05,3.73,5.34,5.57,4.83,3.35,2.07,0.22,1.77,4.41,6.27,6.23,4.93,4.65,6.24,6.7,8.09,7.87,8.46,8.62,8.27,6.52,6.79,7.09,6.24,6.64,6.43,6.37,6.95,7.83,6.75,5.65,6.04,6.48,4.66,4.6,4.57,5.49,4.29,3.38,2.03,1.54,1.43,1.84,2.62,3.03,3.12,2.16]],
+["Materials",455,-0.28,-4.69,6.07,24.98,-0.1,-1.64,6.61,20.91,[[4.54,11.97],[6.18,19.03],[6.25,8.1],[2.52,2.47],[6.61,-1.64]],[0.0,0.95,-0.53,-0.76,-0.3,2.6,2.13,-0.28,-2.08,-3.62,-1.55,-2.24,-1.72,-0.34,-1.74,-4.59,-5.03,-3.77,-1.45,0.01,-2.46,-0.34,-1.87,-1.13,-2.75,-1.07,-0.91,0.38,4.15,5.95,7.54,9.68,10.77,10.98,10.32,7.86,9.96,9.95,9.63,14.04,14.72,17.3,17.57,17.8,16.4,17.28,14.89,15.34,11.85,12.67,12.79,12.65,12.49,13.88,12.63,9.15,8.68,6.44,7.78,7.23,8.92]],
+["Real Estate",54,-0.97,-8.09,-11.85,-1.18,-0.8,-5.04,-11.3,-5.24,[[-5.72,-5.49],[-8.63,-8.09],[-9.26,-6.29],[-10.59,-5.87],[-11.3,-5.04]],[0.0,-0.76,-2.75,-3.43,-3.72,-3.58,-3.26,-4.31,-3.97,-4.83,-4.48,-4.3,-5.48,-5.57,-5.19,-4.27,-4.42,-4.02,-5.26,-4.86,-5.87,-4.37,-3.45,-2.63,-3.41,-2.97,-2.86,-1.76,-0.94,-1.65,-1.68,-1.9,-2.01,-2.99,-3.25,-3.97,-4.94,-4.99,-5.83,-5.9,-7.48,-7.28,-7.29,-7.26,-8.49,-9.4,-9.27,-9.37,-10.22,-9.85,-9.5,-9.31,-10.69,-11.3,-11.89,-12.69,-12.72,-13.08,-13.64,-13.09,-13.51]],
+["Consumer Discretionary",84,-0.59,-8.61,-6.91,4.14,-0.41,-5.56,-6.36,0.08,[[8.89,-4.09],[2.71,-8.8],[-0.2,-8.48],[-3.24,-8.08],[-6.36,-5.56]],[0.0,1.69,1.66,0.87,0.79,-0.87,-0.23,0.39,0.9,1.31,1.12,0.39,1.6,1.51,1.97,2.44,2.91,2.71,1.91,0.57,-0.87,-0.46,1.52,4.31,4.45,3.42,3.89,4.7,5.46,6.08,5.95,5.37,5.31,4.31,4.03,3.91,3.27,0.76,-0.31,-0.41,-0.79,-1.4,-0.53,-0.54,-0.96,-2.57,-2.64,-3.09,-4.72,-4.52,-4.47,-4.33,-5.16,-6.67,-7.45,-8.14,-8.43,-8.0,-7.88,-8.58,-8.71]],
+["Tech",76,0.12,-10.76,-0.58,16.37,0.29,-7.71,-0.04,12.3,[[9.96,8.99],[3.76,8.11],[-8.31,-1.38],[-5.51,-7.4],[-0.04,-7.71]],[0.0,2.25,4.66,3.63,2.53,2.25,2.28,4.29,4.74,4.12,4.27,2.47,1.11,2.78,2.02,0.53,0.07,1.16,1.13,-0.74,-4.78,-4.09,-2.77,-1.23,-0.49,2.39,1.8,4.93,7.68,8.98,8.62,9.67,8.99,10.39,10.62,11.91,13.51,11.43,10.11,10.11,11.19,11.16,13.16,13.75,9.22,9.21,9.53,8.3,6.13,4.55,5.25,4.27,1.98,1.02,-0.47,-2.14,-3.88,-3.28,-2.16,-2.83,-2.02]]
 ];
 // [label, count, w1w, w1m, w3m, w6m, rel1w, rel1m, rel3m, rel6m, tail, lineSeries]
 // tail: [[rel3m, rel1m], ...] weekly snapshots, oldest first, last entry = today
@@ -306,8 +319,29 @@ const DATA = [
 
 const BENCH = [-0.18,-3.05,-0.54,4.07];
 // [b1w, b1m, b3m, b6m]
-const BENCH_LINE = [[0.0,1.43,1.98,3.04,2.22,2.43,2.86,4.32,5.18,5.66,5.64,5.3,5.5,4.95,4.89,3.95,3.51,3.61,3.49,3.79,3.54,4.1,4.85,4.46,3.36,4.16,3.88,3.92,2.97,3.78,3.84,3.82,2.77,2.8,1.57,0.8,0.79,0.11,0.31,0.65,0.63]];
-const LINE_CHART_WEEKS = 8;
+const BENCH_LINE = [0.0,-0.33,-0.82,-1.44,-1.43,-0.08,-0.29,-0.57,-0.82,-0.97,-0.58,-0.51,-0.54,-0.22,-0.18,-0.7,-0.7,-0.75,-0.34,-0.14,-0.92,0.49,1.04,2.09,1.28,1.48,1.91,3.35,4.21,4.68,4.67,4.33,4.53,3.98,3.92,2.99,2.56,2.66,2.53,2.83,2.58,3.14,3.88,3.49,2.4,3.2,2.92,2.96,2.02,2.82,2.88,2.86,1.82,1.85,0.63,-0.13,-0.14,-0.81,-0.62,-0.28,-0.3];
+const LINE_CHART_MAX_WEEKS = 12;
+const LINE_DATES = ["26 Jun", "29 Jun", "30 Jun", "1 Jul", "2 Jul", "3 Jul", "6 Jul", "7 Jul", "8 Jul", "9 Jul", "10 Jul", "13 Jul", "14 Jul", "15 Jul", "16 Jul", "17 Jul", "20 Jul", "21 Jul", "22 Jul", "23 Jul", "24 Jul", "27 Jul", "28 Jul", "29 Jul", "30 Jul", "31 Jul", "3 Aug", "4 Aug", "5 Aug", "6 Aug", "7 Aug", "10 Aug", "11 Aug", "12 Aug", "13 Aug", "14 Aug", "17 Aug", "18 Aug", "19 Aug", "20 Aug", "21 Aug", "24 Aug", "25 Aug", "26 Aug", "27 Aug", "28 Aug", "31 Aug", "1 Sep", "2 Sep", "3 Sep", "4 Sep", "7 Sep", "8 Sep", "9 Sep", "10 Sep", "11 Sep", "14 Sep", "15 Sep", "16 Sep", "17 Sep", "18 Sep"]; // real trading dates, one per index, aligned to the max-weeks series
+const LINE_WEEKS_OPTIONS = [4, 8, 12].filter(w => w <= LINE_CHART_MAX_WEEKS);
+let lineWeeks = 8;
+
+// The baked series (DATA[i][11] / BENCH_LINE) are indexed to 0% at
+// LINE_CHART_MAX_WEEKS ago. Picking a shorter lookback means re-basing
+// to 0% at that later start point, not just slicing - otherwise a
+// sector that was already up 5% at the new start date would wrongly
+// carry that 5% into the shorter window's baseline.
+function rebaseSeries(series, weeks){
+  const totalDays = (series.length - 1);
+  const daysPerWeek = totalDays / LINE_CHART_MAX_WEEKS;
+  const startIdx = Math.round(totalDays - weeks * daysPerWeek);
+  let base = null;
+  for (let i = startIdx; i < series.length; i++) { if (series[i] !== null) { base = series[i]; break; } }
+  if (base === null) return { series: series.slice(startIdx).map(() => null), startIdx };
+  return {
+    series: series.slice(startIdx).map(v => v === null ? null : ((1 + v/100) / (1 + base/100) * 100 - 100)),
+    startIdx,
+  };
+}
 
 const LINE_COLORS = [
   '#7bc0a8', '#e8b355', '#e0847a', '#7ba7d9', '#b98fd9',
@@ -332,6 +366,13 @@ function quadrantColor(rel3m, rel1m){
 }
 
 let sortKey = 'rel1m', sortDir = -1;
+// Click-to-isolate: with up to 11 sectors' trails crossing each other,
+// no static styling keeps every path legible at once - real RRG tools
+// (StockCharts, Bloomberg, Optuma) solve this the same way, by letting
+// you click one symbol to bring its full trail to the front at full
+// opacity while every other trail fades into the background.
+let selectedSector = null;
+let quadPoints = []; // [{label, px, py}] from the most recent drawQuadrant(), for click hit-testing
 function render(){
   const rows = [...DATA];
   rows.sort((a,b) => {
@@ -374,14 +415,19 @@ function isLightTheme(){ return document.documentElement.getAttribute('data-them
 function drawQuadrant(){
   const canvas = document.getElementById('quadCanvas');
   const dpr = window.devicePixelRatio || 1;
-  const size = Math.min(canvas.parentElement.clientWidth, 920);
-  canvas.style.width = size + 'px';
-  canvas.style.height = size + 'px';
-  canvas.width = size * dpr;
-  canvas.height = size * dpr;
+  // Wide-and-short (not square) so the quadrant fits above the fold on a
+  // normal screen - a real RRG doesn't need equal-unit axes anyway, since
+  // rel3m and rel1m already get independent scales below.
+  const wrapW = canvas.parentElement.clientWidth;
+  const w = Math.max(320, Math.min(wrapW, 1400));
+  const h = Math.round(w * (620/1400));
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
   const ctx = canvas.getContext('2d');
   ctx.setTransform(dpr,0,0,dpr,0,0);
-  ctx.clearRect(0,0,size,size);
+  ctx.clearRect(0,0,w,h);
 
   const pts = DATA.filter(r => r[8] !== null && r[7] !== null);
   // Independent X/Y scaling - rel3m (X) naturally swings much wider than
@@ -398,11 +444,11 @@ function drawQuadrant(){
       if (r1 !== null) maxY = Math.max(maxY, Math.abs(r1));
     });
   });
-  const pad = 60;
-  const plotSize = size - pad*2;
-  const scaleX = (plotSize/2) / (maxX * 1.15);
-  const scaleY = (plotSize/2) / (maxY * 1.15);
-  const cx = size/2, cy = size/2;
+  const padX = 70, padY = 46;
+  const plotW = w - padX*2, plotH = h - padY*2;
+  const scaleX = (plotW/2) / (maxX * 1.15);
+  const scaleY = (plotH/2) / (maxY * 1.15);
+  const cx = w/2, cy = h/2;
   const X = v => cx + v*scaleX;
   const Y = v => cy - v*scaleY;
 
@@ -412,25 +458,25 @@ function drawQuadrant(){
 
   // quadrant tints
   ctx.fillStyle = isLightTheme() ? 'rgba(123,192,168,.10)' : 'rgba(123,192,168,.07)';
-  ctx.fillRect(cx, pad, plotSize/2, plotSize/2);
+  ctx.fillRect(cx, padY, plotW/2, plotH/2);
   ctx.fillStyle = isLightTheme() ? 'rgba(232,179,85,.10)' : 'rgba(232,179,85,.07)';
-  ctx.fillRect(cx, cy, plotSize/2, plotSize/2);
+  ctx.fillRect(cx, cy, plotW/2, plotH/2);
   ctx.fillStyle = isLightTheme() ? 'rgba(224,132,122,.10)' : 'rgba(224,132,122,.07)';
-  ctx.fillRect(pad, cy, plotSize/2, plotSize/2);
+  ctx.fillRect(padX, cy, plotW/2, plotH/2);
   ctx.fillStyle = isLightTheme() ? 'rgba(123,167,217,.10)' : 'rgba(123,167,217,.07)';
-  ctx.fillRect(pad, pad, plotSize/2, plotSize/2);
+  ctx.fillRect(padX, padY, plotW/2, plotH/2);
 
   // axes
   ctx.strokeStyle = gridColor; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(pad, cy); ctx.lineTo(size-pad, cy); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(cx, pad); ctx.lineTo(cx, size-pad); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(padX, cy); ctx.lineTo(w-padX, cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, padY); ctx.lineTo(cx, h-padY); ctx.stroke();
 
   ctx.font = '600 11px "IBM Plex Mono", monospace';
   ctx.fillStyle = faintColor;
   ctx.textAlign = 'center';
-  ctx.fillText('3-month relative to XJO →', cx, size-pad+30);
+  ctx.fillText('3-month relative to XJO →', cx, h-padY+30);
   ctx.save();
-  ctx.translate(pad-38, cy);
+  ctx.translate(padX-48, cy);
   ctx.rotate(-Math.PI/2);
   ctx.fillText('1-month relative to XJO →', 0, 0);
   ctx.restore();
@@ -438,28 +484,34 @@ function drawQuadrant(){
   ctx.font = '700 10px "IBM Plex Mono", monospace';
   ctx.fillStyle = textColor;
   ctx.textAlign = 'left';
-  ctx.fillText('LEADING', cx+8, pad+14);
-  ctx.fillText('IMPROVING', pad+8, pad+14);
+  ctx.fillText('LEADING', cx+8, padY+14);
+  ctx.fillText('IMPROVING', padX+8, padY+14);
   ctx.textAlign = 'right';
-  ctx.fillText('WEAKENING', size-pad-8, size-pad-8);
+  ctx.fillText('WEAKENING', w-padX-8, h-padY-8);
   ctx.textAlign = 'left';
-  ctx.fillText('LAGGING', pad+8, size-pad-8);
+  ctx.fillText('LAGGING', padX+8, h-padY-8);
 
   // Trailing tail (weekly snapshots, oldest to newest) drawn first, under
   // everything else - a faint, thin, fading line + small dots showing the
-  // actual rotation path, not just today's static position.
-  pts.forEach(r => {
+  // actual rotation path, not just today's static position. When a sector
+  // is isolated (click-to-select), every other tail is drawn first at a
+  // heavily muted opacity, then the selected one is drawn last (on top,
+  // full strength) so it's never buried under a crossing trail.
+  const drawTail = (r, isSelected) => {
+    const [label] = r;
     const tail = r[10] || [];
     const validTail = tail.filter(([r3, r1]) => r3 !== null && r1 !== null);
     if (validTail.length < 2) return;
     const n = validTail.length;
+    const dim = selectedSector !== null && !isSelected;
+    const mute = dim ? 0.12 : 1;
     for (let i = 1; i < n; i++) {
       const [pr3, pr1] = validTail[i-1];
       const [cr3, cr1] = validTail[i];
-      const alpha = 0.12 + 0.55 * (i / (n-1));
-      ctx.strokeStyle = quadrantColor(cr3, cr1);
+      const alpha = (0.12 + 0.55 * (i / (n-1))) * mute;
+      ctx.strokeStyle = dim ? faintColor : quadrantColor(cr3, cr1);
       ctx.globalAlpha = alpha;
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = isSelected ? 2.5 : 1.5;
       ctx.beginPath();
       ctx.moveTo(X(pr3), Y(pr1));
       ctx.lineTo(X(cr3), Y(cr1));
@@ -470,15 +522,20 @@ function drawQuadrant(){
     // own larger, bordered dot in the pass below)
     for (let i = 0; i < n - 1; i++) {
       const [r3, r1] = validTail[i];
-      const alpha = 0.15 + 0.5 * (i / (n-1));
+      const alpha = (0.15 + 0.5 * (i / (n-1))) * mute;
       ctx.globalAlpha = alpha;
       ctx.beginPath();
-      ctx.arc(X(r3), Y(r1), 2.5, 0, Math.PI*2);
-      ctx.fillStyle = quadrantColor(r3, r1);
+      ctx.arc(X(r3), Y(r1), isSelected ? 3.5 : 2.5, 0, Math.PI*2);
+      ctx.fillStyle = dim ? faintColor : quadrantColor(r3, r1);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
-  });
+  };
+  pts.forEach(r => { if (r[0] !== selectedSector) drawTail(r, false); });
+  if (selectedSector !== null) {
+    const sel = pts.find(r => r[0] === selectedSector);
+    if (sel) drawTail(sel, true);
+  }
 
   // Dots first (all of them), then labels in a separate pass with simple
   // collision avoidance - with up to 11 sectors often clustered near the
@@ -487,14 +544,19 @@ function drawQuadrant(){
     const [label, count, w1w, w1m, w3m, w6m, rel1w, rel1m, rel3m, rel6m] = r;
     return { label, px: X(rel3m), py: Y(rel1m), rel3m, rel1m };
   });
+  quadPoints = plotted;
   plotted.forEach(p => {
+    const isSelected = p.label === selectedSector;
+    const dim = selectedSector !== null && !isSelected;
+    ctx.globalAlpha = dim ? 0.25 : 1;
     ctx.beginPath();
-    ctx.arc(p.px, p.py, 6, 0, Math.PI*2);
-    ctx.fillStyle = quadrantColor(p.rel3m, p.rel1m);
+    ctx.arc(p.px, p.py, isSelected ? 8 : 6, 0, Math.PI*2);
+    ctx.fillStyle = dim ? faintColor : quadrantColor(p.rel3m, p.rel1m);
     ctx.fill();
     ctx.strokeStyle = isLightTheme() ? '#141209' : '#f5f2e8';
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = isSelected ? 2.5 : 1.5;
     ctx.stroke();
+    ctx.globalAlpha = 1;
   });
 
   ctx.font = '600 10px "IBM Plex Sans", sans-serif';
@@ -525,17 +587,24 @@ function drawQuadrant(){
         }
       }
       placed.push({ px: p.px, ly });
+      const isSelected = p.label === selectedSector;
+      const dim = selectedSector !== null && !isSelected;
       // faint leader line when the label had to move away from its dot
       if (Math.abs(ly - (p.py+4)) > 2) {
         ctx.strokeStyle = faintColor;
+        ctx.globalAlpha = dim ? 0.3 : 1;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(p.px+7, p.py);
         ctx.lineTo(p.px+9, ly-4);
         ctx.stroke();
+        ctx.globalAlpha = 1;
       }
-      ctx.fillStyle = textColor;
+      ctx.font = isSelected ? '700 11px "IBM Plex Sans", sans-serif' : '600 10px "IBM Plex Sans", sans-serif';
+      ctx.fillStyle = dim ? faintColor : textColor;
+      ctx.globalAlpha = dim ? 0.5 : 1;
       ctx.fillText(p.label, p.px+9, ly);
+      ctx.globalAlpha = 1;
   });
 }
 
@@ -560,8 +629,14 @@ function drawLineChart(){
   const padL = 46, padR = 140, padT = 14, padB = 26;
   const plotW = w - padL - padR, plotH = h - padT - padB;
 
-  const allSeries = DATA.map(r => r[11]).filter(s => s && s.length);
-  allSeries.push(BENCH_LINE);
+  // Re-baseline every series (and its matching date labels) to 0% at the
+  // start of whichever lookback is currently selected - see rebaseSeries().
+  const rebasedRows = DATA.map(r => (r[11] && r[11].length) ? rebaseSeries(r[11], lineWeeks) : null);
+  const bench = rebaseSeries(BENCH_LINE, lineWeeks);
+  const dates = LINE_DATES.slice(bench.startIdx);
+
+  const allSeries = rebasedRows.filter(Boolean).map(r => r.series);
+  allSeries.push(bench.series);
   const n = (allSeries[0] || []).length;
   if (!n) return;
   let minV = 0, maxV = 0;
@@ -590,22 +665,22 @@ function drawLineChart(){
     ctx.beginPath(); ctx.moveTo(padL, Y(0)); ctx.lineTo(w-padR, Y(0)); ctx.stroke();
   }
 
-  // x-axis week labels
+  // x-axis: real trading dates (not "Nw ago" offsets) - about 6 evenly
+  // spaced labels regardless of how many weeks are shown.
   ctx.textAlign = 'center';
   ctx.fillStyle = faintColor;
-  const daysPerWeek = (n-1) / LINE_CHART_WEEKS;
-  for (let wk = 0; wk <= LINE_CHART_WEEKS; wk += 2) {
-    const idx = wk * daysPerWeek;
-    const label = wk === 0 ? `${LINE_CHART_WEEKS}w ago` : (wk === LINE_CHART_WEEKS ? 'Today' : `${LINE_CHART_WEEKS-wk}w ago`);
-    ctx.fillText(label, X(idx), h-8);
+  const labelStep = Math.max(1, Math.round((n-1) / 6));
+  for (let idx = 0; idx < n; idx += labelStep) {
+    ctx.fillText(dates[idx] || '', X(idx), h-8);
   }
+  ctx.fillText(dates[n-1] || '', X(n-1), h-8);
 
   // benchmark (dashed)
   ctx.setLineDash([5,4]);
   ctx.strokeStyle = faintColor;
   ctx.lineWidth = 1.8;
   ctx.beginPath();
-  BENCH_LINE.forEach((v,i) => { if(v===null) return; const x=X(i), y=Y(v); i===0||BENCH_LINE[i-1]===null ? ctx.moveTo(x,y) : ctx.lineTo(x,y); });
+  bench.series.forEach((v,i) => { if(v===null) return; const x=X(i), y=Y(v); i===0||bench.series[i-1]===null ? ctx.moveTo(x,y) : ctx.lineTo(x,y); });
   ctx.stroke();
   ctx.setLineDash([]);
 
@@ -614,8 +689,9 @@ function drawLineChart(){
   // same x, so raw endpoints overlap constantly without this).
   const endpoints = [];
   DATA.forEach((r, idx) => {
-    const series = r[11];
-    if (!series || !series.length) return;
+    const rebased = rebasedRows[idx];
+    if (!rebased) return;
+    const series = rebased.series;
     const color = LINE_COLORS[idx % LINE_COLORS.length];
     ctx.strokeStyle = color;
     ctx.lineWidth = 2;
@@ -636,9 +712,9 @@ function drawLineChart(){
       }
     }
   });
-  for (let i = BENCH_LINE.length-1; i >= 0; i--) {
-    if (BENCH_LINE[i] !== null) {
-      const x = X(i), y = Y(BENCH_LINE[i]);
+  for (let i = bench.series.length-1; i >= 0; i--) {
+    if (bench.series[i] !== null) {
+      const x = X(i), y = Y(bench.series[i]);
       ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fillStyle = faintColor; ctx.fill();
       endpoints.push({ label: 'XJO', x, y, color: faintColor });
       break;
@@ -683,7 +759,51 @@ lineLegend.innerHTML = DATA.map((r,idx) =>
 ).join('') + `<span><span class="dot" style="background:none;border-top:2px dashed var(--ink-faint);width:.9rem;height:0;border-radius:0"></span> XJO</span>`;
 
 render();
+function updateQuadHint(){
+  const hint = document.getElementById('quadHint');
+  if (selectedSector !== null) {
+    hint.textContent = `Isolating ${selectedSector} — click it again (or empty space) to reset`;
+    hint.classList.add('active');
+  } else {
+    hint.textContent = 'Click a dot to isolate its trail';
+    hint.classList.remove('active');
+  }
+}
+function quadHitTest(e){
+  const canvas = document.getElementById('quadCanvas');
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  let closest = null, closestDist = 16; // px hit radius, generous for touch/trackpad
+  quadPoints.forEach(p => {
+    const d = Math.hypot(p.px - mx, p.py - my);
+    if (d < closestDist) { closestDist = d; closest = p; }
+  });
+  return closest;
+}
+const quadCanvasEl = document.getElementById('quadCanvas');
+quadCanvasEl.addEventListener('click', e => {
+  const hit = quadHitTest(e);
+  selectedSector = (hit && hit.label !== selectedSector) ? hit.label : null;
+  updateQuadHint();
+  drawQuadrant();
+});
+quadCanvasEl.addEventListener('mousemove', e => {
+  quadCanvasEl.style.cursor = quadHitTest(e) ? 'pointer' : 'default';
+});
 window.addEventListener('resize', () => { drawQuadrant(); drawLineChart(); });
+
+const lookbackToggle = document.getElementById('lookbackToggle');
+lookbackToggle.innerHTML = LINE_WEEKS_OPTIONS.map(wk =>
+  `<button data-weeks="${wk}" class="${wk === lineWeeks ? 'active' : ''}">${wk}W</button>`
+).join('');
+lookbackToggle.addEventListener('click', e => {
+  const wk = parseInt(e.target.dataset.weeks, 10);
+  if (!wk) return;
+  lineWeeks = wk;
+  lookbackToggle.querySelectorAll('button').forEach(b => b.classList.toggle('active', parseInt(b.dataset.weeks,10) === wk));
+  document.getElementById('lineWeeksLabel').textContent = wk;
+  drawLineChart();
+});
 drawLineChart();
 
 const themeBtn = document.getElementById('themeBtn');
