@@ -43,10 +43,17 @@ constant if it ever needs revisiting.
 
 Below the quadrant/table, a second chart plots every sector's own
 cumulative % change (not relative to XJO - each sector's own absolute
-move) on one shared scale, all indexed to 0% at LINE_CHART_WEEKS ago,
-plus XJO itself as a dashed reference line - the "who's actually up or
-down, and by how much" view the quadrant's relative-performance framing
-doesn't answer directly.
+move) on one shared scale, indexed to 0% at the start of whichever
+lookback the viewer picks (4W/8W/12W toggle, default 8W), plus XJO
+itself as a dashed reference line - the "who's actually up or down, and
+by how much" view the quadrant's relative-performance framing doesn't
+answer directly. To support that toggle without re-fetching per click,
+this script bakes cumulative_series() out to LINE_CHART_MAX_WEEKS (the
+longest option) and the browser re-baselines/slices down to whatever
+shorter window is selected - see sector_rotation_template.html's
+setLineWeeks(). x-axis labels are real trading dates (STW.AX's own
+DatetimeIndex, since every series shares the same ASX trading calendar),
+not "Nw ago" offsets.
 """
 import datetime
 import json
@@ -60,8 +67,9 @@ OUTPUT = "sector-rotation.html"
 BENCHMARK_SYMBOL = "STW.AX"
 TAIL_WEEKS = 4
 TAIL_STEP_DAYS = 5  # 1 trading week
-LINE_CHART_WEEKS = 8
-LINE_CHART_DAYS = LINE_CHART_WEEKS * TAIL_STEP_DAYS
+LINE_CHART_DEFAULT_WEEKS = 8
+LINE_CHART_MAX_WEEKS = 12
+LINE_CHART_MAX_DAYS = LINE_CHART_MAX_WEEKS * TAIL_STEP_DAYS
 
 DISPLAY_LABEL = {"Info Tech": "Tech"}
 
@@ -169,9 +177,16 @@ def main():
     # still-forming bar (see rs_utils.py's fetch_benchmark_series, same
     # fix) - constituents don't hit this since they come from the
     # already-committed price_cache.parquet, not a fresh fetch.
-    bench_closes = bench_df["Close"].dropna().tolist() if bench_df is not None else []
+    bench_close_series = bench_df["Close"].dropna() if bench_df is not None else None
+    bench_closes = bench_close_series.tolist() if bench_close_series is not None else []
     if not bench_closes:
         raise RuntimeError("Could not fetch STW.AX benchmark - aborting without writing a report.")
+
+    # Real trading dates for the line chart's x-axis, taken from the
+    # benchmark's own DatetimeIndex - every sector's line_series shares
+    # the same "N trading days ago" indexing, and they all trade on the
+    # same ASX calendar, so one shared date axis is valid for all of them.
+    line_dates = [d.strftime("%-d %b") for d in bench_close_series.index[-(LINE_CHART_MAX_DAYS + 1):]]
 
     bench_return = {label: pct_change_n(bench_closes, n) for label, n in WINDOWS}
 
@@ -205,14 +220,14 @@ def main():
 
         weights = [mcap for mcap, _ in items]
         closes_list = [closes for _, closes in items]
-        row["line_series"] = cumulative_series(closes_list, LINE_CHART_DAYS, weights=weights)
+        row["line_series"] = cumulative_series(closes_list, LINE_CHART_MAX_DAYS, weights=weights)
 
         rows.append(row)
 
     rows.sort(key=lambda r: (r["1M_rel"] if r["1M_rel"] is not None else -999), reverse=True)
     print(f"Computed rotation for {len(rows)} sector(s).")
 
-    bench_line_series = cumulative_series([bench_closes], LINE_CHART_DAYS)
+    bench_line_series = cumulative_series([bench_closes], LINE_CHART_MAX_DAYS)
 
     def js_num(v):
         if v is None or (isinstance(v, float) and math.isnan(v)):
@@ -231,18 +246,29 @@ def main():
     data_block = ",\n".join(data_lines)
 
     bench_vals = ",".join(js_num(bench_return[label]) for label, _ in WINDOWS)
-    bench_line_json = "[" + ",".join(js_num(v) for v in bench_line_series) + "]"
+    # NOT self-bracketed - matches bench_vals's convention above, since the
+    # template's own `const BENCH_LINE = [<<<BENCH_LINE_DATA>>>];` supplies
+    # the brackets. Self-bracketing here used to double-wrap the array
+    # (`[[0,-0.33,...]]`), which silently broke the benchmark line (Y(v)
+    # on an array is NaN) - found 2026-09-19 while adding the lookback
+    # toggle, but present in every build before that too.
+    bench_line_json = ",".join(js_num(v) for v in bench_line_series)
+    line_dates_json = json.dumps(line_dates)
 
     with open(TEMPLATE) as f:
         template = f.read()
     assert "<<<FULL_DATA>>>" in template, "template placeholder missing"
     assert "<<<BENCH_DATA>>>" in template, "template placeholder missing"
     assert "<<<BENCH_LINE_DATA>>>" in template, "template placeholder missing"
-    assert "<<<LINE_CHART_WEEKS>>>" in template, "template placeholder missing"
+    assert "<<<LINE_CHART_MAX_WEEKS>>>" in template, "template placeholder missing"
+    assert "<<<LINE_CHART_DEFAULT_WEEKS>>>" in template, "template placeholder missing"
+    assert "<<<LINE_DATES_DATA>>>" in template, "template placeholder missing"
     html = template.replace("<<<FULL_DATA>>>", data_block)
     html = html.replace("<<<BENCH_DATA>>>", bench_vals)
     html = html.replace("<<<BENCH_LINE_DATA>>>", bench_line_json)
-    html = html.replace("<<<LINE_CHART_WEEKS>>>", str(LINE_CHART_WEEKS))
+    html = html.replace("<<<LINE_CHART_MAX_WEEKS>>>", str(LINE_CHART_MAX_WEEKS))
+    html = html.replace("<<<LINE_CHART_DEFAULT_WEEKS>>>", str(LINE_CHART_DEFAULT_WEEKS))
+    html = html.replace("<<<LINE_DATES_DATA>>>", line_dates_json)
     build_date = datetime.date.today().strftime("%-d %b %Y")
     html = html.replace("<<<BUILD_DATE>>>", build_date)
 

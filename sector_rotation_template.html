@@ -219,7 +219,7 @@ document.addEventListener('keydown', function(e){
 <style>
 .quadwrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.1rem;
   box-shadow:var(--shadow);margin-bottom:1.6rem}
-.quadwrap canvas{display:block;width:100%;max-width:920px;margin:0 auto}
+.quadwrap canvas{display:block;width:100%;max-width:1400px;margin:0 auto}
 #lineCanvas{max-width:100%}
 .linehead{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.05rem;margin:0 0 .3rem;color:var(--ink)}
 .linesub{font-size:.82rem;color:var(--ink-faint);margin-bottom:.9rem;max-width:56rem}
@@ -227,6 +227,15 @@ document.addEventListener('keydown', function(e){
   font-size:.76rem;color:var(--ink-faint)}
 .quad-legend span{display:inline-flex;align-items:center;gap:.4rem}
 .quad-legend .dot{width:.6rem;height:.6rem;border-radius:50%;display:inline-block}
+.quad-hint{font-style:italic}
+.quad-hint.active{color:var(--accent);font-style:normal;font-weight:600}
+.linehead-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.6rem .9rem;margin-bottom:.3rem}
+.linehead{margin:0}
+.lookback{display:inline-flex;gap:.3rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.25rem}
+.lookback button{font-family:"IBM Plex Mono",monospace;font-size:.74rem;font-weight:600;border:none;background:transparent;
+  color:var(--ink-faint);padding:.3rem .6rem;border-radius:6px;cursor:pointer}
+.lookback button.active{background:var(--accent);color:var(--accent-ink)}
+.lookback button:hover:not(.active){color:var(--ink)}
 .rel-pos{color:var(--good)}
 .rel-neg{color:var(--bad)}
 </style>
@@ -246,13 +255,14 @@ document.addEventListener('keydown', function(e){
   <div class="notice">⚠ Each sector's return is a market-cap-weighted average of its own constituent stocks' price changes (not a raw ASX sector-index symbol — those reliably fail to fetch in this site's automated pipeline, see the build script's own notes). "vs XJO" compares that to STW.AX (the ASX 200 ETF this site uses as its market-wide benchmark) over the same window. The quadrant below plots 3-month relative performance (medium-term position) against 1-month relative performance (recent momentum) — the faint trailing line behind each dot is that same position 1-4 weeks ago, so you can see which way a sector is actually rotating, not just where it sits today.</div>
 
   <div class="quadwrap">
-    <canvas id="quadCanvas" width="920" height="920"></canvas>
+    <canvas id="quadCanvas" width="1400" height="620"></canvas>
     <div class="quad-legend">
       <span><span class="dot" style="background:#7bc0a8"></span> Leading — ahead &amp; accelerating</span>
       <span><span class="dot" style="background:#e8b355"></span> Weakening — ahead but cooling</span>
       <span><span class="dot" style="background:#e0847a"></span> Lagging — behind &amp; still falling</span>
       <span><span class="dot" style="background:#7ba7d9"></span> Improving — behind but catching up</span>
       <span>Faint tail = last 4 weekly snapshots</span>
+      <span id="quadHint" class="quad-hint">Click a dot to isolate its trail</span>
     </div>
   </div>
 
@@ -275,8 +285,11 @@ document.addEventListener('keydown', function(e){
   </div>
 
   <div class="quadwrap">
-    <h2 class="linehead">📈 Sector performance, last <<<LINE_CHART_WEEKS>>> weeks</h2>
-    <div class="linesub">Every sector's own cumulative % change, all on the same scale, indexed to 0% <<<LINE_CHART_WEEKS>>> weeks ago — not relative to XJO, just who's actually up or down and by how much. XJO itself is the dashed reference line.</div>
+    <div class="linehead-row">
+      <h2 class="linehead">📈 Sector performance, last <span id="lineWeeksLabel"><<<LINE_CHART_DEFAULT_WEEKS>>></span> weeks</h2>
+      <div class="lookback" id="lookbackToggle"></div>
+    </div>
+    <div class="linesub">Every sector's own cumulative % change, all on the same scale, indexed to 0% at the start of the window above — not relative to XJO, just who's actually up or down and by how much. XJO itself is the dashed reference line.</div>
     <canvas id="lineCanvas" width="1400" height="520"></canvas>
     <div class="quad-legend" id="lineLegend"></div>
   </div>
@@ -297,7 +310,28 @@ const DATA = [
 const BENCH = [<<<BENCH_DATA>>>];
 // [b1w, b1m, b3m, b6m]
 const BENCH_LINE = [<<<BENCH_LINE_DATA>>>];
-const LINE_CHART_WEEKS = <<<LINE_CHART_WEEKS>>>;
+const LINE_CHART_MAX_WEEKS = <<<LINE_CHART_MAX_WEEKS>>>;
+const LINE_DATES = <<<LINE_DATES_DATA>>>; // real trading dates, one per index, aligned to the max-weeks series
+const LINE_WEEKS_OPTIONS = [4, 8, 12].filter(w => w <= LINE_CHART_MAX_WEEKS);
+let lineWeeks = <<<LINE_CHART_DEFAULT_WEEKS>>>;
+
+// The baked series (DATA[i][11] / BENCH_LINE) are indexed to 0% at
+// LINE_CHART_MAX_WEEKS ago. Picking a shorter lookback means re-basing
+// to 0% at that later start point, not just slicing - otherwise a
+// sector that was already up 5% at the new start date would wrongly
+// carry that 5% into the shorter window's baseline.
+function rebaseSeries(series, weeks){
+  const totalDays = (series.length - 1);
+  const daysPerWeek = totalDays / LINE_CHART_MAX_WEEKS;
+  const startIdx = Math.round(totalDays - weeks * daysPerWeek);
+  let base = null;
+  for (let i = startIdx; i < series.length; i++) { if (series[i] !== null) { base = series[i]; break; } }
+  if (base === null) return { series: series.slice(startIdx).map(() => null), startIdx };
+  return {
+    series: series.slice(startIdx).map(v => v === null ? null : ((1 + v/100) / (1 + base/100) * 100 - 100)),
+    startIdx,
+  };
+}
 
 const LINE_COLORS = [
   '#7bc0a8', '#e8b355', '#e0847a', '#7ba7d9', '#b98fd9',
@@ -322,6 +356,13 @@ function quadrantColor(rel3m, rel1m){
 }
 
 let sortKey = 'rel1m', sortDir = -1;
+// Click-to-isolate: with up to 11 sectors' trails crossing each other,
+// no static styling keeps every path legible at once - real RRG tools
+// (StockCharts, Bloomberg, Optuma) solve this the same way, by letting
+// you click one symbol to bring its full trail to the front at full
+// opacity while every other trail fades into the background.
+let selectedSector = null;
+let quadPoints = []; // [{label, px, py}] from the most recent drawQuadrant(), for click hit-testing
 function render(){
   const rows = [...DATA];
   rows.sort((a,b) => {
@@ -364,14 +405,19 @@ function isLightTheme(){ return document.documentElement.getAttribute('data-them
 function drawQuadrant(){
   const canvas = document.getElementById('quadCanvas');
   const dpr = window.devicePixelRatio || 1;
-  const size = Math.min(canvas.parentElement.clientWidth, 920);
-  canvas.style.width = size + 'px';
-  canvas.style.height = size + 'px';
-  canvas.width = size * dpr;
-  canvas.height = size * dpr;
+  // Wide-and-short (not square) so the quadrant fits above the fold on a
+  // normal screen - a real RRG doesn't need equal-unit axes anyway, since
+  // rel3m and rel1m already get independent scales below.
+  const wrapW = canvas.parentElement.clientWidth;
+  const w = Math.max(320, Math.min(wrapW, 1400));
+  const h = Math.round(w * (620/1400));
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
   const ctx = canvas.getContext('2d');
   ctx.setTransform(dpr,0,0,dpr,0,0);
-  ctx.clearRect(0,0,size,size);
+  ctx.clearRect(0,0,w,h);
 
   const pts = DATA.filter(r => r[8] !== null && r[7] !== null);
   // Independent X/Y scaling - rel3m (X) naturally swings much wider than
@@ -388,11 +434,11 @@ function drawQuadrant(){
       if (r1 !== null) maxY = Math.max(maxY, Math.abs(r1));
     });
   });
-  const pad = 60;
-  const plotSize = size - pad*2;
-  const scaleX = (plotSize/2) / (maxX * 1.15);
-  const scaleY = (plotSize/2) / (maxY * 1.15);
-  const cx = size/2, cy = size/2;
+  const padX = 70, padY = 46;
+  const plotW = w - padX*2, plotH = h - padY*2;
+  const scaleX = (plotW/2) / (maxX * 1.15);
+  const scaleY = (plotH/2) / (maxY * 1.15);
+  const cx = w/2, cy = h/2;
   const X = v => cx + v*scaleX;
   const Y = v => cy - v*scaleY;
 
@@ -402,25 +448,25 @@ function drawQuadrant(){
 
   // quadrant tints
   ctx.fillStyle = isLightTheme() ? 'rgba(123,192,168,.10)' : 'rgba(123,192,168,.07)';
-  ctx.fillRect(cx, pad, plotSize/2, plotSize/2);
+  ctx.fillRect(cx, padY, plotW/2, plotH/2);
   ctx.fillStyle = isLightTheme() ? 'rgba(232,179,85,.10)' : 'rgba(232,179,85,.07)';
-  ctx.fillRect(cx, cy, plotSize/2, plotSize/2);
+  ctx.fillRect(cx, cy, plotW/2, plotH/2);
   ctx.fillStyle = isLightTheme() ? 'rgba(224,132,122,.10)' : 'rgba(224,132,122,.07)';
-  ctx.fillRect(pad, cy, plotSize/2, plotSize/2);
+  ctx.fillRect(padX, cy, plotW/2, plotH/2);
   ctx.fillStyle = isLightTheme() ? 'rgba(123,167,217,.10)' : 'rgba(123,167,217,.07)';
-  ctx.fillRect(pad, pad, plotSize/2, plotSize/2);
+  ctx.fillRect(padX, padY, plotW/2, plotH/2);
 
   // axes
   ctx.strokeStyle = gridColor; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(pad, cy); ctx.lineTo(size-pad, cy); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(cx, pad); ctx.lineTo(cx, size-pad); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(padX, cy); ctx.lineTo(w-padX, cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, padY); ctx.lineTo(cx, h-padY); ctx.stroke();
 
   ctx.font = '600 11px "IBM Plex Mono", monospace';
   ctx.fillStyle = faintColor;
   ctx.textAlign = 'center';
-  ctx.fillText('3-month relative to XJO →', cx, size-pad+30);
+  ctx.fillText('3-month relative to XJO →', cx, h-padY+30);
   ctx.save();
-  ctx.translate(pad-38, cy);
+  ctx.translate(padX-48, cy);
   ctx.rotate(-Math.PI/2);
   ctx.fillText('1-month relative to XJO →', 0, 0);
   ctx.restore();
@@ -428,28 +474,34 @@ function drawQuadrant(){
   ctx.font = '700 10px "IBM Plex Mono", monospace';
   ctx.fillStyle = textColor;
   ctx.textAlign = 'left';
-  ctx.fillText('LEADING', cx+8, pad+14);
-  ctx.fillText('IMPROVING', pad+8, pad+14);
+  ctx.fillText('LEADING', cx+8, padY+14);
+  ctx.fillText('IMPROVING', padX+8, padY+14);
   ctx.textAlign = 'right';
-  ctx.fillText('WEAKENING', size-pad-8, size-pad-8);
+  ctx.fillText('WEAKENING', w-padX-8, h-padY-8);
   ctx.textAlign = 'left';
-  ctx.fillText('LAGGING', pad+8, size-pad-8);
+  ctx.fillText('LAGGING', padX+8, h-padY-8);
 
   // Trailing tail (weekly snapshots, oldest to newest) drawn first, under
   // everything else - a faint, thin, fading line + small dots showing the
-  // actual rotation path, not just today's static position.
-  pts.forEach(r => {
+  // actual rotation path, not just today's static position. When a sector
+  // is isolated (click-to-select), every other tail is drawn first at a
+  // heavily muted opacity, then the selected one is drawn last (on top,
+  // full strength) so it's never buried under a crossing trail.
+  const drawTail = (r, isSelected) => {
+    const [label] = r;
     const tail = r[10] || [];
     const validTail = tail.filter(([r3, r1]) => r3 !== null && r1 !== null);
     if (validTail.length < 2) return;
     const n = validTail.length;
+    const dim = selectedSector !== null && !isSelected;
+    const mute = dim ? 0.12 : 1;
     for (let i = 1; i < n; i++) {
       const [pr3, pr1] = validTail[i-1];
       const [cr3, cr1] = validTail[i];
-      const alpha = 0.12 + 0.55 * (i / (n-1));
-      ctx.strokeStyle = quadrantColor(cr3, cr1);
+      const alpha = (0.12 + 0.55 * (i / (n-1))) * mute;
+      ctx.strokeStyle = dim ? faintColor : quadrantColor(cr3, cr1);
       ctx.globalAlpha = alpha;
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = isSelected ? 2.5 : 1.5;
       ctx.beginPath();
       ctx.moveTo(X(pr3), Y(pr1));
       ctx.lineTo(X(cr3), Y(cr1));
@@ -460,15 +512,20 @@ function drawQuadrant(){
     // own larger, bordered dot in the pass below)
     for (let i = 0; i < n - 1; i++) {
       const [r3, r1] = validTail[i];
-      const alpha = 0.15 + 0.5 * (i / (n-1));
+      const alpha = (0.15 + 0.5 * (i / (n-1))) * mute;
       ctx.globalAlpha = alpha;
       ctx.beginPath();
-      ctx.arc(X(r3), Y(r1), 2.5, 0, Math.PI*2);
-      ctx.fillStyle = quadrantColor(r3, r1);
+      ctx.arc(X(r3), Y(r1), isSelected ? 3.5 : 2.5, 0, Math.PI*2);
+      ctx.fillStyle = dim ? faintColor : quadrantColor(r3, r1);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
-  });
+  };
+  pts.forEach(r => { if (r[0] !== selectedSector) drawTail(r, false); });
+  if (selectedSector !== null) {
+    const sel = pts.find(r => r[0] === selectedSector);
+    if (sel) drawTail(sel, true);
+  }
 
   // Dots first (all of them), then labels in a separate pass with simple
   // collision avoidance - with up to 11 sectors often clustered near the
@@ -477,14 +534,19 @@ function drawQuadrant(){
     const [label, count, w1w, w1m, w3m, w6m, rel1w, rel1m, rel3m, rel6m] = r;
     return { label, px: X(rel3m), py: Y(rel1m), rel3m, rel1m };
   });
+  quadPoints = plotted;
   plotted.forEach(p => {
+    const isSelected = p.label === selectedSector;
+    const dim = selectedSector !== null && !isSelected;
+    ctx.globalAlpha = dim ? 0.25 : 1;
     ctx.beginPath();
-    ctx.arc(p.px, p.py, 6, 0, Math.PI*2);
-    ctx.fillStyle = quadrantColor(p.rel3m, p.rel1m);
+    ctx.arc(p.px, p.py, isSelected ? 8 : 6, 0, Math.PI*2);
+    ctx.fillStyle = dim ? faintColor : quadrantColor(p.rel3m, p.rel1m);
     ctx.fill();
     ctx.strokeStyle = isLightTheme() ? '#141209' : '#f5f2e8';
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = isSelected ? 2.5 : 1.5;
     ctx.stroke();
+    ctx.globalAlpha = 1;
   });
 
   ctx.font = '600 10px "IBM Plex Sans", sans-serif';
@@ -515,17 +577,24 @@ function drawQuadrant(){
         }
       }
       placed.push({ px: p.px, ly });
+      const isSelected = p.label === selectedSector;
+      const dim = selectedSector !== null && !isSelected;
       // faint leader line when the label had to move away from its dot
       if (Math.abs(ly - (p.py+4)) > 2) {
         ctx.strokeStyle = faintColor;
+        ctx.globalAlpha = dim ? 0.3 : 1;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(p.px+7, p.py);
         ctx.lineTo(p.px+9, ly-4);
         ctx.stroke();
+        ctx.globalAlpha = 1;
       }
-      ctx.fillStyle = textColor;
+      ctx.font = isSelected ? '700 11px "IBM Plex Sans", sans-serif' : '600 10px "IBM Plex Sans", sans-serif';
+      ctx.fillStyle = dim ? faintColor : textColor;
+      ctx.globalAlpha = dim ? 0.5 : 1;
       ctx.fillText(p.label, p.px+9, ly);
+      ctx.globalAlpha = 1;
   });
 }
 
@@ -550,8 +619,14 @@ function drawLineChart(){
   const padL = 46, padR = 140, padT = 14, padB = 26;
   const plotW = w - padL - padR, plotH = h - padT - padB;
 
-  const allSeries = DATA.map(r => r[11]).filter(s => s && s.length);
-  allSeries.push(BENCH_LINE);
+  // Re-baseline every series (and its matching date labels) to 0% at the
+  // start of whichever lookback is currently selected - see rebaseSeries().
+  const rebasedRows = DATA.map(r => (r[11] && r[11].length) ? rebaseSeries(r[11], lineWeeks) : null);
+  const bench = rebaseSeries(BENCH_LINE, lineWeeks);
+  const dates = LINE_DATES.slice(bench.startIdx);
+
+  const allSeries = rebasedRows.filter(Boolean).map(r => r.series);
+  allSeries.push(bench.series);
   const n = (allSeries[0] || []).length;
   if (!n) return;
   let minV = 0, maxV = 0;
@@ -580,22 +655,22 @@ function drawLineChart(){
     ctx.beginPath(); ctx.moveTo(padL, Y(0)); ctx.lineTo(w-padR, Y(0)); ctx.stroke();
   }
 
-  // x-axis week labels
+  // x-axis: real trading dates (not "Nw ago" offsets) - about 6 evenly
+  // spaced labels regardless of how many weeks are shown.
   ctx.textAlign = 'center';
   ctx.fillStyle = faintColor;
-  const daysPerWeek = (n-1) / LINE_CHART_WEEKS;
-  for (let wk = 0; wk <= LINE_CHART_WEEKS; wk += 2) {
-    const idx = wk * daysPerWeek;
-    const label = wk === 0 ? `${LINE_CHART_WEEKS}w ago` : (wk === LINE_CHART_WEEKS ? 'Today' : `${LINE_CHART_WEEKS-wk}w ago`);
-    ctx.fillText(label, X(idx), h-8);
+  const labelStep = Math.max(1, Math.round((n-1) / 6));
+  for (let idx = 0; idx < n; idx += labelStep) {
+    ctx.fillText(dates[idx] || '', X(idx), h-8);
   }
+  ctx.fillText(dates[n-1] || '', X(n-1), h-8);
 
   // benchmark (dashed)
   ctx.setLineDash([5,4]);
   ctx.strokeStyle = faintColor;
   ctx.lineWidth = 1.8;
   ctx.beginPath();
-  BENCH_LINE.forEach((v,i) => { if(v===null) return; const x=X(i), y=Y(v); i===0||BENCH_LINE[i-1]===null ? ctx.moveTo(x,y) : ctx.lineTo(x,y); });
+  bench.series.forEach((v,i) => { if(v===null) return; const x=X(i), y=Y(v); i===0||bench.series[i-1]===null ? ctx.moveTo(x,y) : ctx.lineTo(x,y); });
   ctx.stroke();
   ctx.setLineDash([]);
 
@@ -604,8 +679,9 @@ function drawLineChart(){
   // same x, so raw endpoints overlap constantly without this).
   const endpoints = [];
   DATA.forEach((r, idx) => {
-    const series = r[11];
-    if (!series || !series.length) return;
+    const rebased = rebasedRows[idx];
+    if (!rebased) return;
+    const series = rebased.series;
     const color = LINE_COLORS[idx % LINE_COLORS.length];
     ctx.strokeStyle = color;
     ctx.lineWidth = 2;
@@ -626,9 +702,9 @@ function drawLineChart(){
       }
     }
   });
-  for (let i = BENCH_LINE.length-1; i >= 0; i--) {
-    if (BENCH_LINE[i] !== null) {
-      const x = X(i), y = Y(BENCH_LINE[i]);
+  for (let i = bench.series.length-1; i >= 0; i--) {
+    if (bench.series[i] !== null) {
+      const x = X(i), y = Y(bench.series[i]);
       ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fillStyle = faintColor; ctx.fill();
       endpoints.push({ label: 'XJO', x, y, color: faintColor });
       break;
@@ -673,7 +749,51 @@ lineLegend.innerHTML = DATA.map((r,idx) =>
 ).join('') + `<span><span class="dot" style="background:none;border-top:2px dashed var(--ink-faint);width:.9rem;height:0;border-radius:0"></span> XJO</span>`;
 
 render();
+function updateQuadHint(){
+  const hint = document.getElementById('quadHint');
+  if (selectedSector !== null) {
+    hint.textContent = `Isolating ${selectedSector} — click it again (or empty space) to reset`;
+    hint.classList.add('active');
+  } else {
+    hint.textContent = 'Click a dot to isolate its trail';
+    hint.classList.remove('active');
+  }
+}
+function quadHitTest(e){
+  const canvas = document.getElementById('quadCanvas');
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  let closest = null, closestDist = 16; // px hit radius, generous for touch/trackpad
+  quadPoints.forEach(p => {
+    const d = Math.hypot(p.px - mx, p.py - my);
+    if (d < closestDist) { closestDist = d; closest = p; }
+  });
+  return closest;
+}
+const quadCanvasEl = document.getElementById('quadCanvas');
+quadCanvasEl.addEventListener('click', e => {
+  const hit = quadHitTest(e);
+  selectedSector = (hit && hit.label !== selectedSector) ? hit.label : null;
+  updateQuadHint();
+  drawQuadrant();
+});
+quadCanvasEl.addEventListener('mousemove', e => {
+  quadCanvasEl.style.cursor = quadHitTest(e) ? 'pointer' : 'default';
+});
 window.addEventListener('resize', () => { drawQuadrant(); drawLineChart(); });
+
+const lookbackToggle = document.getElementById('lookbackToggle');
+lookbackToggle.innerHTML = LINE_WEEKS_OPTIONS.map(wk =>
+  `<button data-weeks="${wk}" class="${wk === lineWeeks ? 'active' : ''}">${wk}W</button>`
+).join('');
+lookbackToggle.addEventListener('click', e => {
+  const wk = parseInt(e.target.dataset.weeks, 10);
+  if (!wk) return;
+  lineWeeks = wk;
+  lookbackToggle.querySelectorAll('button').forEach(b => b.classList.toggle('active', parseInt(b.dataset.weeks,10) === wk));
+  document.getElementById('lineWeeksLabel').textContent = wk;
+  drawLineChart();
+});
 drawLineChart();
 
 const themeBtn = document.getElementById('themeBtn');
