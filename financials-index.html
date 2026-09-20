@@ -133,6 +133,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   width:2.1rem;height:2.1rem;border-radius:6px;cursor:pointer;font-size:1rem;
   align-items:center;justify-content:center;flex:none;margin-left:auto}
 .navburger:hover{border-color:var(--nav-accent);color:var(--nav-accent)}
+.cart-egg{font-size:1.15rem;display:flex;align-items:center;padding:0 .3rem;text-decoration:none;opacity:.75;filter:grayscale(.3)}
+.cart-egg:hover{opacity:1;filter:none;transform:scale(1.15)}
 @media (max-width:640px){
   .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}
@@ -165,6 +167,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
+<a href="volume-anomaly.html">Volume Anomaly</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -184,7 +187,9 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="red-folder-news.html">Red Folder News</a>
 <a href="sector-rotation.html">Sector Rotation</a>
 <a href="earnings-calendar.html">Earnings Calendar</a>
+<a href="conviction-stack.html">Conviction Stack</a>
 </div></div>
+<a class="cart-egg" href="timing-the-carts.html" title="Timing the Carts">🥟</a>
 </div>
 </nav>
 <script>
@@ -216,6 +221,7 @@ document.addEventListener('keydown', function(e){
   }
 });
 </script>
+
 
 <div class="wrap">
   <div class="topbar">
@@ -282,9 +288,9 @@ const DATA = [
 ["AEG","Aland Equity Group Limited","Capital Markets",58267116,0.078,-1.3,0.135,null],
 ["AFA","ASF Group Limited","Capital Markets",40383460,0.051,0.0,0.35,null],
 ["AFG","Australian Finance Group Limited","Mortgage Finance",356733152,1.32,-7.4,2.76,7.27],
-["AMP","AMP Limited","Financial Conglomerates",6130636190,2.52,1.2,2.54,1.98],
-["ANZ","ANZ Group Holdings Limited","Banks - Diversified",113455622909,37.68,-0.3,41.0,4.41],
-["AOH","Assetora Ltd","Financials",null,null,null,0.055,null],
+["AMP","AMP Limited","Financial Conglomerates",6130635776,2.52,1.2,2.54,1.98],
+["ANZ","ANZ Group Holdings Limited","Banks - Diversified",113455620096,37.68,-0.3,41.0,4.41],
+["AOH","","Financials",null,null,null,null,null],
 ["APL","Associate Global Partners Limited","Asset Management",15137928,0.255,0.0,0.315,null],
 ["ARC","ARC Funds Limited","Asset Management",4950258,0.055,0.0,0.195,null],
 ["ASX","ASX Limited","Financial Data & Stock Exchanges",10890190848,55.73,0.8,62.9,3.76],
@@ -298,9 +304,9 @@ const DATA = [
 ["BPH","BPH Energy Limited","Asset Management",4061547,0.003,0.0,0.015,null],
 ["BTI","Bailador Technology Investments Limited","Asset Management",139464304,0.915,-1.1,1.7,7.65],
 ["BTN","Butn Limited","Credit Services",3817169,0.01,0.0,0.11,null],
-["BWF","BlackWall Limited","Asset Management",16615175,0.097,1.0,0.305,9.52],
+["BWF","BlackWall Limited","Asset Management",16575902,0.097,1.0,0.305,9.52],
 ["CAF","Centrepoint Alliance Limited","Asset Management",77775256,0.37,-0.7,0.445,8.11],
-["CBA","Commonwealth Bank of Australia","Banks - Diversified",254837129216,152.43,-1.0,185.59,3.31],
+["CBA","Commonwealth Bank of Australia","Banks - Diversified",254881808384,152.43,-1.0,185.59,3.31],
 ["CCA","Change Financial Limited","Fintech / Payments",27618120,0.04,-9.1,0.105,null],
 ["CCL","Cuscal Limited","Fintech / Payments",1206868224,6.04,4.0,6.04,1.9],
 ["CCP","Credit Corp Group Limited","Credit Services",940005312,13.81,1.5,17.01,6.59],
@@ -318,7 +324,7 @@ const DATA = [
 ["FID","Fiducian Group Ltd","Asset Management",281075296,8.88,-0.1,13.61,6.35],
 ["FNX","Finexia Financial Group Limited","Capital Markets",11214715,0.18,0.0,0.2,null],
 ["FPR","FleetPartners Group Limited","Consumer Finance",999797504,4.68,-0.2,4.7,5.45],
-["FSA","FSA Group Limited","Credit Services",158807888,1.27,0.0,1.395,5.51],
+["FSA","FSA Group Limited","Credit Services",155903392,1.27,0.0,1.395,5.51],
 ["GDG","Generation Development Group Limited","Asset Management",1195757824,2.98,2.1,7.77,0.67],
 ["GOW","Gowing Bros. Limited","Asset Management",114850288,2.12,0.0,2.36,2.83],
 ["GQG","GQG Partners Inc.","Asset Management",3204003584,1.07,2.9,1.965,19.39],
@@ -329,7 +335,7 @@ const DATA = [
 ["HMY","Harmoney Corp Limited","Credit Services",72619312,0.705,-2.1,1.0,null],
 ["HUB","HUB24 Limited","Capital Markets",5742972416,70.23,1.9,122.03,1.2],
 ["HUM","Humm Group Limited","Credit Services",199441216,0.395,0.0,0.775,5.06],
-["IAG","Insurance Australia Group Limited","Insurance - Property & Casualty",18727002704,8.01,-1.1,8.72,4.0],
+["IAG","Insurance Australia Group Limited","Insurance - Property & Casualty",18727004160,8.01,-1.1,8.72,4.0],
 ["IAM","Income Asset Management Group Limited","Asset Management",14893934,0.016,0.0,0.04,null],
 ["ICU","Investor Centre Limited","Capital Markets",304511,0.001,0.0,0.001,null],
 ["IFL","","Asset Management",null,null,null,null,null],
@@ -349,10 +355,10 @@ const DATA = [
 ["MFG","Magellan Financial Group Limited","Asset Management",2472536832,8.45,1.3,11.55,6.04],
 ["MME","MoneyMe Limited","Credit Services",53205628,0.065,0.0,0.135,null],
 ["MPL","Medibank Private Limited","Insurance - Specialty",12585795584,4.57,-0.9,5.31,4.2],
-["MQG","Macquarie Group Limited","Financial Conglomerates",91542035185,238.62,-0.4,267.905,null],
+["MQG","Macquarie Group Limited","Financial Conglomerates",90947239936,238.62,-0.4,267.905,3.43],
 ["MYS","MyState Limited","Banks - Regional",818079680,4.8,-0.8,5.25,5.21],
 ["N1H","N1 Holdings Limited","Mortgage Finance",12327781,0.14,-6.7,0.175,2.14],
-["NAB","National Australia Bank Limited","Banks - Diversified",117769557450,38.47,-1.9,49.45,4.42],
+["NAB","National Australia Bank Limited","Banks - Diversified",117769560064,38.47,-1.9,49.45,4.42],
 ["NGI","Navigator Global Investments Limited","Asset Management",1415659776,2.32,7.9,3.34,null],
 ["NHF","nib holdings limited","Insurance - Specialty",3212157184,6.57,0.3,7.73,4.41],
 ["NOL","NobleOak Life Limited","Insurance - Life",122332696,1.315,5.2,1.6,null],
@@ -362,14 +368,14 @@ const DATA = [
 ["OFX","OFX Group Limited","Capital Markets",174564832,0.75,-2.0,0.92,null],
 ["PAC","Pacific Current Group Limited","Asset Management",312666656,11.17,0.4,12.45,4.3],
 ["PCG","Pengana Capital Group Limited","Asset Management",87849640,0.68,-2.2,1.01,7.35],
-["PFG","Prime Financial Group Limited","Asset Management",54039572,0.2,0.0,0.275,8.6],
+["PFG","Prime Financial Group Limited","Asset Management",53717452,0.2,0.0,0.275,8.6],
 ["PLT","Plenti Group Limited","Credit Services",137375920,0.745,1.4,1.65,null],
 ["PNC","Pioneer Credit Limited","Credit Services",124801944,0.65,-5.1,0.785,null],
-["PNI","Pinnacle Investment Management Group Limited","Asset Management",3340052224,13.86,1.2,21.13,4.33],
-["PPM","Pepper Money Limited","Credit Services",766198016,1.705,-1.2,2.58,8.45],
+["PNI","Pinnacle Investment Management Group Limited","Asset Management",3339705856,13.86,1.2,21.13,4.33],
+["PPM","Pepper Money Limited","Credit Services",765979840,1.705,-1.2,2.58,8.45],
 ["PPT","Perpetual Limited","Asset Management",2267548160,19.6,4.6,21.41,6.43],
 ["PVL","Powerhouse Ventures Limited","Asset Management",20981088,0.125,4.2,0.17,null],
-["QBE","QBE Insurance Group Limited","Insurance - Property & Casualty",34945232306,23.39,0.6,25.83,4.75],
+["QBE","QBE Insurance Group Limited","Insurance - Property & Casualty",34945232896,23.39,0.6,25.83,4.75],
 ["QFE","QuickFee Limited","Fintech / Payments",31191114,0.081,0.0,0.2,104.94],
 ["QRI","Qualitas Real Estate Income Fund","Asset Management",981400128,1.555,1.3,1.655,7.58],
 ["QUE","Queste Communications Ltd","Asset Management",1353617,0.05,0.0,0.066,null],

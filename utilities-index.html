@@ -133,6 +133,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   width:2.1rem;height:2.1rem;border-radius:6px;cursor:pointer;font-size:1rem;
   align-items:center;justify-content:center;flex:none;margin-left:auto}
 .navburger:hover{border-color:var(--nav-accent);color:var(--nav-accent)}
+.cart-egg{font-size:1.15rem;display:flex;align-items:center;padding:0 .3rem;text-decoration:none;opacity:.75;filter:grayscale(.3)}
+.cart-egg:hover{opacity:1;filter:none;transform:scale(1.15)}
 @media (max-width:640px){
   .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}
@@ -165,6 +167,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
+<a href="volume-anomaly.html">Volume Anomaly</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -184,7 +187,9 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="red-folder-news.html">Red Folder News</a>
 <a href="sector-rotation.html">Sector Rotation</a>
 <a href="earnings-calendar.html">Earnings Calendar</a>
+<a href="conviction-stack.html">Conviction Stack</a>
 </div></div>
+<a class="cart-egg" href="timing-the-carts.html" title="Timing the Carts">🥟</a>
 </div>
 </nav>
 <script>
@@ -216,6 +221,7 @@ document.addEventListener('keydown', function(e){
   }
 });
 </script>
+
 
 <div class="wrap">
   <div class="topbar">
@@ -280,7 +286,7 @@ const DATA = [
 ["APA","APA Group","Utilities - Regulated Gas",14567663616,10.93,1.4,11.1,5.31],
 ["CCE","Carnegie Clean Energy Limited","Utilities - Renewable",81187592,0.19,5.6,0.365,null],
 ["CEN","Contact Energy Limited","Utilities - Renewable",7601452544,7.1,-0.4,8.59,4.48],
-["DEL","Delorean Corporation Limited","Utilities - Renewable",23024050,0.091,2.2,0.175,null],
+["DEL","Delorean Corporation Limited","Utilities - Renewable",22265712,0.091,2.2,0.175,null],
 ["DEM","De.mem Limited","Pollution & Treatment Controls",37636624,0.115,4.5,0.12,null],
 ["EWC","Energy World Corporation Ltd","Utilities - Independent Power Producers",285150848,0.074,4.2,0.086,null],
 ["FLC","Fluence Corporation Limited","Pollution & Treatment Controls",88216680,0.077,-2.5,0.1475,null],
@@ -295,7 +301,7 @@ const DATA = [
 ["RIV","Rivco Australia Ltd","Utilities",null,1.17,-2.9,1.59,null],
 ["TML","Timah Resources Limited","Utilities - Renewable",4171708,0.047,0.0,0.047,null],
 ["TPC","TPC Consolidated Limited","Utilities - Diversified",50411996,4.2,0.0,7.0,4.76],
-["VPR","Volt Group Limited","Utilities - Renewable",20383210,0.125,0.0,0.18,null]
+["VPR","Volt Group Limited","Utilities - Renewable",20455460,0.125,0.0,0.18,null]
 ];
 
 // Computed from DATA itself (not hand-maintained) so counts never drift out
