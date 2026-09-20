@@ -112,11 +112,11 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   padding:.7rem 1.1rem;margin-bottom:1.5rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   box-shadow:0 2px 10px rgba(0,0,0,.12)}
 .navicon{display:block;flex:none;width:42px;height:42px;border-radius:8px}
-.sitenav-brand{display:flex;flex-direction:column;gap:.05rem;text-decoration:none}
+.sitenav-brand{display:flex;flex-direction:column;gap:.05rem}
 .sitenav-brand .brand-main{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
-  letter-spacing:.02em;color:var(--nav-accent);white-space:nowrap}
+  letter-spacing:.02em;color:var(--nav-accent);white-space:nowrap;text-decoration:none}
 .sitenav-brand .brand-tag{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:.62rem;
-  color:var(--ink-faint, var(--muted, #8b95a3));white-space:nowrap}
+  color:var(--ink-faint, var(--muted, #8b95a3));white-space:nowrap;text-decoration:none}
 .sitenav-brand:hover{opacity:.8}
 .sitenav-divider{width:1px;height:1.3rem;background:var(--border);flex:none}
 .sitenav-links{display:flex;gap:.2rem}
@@ -164,10 +164,10 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 
 <nav class="sitenav">
 <img class="navicon" src="data:image/png;base64,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" alt="">
-<a class="sitenav-brand" href="index.html">
-<span class="brand-main">Brian Yum Cha &mdash; ASX Trading</span>
-<span class="brand-tag">Reading the charts. Timing the carts.</span>
-</a>
+<div class="sitenav-brand">
+<a class="brand-main" href="index.html">Brian Yum Cha &mdash; ASX Trading</a>
+<a class="brand-tag" href="timing-the-carts.html">Reading the charts. Timing the carts.</a>
+</div>
 <span class="sitenav-divider"></span>
 <button class="navburger" type="button" aria-label="Toggle menu">&#9776;</button>
 <div class="sitenav-links">
@@ -240,7 +240,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily after ASX close — last rebuilt 19 Sep 2026.</div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt 20 Sep 2026.</div>
 
   <div class="notice">⚠ 'Stage' reads each company's own business description for producer language (falls back to reported revenue only when that's ambiguous) — a company-reported read, not an independently verified one.</div>
 
@@ -310,7 +310,7 @@ const DATA = [
 ["AAM","AuMEGA Metals Ltd","Gold + Copper + Zinc / Lead + Silver","Explorer / Developer",50953256,0.035,0.0,0.063],
 ["AAR","Astral Resources NL","Gold","Explorer / Developer",343673856,0.19,2.7,0.295],
 ["AAU","Antilles Gold Limited","Gold","Explorer / Developer",22981654,0.007,-22.2,0.019],
-["ABR","Albright Metals Ltd","Gold","Explorer / Developer",3884472,0.0025,0.0,0.006],
+["ABR","Albright Metals Ltd","Gold","Explorer / Developer",3107578,0.002,-20.0,0.006],
 ["ABX","ABx Group Limited","Bauxite / Alumina + Rare Earths + Chemicals + Aluminium","—",11997375,0.032,0.0,0.13],
 ["ACM","Australian Critical Minerals Limited","Lithium + Gold + Silver + Copper + Iron Ore","Explorer / Developer",3749535,0.025,0.0,0.105],
 ["ACP","Audalia Resources Limited","Vanadium","Explorer / Developer",19296996,0.022,0.0,0.029],
@@ -344,7 +344,7 @@ const DATA = [
 ["ALV","Alvo Minerals Limited","Copper + Zinc / Lead + Silver + Gold + Rare Earths","Explorer / Developer",5739717,0.02,0.0,0.095],
 ["ALY","Alchemy Resources Limited","Gold + Nickel + Cobalt + Copper + Silver","Explorer / Developer",10692686,0.009,12.5,0.015],
 ["AM3","Amara Minerals Limited","Gold","Explorer / Developer",15569635,0.005,0.0,0.019],
-["AM5","Antares Metals Limited","Gold","Explorer / Developer",4815578,0.0045,0.0,0.015],
+["AM5","Antares Metals Limited","Gold","Explorer / Developer",4280515,0.004,-11.1,0.015],
 ["AM7","Arcadia Minerals Limited","Tantalum + Lithium + Copper + Gold + Nickel","Explorer / Developer",9002074,0.068,25.9,0.076],
 ["AMC","Amcor plc","Packaging","—",27472580608,59.42,0.1,71.1],
 ["AMD","Arrow Minerals Limited","Bauxite / Alumina","Explorer / Developer",37360524,0.022,10.0,0.025],
@@ -362,7 +362,7 @@ const DATA = [
 ["AQI","","Gold + Copper + Silver","Unresolved",null,null,null,null],
 ["AQX","Alice Queen Limited","Gold","Explorer / Developer",16244097,0.007,0.0,0.016],
 ["AR1","Austral Resources Australia Ltd","Copper","Producer",199114256,0.075,1.4,0.16],
-["AR3","Australian Rare Earths Limited","Rare Earths","Explorer / Developer",28898974,0.1125,2.3,0.41],
+["AR3","Australian Rare Earths Limited","Rare Earths","Explorer / Developer",28770536,0.112,1.8,0.41],
 ["ARD","Argent Minerals Limited","Silver + Zinc / Lead","Explorer / Developer",45969476,0.027,17.4,0.0565],
 ["ARI","Arika Resources Limited","Gold","Explorer / Developer",50870980,0.033,3.1,0.041],
 ["ARL","Ardea Resources Limited","Nickel","Explorer / Developer",97772776,0.445,3.5,0.77],
@@ -370,7 +370,7 @@ const DATA = [
 ["ARO","Altoro Metals Limited","Copper + Gold + Zinc / Lead + Uranium","Explorer / Developer",10059226,0.004,14.3,0.012],
 ["ARR","American Rare Earths Limited","Rare Earths","Explorer / Developer",189347536,0.325,-1.5,0.845],
 ["ARU","Arafura Rare Earths Limited","Rare Earths + Potash / Fertiliser + Uranium","Producer",1153773696,0.19,11.8,0.62],
-["ARV","Artemis Resources Limited","Gold","Explorer / Developer",20307228,0.0035,16.7,0.012],
+["ARV","Artemis Resources Limited","Gold","Explorer / Developer",17406194,0.003,0.0,0.012],
 ["AS1","Asara Resources Limited","Gold","Explorer / Developer",272135680,0.13,8.3,0.175],
 ["AS2","Askari Metals Limited","Copper","Explorer / Developer",6060918,0.007,16.7,0.019],
 ["ASL","Andean Silver Limited","Silver","Explorer / Developer",448415584,1.94,1.3,2.94],
@@ -378,7 +378,7 @@ const DATA = [
 ["ASN","Anson Resources Limited","Lithium","Explorer / Developer",71439344,0.044,0.0,0.1225],
 ["ASQ","Australian Silica Quartz Group Ltd.","Silica","Explorer / Developer",7129127,0.017,6.3,0.032],
 ["AT4","American Tungsten and Antimony Ltd","Tungsten","Explorer / Developer",98477904,0.054,-3.6,0.23],
-["ATC","Altech Batteries Limited","Bauxite / Alumina + Graphite + Kaolin","Explorer / Developer",4003584,0.0015,0.0,0.059],
+["ATC","Altech Batteries Limited","Bauxite / Alumina + Graphite + Kaolin","Explorer / Developer",2669056,0.001,-33.3,0.059],
 ["ATM","PT Antam (Persero) Tbk","Nickel + Bauxite / Alumina + Gold + Silver + Coal","Explorer / Developer",4710029824,0.98,0.0,1.2],
 ["ATR","Astron Corporation Limited","Rare Earths + Mineral Sands","Producer",197775344,0.46,-1.1,1.34],
 ["ATT","Altitude Minerals Ltd","Copper","Explorer / Developer",2676702,0.006,9.1,0.048],
@@ -423,7 +423,7 @@ const DATA = [
 ["BIM","Bindi Metals Limited","Copper","Explorer / Developer",8288481,0.09,0.0,0.175],
 ["BIS","Bisalloy Steel Group Limited","Steel","Producer",204836944,4.24,1.0,6.24],
 ["BKB","Black Bear Minerals Limited","Gold","Explorer / Developer",90611680,0.52,5.1,1.13],
-["BKT","Black Rock Mining Limited","Graphite","Explorer / Developer",26852926,0.0125,-3.8,0.028],
+["BKT","Black Rock Mining Limited","Graphite","Explorer / Developer",25778808,0.012,-7.7,0.028],
 ["BM1","Ballard Mining Limited","Gold","Explorer / Developer",309131936,0.68,1.5,1.015],
 ["BM8","Battery Age Minerals Ltd","Lithium + Gallium + Gold + Zinc / Lead + Silver + Copper","Explorer / Developer",9080580,0.041,2.5,0.285],
 ["BMC","BMC Minerals Limited","Silver + Zinc / Lead + Copper + Gold + Base Metals","Explorer / Developer",727795520,2.65,-2.6,3.99],
@@ -475,7 +475,7 @@ const DATA = [
 ["CLA","Celsius Resources Limited","Copper","Explorer / Developer",14898657,0.004,0.0,0.025],
 ["CLE","","Materials","Unresolved",null,null,null,null],
 ["CLZ","Classic Minerals Limited","Gold","Explorer / Developer",5509605,0.001,0.0,0.002],
-["CMD","Cassius Mining Limited","Lithium","Explorer / Developer",15306860,0.0175,-2.8,0.051],
+["CMD","Cassius Mining Limited","Lithium","Explorer / Developer",14869522,0.017,-5.6,0.051],
 ["CMG","Critical Minerals Group Limited","Bauxite / Alumina + Vanadium + Molybdenum + Copper + Gold","Explorer / Developer",7567376,0.06,0.0,0.24],
 ["CMM","Capricorn Metals Ltd","Gold","Producer",6907435008,15.11,4.9,18.26],
 ["CMO","Cosmo Metals Limited","Gold + Antimony + Copper","Explorer / Developer",3156208,0.004,0.0,0.028],
@@ -567,7 +567,7 @@ const DATA = [
 ["ERE","European Resources Limited","Gold + Silver + Copper + Cobalt + Nickel","Explorer / Developer",10498723,0.015,7.1,0.034],
 ["ERL","Empire Resources Limited","Gold","Explorer / Developer",20871414,0.01,0.0,0.018],
 ["ERM","","Materials","Unresolved",null,null,null,null],
-["ESR","Estrella Resources Limited","Nickel","Explorer / Developer",59666956,0.0265,1.9,0.047],
+["ESR","Estrella Resources Limited","Nickel","Explorer / Developer",58541164,0.026,0.0,0.047],
 ["ETM","Energy Transition Minerals Ltd","Tantalum + Niobium + Tin + Lithium + Rare Earths","Explorer / Developer",99022528,0.045,-2.2,0.21],
 ["EUR","European Lithium Limited","Lithium","Explorer / Developer",666561536,0.385,8.5,0.5],
 ["EV1","Evolution Energy Minerals Limited","Graphite","Explorer / Developer",8984009,0.011,0.0,0.029],
@@ -583,7 +583,7 @@ const DATA = [
 ["FG1","Flynn Gold Limited","Gold","Explorer / Developer",11564450,0.019,0.0,0.031],
 ["FGH","Foresta Group Holding Limited","Chemicals","—",25722708,0.009,0.0,0.049],
 ["FGR","First Graphene Limited","Graphite","Explorer / Developer",49667072,0.056,3.7,0.11],
-["FHS","Freehill Mining Limited","Iron Ore + Copper + Gold","Explorer / Developer",6099780,0.0015,0.0,0.005],
+["FHS","Freehill Mining Limited","Iron Ore + Copper + Gold","Explorer / Developer",4066520,0.001,-33.3,0.005],
 ["FIN","Fin Resources Limited","Lithium","Explorer / Developer",8470647,0.005,0.0,0.017],
 ["FL1","First Lithium Limited","Lithium","Explorer / Developer",18229862,0.14,0.0,0.235],
 ["FLG","Flagship Minerals Limited","Lithium + Gold + Copper","Explorer / Developer",64120588,0.185,2.8,0.33],
@@ -606,7 +606,7 @@ const DATA = [
 ["GBE","Globe Metals & Mining Limited","Niobium","Explorer / Developer",56699780,0.059,0.0,0.145],
 ["GBM","GBM Resources Limited","Gold","Explorer / Developer",103076392,0.021,-4.5,0.068],
 ["GBR","Great Boulder Resources Limited","Gold","Explorer / Developer",169674528,0.086,1.2,0.155],
-["GCM","GCM Corporation Limited","Graphite","Producer",19607272,0.1015,2.5,0.389999],
+["GCM","GCM Corporation Limited","Graphite","Producer",19510686,0.101,2.0,0.389999],
 ["GCR","Golden Cross Resources Limited","Gold","Explorer / Developer",2194512,0.002,0.0,0.002],
 ["GDM","Great Divide Mining Ltd","Gold + Antimony + Copper + Lithium + Rare Earths","Explorer / Developer",22226874,0.32,-3.0,0.44],
 ["GDR","Golden Dragon Mining Ltd","Gold + Nickel + Copper + Base Metals + Platinum Group Metals","Explorer / Developer",9399807,0.17,-5.6,0.235],
@@ -673,7 +673,7 @@ const DATA = [
 ["IMD","Imdex Limited","Mining Services","—",1732541824,3.33,2.5,4.59],
 ["IMI","Infinity Mining Limited","Gold + Copper + Zinc / Lead + Nickel + Lithium","Explorer / Developer",3919287,0.007,0.0,0.017],
 ["IND","Industrial Minerals Ltd","Silica","Explorer / Developer",17082462,0.105,0.0,0.2],
-["INF","Infinity Metals Limited","Lithium + Gold + Silver","Explorer / Developer",5305979,0.0075,7.1,0.025],
+["INF","Infinity Metals Limited","Lithium + Gold + Silver","Explorer / Developer",4952247,0.007,0.0,0.025],
 ["INR","ioneer Ltd","Lithium","Explorer / Developer",384329248,0.125,8.7,0.285],
 ["ION","Iondrive Limited","Rare Earths","Explorer / Developer",162045952,0.125,4.2,0.16],
 ["IPT","Impact Minerals Limited","Bauxite / Alumina","Explorer / Developer",16399551,0.028,-3.4,0.08],
@@ -701,7 +701,7 @@ const DATA = [
 ["KGD","","Materials","Unresolved",null,null,null,null],
 ["KGL","KGL Resources Limited","Copper + Silver + Gold + Zinc / Lead","Explorer / Developer",431564224,0.19,8.6,0.38],
 ["KLI","Killi Resources Limited","Copper","Explorer / Developer",111820008,0.31,3.3,0.335],
-["KM1","Kali Metals Limited","Gold + Lithium + Tantalum","Explorer / Developer",19647490,0.0985,4.8,0.23],
+["KM1","Kali Metals Limited","Gold + Lithium + Tantalum","Explorer / Developer",19547756,0.098,4.3,0.23],
 ["KNB","Koonenberry Gold Limited","Gold","Explorer / Developer",29600698,0.024,0.0,0.061],
 ["KNG","Kingsland Minerals Ltd","Graphite + Gold + Uranium + Copper + Nickel","Explorer / Developer",4168513,0.046,0.0,0.175],
 ["KNI","Kuniko Limited","Nickel + Copper + Zinc / Lead + Cobalt","Explorer / Developer",6394182,0.025,4.2,0.095],
@@ -791,7 +791,7 @@ const DATA = [
 ["MML","McLaren Minerals Limited","Silica","Explorer / Developer",6570995,0.013,0.0,0.04],
 ["MNB","Minbos Resources Limited","Potash / Fertiliser","Explorer / Developer",22713926,0.017,-5.6,0.056],
 ["MOH","Moho Resources Limited","Gold + Nickel + Copper","Explorer / Developer",5287663,0.005,0.0,0.015],
-["MOM","Moab Minerals Limited","Uranium + Vanadium + Lithium + Gold + Copper","Explorer / Developer",3023553,0.0015,0.0,0.003],
+["MOM","Moab Minerals Limited","Uranium + Vanadium + Lithium + Gold + Copper","Explorer / Developer",2015702,0.001,-33.3,0.003],
 ["MPK","Many Peaks Minerals Limited","Gold","Explorer / Developer",145166032,0.85,2.4,1.375],
 ["MQR","Marquee Resources Limited","Lithium","Explorer / Developer",4543186,0.004,0.0,0.014],
 ["MRC","","Materials","Unresolved",null,null,null,null],
@@ -805,7 +805,7 @@ const DATA = [
 ["MTH","Mithril Silver and Gold Limited","Silver","Explorer / Developer",44997060,0.24,11.6,0.715],
 ["MTL","Mantle Minerals Limited","Gold","Explorer / Developer",7233115,0.001,0.0,0.002],
 ["MTM","Metallium Limited","Gold + Niobium + Lithium","Explorer / Developer",289592096,0.385,8.5,1.485],
-["MVL","Marvel Gold Limited","Gold","Explorer / Developer",19199620,0.0135,3.8,0.024],
+["MVL","Marvel Gold Limited","Gold","Explorer / Developer",18488524,0.013,0.0,0.024],
 ["MYE","Mastermyne Group Limited","Mining Services","—",233162240,0.755,-5.6,0.825],
 ["NAG","Nagambie Resources Limited","Antimony","Explorer / Developer",17700124,0.014,0.0,0.019],
 ["NC1","NICO Resources Limited","Nickel","Explorer / Developer",14363401,0.105,0.0,0.4],
@@ -908,7 +908,7 @@ const DATA = [
 ["QGL","Quantum Graphite Limited","Graphite","Explorer / Developer",112832000,0.32,0.0,0.5],
 ["QML","QMines Limited","Gold + Copper + Zinc / Lead + Silver","Explorer / Developer",50951436,0.066,1.5,0.074],
 ["QPM","QPM Energy Ltd","Chemicals + Coal + Nickel + Cobalt + Bauxite / Alumina","—",35621260,0.009,null,0.049],
-["QXR","QX Resources Limited","Lithium + Gold + Copper + Molybdenum + Nickel","Explorer / Developer",7555322,0.0035,-12.5,0.006],
+["QXR","QX Resources Limited","Lithium + Gold + Copper + Molybdenum + Nickel","Explorer / Developer",6475990,0.003,-25.0,0.006],
 ["R8R","Regener8 Resources NL","Gold + Silver + Copper + Lithium + Rare Earths","Explorer / Developer",10054364,0.13,0.0,0.24],
 ["RAG","Ragnar Metals Limited","Nickel + Gold + Silver + Copper + Rare Earths","Explorer / Developer",9281298,0.019,0.0,0.037],
 ["RAN","Range International Limited","Materials Processing","—",1873743,0.1,0.0,0.5],
@@ -989,7 +989,7 @@ const DATA = [
 ["SNM","Sentinel Metals Limited","Gold","Explorer / Developer",65438800,0.47,-6.0,0.77],
 ["SNX","Sierra Nevada Gold Inc.","Gold","Explorer / Developer",64754732,0.13,18.2,0.145],
 ["SPD","Southern Palladium Limited","Platinum Group Metals + Nickel + Chromium + Copper + Gold","Explorer / Developer",263334544,1.99,13.7,2.91],
-["SPN","Sparc Technologies Limited","Graphite","Explorer / Developer",20020590,0.1625,-1.5,0.415],
+["SPN","Sparc Technologies Limited","Graphite","Explorer / Developer",19958988,0.162,-1.8,0.415],
 ["SPQ","Superior Resources Limited","Copper + Gold + Nickel + Platinum Group Metals + Zinc / Lead","Explorer / Developer",7922013,0.003,0.0,0.019],
 ["SQX","SQX Resources Limited","Copper","Explorer / Developer",4072200,0.044,0.0,0.29],
 ["SRK","Strike Resources Limited","Iron Ore","Producer",6242500,0.022,10.0,0.052],
