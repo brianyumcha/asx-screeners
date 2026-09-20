@@ -64,6 +64,7 @@ jobs:
           curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true
           curl -sf -o momentum.html https://brianyumcha.github.io/asx-screeners/momentum.html || true
           curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
+          curl -sf -o volume-anomaly.html https://brianyumcha.github.io/asx-screeners/volume-anomaly.html || true
 
       - name: Build Pages site
         run: |
@@ -92,6 +93,7 @@ jobs:
           [ -f pullback.html ] && cp pullback.html _site/pullback.html || true
           [ -f momentum.html ] && cp momentum.html _site/momentum.html || true
           [ -f higher-high.html ] && cp higher-high.html _site/higher-high.html || true
+          [ -f volume-anomaly.html ] && cp volume-anomaly.html _site/volume-anomaly.html || true
 
       - uses: actions/upload-pages-artifact@v3
         with:

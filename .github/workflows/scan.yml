@@ -80,6 +80,10 @@ jobs:
         if: steps.gate.outputs.full_run == 'true'
         run: python3 "MOMENTUM SCREENER.py"
 
+      - name: Run volume anomaly scanner
+        if: steps.gate.outputs.full_run == 'true'
+        run: python3 "VOLUME ANOMALY SCREENER.py"
+
       - name: Run Higher-High screener
         if: steps.gate.outputs.should_run == 'true'
         env:
@@ -87,12 +91,13 @@ jobs:
           TELEGRAM_HH_CHAT_ID: ${{ secrets.TELEGRAM_HH_CHAT_ID }}
         run: python3 "HH SCREENER.py"
 
-      - name: Preserve existing OBV/Pullback/Momentum pages on HH-only intraday runs
+      - name: Preserve existing OBV/Pullback/Momentum/Volume pages on HH-only intraday runs
         if: steps.gate.outputs.should_run == 'true' && steps.gate.outputs.full_run != 'true'
         run: |
           curl -sf -o asx_breakout_results.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html
           curl -sf -o asx_pullback_results.html https://brianyumcha.github.io/asx-screeners/pullback.html
           curl -sf -o asx_momentum_results.html https://brianyumcha.github.io/asx-screeners/momentum.html
+          curl -sf -o asx_volume_anomaly_results.html https://brianyumcha.github.io/asx-screeners/volume-anomaly.html
 
       - name: Build conviction stack (cross-references insider/FA-pick/HH/OBV/pullback)
         # Reads this run's fresh (or just-preserved) OBV/Pullback/HH result
@@ -127,7 +132,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f seen_tickers.json seen_tickers_pullback.json seen_tickers_momentum.json
+          git add -f seen_tickers.json seen_tickers_pullback.json seen_tickers_momentum.json seen_tickers_volume.json
           git diff --staged --quiet || git commit -m "Update cooldown state"
           for i in 1 2 3; do
             git push && break
@@ -145,6 +150,7 @@ jobs:
           cp "asx_breakout_results.html" _site/pre-breakout.html
           cp "asx_pullback_results.html" _site/pullback.html
           cp "asx_momentum_results.html" _site/momentum.html
+          cp "asx_volume_anomaly_results.html" _site/volume-anomaly.html
           cp "asx_hh_results.html" _site/higher-high.html
           cp site_index.html _site/index.html
           [ -f materials-index.html ] && cp materials-index.html _site/materials-index.html || true

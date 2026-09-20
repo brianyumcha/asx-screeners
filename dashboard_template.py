@@ -95,8 +95,10 @@ NAV_SCREENER_LINKS = [
     ('momentum.html', 'Momentum'),
     ('pre-breakout.html', 'Pre-Breakout (OBV)'),
     ('pullback.html', 'Pullback (Zag Zone)'),
+    ('volume-anomaly.html', 'Volume Anomaly'),
 ]
 NAV_INDEX_LINKS = [
+    ('comms-index.html', 'Communication Services'),
     ('discretionary-index.html', 'Consumer Discretionary'),
     ('staples-index.html', 'Consumer Staples'),
     ('energy-index.html', 'Energy'),
@@ -106,6 +108,7 @@ NAV_INDEX_LINKS = [
     ('materials-index.html', 'Materials'),
     ('real-estate-index.html', 'Real Estate'),
     ('tech-index.html', 'Tech'),
+    ('utilities-index.html', 'Utilities'),
 ]
 NAV_TOOLS_LINKS = [
     ('insider-index.html', 'Insider Buying'),
@@ -129,16 +132,17 @@ def render_nav(active_href):
     return (
         '<nav class="sitenav">\n'
         '<img class="navicon" src="data:image/png;base64,' + NAV_ICON_B64 + '" alt="">\n'
-        '<a class="sitenav-brand" href="index.html">\n'
-        '<span class="brand-main">Brian Yum Cha &mdash; ASX Trading</span>\n'
-        '<span class="brand-tag">Reading the charts. Timing the carts.</span>\n'
-        '</a>\n'
+        '<div class="sitenav-brand">\n'
+        '<a class="brand-main" href="index.html">Brian Yum Cha &mdash; ASX Trading</a>\n'
+        '<a class="brand-tag" href="timing-the-carts.html">Reading the charts. Timing the carts.</a>\n'
+        '</div>\n'
         '<span class="sitenav-divider"></span>\n'
         '<button class="navburger" type="button" aria-label="Toggle menu">&#9776;</button>\n'
         '<div class="sitenav-links">\n'
         + group('Screeners', NAV_SCREENER_LINKS) + "\n"
         + group('ASX Sector Indexes', NAV_INDEX_LINKS) + "\n"
         + group('Trading Tools', NAV_TOOLS_LINKS) + "\n"
+        + '<a class="cart-egg" href="timing-the-carts.html" title="Timing the Carts">\U0001f95f</a>\n'
         + '</div>\n</nav>\n'
         '<script>\n'
         "document.querySelectorAll('.sitenav-drop').forEach(function(drop){\n"
@@ -331,12 +335,13 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
   padding:.7rem 1.1rem;margin-bottom:1.5rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   box-shadow:0 2px 10px rgba(0,0,0,.12)}
 .navicon{display:block;flex:none;width:42px;height:42px;border-radius:8px}
-.sitenav-brand{display:flex;flex-direction:column;gap:.05rem;text-decoration:none}
+.sitenav-brand{display:flex;flex-direction:column;gap:.05rem}
 .sitenav-brand .brand-main{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
-  letter-spacing:.02em;color:var(--accent);white-space:nowrap}
+  letter-spacing:.02em;color:var(--accent);white-space:nowrap;text-decoration:none}
 .sitenav-brand .brand-tag{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:.62rem;
-  color:var(--muted);white-space:nowrap}
-.sitenav-brand:hover .brand-main{opacity:.8}
+  color:var(--muted);white-space:nowrap;text-decoration:none}
+.sitenav-brand .brand-main:hover{opacity:.8}
+.sitenav-brand .brand-tag:hover{opacity:.8}
 .sitenav-divider{width:1px;height:1.3rem;background:var(--border);flex:none}
 .sitenav-links{display:flex;gap:.2rem}
 .sitenav-drop{position:relative}
@@ -363,6 +368,8 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
   width:2.1rem;height:2.1rem;border-radius:6px;cursor:pointer;font-size:1rem;
   align-items:center;justify-content:center;flex:none;margin-left:auto}
 .navburger:hover{border-color:var(--accent);color:var(--accent)}
+.cart-egg{font-size:1.15rem;display:flex;align-items:center;padding:0 .3rem;text-decoration:none;opacity:.75;filter:grayscale(.3)}
+.cart-egg:hover{opacity:1;filter:none;transform:scale(1.15)}
 @media (max-width:640px){
   .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}

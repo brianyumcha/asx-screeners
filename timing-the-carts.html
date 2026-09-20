@@ -48,6 +48,9 @@ h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;col
 .hero .tag{color:var(--ink-faint);font-style:italic;font-family:"Fraunces",Georgia,serif;font-size:1.05rem;margin-bottom:1.6rem}
 .themebtn{position:absolute;top:1.4rem;right:1.5rem;border:1px solid var(--border);background:var(--surface);color:var(--ink);
   width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center}
+.backbtn{position:absolute;top:1.4rem;left:1.5rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);
+  padding:.5rem .9rem;border-radius:999px;font-size:.78rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+.backbtn:hover{border-color:var(--gold);color:var(--gold)}
 
 .indexcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.6rem;box-shadow:var(--shadow);
   display:flex;align-items:center;gap:2rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem}
@@ -95,6 +98,7 @@ a.home:hover{color:var(--gold);border-bottom-color:var(--gold)}
 
 <div class="wrap" style="position:relative">
   <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+  <a class="backbtn" href="index.html">← Back to the trading site</a>
   <div class="hero">
     <h1>🛒 Timing the Carts</h1>
     <div class="tag">The Dim Sum Trading Terminal — because reading the charts wasn't nerdy enough.</div>
