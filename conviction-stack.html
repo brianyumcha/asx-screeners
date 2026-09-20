@@ -115,11 +115,11 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   padding:.7rem 1.1rem;margin-bottom:1.5rem;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
   box-shadow:0 2px 10px rgba(0,0,0,.12)}
 .navicon{display:block;flex:none;width:42px;height:42px;border-radius:8px}
-.sitenav-brand{display:flex;flex-direction:column;gap:.05rem;text-decoration:none}
+.sitenav-brand{display:flex;flex-direction:column;gap:.05rem}
 .sitenav-brand .brand-main{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;
-  letter-spacing:.02em;color:var(--nav-accent);white-space:nowrap}
+  letter-spacing:.02em;color:var(--nav-accent);white-space:nowrap;text-decoration:none}
 .sitenav-brand .brand-tag{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:.62rem;
-  color:var(--ink-faint, var(--muted, #8b95a3));white-space:nowrap}
+  color:var(--ink-faint, var(--muted, #8b95a3));white-space:nowrap;text-decoration:none}
 .sitenav-brand:hover{opacity:.8}
 .sitenav-divider{width:1px;height:1.3rem;background:var(--border);flex:none}
 .sitenav-links{display:flex;gap:.2rem}
@@ -147,6 +147,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   width:2.1rem;height:2.1rem;border-radius:6px;cursor:pointer;font-size:1rem;
   align-items:center;justify-content:center;flex:none;margin-left:auto}
 .navburger:hover{border-color:var(--nav-accent);color:var(--nav-accent)}
+.cart-egg{font-size:1.15rem;display:flex;align-items:center;padding:0 .3rem;text-decoration:none;opacity:.75;filter:grayscale(.3)}
+.cart-egg:hover{opacity:1;filter:none;transform:scale(1.15)}
 @media (max-width:640px){
   .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}
@@ -167,10 +169,10 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 
 <nav class="sitenav">
 <img class="navicon" src="data:image/png;base64,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" alt="">
-<a class="sitenav-brand" href="index.html">
-<span class="brand-main">Brian Yum Cha &mdash; ASX Trading</span>
-<span class="brand-tag">Reading the charts. Timing the carts.</span>
-</a>
+<div class="sitenav-brand">
+<a class="brand-main" href="index.html">Brian Yum Cha &mdash; ASX Trading</a>
+<a class="brand-tag" href="timing-the-carts.html">Reading the charts. Timing the carts.</a>
+</div>
 <span class="sitenav-divider"></span>
 <button class="navburger" type="button" aria-label="Toggle menu">&#9776;</button>
 <div class="sitenav-links">
@@ -180,6 +182,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
+<a href="volume-anomaly.html">Volume Anomaly</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button>
 <div class="sitenav-menu">
@@ -199,8 +202,10 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="insider-index.html">Insider Buying</a>
 <a href="red-folder-news.html">Red Folder News</a>
 <a href="sector-rotation.html">Sector Rotation</a>
+<a href="earnings-calendar.html">Earnings Calendar</a>
 </div></div>
 <a class="sitenav-toggle active" href="conviction-stack.html">Conviction Stack</a>
+<a class="cart-egg" href="timing-the-carts.html" title="Timing the Carts">🥟</a>
 </div>
 </nav>
 <script>
@@ -245,7 +250,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt after each screener run — last rebuilt 18 Sep 2026.</div>
+  <div class="session">Rebuilt after each screener run — last rebuilt 20 Sep 2026.</div>
 
   <div class="notice">⚠ Each signal has its own independent definition and lookback window (see footer) — this page doesn't judge whether they agree for the same reason, just that they agree at all. A high count means several unrelated methods currently point at the same ticker, not that it's a stronger buy than a 1-signal ticker outside this list. Not financial advice.</div>
 
@@ -304,96 +309,94 @@ const DATA = [
 ["ALC","Alcidion Group Limited","Healthcare",3,true,false,false,true,true,133630709,0.102,2.0,"2026-08-26",null,null],
 ["BIO","Biome Australia Limited","Consumer Staples",3,true,false,false,true,true,95759170,0.41,-4.7,"2026-06-25",null,null],
 ["BTL","Beetaloo Energy Australia Limited","Energy",3,true,false,false,true,true,392087937,0.267,6.8,"2026-08-13",null,null],
-["DDR","Dicker Data Limited","Info Tech",3,true,true,false,true,false,2682626304,15.22,2.7,"2026-05-01","2026-06-23",null],
+["CBL","CONTROL BIONICS LIMITED","Healthcare",3,true,false,true,false,true,32585323,0.062,3.3,"2026-09-01",null,"1M"],
+["DDR","Dicker Data Limited","Info Tech",3,true,true,false,true,false,2712871113,15.22,2.7,"2026-05-01","2026-06-23",null],
 ["FLC","Fluence Corporation Limited","Utilities",3,true,false,false,true,true,88216682,0.076,-3.8,"2026-09-03",null,null],
 ["GHM","GOLDEN HORSE MINERALS LIMITED","Materials",3,true,false,true,false,true,129873415,0.6,17.6,"2026-03-23",null,"6M"],
 ["ILT","Iltani Resources Limited","Other",3,true,true,false,false,true,35477352,0.48,3.2,"2026-08-12","2026-08-11",null],
 ["KAR","Karoon Energy Ltd","Energy",3,true,false,false,true,true,1322451072,1.807,-2.1,"2026-09-08",null,null],
 ["LNQ","LinQ Minerals Limited","Materials",3,true,false,false,true,true,92287520,0.43,0.0,"2026-04-07",null,null],
-["MI6","MINERALS 260 LIMITED","Materials",3,true,false,true,true,false,1999293639,0.927,3.0,"2026-07-10",null,null],
-["MND","MONADELPHOUS GROUP LIMITED","Industrials",3,true,false,true,true,false,2844790033,30.65,5.3,"2026-08-27",null,null],
-["QRI","QUALITAS REAL ESTATE INCOME FUND","Financials",3,true,false,true,false,true,956155090,1.555,1.3,"2026-06-23",null,"1M"],
+["MI6","MINERALS 260 LIMITED","Materials",3,true,false,true,true,false,2044732131,0.927,3.0,"2026-07-10",null,null],
+["MND","MONADELPHOUS GROUP LIMITED","Industrials",3,true,false,true,true,false,2925208126,30.65,5.3,"2026-08-27",null,null],
+["QRI","QUALITAS REAL ESTATE INCOME FUND","Financials",3,true,false,true,false,true,968777600,1.555,1.3,"2026-06-23",null,"1M"],
 ["SLS","Solstice Minerals Limited","Materials",3,true,true,false,true,false,414384928,2.51,6.4,"2026-03-27","2026-02-10",null],
 ["STX","STRIKE ENERGY LIMITED","Energy",3,true,false,true,false,true,413930655,0.12,4.3,"2026-05-14",null,"3M"],
 ["TAM","Tanami Gold NL","Materials",3,true,false,false,true,true,159813216,0.07,0.0,"2026-06-03",null,null],
+["UWC","Underwood Capital Limited","Other",3,true,false,false,true,true,11601256,0.057,-1.7,"2026-07-22",null,null],
 ["VBX","VBX Limited","Other",3,true,true,false,false,true,60360148,0.73,1.4,"2026-03-23","2026-02-03",null],
-["49M","49 Metals Limited","Materials",2,true,false,false,true,false,10279582,0.135,8.0,"2026-09-01",null,null],
-["A4N","Alpha HPA Limited","Other",2,true,false,false,false,true,813061982,0.552,6.2,"2026-03-27",null,null],
+["A4N","Alpha HPA Limited","Basic Materials",2,true,false,false,false,true,813061982,0.552,6.2,"2026-03-27",null,null],
 ["AAR","Astral Resources NL","Other",2,true,false,false,false,true,343673834,0.19,2.7,"2026-08-26",null,null],
 ["ACW","","Healthcare",2,false,false,false,true,true,242414408,0.061,7.0,null,null,null],
-["AEG","Aland Equity Group Limited","Other",2,true,false,false,false,true,58267113,0.081,2.5,"2026-08-18",null,null],
-["AEL","Amplitude Energy Limited","Energy",2,true,false,false,true,false,541284864,1.785,0.6,"2026-06-09",null,null],
-["AFI","Australian Foundation Investment Company Limited","Other",2,true,false,false,false,true,8113362676,6.62,-0.3,"2026-08-03",null,null],
-["AKA","","Materials",2,false,true,false,true,false,null,0.122,6.1,null,"2026-09-08",null],
-["AL3","AML3D LIMITED","Industrials",2,false,false,true,true,false,76605181,0.155,3.3,null,null,"3M"],
-["ALD","Ampol Limited","Energy",2,true,false,false,true,false,10306566144,42.94,-0.4,"2026-08-25",null,null],
-["ALK","ALKANE RESOURCES LIMITED","Materials",2,false,true,true,false,false,2623113256,1.995,4.5,null,"2026-09-08","12M"],
+["AEG","Aland Equity Group Limited","Financial Services",2,true,false,false,false,true,58267113,0.081,2.5,"2026-08-18",null,null],
+["AEL","Amplitude Energy Limited","Energy",2,true,false,false,true,false,551780739,1.785,0.6,"2026-06-09",null,null],
+["AFI","Australian Foundation Investment Company Limited","Financial Services",2,true,false,false,false,true,8113362676,6.62,-0.3,"2026-08-03",null,null],
+["AL3","AML3D LIMITED","Industrials",2,false,false,true,true,false,85116867,0.155,3.3,null,null,"3M"],
+["ALD","Ampol Limited","Energy",2,true,false,false,true,false,10277969784,42.94,-0.4,"2026-08-25",null,null],
+["ALK","ALKANE RESOURCES LIMITED","Materials",2,false,true,true,false,false,2609451208,1.995,4.5,null,"2026-09-08","12M"],
 ["ALV","Alvo Minerals Limited","Materials",2,true,true,false,false,false,5739717,0.02,0.0,"2026-06-26","2026-03-10",null],
 ["AM5","Antares Metals Limited","Materials",2,true,true,false,false,false,4280514,0.005,0.0,"2026-06-09","2026-02-03",null],
-["AMA","AMA Group Limited","Industrials",2,true,false,false,true,false,255473104,0.535,-7.8,"2026-06-25",null,null],
-["AMH","AMCIL Limited","Other",2,true,false,false,false,true,282431354,0.91,1.1,"2026-08-09",null,null],
-["AMI","AURELIA METALS LIMITED","Materials",2,false,false,true,true,false,739808196,0.48,4.3,null,null,"12M"],
-["AMP","AMP Limited","Financials",2,true,false,false,true,false,6081980416,2.49,0.0,"2026-06-12",null,null],
-["ANN","Ansell Limited","Healthcare",2,true,false,false,true,false,5861200896,42.06,-0.2,"2026-08-31",null,null],
-["APE","Eagers Automotive Limited","Other",2,true,false,false,false,true,5508248166,19.79,-0.3,"2026-09-03",null,null],
-["ARX","Aroa Biosurgery Limited","Other",2,true,false,false,false,true,185851117,0.535,0.9,"2026-06-26",null,null],
-["ASX","ASX Limited","Other",2,true,false,false,false,true,10890190795,55.185,-0.2,"2026-09-08",null,null],
-["ATA","Atturra Limited","Other",2,true,false,false,false,true,141714793,0.385,-2.5,"2026-09-02",null,null],
-["ATG","Articore Group Limited","Consumer Discretionary",2,true,false,false,true,false,114931224,0.37,-1.3,"2026-06-03",null,null],
-["ATH","","Other",2,false,true,false,false,true,98325186,0.45,7.1,null,"2026-06-09",null],
+["AMA","AMA Group Limited","Industrials",2,true,false,false,true,false,231371867,0.535,-7.8,"2026-06-25",null,null],
+["AMH","AMCIL Limited","Financial Services",2,true,false,false,false,true,282431354,0.91,1.1,"2026-08-09",null,null],
+["AMI","AURELIA METALS LIMITED","Materials",2,false,false,true,true,false,791422721,0.48,4.3,null,null,"12M"],
+["AMP","AMP Limited","Financials",2,true,false,false,true,false,6130636143,2.49,0.0,"2026-06-12",null,null],
+["ANN","Ansell Limited","Healthcare",2,true,false,false,true,false,5955509844,42.06,-0.2,"2026-08-31",null,null],
+["APE","Eagers Automotive Limited","Consumer Cyclical",2,true,false,false,false,true,5508248166,19.79,-0.3,"2026-09-03",null,null],
+["ARX","Aroa Biosurgery Limited","Healthcare",2,true,false,false,false,true,185851117,0.535,0.9,"2026-06-26",null,null],
+["ASX","ASX Limited","Financial Services",2,true,false,false,false,true,10890190795,55.185,-0.2,"2026-09-08",null,null],
+["ATA","Atturra Limited","Technology",2,true,false,false,false,true,141714793,0.385,-2.5,"2026-09-02",null,null],
+["ATG","Articore Group Limited","Consumer Discretionary",2,true,false,false,true,false,114931225,0.37,-1.3,"2026-06-03",null,null],
+["ATH","","Healthcare",2,false,true,false,false,true,98325186,0.45,7.1,null,"2026-06-09",null],
 ["AUA","Audeara Limited","Consumer Discretionary",2,true,true,false,false,false,4343437,0.024,0.0,"2026-05-26","2026-01-13",null],
 ["AVL","","Materials",2,false,false,false,true,true,78941543,0.215,-2.3,null,null,null],
-["AWJ","AURIC MINING LIMITED","Materials",2,true,false,true,false,false,46848401,0.27,3.9,"2026-08-03",null,"3M"],
-["AX1","Accent Group Limited","Other",2,true,false,false,false,true,399788486,0.667,1.1,"2026-05-19",null,null],
-["AXQ","AURA CONSOLIDATED GROUP, INC.","Other",2,true,false,true,false,false,843892350,4.13,10.1,"2026-08-20",null,"1M"],
+["AWJ","AURIC MINING LIMITED","Materials",2,true,false,true,false,false,48852337,0.27,3.9,"2026-08-03",null,"3M"],
+["AX1","Accent Group Limited","Consumer Cyclical",2,true,false,false,false,true,399788486,0.667,1.1,"2026-05-19",null,null],
+["AXQ","AURA CONSOLIDATED GROUP, INC.","Other",2,true,false,true,false,false,904170375,4.13,10.1,"2026-08-20",null,"1M"],
 ["AZJ","Aurizon Holdings Limited","Other",2,true,false,false,false,true,6228237027,3.725,-0.7,"2026-09-04",null,null],
-["BAP","Bapcor Limited","Consumer Discretionary",2,true,false,false,true,false,524747392,0.822,0.9,"2026-09-03",null,null],
+["BAP","Bapcor Limited","Consumer Discretionary",2,true,false,false,true,false,524747381,0.822,0.9,"2026-09-03",null,null],
 ["BCA","BLACK CANYON LIMITED","Materials",2,true,false,true,false,false,50505698,0.33,8.2,"2026-03-24",null,null],
-["BCI","BCI Minerals Limited","Materials",2,true,false,false,true,false,1689108352,0.587,1.2,"2026-05-26",null,null],
-["BHM","","Other",2,false,true,false,false,true,265444638,0.667,4.2,null,"2026-09-01",null],
-["BKB","","Other",2,false,true,false,false,true,90611673,0.52,5.0,null,"2026-09-01",null],
-["BKI","BKI Investment Company Limited","Other",2,true,false,false,false,true,1436698904,1.785,0.3,"2026-08-04",null,null],
-["BMN","","Other",2,false,true,false,false,true,921812681,3.84,2.1,null,"2026-08-25",null],
+["BCI","BCI Minerals Limited","Materials",2,true,false,false,true,false,1718484125,0.587,1.2,"2026-05-26",null,null],
+["BHM","","Other",2,false,true,false,false,true,null,0.667,4.2,null,"2026-09-01",null],
+["BKB","","Other",2,false,true,false,false,true,null,0.52,5.0,null,"2026-09-01",null],
+["BKI","BKI Investment Company Limited","Other",2,true,false,false,false,true,1452841472,1.785,0.3,"2026-08-04",null,null],
+["BMN","","Other",2,false,true,false,false,true,null,3.84,2.1,null,"2026-08-25",null],
+["BMT","Beamtree Holdings Limited","Other",2,true,false,false,false,true,31010972,0.115,9.5,"2026-09-03",null,null],
 ["BOA","BOA Resources Limited","Materials",2,true,true,false,false,false,22668536,0.078,2.6,"2026-06-30","2026-08-25",null],
-["BOE","Boss Energy Limited","Energy",2,true,false,false,true,false,633142336,1.665,1.5,"2026-09-03",null,null],
-["BOQ","Bank of Queensland Limited","Other",2,true,false,false,false,true,4361184056,6.645,0.5,"2026-04-27",null,null],
-["BPM","BPM Minerals Limited","Materials",2,true,false,false,true,false,31304460,0.235,-2.1,"2026-07-01",null,null],
-["BTE","BOTALA ENERGY LTD","Energy",2,false,false,true,true,false,26532665,0.071,4.4,null,null,"12M"],
-["BTR","Brightstar Resources Limited","Materials",2,true,false,false,true,false,623632960,0.567,3.1,"2026-05-29",null,null],
-["BUB","Bubs Australia Limited","Consumer Staples",2,true,false,false,true,false,98354304,0.112,1.8,"2026-09-03",null,null],
-["BVR","Bellavista Resources Limited","Materials",2,true,false,false,true,false,87469560,0.42,5.0,"2026-06-26",null,null],
-["BVS","Bravura Solutions Limited","Info Tech",2,true,false,false,true,false,1425593984,3.19,0.6,"2026-04-01",null,null],
+["BOE","Boss Energy Limited","Energy",2,true,false,false,true,false,668432271,1.665,1.5,"2026-09-03",null,null],
+["BOQ","Bank of Queensland Limited","Other",2,true,false,false,false,true,4295602688,6.645,0.5,"2026-04-27",null,null],
+["BPM","BPM Minerals Limited","Other",2,true,false,false,false,true,31304460,0.235,-2.1,"2026-07-01",null,null],
+["BSA","BSA Limited","Other",2,true,false,false,false,true,18825066,0.255,2.0,"2026-07-21",null,null],
+["BTR","Brightstar Resources Limited","Materials",2,true,false,false,true,false,629382558,0.567,3.1,"2026-05-29",null,null],
+["BUB","Bubs Australia Limited","Consumer Staples",2,true,false,false,true,false,107295602,0.112,1.8,"2026-09-03",null,null],
+["BVR","Bellavista Resources Limited","Materials",2,true,false,false,true,false,91789046,0.42,5.0,"2026-06-26",null,null],
+["BVS","Bravura Solutions Limited","Info Tech",2,true,false,false,true,false,1403178973,3.19,0.6,"2026-04-01",null,null],
 ["BWN","Bhagwan Marine Limited","Industrials",2,true,true,false,false,false,115401160,0.29,0.0,"2026-06-04","2026-08-04",null],
-["BWP","BWP Trust","Other",2,true,false,false,false,true,2818642656,3.6,0.0,"2026-06-30",null,null],
-["CAF","Centrepoint Alliance Limited","Other",2,true,false,false,false,true,77775256,0.37,-5.1,"2026-06-05",null,null],
+["BWP","BWP Trust","Other",2,true,false,false,false,true,2811899136,3.6,0.0,"2026-06-30",null,null],
+["CAF","Centrepoint Alliance Limited","Other",2,true,false,false,false,true,78798152,0.37,-5.1,"2026-06-05",null,null],
 ["CAZ","Cazaly Resources Limited","Materials",2,true,true,false,false,false,12958677,0.022,10.0,"2026-06-26","2025-12-16",null],
-["CBA","Commonwealth Bank of Australia","Other",2,true,false,false,false,true,254837127180,152.19,-1.2,"2026-08-13",null,null],
-["CBL","CONTROL BIONICS LIMITED","Healthcare",2,true,false,true,false,false,32585323,0.062,3.3,"2026-09-01",null,"1M"],
-["CBO","Cobram Estate Olives Limited","Other",2,true,false,false,false,true,1431585668,2.98,0.7,"2026-09-03",null,null],
-["CDA","Codan Limited","Info Tech",2,true,false,false,true,false,8922838016,49.37,1.6,"2026-06-25",null,null],
+["CBA","Commonwealth Bank of Australia","Other",2,true,false,false,false,true,253393633280,152.19,-1.2,"2026-08-13",null,null],
+["CBO","Cobram Estate Olives Limited","Other",2,true,false,false,false,true,1388494464,2.98,0.7,"2026-09-03",null,null],
+["CDA","Codan Limited","Info Tech",2,true,false,false,true,false,9134331821,49.37,1.6,"2026-06-25",null,null],
 ["CEH","Coast Entertainment Holdings Limited","Consumer Discretionary",2,true,true,false,false,false,196223744,0.505,1.0,"2026-03-23","2026-07-21",null],
-["CGF","Challenger Limited","Financials",2,true,false,false,true,false,7006692352,10.175,1.3,"2026-05-18",null,null],
-["CHC","Charter Hall Group","Other",2,true,false,false,false,true,8662757243,18.445,0.8,"2026-09-04",null,null],
-["CPM","Cooper Metals Limited","Materials",2,true,false,false,true,false,9659543,0.089,2.3,"2026-07-31",null,null],
-["CSL","CSL Limited","Healthcare",2,true,false,false,true,false,83696623616,175.64,-1.1,"2026-08-21",null,null],
-["DEM","De.mem Limited","Utilities",2,true,false,false,true,false,37636624,0.115,4.5,"2026-08-28",null,null],
-["DJW","Djerriwarrh Investments Limited","Other",2,true,false,false,false,true,751407832,2.9,0.3,"2026-08-03",null,null],
-["DMP","Domino's Pizza Enterprises Limited","Other",2,true,false,false,false,true,1787873440,18.65,-4.1,"2026-08-28",null,null],
-["DUG","DUG Technology Ltd","Other",2,true,false,false,false,true,229915548,1.715,-0.9,"2026-08-28",null,null],
+["CGF","Challenger Limited","Financials",2,true,false,false,true,false,6924673045,10.175,1.3,"2026-05-18",null,null],
+["CHC","Charter Hall Group","Other",2,true,false,false,false,true,8712607744,18.445,0.8,"2026-09-04",null,null],
+["CSL","CSL Limited","Healthcare",2,true,false,false,true,false,84262877914,175.64,-1.1,"2026-08-21",null,null],
+["DAL","Dalaroo Metals Ltd","Other",2,true,false,false,false,true,26071926,0.068,0.0,"2026-06-19",null,null],
+["DJW","Djerriwarrh Investments Limited","Other",2,true,false,false,false,true,754016896,2.9,0.3,"2026-08-03",null,null],
+["DMP","Domino's Pizza Enterprises Limited","Other",2,true,false,false,false,true,1787873408,18.65,-4.1,"2026-08-28",null,null],
+["DUG","DUG Technology Ltd","Other",2,true,false,false,false,true,236019504,1.715,-0.9,"2026-08-28",null,null],
 ["DVP","Develop Global Limited","Materials",2,true,true,false,false,false,1544331904,4.68,-0.4,"2026-06-17","2025-07-08",null],
-["EAU","EAU Lithium Limited","Materials",2,true,false,false,true,false,33870644,0.137,1.5,"2026-06-05",null,null],
-["ECT","Environmental Clean Technologies Limited","Other",2,true,false,false,false,true,51583140,0.117,1.7,"2026-04-09",null,null],
-["EDU","EDU Holdings Limited","Consumer Discretionary",2,true,false,false,true,false,140061904,1.115,3.2,"2026-03-23",null,null],
-["ELD","Elders Limited","Consumer Staples",2,true,false,false,true,false,1344088576,6.36,0.6,"2026-05-22",null,null],
+["ECT","Environmental Clean Technologies Limited","Other",2,true,false,false,false,true,49340392,0.117,1.7,"2026-04-09",null,null],
+["EDU","EDU Holdings Limited","Consumer Discretionary",2,true,false,false,true,false,138177661,1.115,3.2,"2026-03-23",null,null],
+["EGG","Enero Group Limited","Other",2,true,false,false,false,true,22230104,0.25,2.0,"2026-04-20",null,null],
+["ELD","Elders Limited","Consumer Staples",2,true,false,false,true,false,1369936523,6.36,0.6,"2026-05-22",null,null],
 ["ENP","Entropy Neurodynamics Limited","Healthcare",2,true,true,false,false,false,66977344,0.041,0.0,"2026-05-13","2026-05-12",null],
-["EPY","Earlypay Limited","Financials",2,true,false,false,true,false,34368792,0.145,0.0,"2026-08-31",null,null],
 ["EQU","","Energy",2,false,false,false,true,true,80834275,0.395,0.0,null,null,null],
-["EUR","EUROPEAN LITHIUM LIMITED","Materials",2,false,false,true,true,false,588004444,0.377,6.2,null,null,null],
-["EWC","ENERGY WORLD CORPORATION LTD","Utilities",2,true,false,true,false,false,265883890,0.074,4.2,"2026-06-25",null,"12M"],
-["FCL","FINEOS Corporation Holdings plc","Other",2,true,false,false,false,true,790145170,2.18,-2.7,"2026-04-21",null,null],
-["FDR","Finder Energy Holdings Limited","Other",2,true,false,false,false,true,160732639,0.285,9.6,"2026-06-10",null,null],
-["FDV","Frontier Digital Ventures Limited","Other",2,true,false,false,false,true,148188063,0.325,-4.4,"2026-04-09",null,null],
-["FHE","Frontier Energy Limited","Other",2,true,false,false,false,true,233640157,0.21,5.0,"2026-05-19",null,null],
+["EUR","EUROPEAN LITHIUM LIMITED","Materials",2,false,false,true,true,false,613945816,0.377,6.2,null,null,null],
+["EWC","ENERGY WORLD CORPORATION LTD","Utilities",2,true,false,true,false,false,273590669,0.074,4.2,"2026-06-25",null,"12M"],
+["FCL","FINEOS Corporation Holdings plc","Other",2,true,false,false,false,true,721136832,2.18,-2.7,"2026-04-21",null,null],
+["FDR","Finder Energy Holdings Limited","Other",2,true,false,false,false,true,152418896,0.285,9.6,"2026-06-10",null,null],
+["FDV","Frontier Digital Ventures Limited","Other",2,true,false,false,false,true,148438208,0.325,-4.4,"2026-04-09",null,null],
+["FHE","Frontier Energy Limited","Other",2,true,false,false,false,true,222514432,0.21,5.0,"2026-05-19",null,null],
 ["FRS","Forrestania Resources Limited","Materials",2,true,true,false,false,false,915393216,0.38,4.1,"2026-09-04","2026-06-30",null],
 ["FTI","","Communication Services",2,false,true,false,true,false,null,0.8,-4.8,null,"2026-02-03",null],
 ["GBR","Great Boulder Resources Limited","Other",2,true,false,false,false,true,167701568,0.088,3.5,"2026-06-19",null,null],
@@ -408,9 +411,10 @@ const DATA = [
 ["HLI","Helia Group Limited","Financials",2,true,false,false,true,false,1501520000,5.405,0.5,"2026-08-28",null,null],
 ["IDX","Integral Diagnostics Limited","Other",2,true,false,false,false,true,872975616,2.305,-0.7,"2026-08-28",null,null],
 ["IGO","IGO Limited","Other",2,true,false,false,false,true,5323593216,6.945,0.5,"2026-03-26",null,null],
-["INA","INGENIA COMMUNITIES GROUP","Real Estate",2,true,false,true,false,false,1658863884,4.22,1.2,"2026-08-31",null,null],
+["INA","INGENIA COMMUNITIES GROUP","Real Estate",2,true,false,true,false,false,1699622211,4.22,1.2,"2026-08-31",null,null],
 ["ING","Inghams Group Limited","Other",2,true,false,false,false,true,741500864,1.972,-1.4,"2026-05-29",null,null],
 ["IPH","IPH Limited","Industrials",2,true,true,false,false,false,851537088,3.32,-0.6,"2026-09-01","2026-06-23",null],
+["ITS","INFOTRUST LTD","Info Tech",2,true,false,true,false,false,52226691,0.3,11.1,"2026-05-29",null,"1M"],
 ["JGH","","Other",2,false,true,false,false,true,null,0.071,3.6,null,"2025-12-02",null],
 ["JNS","Janus Electric Holdings Limited","Utilities",2,true,false,false,true,false,116865392,0.64,0.0,"2026-07-01",null,null],
 ["KAU","Kaiser Reef Limited","Other",2,true,false,false,false,true,139224144,0.227,0.9,"2026-07-16",null,null],
@@ -424,8 +428,8 @@ const DATA = [
 ["LGM","","Other",2,false,true,false,false,true,null,0.12,4.3,null,"2026-05-05",null],
 ["LPM","","Materials",2,false,false,false,true,true,null,0.135,0.0,null,null,null],
 ["LSF","L1 Long Short Fund Limited","Other",2,true,false,false,true,false,3046411264,4.9,3.2,"2026-06-22",null,null],
-["MAD","MADER GROUP LIMITED","Industrials",2,true,false,true,false,false,1210597282,6.34,5.3,"2026-08-27",null,null],
-["MAH","MACMAHON HOLDINGS LIMITED","Materials",2,false,false,true,true,false,2068786385,1.087,9.8,null,null,"1M"],
+["MAD","MADER GROUP LIMITED","Industrials",2,true,false,true,false,false,1224839603,6.34,5.3,"2026-08-27",null,null],
+["MAH","MACMAHON HOLDINGS LIMITED","Materials",2,false,false,true,true,false,2133435960,1.087,9.8,null,null,"1M"],
 ["MMA","Maronan Metals Limited","Other",2,true,false,false,false,true,131993200,0.435,4.8,"2026-05-21",null,null],
 ["NGI","Navigator Global Investments Limited","Other",2,true,false,false,false,true,1318028160,2.16,0.5,"2026-09-01",null,null],
 ["NHF","nib holdings limited","Other",2,true,false,false,false,true,3212157184,6.55,0.0,"2026-08-28",null,null],
@@ -433,6 +437,7 @@ const DATA = [
 ["NST","Northern Star Resources Limited","Other",2,true,false,false,false,true,31473944576,22.23,2.5,"2026-09-04",null,null],
 ["NUF","Nufarm Limited","Materials",2,true,false,false,true,false,1214253952,3.255,-0.5,"2026-06-30",null,null],
 ["NVA","Nova Minerals Corp","Materials",2,true,false,false,true,false,309266528,0.72,0.0,"2026-07-16",null,null],
+["NYR","Nyrada Inc.","Other",2,true,false,false,false,true,180742768,0.73,0.0,"2026-06-11",null,null],
 ["OBL","Omni Bridgeway Limited","Other",2,true,false,false,false,true,440256160,1.4,-4.4,"2026-04-07",null,null],
 ["ODY","Odyssey Gold Limited","Materials",2,true,true,false,false,false,42384624,0.03,-3.2,"2026-07-23","2026-05-05",null],
 ["OMA","Omega Oil & Gas Limited","Energy",2,true,false,false,true,false,459630944,0.795,-3.0,"2026-07-07",null,null],
@@ -448,21 +453,22 @@ const DATA = [
 ["POL","","Other",2,false,true,false,false,true,null,0.885,4.7,null,"2026-07-14",null],
 ["PPS","Praemium Limited","Other",2,true,false,false,false,true,282734016,0.59,2.6,"2026-09-01",null,null],
 ["PVT","Pivotal Metals Limited","Materials",2,true,true,false,false,false,24986814,0.019,-9.5,"2026-08-07","2026-07-07",null],
-["PYC","PYC THERAPEUTICS LIMITED","Healthcare",2,true,false,true,false,false,2212898506,2.67,11.2,"2026-03-24",null,"12M"],
+["PYC","PYC THERAPEUTICS LIMITED","Healthcare",2,true,false,true,false,false,2360425073,2.67,11.2,"2026-03-24",null,"12M"],
 ["RAC","Racura Oncology Ltd","Healthcare",2,true,true,false,false,false,398019936,2.03,1.5,"2026-06-05","2025-09-16",null],
 ["RHT","Resonance Health Limited","Healthcare",2,true,false,false,true,false,27195852,0.061,1.7,"2026-07-13",null,null],
 ["RIC","","Other",2,false,true,false,false,true,null,2.61,-1.1,null,"2026-03-31",null],
 ["RMD","","Healthcare",2,false,false,false,true,true,null,31.87,-0.5,null,null,null],
+["SBZ","Schoolblazer Limited","Other",2,true,false,false,false,true,89323432,0.165,0.0,"2026-07-30",null,null],
 ["SHG","","Healthcare",2,false,false,false,true,true,null,0.195,8.3,null,null,null],
 ["SHV","Select Harvests Limited","Consumer Staples",2,true,true,false,false,false,623750720,4.45,-2.2,"2026-06-03","2026-09-08",null],
 ["SKM","Skylark Minerals Limited","Other",2,true,false,false,false,true,34653224,0.25,0.0,"2026-07-16",null,null],
-["SKS","SKS TECHNOLOGIES GROUP LIMITED","Industrials",2,true,false,true,false,false,872203316,9.19,15.0,"2026-05-14",null,"1M"],
+["SKS","SKS TECHNOLOGIES GROUP LIMITED","Industrials",2,true,false,true,false,false,922407715,9.19,15.0,"2026-05-14",null,"1M"],
 ["SLM","","Other",2,false,true,false,false,true,null,0.073,4.3,null,"2025-10-14",null],
 ["SMI","Santana Minerals Limited","Materials",2,true,false,false,true,false,517524288,0.555,11.0,"2026-07-08",null,null],
 ["SMN","Structural Monitoring Systems Plc","Info Tech",2,true,false,false,true,false,58352544,0.385,4.0,"2026-07-08",null,null],
 ["SNM","","Other",2,false,true,false,false,true,null,0.47,-6.0,null,"2026-05-12",null],
-["SOP","SYNERTEC CORPORATION LIMITED","Industrials",2,true,false,true,false,false,53773237,0.093,5.7,"2026-09-07",null,"12M"],
-["SRG","SRG GLOBAL LIMITED","Industrials",2,false,false,true,true,false,2387794427,4.0,3.9,null,null,"1M"],
+["SOP","SYNERTEC CORPORATION LIMITED","Industrials",2,true,false,true,false,false,56333867,0.093,5.7,"2026-09-07",null,"12M"],
+["SRG","SRG GLOBAL LIMITED","Industrials",2,false,false,true,true,false,2438463805,4.0,3.9,null,null,"1M"],
 ["SRV","Servcorp Limited","Other",2,true,false,false,false,true,591776896,5.7,-1.6,"2026-09-02",null,null],
 ["STN","Saturn Metals Limited","Materials",2,true,false,false,true,false,335447744,0.52,4.0,"2026-06-16",null,null],
 ["STO","","Energy",2,false,true,false,true,false,null,8.51,-0.7,null,"2026-04-07",null],
@@ -473,7 +479,14 @@ const DATA = [
 ["TGM","","Other",2,false,true,false,false,true,null,0.185,0.0,null,"2025-08-26",null],
 ["TLG","","Other",2,false,true,false,false,true,null,0.275,1.9,null,"2026-03-10",null],
 ["TLX","Telix Pharmaceuticals Limited","Healthcare",2,true,false,false,true,false,5715169280,17.85,2.3,"2026-04-29",null,null],
-["TNE","Technology One Limited","Other",2,true,false,false,false,true,9451129856,29.0,0.7,"2026-07-08",null,null]
+["TNE","Technology One Limited","Other",2,true,false,false,false,true,9451129856,29.0,0.7,"2026-07-08",null,null],
+["TOT","360 Capital REIT","Other",2,true,false,false,false,true,88328464,0.4,-1.2,"2026-06-24",null,null],
+["VBC","Verbrec Limited","Industrials",2,true,false,false,true,false,58231460,0.195,0.0,"2026-09-03",null,null],
+["VEA","Viva Energy Group Limited","Energy",2,true,false,false,true,false,5173941248,3.12,0.3,"2026-04-21",null,null],
+["WC8","Wildcat Resources Limited","Other",2,true,false,false,false,true,479462016,0.34,0.0,"2026-06-29",null,null],
+["WES","Wesfarmers Limited","Other",2,true,false,false,false,true,82069585920,73.03,0.2,"2026-08-28",null,null],
+["WGN","Wagners Holding Company Limited","Materials",2,true,false,false,true,false,802889792,4.35,4.1,"2026-04-09",null,null],
+["YOJ","Yojee Limited","Other",2,true,false,false,false,true,97852360,0.23,0.0,"2026-05-18",null,null]
 ];
 
 const SECTOR_IDX = 2, COUNT_IDX = 3, MCAP_IDX = 9;
