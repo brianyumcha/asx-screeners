@@ -1,0 +1,256 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timing the Carts</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<script>
+try {
+  if (localStorage.getItem('timingcarts-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');
+} catch (e) {}
+</script>
+<style>
+:root{
+  --bg:#160f0e; --surface:#231715; --surface2:#2e1c19; --border:#5a332c;
+  --ink:#f7ece0; --ink-soft:#d9c2ae; --ink-faint:#a3897a;
+  --gold:#e8b355; --gold-ink:#241505;
+  --red:#c9524a; --red-bg:#3a1f1c;
+  --jade:#7bc0a8; --jade-bg:#1c2f28;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px rgba(0,0,0,.5);
+}
+:root[data-theme="light"]{
+  --bg:#fbf3e6; --surface:#fdf7ec; --surface2:#f6e9d3; --border:#d9b98c;
+  --ink:#2a1608; --ink-soft:#5c3d24; --ink-faint:#8a6a4d;
+  --gold:#a3690f; --gold-ink:#fff8ea;
+  --red:#a3352c; --red-bg:#f3d9d3;
+  --jade:#1f6b52; --jade-bg:#dcefe4;
+  --shadow: 0 1px 2px rgba(60,30,10,.08), 0 8px 24px rgba(60,30,10,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.55;
+  background-image:radial-gradient(circle at 15% 0%, rgba(232,179,85,.06), transparent 40%), radial-gradient(circle at 90% 15%, rgba(201,82,74,.08), transparent 45%);}
+html,body{overflow-x:clip}
+::selection{background:var(--gold);color:var(--gold-ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.5rem 4rem}
+h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+
+/* ticker tape */
+.tapewrap{overflow:hidden;background:var(--surface2);border-bottom:1px solid var(--border);white-space:nowrap}
+.tape{display:inline-flex;gap:2.2rem;padding:.55rem 0;animation:scroll 38s linear infinite;font-family:"IBM Plex Mono",monospace;font-size:.82rem}
+.tapewrap:hover .tape{animation-play-state:paused}
+@keyframes scroll{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.tapeitem{display:inline-flex;gap:.5rem;align-items:baseline;color:var(--ink-soft);white-space:nowrap}
+.tapeitem b{color:var(--ink)}
+.tapeitem .up{color:var(--jade)}
+.tapeitem .down{color:var(--red)}
+
+.hero{padding:2.6rem 0 1.6rem;text-align:center}
+.hero h1{font-size:clamp(2.1rem,5vw,3.1rem);margin:0 0 .3rem;letter-spacing:-.01em}
+.hero .tag{color:var(--ink-faint);font-style:italic;font-family:"Fraunces",Georgia,serif;font-size:1.05rem;margin-bottom:1.6rem}
+.themebtn{position:absolute;top:1.4rem;right:1.5rem;border:1px solid var(--border);background:var(--surface);color:var(--ink);
+  width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center}
+
+.indexcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.6rem;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:2rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem}
+.indexnum{text-align:left}
+.indexnum .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);font-weight:700}
+.indexnum .val{font-family:"IBM Plex Mono",monospace;font-size:2.6rem;font-weight:600;color:var(--gold)}
+.indexnum .chg{font-family:"IBM Plex Mono",monospace;font-size:1rem;font-weight:600}
+#indexCanvas{max-width:100%}
+
+h2.sectionhead{font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:2.2rem 0 1rem;
+  display:flex;align-items:center;gap:.5rem;color:var(--gold)}
+h2.sectionhead::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.cartgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.cartcard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:.5rem}
+.cartcard .head{display:flex;justify-content:space-between;align-items:baseline}
+.cartcard .code{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.05rem}
+.cartcard .name{font-size:.72rem;color:var(--ink-faint)}
+.cartcard .price{font-family:"IBM Plex Mono",monospace;font-size:1.3rem;font-weight:600}
+.cartcard .chg{font-family:"IBM Plex Mono",monospace;font-size:.82rem;font-weight:600}
+.cartcard canvas{width:100%;height:44px;display:block}
+.signal{display:inline-block;align-self:flex-start;font-size:.66rem;font-weight:700;letter-spacing:.03em;
+  padding:.15rem .5rem;border-radius:999px;text-transform:uppercase}
+.signal.buy{background:var(--jade-bg);color:var(--jade)}
+.signal.sell{background:var(--red-bg);color:var(--red)}
+.signal.hold{background:var(--surface2);color:var(--ink-faint)}
+.up{color:var(--jade)}
+.down{color:var(--red)}
+
+.glossary{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.3rem 1.5rem;box-shadow:var(--shadow)}
+.glossrow{display:grid;grid-template-columns:1fr 1fr;gap:.3rem 1.5rem;padding:.55rem 0;border-bottom:1px dashed var(--border)}
+.glossrow:last-child{border-bottom:none}
+.glossrow .term{font-family:"IBM Plex Mono",monospace;font-weight:700;color:var(--gold);font-size:.85rem}
+.glossrow .def{color:var(--ink-soft);font-size:.88rem}
+@media (max-width:640px){ .glossrow{grid-template-columns:1fr} }
+
+footer{margin-top:2.5rem;padding-top:1.3rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint);text-align:center;font-style:italic}
+a.home{display:inline-block;margin-top:1rem;color:var(--ink-faint);font-size:.8rem;text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
+a.home:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<div class="tapewrap"><div class="tape" id="tape"></div></div>
+
+<div class="wrap" style="position:relative">
+  <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+  <div class="hero">
+    <h1>🛒 Timing the Carts</h1>
+    <div class="tag">The Dim Sum Trading Terminal — because reading the charts wasn't nerdy enough.</div>
+  </div>
+
+  <div class="indexcard">
+    <div class="indexnum">
+      <div class="lbl">Dim Sum Index (DSX)</div>
+      <div class="val mono" id="dsxVal">—</div>
+      <div class="chg" id="dsxChg">—</div>
+    </div>
+    <canvas id="indexCanvas" width="620" height="120"></canvas>
+  </div>
+
+  <h2 class="sectionhead">🥟 The Board</h2>
+  <div class="cartgrid" id="cartGrid"></div>
+
+  <h2 class="sectionhead">📖 Terminology, Translated</h2>
+  <div class="glossary" id="glossary"></div>
+
+  <footer>
+    Not financial advice. Not even food advice.<br>
+    Please tip your yum cha aunty — she has seen your portfolio and said nothing.
+    <br><a class="home" href="index.html">← back to the actual trading site</a>
+  </footer>
+</div>
+
+<script>
+// Deterministic PRNG (mulberry32) seeded per-string so the "market" looks
+// alive but is stable for the whole day - no backend, no cron, just today's
+// date baked into the seed.
+function hashStr(s){ let h=1779033703^s.length; for(let i=0;i<s.length;i++){ h=Math.imul(h^s.charCodeAt(i),3432918353); h=h<<13|h>>>19; } return function(){ h=Math.imul(h^h>>>16,2246822507); h=Math.imul(h^h>>>13,3266489909); h^=h>>>16; return h>>>0; }; }
+function mulberry32(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+const today = new Date().toISOString().slice(0,10);
+function rngFor(key){ return mulberry32(hashStr(today+'|'+key)()); }
+
+const DISHES = [
+  {code:'SIU', name:'Siu Mai', base:6.80},
+  {code:'HAR', name:'Har Gow', base:7.20},
+  {code:'CSB', name:'Char Siu Bao', base:5.40},
+  {code:'EGT', name:'Egg Tart', base:3.60},
+  {code:'CFT', name:'Chicken Feet', base:4.90},
+  {code:'TUR', name:'Turnip Cake', base:5.10},
+  {code:'CNG', name:'Century Egg Congee', base:6.30},
+  {code:'CST', name:'Custard Bun', base:4.20},
+];
+const SIGNALS = ['buy','sell','hold'];
+const SIGNAL_LABEL = {buy:'Buy the Cart', sell:'Oversteamed', hold:'Hold the Chopsticks'};
+
+function genSeries(rng, base, n){
+  const series = [base];
+  for(let i=1;i<n;i++){
+    const drift = (rng()-0.48) * base * 0.035;
+    series.push(Math.max(0.5, series[i-1] + drift));
+  }
+  return series;
+}
+
+function drawSpark(canvas, series, color){
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth || 200, h = canvas.clientHeight || 44;
+  canvas.width = w*dpr; canvas.height = h*dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,w,h);
+  const min = Math.min(...series), max = Math.max(...series);
+  const pad = 4;
+  const X = i => pad + (i/(series.length-1)) * (w-pad*2);
+  const Y = v => h-pad - ((v-min)/((max-min)||1)) * (h-pad*2);
+  ctx.beginPath();
+  series.forEach((v,i) => { const x=X(i), y=Y(v); i===0?ctx.moveTo(x,y):ctx.lineTo(x,y); });
+  ctx.strokeStyle = color; ctx.lineWidth = 1.8; ctx.stroke();
+  const grad = ctx.createLinearGradient(0,0,0,h);
+  grad.addColorStop(0, color+'33'); grad.addColorStop(1, color+'00');
+  ctx.lineTo(X(series.length-1), h); ctx.lineTo(X(0), h); ctx.closePath();
+  ctx.fillStyle = grad; ctx.fill();
+}
+
+function isLightTheme(){ return document.documentElement.getAttribute('data-theme') === 'light'; }
+
+const cartData = DISHES.map(d => {
+  const rng = rngFor(d.code);
+  const series = genSeries(rng, d.base, 24);
+  const price = series[series.length-1];
+  const chg = ((price - series[0]) / series[0]) * 100;
+  const signal = SIGNALS[Math.floor(rng()*SIGNALS.length)];
+  return { ...d, series, price, chg, signal };
+});
+
+const cartGrid = document.getElementById('cartGrid');
+cartGrid.innerHTML = cartData.map((d,i) => `
+  <div class="cartcard">
+    <div class="head">
+      <span class="code">${d.code}</span>
+      <span class="chg ${d.chg>=0?'up':'down'}">${d.chg>=0?'+':''}${d.chg.toFixed(1)}%</span>
+    </div>
+    <div class="name">${d.name}</div>
+    <div class="price mono">$${d.price.toFixed(2)}</div>
+    <canvas id="spark${i}"></canvas>
+    <span class="signal ${d.signal}">${SIGNAL_LABEL[d.signal]}</span>
+  </div>
+`).join('');
+
+function isLight(){ return isLightTheme(); }
+function paintAll(){
+  cartData.forEach((d,i) => {
+    const canvas = document.getElementById('spark'+i);
+    const color = d.chg >= 0 ? (isLight() ? '#1f6b52' : '#7bc0a8') : (isLight() ? '#a3352c' : '#c9524a');
+    drawSpark(canvas, d.series, color);
+  });
+  const idxRng = rngFor('DSX');
+  const idxSeries = genSeries(idxRng, 1000, 30);
+  const idxVal = idxSeries[idxSeries.length-1];
+  const idxChg = ((idxVal - idxSeries[0]) / idxSeries[0]) * 100;
+  document.getElementById('dsxVal').textContent = idxVal.toFixed(2);
+  const chgEl = document.getElementById('dsxChg');
+  chgEl.textContent = (idxChg>=0?'▲ +':'▼ ')+idxChg.toFixed(2)+'% today';
+  chgEl.className = 'chg mono ' + (idxChg>=0?'up':'down');
+  drawSpark(document.getElementById('indexCanvas'), idxSeries, isLight() ? '#a3690f' : '#e8b355');
+}
+paintAll();
+
+// ticker tape - duplicated once for a seamless scroll loop
+const tapeHtml = cartData.map(d =>
+  `<span class="tapeitem"><b>${d.code}</b> $${d.price.toFixed(2)} <span class="${d.chg>=0?'up':'down'}">${d.chg>=0?'▲':'▼'} ${Math.abs(d.chg).toFixed(1)}%</span></span>`
+).join('');
+document.getElementById('tape').innerHTML = tapeHtml + tapeHtml;
+
+const GLOSSARY = [
+  ['RSI', 'Relative Siu Mai Index — how many baskets deep you are'],
+  ['Support level', 'The bottom of the bamboo steamer'],
+  ['Resistance', 'When Popo says "no more, you\'ll spoil dinner"'],
+  ['Golden Cross', 'When the egg tart cart crosses paths with the custard bun cart'],
+  ['Circuit breaker', 'Trolley wheel gets stuck on the carpet'],
+  ['Bull market', 'The table gets seconds on har gow'],
+  ['Bear market', 'The bill arrives'],
+  ['Blue chip', 'Prawn dumpling, always'],
+  ['Volatility', 'How fast the cart empties once it turns the corner'],
+  ['Diversification', 'One of everything, just in case'],
+  ['Short squeeze', 'Reaching across the table before the cart moves on'],
+  ['Dividend', 'Someone else pays this round'],
+];
+document.getElementById('glossary').innerHTML = GLOSSARY.map(([t,d]) =>
+  `<div class="glossrow"><div class="term">${t}</div><div class="def">${d}</div></div>`
+).join('');
+
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.textContent = isLightTheme() ? '☀️' : '🌙';
+themeBtn.addEventListener('click', ()=>{
+  const next = isLightTheme() ? null : 'light';
+  if(next){ document.documentElement.setAttribute('data-theme','light'); } else { document.documentElement.removeAttribute('data-theme'); }
+  themeBtn.textContent = isLightTheme() ? '☀️' : '🌙';
+  try{
+    if(next) localStorage.setItem('timingcarts-theme', next);
+    else localStorage.removeItem('timingcarts-theme');
+  }catch(e){}
+  paintAll();
+});
+</script>
