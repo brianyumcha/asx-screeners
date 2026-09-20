@@ -58,6 +58,7 @@ not "Nw ago" offsets.
 import datetime
 import json
 import math
+from dashboard_template import render_nav
 
 import price_cache
 
@@ -271,6 +272,7 @@ def main():
     html = html.replace("<<<LINE_DATES_DATA>>>", line_dates_json)
     build_date = datetime.date.today().strftime("%-d %b %Y")
     html = html.replace("<<<BUILD_DATE>>>", build_date)
+    html = html.replace("<<<NAV_HTML>>>", render_nav(OUTPUT))
 
     with open(OUTPUT, "w") as f:
         f.write(html)

@@ -13,6 +13,7 @@ import re
 import time
 
 import yfinance as yf
+from dashboard_template import render_nav
 
 FUEL_CACHE = "energy_fuel_cache.json"
 TEMPLATE = "energy_index_template.html"
@@ -157,6 +158,7 @@ def main():
     html = template.replace("<<<FULL_DATA>>>", data_block)
     build_date = datetime.date.today().strftime("%-d %b %Y")
     html = html.replace("<<<BUILD_DATE>>>", build_date)
+    html = html.replace("<<<NAV_HTML>>>", render_nav(OUTPUT))
 
     with open(OUTPUT, "w") as f:
         f.write(html)

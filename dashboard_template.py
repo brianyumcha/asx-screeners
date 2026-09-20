@@ -115,6 +115,7 @@ NAV_TOOLS_LINKS = [
     ('red-folder-news.html', 'Red Folder News'),
     ('sector-rotation.html', 'Sector Rotation'),
     ('earnings-calendar.html', 'Earnings Calendar'),
+    ('conviction-stack.html', 'Conviction Stack'),
 ]
 
 

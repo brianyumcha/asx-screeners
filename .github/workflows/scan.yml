@@ -143,6 +143,10 @@ jobs:
             git stash pop || true
           done
 
+      - name: Build homepage (fresh nav)
+        if: steps.gate.outputs.should_run == 'true'
+        run: python3 build_site_index.py
+
       - name: Build Pages site
         if: steps.gate.outputs.should_run == 'true'
         run: |
@@ -152,7 +156,7 @@ jobs:
           cp "asx_momentum_results.html" _site/momentum.html
           cp "asx_volume_anomaly_results.html" _site/volume-anomaly.html
           cp "asx_hh_results.html" _site/higher-high.html
-          cp site_index.html _site/index.html
+          cp index.html _site/index.html
           [ -f materials-index.html ] && cp materials-index.html _site/materials-index.html || true
           [ -f healthcare-index.html ] && cp healthcare-index.html _site/healthcare-index.html || true
           [ -f energy-index.html ] && cp energy-index.html _site/energy-index.html || true
@@ -172,6 +176,10 @@ jobs:
           [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
           cp craig-bullish-map.html _site/craig-bullish-map.html
           cp timing-the-carts.html _site/timing-the-carts.html
+
+      - name: Check nav consistency across every deployed page
+        if: steps.gate.outputs.should_run == 'true'
+        run: python3 check_nav.py
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.gate.outputs.should_run == 'true'

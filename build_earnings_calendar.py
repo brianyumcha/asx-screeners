@@ -41,6 +41,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
+from dashboard_template import render_nav
 
 CALENDAR_URL = "https://www.commsec.com.au/market-news/reporting-season.html"
 TEMPLATE = "earnings_calendar_template.html"
@@ -164,12 +165,13 @@ def main():
 
     with open(TEMPLATE) as f:
         template = f.read()
-    for placeholder in ("<<<FULL_DATA>>>", "<<<BUILD_DATE>>>", "<<<SEASON_LABEL>>>", "<<<SEASON_ACTIVE>>>", "<<<NEXT_SEASON_NOTE>>>"):
+    for placeholder in ("<<<FULL_DATA>>>", "<<<BUILD_DATE>>>", "<<<SEASON_LABEL>>>", "<<<SEASON_ACTIVE>>>", "<<<NEXT_SEASON_NOTE>>>", "<<<NAV_HTML>>>"):
         assert placeholder in template, f"template placeholder missing: {placeholder}"
 
     now_syd = datetime.datetime.now(SYDNEY_TZ)
     html_out = template.replace("<<<FULL_DATA>>>", data_block)
     html_out = html_out.replace("<<<BUILD_DATE>>>", now_syd.strftime("%-d %b %Y, %-I:%M%p"))
+    html_out = html_out.replace("<<<NAV_HTML>>>", render_nav(OUTPUT))
     html_out = html_out.replace("<<<SEASON_LABEL>>>", f"{season_month_name} {season_year}")
     html_out = html_out.replace("<<<SEASON_ACTIVE>>>", "true" if season_active else "false")
     html_out = html_out.replace("<<<NEXT_SEASON_NOTE>>>", esc_js(next_season_note))

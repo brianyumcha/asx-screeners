@@ -73,10 +73,13 @@ jobs:
           curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
           curl -sf -o volume-anomaly.html https://brianyumcha.github.io/asx-screeners/volume-anomaly.html || true
 
+      - name: Build homepage (fresh nav)
+        run: python3 build_site_index.py
+
       - name: Build Pages site
         run: |
           mkdir -p _site
-          cp site_index.html _site/index.html
+          cp index.html _site/index.html
           cp materials-index.html _site/materials-index.html
           cp healthcare-index.html _site/healthcare-index.html
           cp energy-index.html _site/energy-index.html
@@ -101,6 +104,9 @@ jobs:
           [ -f momentum.html ] && cp momentum.html _site/momentum.html || true
           [ -f higher-high.html ] && cp higher-high.html _site/higher-high.html || true
           [ -f volume-anomaly.html ] && cp volume-anomaly.html _site/volume-anomaly.html || true
+
+      - name: Check nav consistency across every deployed page
+        run: python3 check_nav.py
 
       - uses: actions/upload-pages-artifact@v3
         with:

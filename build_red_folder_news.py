@@ -36,6 +36,7 @@ import time
 from zoneinfo import ZoneInfo
 
 import requests
+from dashboard_template import render_nav
 
 CALENDAR_URL = "https://nfs.faireconomy.media/ff_calendar_thisweek.json"
 TEMPLATE = "red_folder_news_template.html"
@@ -143,6 +144,7 @@ def main():
     html = template.replace("<<<FULL_DATA>>>", data_block)
     build_stamp = now_syd.strftime("%-d %b %Y, %-I:%M%p")
     html = html.replace("<<<BUILD_DATE>>>", build_stamp)
+    html = html.replace("<<<NAV_HTML>>>", render_nav(OUTPUT))
 
     with open(OUTPUT, "w") as f:
         f.write(html)

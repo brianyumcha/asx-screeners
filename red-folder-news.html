@@ -143,6 +143,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
   width:2.1rem;height:2.1rem;border-radius:6px;cursor:pointer;font-size:1rem;
   align-items:center;justify-content:center;flex:none;margin-left:auto}
 .navburger:hover{border-color:var(--nav-accent);color:var(--nav-accent)}
+.cart-egg{font-size:1.15rem;display:flex;align-items:center;padding:0 .3rem;text-decoration:none;opacity:.75;filter:grayscale(.3)}
+.cart-egg:hover{opacity:1;filter:none;transform:scale(1.15)}
 @media (max-width:640px){
   .sitenav{padding:.5rem .7rem;gap:.5rem .7rem;flex-wrap:wrap}
   .sitenav-brand{font-size:.7rem}
@@ -175,8 +177,10 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
+<a href="volume-anomaly.html">Volume Anomaly</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
+<a href="comms-index.html">Communication Services</a>
 <a href="discretionary-index.html">Consumer Discretionary</a>
 <a href="staples-index.html">Consumer Staples</a>
 <a href="energy-index.html">Energy</a>
@@ -184,15 +188,18 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="healthcare-index.html">Healthcare</a>
 <a href="industrials-index.html">Industrials</a>
 <a href="materials-index.html">Materials</a>
-<a href="real-estate-index.html" class="active">Real Estate</a>
+<a href="real-estate-index.html">Real Estate</a>
 <a href="tech-index.html">Tech</a>
+<a href="utilities-index.html">Utilities</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">Trading Tools <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="insider-index.html">Insider Buying</a>
 <a href="red-folder-news.html" class="active">Red Folder News</a>
 <a href="sector-rotation.html">Sector Rotation</a>
 <a href="earnings-calendar.html">Earnings Calendar</a>
+<a href="conviction-stack.html">Conviction Stack</a>
 </div></div>
+<a class="cart-egg" href="timing-the-carts.html" title="Timing the Carts">🥟</a>
 </div>
 </nav>
 <script>
@@ -225,6 +232,7 @@ document.addEventListener('keydown', function(e){
 });
 </script>
 
+
 <div class="wrap">
   <div class="topbar">
     <div>
@@ -236,7 +244,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily — last rebuilt 21 Sep 2026, 8:18AM Sydney time.</div>
+  <div class="session">Rebuilt daily — last rebuilt 21 Sep 2026, 9:19AM Sydney time.</div>
 
   <div class="notice">⚠ "Red folder" is ForexFactory's own term for its highest ("High") impact tier — the events most likely to move price on release. This page shows the full Sunday-Saturday calendar week, sourced from the same feed ForexFactory's own site exports — no month-ahead feed exists (checked directly against forexfactory.com). Already-released events this week are shown dimmed for context — this feed has no "actual" outcome field, so only forecast/previous are ever shown either way. All times are Sydney local (AEST/AEDT), computed at build time — not your browser's timezone.</div>
 

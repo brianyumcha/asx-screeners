@@ -29,6 +29,7 @@ import sys
 import time
 
 import yfinance as yf
+from dashboard_template import render_nav
 
 TEMPLATE = "insider_index_template.html"
 OUTPUT = "insider-index.html"
@@ -233,6 +234,7 @@ def main():
     html = template.replace("<<<FULL_DATA>>>", data_block)
     build_date = datetime.date.today().strftime("%-d %b %Y")
     html = html.replace("<<<BUILD_DATE>>>", build_date)
+    html = html.replace("<<<NAV_HTML>>>", render_nav(OUTPUT))
     html = html.replace("<<<LOOKBACK_DAYS>>>", str(LOOKBACK_DAYS))
 
     with open(OUTPUT, "w") as f:
