@@ -165,6 +165,7 @@ jobs:
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
           cp craig-bullish-map.html _site/craig-bullish-map.html
+          cp timing-the-carts.html _site/timing-the-carts.html
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.gate.outputs.should_run == 'true'
