@@ -300,7 +300,6 @@ def build_html_report(triggered, forming, total_scanned):
     build_date = datetime.date.today().strftime("%-d %b %Y")
     render_dashboard_html(
         cards=triggered_cards + forming_cards,
-        excluded_cards=[],
         total_scanned=total_scanned,
         title='🌊 ASX Wave 2 Scanner',
         subtitle='ASX stocks currently in a validated Elliott Wave 2 pullback - a real 5-wave impulse '
