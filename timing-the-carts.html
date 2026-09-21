@@ -149,11 +149,11 @@ a.home:hover{color:var(--gold);border-bottom-color:var(--gold)}
     <div class="gameoverlay">
       <canvas id="gameCanvas" width="560" height="360"></canvas>
       <div class="gomsg" id="gameStart">
-        <div style="font-size:1.1rem;font-weight:700">Catch the dishes. Dodge the bill.</div>
+        <div style="font-size:1.1rem;font-weight:700">Catch the dishes. Dodge the bill. Grab the 🧧 for a life.</div>
         <button id="gameStartBtn">Start</button>
       </div>
     </div>
-    <div class="gamehint">← → arrow keys, or click/drag to move the cart. Miss 3 dishes or catch the 🧾 and it's game over.</div>
+    <div class="gamehint">← → arrow keys, or click/drag to move the cart. Miss 3 dishes or catch the 🧾 and it's game over — catch a 🧧 red packet for +1 life (up to 5).</div>
   </div>
 
   <footer>
@@ -324,8 +324,10 @@ themeBtn.addEventListener('click', ()=>{
   const ctx = canvas.getContext('2d');
   const W = canvas.width, H = canvas.height;
   const CART_W = 74, CART_H = 30, CART_Y = H - CART_H - 8;
-  const GOOD_ITEMS = ['🥟','🍤','🧋','🥮','🍜','🥡','🧧'];
+  const GOOD_ITEMS = ['🥟','🍤','🧋','🥮','🍜','🥡'];
   const BAD_ITEM = '🧾';
+  const LIFE_ITEM = '🧧'; // red packet - lucky money, +1 life instead of a point
+  const MAX_LIVES = 5;
   const BEST_KEY = 'timingcarts-best';
 
   let cartX = W/2 - CART_W/2;
@@ -346,12 +348,15 @@ themeBtn.addEventListener('click', ()=>{
   }
 
   function spawnItem(){
-    const isBad = Math.random() < 0.16;
+    const roll = Math.random();
+    const isBad = roll < 0.16;
+    const isLife = !isBad && roll < 0.24; // rarer than a bad item, and never both
     items.push({
       x: 20 + Math.random() * (W - 40),
       y: -20,
-      emoji: isBad ? BAD_ITEM : GOOD_ITEMS[Math.floor(Math.random()*GOOD_ITEMS.length)],
+      emoji: isBad ? BAD_ITEM : isLife ? LIFE_ITEM : GOOD_ITEMS[Math.floor(Math.random()*GOOD_ITEMS.length)],
       bad: isBad,
+      life: isLife,
       speed: 90 + Math.min(220, score * 4) + Math.random()*30,
     });
   }
@@ -432,7 +437,9 @@ themeBtn.addEventListener('click', ()=>{
       const caught = it.y > CART_Y - 6 && it.y < CART_Y + CART_H && it.x > cartX && it.x < cartX + CART_W;
       if (caught) {
         items.splice(i,1);
-        if (it.bad) { lives--; } else { score++; }
+        if (it.bad) { lives--; }
+        else if (it.life) { lives = Math.min(MAX_LIVES, lives+1); score++; }
+        else { score++; }
         updateHud();
         if (lives <= 0) { draw(); endGame(); return; }
         continue;
