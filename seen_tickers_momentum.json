@@ -13,7 +13,7 @@
   },
   "A4N": {
     "first_seen": "2026-09-25",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "ACL": {
     "first_seen": "2026-09-17",
@@ -21,7 +21,7 @@
   },
   "ACW": {
     "first_seen": "2026-09-22",
-    "last_seen": "2026-09-22"
+    "last_seen": "2026-09-29"
   },
   "ADX": {
     "first_seen": "2026-09-28",
@@ -41,7 +41,7 @@
   },
   "ALC": {
     "first_seen": "2026-09-23",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "ALD": {
     "first_seen": "2026-09-17",
@@ -85,7 +85,7 @@
   },
   "ATS": {
     "first_seen": "2026-09-21",
-    "last_seen": "2026-09-25"
+    "last_seen": "2026-09-29"
   },
   "AVL": {
     "first_seen": "2026-09-22",
@@ -109,11 +109,11 @@
   },
   "BET": {
     "first_seen": "2026-09-24",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "BM1": {
     "first_seen": "2026-09-28",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "BNZ": {
     "first_seen": "2026-09-17",
@@ -137,11 +137,11 @@
   },
   "BTL": {
     "first_seen": "2026-09-25",
-    "last_seen": "2026-09-25"
+    "last_seen": "2026-09-29"
   },
   "BTR": {
     "first_seen": "2026-09-18",
-    "last_seen": "2026-09-23"
+    "last_seen": "2026-09-29"
   },
   "BVR": {
     "first_seen": "2026-09-22",
@@ -157,7 +157,7 @@
   },
   "CCL": {
     "first_seen": "2026-09-17",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "CDA": {
     "first_seen": "2026-09-17",
@@ -169,7 +169,7 @@
   },
   "COH": {
     "first_seen": "2026-09-22",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "CPN": {
     "first_seen": "2026-09-22",
@@ -211,13 +211,17 @@
     "first_seen": "2026-09-25",
     "last_seen": "2026-09-28"
   },
+  "DUR": {
+    "first_seen": "2026-09-29",
+    "last_seen": "2026-09-29"
+  },
   "DXN": {
     "first_seen": "2026-09-22",
-    "last_seen": "2026-09-24"
+    "last_seen": "2026-09-29"
   },
   "EHL": {
     "first_seen": "2026-09-21",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "ELD": {
     "first_seen": "2026-09-21",
@@ -257,7 +261,7 @@
   },
   "EXR": {
     "first_seen": "2026-09-28",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "FDC": {
     "first_seen": "2026-09-24",
@@ -265,11 +269,15 @@
   },
   "FHE": {
     "first_seen": "2026-09-18",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "FTI": {
     "first_seen": "2026-09-17",
     "last_seen": "2026-09-21"
+  },
+  "GBR": {
+    "first_seen": "2026-09-29",
+    "last_seen": "2026-09-29"
   },
   "GG8": {
     "first_seen": "2026-09-23",
@@ -355,6 +363,10 @@
     "first_seen": "2026-09-23",
     "last_seen": "2026-09-23"
   },
+  "LML": {
+    "first_seen": "2026-09-29",
+    "last_seen": "2026-09-29"
+  },
   "MAH": {
     "first_seen": "2026-09-25",
     "last_seen": "2026-09-28"
@@ -395,6 +407,10 @@
     "first_seen": "2026-09-23",
     "last_seen": "2026-09-23"
   },
+  "NST": {
+    "first_seen": "2026-09-29",
+    "last_seen": "2026-09-29"
+  },
   "NUF": {
     "first_seen": "2026-09-17",
     "last_seen": "2026-09-21"
@@ -433,7 +449,7 @@
   },
   "PNR": {
     "first_seen": "2026-09-18",
-    "last_seen": "2026-09-25"
+    "last_seen": "2026-09-29"
   },
   "PRU": {
     "first_seen": "2026-09-18",
@@ -479,6 +495,10 @@
     "first_seen": "2026-09-18",
     "last_seen": "2026-09-24"
   },
+  "SKS": {
+    "first_seen": "2026-09-29",
+    "last_seen": "2026-09-29"
+  },
   "SLS": {
     "first_seen": "2026-09-18",
     "last_seen": "2026-09-28"
@@ -489,7 +509,7 @@
   },
   "SOP": {
     "first_seen": "2026-09-28",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "SPL": {
     "first_seen": "2026-09-21",
@@ -540,12 +560,12 @@
     "last_seen": "2026-09-23"
   },
   "VAL": {
-    "first_seen": "2026-09-21",
-    "last_seen": "2026-09-21"
+    "first_seen": "2026-09-29",
+    "last_seen": "2026-09-29"
   },
   "VGN": {
     "first_seen": "2026-09-23",
-    "last_seen": "2026-09-28"
+    "last_seen": "2026-09-29"
   },
   "VKA": {
     "first_seen": "2026-09-23",
