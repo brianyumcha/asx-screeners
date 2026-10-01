@@ -5,8 +5,9 @@ Three Python screeners over the full ASX (ticker universe via SeaBee API / Marke
 - **`OBV SCREENER.py`** — pre-breakout screener: rising OBV, price below its recent high, RSI 45-70, price above 20d/50d SMA.
 - **`PULLBACK SCREENER.py`** — Fibonacci "Zag Zone" pullback screener: price retracing 38.2%-61.8% of its latest swing, scored on volume/RSI/Stoch RSI/OBV confluence.
 - **`HH SCREENER.py`** — Higher-High screener: structural breakout of the last swing high, by sector — a Python/HTML port of the "HH Indicator (BT)" TradingView scripts, with daily/weekly signal toggle and an OBV-confirmation column.
+- **`LL SCREENER.py`** — Lower-Low screener: the mirror image of HH SCREENER.py, flagging structural breakdowns of the last swing low instead of breakouts of the last swing high. Same pipeline, same universe, same report shell - see that script's docstring for what's inverted.
 
-OBV and Pullback write a card-grid HTML dashboard (mini candlestick charts, sector/size/timeframe filters); HH writes a sector-grouped dashboard with a Charts/Table view toggle (chart view shows a mini candlestick+SMA chart per signal, with 1M/3M/6M zoom). All three also write a CSV.
+OBV and Pullback write a card-grid HTML dashboard (mini candlestick charts, sector/size/timeframe filters); HH and LL write a sector-grouped dashboard with a Charts/Table view toggle (chart view shows a mini candlestick+SMA chart per signal, with 1M/3M/6M zoom). All four also write a CSV.
 
 ## Run locally
 
@@ -14,6 +15,7 @@ OBV and Pullback write a card-grid HTML dashboard (mini candlestick charts, sect
 python3 "OBV SCREENER.py"
 python3 "PULLBACK SCREENER.py"
 python3 "HH SCREENER.py"
+python3 "LL SCREENER.py"
 ```
 
 (or the `run-obv` / `run-pullback` / `run-hh` shell aliases, if set up)
@@ -23,7 +25,7 @@ python3 "HH SCREENER.py"
 A GitHub Actions workflow (`.github/workflows/scan.yml`) publishes the dashboards to GitHub Pages on a schedule:
 
 - **OBV + Pullback** — once daily, 5:00pm Sydney time (after ASX close). Cooldown state (`seen_tickers*.json`) is committed back to the repo each run so "already seen" tracking persists across runs.
-- **Higher-High** — 5x daily during market hours (10:30am, 1pm, 3:30pm, 4:30pm, and again as part of the 5pm full run). No cooldown/scoring concept — every ticker passing the liquidity filters is shown, live-signal state only, so re-running intraday just reflects current state.
+- **Higher-High + Lower-Low** — 5x daily during market hours (10:30am, 1pm, 3:30pm, 4:30pm, and again as part of the 5pm full run). No cooldown/scoring concept — every ticker passing the liquidity filters is shown, live-signal state only, so re-running intraday just reflects current state.
 
 GitHub Actions cron is fixed UTC and doesn't know about daylight saving, so every slot above is registered twice in `scan.yml` (once at its AEST instant, once at its AEDT instant). `.github/workflows/dst_gate.py` checks the real current `Australia/Sydney` UTC offset at runtime and skips whichever set doesn't match the current season — so the schedule stays correct in local time across the AEST/AEDT switch without any manual edits.
 

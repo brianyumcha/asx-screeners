@@ -7,14 +7,14 @@ on:
     # AEST (UTC+10) instant, once at its AEDT (UTC+11) instant. Both fire
     # year-round; dst_gate.py checks the real current Australia/Sydney offset
     # at runtime and skips whichever set doesn't match the current season.
-    - cron: '30 0 * * 1-5'    # 10:30am AEST — HH only
-    - cron: '0 3 * * 1-5'     # 1:00pm AEST — HH only
-    - cron: '30 5 * * 1-5'    # 3:30pm AEST == 4:30pm AEDT (same UTC instant) — HH only
-    - cron: '30 6 * * 1-5'    # 4:30pm AEST — HH only
+    - cron: '30 0 * * 1-5'    # 10:30am AEST — HH/LL only
+    - cron: '0 3 * * 1-5'     # 1:00pm AEST — HH/LL only
+    - cron: '30 5 * * 1-5'    # 3:30pm AEST == 4:30pm AEDT (same UTC instant) — HH/LL only
+    - cron: '30 6 * * 1-5'    # 4:30pm AEST — HH/LL only
     - cron: '0 7 * * 1-5'     # 5:00pm AEST, after close — full run
-    - cron: '30 23 * * 0-4'   # 10:30am AEDT (falls on the previous UTC day) — HH only
-    - cron: '0 2 * * 1-5'     # 1:00pm AEDT — HH only
-    - cron: '30 4 * * 1-5'    # 3:30pm AEDT — HH only
+    - cron: '30 23 * * 0-4'   # 10:30am AEDT (falls on the previous UTC day) — HH/LL only
+    - cron: '0 2 * * 1-5'     # 1:00pm AEDT — HH/LL only
+    - cron: '30 4 * * 1-5'    # 3:30pm AEDT — HH/LL only
     - cron: '0 6 * * 1-5'     # 5:00pm AEDT, after close — full run
   workflow_dispatch: {}
 
@@ -30,9 +30,9 @@ concurrency:
 # ⚠ Don't manually trigger this workflow twice in quick succession (or
 # alongside another of these 4 workflows while this one is still
 # building) - see materials_index.yml for the full explanation. This one
-# regenerates higher-high/pre-breakout/pullback/momentum.html plus the
-# price cache and category caches, so a collision here is the most
-# likely to actually hit real conflicting content.
+# regenerates higher-high/lower-low/pre-breakout/pullback/momentum.html
+# plus the price cache and category caches, so a collision here is the
+# most likely to actually hit real conflicting content.
 
 jobs:
   scan:
@@ -91,6 +91,13 @@ jobs:
           TELEGRAM_HH_CHAT_ID: ${{ secrets.TELEGRAM_HH_CHAT_ID }}
         run: python3 "HH SCREENER.py"
 
+      - name: Run Lower-Low screener
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          TELEGRAM_LL_BOT_TOKEN: ${{ secrets.TELEGRAM_LL_BOT_TOKEN }}
+          TELEGRAM_LL_CHAT_ID: ${{ secrets.TELEGRAM_LL_CHAT_ID }}
+        run: python3 "LL SCREENER.py"
+
       - name: Preserve existing OBV/Pullback/Momentum/Volume pages on HH-only intraday runs
         if: steps.gate.outputs.should_run == 'true' && steps.gate.outputs.full_run != 'true'
         run: |
@@ -116,7 +123,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f price_cache.parquet seen_tickers_hh_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json realestate_category_cache.json financials_category_cache.json staples_category_cache.json discretionary_category_cache.json industrials_category_cache.json utilities_category_cache.json comms_category_cache.json conviction-stack.html
+          git add -f price_cache.parquet seen_tickers_hh_telegram.json seen_tickers_ll_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json realestate_category_cache.json financials_category_cache.json staples_category_cache.json discretionary_category_cache.json industrials_category_cache.json utilities_category_cache.json comms_category_cache.json conviction-stack.html
           git diff --staged --quiet || git commit -m "Update price cache"
           for i in 1 2 3; do
             git push && break
@@ -156,6 +163,7 @@ jobs:
           cp "asx_momentum_results.html" _site/momentum.html
           cp "asx_volume_anomaly_results.html" _site/volume-anomaly.html
           cp "asx_hh_results.html" _site/higher-high.html
+          cp "asx_ll_results.html" _site/lower-low.html
           cp index.html _site/index.html
           [ -f materials-index.html ] && cp materials-index.html _site/materials-index.html || true
           [ -f healthcare-index.html ] && cp healthcare-index.html _site/healthcare-index.html || true

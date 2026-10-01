@@ -92,6 +92,7 @@ NAV_ICON_B64 = 'iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAk0klEQVR4nO19eaxd
 
 NAV_SCREENER_LINKS = [
     ('higher-high.html', 'Higher-High'),
+    ('lower-low.html', 'Lower-Low'),
     ('momentum.html', 'Momentum'),
     ('pre-breakout.html', 'Pre-Breakout (OBV)'),
     ('pullback.html', 'Pullback (Zag Zone)'),
