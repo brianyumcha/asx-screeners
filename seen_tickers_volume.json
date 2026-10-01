@@ -711,6 +711,10 @@
     "first_seen": "2026-09-20",
     "last_seen": "2026-09-21"
   },
+  "SLM": {
+    "first_seen": "2026-10-01",
+    "last_seen": "2026-10-01"
+  },
   "SLX": {
     "first_seen": "2026-09-20",
     "last_seen": "2026-09-21"
@@ -751,6 +755,10 @@
     "first_seen": "2026-09-20",
     "last_seen": "2026-09-21"
   },
+  "STX": {
+    "first_seen": "2026-10-01",
+    "last_seen": "2026-10-01"
+  },
   "SUL": {
     "first_seen": "2026-09-20",
     "last_seen": "2026-09-21"
@@ -758,6 +766,10 @@
   "SVM": {
     "first_seen": "2026-09-22",
     "last_seen": "2026-09-22"
+  },
+  "SWP": {
+    "first_seen": "2026-10-01",
+    "last_seen": "2026-10-01"
   },
   "SXE": {
     "first_seen": "2026-09-20",
