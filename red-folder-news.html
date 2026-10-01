@@ -243,7 +243,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily — last rebuilt 29 Sep 2026, 6:14PM Sydney time.</div>
+  <div class="session">Rebuilt daily — last rebuilt 1 Oct 2026, 6:15PM Sydney time.</div>
 
   <div class="notice">⚠ "Red folder" is ForexFactory's own term for its highest ("High") impact tier — the events most likely to move price on release. This page shows the full Sunday-Saturday calendar week, sourced from the same feed ForexFactory's own site exports — no month-ahead feed exists (checked directly against forexfactory.com). Already-released events this week are shown dimmed for context — this feed has no "actual" outcome field, so only forecast/previous are ever shown either way. All times are Sydney local (AEST/AEDT), computed at build time — not your browser's timezone.</div>
 
@@ -283,16 +283,16 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-[1790656200,"Today","2:30pm","AUD","Cash Rate","4.60%","4.35%",false,true],
-[1790656200,"Today","2:30pm","AUD","RBA Rate Statement","","",false,true],
-[1790731800,"Tomorrow","11:30am","AUD","CPI m/m","0.5%","1.0%",false,false],
-[1790731800,"Tomorrow","11:30am","AUD","CPI y/y","4.1%","3.5%",false,false],
-[1790731800,"Tomorrow","11:30am","AUD","Trimmed Mean CPI m/m","0.3%","0.5%",false,false],
-[1790771400,"Tomorrow","10:30pm","USD","Core PCE Price Index m/m","0.3%","0.2%",false,false],
-[1790771400,"Tomorrow","10:30pm","USD","Final GDP q/q","1.5%","1.5%",false,false],
-[1790944200,"Fri 2 Oct","10:30pm","USD","Average Hourly Earnings m/m","0.3%","0.3%",false,false],
-[1790944200,"Fri 2 Oct","10:30pm","USD","Non-Farm Employment Change","90K","162K",true,false],
-[1790944200,"Fri 2 Oct","10:30pm","USD","Unemployment Rate","4.1%","4.1%",false,false]
+[1790656200,"Tue 29 Sep","2:30pm","AUD","Cash Rate","4.60%","4.35%",false,true],
+[1790656200,"Tue 29 Sep","2:30pm","AUD","RBA Rate Statement","","",false,true],
+[1790731800,"Wed 30 Sep","11:30am","AUD","CPI m/m","0.5%","1.0%",false,true],
+[1790731800,"Wed 30 Sep","11:30am","AUD","CPI y/y","4.1%","3.5%",false,true],
+[1790731800,"Wed 30 Sep","11:30am","AUD","Trimmed Mean CPI m/m","0.3%","0.5%",false,true],
+[1790771400,"Wed 30 Sep","10:30pm","USD","Core PCE Price Index m/m","0.3%","0.2%",false,true],
+[1790771400,"Wed 30 Sep","10:30pm","USD","Final GDP q/q","1.5%","1.5%",false,true],
+[1790944200,"Tomorrow","10:30pm","USD","Average Hourly Earnings m/m","0.3%","0.3%",false,false],
+[1790944200,"Tomorrow","10:30pm","USD","Non-Farm Employment Change","89K","162K",true,false],
+[1790944200,"Tomorrow","10:30pm","USD","Unemployment Rate","4.1%","4.1%",false,false]
 ];
 
 // [unixTs, dateLabel, timeLabel, country, title, forecast, previous, isBigUS, isPast]
