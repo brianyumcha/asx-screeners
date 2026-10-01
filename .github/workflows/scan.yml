@@ -123,7 +123,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f price_cache.parquet seen_tickers_hh_telegram.json seen_tickers_ll_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json realestate_category_cache.json financials_category_cache.json staples_category_cache.json discretionary_category_cache.json industrials_category_cache.json utilities_category_cache.json comms_category_cache.json conviction-stack.html
+          git add -f price_cache.parquet seen_tickers_hh_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json realestate_category_cache.json financials_category_cache.json staples_category_cache.json discretionary_category_cache.json industrials_category_cache.json utilities_category_cache.json comms_category_cache.json conviction-stack.html
+          # seen_tickers_ll_telegram.json only exists once LL's Telegram bot is configured
+          # and actually sends a message (see send_ll_telegram()) - `git add -f` on a
+          # not-yet-existing path fails the whole command, so it's added separately and
+          # only when present (found 2026-10-01: this took down the whole commit step,
+          # and with it every step after it including the Pages deploy).
+          [ -f seen_tickers_ll_telegram.json ] && git add -f seen_tickers_ll_telegram.json || true
           git diff --staged --quiet || git commit -m "Update price cache"
           for i in 1 2 3; do
             git push && break
