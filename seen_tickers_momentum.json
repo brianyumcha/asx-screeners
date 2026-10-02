@@ -359,6 +359,10 @@
     "first_seen": "2026-09-30",
     "last_seen": "2026-09-30"
   },
+  "JAV": {
+    "first_seen": "2026-10-02",
+    "last_seen": "2026-10-02"
+  },
   "KAN": {
     "first_seen": "2026-10-01",
     "last_seen": "2026-10-02"
@@ -375,9 +379,13 @@
     "first_seen": "2026-09-17",
     "last_seen": "2026-09-25"
   },
+  "KSN": {
+    "first_seen": "2026-10-02",
+    "last_seen": "2026-10-02"
+  },
   "LGF": {
-    "first_seen": "2026-09-17",
-    "last_seen": "2026-09-17"
+    "first_seen": "2026-10-02",
+    "last_seen": "2026-10-02"
   },
   "LKY": {
     "first_seen": "2026-09-30",
@@ -443,9 +451,17 @@
     "first_seen": "2026-09-17",
     "last_seen": "2026-09-21"
   },
+  "NUZ": {
+    "first_seen": "2026-10-02",
+    "last_seen": "2026-10-02"
+  },
   "NWH": {
     "first_seen": "2026-09-18",
     "last_seen": "2026-09-25"
+  },
+  "NXL": {
+    "first_seen": "2026-10-02",
+    "last_seen": "2026-10-02"
   },
   "ODE": {
     "first_seen": "2026-09-23",
@@ -533,7 +549,7 @@
   },
   "SLS": {
     "first_seen": "2026-09-18",
-    "last_seen": "2026-10-01"
+    "last_seen": "2026-10-02"
   },
   "SMI": {
     "first_seen": "2026-09-18",
@@ -584,8 +600,8 @@
     "last_seen": "2026-09-28"
   },
   "TCG": {
-    "first_seen": "2026-09-23",
-    "last_seen": "2026-09-24"
+    "first_seen": "2026-10-02",
+    "last_seen": "2026-10-02"
   },
   "TEA": {
     "first_seen": "2026-09-18",
@@ -605,7 +621,11 @@
   },
   "VAL": {
     "first_seen": "2026-09-29",
-    "last_seen": "2026-09-30"
+    "last_seen": "2026-10-02"
+  },
+  "VEA": {
+    "first_seen": "2026-10-02",
+    "last_seen": "2026-10-02"
   },
   "VGN": {
     "first_seen": "2026-09-23",
