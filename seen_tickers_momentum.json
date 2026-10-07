@@ -136,8 +136,8 @@
     "last_seen": "2026-09-17"
   },
   "BOE": {
-    "first_seen": "2026-09-17",
-    "last_seen": "2026-09-21"
+    "first_seen": "2026-10-07",
+    "last_seen": "2026-10-07"
   },
   "BOQ": {
     "first_seen": "2026-09-17",
@@ -265,7 +265,7 @@
   },
   "EOS": {
     "first_seen": "2026-09-30",
-    "last_seen": "2026-10-06"
+    "last_seen": "2026-10-07"
   },
   "EPM": {
     "first_seen": "2026-09-22",
@@ -277,7 +277,7 @@
   },
   "EUR": {
     "first_seen": "2026-10-06",
-    "last_seen": "2026-10-06"
+    "last_seen": "2026-10-07"
   },
   "EWC": {
     "first_seen": "2026-10-01",
@@ -325,7 +325,7 @@
   },
   "GNP": {
     "first_seen": "2026-10-06",
-    "last_seen": "2026-10-06"
+    "last_seen": "2026-10-07"
   },
   "GTI": {
     "first_seen": "2026-09-17",
@@ -447,6 +447,10 @@
     "first_seen": "2026-09-18",
     "last_seen": "2026-09-21"
   },
+  "MP1": {
+    "first_seen": "2026-10-07",
+    "last_seen": "2026-10-07"
+  },
   "MRD": {
     "first_seen": "2026-09-17",
     "last_seen": "2026-09-24"
@@ -460,8 +464,8 @@
     "last_seen": "2026-09-21"
   },
   "NHE": {
-    "first_seen": "2026-09-21",
-    "last_seen": "2026-09-28"
+    "first_seen": "2026-10-07",
+    "last_seen": "2026-10-07"
   },
   "NMT": {
     "first_seen": "2026-09-23",
@@ -539,6 +543,10 @@
     "first_seen": "2026-09-17",
     "last_seen": "2026-09-17"
   },
+  "QBE": {
+    "first_seen": "2026-10-07",
+    "last_seen": "2026-10-07"
+  },
   "QML": {
     "first_seen": "2026-09-28",
     "last_seen": "2026-09-28"
@@ -560,8 +568,8 @@
     "last_seen": "2026-10-05"
   },
   "SFR": {
-    "first_seen": "2026-09-23",
-    "last_seen": "2026-09-23"
+    "first_seen": "2026-10-07",
+    "last_seen": "2026-10-07"
   },
   "SGR": {
     "first_seen": "2026-09-18",
@@ -573,15 +581,15 @@
   },
   "SLS": {
     "first_seen": "2026-09-18",
-    "last_seen": "2026-10-05"
+    "last_seen": "2026-10-07"
   },
   "SMI": {
     "first_seen": "2026-09-18",
     "last_seen": "2026-09-21"
   },
   "SOP": {
-    "first_seen": "2026-09-28",
-    "last_seen": "2026-09-29"
+    "first_seen": "2026-10-07",
+    "last_seen": "2026-10-07"
   },
   "SPL": {
     "first_seen": "2026-09-21",
@@ -617,7 +625,7 @@
   },
   "SXE": {
     "first_seen": "2026-10-06",
-    "last_seen": "2026-10-06"
+    "last_seen": "2026-10-07"
   },
   "TAH": {
     "first_seen": "2026-09-22",
@@ -649,7 +657,7 @@
   },
   "VAL": {
     "first_seen": "2026-09-29",
-    "last_seen": "2026-10-02"
+    "last_seen": "2026-10-07"
   },
   "VEA": {
     "first_seen": "2026-10-02",
