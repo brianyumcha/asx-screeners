@@ -190,6 +190,7 @@ jobs:
           [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
           cp craig-bullish-map.html _site/craig-bullish-map.html
           cp craig-bear-map.html _site/craig-bear-map.html
+          [ -f mtm-call-archive.html ] && cp mtm-call-archive.html _site/mtm-call-archive.html || true
           cp timing-the-carts.html _site/timing-the-carts.html
 
       - name: Check nav consistency across every deployed page
