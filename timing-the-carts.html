@@ -79,9 +79,15 @@ h2.sectionhead::after{content:'';flex:1;height:1px;background:var(--border)}
 .signal.sell{background:var(--red-bg);color:var(--red)}
 .signal.hold{background:var(--surface2);color:var(--ink-faint)}
 
-#roamingCart{position:fixed;bottom:1.2rem;left:-6rem;width:5.5rem;z-index:900;pointer-events:none;
+#roamingCart{position:fixed;bottom:1.2rem;left:-6rem;width:5.5rem;z-index:900;pointer-events:auto;cursor:pointer;
   filter:drop-shadow(0 4px 8px rgba(0,0,0,.35));transition:none}
 @media (prefers-reduced-motion: reduce){ #roamingCart{display:none} }
+@keyframes footfall{
+  0%{transform:translateY(0) rotate(var(--rot0));opacity:1}
+  100%{transform:translateY(var(--fall)) rotate(var(--rot1));opacity:0}
+}
+.footdrop{position:fixed;z-index:950;pointer-events:none;font-size:var(--fs);
+  animation:footfall var(--dur) ease-in forwards}
 .hero h1 svg.carticon{width:2.6rem;height:auto;vertical-align:-.55rem;margin-right:.3rem}
 .up{color:var(--jade)}
 .down{color:var(--red)}
@@ -302,6 +308,36 @@ function sendCartAcross(){
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   setTimeout(sendCartAcross, 2000);
   setInterval(sendCartAcross, 20000 + Math.random() * 10000);
+}
+
+// Click the cart, it rains chicken feet. No deeper meaning, just dim sum.
+function rainFeet(x, y){
+  const n = 16;
+  for(let i=0;i<n;i++){
+    const el = document.createElement('div');
+    el.className = 'footdrop';
+    el.textContent = '🦶';
+    const dx = (Math.random()-0.5) * 10;
+    const dur = (700 + Math.random()*500) + 'ms';
+    const fall = (140 + Math.random()*160) + 'px';
+    const fs = (1.1 + Math.random()*0.9) + 'rem';
+    el.style.left = (x + (Math.random()-0.5)*60) + 'px';
+    el.style.top = y + 'px';
+    el.style.setProperty('--dur', dur);
+    el.style.setProperty('--fall', fall);
+    el.style.setProperty('--fs', fs);
+    el.style.setProperty('--rot0', (Math.random()*40-20) + 'deg');
+    el.style.setProperty('--rot1', (Math.random()*360-180) + 'deg');
+    el.style.transform = `translateX(${dx}px)`;
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+}
+const roamingCartEl = document.getElementById('roamingCart');
+if (roamingCartEl) {
+  roamingCartEl.addEventListener('click', (e) => {
+    rainFeet(e.clientX, e.clientY);
+  });
 }
 
 const themeBtn = document.getElementById('themeBtn');
