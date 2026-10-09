@@ -74,9 +74,10 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
 
   <input type="text" id="searchBox" placeholder="Search by ticker, educator, theme, date...">
 
-  <table class="idx" id="idxTable">
-    <thead><tr><th>Date</th><th>Educator</th><th>Call</th><th>Format</th></tr></thead>
-    <tbody><tr class="idxrow" data-search="weekly market scan with jamie bell jamie bell 2026-10-08">
+  <div class="idxwrap">
+    <table class="idx" id="idxTable">
+      <thead><tr><th>Date</th><th>Educator</th><th>Call</th><th>Format</th></tr></thead>
+      <tbody><tr class="idxrow" data-search="weekly market scan with jamie bell jamie bell 2026-10-08">
           <td class="mono">2026-10-08</td>
           <td>Jamie Bell</td>
           <td><a href="#call-0">Weekly Market Scan with Jamie Bell</a></td>
@@ -912,7 +913,8 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
           <td><a href="#call-166">Fundamental Analysis Scan with Craig Dickson</a></td>
           <td class="mono fmt">Live</td>
         </tr></tbody>
-  </table>
+    </table>
+  </div>
 
   <div id="calls">
   <article class="call" id="call-0" data-search="weekly market scan with jamie bell jamie bell 2026-10-08">

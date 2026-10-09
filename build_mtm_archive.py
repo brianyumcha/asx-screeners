@@ -299,10 +299,12 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
 
   <input type="text" id="searchBox" placeholder="Search by ticker, educator, theme, date...">
 
-  <table class="idx" id="idxTable">
-    <thead><tr><th>Date</th><th>Educator</th><th>Call</th><th>Format</th></tr></thead>
-    <tbody>##INDEX_ROWS##</tbody>
-  </table>
+  <div class="idxwrap">
+    <table class="idx" id="idxTable">
+      <thead><tr><th>Date</th><th>Educator</th><th>Call</th><th>Format</th></tr></thead>
+      <tbody>##INDEX_ROWS##</tbody>
+    </table>
+  </div>
 
   <div id="calls">##CALLS_HTML##</div>
 
