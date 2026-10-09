@@ -98,6 +98,23 @@ th[data-tip]::after{
   transition:opacity .05s ease;z-index:10;
   box-shadow:0 4px 14px rgba(0,0,0,.35)}
 th[data-tip]:hover::after{opacity:1;visibility:visible}
+/* Same instant custom-tooltip pattern as th[data-tip] above, reused for
+   the Directors cell - a native title="" attribute there showed only the
+   cursor:help "?" glyph on hover (browsers delay the real tooltip ~1s and
+   never show it at all on touch), so the actual director names were
+   effectively invisible in practice. */
+td[data-tip]{position:relative}
+td[data-tip]::after{
+  content:attr(data-tip);position:absolute;bottom:100%;margin-bottom:.4rem;right:0;
+  background:var(--ink);color:var(--bg);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:.7rem;font-weight:400;text-transform:none;letter-spacing:normal;
+  padding:.45rem .65rem;border-radius:6px;line-height:1.4;
+  white-space:normal;width:max-content;max-width:220px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .05s ease;z-index:10;
+  box-shadow:0 4px 14px rgba(0,0,0,.35)}
+td[data-tip]:hover::after{opacity:1;visibility:visible}
 tbody td{padding:.4rem .7rem;border-bottom:1px solid var(--border);white-space:nowrap}
 tbody tr:last-child td{border-bottom:none}
 tbody tr:hover{background:var(--surface2)}
@@ -1009,6 +1026,9 @@ function fmtDate(iso){
   const d = new Date(iso+'T00:00:00');
   return d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'});
 }
+function escAttr(s){
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
 
 let sortKey = 'lastdate', sortDir = -1;
 let currentRows = [];
@@ -1066,7 +1086,7 @@ function render(){
   document.getElementById('matBody').innerHTML = rows.map(([tk,name,sector,lastdate,numpurchases,numinsiders,insiders,value,shares,mcap,price,change1d,bullmap,valuepctmc,stakepctco,stakedelta,topinsider]) => {
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
     const stakeTitle = topinsider ? ` title="${topinsider}"` : '';
-    const whoTitle = (insiders||[]).length ? ` title="${(insiders||[]).join(', ')}"` : '';
+    const whoTitle = (insiders||[]).length ? ` data-tip="${escAttr((insiders||[]).join(', '))}"` : '';
     const avgBuyPrice = (value && shares) ? value / shares : null;
     return `<tr>
       <td style="text-align:center" class="bullmap">${bullmap ? '⭐' : ''}</td>
