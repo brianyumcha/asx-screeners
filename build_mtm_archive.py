@@ -199,8 +199,12 @@ def main():
 
     index_rows = ""
     calls_html = ""
-    for i, call in enumerate(calls):
-        anchor = f"call-{i}"
+    for call in calls:
+        # Stable, content-derived anchor (from the source filename) rather
+        # than array position - a positional "call-{i}" id reassigns to a
+        # different call every time a newer one gets prepended, silently
+        # breaking any bookmarked/shared #anchor link.
+        anchor = "call-" + re.sub(r"[^a-zA-Z0-9]+", "-", call["fname"].rsplit(".", 1)[0]).strip("-").lower()
         fmt = "Pre-Recorded" if call["is_pre_recorded"] else "Live"
         index_rows += f"""<tr class="idxrow" data-search="{esc((call['call_name'] + ' ' + call['host'] + ' ' + call['iso_date']).lower())}">
           <td class="mono">{esc(call['iso_date'])}</td>
@@ -285,6 +289,13 @@ table.idx a:hover{color:var(--accent)}
 .tickersec li{margin:.25rem 0}
 .themes ul{margin:.3rem 0 0;padding-left:1.2rem;color:var(--ink-soft);font-size:.88rem}
 footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--ink-faint)}
+.backtotop{position:fixed;bottom:1.6rem;right:1.6rem;width:2.8rem;height:2.8rem;border-radius:50%;
+  border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:1.3rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);
+  opacity:0;visibility:hidden;transform:translateY(.5rem);
+  transition:opacity .2s,visibility .2s,transform .2s,border-color .2s;z-index:50}
+.backtotop.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.backtotop:hover{border-color:var(--accent);color:var(--accent)}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
@@ -311,6 +322,8 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
   <footer>Rebuilt ##REBUILT_DATE## by build_mtm_archive.py, run automatically after every run-mtm execution.</footer>
 </div>
 
+<button class="backtotop" id="backToTop" title="Back to top">↑</button>
+
 <script>
 const themeBtn = document.getElementById('themeBtn');
 function applyTheme(t){
@@ -335,6 +348,14 @@ searchBox.addEventListener('input', () => {
     const matches = !q || c.dataset.search.includes(q) || c.textContent.toLowerCase().includes(q);
     c.style.display = matches ? '' : 'none';
   });
+});
+
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.scrollY > 400);
+}, {passive: true});
+backToTop.addEventListener('click', () => {
+  window.scrollTo({top: 0, behavior: 'smooth'});
 });
 </script>
 """
