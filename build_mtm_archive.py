@@ -261,9 +261,11 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 .subtitle{color:var(--ink-faint);font-size:.95rem;margin:.3rem 0 1.2rem;max-width:40rem}
 #searchBox{width:100%;max-width:28rem;padding:.6rem .9rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:.95rem;margin-bottom:1.4rem}
 #searchBox:focus{outline:2px solid var(--accent);outline-offset:1px}
-table.idx{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:3rem}
-table.idx th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border)}
+.idxwrap{height:50vh;overflow-y:auto;border:1px solid var(--border);border-radius:8px;margin-bottom:3rem}
+table.idx{width:100%;border-collapse:collapse;font-size:.85rem;color:var(--ink)}
+table.idx th{position:sticky;top:0;text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border);background:var(--surface)}
 table.idx td{padding:.45rem .6rem;border-bottom:1px solid var(--border);vertical-align:top}
+table.idx tr:last-child td{border-bottom:none}
 table.idx td.fmt{color:var(--ink-faint)}
 table.idx a{color:var(--ink);text-decoration:none}
 table.idx a:hover{color:var(--accent)}
