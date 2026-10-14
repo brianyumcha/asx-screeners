@@ -120,9 +120,11 @@ NAV_INDEX_LINKS = [
     ('tech-index.html', 'Tech'),
     ('utilities-index.html', 'Utilities'),
 ]
+NAV_OPTIONS_LINKS = [
+    ('options-income.html', 'Options Income (US)'),
+]
 NAV_TOOLS_LINKS = [
     ('insider-index.html', 'Insider Buying'),
-    ('options-income.html', 'Options Income (US)'),
     ('red-folder-news.html', 'Red Folder News'),
     ('sector-rotation.html', 'Sector Rotation'),
     ('earnings-calendar.html', 'Earnings Calendar'),
@@ -152,6 +154,7 @@ def render_nav(active_href):
         '<div class="sitenav-links">\n'
         + group('Screeners', NAV_SCREENER_LINKS) + "\n"
         + group('ASX Sector Indexes', NAV_INDEX_LINKS) + "\n"
+        + group('Options', NAV_OPTIONS_LINKS) + "\n"
         + group('Trading Tools', NAV_TOOLS_LINKS) + "\n"
         + '<a class="cart-egg" href="timing-the-carts.html" title="Timing the Carts">\U0001f95f</a>\n'
         + '</div>\n</nav>\n'

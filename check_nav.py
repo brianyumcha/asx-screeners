@@ -23,12 +23,13 @@ import glob
 import re
 import sys
 
-from dashboard_template import NAV_SCREENER_LINKS, NAV_INDEX_LINKS, NAV_TOOLS_LINKS
+from dashboard_template import NAV_SCREENER_LINKS, NAV_INDEX_LINKS, NAV_OPTIONS_LINKS, NAV_TOOLS_LINKS
 
 CANONICAL_HREFS = {
     'index.html', 'timing-the-carts.html',
     *(href for href, _ in NAV_SCREENER_LINKS),
     *(href for href, _ in NAV_INDEX_LINKS),
+    *(href for href, _ in NAV_OPTIONS_LINKS),
     *(href for href, _ in NAV_TOOLS_LINKS),
 }
 
