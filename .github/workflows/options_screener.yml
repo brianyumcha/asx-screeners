@@ -66,7 +66,11 @@ jobs:
           curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
           curl -sf -o lower-low.html https://brianyumcha.github.io/asx-screeners/lower-low.html || true
           curl -sf -o volume-anomaly.html https://brianyumcha.github.io/asx-screeners/volume-anomaly.html || true
-          curl -sf -o insider-index.html https://brianyumcha.github.io/asx-screeners/insider-index.html || true
+          # insider-index.html is git-tracked (force-added by insider_index.yml),
+          # so checkout already restores the current committed version -
+          # curling the LIVE deployed copy here would overwrite it with a
+          # stale one whenever this repo is ahead of what's actually live
+          # (found 2026-10-14: this silently clobbered a same-day nav fix).
 
       - name: Build homepage (fresh nav)
         run: python3 build_site_index.py
