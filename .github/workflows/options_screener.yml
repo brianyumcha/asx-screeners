@@ -1,0 +1,126 @@
+name: Options Income Screener
+
+on:
+  # Manual-trigger only for now (gh workflow run options_screener.yml) while
+  # the screener's output is still being reviewed. Once it's trusted, add
+  # back a schedule block here - e.g. same slot family as materials_index.yml/
+  # insider_index.yml, offset 15 min from materials_index.yml's :00 so two
+  # scheduled runs don't land on the exact same instant:
+  #   schedule:
+  #     - cron: '15 8 * * 1-5'   # weekdays, evening Sydney-ish
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+# ⚠ Don't manually trigger this workflow twice in quick succession (or
+# alongside another of these workflows while one is still building) - see
+# materials_index.yml for the full explanation.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build US options income screener
+        run: python3 "OPTIONS SCREENER.py"
+
+      - name: Commit generated page + streak history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f options-income.html seen_tickers_options.json
+          git diff --staged --quiet || git commit -m "Rebuild options income screener"
+          for i in 1 2 3; do
+            git push && break
+            echo "Push rejected (concurrent commit to main) - rebasing and retrying (attempt $i)"
+            git fetch origin main
+            git stash -u
+            git rebase origin/main
+            git stash pop || true
+          done
+
+      - name: Preserve existing screener/tool pages
+        # This workflow only regenerates options-income.html - without this,
+        # deploying _site/ here would wipe every other gitignored page off
+        # the live site. `-f` with `|| true` so a first-ever run before a
+        # given page exists doesn't break the build.
+        run: |
+          curl -sf -o pre-breakout.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html || true
+          curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true
+          curl -sf -o momentum.html https://brianyumcha.github.io/asx-screeners/momentum.html || true
+          curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
+          curl -sf -o lower-low.html https://brianyumcha.github.io/asx-screeners/lower-low.html || true
+          curl -sf -o volume-anomaly.html https://brianyumcha.github.io/asx-screeners/volume-anomaly.html || true
+          curl -sf -o insider-index.html https://brianyumcha.github.io/asx-screeners/insider-index.html || true
+
+      - name: Build homepage (fresh nav)
+        run: python3 build_site_index.py
+
+      - name: Build Pages site
+        run: |
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp options-income.html _site/options-income.html
+          [ -f materials-index.html ] && cp materials-index.html _site/materials-index.html || true
+          [ -f healthcare-index.html ] && cp healthcare-index.html _site/healthcare-index.html || true
+          [ -f energy-index.html ] && cp energy-index.html _site/energy-index.html || true
+          [ -f tech-index.html ] && cp tech-index.html _site/tech-index.html || true
+          [ -f real-estate-index.html ] && cp real-estate-index.html _site/real-estate-index.html || true
+          [ -f financials-index.html ] && cp financials-index.html _site/financials-index.html || true
+          [ -f staples-index.html ] && cp staples-index.html _site/staples-index.html || true
+          [ -f discretionary-index.html ] && cp discretionary-index.html _site/discretionary-index.html || true
+          [ -f industrials-index.html ] && cp industrials-index.html _site/industrials-index.html || true
+          [ -f utilities-index.html ] && cp utilities-index.html _site/utilities-index.html || true
+          [ -f comms-index.html ] && cp comms-index.html _site/comms-index.html || true
+          [ -f red-folder-news.html ] && cp red-folder-news.html _site/red-folder-news.html || true
+          [ -f sector-rotation.html ] && cp sector-rotation.html _site/sector-rotation.html || true
+          [ -f earnings-calendar.html ] && cp earnings-calendar.html _site/earnings-calendar.html || true
+          [ -f insider-index.html ] && cp insider-index.html _site/insider-index.html || true
+          [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
+          [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
+          [ -f craig-bullish-map.html ] && cp craig-bullish-map.html _site/craig-bullish-map.html || true
+          [ -f craig-bear-map.html ] && cp craig-bear-map.html _site/craig-bear-map.html || true
+          [ -f mtm-call-archive.html ] && cp mtm-call-archive.html _site/mtm-call-archive.html || true
+          [ -f timing-the-carts.html ] && cp timing-the-carts.html _site/timing-the-carts.html || true
+          [ -f pre-breakout.html ] && cp pre-breakout.html _site/pre-breakout.html || true
+          [ -f pullback.html ] && cp pullback.html _site/pullback.html || true
+          [ -f momentum.html ] && cp momentum.html _site/momentum.html || true
+          [ -f higher-high.html ] && cp higher-high.html _site/higher-high.html || true
+          [ -f lower-low.html ] && cp lower-low.html _site/lower-low.html || true
+          [ -f volume-anomaly.html ] && cp volume-anomaly.html _site/volume-anomaly.html || true
+
+      - name: Check nav consistency across every deployed page
+        run: python3 check_nav.py
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

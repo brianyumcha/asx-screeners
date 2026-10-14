@@ -870,6 +870,8 @@ def build_html_report(results, total_scanned, out_path, rs_leaders=None):
             'AND price ≥ $0.05 AND market cap ≥ $50M AND 30d avg volume ≥ 50,000.'
         ),
         out_path=out_path + '.html',
+        default_sort_key='first_seen_ts',
+        default_sort_dir=-1,
     )
 
     if rs_leaders is not None:
@@ -1049,16 +1051,18 @@ def main():
                   f"cached yet. Aborting WITHOUT writing a report, so the last good one stays live.")
             sys.exit(1)
 
-    # Sort by score descending
-    results.sort(key=lambda x: x['obv_score'], reverse=True)
-
     history = load_seen_history()
     history = apply_streaks(history, results)
     save_seen_history(history)
 
+    # Most-recently-flagged setups first (today's new signals ahead of ones
+    # that have been building for days), score descending as the tiebreak
+    # within same-day cohorts - matches the page's default "Recency" sort.
+    results.sort(key=lambda x: (x['first_seen'], x['obv_score']), reverse=True)
+
     if results:
         print(f"\n{'─'*60}")
-        print(f"  TOP SIGNALS\n")
+        print(f"  MOST RECENT SIGNALS\n")
         print(f"  {'TICKER':<8} {'SCORE':>5} {'RSI':>5} {'GAP%':>6}")
         print(f"  {'─'*8} {'─'*5} {'─'*5} {'─'*6}")
         for r in results[:20]:

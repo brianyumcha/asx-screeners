@@ -88,6 +88,7 @@ jobs:
           cp sector-rotation.html _site/sector-rotation.html
           [ -f earnings-calendar.html ] && cp earnings-calendar.html _site/earnings-calendar.html || true
           cp insider-index.html _site/insider-index.html
+          [ -f options-income.html ] && cp options-income.html _site/options-income.html || true
           [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
           cp wave2-scanner.html _site/wave2-scanner.html
           cp craig-bullish-map.html _site/craig-bullish-map.html

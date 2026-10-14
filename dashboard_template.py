@@ -32,6 +32,10 @@ def render_dashboard_html(
     subtitle,
     footer_note,
     out_path,
+    default_sort_key='score',   # which pill is active/which key state.sortKey
+    default_sort_dir=-1,        # starts on when the page first loads
+    tv_prefix='ASX:',           # TradingView symbol prefix - override to ''
+                                # (or e.g. 'NASDAQ:') for a non-ASX ticker set
 ):
     """
     Card schema (each item in `cards`):
@@ -71,6 +75,8 @@ def render_dashboard_html(
         active_href = 'pullback.html'
     elif 'Momentum' in title:
         active_href = 'momentum.html'
+    elif 'Options Income' in title:
+        active_href = 'options-income.html'
     else:
         active_href = 'pre-breakout.html'
     html = HTML_TEMPLATE
@@ -81,6 +87,9 @@ def render_dashboard_html(
     html = html.replace('##FOOTER_NOTE##', footer_note)
     html = html.replace('##SECTORS_JSON##', json.dumps(sectors))
     html = html.replace('##DATA_JSON##', json.dumps(cards))
+    html = html.replace('##DEFAULT_SORT_KEY##', default_sort_key)
+    html = html.replace('##DEFAULT_SORT_DIR##', str(default_sort_dir))
+    html = html.replace('##TV_PREFIX_JSON##', json.dumps(tv_prefix))
 
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(html)
@@ -113,6 +122,7 @@ NAV_INDEX_LINKS = [
 ]
 NAV_TOOLS_LINKS = [
     ('insider-index.html', 'Insider Buying'),
+    ('options-income.html', 'Options Income (US)'),
     ('red-folder-news.html', 'Red Folder News'),
     ('sector-rotation.html', 'Sector Rotation'),
     ('earnings-calendar.html', 'Earnings Calendar'),
@@ -418,7 +428,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
     <div class="pillgroupwrap"><span class="pillgroup-label">Sort</span><div class="pillgroup" id="sortToggle">
       <button class="pill" data-sortkey="ticker" data-sortdir="1">Alpha</button>
       <button class="pill" data-sortkey="first_seen_ts" data-sortdir="-1">Recency</button>
-      <button class="pill active" data-sortkey="score" data-sortdir="-1">Score</button>
+      <button class="pill" data-sortkey="score" data-sortdir="-1">Score</button>
     </div></div>
     <div class="pillgroupwrap"><span class="pillgroup-label" data-tip="S: under $300M · M: $300M-$2B · L: $2B+">Market Cap</span><div class="pillgroup" id="sizeToggle">
       <button class="pill active" data-size="S">S</button>
@@ -476,6 +486,7 @@ themeBtn.addEventListener('click', () => {
 
 const DATA = ##DATA_JSON##;
 const SECTORS = ##SECTORS_JSON##;
+const TV_PREFIX = ##TV_PREFIX_JSON##;
 
 let state = {
   mode: 'chart',   // 'chart' or 'table'
@@ -485,9 +496,13 @@ let state = {
   search: '',
   priceFloor: false,
   sector: null,
-  sortKey: 'score',
-  sortDir: -1,
+  sortKey: '##DEFAULT_SORT_KEY##',
+  sortDir: ##DEFAULT_SORT_DIR##,
 };
+
+document.querySelectorAll('#sortToggle .pill').forEach(p => {
+  if (p.dataset.sortkey === state.sortKey) p.classList.add('active');
+});
 
 const sectorRow = document.getElementById('sectorRow');
 sectorRow.innerHTML = '<button class="sectorpill active" data-sector="">All sectors</button>' +
@@ -575,7 +590,7 @@ document.getElementById('priceFloor').addEventListener('change', e => {
 });
 document.getElementById('copyBtn').addEventListener('click', () => {
   const visible = filteredCards();
-  const text = visible.map(c => `ASX:${c.ticker}`).join(',');
+  const text = visible.map(c => `${TV_PREFIX}${c.ticker}`).join(',');
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.getElementById('copyBtn');
     btn.classList.add('copied');
@@ -713,7 +728,7 @@ function cardHtml(c) {
   const chgClass = c.change_1d > 0 ? 'up' : c.change_1d < 0 ? 'dn' : 'neutral';
   const chgSign = c.change_1d > 0 ? '+' : '';
   const statsHtml = c.stats.map(s => `<span>${esc(s.label)} <span class="v">${esc(s.value)}</span></span>`).join('');
-  const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${c.ticker}`;
+  const tvUrl = `https://www.tradingview.com/chart/?symbol=${TV_PREFIX}${c.ticker}`;
   return `<div class="card" data-ticker="${c.ticker}">
     <div class="cardhead">
       <div class="cardhead-left">
@@ -746,8 +761,14 @@ function sortCards(list, statLabels) {
   const getVal = sorters[state.sortKey] || sorters.score;
   return [...list].sort((a, b) => {
     const av = getVal(a), bv = getVal(b);
-    if (typeof av === 'string') return state.sortDir * av.localeCompare(bv);
-    return state.sortDir * ((av ?? -Infinity) - (bv ?? -Infinity));
+    const primary = typeof av === 'string'
+      ? state.sortDir * av.localeCompare(bv)
+      : state.sortDir * ((av ?? -Infinity) - (bv ?? -Infinity));
+    if (primary !== 0) return primary;
+    // Quiet secondary sort: within a tie (e.g. several tickers flagged the
+    // same day under Recency), break it by score descending rather than
+    // leaving it to whatever order the scan happened to produce.
+    return (b.score ?? -Infinity) - (a.score ?? -Infinity);
   });
 }
 
@@ -772,7 +793,7 @@ function renderTable(visible) {
   const rows = sorted.map(c => {
     const chgClass = c.change_1d > 0 ? 'up' : c.change_1d < 0 ? 'dn' : 'neutral';
     const chgSign = c.change_1d > 0 ? '+' : '';
-    const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${c.ticker}`;
+    const tvUrl = `https://www.tradingview.com/chart/?symbol=${TV_PREFIX}${c.ticker}`;
     const statCells = c.stats.map(s => `<td>${esc(s.value)}</td>`).join('');
     return `<tr>
       <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(c.ticker)}</a></td>
