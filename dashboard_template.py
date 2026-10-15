@@ -46,9 +46,13 @@ def render_dashboard_html(
             used for the Recency sort; NOT the same as "today" unless this
             is the ticker's first appearance, see each screener's own
             streak-tracking function for how it's computed),
-        'stats': [ {'label': str, 'value': str}, ... up to 3 - by
-            convention the last one is {'label': 'Since', 'value': 'Xd'}
-            (or 'Today'), same underlying date as first_seen_ts ],
+        'stats': [ {'label': str, 'value': str, 'cls': str (optional)}, ...
+            up to 3 - by convention the last one is {'label': 'Since',
+            'value': 'Xd'} (or 'Today'), same underlying date as
+            first_seen_ts. 'cls' is an optional semantic-color class
+            ('stat-good'/'stat-warn'/'stat-bad') applied to that one
+            stat's value - use sparingly, only for a real pass/fail
+            signal (e.g. an IV range, a liquidity tier), not decoration ],
         'dates': [...], 'opens': [...], 'highs': [...], 'lows': [...],
         'closes': [...], 'volumes': [...],   # trailing ~260 daily bars
       }
@@ -324,6 +328,12 @@ canvas{width:100%;height:100%;display:block}
 .statrow{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);
   border-top:1px solid var(--border);padding-top:.5rem}
 .statrow .v{color:var(--text)}
+.statrow .v.stat-good{color:var(--good);font-weight:600}
+.statrow .v.stat-warn{color:var(--warn);font-weight:600}
+.statrow .v.stat-bad{color:var(--bad);font-weight:600}
+td.stat-good{color:var(--good);font-weight:600}
+td.stat-warn{color:var(--warn);font-weight:600}
+td.stat-bad{color:var(--bad);font-weight:600}
 .sectortag{font-size:.64rem;color:var(--muted);text-transform:none}
 
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:3rem 0;font-size:.85rem}
@@ -730,7 +740,7 @@ function drawChart(canvas, card, tf) {
 function cardHtml(c) {
   const chgClass = c.change_1d > 0 ? 'up' : c.change_1d < 0 ? 'dn' : 'neutral';
   const chgSign = c.change_1d > 0 ? '+' : '';
-  const statsHtml = c.stats.map(s => `<span>${esc(s.label)} <span class="v">${esc(s.value)}</span></span>`).join('');
+  const statsHtml = c.stats.map(s => `<span>${esc(s.label)} <span class="v ${s.cls||''}">${esc(s.value)}</span></span>`).join('');
   const tvUrl = `https://www.tradingview.com/chart/?symbol=${TV_PREFIX}${c.ticker}`;
   return `<div class="card" data-ticker="${c.ticker}">
     <div class="cardhead">
@@ -797,7 +807,7 @@ function renderTable(visible) {
     const chgClass = c.change_1d > 0 ? 'up' : c.change_1d < 0 ? 'dn' : 'neutral';
     const chgSign = c.change_1d > 0 ? '+' : '';
     const tvUrl = `https://www.tradingview.com/chart/?symbol=${TV_PREFIX}${c.ticker}`;
-    const statCells = c.stats.map(s => `<td>${esc(s.value)}</td>`).join('');
+    const statCells = c.stats.map(s => `<td class="${s.cls||''}">${esc(s.value)}</td>`).join('');
     return `<tr>
       <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(c.ticker)}</a></td>
       <td class="sector-cell">${esc(c.sector)}</td>

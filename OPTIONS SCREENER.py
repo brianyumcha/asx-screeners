@@ -415,6 +415,24 @@ def build_html_report(results, total_scanned, out_path):
         since_label = 'Today' if days_flagging == 0 else f'{days_flagging}d'
         first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
         earnings_label = r['earnings_date'] if r['earnings_inside_window'] else 'Clear'
+        earnings_cls = 'stat-bad' if r['earnings_inside_window'] else 'stat-good'
+
+        avg_iv = r['avg_iv_pct'] / 100.0
+        if IV_GOOD_LOW <= avg_iv <= IV_GOOD_HIGH:
+            iv_cls = 'stat-good'
+        elif 0.20 <= avg_iv <= 0.90:
+            iv_cls = 'stat-warn'
+        else:
+            iv_cls = 'stat-bad'
+
+        min_oi = min(r['put_oi'], r['call_oi'])
+        if min_oi >= MIN_OI_TIER1:
+            oi_cls = 'stat-good'
+        elif min_oi >= MIN_OI_TIER2:
+            oi_cls = 'stat-warn'
+        else:
+            oi_cls = 'stat-bad'
+
         return {
             'ticker': r['ticker'],
             'sector': r['sector'],
@@ -424,11 +442,11 @@ def build_html_report(results, total_scanned, out_path):
             'score': r['score'],
             'first_seen_ts': first_seen_ts,
             'stats': [
-                {'label': 'IV', 'value': f"{r['avg_iv_pct']:.0f}%"},
+                {'label': 'IV', 'value': f"{r['avg_iv_pct']:.0f}%", 'cls': iv_cls},
                 {'label': 'Put', 'value': f"${r['put_strike']:.0f} ({r['put_delta']:.2f}Δ) → {r['put_coc_pct']:.1f}%"},
                 {'label': 'Call', 'value': f"${r['call_strike']:.0f} ({r['call_delta']:.2f}Δ) → {r['call_coc_pct']:.1f}%"},
-                {'label': 'OI', 'value': f"{min(r['put_oi'], r['call_oi']):,}"},
-                {'label': 'Earnings', 'value': earnings_label},
+                {'label': 'OI', 'value': f"{min_oi:,}", 'cls': oi_cls},
+                {'label': 'Earnings', 'value': earnings_label, 'cls': earnings_cls},
                 {'label': 'Since', 'value': since_label},
             ],
             'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
