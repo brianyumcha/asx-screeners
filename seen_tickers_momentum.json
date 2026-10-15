@@ -68,8 +68,8 @@
     "last_seen": "2026-09-28"
   },
   "ANZ": {
-    "first_seen": "2026-09-17",
-    "last_seen": "2026-09-22"
+    "first_seen": "2026-10-15",
+    "last_seen": "2026-10-15"
   },
   "AON": {
     "first_seen": "2026-09-23",
@@ -149,7 +149,7 @@
   },
   "BOQ": {
     "first_seen": "2026-10-13",
-    "last_seen": "2026-10-13"
+    "last_seen": "2026-10-15"
   },
   "BRU": {
     "first_seen": "2026-09-21",
@@ -164,8 +164,8 @@
     "last_seen": "2026-10-01"
   },
   "BTR": {
-    "first_seen": "2026-09-18",
-    "last_seen": "2026-10-06"
+    "first_seen": "2026-10-15",
+    "last_seen": "2026-10-15"
   },
   "BVR": {
     "first_seen": "2026-09-22",
@@ -173,7 +173,7 @@
   },
   "BVS": {
     "first_seen": "2026-10-12",
-    "last_seen": "2026-10-14"
+    "last_seen": "2026-10-15"
   },
   "CC5": {
     "first_seen": "2026-09-30",
@@ -199,13 +199,17 @@
     "first_seen": "2026-09-22",
     "last_seen": "2026-10-05"
   },
+  "CPU": {
+    "first_seen": "2026-10-15",
+    "last_seen": "2026-10-15"
+  },
   "CRI": {
     "first_seen": "2026-09-24",
     "last_seen": "2026-09-25"
   },
   "CRR": {
     "first_seen": "2026-10-14",
-    "last_seen": "2026-10-14"
+    "last_seen": "2026-10-15"
   },
   "CSL": {
     "first_seen": "2026-10-09",
@@ -241,7 +245,7 @@
   },
   "DBI": {
     "first_seen": "2026-10-08",
-    "last_seen": "2026-10-13"
+    "last_seen": "2026-10-15"
   },
   "DNL": {
     "first_seen": "2026-10-02",
@@ -536,8 +540,8 @@
     "last_seen": "2026-09-21"
   },
   "ORN": {
-    "first_seen": "2026-09-17",
-    "last_seen": "2026-09-17"
+    "first_seen": "2026-10-15",
+    "last_seen": "2026-10-15"
   },
   "PAR": {
     "first_seen": "2026-09-18",
@@ -613,7 +617,7 @@
   },
   "SKK": {
     "first_seen": "2026-10-12",
-    "last_seen": "2026-10-12"
+    "last_seen": "2026-10-15"
   },
   "SKS": {
     "first_seen": "2026-09-29",
@@ -664,8 +668,8 @@
     "last_seen": "2026-09-22"
   },
   "SUN": {
-    "first_seen": "2026-10-01",
-    "last_seen": "2026-10-01"
+    "first_seen": "2026-10-15",
+    "last_seen": "2026-10-15"
   },
   "SXE": {
     "first_seen": "2026-10-06",
