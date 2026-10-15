@@ -325,8 +325,9 @@ canvas{width:100%;height:100%;display:block}
 .lightbox-controls .lbbars{font-size:.72rem;color:var(--muted);min-width:9rem;text-align:right;
   font-family:"IBM Plex Mono",monospace}
 
-.statrow{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);
+.statrow{display:flex;flex-wrap:wrap;gap:.25rem .9rem;font-size:.68rem;color:var(--muted);
   border-top:1px solid var(--border);padding-top:.5rem}
+.statrow>span{white-space:nowrap}
 .statrow .v{color:var(--text)}
 .statrow .v.stat-good{color:var(--good);font-weight:600}
 .statrow .v.stat-warn{color:var(--warn);font-weight:600}

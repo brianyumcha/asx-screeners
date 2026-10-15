@@ -443,8 +443,10 @@ def build_html_report(results, total_scanned, out_path):
             'first_seen_ts': first_seen_ts,
             'stats': [
                 {'label': 'IV', 'value': f"{r['avg_iv_pct']:.0f}%", 'cls': iv_cls},
-                {'label': 'Put', 'value': f"${r['put_strike']:.0f} ({r['put_delta']:.2f}Δ) → {r['put_coc_pct']:.1f}%"},
-                {'label': 'Call', 'value': f"${r['call_strike']:.0f} ({r['call_delta']:.2f}Δ) → {r['call_coc_pct']:.1f}%"},
+                {'label': 'Put', 'value': f"${r['put_strike']:.0f} ({r['put_delta']:.2f}Δ)"},
+                {'label': 'Put %', 'value': f"{r['put_coc_pct']:.1f}%"},
+                {'label': 'Call', 'value': f"${r['call_strike']:.0f} ({r['call_delta']:.2f}Δ)"},
+                {'label': 'Call %', 'value': f"{r['call_coc_pct']:.1f}%"},
                 {'label': 'OI', 'value': f"{min_oi:,}", 'cls': oi_cls},
                 {'label': 'Earnings', 'value': earnings_label, 'cls': earnings_cls},
                 {'label': 'Since', 'value': since_label},
