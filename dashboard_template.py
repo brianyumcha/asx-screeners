@@ -36,6 +36,8 @@ def render_dashboard_html(
     default_sort_dir=-1,        # starts on when the page first loads
     tv_prefix='ASX:',           # TradingView symbol prefix - override to ''
                                 # (or e.g. 'NASDAQ:') for a non-ASX ticker set
+    default_mode='chart',       # 'chart' (card grid) or 'table' - which
+                                # Mode pill is active on page load
 ):
     """
     Card schema (each item in `cards`):
@@ -94,6 +96,7 @@ def render_dashboard_html(
     html = html.replace('##DEFAULT_SORT_KEY##', default_sort_key)
     html = html.replace('##DEFAULT_SORT_DIR##', str(default_sort_dir))
     html = html.replace('##TV_PREFIX_JSON##', json.dumps(tv_prefix))
+    html = html.replace('##DEFAULT_MODE##', default_mode)
 
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(html)
@@ -432,7 +435,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 
   <div class="controls">
     <div class="pillgroupwrap"><span class="pillgroup-label">Mode</span><div class="pillgroup" id="modeToggle">
-      <button class="pill active" data-mode="chart">📊 Charts</button>
+      <button class="pill" data-mode="chart">📊 Charts</button>
       <button class="pill" data-mode="table">☰ Table</button>
     </div></div>
     <div class="pillgroupwrap"><span class="pillgroup-label">View</span><div class="pillgroup" id="viewToggle">
@@ -503,7 +506,7 @@ const SECTORS = ##SECTORS_JSON##;
 const TV_PREFIX = ##TV_PREFIX_JSON##;
 
 let state = {
-  mode: 'chart',   // 'chart' or 'table'
+  mode: '##DEFAULT_MODE##',   // 'chart' or 'table'
   view: 'ranked',
   sizes: new Set(['S','M','L']),
   tf: 126,
@@ -516,6 +519,9 @@ let state = {
 
 document.querySelectorAll('#sortToggle .pill').forEach(p => {
   if (p.dataset.sortkey === state.sortKey) p.classList.add('active');
+});
+document.querySelectorAll('#modeToggle .pill').forEach(p => {
+  if (p.dataset.mode === state.mode) p.classList.add('active');
 });
 
 const sectorRow = document.getElementById('sectorRow');

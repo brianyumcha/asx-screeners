@@ -473,6 +473,7 @@ def build_html_report(results, total_scanned, out_path):
         ),
         out_path=out_path + '.html',
         tv_prefix='',
+        default_mode='table',
     )
 
 
