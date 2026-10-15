@@ -252,7 +252,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt after each screener run — last rebuilt 14 Oct 2026.</div>
+  <div class="session">Rebuilt after each screener run — last rebuilt 15 Oct 2026.</div>
 
   <div class="notice">⚠ Each signal has its own independent definition and lookback window (see footer) — this page doesn't judge whether they agree for the same reason, just that they agree at all. A high count means several unrelated methods currently point at the same ticker, not that it's a stronger buy than a 1-signal ticker outside this list. Not financial advice.</div>
 
@@ -306,7 +306,6 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["AUI","AUSTRALIAN UNITED INVESTMENT COMPANY LIMITED","Other",3,true,false,true,true,false,2589911881,12.05,1.2,"2026-09-18",null,"1M"],
 ["AWJ","Auric Mining Limited","Materials",3,true,false,false,true,true,43215528,0.25,0.0,"2026-08-03",null,null],
 ["BPM","BPM Minerals Limited","Other",3,true,true,false,false,true,26019130,0.17,-5.6,"2026-07-01","2026-10-06",null],
 ["CAF","Centrepoint Alliance Limited","Financials",3,true,false,false,true,true,81979320,0.39,0.0,"2026-06-05",null,null],
@@ -318,13 +317,11 @@ const DATA = [
 ["NUZ","Neurizon Therapeutics Limited","Healthcare",3,true,true,false,true,false,70457064,0.084,-1.2,"2026-09-14","2026-10-06",null],
 ["OMA","Omega Oil & Gas Limited","Other",3,true,true,false,false,true,397445568,0.67,-4.3,"2026-07-07","2026-08-28",null],
 ["PGC","Paragon Care Limited","Healthcare",3,true,false,false,true,true,248295808,0.145,0.0,"2026-06-29",null,null],
-["RHT","RESONANCE HEALTH LIMITED","Healthcare",3,true,true,true,false,false,39123860,0.086,4.9,"2026-07-13","2026-05-05","12M"],
 ["SHV","Select Harvests Limited","Other",3,true,true,false,false,true,581804672,4.07,-0.5,"2026-06-03","2026-09-08",null],
 ["SOP","Synertec Corporation Limited","Other",3,true,true,false,false,true,55693708,0.081,1.2,"2026-09-07","2026-05-19",null],
 ["SPD","Southern Palladium Limited","Other",3,true,true,false,false,true,222312560,1.785,7.5,"2026-05-27","2026-08-11",null],
 ["TNE","Technology One Limited","Info Tech",3,true,false,false,true,true,10184435712,31.21,1.9,"2026-07-08",null,null],
 ["29M","29Metals Limited","Other",2,true,false,false,false,true,577525312,0.325,0.0,"2026-05-20",null,null],
-["A3D","AURORA LABS LIMITED","Industrials",2,false,false,true,false,true,28799081,0.059,7.3,null,null,"1M"],
 ["AEL","Amplitude Energy Limited","Energy",2,true,false,false,true,false,547282516,1.825,2.8,"2026-06-09",null,null],
 ["AEU","","Other",2,false,true,false,false,true,null,0.375,7.1,null,"2026-09-22",null],
 ["AFI","Australian Foundation Investment Company Limited","Other",2,true,false,false,true,false,8426256730,6.87,-0.4,"2026-09-11",null,null],
@@ -333,17 +330,16 @@ const DATA = [
 ["AGL","AGL Energy Limited","Utilities",2,true,false,false,true,false,5879810816,8.74,-1.8,"2026-10-02",null,null],
 ["ALC","Alcidion Group Limited","Other",2,true,false,false,false,true,134980528,0.098,-2.0,"2026-08-26",null,null],
 ["AM5","Antares Metals Limited","Materials",2,true,true,false,false,false,6420772,0.006,0.0,"2026-06-09","2026-02-03",null],
-["ANN","ANSELL LIMITED","Healthcare",2,true,false,true,false,false,6335169470,45.56,0.9,"2026-08-31",null,"12M"],
 ["ARG","Argo Investments Limited","Other",2,true,false,false,false,true,6877681152,9.14,-0.7,"2026-06-30",null,null],
 ["ARX","Aroa Biosurgery Limited","Other",2,true,false,false,false,true,176893808,0.525,5.0,"2026-06-26",null,null],
 ["ASX","ASX Limited","Financials",2,true,false,false,true,false,12083717120,61.31,-0.6,"2026-09-08",null,null],
 ["AUA","Audeara Limited","Consumer Discretionary",2,true,true,false,false,false,4162460,0.023,0.0,"2026-05-26","2026-01-13",null],
+["AUI","Australian United Investment Company Limited","Other",2,true,false,false,true,false,2565991680,12.05,1.2,"2026-09-18",null,null],
 ["AX1","Accent Group Limited","Other",2,true,false,false,false,true,393776608,0.65,-0.8,"2026-05-19",null,null],
 ["AZY","Antipa Minerals Limited","Other",2,true,false,false,false,true,347903008,0.495,-2.0,"2026-07-07",null,null],
 ["BCA","","Other",2,false,true,false,false,true,null,0.31,-3.1,null,"2026-07-17",null],
 ["BGA","Bega Cheese Limited","Consumer Staples",2,true,false,false,true,false,1951154048,6.38,-1.4,"2026-08-26",null,null],
 ["BHM","","Other",2,false,true,false,false,true,null,0.56,-5.9,null,"2026-09-22",null],
-["BLX","BEACON LIGHTING GROUP LIMITED","Consumer Discretionary",2,false,false,true,true,false,408229020,1.905,7.0,null,null,null],
 ["BSA","BSA Limited","Other",2,true,false,false,false,true,20878068,0.25,0.0,"2026-10-06",null,null],
 ["BTL","Beetaloo Energy Australia Limited","Other",2,true,false,false,false,true,369467488,0.24,2.1,"2026-08-13",null,null],
 ["BTR","Brightstar Resources Limited","Materials",2,true,false,false,true,false,747951936,0.69,3.0,"2026-05-29",null,null],
@@ -372,7 +368,6 @@ const DATA = [
 ["FTI","","Other",2,false,true,false,false,true,null,0.54,-6.9,null,"2026-02-03",null],
 ["GDI","GDI Property Group","Other",2,true,false,false,false,true,339941824,0.615,-0.8,"2026-08-25",null,null],
 ["GLN","Galan Lithium Limited","Materials",2,true,true,false,false,false,311671840,0.245,-9.3,"2026-08-12","2026-08-14",null],
-["GMG","GOODMAN GROUP","Real Estate",2,true,false,true,false,false,54450996423,27.44,3.5,"2026-08-21",null,"1M"],
 ["GPT","The GPT Group","Other",2,true,false,false,false,true,8639254209,4.51,-0.9,"2026-09-25",null,null],
 ["GT1","Green Technology Metals Limited","Materials",2,true,true,false,false,false,15665356,0.013,-7.1,"2026-06-24","2026-05-26",null],
 ["HAR","Haranga Resources Limited","Materials",2,true,true,false,false,false,24917032,0.055,-1.8,"2026-06-30","2026-05-05",null],
@@ -386,7 +381,6 @@ const DATA = [
 ["JGH","","Other",2,false,true,false,false,true,null,0.068,1.5,null,"2025-12-02",null],
 ["JIN","Jumbo Interactive Limited","Other",2,true,false,false,false,true,379123680,5.84,-2.0,"2026-09-30",null,null],
 ["KCN","Kingsgate Consolidated Limited","Other",2,true,false,false,false,true,1270770944,4.58,-2.4,"2026-05-01",null,null],
-["KKC","KKR CREDIT INCOME FUND","Other",2,false,false,true,false,true,648293101,2.06,2.5,null,null,null],
 ["KSL","Kina Securities Limited","Other",2,true,false,false,false,true,312571264,1.095,0.5,"2026-09-29",null,null],
 ["KYP","Kinatico Ltd","Info Tech",2,true,false,false,true,false,65494424,0.15,0.0,"2026-06-12",null,null],
 ["L1M","Lightning Minerals Ltd","Materials",2,true,true,false,false,false,4561273,0.012,-7.7,"2026-08-03","2026-06-02",null],
@@ -412,6 +406,7 @@ const DATA = [
 ["QML","","Materials",2,false,true,false,true,false,null,0.073,-4.0,null,"2026-10-06",null],
 ["RAC","Racura Oncology Ltd","Healthcare",2,true,true,false,false,false,345081344,1.76,-3.0,"2026-09-25","2026-05-22",null],
 ["RDM","","Materials",2,false,false,false,true,true,null,0.135,-3.6,null,null,null],
+["RHT","Resonance Health Limited","Healthcare",2,true,true,false,false,false,39123860,0.082,1.2,"2026-07-13","2026-05-05",null],
 ["RRR","Revolver Resources Holdings Ltd","Materials",2,true,true,false,false,false,17544954,0.052,-3.7,"2026-09-16","2025-10-14",null],
 ["RSG","","Other",2,false,true,false,false,true,null,1.115,0.5,null,"2026-06-23",null],
 ["SDV","SciDev Limited","Other",2,true,false,false,false,true,27562842,0.145,11.5,"2026-05-14",null,null],
@@ -437,8 +432,7 @@ const DATA = [
 ["WAR","WAM Strategic Value Limited","Other",2,true,false,false,false,true,195436464,1.09,0.9,"2026-04-17",null,null],
 ["WES","Wesfarmers Limited","Other",2,true,false,false,false,true,87848173568,78.26,0.6,"2026-08-28",null,null],
 ["WRK","Wrkr Ltd","Info Tech",2,true,false,false,true,false,163962144,0.075,0.0,"2026-09-22",null,null],
-["XRF","XRF Scientific Limited","Industrials",2,true,false,false,true,false,239371440,1.915,3.0,"2026-08-25",null,null],
-["YAL","YANCOAL AUSTRALIA LIMITED","Energy",2,false,true,true,false,false,7843410256,6.12,3.0,null,"2026-08-25",null]
+["XRF","XRF Scientific Limited","Industrials",2,true,false,false,true,false,239371440,1.915,3.0,"2026-08-25",null,null]
 ];
 
 const SECTOR_IDX = 2, COUNT_IDX = 3, MCAP_IDX = 9;
