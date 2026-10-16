@@ -37,6 +37,7 @@ import io
 import json
 import math
 import os
+import statistics
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -55,6 +56,15 @@ TARGET_DTE        = 30      # Andy's standard cycle length
 MIN_DTE           = 20
 MAX_DTE           = 45
 TARGET_DELTA      = 0.30    # Andy's standard risk target
+# Circuit breaker (full-universe runs only, same spirit as the ASX
+# screeners' Yahoo-throttling check): if the options chains came back with
+# stale/incomplete data - e.g. the scan ran during US off-market hours,
+# before near-the-money strikes have traded that session - the delta-
+# closest-strike search gets forced out to far-OTM strikes still carrying
+# leftover data, and every result's achieved delta clusters near zero
+# instead of near TARGET_DELTA. Found 2026-10-16. A real, fully-populated
+# run should land close to 0.30 on both legs for most names.
+MIN_MEDIAN_DELTA  = 0.15
 RISK_FREE_RATE    = 0.045   # flat assumption for the Black-Scholes delta approximation
 
 MIN_AVG_VOLUME_TIER1 = 5_000_000   # Andy's "tier 1" daily volume floor
@@ -510,6 +520,16 @@ def main():
         print(f"  Universe: {len(tickers)} tickers")
 
     results = run_scan(tickers, workers=args.workers)
+
+    if not args.tickers and results:
+        all_deltas = [r['put_delta'] for r in results] + [r['call_delta'] for r in results]
+        median_delta = statistics.median(all_deltas)
+        if median_delta < MIN_MEDIAN_DELTA:
+            print(f"\n❌ Median achieved delta across {len(results)} qualified results is only "
+                  f"{median_delta:.3f} (target ~{TARGET_DELTA}) - likely stale/incomplete options-chain "
+                  f"data (e.g. this ran during US off-market hours), not a real market condition. "
+                  f"Aborting WITHOUT writing a report, so the last good one stays live.")
+            sys.exit(1)
 
     history = load_seen_history()
     history = apply_streaks(history, results)

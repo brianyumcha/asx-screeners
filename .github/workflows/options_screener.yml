@@ -3,11 +3,20 @@ name: Options Income Screener
 on:
   # Manual-trigger only for now (gh workflow run options_screener.yml) while
   # the screener's output is still being reviewed. Once it's trusted, add
-  # back a schedule block here - e.g. same slot family as materials_index.yml/
-  # insider_index.yml, offset 15 min from materials_index.yml's :00 so two
-  # scheduled runs don't land on the exact same instant:
+  # back a schedule block here.
+  #
+  # IMPORTANT: unlike the ASX-timed sibling workflows, this one screens US
+  # options chains, so it needs to run during US market hours, not a
+  # Sydney-evening slot copied from them. Found 2026-10-16: a run dispatched
+  # at 20:17 Sydney time (~4am US Eastern, hours before the US options
+  # market opens) got stale/incomplete yfinance options-chain data - near-
+  # the-money strikes hadn't traded yet that session, so the delta-closest-
+  # strike search got forced out to far-OTM strikes still carrying leftover
+  # data from the prior session, producing near-zero deltas across the
+  # board. 19:00 UTC = 3pm ET (EDT) / 2pm ET (EST) - safely mid-session in
+  # either US DST state, well clear of the open/close edges:
   #   schedule:
-  #     - cron: '15 8 * * 1-5'   # weekdays, evening Sydney-ish
+  #     - cron: '0 19 * * 1-5'   # weekdays, US mid-afternoon trading hours
   workflow_dispatch: {}
 
 permissions:
