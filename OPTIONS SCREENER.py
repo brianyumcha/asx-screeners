@@ -1,23 +1,37 @@
 """
-US Options Income Screener
+US Cash-Secured Put Screener
 ===========================
-Screens US-listed stocks (+ a handful of sector ETFs) for whether they're
-actually suitable for a cash-secured-put / covered-call "wheel" income
-strategy - not just whether they're a good company. Built directly off
-Andy Robertson's "Lazy Formula for Options Income" checklist (see
-Andy Robertson - Options Trading Methodology Notes.md): daily volume,
-options-chain open interest, bid/ask spread, implied volatility, and
-whether an earnings report falls inside the contract window.
+Screens US-listed stocks and ETFs for whether they're actually suitable
+cash-secured-put ENTRIES (the acquisition leg of a wheel-income strategy,
+not the covered-call leg that only exists after assignment) - not just
+whether they're a good company. Built directly off Andy Robertson's "Lazy
+Formula for Options Income" checklist (see Andy Robertson - Options Trading
+Methodology Notes.md): daily volume, options-chain open interest, bid/ask
+spread, implied volatility, and whether an earnings report falls inside the
+contract window.
 
-For every ticker that clears the basic liquidity bar, this also computes
-a suggested ~30-delta cash-secured put and a ~30-delta covered call at the
-nearest ~30-day expiry, with their cash-on-cash returns - the same
-"3%, 30 delta, 30 days" screen Andy applies by hand in his sessions,
-just run across a few hundred tickers automatically.
+For every ticker that clears the basic liquidity bar, this computes a
+suggested ~30-delta cash-secured put at the nearest ~30-day expiry - strike
+(your acquisition price if assigned), premium, annualized cash-on-cash
+return, breakeven, and downside protection to that breakeven - the same
+"3%, 30 delta, 30 days" screen Andy applies by hand in his sessions, just
+run across a few hundred tickers automatically. A covered-call strike is
+still computed per ticker (cheap - same options chain already fetched) and
+kept in the CSV for later wheel-continuation reference, but it's not an
+"entry" and isn't part of the HTML report's primary stats.
+
+Also pulls yfinance's analyst-consensus target-price upside as a free,
+crude stand-in for an AlphaSpread-style fair-value screen - AlphaSpread
+itself has no accessible free API (its pages 403 anything but a logged-in
+browser session; API access is a $150/mo Enterprise tier) - since a CSP
+means being fine owning the stock if assigned, not just collecting premium.
 
 Universe: S&P 500 (scraped from Wikipedia, with a hardcoded fallback) plus
 a curated list of names/ETFs Andy specifically discussed that aren't S&P
-500 members (PLTR-adjacent small/mid caps, commodity ETFs, etc).
+500 members (PLTR-adjacent small/mid caps, commodity ETFs, etc). Written as
+two separate reports - <out>-stocks.html and <out>-etfs.html - since an
+ETF put (basket, no single-name earnings gap) is a different risk profile
+than a single-stock one.
 
 Delta is NOT returned by yfinance's options chain, so it's approximated
 here via Black-Scholes using each contract's own implied volatility - a
@@ -228,8 +242,21 @@ def score_ticker(ticker, sector_override=None):
         info = t.get_info()
     except Exception:
         info = {}
-    sector = sector_override or info.get('sector') or ('ETF' if ticker in ETF_TICKERS else 'Other')
+    is_etf = ticker in ETF_TICKERS or info.get('quoteType') == 'ETF'
+    sector = sector_override or info.get('sector') or ('ETF' if is_etf else 'Other')
     market_cap = info.get('marketCap') or (price * (info.get('sharesOutstanding') or 0))
+    name = info.get('longName') or info.get('shortName') or ticker
+
+    # Free stand-in for an AlphaSpread-style fair-value screen (AlphaSpread's
+    # own data isn't reachable here - no public API short of its $150/mo
+    # Enterprise tier, and its pages 403 anything that isn't a logged-in
+    # browser session). yfinance's analyst consensus target is a much
+    # cruder "is this worth owning" signal than AlphaSpread's blended DCF/
+    # relative-valuation fair value, but it's free and already in hand from
+    # the same info dict - good enough to flag names analysts expect to
+    # keep falling, which matters for a CSP: you own the stock if assigned.
+    target_mean = info.get('targetMeanPrice')
+    analyst_target_pct = round((target_mean / price - 1) * 100, 1) if target_mean and price else None
 
     options = t.options
     if not options:
@@ -254,6 +281,14 @@ def score_ticker(ticker, sector_override=None):
 
     put['coc_pct'] = round(put['premium'] * 100 / (put['strike'] * 100) * 100, 2)
     call['coc_pct'] = round(call['premium'] * 100 / (price * 100) * 100, 2)
+
+    # CSP-specific entry metrics - this screener's "entries" are the put leg
+    # (selling to acquire stock), not the call leg (that's the second half
+    # of the wheel, after assignment) - see module docstring.
+    put_annualized_pct = round(put['coc_pct'] * 365.0 / dte, 1)
+    put_breakeven = round(put['strike'] - put['premium'], 2)
+    put_protection_pct = round((price - put_breakeven) / price * 100, 2)
+    cash_required = int(round(put['strike'] * 100))
 
     # Earnings-clear check: only penalises on a CONFIRMED upcoming date
     # inside the contract window - an unknown/unavailable date gets the
@@ -294,6 +329,11 @@ def score_ticker(ticker, sector_override=None):
         score -= 8
     if earnings_inside_window:
         score -= 15
+    # A CSP means you're fine owning the stock if assigned - a meaningful
+    # negative analyst consensus is a real reason to think twice about that,
+    # even though the tradability checks above all passed.
+    if analyst_target_pct is not None and analyst_target_pct < -10:
+        score -= 10
     score = max(0, min(100, score))
 
     dates = hist.index.strftime('%Y-%m-%d').tolist()[-CHART_TRIM_BARS:]
@@ -305,6 +345,8 @@ def score_ticker(ticker, sector_override=None):
 
     return {
         'ticker': ticker,
+        'name': name,
+        'is_etf': is_etf,
         'sector': sector,
         'market_cap': int(market_cap) if market_cap else 0,
         'price': round(price, 2),
@@ -316,8 +358,11 @@ def score_ticker(ticker, sector_override=None):
         'avg_iv_pct': round(avg_iv * 100, 1),
         'put_strike': put['strike'], 'put_delta': put['delta'], 'put_premium': put['premium'],
         'put_oi': put['oi'], 'put_coc_pct': put['coc_pct'],
+        'put_annualized_pct': put_annualized_pct, 'put_breakeven': put_breakeven,
+        'put_protection_pct': put_protection_pct, 'cash_required': cash_required,
         'call_strike': call['strike'], 'call_delta': call['delta'], 'call_premium': call['premium'],
         'call_oi': call['oi'], 'call_coc_pct': call['coc_pct'],
+        'analyst_target_pct': analyst_target_pct,
         'earnings_date': earnings_date, 'earnings_inside_window': earnings_inside_window,
         'score': score,
         'dates': dates, 'opens': opens, 'highs': highs, 'lows': lows,
@@ -416,14 +461,10 @@ def apply_streaks(history, results, gap_days=STREAK_GAP_DAYS):
 
 # ─── HTML DASHBOARD ────────────────────────────────────────────────────────────
 
-def build_html_report(results, total_scanned, out_path):
+def build_html_report(results, total_scanned, out_path, universe_label, universe_desc):
     from dashboard_template import render_dashboard_html
 
     def to_card(r):
-        first_seen_date = datetime.strptime(r['first_seen'], '%Y-%m-%d').date()
-        days_flagging = _weekdays_between(first_seen_date, date.today())
-        since_label = 'Today' if days_flagging == 0 else f'{days_flagging}d'
-        first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
         earnings_label = r['earnings_date'] if r['earnings_inside_window'] else 'Clear'
         earnings_cls = 'stat-bad' if r['earnings_inside_window'] else 'stat-good'
 
@@ -435,31 +476,45 @@ def build_html_report(results, total_scanned, out_path):
         else:
             iv_cls = 'stat-bad'
 
-        min_oi = min(r['put_oi'], r['call_oi'])
-        if min_oi >= MIN_OI_TIER1:
+        if r['put_oi'] >= MIN_OI_TIER1:
             oi_cls = 'stat-good'
-        elif min_oi >= MIN_OI_TIER2:
+        elif r['put_oi'] >= MIN_OI_TIER2:
             oi_cls = 'stat-warn'
         else:
             oi_cls = 'stat-bad'
 
+        ann = r['put_annualized_pct']
+        ann_cls = 'stat-good' if ann >= 25 else 'stat-warn' if ann >= 12 else 'stat-bad'
+
+        prot = r['put_protection_pct']
+        prot_cls = 'stat-good' if prot >= 10 else 'stat-warn' if prot >= 5 else 'stat-bad'
+
+        at = r['analyst_target_pct']
+        if at is None:
+            analyst_label, analyst_cls = 'N/A', ''
+        else:
+            analyst_label = f"{at:+.0f}%"
+            analyst_cls = 'stat-good' if at >= 10 else 'stat-warn' if at >= -5 else 'stat-bad'
+
         return {
             'ticker': r['ticker'],
+            'name': r['name'],
             'sector': r['sector'],
             'market_cap': r['market_cap'],
             'price': r['price'],
             'change_1d': r['change_1d'],
             'score': r['score'],
-            'first_seen_ts': first_seen_ts,
+            'first_seen_ts': int(datetime.strptime(r['first_seen'], '%Y-%m-%d').timestamp()),
             'stats': [
                 {'label': 'IV', 'value': f"{r['avg_iv_pct']:.0f}%", 'cls': iv_cls},
-                {'label': 'Put', 'value': f"${r['put_strike']:.0f} ({r['put_delta']:.2f}Δ)"},
-                {'label': 'Put %', 'value': f"{r['put_coc_pct']:.1f}%"},
-                {'label': 'Call', 'value': f"${r['call_strike']:.0f} ({r['call_delta']:.2f}Δ)"},
-                {'label': 'Call %', 'value': f"{r['call_coc_pct']:.1f}%"},
-                {'label': 'OI', 'value': f"{min_oi:,}", 'cls': oi_cls},
+                {'label': 'Strike', 'value': f"${r['put_strike']:.0f} ({r['put_delta']:.2f}Δ)"},
+                {'label': 'Premium', 'value': f"${r['put_premium']:.2f}"},
+                {'label': 'Annualized', 'value': f"{ann:.1f}%", 'cls': ann_cls},
+                {'label': 'Breakeven', 'value': f"${r['put_breakeven']:.2f}"},
+                {'label': 'Protection', 'value': f"{prot:.1f}%", 'cls': prot_cls},
+                {'label': 'Analyst', 'value': analyst_label, 'cls': analyst_cls},
+                {'label': 'Put OI', 'value': f"{r['put_oi']:,}", 'cls': oi_cls},
                 {'label': 'Earnings', 'value': earnings_label, 'cls': earnings_cls},
-                {'label': 'Since', 'value': since_label},
             ],
             'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
             'lows': r['lows'], 'closes': r['closes'], 'volumes': r['volumes'],
@@ -468,18 +523,23 @@ def build_html_report(results, total_scanned, out_path):
     render_dashboard_html(
         cards=[to_card(r) for r in results],
         total_scanned=total_scanned,
-        title='🎯 Options Income Screener',
+        title=f'🎯 Cash-Secured Put Screener — {universe_label}',
         subtitle=(
-            f"US stocks (+ a few sector ETFs) screened against Andy Robertson's wheel-strategy checklist — "
+            f"{universe_desc} screened for cash-secured-put ENTRIES against Andy Robertson's checklist — "
             f"liquidity, open interest, IV, and a clear earnings runway — with a suggested ~{int(TARGET_DELTA*100)}-delta, "
-            f"~{TARGET_DTE}-day cash-secured put and covered call for each."
+            f"~{TARGET_DTE}-day put: strike (= your acquisition price if assigned), premium, annualized return, "
+            f"breakeven, and downside protection to that breakeven. Not a covered-call screen — that's the "
+            f"second half of the wheel, after assignment, not an entry."
         ),
         footer_note=(
-            'Options Income Screener · Data via Yahoo Finance (yfinance), universe via Wikipedia S&amp;P 500 list + curated extras<br>'
+            f'Cash-Secured Put Screener ({universe_label}) · Data via Yahoo Finance (yfinance), universe via Wikipedia '
+            'S&amp;P 500 list + curated extras<br>'
             f'Criteria: 20d avg volume ≥ 2M (tier 1 ≥ 5M) AND a ~{MIN_DTE}-{MAX_DTE}d options chain exists AND a usable '
-            f'~{int(TARGET_DELTA*100)}-delta strike exists on both sides.<br>'
+            f'~{int(TARGET_DELTA*100)}-delta put strike exists.<br>'
             'Delta is approximated via Black-Scholes from each contract\'s own implied volatility (yfinance does not supply '
-            'broker-calculated delta) — a reasonable estimate, not a guarantee. Not financial advice.'
+            'broker-calculated delta) — a reasonable estimate, not a guarantee. "Analyst" is yfinance\'s analyst-consensus '
+            'target-price upside, a free stand-in for an AlphaSpread-style fair-value screen (no public free API for that). '
+            'Not financial advice.'
         ),
         out_path=out_path + '.html',
         tv_prefix='',
@@ -501,14 +561,14 @@ def build_csv(results, out_path):
 # ─── MAIN ──────────────────────────────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser(description="US Options Income Screener")
+    parser = argparse.ArgumentParser(description="US Cash-Secured Put Screener")
     parser.add_argument('--workers', type=int, default=DEFAULT_WORKERS)
-    parser.add_argument('--out', type=str, default='options-income')
+    parser.add_argument('--out', type=str, default='options-income', help='Output filename prefix - written as <out>-stocks.html/.csv and <out>-etfs.html/.csv')
     parser.add_argument('--tickers', type=str, default='', help='Comma-separated ticker override (skips universe fetch)')
     args = parser.parse_args()
 
     print("=" * 60)
-    print("  US OPTIONS INCOME SCREENER")
+    print("  US CASH-SECURED PUT SCREENER")
     print("=" * 60)
     print(f"  Checklist: volume ≥2M(5M) · OI ≥500(1000) · IV 30-70% · earnings clear of ~{TARGET_DTE}d window")
 
@@ -539,26 +599,36 @@ def main():
 
     if results:
         print(f"\n{'─'*60}")
-        print("  TOP OPTIONS-INCOME CANDIDATES\n")
-        print(f"  {'TICKER':<6} {'SCORE':>5} {'IV%':>6} {'PUT CoC%':>9} {'CALL CoC%':>10}")
+        print("  TOP CASH-SECURED-PUT CANDIDATES\n")
+        print(f"  {'TICKER':<6} {'SCORE':>5} {'IV%':>6} {'ANN%':>7} {'PROTECT%':>9}")
         for r in results[:20]:
-            print(f"  {r['ticker']:<6} {r['score']:>5} {r['avg_iv_pct']:>5.1f}% {r['put_coc_pct']:>8.1f}% {r['call_coc_pct']:>9.1f}%")
+            print(f"  {r['ticker']:<6} {r['score']:>5} {r['avg_iv_pct']:>5.1f}% {r['put_annualized_pct']:>6.1f}% {r['put_protection_pct']:>8.1f}%")
         if len(results) > 20:
             print(f"  ... and {len(results)-20} more in the report")
 
+    # Separate pages for stocks vs ETFs - a 30-delta put on an ETF (basket,
+    # diversified, no single-name earnings gap) is a different risk profile
+    # than one on a single stock, and worth screening on its own page rather
+    # than interleaved.
+    stock_results = [r for r in results if not r['is_etf']]
+    etf_results = [r for r in results if r['is_etf']]
+
     out_base = os.path.join(SCRIPT_DIR, args.out)
-    print(f"\n💾 Saving to:\n   {out_base}.html\n   {out_base}.csv\n")
-
-    try:
-        build_html_report(results, len(tickers), out_base)
-        print(f"  📄 HTML report → {out_base}.html")
-    except Exception as e:
-        print(f"  ⚠ HTML save error: {e}")
-
-    try:
-        build_csv(results, out_base)
-    except Exception as e:
-        print(f"  ⚠ CSV save error: {e}")
+    for suffix, label, desc, subset in (
+        ('stocks', 'Stocks', 'S&P 500 + curated individual names', stock_results),
+        ('etfs', 'ETFs', 'Sector and index ETFs', etf_results),
+    ):
+        page_base = f"{out_base}-{suffix}"
+        print(f"\n💾 Saving {label} ({len(subset)} qualified) to:\n   {page_base}.html\n   {page_base}.csv")
+        try:
+            build_html_report(subset, len(tickers), page_base, universe_label=label, universe_desc=desc)
+            print(f"  📄 HTML report → {page_base}.html")
+        except Exception as e:
+            print(f"  ⚠ HTML save error ({label}): {e}")
+        try:
+            build_csv(subset, page_base)
+        except Exception as e:
+            print(f"  ⚠ CSV save error ({label}): {e}")
 
     print("\n" + "=" * 60)
     print("  ✅ Done")

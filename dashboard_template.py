@@ -81,8 +81,10 @@ def render_dashboard_html(
         active_href = 'pullback.html'
     elif 'Momentum' in title:
         active_href = 'momentum.html'
-    elif 'Options Income' in title:
-        active_href = 'options-income.html'
+    elif 'Cash-Secured Put' in title and 'ETF' in title:
+        active_href = 'options-income-etfs.html'
+    elif 'Cash-Secured Put' in title:
+        active_href = 'options-income-stocks.html'
     else:
         active_href = 'pre-breakout.html'
     html = HTML_TEMPLATE
@@ -128,7 +130,8 @@ NAV_INDEX_LINKS = [
     ('utilities-index.html', 'Utilities'),
 ]
 NAV_OPTIONS_LINKS = [
-    ('options-income.html', 'Options Income (US)'),
+    ('options-income-stocks.html', 'CSP Screener (Stocks)'),
+    ('options-income-etfs.html', 'CSP Screener (ETFs)'),
 ]
 NAV_TOOLS_LINKS = [
     ('insider-index.html', 'Insider Buying'),
@@ -299,6 +302,7 @@ input[type=text]:focus{border-color:rgba(232,179,85,.4)}
 .cardhead{display:flex;justify-content:space-between;align-items:flex-start}
 .cardhead-left{display:flex;align-items:baseline;gap:.4rem}
 .ticker{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.02rem;color:var(--text)}
+.company-name{font-size:.72rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:-.3rem 0 .5rem}
 .ticker a{color:inherit;text-decoration:none}
 .ticker a:hover{color:var(--accent2)}
 .chg{font-size:.72rem;font-weight:600}
@@ -355,6 +359,7 @@ table.datatable td{padding:.65rem .8rem;vertical-align:middle;white-space:nowrap
 table.datatable td.ticker-cell{font-family:"IBM Plex Mono",monospace;font-weight:700}
 table.datatable td.ticker-cell a{color:var(--accent2);text-decoration:none}
 table.datatable td.sector-cell{color:var(--muted)}
+table.datatable td.name-cell{color:var(--muted);max-width:14rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .notice{background:rgba(232,179,85,.08);border:1px solid rgba(232,179,85,.25);border-radius:4px;
   padding:.7rem .9rem;font-size:.68rem;color:var(--warn);margin-bottom:1rem;line-height:1.6}
 footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
@@ -757,6 +762,7 @@ function cardHtml(c) {
       </div>
       <div class="scorebar"><div class="bg"><div class="fill" style="width:${Math.min(100,c.score)}%"></div></div><span class="num">${c.score}</span></div>
     </div>
+    ${c.name ? `<div class="company-name">${esc(c.name)}</div>` : ''}
     <div class="chartwrap"><canvas></canvas></div>
     <div class="statrow">${statsHtml}</div>
     <div class="sectortag">${esc(c.sector)}</div>
@@ -771,6 +777,7 @@ function statNumeric(value) {
 function sortCards(list, statLabels) {
   const sorters = {
     ticker: c => c.ticker,
+    name: c => c.name || '',
     sector: c => c.sector,
     price: c => c.price,
     change_1d: c => c.change_1d,
@@ -800,9 +807,10 @@ function renderTable(visible) {
   }
   const statLabels = visible[0].stats.map(s => s.label);
   const sorted = sortCards(visible, statLabels);
+  const hasNames = visible.some(c => c.name);
 
   const headers = [
-    ['ticker', 'Ticker'], ['sector', 'Sector'], ['price', 'Price'],
+    ['ticker', 'Ticker'], ...(hasNames ? [['name', 'Company']] : []), ['sector', 'Sector'], ['price', 'Price'],
     ['change_1d', '1D Chg'], ['score', 'Score'],
     ...statLabels.map((l, i) => ['stat' + i, l]),
   ];
@@ -817,6 +825,7 @@ function renderTable(visible) {
     const statCells = c.stats.map(s => `<td class="${s.cls||''}">${esc(s.value)}</td>`).join('');
     return `<tr>
       <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(c.ticker)}</a></td>
+      ${hasNames ? `<td class="name-cell">${esc(c.name||'')}</td>` : ''}
       <td class="sector-cell">${esc(c.sector)}</td>
       <td>$${c.price.toFixed(c.price < 1 ? 3 : 2)}</td>
       <td class="${chgClass}">${chgSign}${c.change_1d.toFixed(1)}%</td>
