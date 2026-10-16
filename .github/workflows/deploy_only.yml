@@ -1,0 +1,110 @@
+name: Deploy Only
+
+# Every other workflow on this site bundles its deploy step together with a
+# real scan/scrape of something (scan.yml = the full ASX screener run,
+# materials_index.yml = sector indexes + earnings calendar, insider_index.yml
+# = the director-purchase tracker, options_screener.yml = the US options
+# scan) - there's never been a lightweight "just redeploy what's already
+# committed" path. Found 2026-10-16: a small content/UX fix to
+# earnings-calendar.html (a page materials_index.yml owns) needed a full
+# ~30-minute scan.yml run just to get it live, purely because that was the
+# fastest workflow on hand, not because any screener data needed refreshing.
+#
+# This workflow does no scanning and installs no pip dependencies (every
+# script it runs - build_site_index.py, check_nav.py, dashboard_template.py
+# - is pure stdlib) - it just rebuilds the homepage nav from whatever's
+# currently committed and redeploys. Use it whenever you've hand-fixed or
+# committed a page directly and just need it live, without waiting on (or
+# paying the runtime cost of) a full re-scan.
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Preserve the screener pages that are NEVER git-tracked
+        # pre-breakout/pullback/momentum/higher-high/lower-low/volume-anomaly
+        # only ever exist as scan.yml's own ephemeral build output - this
+        # workflow doesn't generate them, so they have to be pulled from the
+        # live site or deploying here would wipe them off entirely.
+        run: |
+          curl -sf -o pre-breakout.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html || true
+          curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true
+          curl -sf -o momentum.html https://brianyumcha.github.io/asx-screeners/momentum.html || true
+          curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
+          curl -sf -o lower-low.html https://brianyumcha.github.io/asx-screeners/lower-low.html || true
+          curl -sf -o volume-anomaly.html https://brianyumcha.github.io/asx-screeners/volume-anomaly.html || true
+
+      - name: Build homepage (fresh nav)
+        run: python3 build_site_index.py
+
+      - name: Build Pages site
+        run: |
+          mkdir -p _site
+          cp index.html _site/index.html
+          [ -f materials-index.html ] && cp materials-index.html _site/materials-index.html || true
+          [ -f healthcare-index.html ] && cp healthcare-index.html _site/healthcare-index.html || true
+          [ -f energy-index.html ] && cp energy-index.html _site/energy-index.html || true
+          [ -f tech-index.html ] && cp tech-index.html _site/tech-index.html || true
+          [ -f real-estate-index.html ] && cp real-estate-index.html _site/real-estate-index.html || true
+          [ -f financials-index.html ] && cp financials-index.html _site/financials-index.html || true
+          [ -f staples-index.html ] && cp staples-index.html _site/staples-index.html || true
+          [ -f discretionary-index.html ] && cp discretionary-index.html _site/discretionary-index.html || true
+          [ -f industrials-index.html ] && cp industrials-index.html _site/industrials-index.html || true
+          [ -f utilities-index.html ] && cp utilities-index.html _site/utilities-index.html || true
+          [ -f comms-index.html ] && cp comms-index.html _site/comms-index.html || true
+          [ -f red-folder-news.html ] && cp red-folder-news.html _site/red-folder-news.html || true
+          [ -f sector-rotation.html ] && cp sector-rotation.html _site/sector-rotation.html || true
+          [ -f earnings-calendar.html ] && cp earnings-calendar.html _site/earnings-calendar.html || true
+          [ -f insider-index.html ] && cp insider-index.html _site/insider-index.html || true
+          [ -f options-income.html ] && cp options-income.html _site/options-income.html || true
+          [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
+          [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
+          [ -f craig-bullish-map.html ] && cp craig-bullish-map.html _site/craig-bullish-map.html || true
+          [ -f craig-bear-map.html ] && cp craig-bear-map.html _site/craig-bear-map.html || true
+          [ -f mtm-call-archive.html ] && cp mtm-call-archive.html _site/mtm-call-archive.html || true
+          [ -f timing-the-carts.html ] && cp timing-the-carts.html _site/timing-the-carts.html || true
+          [ -f pre-breakout.html ] && cp pre-breakout.html _site/pre-breakout.html || true
+          [ -f pullback.html ] && cp pullback.html _site/pullback.html || true
+          [ -f momentum.html ] && cp momentum.html _site/momentum.html || true
+          [ -f higher-high.html ] && cp higher-high.html _site/higher-high.html || true
+          [ -f lower-low.html ] && cp lower-low.html _site/lower-low.html || true
+          [ -f volume-anomaly.html ] && cp volume-anomaly.html _site/volume-anomaly.html || true
+
+      - name: Check nav consistency across every deployed page
+        run: python3 check_nav.py
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
