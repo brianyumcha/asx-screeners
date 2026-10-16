@@ -197,7 +197,7 @@ def main():
 
     calls.sort(key=lambda c: (c["iso_date"], c["fname"]), reverse=True)
 
-    index_rows = ""
+    list_rows = ""
     calls_html = ""
     for call in calls:
         # Stable, content-derived anchor (from the source filename) rather
@@ -205,20 +205,29 @@ def main():
         # different call every time a newer one gets prepended, silently
         # breaking any bookmarked/shared #anchor link.
         anchor = "call-" + re.sub(r"[^a-zA-Z0-9]+", "-", call["fname"].rsplit(".", 1)[0]).strip("-").lower()
-        fmt = "Pre-Recorded" if call["is_pre_recorded"] else "Live"
-        index_rows += f"""<tr class="idxrow" data-search="{esc((call['call_name'] + ' ' + call['host'] + ' ' + call['iso_date']).lower())}">
-          <td class="mono">{esc(call['iso_date'])}</td>
-          <td>{esc(call['host'])}</td>
-          <td><a href="#{anchor}">{esc(call['call_name'])}</a></td>
-          <td class="mono fmt">{fmt}</td>
-        </tr>"""
+
+        # Full-text search string for the LIST row - deliberately richer than
+        # just the title/date/educator (what's visible in the row) so typing
+        # a ticker or a theme still surfaces the call, matching how search
+        # used to work when every call's full body sat in the DOM at once.
+        tickers = " ".join(t for t, _, _, _ in call["sections"])
+        bullets = " ".join(b for _, _, _, bl in call["sections"] for b in bl)
+        search_text = " ".join([
+            call["call_name"], call["host"], call["iso_date"], tickers, bullets, " ".join(call["themes"]),
+        ]).lower()
+
+        list_rows += f"""<div class="listrow" data-anchor="{anchor}" data-search="{esc(search_text)}">
+          <div class="lr-date mono">{esc(call['iso_date'])}</div>
+          <div class="lr-name">{esc(call['call_name'])}</div>
+          <div class="lr-host">{esc(call['host'])}</div>
+        </div>"""
         calls_html += render_call(call, anchor)
 
     today_str = datetime.now().strftime("%-d %b %Y")
     html = HTML_TEMPLATE
     html = html.replace("##COUNT##", str(len(calls)))
     html = html.replace("##REBUILT_DATE##", today_str)
-    html = html.replace("##INDEX_ROWS##", index_rows)
+    html = html.replace("##LIST_ROWS##", list_rows)
     html = html.replace("##CALLS_HTML##", calls_html)
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
@@ -263,17 +272,27 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.4rem}
 .themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
 .subtitle{color:var(--ink-faint);font-size:.95rem;margin:.3rem 0 1.2rem;max-width:40rem}
-#searchBox{width:100%;max-width:28rem;padding:.6rem .9rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:.95rem;margin-bottom:1.4rem}
+#searchBox{width:100%;max-width:28rem;padding:.6rem .9rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:.95rem;margin-bottom:1.2rem}
 #searchBox:focus{outline:2px solid var(--accent);outline-offset:1px}
-.idxwrap{height:50vh;overflow-y:auto;border:1px solid var(--border);border-radius:8px;margin-bottom:3rem}
-table.idx{width:100%;border-collapse:collapse;font-size:.85rem;color:var(--ink)}
-table.idx th{position:sticky;top:0;text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border);background:var(--surface)}
-table.idx td{padding:.45rem .6rem;border-bottom:1px solid var(--border);vertical-align:top}
-table.idx tr:last-child td{border-bottom:none}
-table.idx td.fmt{color:var(--ink-faint)}
-table.idx a{color:var(--ink);text-decoration:none}
-table.idx a:hover{color:var(--accent)}
-.call{border-top:1px solid var(--border);padding-top:1.6rem;margin-top:1.8rem;scroll-margin-top:1rem}
+
+.archivelayout{display:flex;gap:1.2rem;align-items:flex-start;margin-bottom:2rem}
+.listpane{flex:0 0 340px;min-width:0;display:flex;flex-direction:column;gap:.4rem}
+.listcount{font-size:.72rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;padding:0 .2rem}
+.listscroll{max-height:calc(100vh - 230px);overflow-y:auto;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+.listrow{padding:.6rem .8rem;border-bottom:1px solid var(--border);cursor:pointer}
+.listrow:last-child{border-bottom:none}
+.listrow:hover{background:var(--surface2)}
+.listrow.active{background:var(--accent);border-color:var(--accent)}
+.listrow.active .lr-date,.listrow.active .lr-name,.listrow.active .lr-host{color:var(--accent-ink)}
+.lr-date{font-size:.68rem;color:var(--ink-faint);margin-bottom:.15rem}
+.lr-name{font-size:.88rem;font-weight:600;line-height:1.3;color:var(--ink)}
+.lr-host{font-size:.74rem;color:var(--ink-faint);margin-top:.15rem}
+.emptylist{padding:1rem .8rem;color:var(--ink-faint);font-size:.85rem}
+
+.detailpane{flex:1;min-width:0;max-height:calc(100vh - 230px);overflow-y:auto;border:1px solid var(--border);border-radius:8px;background:var(--surface);padding:1.3rem 1.5rem}
+.detailempty{color:var(--ink-faint);font-size:.9rem;padding:1rem .2rem}
+.call{display:none}
+.call.active{display:block}
 .callmeta{color:var(--ink-faint);font-size:.88rem}
 .callurl{font-size:.8rem;margin:.3rem 0 1rem}
 .callurl a{color:var(--accent)}
@@ -296,6 +315,12 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
   transition:opacity .2s,visibility .2s,transform .2s,border-color .2s;z-index:50}
 .backtotop.visible{opacity:1;visibility:visible;transform:translateY(0)}
 .backtotop:hover{border-color:var(--accent);color:var(--accent)}
+@media (max-width:860px){
+  .archivelayout{flex-direction:column}
+  .listpane{flex:none;width:100%}
+  .listscroll{max-height:40vh}
+  .detailpane{max-height:none;width:100%}
+}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
@@ -310,14 +335,16 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
 
   <input type="text" id="searchBox" placeholder="Search by ticker, educator, theme, date...">
 
-  <div class="idxwrap">
-    <table class="idx" id="idxTable">
-      <thead><tr><th>Date</th><th>Educator</th><th>Call</th><th>Format</th></tr></thead>
-      <tbody>##INDEX_ROWS##</tbody>
-    </table>
+  <div class="archivelayout">
+    <div class="listpane">
+      <div class="listcount" id="listCount"></div>
+      <div class="listscroll" id="listScroll">##LIST_ROWS##</div>
+    </div>
+    <div class="detailpane" id="detailPane">
+      <div class="detailempty" id="detailEmpty">Select a call on the left to read its summary.</div>
+      <div id="calls">##CALLS_HTML##</div>
+    </div>
   </div>
-
-  <div id="calls">##CALLS_HTML##</div>
 
   <footer>Rebuilt ##REBUILT_DATE## by build_mtm_archive.py, run automatically after every run-mtm execution.</footer>
 </div>
@@ -339,16 +366,66 @@ themeBtn.addEventListener('click', ()=>{
 });
 
 const searchBox = document.getElementById('searchBox');
-const idxRows = [...document.querySelectorAll('.idxrow')];
+const listRows = [...document.querySelectorAll('.listrow')];
 const callEls = [...document.querySelectorAll('.call')];
+const detailEmpty = document.getElementById('detailEmpty');
+const detailPane = document.getElementById('detailPane');
+const listCount = document.getElementById('listCount');
+const callByAnchor = {};
+callEls.forEach(c => { callByAnchor[c.id] = c; });
+
+function selectCall(anchor, opts){
+  opts = opts || {};
+  const call = callByAnchor[anchor];
+  if(!call) return;
+  callEls.forEach(c => c.classList.toggle('active', c === call));
+  listRows.forEach(r => r.classList.toggle('active', r.dataset.anchor === anchor));
+  detailEmpty.style.display = 'none';
+  if(!opts.skipHash) history.replaceState(null, '', '#' + anchor);
+  if(!opts.skipScroll) detailPane.scrollTop = 0;
+}
+
+listRows.forEach(r => {
+  r.addEventListener('click', () => selectCall(r.dataset.anchor));
+});
+
+function updateListCount(visible, total){
+  listCount.textContent = visible === total ? `${total} call${total === 1 ? '' : 's'}` : `${visible} of ${total} calls`;
+}
+
 searchBox.addEventListener('input', () => {
   const q = searchBox.value.trim().toLowerCase();
-  idxRows.forEach(r => { r.style.display = (!q || r.dataset.search.includes(q)) ? '' : 'none'; });
-  callEls.forEach(c => {
-    const matches = !q || c.dataset.search.includes(q) || c.textContent.toLowerCase().includes(q);
-    c.style.display = matches ? '' : 'none';
+  let visibleCount = 0;
+  let firstVisibleAnchor = null;
+  let selectedStillVisible = false;
+  const selectedRow = listRows.find(r => r.classList.contains('active'));
+  listRows.forEach(r => {
+    const matches = !q || r.dataset.search.includes(q);
+    r.style.display = matches ? '' : 'none';
+    if(matches){
+      visibleCount++;
+      if(!firstVisibleAnchor) firstVisibleAnchor = r.dataset.anchor;
+      if(r === selectedRow) selectedStillVisible = true;
+    }
   });
+  updateListCount(visibleCount, listRows.length);
+  if(!selectedStillVisible && firstVisibleAnchor){
+    selectCall(firstVisibleAnchor, {skipScroll: true});
+  }
 });
+
+// Initial selection: the URL's #anchor if it names a real call, else the
+// most recent one (list is already sorted newest-first) - never land on a
+// blank detail pane when calls actually exist.
+const initialAnchor = (location.hash || '').slice(1);
+if(initialAnchor && callByAnchor[initialAnchor]){
+  selectCall(initialAnchor, {skipHash: true, skipScroll: true});
+  const row = listRows.find(r => r.dataset.anchor === initialAnchor);
+  if(row) row.scrollIntoView({block: 'center'});
+} else if(listRows.length){
+  selectCall(listRows[0].dataset.anchor, {skipHash: true, skipScroll: true});
+}
+updateListCount(listRows.length, listRows.length);
 
 const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
