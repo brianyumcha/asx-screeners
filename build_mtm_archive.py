@@ -199,12 +199,21 @@ def main():
 
     list_rows = ""
     calls_html = ""
+    last_month_label = None
     for call in calls:
         # Stable, content-derived anchor (from the source filename) rather
         # than array position - a positional "call-{i}" id reassigns to a
         # different call every time a newer one gets prepended, silently
         # breaking any bookmarked/shared #anchor link.
         anchor = "call-" + re.sub(r"[^a-zA-Z0-9]+", "-", call["fname"].rsplit(".", 1)[0]).strip("-").lower()
+
+        try:
+            month_label = datetime.strptime(call["iso_date"], "%Y-%m-%d").strftime("%B %Y")
+        except ValueError:
+            month_label = "Unknown date"
+        if month_label != last_month_label:
+            list_rows += f'<div class="monthsep">{esc(month_label)}</div>'
+            last_month_label = month_label
 
         # Full-text search string for the LIST row - deliberately richer than
         # just the title/date/educator (what's visible in the row) so typing
@@ -263,7 +272,7 @@ HTML_TEMPLATE = r"""<meta charset="UTF-8">
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,sans-serif;font-size:16px;line-height:1.6}
-.wrap{max-width:1100px;margin:0 auto;padding:2.4rem 1.5rem 5rem}
+.wrap{max-width:1380px;margin:0 auto;padding:2.4rem 1.5rem 5rem}
 h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;color:var(--ink)}
 h1{font-size:2.2rem;letter-spacing:-.01em;margin:0 0 .2rem}
 h2{font-size:1.4rem;margin:0 0 .2rem}
@@ -288,6 +297,8 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 .lr-name{font-size:.88rem;font-weight:600;line-height:1.3;color:var(--ink)}
 .lr-host{font-size:.74rem;color:var(--ink-faint);margin-top:.15rem}
 .emptylist{padding:1rem .8rem;color:var(--ink-faint);font-size:.85rem}
+.monthsep{position:sticky;top:0;background:var(--surface2);color:var(--ink-faint);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.4rem .8rem;border-bottom:1px solid var(--border);z-index:1}
+.monthsep:first-child{border-top:none}
 
 .detailpane{flex:1;min-width:0;max-height:calc(100vh - 230px);overflow-y:auto;border:1px solid var(--border);border-radius:8px;background:var(--surface);padding:1.3rem 1.5rem}
 .detailempty{color:var(--ink-faint);font-size:.9rem;padding:1rem .2rem}
@@ -393,6 +404,9 @@ function updateListCount(visible, total){
   listCount.textContent = visible === total ? `${total} call${total === 1 ? '' : 's'}` : `${visible} of ${total} calls`;
 }
 
+const listScroll = document.getElementById('listScroll');
+const listChildren = [...listScroll.children]; // listrow + monthsep divs, in document order
+
 searchBox.addEventListener('input', () => {
   const q = searchBox.value.trim().toLowerCase();
   let visibleCount = 0;
@@ -408,6 +422,21 @@ searchBox.addEventListener('input', () => {
       if(r === selectedRow) selectedStillVisible = true;
     }
   });
+  // A month separator only earns its keep if at least one row under it (up
+  // to the next separator) is still visible - otherwise a search that wipes
+  // out a whole month leaves its bare label floating with nothing below it.
+  let pendingSep = null;
+  let sepHasVisibleRow = false;
+  listChildren.forEach(el => {
+    if(el.classList.contains('monthsep')){
+      if(pendingSep) pendingSep.style.display = sepHasVisibleRow ? '' : 'none';
+      pendingSep = el;
+      sepHasVisibleRow = false;
+    } else if(el.style.display !== 'none'){
+      sepHasVisibleRow = true;
+    }
+  });
+  if(pendingSep) pendingSep.style.display = sepHasVisibleRow ? '' : 'none';
   updateListCount(visibleCount, listRows.length);
   if(!selectedStillVisible && firstVisibleAnchor){
     selectCall(firstVisibleAnchor, {skipScroll: true});
