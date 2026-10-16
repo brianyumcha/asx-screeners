@@ -228,8 +228,31 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 const DATA = [
 <<<FULL_DATA>>>
 ];
-// [unixTs, dateLabel, weekLabel, ticker, company, period, sector, dps, npat, status]
+// [unixTs, dateLabel, weekLabel, ticker, company, period, sector, dpsValue, dpsCurrency, npatValue, npatCurrency, status]
 // status: 'reported' | 'upcoming' | 'awaiting' (date passed but CommSec hasn't posted the result yet)
+// dpsValue is plain dollars/share; npatValue is normalised to millions (a raw "B" figure is already
+// multiplied up in the build script) so every NPAT figure sorts and displays on the same scale.
+// *Currency is '' (implied AUD) or one of US/NZ/CAD. Either value may be null (not yet reported).
+
+function trimNum(num, maxDp, minDp){
+  let s = num.toFixed(maxDp);
+  if(!s.includes('.')) return s;
+  let [intPart, dec] = s.split('.');
+  while(dec.length > minDp && dec.endsWith('0')) dec = dec.slice(0, -1);
+  return dec.length ? `${intPart}.${dec}` : intPart;
+}
+function fmtDps(value, currency){
+  if(value === null) return '—';
+  const sign = value < 0 ? '-' : '';
+  return `${sign}${currency}$${trimNum(Math.abs(value), 3, 2)}`;
+}
+function fmtNpat(value, currency){
+  if(value === null) return '—';
+  const sign = value < 0 ? '-' : '';
+  const abs = Math.abs(value);
+  if(abs >= 1000) return `${sign}${currency}$${trimNum(abs / 1000, 2, 0)}B`;
+  return `${sign}${currency}$${trimNum(abs, 1, 0)}M`;
+}
 
 const SEASON_LABEL = "<<<SEASON_LABEL>>>";
 const SEASON_ACTIVE = <<<SEASON_ACTIVE>>>;
@@ -248,7 +271,7 @@ if (!SEASON_ACTIVE) {
 const STATUS_LABELS = { reported: 'Reported', upcoming: 'Upcoming', awaiting: 'Awaiting update' };
 
 const statusCounts = {};
-DATA.forEach(r => { statusCounts[r[9]] = (statusCounts[r[9]] || 0) + 1; });
+DATA.forEach(r => { statusCounts[r[11]] = (statusCounts[r[11]] || 0) + 1; });
 const statuschips = document.getElementById('statuschips');
 statuschips.innerHTML = Object.keys(STATUS_LABELS).filter(s => statusCounts[s]).map(s =>
   `<button class="commchip" data-status="${s}"><span>${STATUS_LABELS[s]}</span><span class="cnt">${statusCounts[s]}</span></button>`
@@ -270,7 +293,7 @@ let currentRows = [];
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function render(){
   const q = document.getElementById('filterInput').value.trim().toUpperCase();
-  let rows = DATA.filter(([ts, dateLabel, weekLabel, ticker, company, period, sector, dps, npat, status]) => {
+  let rows = DATA.filter(([ts, dateLabel, weekLabel, ticker, company, period, sector, dpsValue, dpsCurrency, npatValue, npatCurrency, status]) => {
     const textMatch = ticker.toUpperCase().includes(q) || company.toUpperCase().includes(q);
     if(!textMatch) return false;
     if(activeStatuses.size && !activeStatuses.has(status)) return false;
@@ -278,15 +301,17 @@ function render(){
     return true;
   });
   rows.sort((a,b) => {
-    const idx = {date:0, ticker:3, company:4, period:5, sector:6, dps:7, npat:8}[sortKey];
+    const idx = {date:0, ticker:3, company:4, period:5, sector:6, dps:7, npat:9}[sortKey];
     let av = a[idx], bv = b[idx];
+    if(av === null) av = sortKey==='dps' || sortKey==='npat' ? -Infinity : av;
+    if(bv === null) bv = sortKey==='dps' || sortKey==='npat' ? -Infinity : bv;
     if(av<bv) return -1*sortDir;
     if(av>bv) return 1*sortDir;
     return 0;
   });
   currentRows = rows;
   let lastDateLabel = null;
-  document.getElementById('matBody').innerHTML = rows.map(([ts, dateLabel, weekLabel, ticker, company, period, sector, dps, npat, status]) => {
+  document.getElementById('matBody').innerHTML = rows.map(([ts, dateLabel, weekLabel, ticker, company, period, sector, dpsValue, dpsCurrency, npatValue, npatCurrency, status]) => {
     const showDate = dateLabel !== lastDateLabel;
     lastDateLabel = dateLabel;
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${ticker}`;
@@ -296,8 +321,8 @@ function render(){
       <td class="cname colname-desktop">${esc(company)}</td>
       <td class="mono colname-desktop">${esc(period)}</td>
       <td class="mono">${esc(sector)}</td>
-      <td class="mono" style="text-align:right">${dps || '—'}</td>
-      <td class="mono" style="text-align:right">${npat || '—'}</td>
+      <td class="mono" style="text-align:right">${fmtDps(dpsValue, dpsCurrency)}</td>
+      <td class="mono" style="text-align:right">${fmtNpat(npatValue, npatCurrency)}</td>
     </tr>`;
   }).join('');
   document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} companies`;
@@ -353,7 +378,7 @@ document.getElementById('jumpTodayBtn').addEventListener('click', () => scrollTo
 document.getElementById('downloadCsvBtn').addEventListener('click', async () => {
   const escCsv = v => /[",\n]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v;
   const rows = [['Date','Ticker','Company','Period','Sector','DPS','NPAT','Status'],
-    ...currentRows.map(r => [r[1], r[3], r[4], r[5], r[6], r[7] || '', r[8] || '', STATUS_LABELS[r[9]]])];
+    ...currentRows.map(r => [r[1], r[3], r[4], r[5], r[6], fmtDps(r[7], r[8]), fmtNpat(r[9], r[10]), STATUS_LABELS[r[11]]])];
   const csv = rows.map(r => r.map(String).map(escCsv).join(',')).join('\n');
   let usedCapability = false;
   if(typeof window.claude !== 'undefined' && window.claude.use){

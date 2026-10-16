@@ -69,6 +69,39 @@ def esc_js(s):
     return str(s).replace("\\", "\\\\").replace('"', '\\"')
 
 
+# CommSec's raw DPS/NPAT text is genuinely messy - mixed M/B units with no
+# normalisation, an inconsistent (sometimes missing) space before a currency
+# code, and the occasional stray artifact like "206.M" (a trailing decimal
+# point with nothing after it). Parsed here into a clean (value, currency)
+# pair instead of carrying the raw string through - DPS value is plain
+# dollars/share; NPAT value is normalised to millions (a "B" raw value is
+# multiplied up) so every NPAT figure sorts and displays on the same scale.
+# Currency is '' (implied AUD) or one of US/NZ/CAD, always separated from
+# the unit text regardless of how CommSec happened to space the original.
+_MONEY_CURRENCY_RE = re.compile(r"\s*(US|NZ|CAD)\s*$")
+_MONEY_NUM_RE = re.compile(r"^(-?\d+(?:\.\d+)?)\s*([MB])?$")
+
+
+def parse_money(raw, is_npat):
+    raw = (raw or "").strip()
+    if not raw or raw == "-":
+        return None, ""
+    currency = ""
+    m = _MONEY_CURRENCY_RE.search(raw)
+    if m:
+        currency = m.group(1)
+        raw = raw[:m.start()].strip()
+    raw = raw.rstrip(".")  # the odd "206." artifact
+    m2 = _MONEY_NUM_RE.match(raw)
+    if not m2:
+        return None, ""
+    value = float(m2.group(1))
+    unit = m2.group(2)
+    if is_npat and unit == "B":
+        value *= 1000
+    return value, currency
+
+
 def main():
     html = fetch_html()
     soup = BeautifulSoup(html, "html.parser")
@@ -156,10 +189,13 @@ def main():
     data_lines = []
     for r in rows:
         ts = int(datetime.datetime.combine(r["date"], datetime.time(9, 0), SYDNEY_TZ).timestamp())
+        dps_value, dps_currency = parse_money(r["dps"], is_npat=False)
+        npat_value, npat_currency = parse_money(r["npat"], is_npat=True)
         data_lines.append(
             f'[{ts},"{esc_js(r["date"].strftime("%a %-d %b"))}","{esc_js(r["week_label"])}",'
             f'"{esc_js(r["ticker"])}","{esc_js(r["company"])}","{esc_js(r["period"])}",'
-            f'"{esc_js(r["sector"])}","{esc_js(r["dps"])}","{esc_js(r["npat"])}","{r["status"]}"]'
+            f'"{esc_js(r["sector"])}",{"null" if dps_value is None else dps_value},"{dps_currency}",'
+            f'{"null" if npat_value is None else npat_value},"{npat_currency}","{r["status"]}"]'
         )
     data_block = ",\n".join(data_lines)
 
