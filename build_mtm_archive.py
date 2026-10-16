@@ -197,6 +197,17 @@ def main():
 
     calls.sort(key=lambda c: (c["iso_date"], c["fname"]), reverse=True)
 
+    host_counts = {}
+    for call in calls:
+        host_counts[call["host"]] = host_counts.get(call["host"], 0) + 1
+    # Stable order: busiest presenter first, ties broken alphabetically -
+    # matches how the status/sector chip rows read elsewhere on the site.
+    hosts_sorted = sorted(host_counts, key=lambda h: (-host_counts[h], h))
+    host_chips = "".join(
+        f'<button class="commchip" data-host="{esc(h)}"><span>{esc(h)}</span><span class="cnt">{host_counts[h]}</span></button>'
+        for h in hosts_sorted
+    )
+
     list_rows = ""
     calls_html = ""
     last_month_label = None
@@ -225,7 +236,7 @@ def main():
             call["call_name"], call["host"], call["iso_date"], tickers, bullets, " ".join(call["themes"]),
         ]).lower()
 
-        list_rows += f"""<div class="listrow" data-anchor="{anchor}" data-search="{esc(search_text)}">
+        list_rows += f"""<div class="listrow" data-anchor="{anchor}" data-host="{esc(call['host'])}" data-search="{esc(search_text)}">
           <div class="lr-date mono">{esc(call['iso_date'])}</div>
           <div class="lr-name">{esc(call['call_name'])}</div>
           <div class="lr-host">{esc(call['host'])}</div>
@@ -236,6 +247,7 @@ def main():
     html = HTML_TEMPLATE
     html = html.replace("##COUNT##", str(len(calls)))
     html = html.replace("##REBUILT_DATE##", today_str)
+    html = html.replace("##HOST_CHIPS##", host_chips)
     html = html.replace("##LIST_ROWS##", list_rows)
     html = html.replace("##CALLS_HTML##", calls_html)
 
@@ -281,8 +293,14 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.4rem}
 .themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
 .subtitle{color:var(--ink-faint);font-size:.95rem;margin:.3rem 0 1.2rem;max-width:40rem}
-#searchBox{width:100%;max-width:28rem;padding:.6rem .9rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:.95rem;margin-bottom:1.2rem}
+#searchBox{width:100%;max-width:28rem;padding:.6rem .9rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:.95rem;margin-bottom:1rem}
 #searchBox:focus{outline:2px solid var(--accent);outline-offset:1px}
+
+.commchips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.4rem}
+.commchip{font-size:.78rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+.commchip:hover{border-color:var(--accent);color:var(--accent)}
+.commchip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.commchip .cnt{opacity:.7;font-size:.85em}
 
 .archivelayout{display:flex;gap:1.2rem;align-items:flex-start;margin-bottom:2rem}
 .listpane{flex:0 0 340px;min-width:0;display:flex;flex-direction:column;gap:.4rem}
@@ -297,7 +315,7 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 .lr-name{font-size:.88rem;font-weight:600;line-height:1.3;color:var(--ink)}
 .lr-host{font-size:.74rem;color:var(--ink-faint);margin-top:.15rem}
 .emptylist{padding:1rem .8rem;color:var(--ink-faint);font-size:.85rem}
-.monthsep{position:sticky;top:0;background:var(--surface2);color:var(--ink-faint);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.4rem .8rem;border-bottom:1px solid var(--border);z-index:1}
+.monthsep{position:sticky;top:0;background:color-mix(in srgb, var(--accent) 22%, var(--surface2));color:var(--accent);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.4rem .8rem;border-bottom:1px solid var(--border);border-left:3px solid var(--accent);z-index:1}
 .monthsep:first-child{border-top:none}
 
 .detailpane{flex:1;min-width:0;max-height:calc(100vh - 230px);overflow-y:auto;border:1px solid var(--border);border-radius:8px;background:var(--surface);padding:1.3rem 1.5rem}
@@ -345,6 +363,8 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
   </div>
 
   <input type="text" id="searchBox" placeholder="Search by ticker, educator, theme, date...">
+
+  <div class="commchips" id="hostchips">##HOST_CHIPS##</div>
 
   <div class="archivelayout">
     <div class="listpane">
@@ -406,15 +426,19 @@ function updateListCount(visible, total){
 
 const listScroll = document.getElementById('listScroll');
 const listChildren = [...listScroll.children]; // listrow + monthsep divs, in document order
+const hostchips = document.getElementById('hostchips');
+const activeHosts = new Set();
 
-searchBox.addEventListener('input', () => {
+function applyFilters(){
   const q = searchBox.value.trim().toLowerCase();
   let visibleCount = 0;
   let firstVisibleAnchor = null;
   let selectedStillVisible = false;
   const selectedRow = listRows.find(r => r.classList.contains('active'));
   listRows.forEach(r => {
-    const matches = !q || r.dataset.search.includes(q);
+    const textMatch = !q || r.dataset.search.includes(q);
+    const hostMatch = !activeHosts.size || activeHosts.has(r.dataset.host);
+    const matches = textMatch && hostMatch;
     r.style.display = matches ? '' : 'none';
     if(matches){
       visibleCount++;
@@ -423,7 +447,7 @@ searchBox.addEventListener('input', () => {
     }
   });
   // A month separator only earns its keep if at least one row under it (up
-  // to the next separator) is still visible - otherwise a search that wipes
+  // to the next separator) is still visible - otherwise a filter that wipes
   // out a whole month leaves its bare label floating with nothing below it.
   let pendingSep = null;
   let sepHasVisibleRow = false;
@@ -438,9 +462,19 @@ searchBox.addEventListener('input', () => {
   });
   if(pendingSep) pendingSep.style.display = sepHasVisibleRow ? '' : 'none';
   updateListCount(visibleCount, listRows.length);
+  document.querySelectorAll('#hostchips .commchip').forEach(c => c.classList.toggle('active', activeHosts.has(c.dataset.host)));
   if(!selectedStillVisible && firstVisibleAnchor){
     selectCall(firstVisibleAnchor, {skipScroll: true});
   }
+}
+
+searchBox.addEventListener('input', applyFilters);
+hostchips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.commchip');
+  if(!btn) return;
+  const h = btn.dataset.host;
+  if(activeHosts.has(h)) activeHosts.delete(h); else activeHosts.add(h);
+  applyFilters();
 });
 
 // Initial selection: the URL's #anchor if it names a real call, else the
