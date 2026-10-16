@@ -20,12 +20,6 @@ still computed per ticker (cheap - same options chain already fetched) and
 kept in the CSV for later wheel-continuation reference, but it's not an
 "entry" and isn't part of the HTML report's primary stats.
 
-Also pulls yfinance's analyst-consensus target-price upside as a free,
-crude stand-in for an AlphaSpread-style fair-value screen - AlphaSpread
-itself has no accessible free API (its pages 403 anything but a logged-in
-browser session; API access is a $150/mo Enterprise tier) - since a CSP
-means being fine owning the stock if assigned, not just collecting premium.
-
 Universe: S&P 500 (scraped from Wikipedia, with a hardcoded fallback) plus
 a curated list of names/ETFs Andy specifically discussed that aren't S&P
 500 members (PLTR-adjacent small/mid caps, commodity ETFs, etc). Written as
@@ -247,17 +241,6 @@ def score_ticker(ticker, sector_override=None):
     market_cap = info.get('marketCap') or (price * (info.get('sharesOutstanding') or 0))
     name = info.get('longName') or info.get('shortName') or ticker
 
-    # Free stand-in for an AlphaSpread-style fair-value screen (AlphaSpread's
-    # own data isn't reachable here - no public API short of its $150/mo
-    # Enterprise tier, and its pages 403 anything that isn't a logged-in
-    # browser session). yfinance's analyst consensus target is a much
-    # cruder "is this worth owning" signal than AlphaSpread's blended DCF/
-    # relative-valuation fair value, but it's free and already in hand from
-    # the same info dict - good enough to flag names analysts expect to
-    # keep falling, which matters for a CSP: you own the stock if assigned.
-    target_mean = info.get('targetMeanPrice')
-    analyst_target_pct = round((target_mean / price - 1) * 100, 1) if target_mean and price else None
-
     options = t.options
     if not options:
         return None
@@ -329,11 +312,6 @@ def score_ticker(ticker, sector_override=None):
         score -= 8
     if earnings_inside_window:
         score -= 15
-    # A CSP means you're fine owning the stock if assigned - a meaningful
-    # negative analyst consensus is a real reason to think twice about that,
-    # even though the tradability checks above all passed.
-    if analyst_target_pct is not None and analyst_target_pct < -10:
-        score -= 10
     score = max(0, min(100, score))
 
     dates = hist.index.strftime('%Y-%m-%d').tolist()[-CHART_TRIM_BARS:]
@@ -362,7 +340,6 @@ def score_ticker(ticker, sector_override=None):
         'put_protection_pct': put_protection_pct, 'cash_required': cash_required,
         'call_strike': call['strike'], 'call_delta': call['delta'], 'call_premium': call['premium'],
         'call_oi': call['oi'], 'call_coc_pct': call['coc_pct'],
-        'analyst_target_pct': analyst_target_pct,
         'earnings_date': earnings_date, 'earnings_inside_window': earnings_inside_window,
         'score': score,
         'dates': dates, 'opens': opens, 'highs': highs, 'lows': lows,
@@ -489,13 +466,6 @@ def build_html_report(results, total_scanned, out_path, universe_label, universe
         prot = r['put_protection_pct']
         prot_cls = 'stat-good' if prot >= 10 else 'stat-warn' if prot >= 5 else 'stat-bad'
 
-        at = r['analyst_target_pct']
-        if at is None:
-            analyst_label, analyst_cls = 'N/A', ''
-        else:
-            analyst_label = f"{at:+.0f}%"
-            analyst_cls = 'stat-good' if at >= 10 else 'stat-warn' if at >= -5 else 'stat-bad'
-
         return {
             'ticker': r['ticker'],
             'name': r['name'],
@@ -512,7 +482,6 @@ def build_html_report(results, total_scanned, out_path, universe_label, universe
                 {'label': 'Annualized', 'value': f"{ann:.1f}%", 'cls': ann_cls},
                 {'label': 'Breakeven', 'value': f"${r['put_breakeven']:.2f}"},
                 {'label': 'Protection', 'value': f"{prot:.1f}%", 'cls': prot_cls},
-                {'label': 'Analyst', 'value': analyst_label, 'cls': analyst_cls},
                 {'label': 'Put OI', 'value': f"{r['put_oi']:,}", 'cls': oi_cls},
                 {'label': 'Earnings', 'value': earnings_label, 'cls': earnings_cls},
             ],
@@ -537,9 +506,7 @@ def build_html_report(results, total_scanned, out_path, universe_label, universe
             f'Criteria: 20d avg volume ≥ 2M (tier 1 ≥ 5M) AND a ~{MIN_DTE}-{MAX_DTE}d options chain exists AND a usable '
             f'~{int(TARGET_DELTA*100)}-delta put strike exists.<br>'
             'Delta is approximated via Black-Scholes from each contract\'s own implied volatility (yfinance does not supply '
-            'broker-calculated delta) — a reasonable estimate, not a guarantee. "Analyst" is yfinance\'s analyst-consensus '
-            'target-price upside, a free stand-in for an AlphaSpread-style fair-value screen (no public free API for that). '
-            'Not financial advice.'
+            'broker-calculated delta) — a reasonable estimate, not a guarantee. Not financial advice.'
         ),
         out_path=out_path + '.html',
         tv_prefix='',
@@ -563,7 +530,7 @@ def build_csv(results, out_path):
 def main():
     parser = argparse.ArgumentParser(description="US Cash-Secured Put Screener")
     parser.add_argument('--workers', type=int, default=DEFAULT_WORKERS)
-    parser.add_argument('--out', type=str, default='options-income', help='Output filename prefix - written as <out>-stocks.html/.csv and <out>-etfs.html/.csv')
+    parser.add_argument('--out', type=str, default='options', help='Output filename prefix - written as <out>-us-csp.html/.csv and <out>-us-etf.html/.csv')
     parser.add_argument('--tickers', type=str, default='', help='Comma-separated ticker override (skips universe fetch)')
     args = parser.parse_args()
 
@@ -614,9 +581,12 @@ def main():
     etf_results = [r for r in results if r['is_etf']]
 
     out_base = os.path.join(SCRIPT_DIR, args.out)
+    # us-csp / us-etf (not just "stocks"/"etfs") so an eventual ASX version
+    # of this screener can sit alongside as options-aus-csp / options-aus-etf
+    # without reshuffling these US page names.
     for suffix, label, desc, subset in (
-        ('stocks', 'Stocks', 'S&P 500 + curated individual names', stock_results),
-        ('etfs', 'ETFs', 'Sector and index ETFs', etf_results),
+        ('us-csp', 'Stocks', 'S&P 500 + curated individual names', stock_results),
+        ('us-etf', 'ETFs', 'Sector and index ETFs', etf_results),
     ):
         page_base = f"{out_base}-{suffix}"
         print(f"\n💾 Saving {label} ({len(subset)} qualified) to:\n   {page_base}.html\n   {page_base}.csv")

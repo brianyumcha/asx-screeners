@@ -82,9 +82,9 @@ def render_dashboard_html(
     elif 'Momentum' in title:
         active_href = 'momentum.html'
     elif 'Cash-Secured Put' in title and 'ETF' in title:
-        active_href = 'options-income-etfs.html'
+        active_href = 'options-us-etf.html'
     elif 'Cash-Secured Put' in title:
-        active_href = 'options-income-stocks.html'
+        active_href = 'options-us-csp.html'
     else:
         active_href = 'pre-breakout.html'
     html = HTML_TEMPLATE
@@ -130,8 +130,8 @@ NAV_INDEX_LINKS = [
     ('utilities-index.html', 'Utilities'),
 ]
 NAV_OPTIONS_LINKS = [
-    ('options-income-stocks.html', 'CSP Screener (Stocks)'),
-    ('options-income-etfs.html', 'CSP Screener (ETFs)'),
+    ('options-us-csp.html', 'CSP Screener (Stocks)'),
+    ('options-us-etf.html', 'CSP Screener (ETFs)'),
 ]
 NAV_TOOLS_LINKS = [
     ('insider-index.html', 'Insider Buying'),

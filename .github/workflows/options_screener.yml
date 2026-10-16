@@ -52,7 +52,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f options-income-stocks.html options-income-etfs.html seen_tickers_options.json
+          git add -f options-us-csp.html options-us-etf.html seen_tickers_options.json
           git diff --staged --quiet || git commit -m "Rebuild cash-secured put screener"
           for i in 1 2 3; do
             git push && break
@@ -64,7 +64,7 @@ jobs:
           done
 
       - name: Preserve existing screener/tool pages
-        # This workflow only regenerates options-income-stocks.html / options-income-etfs.html - without this,
+        # This workflow only regenerates options-us-csp.html / options-us-etf.html - without this,
         # deploying _site/ here would wipe every other gitignored page off
         # the live site. `-f` with `|| true` so a first-ever run before a
         # given page exists doesn't break the build.
@@ -88,8 +88,8 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html _site/index.html
-          cp options-income-stocks.html _site/options-income-stocks.html
-          cp options-income-etfs.html _site/options-income-etfs.html
+          cp options-us-csp.html _site/options-us-csp.html
+          cp options-us-etf.html _site/options-us-etf.html
           [ -f materials-index.html ] && cp materials-index.html _site/materials-index.html || true
           [ -f healthcare-index.html ] && cp healthcare-index.html _site/healthcare-index.html || true
           [ -f energy-index.html ] && cp energy-index.html _site/energy-index.html || true
