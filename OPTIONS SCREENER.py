@@ -447,9 +447,10 @@ def build_html_report(results, total_scanned, out_path, universe_label, universe
         total_scanned=total_scanned,
         title=f'🎯 Cash-Secured Put Candidates — {universe_label}',
         subtitle=(
-            f"{universe_desc} screened as cash-secured-put CANDIDATES - Andy Robertson's liquidity checklist "
-            f"plus technical-analysis entry timing: price above its 200-day SMA (long-term uptrend - you need to "
-            f"be fine owning this if assigned) but pulled back toward the 50-day SMA, RSI(14) in a real reset "
+            f"{universe_desc} screened as cash-secured-put CANDIDATES - a liquidity checklist (volume, a real "
+            f"200-day history) plus technical-analysis entry timing aimed at a pullback that's likely to hold, "
+            f"not a stock still falling: price above its 200-day SMA (long-term uptrend - you need to be fine "
+            f"owning this if assigned) but pulled back toward the 50-day SMA, RSI(14) in a real reset "
             f"(not still falling, not overbought), and price near the lower Bollinger Band where pullbacks "
             f"are statistically stretched and premium tends to run richest. This is a ranked candidate list, "
             f"not an executable quote - pull the actual strike/premium from your own broker when you're ready "
