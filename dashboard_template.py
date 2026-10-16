@@ -154,10 +154,12 @@ def render_nav(active_href):
         ).format(label, items)
     return (
         '<nav class="sitenav">\n'
-        '<img class="navicon" src="data:image/png;base64,' + NAV_ICON_B64 + '" alt="">\n'
+        '<a href="index.html" aria-label="Home">'
+        '<img class="navicon" src="data:image/png;base64,' + NAV_ICON_B64 + '" alt="">'
+        '</a>\n'
         '<div class="sitenav-brand">\n'
         '<a class="brand-main" href="index.html">Brian Yum Cha &mdash; ASX Trading</a>\n'
-        '<a class="brand-tag" href="timing-the-carts.html">Reading the charts. Timing the carts.</a>\n'
+        '<a class="brand-tag" href="index.html">Reading the charts. Timing the carts.</a>\n'
         '</div>\n'
         '<span class="sitenav-divider"></span>\n'
         '<button class="navburger" type="button" aria-label="Toggle menu">&#9776;</button>\n'
@@ -350,7 +352,9 @@ td.stat-bad{color:var(--bad);font-weight:600}
 table.datatable{width:100%;border-collapse:collapse;font-size:.8rem}
 table.datatable thead tr{border-bottom:1px solid var(--border)}
 table.datatable th{text-align:left;padding:.6rem .8rem;font-size:.66rem;color:var(--muted);text-transform:uppercase;
-  letter-spacing:.06em;cursor:pointer;white-space:nowrap;user-select:none;font-weight:600}
+  letter-spacing:.06em;cursor:pointer;white-space:nowrap;user-select:none;font-weight:600;
+  position:sticky;top:0;background:var(--bg);z-index:2}
+#tableWrap{overflow-x:auto;max-height:calc(100vh - 2rem);position:sticky;top:var(--thead-top, 65px);z-index:3}
 table.datatable th:hover{color:var(--text)}
 table.datatable th.sorted{color:var(--accent)}
 table.datatable tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
@@ -472,7 +476,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
   <div class="sectorrow" id="signalRow" style="display:none"></div>
   <div class="countline" id="countLine"></div>
   <div class="grid" id="grid"></div>
-  <div id="tableWrap" style="display:none;overflow-x:auto;"></div>
+  <div id="tableWrap" style="display:none;"></div>
 
   <footer>##FOOTER_NOTE##</footer>
 </div>
@@ -505,6 +509,38 @@ themeBtn.addEventListener('click', () => {
   syncThemeBtn();
   render();  // re-run chart-mode canvas drawing with theme-correct colors
 });
+
+// The table view's sticky #tableWrap panel needs a `top` offset clear of
+// whatever's sticky above it (.sitenav always, .topbar too above 640px)
+// AND a max-height that leaves room for whatever follows it on the page -
+// position:sticky's own clamp otherwise silently caps the achieved offset
+// short of `top` instead of erroring (found 2026-10-16: the thead just
+// vanished off-screen instead of pinning). Both vary with content/
+// viewport, so measure them instead of hardcoding.
+function updateTheadTop(){
+  const nav = document.querySelector('.sitenav');
+  const topbar = document.querySelector('.topbar');
+  let bottom = nav ? nav.getBoundingClientRect().bottom : 0;
+  if (topbar && getComputedStyle(topbar).position === 'sticky') {
+    bottom = Math.max(bottom, topbar.getBoundingClientRect().bottom);
+  }
+  const top = Math.max(0, bottom);
+  document.documentElement.style.setProperty('--thead-top', top + 'px');
+
+  const tw = document.getElementById('tableWrap');
+  if (tw) {
+    let trailing = 0;
+    let sib = tw.nextElementSibling;
+    while (sib) { trailing += sib.offsetHeight; sib = sib.nextElementSibling; }
+    const wrap = tw.closest('.wrap') || tw.parentElement;
+    const wrapPadBottom = wrap ? (parseFloat(getComputedStyle(wrap).paddingBottom) || 0) : 0;
+    tw.style.maxHeight = Math.max(200, window.innerHeight - top - trailing - wrapPadBottom - 16) + 'px';
+  }
+}
+updateTheadTop();
+window.addEventListener('resize', updateTheadTop);
+window.addEventListener('load', updateTheadTop);
+if (document.fonts && document.fonts.ready) { document.fonts.ready.then(updateTheadTop); }
 
 const DATA = ##DATA_JSON##;
 const SECTORS = ##SECTORS_JSON##;

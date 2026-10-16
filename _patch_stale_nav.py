@@ -17,6 +17,9 @@ FILES = [
     'real-estate-index.html', 'red-folder-news.html', 'sector-rotation.html',
     'staples-index.html', 'tech-index.html', 'utilities-index.html',
     'wave2-scanner.html',
+    # mtm-call-archive.html, craig-bullish-map.html, craig-bear-map.html are
+    # deliberately nav-less/unlisted, same category as timing-the-carts.html
+    # - their build scripts never call render_nav() at all.
     # higher-high.html, lower-low.html, momentum.html, pre-breakout.html,
     # pullback.html, volume-anomaly.html deliberately excluded - those are
     # just the _site/ DEPLOY NAMES for asx_hh_results.html/asx_ll_results.html/

@@ -388,12 +388,12 @@ function applyTheme(t){
   if(t){ document.documentElement.setAttribute('data-theme', t); } else { document.documentElement.removeAttribute('data-theme'); }
   themeBtn.textContent = (t==='dark') ? '☀️' : '🌙';
 }
-try{ const saved = localStorage.getItem('mtmarchive-theme'); if(saved) applyTheme(saved); }catch(e){}
+try{ const saved = localStorage.getItem('theme'); if(saved) applyTheme(saved); }catch(e){}
 themeBtn.addEventListener('click', ()=>{
   const current = document.documentElement.getAttribute('data-theme');
   const next = current==='dark' ? 'light' : 'dark';
   applyTheme(next);
-  try{ localStorage.setItem('mtmarchive-theme', next); }catch(e){}
+  try{ localStorage.setItem('theme', next); }catch(e){}
 });
 
 const searchBox = document.getElementById('searchBox');

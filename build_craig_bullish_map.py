@@ -654,14 +654,14 @@ function applyTheme(t){
   themeBtn.textContent = (t==='dark') ? '☀️' : '🌙';
 }
 try{
-  const saved = localStorage.getItem('bullmap-theme');
+  const saved = localStorage.getItem('theme');
   if(saved) applyTheme(saved);
 }catch(e){}
 themeBtn.addEventListener('click', ()=>{
   const current = document.documentElement.getAttribute('data-theme');
   const next = current==='dark' ? 'light' : 'dark';
   applyTheme(next);
-  try{ localStorage.setItem('bullmap-theme', next); }catch(e){}
+  try{ localStorage.setItem('theme', next); }catch(e){}
 });
 </script>
 """
