@@ -1,37 +1,52 @@
 """
-US Cash-Secured Put Screener
+US Cash-Secured Put Candidate Screener
 ===========================
-Screens US-listed stocks and ETFs for whether they're actually suitable
-cash-secured-put ENTRIES (the acquisition leg of a wheel-income strategy,
-not the covered-call leg that only exists after assignment) - not just
-whether they're a good company. Built directly off Andy Robertson's "Lazy
-Formula for Options Income" checklist (see Andy Robertson - Options Trading
-Methodology Notes.md): daily volume, options-chain open interest, bid/ask
-spread, implied volatility, and whether an earnings report falls inside the
-contract window.
+Screens US-listed stocks and ETFs as CANDIDATES for cash-secured-put
+entries (the acquisition leg of a wheel-income strategy) - not just
+whether they're a good company, and not a specific strike/premium quote.
 
-For every ticker that clears the basic liquidity bar, this computes a
-suggested ~30-delta cash-secured put at the nearest ~30-day expiry - strike
-(your acquisition price if assigned), premium, annualized cash-on-cash
-return, breakeven, and downside protection to that breakeven - the same
-"3%, 30 delta, 30 days" screen Andy applies by hand in his sessions, just
-run across a few hundred tickers automatically. A covered-call strike is
-still computed per ticker (cheap - same options chain already fetched) and
-kept in the CSV for later wheel-continuation reference, but it's not an
-"entry" and isn't part of the HTML report's primary stats.
+Originally this read yfinance's live options chain to suggest an exact
+~30-delta strike. Dropped that entirely (2026-10-16, user feedback) -
+the options chain is only meaningfully fresh during US market hours, and
+the user isn't usually awake then, so a chain-dependent screener was
+only ever usable for a few hours a day. This version needs nothing but
+daily price history, so it works at any time, on any schedule.
+
+What it screens for instead, combining Andy Robertson's liquidity
+checklist ("Lazy Formula for Options Income" - see Andy Robertson -
+Options Trading Methodology Notes.md) with technical-analysis entry
+timing suited specifically to CSPs:
+  - Liquidity: 20d avg daily volume (same tiers as before)
+  - Trend: price vs 200-day SMA - a CSP means being fine owning the
+    stock if assigned, so a structural downtrend (below the 200 SMA) is
+    exactly the risk to avoid, not just a bad days'-worth of price action
+  - Pullback depth: price vs 50-day SMA - a real "buy the dip in an
+    uptrend" entry sits a little below the 50 SMA, not far above it
+    (chasing - the put strike you'd want is too far OTM to collect much)
+    and not deep in a breakdown
+  - RSI(14): a reset in the 30-55 band, not still falling (RSI dropping
+    through the 20s is often a falling knife, not a dip) and not
+    overbought (>70, same chasing problem as above)
+  - Bollinger %B (20, 2 sigma): price near/at the lower band is a
+    statistically stretched pullback - also usually when IV (and so
+    premium) runs richest, the options-chain-era "IV sweet spot" check's
+    nearest equivalent here
+  - Realized volatility (20d, annualized): a free stand-in for implied
+    volatility - too low and the premium isn't worth it, too high is
+    probably distress, not opportunity
+  - Earnings clear of the next ~30 days (same caution as before, just
+    no longer tied to one specific contract's expiry)
+
+This produces a ranked CANDIDATE list, not an executable trade - pull
+the actual strike/premium from your own broker when you're ready to
+place it, same as checking Andy's criteria by hand.
 
 Universe: S&P 500 (scraped from Wikipedia, with a hardcoded fallback) plus
 a curated list of names/ETFs Andy specifically discussed that aren't S&P
 500 members (PLTR-adjacent small/mid caps, commodity ETFs, etc). Written as
-two separate reports - <out>-stocks.html and <out>-etfs.html - since an
-ETF put (basket, no single-name earnings gap) is a different risk profile
-than a single-stock one.
-
-Delta is NOT returned by yfinance's options chain, so it's approximated
-here via Black-Scholes using each contract's own implied volatility - a
-standard, broadly-accepted approximation, not the broker's own (proprietary,
-model-dependent) number. Good enough to rank/select strikes by; don't treat
-the exact decimal as gospel.
+two separate reports - <out>-us-csp.html and <out>-us-etf.html - since a
+CSP on an ETF (basket, no single-name earnings gap) is a different risk
+profile than one on a single stock.
 
 Usage:
     python3 "OPTIONS SCREENER.py"                 # full S&P 500 + extras scan
@@ -45,7 +60,6 @@ import io
 import json
 import math
 import os
-import statistics
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -59,34 +73,27 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ─── CONFIG ──────────────────────────────────────────────────────────────────
 
-DEFAULT_WORKERS   = 12
-TARGET_DTE        = 30      # Andy's standard cycle length
-MIN_DTE           = 20
-MAX_DTE           = 45
-TARGET_DELTA      = 0.30    # Andy's standard risk target
-# Circuit breaker (full-universe runs only, same spirit as the ASX
-# screeners' Yahoo-throttling check): if the options chains came back with
-# stale/incomplete data - e.g. the scan ran during US off-market hours,
-# before near-the-money strikes have traded that session - the delta-
-# closest-strike search gets forced out to far-OTM strikes still carrying
-# leftover data, and every result's achieved delta clusters near zero
-# instead of near TARGET_DELTA. Found 2026-10-16. A real, fully-populated
-# run should land close to 0.30 on both legs for most names.
-MIN_MEDIAN_DELTA  = 0.15
-RISK_FREE_RATE    = 0.045   # flat assumption for the Black-Scholes delta approximation
+DEFAULT_WORKERS = 12
+EARNINGS_LOOKAHEAD_DAYS = 30   # roughly one CSP cycle - same caution as before,
+                               # just not tied to one specific contract's expiry
 
 MIN_AVG_VOLUME_TIER1 = 5_000_000   # Andy's "tier 1" daily volume floor
 MIN_AVG_VOLUME_TIER2 = 2_000_000   # "tier 2" floor - below this, excluded entirely
-MIN_OI_TIER1       = 1_000         # open interest at the selected strike
-MIN_OI_TIER2       = 500
-IV_GOOD_LOW        = 0.30          # Andy's "sweet spot" IV band (30-70%)
-IV_GOOD_HIGH       = 0.70
-IV_HARD_FLOOR      = 0.10          # below/above this, the data's probably junk/illiquid,
-IV_HARD_CEIL       = 2.50          # not a real tradable IV - excluded entirely
-CHART_TRIM_BARS    = 260
+
+RSI_PERIOD = 14
+RSI_GOOD_LOW, RSI_GOOD_HIGH = 30, 55   # a real reset, not still falling or overbought
+RSI_HARD_OVERSOLD = 20                  # below this = possible falling knife, not a dip
+
+BB_PERIOD, BB_STDDEV = 20, 2.0
+
+HV_PERIOD = 20                  # realized/historical volatility lookback
+HV_GOOD_LOW, HV_GOOD_HIGH = 0.25, 0.55   # annualized - "worth selling premium on" band
+HV_HARD_FLOOR, HV_HARD_CEIL = 0.12, 1.00  # outside this, too quiet or likely distress
+
+CHART_TRIM_BARS = 260
 
 HISTORY_FILENAME = 'seen_tickers_options.json'
-STREAK_GAP_DAYS  = 5
+STREAK_GAP_DAYS = 5
 
 # Names/ETFs Andy specifically discussed across the methodology notes that
 # aren't reliably S&P 500 members (small/mid caps, recent IPOs, commodity
@@ -139,98 +146,78 @@ def get_universe():
     return sorted(tickers)
 
 
-# ─── BLACK-SCHOLES DELTA (approximation - see module docstring) ───────────────
+# ─── TECHNICAL INDICATORS (pure price-history, no options chain needed) ──────
 
-def _norm_cdf(x):
-    return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))
-
-
-def bs_delta(spot, strike, years, iv, is_call, r=RISK_FREE_RATE):
-    if spot <= 0 or strike <= 0 or years <= 0 or iv <= 0:
+def compute_rsi(closes, period=RSI_PERIOD):
+    """Wilder's smoothed RSI, standard 14-period. `closes` is a pandas Series."""
+    delta = closes.diff()
+    gain = delta.clip(lower=0)
+    loss = -delta.clip(upper=0)
+    avg_gain = gain.ewm(alpha=1.0 / period, min_periods=period).mean()
+    avg_loss = loss.ewm(alpha=1.0 / period, min_periods=period).mean()
+    last_gain, last_loss = avg_gain.iloc[-1], avg_loss.iloc[-1]
+    if pd.isna(last_gain) or pd.isna(last_loss):
         return None
-    d1 = (math.log(spot / strike) + (r + 0.5 * iv * iv) * years) / (iv * math.sqrt(years))
-    return _norm_cdf(d1) if is_call else _norm_cdf(d1) - 1.0
+    if last_loss == 0:
+        return 100.0
+    rs = last_gain / last_loss
+    return 100.0 - 100.0 / (1.0 + rs)
+
+
+def compute_bollinger_pctb(closes, period=BB_PERIOD, stddev=BB_STDDEV):
+    """%B: 0 = at the lower band, 1 = at the upper band, <0/>1 = beyond it."""
+    sma = closes.rolling(period).mean().iloc[-1]
+    std = closes.rolling(period).std().iloc[-1]
+    if pd.isna(sma) or pd.isna(std) or std == 0:
+        return None
+    upper, lower = sma + stddev * std, sma - stddev * std
+    if upper == lower:
+        return None
+    price = closes.iloc[-1]
+    return (price - lower) / (upper - lower)
+
+
+def compute_realized_vol(closes, period=HV_PERIOD):
+    """Annualized realized (historical) volatility from daily log returns -
+    the free stand-in for implied volatility now that there's no options
+    chain to read IV from."""
+    log_ret = (closes / closes.shift(1)).apply(lambda x: math.log(x) if x and x > 0 else None)
+    std = log_ret.rolling(period).std().iloc[-1]
+    if pd.isna(std):
+        return None
+    return std * math.sqrt(252)
 
 
 # ─── PER-TICKER SCAN ───────────────────────────────────────────────────────────
-
-def _mid_premium(row):
-    bid, ask, last = row.get('bid'), row.get('ask'), row.get('lastPrice')
-    bid = bid if bid and bid > 0 else None
-    ask = ask if ask and ask > 0 else None
-    if bid is not None and ask is not None:
-        return (bid + ask) / 2.0, (ask - bid)
-    if last and last > 0:
-        return last, None
-    return None, None
-
-
-def _pick_expiry(options):
-    today = date.today()
-    best, best_diff = None, None
-    for e in options:
-        try:
-            d = date.fromisoformat(e)
-        except ValueError:
-            continue
-        dte = (d - today).days
-        if dte < MIN_DTE or dte > MAX_DTE:
-            continue
-        diff = abs(dte - TARGET_DTE)
-        if best is None or diff < best_diff:
-            best, best_diff = e, diff
-    return best
-
-
-def _pick_strike(chain_df, spot, years, is_call):
-    """Among the chain's strikes on one side, pick the one whose
-    Black-Scholes delta is closest to TARGET_DELTA (0.30), restricted to
-    genuinely out-of-the-money strikes (calls above spot, puts below) -
-    mirrors scanning outward from the money the way Andy does by hand."""
-    best = None
-    best_diff = None
-    for _, row in chain_df.iterrows():
-        strike = row['strike']
-        if is_call and strike <= spot:
-            continue
-        if not is_call and strike >= spot:
-            continue
-        iv = row.get('impliedVolatility')
-        if iv is None or iv <= IV_HARD_FLOOR or iv >= IV_HARD_CEIL:
-            continue
-        delta = bs_delta(spot, strike, years, iv, is_call)
-        if delta is None:
-            continue
-        diff = abs(abs(delta) - TARGET_DELTA)
-        if best is None or diff < best_diff:
-            premium, spread = _mid_premium(row)
-            if premium is None:
-                continue
-            best = {
-                'strike': float(strike),
-                'delta': round(abs(delta), 3),
-                'iv': round(float(iv), 4),
-                'premium': round(premium, 2),
-                'spread': round(spread, 2) if spread is not None else None,
-                'oi': int(row.get('openInterest') or 0),
-            }
-            best_diff = diff
-    return best
-
 
 def score_ticker(ticker, sector_override=None):
     t = yf.Ticker(ticker)
 
     hist = t.history(period='1y', auto_adjust=False)
-    if hist is None or len(hist) < 60:
+    if hist is None or len(hist) < 210:   # need a real 200-day SMA
         return None
-    closes = hist['Close'].tolist()
-    price = closes[-1]
-    prev_close = closes[-2]
+    closes = hist['Close']
+    price = closes.iloc[-1]
+    prev_close = closes.iloc[-2]
     change_1d = (price - prev_close) / prev_close * 100 if prev_close else 0.0
     avg_volume = hist['Volume'].tail(20).mean()
     if not avg_volume or avg_volume < MIN_AVG_VOLUME_TIER2:
         return None
+
+    sma50 = closes.rolling(50).mean().iloc[-1]
+    sma200 = closes.rolling(200).mean().iloc[-1]
+    if pd.isna(sma50) or pd.isna(sma200):
+        return None
+    above_sma200 = bool(price > sma200)
+    pct_vs_sma50 = round((price - sma50) / sma50 * 100, 2)
+
+    rsi14 = compute_rsi(closes)
+    bb_pctb = compute_bollinger_pctb(closes)
+    hv_pct = compute_realized_vol(closes)
+    if rsi14 is None or bb_pctb is None or hv_pct is None:
+        return None
+    if not (HV_HARD_FLOOR <= hv_pct <= HV_HARD_CEIL):
+        return None   # too quiet or too wild to be a real tradable candidate
 
     try:
         info = t.get_info()
@@ -241,40 +228,8 @@ def score_ticker(ticker, sector_override=None):
     market_cap = info.get('marketCap') or (price * (info.get('sharesOutstanding') or 0))
     name = info.get('longName') or info.get('shortName') or ticker
 
-    options = t.options
-    if not options:
-        return None
-    expiry = _pick_expiry(options)
-    if not expiry:
-        return None
-    dte = (date.fromisoformat(expiry) - date.today()).days
-    years = dte / 365.0
-
-    try:
-        chain = t.option_chain(expiry)
-    except Exception:
-        return None
-    if chain.calls.empty or chain.puts.empty:
-        return None
-
-    put = _pick_strike(chain.puts, price, years, is_call=False)
-    call = _pick_strike(chain.calls, price, years, is_call=True)
-    if not put or not call:
-        return None
-
-    put['coc_pct'] = round(put['premium'] * 100 / (put['strike'] * 100) * 100, 2)
-    call['coc_pct'] = round(call['premium'] * 100 / (price * 100) * 100, 2)
-
-    # CSP-specific entry metrics - this screener's "entries" are the put leg
-    # (selling to acquire stock), not the call leg (that's the second half
-    # of the wheel, after assignment) - see module docstring.
-    put_annualized_pct = round(put['coc_pct'] * 365.0 / dte, 1)
-    put_breakeven = round(put['strike'] - put['premium'], 2)
-    put_protection_pct = round((price - put_breakeven) / price * 100, 2)
-    cash_required = int(round(put['strike'] * 100))
-
     # Earnings-clear check: only penalises on a CONFIRMED upcoming date
-    # inside the contract window - an unknown/unavailable date gets the
+    # inside the lookahead window - an unknown/unavailable date gets the
     # benefit of the doubt, same caution Andy applies by hand.
     earnings_date = None
     earnings_inside_window = False
@@ -282,10 +237,10 @@ def score_ticker(ticker, sector_override=None):
         ed = t.get_earnings_dates(limit=4)
         if ed is not None and not ed.empty:
             today = date.today()
-            expiry_date = date.fromisoformat(expiry)
+            cutoff = today + timedelta(days=EARNINGS_LOOKAHEAD_DAYS)
             for ts in ed.index:
                 d = ts.date()
-                if today <= d <= expiry_date:
+                if today <= d <= cutoff:
                     earnings_inside_window = True
                     earnings_date = d.strftime('%Y-%m-%d')
                     break
@@ -293,23 +248,28 @@ def score_ticker(ticker, sector_override=None):
         pass
 
     vol_tier = 1 if avg_volume >= MIN_AVG_VOLUME_TIER1 else 2
-    min_oi = min(put['oi'], call['oi'])
-    oi_tier = 1 if min_oi >= MIN_OI_TIER1 else 2 if min_oi >= MIN_OI_TIER2 else 3
-    avg_iv = (put['iv'] + call['iv']) / 2.0
-    max_spread_pct = max(
-        (put['spread'] / put['premium'] * 100) if put['spread'] and put['premium'] else 0,
-        (call['spread'] / call['premium'] * 100) if call['spread'] and call['premium'] else 0,
-    )
 
     score = 100
     score -= {1: 0, 2: 10}[vol_tier]
-    score -= {1: 0, 2: 8, 3: 18}[oi_tier]
-    if not (IV_GOOD_LOW <= avg_iv <= IV_GOOD_HIGH):
-        score -= 8 if (0.20 <= avg_iv <= 0.90) else 16
-    if max_spread_pct > 20:
-        score -= 18
-    elif max_spread_pct > 8:
-        score -= 8
+    if not above_sma200:
+        score -= 20   # structural downtrend - exactly the assignment risk a CSP seller avoids
+    if pct_vs_sma50 > 8:
+        score -= 8    # extended above the dip zone - chasing, poor premium/entry
+    elif pct_vs_sma50 < -15:
+        score -= 10   # deep breakdown well below the 50 SMA, not a routine pullback
+    if rsi14 < RSI_HARD_OVERSOLD:
+        score -= 10   # possible falling knife
+    elif rsi14 > 70:
+        score -= 10   # overbought - chasing
+    elif not (RSI_GOOD_LOW <= rsi14 <= RSI_GOOD_HIGH):
+        score -= 4    # outside the sweet reset band but not extreme
+    if bb_pctb < -0.1:
+        score -= 8    # beyond the lower band - stretched further than a routine pullback
+    elif bb_pctb > 0.8:
+        score -= 8    # riding the upper band - chasing
+    if not (HV_GOOD_LOW <= hv_pct <= HV_GOOD_HIGH):
+        score -= 8    # outside the hard floor/ceiling already excluded above;
+                       # this is the softer "not quite the sweet spot" band
     if earnings_inside_window:
         score -= 15
     score = max(0, min(100, score))
@@ -318,7 +278,7 @@ def score_ticker(ticker, sector_override=None):
     opens = hist['Open'].tolist()[-CHART_TRIM_BARS:]
     highs = hist['High'].tolist()[-CHART_TRIM_BARS:]
     lows = hist['Low'].tolist()[-CHART_TRIM_BARS:]
-    closes_trim = closes[-CHART_TRIM_BARS:]
+    closes_trim = closes.tolist()[-CHART_TRIM_BARS:]
     volumes = hist['Volume'].tolist()[-CHART_TRIM_BARS:]
 
     return {
@@ -327,19 +287,15 @@ def score_ticker(ticker, sector_override=None):
         'is_etf': is_etf,
         'sector': sector,
         'market_cap': int(market_cap) if market_cap else 0,
-        'price': round(price, 2),
+        'price': round(float(price), 2),
         'change_1d': round(change_1d, 2),
         'avg_volume': int(avg_volume),
         'vol_tier': vol_tier,
-        'expiry': expiry,
-        'dte': dte,
-        'avg_iv_pct': round(avg_iv * 100, 1),
-        'put_strike': put['strike'], 'put_delta': put['delta'], 'put_premium': put['premium'],
-        'put_oi': put['oi'], 'put_coc_pct': put['coc_pct'],
-        'put_annualized_pct': put_annualized_pct, 'put_breakeven': put_breakeven,
-        'put_protection_pct': put_protection_pct, 'cash_required': cash_required,
-        'call_strike': call['strike'], 'call_delta': call['delta'], 'call_premium': call['premium'],
-        'call_oi': call['oi'], 'call_coc_pct': call['coc_pct'],
+        'above_sma200': above_sma200,
+        'pct_vs_sma50': pct_vs_sma50,
+        'rsi14': round(float(rsi14), 1),
+        'bb_pctb': round(float(bb_pctb), 3),
+        'hv_pct': round(float(hv_pct) * 100, 1),
         'earnings_date': earnings_date, 'earnings_inside_window': earnings_inside_window,
         'score': score,
         'dates': dates, 'opens': opens, 'highs': highs, 'lows': lows,
@@ -352,7 +308,7 @@ def run_scan(tickers, workers=DEFAULT_WORKERS):
     t0 = time.time()
     results, failed, done = [], 0, 0
 
-    print(f"\n🔍 Scoring {total} US tickers for options-income suitability | {workers} threads\n")
+    print(f"\n🔍 Scoring {total} US tickers for CSP-candidate suitability | {workers} threads\n")
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
         futures = {pool.submit(score_ticker, t): t for t in tickers}
@@ -363,7 +319,7 @@ def run_scan(tickers, workers=DEFAULT_WORKERS):
                 res = fut.result()
                 if res:
                     results.append(res)
-                    flag = f"  ✅ {tick:6s} score={res['score']:3d} IV={res['avg_iv_pct']:5.1f}%"
+                    flag = f"  ✅ {tick:6s} score={res['score']:3d} RSI={res['rsi14']:5.1f} HV={res['hv_pct']:5.1f}%"
                 else:
                     flag = f"  ·  {tick}"
             except Exception as e:
@@ -445,26 +401,25 @@ def build_html_report(results, total_scanned, out_path, universe_label, universe
         earnings_label = r['earnings_date'] if r['earnings_inside_window'] else 'Clear'
         earnings_cls = 'stat-bad' if r['earnings_inside_window'] else 'stat-good'
 
-        avg_iv = r['avg_iv_pct'] / 100.0
-        if IV_GOOD_LOW <= avg_iv <= IV_GOOD_HIGH:
-            iv_cls = 'stat-good'
-        elif 0.20 <= avg_iv <= 0.90:
-            iv_cls = 'stat-warn'
+        trend_label = 'Above 200SMA' if r['above_sma200'] else 'Below 200SMA'
+        trend_cls = 'stat-good' if r['above_sma200'] else 'stat-bad'
+
+        pv = r['pct_vs_sma50']
+        pullback_cls = 'stat-good' if -8 <= pv <= 2 else 'stat-warn' if -15 <= pv <= 8 else 'stat-bad'
+
+        rsi = r['rsi14']
+        if RSI_GOOD_LOW <= rsi <= RSI_GOOD_HIGH:
+            rsi_cls = 'stat-good'
+        elif rsi < RSI_HARD_OVERSOLD or rsi > 70:
+            rsi_cls = 'stat-bad'
         else:
-            iv_cls = 'stat-bad'
+            rsi_cls = 'stat-warn'
 
-        if r['put_oi'] >= MIN_OI_TIER1:
-            oi_cls = 'stat-good'
-        elif r['put_oi'] >= MIN_OI_TIER2:
-            oi_cls = 'stat-warn'
-        else:
-            oi_cls = 'stat-bad'
+        bb = r['bb_pctb']
+        bb_cls = 'stat-good' if 0 <= bb <= 0.35 else 'stat-warn' if -0.1 <= bb <= 0.8 else 'stat-bad'
 
-        ann = r['put_annualized_pct']
-        ann_cls = 'stat-good' if ann >= 25 else 'stat-warn' if ann >= 12 else 'stat-bad'
-
-        prot = r['put_protection_pct']
-        prot_cls = 'stat-good' if prot >= 10 else 'stat-warn' if prot >= 5 else 'stat-bad'
+        hv = r['hv_pct'] / 100.0
+        hv_cls = 'stat-good' if HV_GOOD_LOW <= hv <= HV_GOOD_HIGH else 'stat-warn'
 
         return {
             'ticker': r['ticker'],
@@ -476,13 +431,11 @@ def build_html_report(results, total_scanned, out_path, universe_label, universe
             'score': r['score'],
             'first_seen_ts': int(datetime.strptime(r['first_seen'], '%Y-%m-%d').timestamp()),
             'stats': [
-                {'label': 'IV', 'value': f"{r['avg_iv_pct']:.0f}%", 'cls': iv_cls},
-                {'label': 'Strike', 'value': f"${r['put_strike']:.0f} ({r['put_delta']:.2f}Δ)"},
-                {'label': 'Premium', 'value': f"${r['put_premium']:.2f}"},
-                {'label': 'Annualized', 'value': f"{ann:.1f}%", 'cls': ann_cls},
-                {'label': 'Breakeven', 'value': f"${r['put_breakeven']:.2f}"},
-                {'label': 'Protection', 'value': f"{prot:.1f}%", 'cls': prot_cls},
-                {'label': 'Put OI', 'value': f"{r['put_oi']:,}", 'cls': oi_cls},
+                {'label': 'Trend', 'value': trend_label, 'cls': trend_cls},
+                {'label': 'vs 50SMA', 'value': f"{pv:+.1f}%", 'cls': pullback_cls},
+                {'label': 'RSI(14)', 'value': f"{rsi:.0f}", 'cls': rsi_cls},
+                {'label': 'Boll %B', 'value': f"{bb:.2f}", 'cls': bb_cls},
+                {'label': 'HV(20d)', 'value': f"{r['hv_pct']:.0f}%", 'cls': hv_cls},
                 {'label': 'Earnings', 'value': earnings_label, 'cls': earnings_cls},
             ],
             'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
@@ -492,21 +445,23 @@ def build_html_report(results, total_scanned, out_path, universe_label, universe
     render_dashboard_html(
         cards=[to_card(r) for r in results],
         total_scanned=total_scanned,
-        title=f'🎯 Cash-Secured Put Screener — {universe_label}',
+        title=f'🎯 Cash-Secured Put Candidates — {universe_label}',
         subtitle=(
-            f"{universe_desc} screened for cash-secured-put ENTRIES against Andy Robertson's checklist — "
-            f"liquidity, open interest, IV, and a clear earnings runway — with a suggested ~{int(TARGET_DELTA*100)}-delta, "
-            f"~{TARGET_DTE}-day put: strike (= your acquisition price if assigned), premium, annualized return, "
-            f"breakeven, and downside protection to that breakeven. Not a covered-call screen — that's the "
-            f"second half of the wheel, after assignment, not an entry."
+            f"{universe_desc} screened as cash-secured-put CANDIDATES - Andy Robertson's liquidity checklist "
+            f"plus technical-analysis entry timing: price above its 200-day SMA (long-term uptrend - you need to "
+            f"be fine owning this if assigned) but pulled back toward the 50-day SMA, RSI(14) in a real reset "
+            f"(not still falling, not overbought), and price near the lower Bollinger Band where pullbacks "
+            f"are statistically stretched and premium tends to run richest. This is a ranked candidate list, "
+            f"not an executable quote - pull the actual strike/premium from your own broker when you're ready "
+            f"to place it."
         ),
         footer_note=(
-            f'Cash-Secured Put Screener ({universe_label}) · Data via Yahoo Finance (yfinance), universe via Wikipedia '
+            f'Cash-Secured Put Candidates ({universe_label}) · Data via Yahoo Finance (yfinance), universe via Wikipedia '
             'S&amp;P 500 list + curated extras<br>'
-            f'Criteria: 20d avg volume ≥ 2M (tier 1 ≥ 5M) AND a ~{MIN_DTE}-{MAX_DTE}d options chain exists AND a usable '
-            f'~{int(TARGET_DELTA*100)}-delta put strike exists.<br>'
-            'Delta is approximated via Black-Scholes from each contract\'s own implied volatility (yfinance does not supply '
-            'broker-calculated delta) — a reasonable estimate, not a guarantee. Not financial advice.'
+            f'Criteria: 20d avg volume ≥ 2M (tier 1 ≥ 5M) AND a 200-day price history exists AND realized volatility '
+            f'(20d, annualized) is between {HV_HARD_FLOOR*100:.0f}% and {HV_HARD_CEIL*100:.0f}%.<br>'
+            'No options chain is read here - this ranks setup quality for a CSP entry, it does not quote a strike '
+            'or premium. Not financial advice.'
         ),
         out_path=out_path + '.html',
         tv_prefix='',
@@ -528,16 +483,17 @@ def build_csv(results, out_path):
 # ─── MAIN ──────────────────────────────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser(description="US Cash-Secured Put Screener")
+    parser = argparse.ArgumentParser(description="US Cash-Secured Put Candidate Screener")
     parser.add_argument('--workers', type=int, default=DEFAULT_WORKERS)
     parser.add_argument('--out', type=str, default='options', help='Output filename prefix - written as <out>-us-csp.html/.csv and <out>-us-etf.html/.csv')
     parser.add_argument('--tickers', type=str, default='', help='Comma-separated ticker override (skips universe fetch)')
     args = parser.parse_args()
 
     print("=" * 60)
-    print("  US CASH-SECURED PUT SCREENER")
+    print("  US CASH-SECURED PUT CANDIDATE SCREENER")
     print("=" * 60)
-    print(f"  Checklist: volume ≥2M(5M) · OI ≥500(1000) · IV 30-70% · earnings clear of ~{TARGET_DTE}d window")
+    print(f"  Checklist: volume ≥2M(5M) · above 200SMA · RSI {RSI_GOOD_LOW}-{RSI_GOOD_HIGH} · "
+          f"near lower Bollinger band · HV {HV_GOOD_LOW*100:.0f}-{HV_GOOD_HIGH*100:.0f}% · earnings clear of ~{EARNINGS_LOOKAHEAD_DAYS}d")
 
     if args.tickers:
         tickers = [t.strip().upper() for t in args.tickers.split(',') if t.strip()]
@@ -548,16 +504,6 @@ def main():
 
     results = run_scan(tickers, workers=args.workers)
 
-    if not args.tickers and results:
-        all_deltas = [r['put_delta'] for r in results] + [r['call_delta'] for r in results]
-        median_delta = statistics.median(all_deltas)
-        if median_delta < MIN_MEDIAN_DELTA:
-            print(f"\n❌ Median achieved delta across {len(results)} qualified results is only "
-                  f"{median_delta:.3f} (target ~{TARGET_DELTA}) - likely stale/incomplete options-chain "
-                  f"data (e.g. this ran during US off-market hours), not a real market condition. "
-                  f"Aborting WITHOUT writing a report, so the last good one stays live.")
-            sys.exit(1)
-
     history = load_seen_history()
     history = apply_streaks(history, results)
     save_seen_history(history)
@@ -567,16 +513,16 @@ def main():
     if results:
         print(f"\n{'─'*60}")
         print("  TOP CASH-SECURED-PUT CANDIDATES\n")
-        print(f"  {'TICKER':<6} {'SCORE':>5} {'IV%':>6} {'ANN%':>7} {'PROTECT%':>9}")
+        print(f"  {'TICKER':<6} {'SCORE':>5} {'RSI':>5} {'vs50SMA':>8} {'BollB':>6} {'HV%':>6}")
         for r in results[:20]:
-            print(f"  {r['ticker']:<6} {r['score']:>5} {r['avg_iv_pct']:>5.1f}% {r['put_annualized_pct']:>6.1f}% {r['put_protection_pct']:>8.1f}%")
+            print(f"  {r['ticker']:<6} {r['score']:>5} {r['rsi14']:>5.1f} {r['pct_vs_sma50']:>7.1f}% {r['bb_pctb']:>6.2f} {r['hv_pct']:>5.1f}%")
         if len(results) > 20:
             print(f"  ... and {len(results)-20} more in the report")
 
-    # Separate pages for stocks vs ETFs - a 30-delta put on an ETF (basket,
-    # diversified, no single-name earnings gap) is a different risk profile
-    # than one on a single stock, and worth screening on its own page rather
-    # than interleaved.
+    # Separate pages for stocks vs ETFs - a CSP on an ETF (basket, no
+    # single-name earnings gap) is a different risk profile than one on a
+    # single stock, and worth screening on its own page rather than
+    # interleaved.
     stock_results = [r for r in results if not r['is_etf']]
     etf_results = [r for r in results if r['is_etf']]
 
