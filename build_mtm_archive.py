@@ -55,6 +55,32 @@ BIAS_COLORS = {
     "informational": "#4472C4",
 }
 
+# A Bullish/Bearish bias means something different depending on which kind
+# of analysis produced it - Craig Dickson's calls are fundamentals-based
+# (earnings, balance sheet, macro thesis), while the other hosts run
+# chart/price-action scans. Reading a TA Bearish call and an FA Bullish
+# call on the same ticker as if they're the same kind of signal (or as a
+# flat contradiction) was the actual complaint this fixes - so every bias
+# badge gets tagged with its analysis type right next to it, rather than
+# requiring the reader to remember which host means which. Keyed on the
+# host string parsed from the filename (see FILENAME_RE) - add new hosts
+# here as they start appearing, rather than guessing a default.
+HOST_TYPE = {
+    "Craig Dickson": "FA",
+    "Craig Tapping": "TA",
+    "David Bird": "TA",
+    "Jamie Bell": "TA",
+    "Frank Watkins": "TA",
+    "Tung Nguyen": "Macro",
+    "Craig Dickson & Jamie Bell": "FA + TA",
+}
+TYPE_COLORS = {
+    "FA": "#1f7a8c",
+    "TA": "#6b4fa0",
+    "Macro": "#a0792f",
+    "FA + TA": "#5a6670",
+}
+
 
 def esc(s):
     return (
@@ -121,6 +147,7 @@ def parse_file(path, fname):
     else:
         iso_date = "0000-00-00"
         host = "Unknown"
+    call_type = HOST_TYPE.get(host, "")
 
     combined_lower = (call_name + " " + host_date_line).lower()
     is_pre_recorded = "recorded" in combined_lower
@@ -135,6 +162,7 @@ def parse_file(path, fname):
         "themes": themes,
         "iso_date": iso_date,
         "host": host,
+        "call_type": call_type,
         "is_pre_recorded": is_pre_recorded,
     }
 
@@ -145,6 +173,13 @@ def badge_html(bias):
     if not color:
         return f'<span class="biasbadge">{esc(bias)}</span>'
     return f'<span class="biasbadge" style="background:{color}">{esc(bias)}</span>'
+
+
+def typebadge_html(call_type):
+    if not call_type:
+        return ""
+    color = TYPE_COLORS.get(call_type, "#5a6670")
+    return f'<span class="typebadge" style="color:{color};border-color:{color}">{esc(call_type)}</span>'
 
 
 def render_call(call, anchor):
@@ -159,7 +194,7 @@ def render_call(call, anchor):
         bullets_html = "".join(f"<li>{esc(b)}</li>" for b in bullets)
         sections_html += f"""
         <div class="tickersec">
-          <div class="tickerhead"><span class="tk">{esc(ticker)}</span> {badge_html(bias)} <span class="ts mono">{esc(ts)}</span></div>
+          <div class="tickerhead"><span class="tk">{esc(ticker)}</span> {badge_html(bias)} {typebadge_html(call["call_type"])} <span class="ts mono">{esc(ts)}</span></div>
           <ul>{bullets_html}</ul>
         </div>"""
 
@@ -204,7 +239,9 @@ def main():
     # matches how the status/sector chip rows read elsewhere on the site.
     hosts_sorted = sorted(host_counts, key=lambda h: (-host_counts[h], h))
     host_chips = "".join(
-        f'<button class="commchip" data-host="{esc(h)}"><span>{esc(h)}</span><span class="cnt">{host_counts[h]}</span></button>'
+        f'<button class="commchip" data-host="{esc(h)}">'
+        f'<i style="background:{TYPE_COLORS.get(HOST_TYPE.get(h, ""), "#a89b7a")}"></i>'
+        f'<span>{esc(h)}</span><span class="cnt">{host_counts[h]}</span></button>'
         for h in hosts_sorted
     )
 
@@ -239,7 +276,7 @@ def main():
         list_rows += f"""<div class="listrow" data-anchor="{anchor}" data-host="{esc(call['host'])}" data-search="{esc(search_text)}">
           <div class="lr-date mono">{esc(call['iso_date'])}</div>
           <div class="lr-name">{esc(call['call_name'])}</div>
-          <div class="lr-host">{esc(call['host'])}</div>
+          <div class="lr-host">{esc(call['host'])} {typebadge_html(call['call_type'])}</div>
         </div>"""
         calls_html += render_call(call, anchor)
 
@@ -298,6 +335,7 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 
 .commchips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.4rem}
 .commchip{font-size:.78rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+.commchip i{display:inline-block;width:.5rem;height:.5rem;border-radius:50%;flex:none}
 .commchip:hover{border-color:var(--accent);color:var(--accent)}
 .commchip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
 .commchip .cnt{opacity:.7;font-size:.85em}
@@ -332,6 +370,9 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 .tickerhead{display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem}
 .tk{font-family:"IBM Plex Mono",monospace;font-weight:700}
 .biasbadge{color:#fff;font-size:.68rem;font-weight:600;padding:.15rem .5rem;border-radius:4px}
+.typebadge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;letter-spacing:.04em;
+  padding:.1rem .4rem;border-radius:4px;border:1px solid currentColor;background:transparent;white-space:nowrap}
+.lr-host{display:flex;align-items:center;gap:.4rem}
 .ts{font-size:.72rem;color:var(--ink-faint);margin-left:auto}
 .tickersec ul{margin:.3rem 0 0;padding-left:1.2rem;color:var(--ink-soft);font-size:.88rem}
 .tickersec li{margin:.25rem 0}
