@@ -253,7 +253,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt after each screener run — last rebuilt 20 Oct 2026.</div>
+  <div class="session">Rebuilt after each screener run — last rebuilt 21 Oct 2026.</div>
 
   <div class="notice">⚠ Each signal has its own independent definition and lookback window (see footer) — this page doesn't judge whether they agree for the same reason, just that they agree at all. A high count means several unrelated methods currently point at the same ticker, not that it's a stronger buy than a 1-signal ticker outside this list. Not financial advice.</div>
 
@@ -308,14 +308,11 @@ document.addEventListener('keydown', function(e){
 <script>
 const DATA = [
 ["GBR","Great Boulder Resources Limited","Materials",4,true,true,false,true,true,197295968,0.096,-4.0,"2026-06-19","2026-05-05",null],
-["AAC","AUSTRALIAN AGRICULTURAL COMPANY LIMITED.","Consumer Staples",3,false,false,true,true,true,786610605,1.33,1.1,null,null,"1M"],
 ["AWJ","Auric Mining Limited","Materials",3,true,false,false,true,true,46033932,0.245,0.0,"2026-08-03",null,null],
-["BAS","BASS OIL LIMITED","Energy",3,false,false,true,true,true,22387363,0.064,3.2,null,null,null],
 ["BPM","BPM Minerals Limited","Other",3,true,true,false,false,true,25283672,0.175,-5.4,"2026-07-01","2026-10-06",null],
 ["CHC","Charter Hall Group","Real Estate",3,true,false,false,true,true,9152495616,19.32,-0.2,"2026-09-04",null,null],
 ["ILT","Iltani Resources Limited","Other",3,true,true,false,false,true,31859444,0.365,4.3,"2026-08-12","2026-08-11",null],
 ["INA","Ingenia Communities Group","Real Estate",3,true,true,false,true,false,1728152960,4.65,9.7,"2026-08-31","2026-09-11",null],
-["ING","INGHAMS GROUP LIMITED","Consumer Staples",3,true,false,true,true,false,777156959,2.12,0.5,"2026-05-29",null,"1M"],
 ["KZR","Kalamazoo Resources Limited","Other",3,true,true,false,false,true,56954752,0.145,0.0,"2026-09-23","2026-09-01",null],
 ["MGR","Mirvac Group","Real Estate",3,true,false,false,true,true,6927967232,1.805,1.1,"2026-09-16",null,null],
 ["MX1","Micro-X Limited","Healthcare",3,true,false,false,true,true,45146212,0.056,-6.7,"2026-09-22",null,null],
@@ -326,6 +323,7 @@ const DATA = [
 ["SOP","Synertec Corporation Limited","Other",3,true,true,false,false,true,46731500,0.072,-1.4,"2026-09-07","2026-05-19",null],
 ["TNE","Technology One Limited","Info Tech",3,true,false,false,true,true,10246635520,31.48,0.6,"2026-07-08",null,null],
 ["4DX","4DMedical Limited","Other",2,true,false,false,false,true,2245576984,3.74,-3.4,"2026-06-19",null,null],
+["AAC","","Consumer Staples",2,false,false,false,true,true,804693630,1.33,1.1,null,null,null],
 ["ACL","Australian Clinical Labs Limited","Healthcare",2,true,false,false,true,false,540905074,2.915,1.6,"2026-09-10",null,null],
 ["AEL","Amplitude Energy Limited","Energy",2,true,false,false,true,false,565275363,1.865,-0.5,"2026-06-09",null,null],
 ["AEU","","Other",2,false,true,false,false,true,141633993,0.355,-5.3,null,"2026-09-22",null],
@@ -336,12 +334,12 @@ const DATA = [
 ["ANZ","ANZ Group Holdings Limited","Financials",2,true,false,false,true,false,118303383552,38.98,-0.8,"2026-07-29",null,null],
 ["APZ","Aspen Group","Other",2,true,false,false,false,true,1047600424,4.51,-2.0,"2026-09-07",null,null],
 ["ARG","Argo Investments Limited","Other",2,true,false,false,false,true,6847581727,9.08,0.8,"2026-06-30",null,null],
-["ARN","ALDORO RESOURCES LIMITED","Materials",2,false,false,true,false,true,62951469,0.315,16.7,null,null,"3M"],
 ["AUA","Audeara Limited","Consumer Discretionary",2,true,true,false,false,false,4705390,0.026,8.3,"2026-05-26","2026-01-13",null],
 ["AUE","","Other",2,false,true,false,false,true,248380116,0.485,2.1,null,"2026-10-06",null],
 ["AUI","Australian United Investment Company Limited","Other",2,true,false,false,true,false,2605133824,12.0,0.2,"2026-09-18",null,null],
 ["AX1","Accent Group Limited","Other",2,true,false,false,false,true,396782560,0.655,-0.8,"2026-05-19",null,null],
 ["AZY","Antipa Minerals Limited","Other",2,true,false,false,false,true,334522144,0.485,-3.0,"2026-07-07",null,null],
+["BAS","","Energy",2,false,false,false,true,true,null,0.064,3.2,null,null,null],
 ["BCA","","Other",2,false,true,false,false,true,null,0.285,-5.0,null,"2026-07-17",null],
 ["BGA","Bega Cheese Limited","Consumer Staples",2,true,false,false,true,false,1948095744,6.36,-0.2,"2026-08-26",null,null],
 ["BKI","BKI Investment Company Limited","Other",2,true,false,false,false,true,1428627584,1.76,-0.6,"2026-08-04",null,null],
@@ -362,10 +360,6 @@ const DATA = [
 ["CDT","Castle Minerals Limited","Materials",2,true,true,false,false,false,15720224,0.073,-3.9,"2026-07-31","2026-05-19",null],
 ["CGS","Cogstate Limited","Healthcare",2,true,false,false,true,false,607606272,3.5,-0.8,"2026-05-20",null,null],
 ["CHR","Charger Metals NL","Materials",2,true,true,false,false,false,5891976,0.065,1.6,"2026-08-25","2026-09-22",null],
-["CLV","CLOVER CORPORATION LIMITED","Materials",2,false,false,true,true,false,171174325,1.05,1.9,null,null,null],
-["CQE","CHARTER HALL SOCIAL INFRASTRUCTURE REIT","Real Estate",2,true,false,true,false,false,846127966,2.33,1.8,"2026-09-29",null,null],
-["CTD","CORPORATE TRAVEL MANAGEMENT LIMITED","Consumer Discretionary",2,true,false,true,false,false,367277622,3.06,23.4,"2026-09-09",null,"1M"],
-["CUF","CUFE LTD","Materials",2,false,false,true,true,false,107827671,0.057,9.6,null,null,"3M"],
 ["DAL","Dalaroo Metals Ltd","Materials",2,true,false,false,true,false,54478652,0.125,-10.7,"2026-06-19",null,null],
 ["DDR","Dicker Data Limited","Info Tech",2,true,true,false,false,false,2758806272,15.21,-1.8,"2026-05-01","2026-06-23",null],
 ["DEM","De.mem Limited","Utilities",2,true,true,false,false,false,39272996,0.12,0.0,"2026-09-07","2026-10-09",null],
@@ -392,15 +386,14 @@ const DATA = [
 ["HAR","Haranga Resources Limited","Materials",2,true,true,false,false,false,38508144,0.085,11.8,"2026-06-30","2026-05-05",null],
 ["HLI","Helia Group Limited","Other",2,true,false,false,false,true,1438353024,5.19,-1.5,"2026-08-28",null,null],
 ["HMG","Hamelin Gold Limited","Other",2,true,false,false,false,true,47478180,0.19,0.0,"2026-05-04",null,null],
-["HUB","HUB24 LIMITED","Financials",2,true,false,true,false,false,5245787795,67.08,3.9,"2026-05-01",null,null],
 ["ILA","","Other",2,false,true,false,false,true,null,0.33,-1.5,null,"2025-11-25",null],
 ["IMR","","Other",2,false,true,false,false,true,null,1.375,-1.8,null,"2026-07-21",null],
+["ING","Inghams Group Limited","Consumer Staples",2,true,false,false,true,false,784593856,2.12,0.5,"2026-05-29",null,null],
 ["IPH","IPH Limited","Industrials",2,true,true,false,false,false,901243136,3.51,1.2,"2026-09-01","2026-06-23",null],
 ["IXR","","Materials",2,false,false,false,true,true,null,0.53,20.4,null,null,null],
 ["JGH","","Other",2,false,true,false,false,true,null,0.063,0.0,null,"2025-12-02",null],
 ["JIN","Jumbo Interactive Limited","Other",2,true,false,false,false,true,376128352,5.93,-0.8,"2026-09-30",null,null],
 ["KCN","Kingsgate Consolidated Limited","Other",2,true,false,false,false,true,1233473792,4.42,-4.5,"2026-05-01",null,null],
-["KGN","KOGAN.COM LTD","Consumer Discretionary",2,true,false,true,false,false,318136638,3.35,1.2,"2026-10-01",null,"1M"],
 ["KLS","Kelsian Group Limited","Other",2,true,false,false,false,true,1044027776,3.86,0.5,"2026-10-06",null,null],
 ["KSL","Kina Securities Limited","Other",2,true,false,false,false,true,315520064,1.065,-0.5,"2026-09-29",null,null],
 ["L1M","Lightning Minerals Ltd","Materials",2,true,true,false,false,false,4181167,0.011,0.0,"2026-08-03","2026-06-02",null],
@@ -418,9 +411,7 @@ const DATA = [
 ["NHF","nib holdings limited","Other",2,true,false,false,false,true,3209121792,6.58,0.6,"2026-08-28",null,null],
 ["NST","Northern Star Resources Limited","Materials",2,true,false,false,true,false,35677122560,24.62,-1.7,"2026-09-11",null,null],
 ["NUZ","Neurizon Therapeutics Limited","Healthcare",2,true,true,false,false,false,63728012,0.0805,-1.2,"2026-09-14","2026-10-06",null],
-["OBL","OMNI BRIDGEWAY LIMITED","Financials",2,true,false,true,false,false,440256171,1.585,3.6,"2026-09-24",null,"1M"],
 ["OR3","Ore Resources Limited","Other",2,true,false,false,false,true,43145908,0.051,-1.9,"2026-09-15",null,null],
-["ORA","ORORA LIMITED","Materials",2,true,false,true,false,false,1668348901,1.455,4.7,"2026-06-09",null,"1M"],
 ["PGL","Pilbara Gold Limited","Other",2,true,false,false,false,true,104137136,0.44,-1.1,"2026-07-13",null,null],
 ["PHO","PhosCo Ltd","Materials",2,true,true,false,false,false,86527464,0.16,-3.0,"2026-07-02","2026-06-09",null],
 ["PIA","","Other",2,false,false,false,true,true,null,1.155,0.4,null,null,null],
@@ -456,7 +447,6 @@ const DATA = [
 ["VYS","Vysarn Limited","Materials",2,true,true,false,false,false,439313792,0.73,0.7,"2026-09-15","2026-07-28",null],
 ["WES","Wesfarmers Limited","Consumer Discretionary",2,true,false,false,true,false,89630564352,79.58,0.8,"2026-08-28",null,null],
 ["WRK","Wrkr Ltd","Other",2,true,false,false,false,true,196754576,0.087,-3.3,"2026-09-22",null,null],
-["WTM","WARATAH MINERALS LIMITED","Materials",2,false,false,true,true,false,275659151,0.785,5.4,null,null,null],
 ["XRF","XRF Scientific Limited","Industrials",2,true,false,false,true,false,271191200,1.885,0.5,"2026-08-25",null,null],
 ["YAL","","Energy",2,false,true,false,true,false,null,6.04,-4.0,null,"2026-08-25",null]
 ];
