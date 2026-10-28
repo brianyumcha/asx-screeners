@@ -248,7 +248,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily — last rebuilt 28 Oct 2026, 10:09PM Sydney time.</div>
+  <div class="session">Rebuilt daily — last rebuilt 29 Oct 2026, 1:54AM Sydney time.</div>
 
   <div class="notice">⚠ "Red folder" is ForexFactory's own term for its highest ("High") impact tier — the events most likely to move price on release. This page shows the full Sunday-Saturday calendar week, sourced from the same feed ForexFactory's own site exports — no month-ahead feed exists (checked directly against forexfactory.com). Already-released events this week are shown dimmed for context — this feed has no "actual" outcome field, so only forecast/previous are ever shown either way. All times are Sydney local (AEST/AEDT), computed at build time — not your browser's timezone.</div>
 
@@ -288,29 +288,29 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-[1793147400,"Today","11:30am","AUD","CPI m/m","0.7%","0.4%",false,true],
-[1793147400,"Today","11:30am","AUD","CPI y/y","4.2%","4.0%",false,true],
-[1793147400,"Today","11:30am","AUD","Trimmed Mean CPI m/m","0.3%","0.2%",false,true],
-[1793149200,"Today","12:00pm","NZD","Official Cash Rate","3.00%","2.75%",false,true],
-[1793149200,"Today","12:00pm","NZD","RBNZ Rate Statement","","",false,true],
-[1793152800,"Today","1:00pm","NZD","RBNZ Press Conference","","",false,true],
-[1793190600,"Today","11:30pm","GBP","Annual Budget Release","","",false,false],
-[1793195100,"Tomorrow","12:45am","CAD","BOC Monetary Policy Report","","",false,false],
-[1793195100,"Tomorrow","12:45am","CAD","BOC Rate Statement","","",false,false],
-[1793195100,"Tomorrow","12:45am","CAD","Overnight Rate","2.50%","2.25%",false,false],
-[1793197800,"Tomorrow","1:30am","CAD","BOC Press Conference","","",false,false],
-[1793210400,"Tomorrow","5:00am","USD","Federal Funds Rate","4.00%","4.00%",true,false],
-[1793210400,"Tomorrow","5:00am","USD","FOMC Statement","","",true,false],
-[1793212200,"Tomorrow","5:30am","USD","FOMC Press Conference","","",true,false],
-[1793277000,"Tomorrow","11:30pm","USD","Advance GDP q/q","3.2%","1.5%",false,false],
-[1793277000,"Tomorrow","11:30pm","USD","Core PCE Price Index m/m","0.3%","0.2%",false,false],
-[1793279700,"Fri 30 Oct","12:15am","EUR","Main Refinancing Rate","2.65%","2.65%",false,false],
-[1793279700,"Fri 30 Oct","12:15am","EUR","Monetary Policy Statement","","",false,false],
-[1793281500,"Fri 30 Oct","12:45am","EUR","ECB Press Conference","","",false,false],
-[1793327400,"Fri 30 Oct","1:30pm","JPY","BOJ Policy Rate","<1.25%","<1.25%",false,false],
-[1793327400,"Fri 30 Oct","1:30pm","JPY","Monetary Policy Statement","","",false,false],
-[1793327460,"Fri 30 Oct","1:31pm","JPY","BOJ Outlook Report","","",false,false],
-[1793338200,"Fri 30 Oct","4:30pm","JPY","BOJ Press Conference","","",false,false]
+[1793147400,"Wed 28 Oct","11:30am","AUD","CPI m/m","0.7%","0.4%",false,true],
+[1793147400,"Wed 28 Oct","11:30am","AUD","CPI y/y","4.2%","4.0%",false,true],
+[1793147400,"Wed 28 Oct","11:30am","AUD","Trimmed Mean CPI m/m","0.3%","0.2%",false,true],
+[1793149200,"Wed 28 Oct","12:00pm","NZD","Official Cash Rate","3.00%","2.75%",false,true],
+[1793149200,"Wed 28 Oct","12:00pm","NZD","RBNZ Rate Statement","","",false,true],
+[1793152800,"Wed 28 Oct","1:00pm","NZD","RBNZ Press Conference","","",false,true],
+[1793190600,"Wed 28 Oct","11:30pm","GBP","Annual Budget Release","","",false,true],
+[1793195100,"Today","12:45am","CAD","BOC Monetary Policy Report","","",false,true],
+[1793195100,"Today","12:45am","CAD","BOC Rate Statement","","",false,true],
+[1793195100,"Today","12:45am","CAD","Overnight Rate","2.50%","2.25%",false,true],
+[1793197800,"Today","1:30am","CAD","BOC Press Conference","","",false,true],
+[1793210400,"Today","5:00am","USD","Federal Funds Rate","4.00%","4.00%",true,false],
+[1793210400,"Today","5:00am","USD","FOMC Statement","","",true,false],
+[1793212200,"Today","5:30am","USD","FOMC Press Conference","","",true,false],
+[1793277000,"Today","11:30pm","USD","Advance GDP q/q","3.2%","1.5%",false,false],
+[1793277000,"Today","11:30pm","USD","Core PCE Price Index m/m","0.3%","0.2%",false,false],
+[1793279700,"Tomorrow","12:15am","EUR","Main Refinancing Rate","2.65%","2.65%",false,false],
+[1793279700,"Tomorrow","12:15am","EUR","Monetary Policy Statement","","",false,false],
+[1793281500,"Tomorrow","12:45am","EUR","ECB Press Conference","","",false,false],
+[1793327400,"Tomorrow","1:30pm","JPY","BOJ Policy Rate","<1.25%","<1.25%",false,false],
+[1793327400,"Tomorrow","1:30pm","JPY","Monetary Policy Statement","","",false,false],
+[1793327460,"Tomorrow","1:31pm","JPY","BOJ Outlook Report","","",false,false],
+[1793338200,"Tomorrow","4:30pm","JPY","BOJ Press Conference","","",false,false]
 ];
 
 // [unixTs, dateLabel, timeLabel, country, title, forecast, previous, isBigUS, isPast]
