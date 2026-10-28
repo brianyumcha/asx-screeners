@@ -120,11 +120,26 @@ def relative_strength_status(dates, closes, index_series):
 
 # ─── TICKER UNIVERSE (SeaBee gives us industry + market cap in one call) ──────
 
+ASX_UNIVERSE_FALLBACK_PATH = os.path.join(SCRIPT_DIR, "asx_universe_fallback.json")
+
+
 def get_asx_universe():
     """
     Returns {ticker: {'industry': str, 'sector': str, 'market_cap': int, 'name': str}}
-    for the full ASX, sourced from SeaBee. Falls back to a bare ticker list
-    (no sector data - everything lands in "Other") if SeaBee is unreachable.
+    for the full ASX, sourced from SeaBee.
+
+    Fallback chain if SeaBee is unreachable (confirmed down for real,
+    2026-10-24 to 2026-10-28 - every consumer of this function silently ran
+    against a bare 16-ticker list that whole time, since nobody had wired up
+    anything richer, unlike get_asx_tickers()'s multi-source chain):
+      1. asx_universe_fallback.json - a checked-in full-universe snapshot
+         (~2000+ tickers with real industry/sector data), refreshed in place
+         every time a live SeaBee fetch succeeds. Goes stale (new listings
+         won't appear, delisted ones will) the longer SeaBee stays down, but
+         "slightly stale real universe" beats "16 hardcoded blue chips" for
+         every downstream screener by a wide margin.
+      2. A bare 16-ticker hardcoded list, only if even the snapshot file is
+         missing/corrupt (e.g. a fresh clone that never had a successful run).
     """
     print("📋 Fetching ASX universe (tickers + industry) from SeaBee...")
     try:
@@ -149,6 +164,11 @@ def get_asx_universe():
                     }
                 if len(universe) > 500:
                     print(f"  ✓ Fetched {len(universe)} tickers with industry data from SeaBee")
+                    try:
+                        with open(ASX_UNIVERSE_FALLBACK_PATH, "w") as f:
+                            json.dump(universe, f, indent=0, separators=(",", ":"), sort_keys=True)
+                    except Exception as e:
+                        print(f"  ⚠ Couldn't refresh {ASX_UNIVERSE_FALLBACK_PATH}: {e}")
                     return universe
             print("  ⚠ SeaBee API returned an unexpected JSON structure.")
         else:
@@ -156,8 +176,20 @@ def get_asx_universe():
     except Exception as e:
         print(f"  ⚠ SeaBee API fetch failed: {e}")
 
-    print("  ⚠ Falling back to a bare ticker list with no sector data (everything -> 'Other')")
-    # Minimal built-in fallback so the script still runs if SeaBee is down.
+    try:
+        with open(ASX_UNIVERSE_FALLBACK_PATH) as f:
+            universe = json.load(f)
+        if len(universe) > 500:
+            print(f"  ⚠ SeaBee unreachable - using the checked-in snapshot instead "
+                  f"({len(universe)} tickers, may be stale)")
+            return universe
+    except Exception as e:
+        print(f"  ⚠ Couldn't load {ASX_UNIVERSE_FALLBACK_PATH}: {e}")
+
+    print("  ⚠ Falling back to a bare 16-ticker list with no sector data - "
+          "both SeaBee and the checked-in snapshot are unavailable")
+    # Last-resort built-in fallback so the script still runs even on a fresh
+    # clone that's never had a successful run to populate the snapshot file.
     fallback = "BHP,RIO,FMG,CBA,NAB,WBC,ANZ,CSL,WES,WOW,TLS,STO,ORG,WDS,XRO,WTC".split(",")
     return {t: {"industry": "Other", "sector": "Other", "market_cap": 0, "name": t} for t in fallback}
 
