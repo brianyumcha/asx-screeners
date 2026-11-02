@@ -113,10 +113,31 @@ def slugify(label):
     return s or "unclassified"
 
 
-def desc_from_note(note):
+INVALIDATION_PREFIX_RE = re.compile(r"^FA invalidation:\s*", re.IGNORECASE)
+
+
+def _note_bullets(note):
     lines = [l.strip() for l in (note or "").split("\n") if l.strip()]
-    bullets = [l[2:].strip() if l.startswith("- ") else l for l in lines]
+    return [l[2:].strip() if l.startswith("- ") else l for l in lines]
+
+
+def desc_from_note(note):
+    bullets = [b for b in _note_bullets(note) if not INVALIDATION_PREFIX_RE.match(b)]
     return " · ".join(bullets)
+
+
+def invalidation_from_note(note):
+    """Pulls out Craig's explicitly-stated 'what would break this thesis'
+    condition (mtm_call_summary_instructions.md's `FA invalidation:` bullet
+    convention) so it can be rendered as its own callout instead of getting
+    buried as just another bullet in the description. Only ever reflects
+    what he actually said - this script does no inferring of its own, same
+    discipline as the rest of the note content."""
+    for b in _note_bullets(note):
+        m = INVALIDATION_PREFIX_RE.match(b)
+        if m:
+            return b[m.end():].strip()
+    return None
 
 
 PAREN_CODE_RE = re.compile(r"\(([A-Z0-9]{1,6})\)")
@@ -229,6 +250,7 @@ def classify_and_group(survivors, universe):
         bucket = GICS_TO_BUCKET.get(gics_sector, "other")
         name = title_case(uni.get("name") or ticker)
         desc = desc_from_note(display["note"])
+        invalidation = invalidation_from_note(display["note"])
         date_iso = display["date"]
 
         bucket_counts[bucket] += 1
@@ -251,7 +273,7 @@ def classify_and_group(survivors, universe):
             group_label = BUCKET_LABELS[bucket]
 
         groups[group_key].append({
-            "row": [ticker, name, desc, date_iso],
+            "row": [ticker, name, desc, date_iso, invalidation or ""],
             "bucket": bucket,
             "group_label": group_label,
         })
@@ -435,6 +457,7 @@ CSS_AND_SHELL = r"""<meta charset="UTF-8">
   --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
   --accent:#7a4a0f; --accent-ink:#fdf8ef;
   --materials:#7a4a0f; --energy:#6b241c; --health:#163540; --industrials:#3d5c37; --it:#4a3570; --consumer:#7a2f52; --unresolved:#6b6552;
+  --risk:#9a2a1f; --risk-bg:rgba(154,42,31,.08);
   --shadow: 0 1px 2px rgba(20,18,9,.06), 0 4px 16px rgba(20,18,9,.05);
 }
 @media (prefers-color-scheme: dark){
@@ -443,6 +466,7 @@ CSS_AND_SHELL = r"""<meta charset="UTF-8">
     --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
     --accent:#e8b355; --accent-ink:#1c1204;
     --materials:#e8b355; --energy:#f0998a; --health:#8fc4db; --industrials:#a8c99e; --it:#b8a8e8; --consumer:#e0a8c8; --unresolved:#8f8874;
+    --risk:#e8887a; --risk-bg:rgba(232,136,122,.12);
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   }
 }
@@ -451,6 +475,7 @@ CSS_AND_SHELL = r"""<meta charset="UTF-8">
   --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
   --accent:#e8b355; --accent-ink:#1c1204;
   --materials:#e8b355; --energy:#f0998a; --health:#8fc4db; --industrials:#a8c99e; --it:#b8a8e8; --consumer:#e0a8c8; --unresolved:#8f8874;
+  --risk:#e8887a; --risk-bg:rgba(232,136,122,.12);
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
@@ -518,6 +543,8 @@ table.grouptable td.cname{color:var(--ink-soft);white-space:nowrap;overflow:hidd
 table.grouptable td.desc{color:var(--ink-soft);line-height:1.4;min-width:16rem}
 table.grouptable td.desc .point{margin-bottom:.35rem}
 table.grouptable td.desc .point:last-child{margin-bottom:0}
+table.grouptable td.desc .invalidation{margin-top:.5rem;padding:.3rem .55rem;border-left:2px solid var(--risk);
+  background:var(--risk-bg);color:var(--risk);font-weight:600;font-size:.8rem;border-radius:0 4px 4px 0}
 table.grouptable td.lastdate{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);white-space:nowrap}
 
 .unresolvedbox{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:.9rem 1.1rem;margin-top:1rem;font-size:.87rem;color:var(--ink-soft)}
@@ -571,14 +598,15 @@ function fmtDate(iso){
 Object.entries(DATA).forEach(([id, tickers]) => {
   const el = document.getElementById(id);
   if(!el) return;
-  const rows = tickers.map(([tk, name, desc, date]) => {
+  const rows = tickers.map(([tk, name, desc, date, invalidation]) => {
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
     const points = desc.split(' · ').map(p => p.trim()).filter(Boolean)
       .map(p => `<div class="point">• ${p}</div>`).join('');
+    const invalidationHtml = invalidation ? `<div class="invalidation">⚠ Breaks if: ${invalidation}</div>` : '';
     return `<tr>
       <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
       <td class="cname">${name || '—'}</td>
-      <td class="desc">${points}</td>
+      <td class="desc">${points}${invalidationHtml}</td>
       <td class="lastdate">${fmtDate(date)}</td>
     </tr>`;
   }).join('');
