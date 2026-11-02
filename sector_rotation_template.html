@@ -72,9 +72,9 @@ p{color:var(--ink-soft)}
 .controls input:focus,.controls select:focus{outline:none;border-color:var(--accent2)}
 .controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
 
-.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow);max-height:calc(100vh - 2rem);position:sticky;top:var(--thead-top, 65px);z-index:3}
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow)}
 table{width:100%;border-collapse:collapse;font-size:.8rem;background:var(--surface)}
-thead th{position:sticky;top:0;background:var(--surface2);text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);padding:.55rem .7rem;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none;z-index:2}
+thead th{background:var(--surface2);text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);padding:.55rem .7rem;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none}
 thead th:hover{color:var(--accent)}
 thead th.active{color:var(--accent2)}
 thead th .arrow{font-size:.65rem;margin-left:.15rem}
@@ -749,35 +749,4 @@ themeBtn.addEventListener('click', ()=>{
     else localStorage.removeItem('theme');
   }catch(e){}
 });
-
-// The sticky table panel needs a `top` offset clear of whatever's sticky
-// above it (.sitenav always, .topbar too above 640px) AND a max-height
-// that leaves room for whatever follows it on the page (footer etc) -
-// position:sticky's own clamp otherwise silently caps the achieved offset
-// short of `top` instead of erroring. Both vary with content/viewport, so
-// measure them instead of hardcoding - see this function's call sites.
-function updateTheadTop(){
-  const nav = document.querySelector('.sitenav');
-  const topbar = document.querySelector('.topbar');
-  let bottom = nav ? nav.getBoundingClientRect().bottom : 0;
-  if (topbar && getComputedStyle(topbar).position === 'sticky') {
-    bottom = Math.max(bottom, topbar.getBoundingClientRect().bottom);
-  }
-  const top = Math.max(0, bottom);
-  document.documentElement.style.setProperty('--thead-top', top + 'px');
-
-  const tw = document.querySelector('.tablewrap');
-  if (tw) {
-    let trailing = 0;
-    let sib = tw.nextElementSibling;
-    while (sib) { trailing += sib.offsetHeight; sib = sib.nextElementSibling; }
-    const wrap = tw.closest('.wrap') || tw.parentElement;
-    const wrapPadBottom = wrap ? (parseFloat(getComputedStyle(wrap).paddingBottom) || 0) : 0;
-    tw.style.maxHeight = Math.max(200, window.innerHeight - top - trailing - wrapPadBottom - 16) + 'px';
-  }
-}
-updateTheadTop();
-window.addEventListener('resize', updateTheadTop);
-window.addEventListener('load', updateTheadTop);
-if (document.fonts && document.fonts.ready) { document.fonts.ready.then(updateTheadTop); }
 </script>
