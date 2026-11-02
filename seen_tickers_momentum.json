@@ -53,7 +53,7 @@
   },
   "ALC": {
     "first_seen": "2026-10-30",
-    "last_seen": "2026-10-30"
+    "last_seen": "2026-11-02"
   },
   "ALD": {
     "first_seen": "2026-09-17",
@@ -144,8 +144,8 @@
     "last_seen": "2026-09-30"
   },
   "BET": {
-    "first_seen": "2026-10-08",
-    "last_seen": "2026-10-14"
+    "first_seen": "2026-11-02",
+    "last_seen": "2026-11-02"
   },
   "BM1": {
     "first_seen": "2026-09-28",
@@ -162,6 +162,10 @@
   "BOQ": {
     "first_seen": "2026-10-13",
     "last_seen": "2026-10-21"
+  },
+  "BPT": {
+    "first_seen": "2026-11-02",
+    "last_seen": "2026-11-02"
   },
   "BRU": {
     "first_seen": "2026-09-21",
@@ -193,11 +197,11 @@
   },
   "CAT": {
     "first_seen": "2026-10-30",
-    "last_seen": "2026-10-30"
+    "last_seen": "2026-11-02"
   },
   "CC5": {
     "first_seen": "2026-10-30",
-    "last_seen": "2026-10-30"
+    "last_seen": "2026-11-02"
   },
   "CCL": {
     "first_seen": "2026-09-17",
@@ -283,9 +287,13 @@
     "first_seen": "2026-10-30",
     "last_seen": "2026-10-30"
   },
+  "DOW": {
+    "first_seen": "2026-11-02",
+    "last_seen": "2026-11-02"
+  },
   "DRX": {
-    "first_seen": "2026-09-25",
-    "last_seen": "2026-09-28"
+    "first_seen": "2026-11-02",
+    "last_seen": "2026-11-02"
   },
   "DUR": {
     "first_seen": "2026-09-29",
@@ -373,7 +381,7 @@
   },
   "GNC": {
     "first_seen": "2026-10-30",
-    "last_seen": "2026-10-30"
+    "last_seen": "2026-11-02"
   },
   "GNG": {
     "first_seen": "2026-10-06",
@@ -548,8 +556,8 @@
     "last_seen": "2026-09-24"
   },
   "MSV": {
-    "first_seen": "2026-10-05",
-    "last_seen": "2026-10-05"
+    "first_seen": "2026-11-02",
+    "last_seen": "2026-11-02"
   },
   "MVF": {
     "first_seen": "2026-10-14",
@@ -694,6 +702,10 @@
   "SBM": {
     "first_seen": "2026-10-29",
     "last_seen": "2026-10-30"
+  },
+  "SEK": {
+    "first_seen": "2026-11-02",
+    "last_seen": "2026-11-02"
   },
   "SFR": {
     "first_seen": "2026-10-07",
