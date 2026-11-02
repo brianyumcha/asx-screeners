@@ -41,7 +41,8 @@ OUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mtm-call-ar
 
 FILENAME_RE = re.compile(r"^(\d{8})_(.+)_([^_]+)\.txt$")
 HEADING_RE = re.compile(
-    r"^(?P<ticker>.+?) — (?P<bias>Bullish \(Unchanged\)|Bearish \(Unchanged\)|Bullish|Bearish|Neutral|Informational) — (?P<ts>.+?)\s*$"
+    r"^(?P<ticker>.+?) — (?P<bias>Bullish \(Unchanged\)|Bearish \(Unchanged\)|Bullish|Bearish|Neutral|Informational)"
+    r"(?: — (?P<timeframe>[^—]+?))? — (?P<ts>.+?)\s*$"
 )
 
 # Same convention as append_tracker.py's BIAS_COLORS, reused here so the
@@ -111,7 +112,7 @@ def parse_file(path, fname):
             if l.startswith(key + ":"):
                 setups[key] = l.split(":", 1)[1].strip()
 
-    sections = []  # (ticker, bias, ts, [bullets])
+    sections = []  # (ticker, bias, timeframe, ts, [bullets])
     themes = []
     cur = None
     in_themes = False
@@ -133,9 +134,10 @@ def parse_file(path, fname):
         if m:
             if cur:
                 sections.append(cur)
-            cur = [m.group("ticker").strip(), m.group("bias").strip(), m.group("ts").strip(), []]
+            tf = m.group("timeframe")
+            cur = [m.group("ticker").strip(), m.group("bias").strip(), tf.strip() if tf else "", m.group("ts").strip(), []]
         elif cur is not None and stripped.startswith("- "):
-            cur[3].append(stripped[2:].strip())
+            cur[4].append(stripped[2:].strip())
     if cur:
         sections.append(cur)
 
@@ -182,6 +184,16 @@ def typebadge_html(call_type):
     return f'<span class="typebadge" style="color:{color};border-color:{color}">{esc(call_type)}</span>'
 
 
+def tfbadge_html(timeframe):
+    # Only ever rendered when the source summary explicitly stated a
+    # timeframe for that specific ticker's call (see mtm_call_summary_
+    # instructions.md) - never inferred, so most TA tickers (and all FA
+    # ones) simply won't have one, and that's accurate, not a gap.
+    if not timeframe:
+        return ""
+    return f'<span class="tfbadge mono">{esc(timeframe)}</span>'
+
+
 def render_call(call, anchor):
     setups_html = ""
     for label, val in call["setups"].items():
@@ -190,11 +202,11 @@ def render_call(call, anchor):
         setups_html += f'<div class="setupline"><span class="setuplabel">{esc(label)}:</span> {esc(val)}</div>'
 
     sections_html = ""
-    for ticker, bias, ts, bullets in call["sections"]:
+    for ticker, bias, timeframe, ts, bullets in call["sections"]:
         bullets_html = "".join(f"<li>{esc(b)}</li>" for b in bullets)
         sections_html += f"""
         <div class="tickersec">
-          <div class="tickerhead"><span class="tk">{esc(ticker)}</span> {badge_html(bias)} {typebadge_html(call["call_type"])} <span class="ts mono">{esc(ts)}</span></div>
+          <div class="tickerhead"><span class="tk">{esc(ticker)}</span> {badge_html(bias)} {tfbadge_html(timeframe)} {typebadge_html(call["call_type"])} <span class="ts mono">{esc(ts)}</span></div>
           <ul>{bullets_html}</ul>
         </div>"""
 
@@ -267,8 +279,8 @@ def main():
         # just the title/date/educator (what's visible in the row) so typing
         # a ticker or a theme still surfaces the call, matching how search
         # used to work when every call's full body sat in the DOM at once.
-        tickers = " ".join(t for t, _, _, _ in call["sections"])
-        bullets = " ".join(b for _, _, _, bl in call["sections"] for b in bl)
+        tickers = " ".join(t for t, _, _, _, _ in call["sections"])
+        bullets = " ".join(b for _, _, _, _, bl in call["sections"] for b in bl)
         search_text = " ".join([
             call["call_name"], call["host"], call["iso_date"], tickers, bullets, " ".join(call["themes"]),
         ]).lower()
@@ -372,6 +384,8 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 .biasbadge{color:#fff;font-size:.68rem;font-weight:600;padding:.15rem .5rem;border-radius:4px}
 .typebadge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;letter-spacing:.04em;
   padding:.1rem .4rem;border-radius:4px;border:1px solid currentColor;background:transparent;white-space:nowrap}
+.tfbadge{font-size:.64rem;color:var(--ink-faint);background:var(--surface2);padding:.1rem .45rem;
+  border-radius:4px;white-space:nowrap}
 .lr-host{display:flex;align-items:center;gap:.4rem}
 .ts{font-size:.72rem;color:var(--ink-faint);margin-left:auto}
 .tickersec ul{margin:.3rem 0 0;padding-left:1.2rem;color:var(--ink-soft);font-size:.88rem}
