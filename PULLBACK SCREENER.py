@@ -639,14 +639,18 @@ def analyse_ticker(ticker_raw, ticker_frame, min_score=DEFAULT_MIN_SCORE, latest
         # yfinance's full .info scrape is much slower than fast_info, so this
         # cost is paid only by the handful of actual results, not the bulk scan.
         try:
-            sector = ticker_obj.info.get('sector') or 'Other'
+            info = ticker_obj.info
+            sector = info.get('sector') or 'Other'
+            name = info.get('longName') or info.get('shortName') or sym
         except Exception:
             sector = 'Other'
+            name = sym
 
         trim = slice(-CHART_TRIM_BARS, None)
 
         return {
             'ticker': sym,
+            'name': name,
             'sector': sector,
             'price': round(price, 4),
             'market_cap': int(market_cap) if market_cap else 0,
@@ -742,6 +746,7 @@ def build_html_report(results, total_scanned, out_path):
         first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
         return {
             'ticker': r['ticker'],
+            'name': r['name'],
             'sector': r['sector'],
             'market_cap': r['market_cap'],
             'price': r['price'],

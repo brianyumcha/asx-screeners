@@ -231,6 +231,7 @@ def run_scan(universe, tickers, workers=DEFAULT_WORKERS, min_market_cap=20_000_0
         r = analyse_ticker(t, frame, mcap, min_market_cap)
         if r:
             r['sector'] = universe.get(t, {}).get('sector') or 'Other'
+            r['name'] = universe.get(t, {}).get('name') or t
             results.append(r)
         if i % 300 == 0:
             print(f"  ...{i}/{len(tickers)} scanned ({time.time()-t0:.0f}s), {len(results)} passing so far")
@@ -258,6 +259,7 @@ def build_html_report(results, total_scanned, out_path):
         first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
         return {
             'ticker': r['ticker'],
+            'name': r['name'],
             'sector': r['sector'],
             'market_cap': r['market_cap'],
             'price': r['price'],

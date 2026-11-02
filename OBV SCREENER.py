@@ -239,10 +239,15 @@ def _find_ticker_column(columns):
 # analyse_ticker() reads this via get_sector_map() instead of paying for a
 # slow, unreliable per-ticker yfinance .info call for every result.
 _SECTOR_MAP_CACHE = {}
+_NAME_MAP_CACHE = {}
 
 
 def get_sector_map():
     return _SECTOR_MAP_CACHE
+
+
+def get_name_map():
+    return _NAME_MAP_CACHE
 
 
 def get_asx_tickers():
@@ -314,6 +319,7 @@ def get_asx_tickers():
                         t = str(raw_t).strip().upper()
                         industry = (c_info or {}).get("industry") or "Other"
                         _SECTOR_MAP_CACHE[t] = rs_utils.SECTOR_MAP.get(industry, "Other")
+                        _NAME_MAP_CACHE[t] = (c_info or {}).get("name") or t
                     return tickers
             else:
                 print("  ⚠ SeaBee API returned an unexpected JSON structure.")
@@ -475,7 +481,7 @@ def calc_sma(closes, period):
 
 # ─── ANALYSE A SINGLE STOCK ───────────────────────────────────────────────────
 
-def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS, latest_date=None, sector_map=None):
+def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LOOKBACK_DAYS, latest_date=None, sector_map=None, name_map=None):
     """
     Apply screening criteria to an already-fetched price_cache frame (see
     that module - all three screeners share one cache now, refreshed once
@@ -599,10 +605,18 @@ def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LO
             except Exception:
                 sector = 'Other'
 
+        name = (name_map or {}).get(sym)
+        if not name:
+            try:
+                name = ticker_obj.info.get('longName') or ticker_obj.info.get('shortName') or sym
+            except Exception:
+                name = sym
+
         trim = slice(-CHART_TRIM_BARS, None)
 
         return {
             'ticker':       sym,
+            'name':         name,
             'sector':       sector,
             'price':        round(price, 4),
             'market_cap':   int(market_cap) if market_cap else 0,
@@ -630,7 +644,7 @@ def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LO
 
 # ─── SCAN ALL TICKERS ─────────────────────────────────────────────────────────
 
-def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS, sector_map=None):
+def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS, sector_map=None, name_map=None):
     total = len(tickers)
     t0 = time.time()
 
@@ -660,7 +674,7 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS, sector_map=Non
     print(f"\n🔍 Scoring {total} ASX tickers  |  {workers} threads  |  OBV window: {obv_days}d\n")
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(analyse_ticker, t, price_cache.get_ticker_frame(cache, t), obv_days, latest_date=latest_date, sector_map=sector_map): t for t in tickers}
+        futures = {pool.submit(analyse_ticker, t, price_cache.get_ticker_frame(cache, t), obv_days, latest_date=latest_date, sector_map=sector_map, name_map=name_map): t for t in tickers}
 
         for fut in as_completed(futures):
             done += 1
@@ -843,6 +857,7 @@ def build_html_report(results, total_scanned, out_path, rs_leaders=None):
         first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
         return {
             'ticker': r['ticker'],
+            'name': r['name'],
             'sector': r['sector'],
             'market_cap': r['market_cap'],
             'price': r['price'],
@@ -1034,7 +1049,7 @@ def main():
     else:
         tickers = get_asx_tickers()
 
-    results, usable, cache, index_series = run_scan(tickers, obv_days=args.days, workers=args.workers, sector_map=get_sector_map())
+    results, usable, cache, index_series = run_scan(tickers, obv_days=args.days, workers=args.workers, sector_map=get_sector_map(), name_map=get_name_map())
 
     # Circuit breaker: on a full-universe run, if the shared price cache
     # doesn't have usable data for most of the universe - whether from

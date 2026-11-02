@@ -244,7 +244,7 @@ def main():
         wave_points = [{**p, 'idx': p['idx'] - offset} for p in result.pop('wave_points')]
 
         card_base = {
-            'ticker': t, 'sector': u.get('sector') or 'Other',
+            'ticker': t, 'name': u.get('name') or t, 'sector': u.get('sector') or 'Other',
             'market_cap': int(mcap), 'price': price, 'change_1d': round(change_1d, 2),
             'dates': [str(d)[:10] for d in df['date'].tail(tail_len).values],
             'opens': df['open'].tail(tail_len).tolist(), 'highs': df['high'].tail(tail_len).tolist(),
@@ -283,7 +283,7 @@ def build_html_report(triggered, forming, total_scanned):
                 {'label': 'C formed', 'value': r['qC_date']},
             ]
         return {
-            'ticker': r['ticker'], 'sector': r['sector'], 'market_cap': r['market_cap'],
+            'ticker': r['ticker'], 'name': r['name'], 'sector': r['sector'], 'market_cap': r['market_cap'],
             'price': r['price'], 'change_1d': r['change_1d'], 'score': score,
             'stats': stats,
             'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],

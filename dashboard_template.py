@@ -304,7 +304,7 @@ input[type=text]:focus{border-color:rgba(232,179,85,.4)}
 .cardhead{display:flex;justify-content:space-between;align-items:flex-start}
 .cardhead-left{display:flex;align-items:baseline;gap:.4rem}
 .ticker{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.02rem;color:var(--text)}
-.company-name{font-size:.72rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:-.3rem 0 .5rem}
+.company-name{font-size:.68rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:-.3rem 0 .5rem}
 .ticker a{color:inherit;text-decoration:none}
 .ticker a:hover{color:var(--accent2)}
 .chg{font-size:.72rem;font-weight:600}

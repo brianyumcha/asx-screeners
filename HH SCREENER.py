@@ -1821,6 +1821,7 @@ table.datatable th:nth-child(8), table.datatable td:nth-child(8){width:12%}
 td.ticker-cell{font-family:"IBM Plex Mono",monospace;font-weight:700}
 td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .company-name{font-family:"IBM Plex Sans",sans-serif;font-weight:400;color:var(--muted);font-size:.68rem;margin-left:.5rem}
+.card-name{font-family:"IBM Plex Sans",sans-serif;font-weight:400;color:var(--muted);font-size:.68rem;margin:-.3rem 0 .5rem}
 .up{color:var(--good)} .dn{color:var(--bad)} .neutral{color:var(--muted)}
 .hh-yes{background:rgba(155,196,127,.16);color:var(--good);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
 .obv-confirm{color:var(--good)} .obv-not{color:var(--bad)} .obv-neutral{color:var(--muted)}
@@ -2157,6 +2158,7 @@ function cardHtml(r) {
       </div>
       <span class="hh-yes ${tierClass}" title="${tierTitle}">${tier || '<1M'} HIGH</span>
     </div>
+    <div class="card-name">${esc(titleCase(r.name))}</div>
     <div class="chartwrap"><canvas></canvas></div>
     <div class="cardfoot"><span>${esc(r.industry)}</span><span class="v">$${r.price.toFixed(r.price < 1 ? 3 : 2)}</span></div>
   </div>`;
