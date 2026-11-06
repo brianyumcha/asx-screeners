@@ -248,7 +248,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily — last rebuilt 6 Nov 2026, 3:05AM Sydney time.</div>
+  <div class="session">Rebuilt daily — last rebuilt 7 Nov 2026, 2:41AM Sydney time.</div>
 
   <div class="notice">⚠ "Red folder" is ForexFactory's own term for its highest ("High") impact tier — the events most likely to move price on release. This page shows the full Sunday-Saturday calendar week, sourced from the same feed ForexFactory's own site exports — no month-ahead feed exists (checked directly against forexfactory.com). Already-released events this week are shown dimmed for context — this feed has no "actual" outcome field, so only forecast/previous are ever shown either way. All times are Sydney local (AEST/AEDT), computed at build time — not your browser's timezone.</div>
 
@@ -300,13 +300,13 @@ const DATA = [
 [1793880000,"Thu 5 Nov","11:00pm","GBP","MPC Official Bank Rate Votes","7-0-2","3-0-6",false,true],
 [1793880000,"Thu 5 Nov","11:00pm","GBP","Official Bank Rate","4.00%","3.75%",false,true],
 [1793881800,"Thu 5 Nov","11:30pm","GBP","BOE Gov Bailey Speaks","","",false,true],
-[1793971800,"Tomorrow","12:30am","CAD","Employment Change","14.6K","-68.3K",false,false],
-[1793971800,"Tomorrow","12:30am","CAD","Unemployment Rate","6.5%","6.5%",false,false],
-[1793971800,"Tomorrow","12:30am","USD","Average Hourly Earnings m/m","0.3%","0.1%",false,false],
-[1793971800,"Tomorrow","12:30am","USD","Non-Farm Employment Change","65K","29K",true,false],
-[1793971800,"Tomorrow","12:30am","USD","Unemployment Rate","4.2%","4.2%",false,false],
-[1793980800,"Tomorrow","3:00am","JPY","BOJ Gov Ueda Speaks","","",false,false],
-[1794001500,"Tomorrow","8:45am","NZD","Parliamentary Elections","","",false,false]
+[1793971800,"Today","12:30am","CAD","Employment Change","14.6K","-68.3K",false,true],
+[1793971800,"Today","12:30am","CAD","Unemployment Rate","6.5%","6.5%",false,true],
+[1793971800,"Today","12:30am","USD","Average Hourly Earnings m/m","0.3%","0.1%",false,true],
+[1793971800,"Today","12:30am","USD","Non-Farm Employment Change","65K","29K",true,true],
+[1793971800,"Today","12:30am","USD","Unemployment Rate","4.2%","4.2%",false,true],
+[1793980800,"Today","3:00am","JPY","BOJ Gov Ueda Speaks","","",false,false],
+[1794001500,"Today","8:45am","NZD","Parliamentary Elections","","",false,false]
 ];
 
 // [unixTs, dateLabel, timeLabel, country, title, forecast, previous, isBigUS, isPast]
