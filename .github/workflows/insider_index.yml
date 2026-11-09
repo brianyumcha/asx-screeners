@@ -79,33 +79,12 @@ jobs:
       - name: Build Pages site
         run: |
           mkdir -p _site
-          cp index.html _site/index.html
-          cp materials-index.html _site/materials-index.html
-          cp healthcare-index.html _site/healthcare-index.html
-          cp energy-index.html _site/energy-index.html
-          cp tech-index.html _site/tech-index.html
-          cp real-estate-index.html _site/real-estate-index.html
-          cp financials-index.html _site/financials-index.html
-          cp staples-index.html _site/staples-index.html
-          cp discretionary-index.html _site/discretionary-index.html
-          cp industrials-index.html _site/industrials-index.html
-          cp utilities-index.html _site/utilities-index.html
-          cp comms-index.html _site/comms-index.html
-          cp red-folder-news.html _site/red-folder-news.html
-          cp sector-rotation.html _site/sector-rotation.html
-          [ -f earnings-calendar.html ] && cp earnings-calendar.html _site/earnings-calendar.html || true
-          cp insider-index.html _site/insider-index.html
-          [ -f options-us-csp.html ] && cp options-us-csp.html _site/options-us-csp.html || true
-          [ -f options-us-etf.html ] && cp options-us-etf.html _site/options-us-etf.html || true
-          [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
-          [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
-          cp craig-bullish-map.html _site/craig-bullish-map.html
-          cp timing-the-carts.html _site/timing-the-carts.html
-          [ -f pre-breakout.html ] && cp pre-breakout.html _site/pre-breakout.html || true
-          [ -f pullback.html ] && cp pullback.html _site/pullback.html || true
-          [ -f momentum.html ] && cp momentum.html _site/momentum.html || true
-          [ -f higher-high.html ] && cp higher-high.html _site/higher-high.html || true
-          [ -f volume-anomaly.html ] && cp volume-anomaly.html _site/volume-anomaly.html || true
+          python3 deploy_site.py
+          # This workflow owns insider-index.html - fail loud rather than
+          # silently deploying an incomplete site if it didn't get generated.
+          for f in index.html materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html discretionary-index.html industrials-index.html utilities-index.html comms-index.html red-folder-news.html sector-rotation.html insider-index.html craig-bullish-map.html timing-the-carts.html; do
+            [ -f "_site/$f" ] || { echo "::error::Expected _site/$f to exist after this run - aborting deploy"; exit 1; }
+          done
 
       - name: Check nav consistency across every deployed page
         run: python3 check_nav.py

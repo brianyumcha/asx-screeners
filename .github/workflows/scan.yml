@@ -164,36 +164,14 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: |
           mkdir -p _site
-          cp "asx_breakout_results.html" _site/pre-breakout.html
-          cp "asx_pullback_results.html" _site/pullback.html
-          cp "asx_momentum_results.html" _site/momentum.html
-          cp "asx_volume_anomaly_results.html" _site/volume-anomaly.html
-          cp "asx_hh_results.html" _site/higher-high.html
-          cp "asx_ll_results.html" _site/lower-low.html
-          cp index.html _site/index.html
-          [ -f materials-index.html ] && cp materials-index.html _site/materials-index.html || true
-          [ -f healthcare-index.html ] && cp healthcare-index.html _site/healthcare-index.html || true
-          [ -f energy-index.html ] && cp energy-index.html _site/energy-index.html || true
-          [ -f tech-index.html ] && cp tech-index.html _site/tech-index.html || true
-          [ -f real-estate-index.html ] && cp real-estate-index.html _site/real-estate-index.html || true
-          [ -f financials-index.html ] && cp financials-index.html _site/financials-index.html || true
-          [ -f staples-index.html ] && cp staples-index.html _site/staples-index.html || true
-          [ -f discretionary-index.html ] && cp discretionary-index.html _site/discretionary-index.html || true
-          [ -f industrials-index.html ] && cp industrials-index.html _site/industrials-index.html || true
-          [ -f utilities-index.html ] && cp utilities-index.html _site/utilities-index.html || true
-          [ -f comms-index.html ] && cp comms-index.html _site/comms-index.html || true
-          [ -f red-folder-news.html ] && cp red-folder-news.html _site/red-folder-news.html || true
-          [ -f sector-rotation.html ] && cp sector-rotation.html _site/sector-rotation.html || true
-          [ -f earnings-calendar.html ] && cp earnings-calendar.html _site/earnings-calendar.html || true
-          [ -f insider-index.html ] && cp insider-index.html _site/insider-index.html || true
-          [ -f options-us-csp.html ] && cp options-us-csp.html _site/options-us-csp.html || true
-          [ -f options-us-etf.html ] && cp options-us-etf.html _site/options-us-etf.html || true
-          [ -f conviction-stack.html ] && cp conviction-stack.html _site/conviction-stack.html || true
-          [ -f wave2-scanner.html ] && cp wave2-scanner.html _site/wave2-scanner.html || true
-          cp craig-bullish-map.html _site/craig-bullish-map.html
-          cp craig-bear-map.html _site/craig-bear-map.html
-          [ -f mtm-call-archive.html ] && cp mtm-call-archive.html _site/mtm-call-archive.html || true
-          cp timing-the-carts.html _site/timing-the-carts.html
+          python3 deploy_site.py
+          # This workflow runs the actual scans, so (unlike the other 5
+          # deploy workflows) a missing one of ITS OWN primary outputs here
+          # means something upstream actually broke - fail loud rather than
+          # silently deploying an incomplete site.
+          for f in pre-breakout.html pullback.html momentum.html volume-anomaly.html higher-high.html lower-low.html craig-bullish-map.html craig-bear-map.html timing-the-carts.html; do
+            [ -f "_site/$f" ] || { echo "::error::Expected _site/$f to exist after this run - aborting deploy"; exit 1; }
+          done
 
       - name: Check nav consistency across every deployed page
         if: steps.gate.outputs.should_run == 'true'
