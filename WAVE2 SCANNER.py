@@ -268,6 +268,9 @@ def main():
 
 def build_html_report(triggered, forming, total_scanned):
     from dashboard_template import render_dashboard_html
+    from call_badges import load_call_badges
+
+    badges = load_call_badges()
 
     def to_card(r, score):
         if r['state'] == 'Triggered':
@@ -282,9 +285,11 @@ def build_html_report(triggered, forming, total_scanned):
                 {'label': 'To trigger', 'value': f"{r['dist_to_trigger_pct']:.1f}%"},
                 {'label': 'C formed', 'value': r['qC_date']},
             ]
+        b = badges.get(r['ticker'], {})
         return {
             'ticker': r['ticker'], 'name': r['name'], 'sector': r['sector'], 'market_cap': r['market_cap'],
             'price': r['price'], 'change_1d': r['change_1d'], 'score': score,
+            'fa_badge': b.get('fa'), 'ta_badge': b.get('ta'),
             'stats': stats,
             'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
             'lows': r['lows'], 'closes': r['closes'], 'volumes': r['volumes'],

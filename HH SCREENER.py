@@ -1822,6 +1822,11 @@ td.ticker-cell{font-family:"IBM Plex Mono",monospace;font-weight:700}
 td.ticker-cell a{color:var(--accent2);text-decoration:none}
 .company-name{font-family:"IBM Plex Sans",sans-serif;font-weight:400;color:var(--muted);font-size:.68rem;margin-left:.5rem}
 .card-name{font-family:"IBM Plex Sans",sans-serif;font-weight:400;color:var(--muted);font-size:.68rem;margin:-.3rem 0 .5rem}
+.callbadges{display:flex;flex-wrap:wrap;gap:.3rem}
+.callbadge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;color:var(--good);
+  background:rgba(155,196,127,.12);border:1px solid var(--good);border-radius:999px;padding:.12rem .5rem;white-space:nowrap}
+.callbadge.ta{color:var(--accent2);background:rgba(143,196,219,.12);border-color:var(--accent2)}
+td.ticker-cell .callbadges{margin-top:.3rem}
 .up{color:var(--good)} .dn{color:var(--bad)} .neutral{color:var(--muted)}
 .hh-yes{background:rgba(155,196,127,.16);color:var(--good);font-weight:700;padding:.2rem .6rem;border-radius:4px;display:inline-block}
 .obv-confirm{color:var(--good)} .obv-not{color:var(--bad)} .obv-neutral{color:var(--muted)}
@@ -2143,6 +2148,13 @@ function drawChart(canvas, r, tf) {
   ctx.fillText(label, bx, by + 3);
 }
 
+function callBadgesHtml(r) {
+  const parts = [];
+  if (r.fa_badge) parts.push(`<span class="callbadge fa">${esc(r.fa_badge)}</span>`);
+  if (r.ta_badge) parts.push(`<span class="callbadge ta">${esc(r.ta_badge)}</span>`);
+  return parts.length ? `<div class="callbadges">${parts.join('')}</div>` : '';
+}
+
 function cardHtml(r) {
   const chgClass = r.change_1d > 0 ? 'up' : r.change_1d < 0 ? 'dn' : 'neutral';
   const chgSign = r.change_1d > 0 ? '+' : '';
@@ -2159,6 +2171,7 @@ function cardHtml(r) {
       <span class="hh-yes ${tierClass}" title="${tierTitle}">${tier || '<1M'} HIGH</span>
     </div>
     <div class="card-name">${esc(titleCase(r.name))}</div>
+    ${callBadgesHtml(r)}
     <div class="chartwrap"><canvas></canvas></div>
     <div class="cardfoot"><span>${esc(r.industry)}</span><span class="v">$${r.price.toFixed(r.price < 1 ? 3 : 2)}</span></div>
   </div>`;
@@ -2193,7 +2206,7 @@ function renderTable(visible, sigKey, obvKey) {
       const rsTitle = `RS vs XJO: ${rsWord(r.rs_market)}`;
       const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${r.ticker}`;
       return `<tr>
-        <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a><span class="company-name">${esc(titleCase(r.name))}</span></td>
+        <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(r.ticker)}</a><span class="company-name">${esc(titleCase(r.name))}</span>${callBadgesHtml(r)}</td>
         <td style="color:var(--muted)">${esc(r.industry)}</td>
         <td style="color:var(--muted)">${fmtMcap(r.market_cap)}</td>
         <td>$${r.price.toFixed(r.price < 1 ? 3 : 2)}</td>
@@ -2269,6 +2282,13 @@ render();
 
 
 def build_html_report(results, total_scanned, fresh_today, out_path):
+    from call_badges import load_call_badges
+    badges = load_call_badges()
+    for r in results:
+        b = badges.get(r['ticker'], {})
+        r['fa_badge'] = b.get('fa')
+        r['ta_badge'] = b.get('ta')
+
     now = datetime.now(SYDNEY_TZ)
     n_daily = sum(1 for r in results if r['hh_daily'])
     n_weekly = sum(1 for r in results if r['hh_weekly'])

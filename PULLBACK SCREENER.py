@@ -738,12 +738,16 @@ def run_scan(tickers, min_score=DEFAULT_MIN_SCORE, workers=DEFAULT_WORKERS):
 
 def build_html_report(results, total_scanned, out_path):
     from dashboard_template import render_dashboard_html
+    from call_badges import load_call_badges
+
+    badges = load_call_badges()
 
     def to_card(r):
         first_seen_date = datetime.strptime(r['first_seen'], '%Y-%m-%d').date()
         days_flagging = _weekdays_between(first_seen_date, date.today())
         since_label = 'Today' if days_flagging == 0 else f'{days_flagging}d'
         first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
+        b = badges.get(r['ticker'], {})
         return {
             'ticker': r['ticker'],
             'name': r['name'],
@@ -752,6 +756,8 @@ def build_html_report(results, total_scanned, out_path):
             'price': r['price'],
             'change_1d': r['change_1d'],
             'score': r['confluence_score'],
+            'fa_badge': b.get('fa'),
+            'ta_badge': b.get('ta'),
             'first_seen_ts': first_seen_ts,
             'stats': [
                 {'label': 'Retrace', 'value': f"{r['retracement_pct']:.1f}%"},

@@ -57,6 +57,9 @@ def render_dashboard_html(
             signal (e.g. an IV range, a liquidity tier), not decoration ],
         'dates': [...], 'opens': [...], 'highs': [...], 'lows': [...],
         'closes': [...], 'volumes': [...],   # trailing ~260 daily bars
+        'fa_badge': str (optional) - e.g. 'FA bullish — 27 Oct', from
+            call_badges.load_call_badges(); shown as a small pill when set.
+        'ta_badge': str (optional) - e.g. 'TA bullish — 29 Oct', same source.
       }
 
     No cards are ever hidden here - a stock that keeps qualifying run
@@ -305,6 +308,10 @@ input[type=text]:focus{border-color:rgba(232,179,85,.4)}
 .cardhead-left{display:flex;align-items:baseline;gap:.4rem}
 .ticker{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.02rem;color:var(--text)}
 .company-name{font-size:.68rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:-.3rem 0 .5rem}
+.callbadges{display:flex;flex-wrap:wrap;gap:.3rem;margin:-.15rem 0 .3rem}
+.callbadge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;color:var(--good);
+  background:rgba(168,212,145,.12);border:1px solid var(--good);border-radius:999px;padding:.12rem .5rem;white-space:nowrap}
+.callbadge.ta{color:var(--accent2);background:rgba(143,196,219,.12);border-color:var(--accent2)}
 .ticker a{color:inherit;text-decoration:none}
 .ticker a:hover{color:var(--accent2)}
 .chg{font-size:.72rem;font-weight:600}
@@ -360,8 +367,9 @@ table.datatable th.sorted{color:var(--accent)}
 table.datatable tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
 table.datatable tbody tr:hover{background:rgba(232,179,85,.05)}
 table.datatable td{padding:.65rem .8rem;vertical-align:middle;white-space:nowrap}
-table.datatable td.ticker-cell{font-family:"IBM Plex Mono",monospace;font-weight:700}
+table.datatable td.ticker-cell{font-family:"IBM Plex Mono",monospace;font-weight:700;vertical-align:top}
 table.datatable td.ticker-cell a{color:var(--accent2);text-decoration:none}
+table.datatable td.ticker-cell .callbadges{margin-top:.3rem}
 table.datatable td.sector-cell{color:var(--muted)}
 table.datatable td.name-cell{color:var(--muted);max-width:14rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .notice{background:rgba(232,179,85,.08);border:1px solid rgba(232,179,85,.25);border-radius:4px;
@@ -785,6 +793,13 @@ function drawChart(canvas, card, tf) {
   ctx.fillText(label, bx, by + 3);
 }
 
+function callBadgesHtml(c) {
+  const parts = [];
+  if (c.fa_badge) parts.push(`<span class="callbadge fa">${esc(c.fa_badge)}</span>`);
+  if (c.ta_badge) parts.push(`<span class="callbadge ta">${esc(c.ta_badge)}</span>`);
+  return parts.length ? `<div class="callbadges">${parts.join('')}</div>` : '';
+}
+
 function cardHtml(c) {
   const chgClass = c.change_1d > 0 ? 'up' : c.change_1d < 0 ? 'dn' : 'neutral';
   const chgSign = c.change_1d > 0 ? '+' : '';
@@ -799,6 +814,7 @@ function cardHtml(c) {
       <div class="scorebar"><div class="bg"><div class="fill" style="width:${Math.min(100,c.score)}%"></div></div><span class="num">${c.score}</span></div>
     </div>
     ${c.name ? `<div class="company-name">${esc(c.name)}</div>` : ''}
+    ${callBadgesHtml(c)}
     <div class="chartwrap"><canvas></canvas></div>
     <div class="statrow">${statsHtml}</div>
     <div class="sectortag">${esc(c.sector)}</div>
@@ -860,7 +876,7 @@ function renderTable(visible) {
     const tvUrl = `https://www.tradingview.com/chart/?symbol=${TV_PREFIX}${c.ticker}`;
     const statCells = c.stats.map(s => `<td class="${s.cls||''}">${esc(s.value)}</td>`).join('');
     return `<tr>
-      <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(c.ticker)}</a></td>
+      <td class="ticker-cell"><a href="${tvUrl}" target="_blank" rel="noopener">${esc(c.ticker)}</a>${callBadgesHtml(c)}</td>
       ${hasNames ? `<td class="name-cell">${esc(c.name||'')}</td>` : ''}
       <td class="sector-cell">${esc(c.sector)}</td>
       <td>$${c.price.toFixed(c.price < 1 ? 3 : 2)}</td>
