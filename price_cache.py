@@ -147,7 +147,24 @@ def refresh_cache(tickers, workers=15, max_history="3y"):
     def work(t):
         yahoo_sym = t if t.endswith(".AX") else t + ".AX"
         period = max_history if needs_full_fetch(t) else f"{REFRESH_TAIL_DAYS}d"
-        return t, _fetch_one(yahoo_sym, period)
+        df = _fetch_one(yahoo_sym, period)
+        # A stock split/consolidation inside the tail window (Yahoo flags it
+        # via the 'Stock Splits' column .history() already returns for
+        # free - no extra request) re-bases Yahoo's OWN price scale from
+        # here on, but our older cached rows were fetched before the split
+        # happened and are still on the old scale - merging just the tail
+        # on top of them leaves a discontinuity frozen in the cache forever
+        # (confirmed 2026-11-09: AUZ's 1-for-5 consolidation made every
+        # pre-split close read 5x too low, so HH SCREENER's high_tier()
+        # saw a trivial "12-month high" that wasn't a real breakout at
+        # all). A fresh FULL history pull re-bases the whole series
+        # consistently, which is what actually fixes it - so re-fetch full
+        # history instead of just the tail whenever a split shows up in
+        # it. Only costs an extra request for a ticker actually mid-split,
+        # not on every normal run.
+        if df is not None and not df.empty and "Stock Splits" in df.columns and (df["Stock Splits"] != 0).any():
+            df = _fetch_one(yahoo_sym, max_history)
+        return t, df
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
         futures = {pool.submit(work, t): t for t in to_fetch}
