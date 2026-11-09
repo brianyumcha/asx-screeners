@@ -55,31 +55,24 @@ jobs:
             git stash pop || true
           done
 
-      - name: Preserve existing screener/tool pages
-        # This workflow only regenerates options-us-csp.html / options-us-etf.html - without this,
-        # deploying _site/ here would wipe every other gitignored page off
-        # the live site. `-f` with `|| true` so a first-ever run before a
-        # given page exists doesn't break the build.
-        run: |
-          curl -sf -o pre-breakout.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html || true
-          curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true
-          curl -sf -o momentum.html https://brianyumcha.github.io/asx-screeners/momentum.html || true
-          curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
-          curl -sf -o lower-low.html https://brianyumcha.github.io/asx-screeners/lower-low.html || true
-          curl -sf -o volume-anomaly.html https://brianyumcha.github.io/asx-screeners/volume-anomaly.html || true
-          # insider-index.html is git-tracked (force-added by insider_index.yml),
-          # so checkout already restores the current committed version -
-          # curling the LIVE deployed copy here would overwrite it with a
-          # stale one whenever this repo is ahead of what's actually live
-          # (found 2026-10-14: this silently clobbered a same-day nav fix).
-
       - name: Build homepage (fresh nav)
         run: python3 build_site_index.py
 
       - name: Build Pages site
         run: |
           mkdir -p _site
-          python3 deploy_site.py
+          # This workflow only regenerates options-us-csp.html / options-
+          # us-etf.html - --preserve-from-live falls back to whatever's
+          # currently live for any page not found locally. Only the
+          # gitignored screener pages (pre-breakout/pullback/momentum/
+          # higher-high/lower-low/volume-anomaly) actually hit that
+          # fallback: every git-tracked page (insider-index.html etc.) is
+          # always present after checkout, so local wins and live is never
+          # even consulted for those - unlike the old unconditional curl
+          # here, which clobbered a same-day insider-index.html nav fix
+          # with a stale live copy on 2026-10-14 before that exclusion was
+          # added by hand.
+          python3 deploy_site.py --preserve-from-live
           # This workflow owns options-us-csp.html / options-us-etf.html -
           # fail loud rather than silently deploying an incomplete site if
           # one didn't get generated.

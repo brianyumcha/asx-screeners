@@ -39,26 +39,19 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Preserve the screener pages that are NEVER git-tracked
-        # pre-breakout/pullback/momentum/higher-high/lower-low/volume-anomaly
-        # only ever exist as scan.yml's own ephemeral build output - this
-        # workflow doesn't generate them, so they have to be pulled from the
-        # live site or deploying here would wipe them off entirely.
-        run: |
-          curl -sf -o pre-breakout.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html || true
-          curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true
-          curl -sf -o momentum.html https://brianyumcha.github.io/asx-screeners/momentum.html || true
-          curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
-          curl -sf -o lower-low.html https://brianyumcha.github.io/asx-screeners/lower-low.html || true
-          curl -sf -o volume-anomaly.html https://brianyumcha.github.io/asx-screeners/volume-anomaly.html || true
-
       - name: Build homepage (fresh nav)
         run: python3 build_site_index.py
 
       - name: Build Pages site
         run: |
           mkdir -p _site
-          python3 deploy_site.py
+          # This workflow never generates pre-breakout/pullback/momentum/
+          # higher-high/lower-low/volume-anomaly.html itself (those only
+          # ever exist as scan.yml's own ephemeral build output) -
+          # --preserve-from-live falls back to whatever's currently live
+          # for any page not present locally, so deploying here doesn't
+          # wipe them.
+          python3 deploy_site.py --preserve-from-live
 
       - name: Check nav consistency across every deployed page
         run: python3 check_nav.py

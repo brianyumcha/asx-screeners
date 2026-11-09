@@ -99,26 +99,19 @@ jobs:
             git stash pop || true
           done
 
-      - name: Preserve existing screener pages
-        # This workflow only regenerates the sector-index/red-folder pages -
-        # without this, deploying _site/ here would wipe these 4 gitignored
-        # screener pages off the live site until scan.yml's next run
-        # restored them. `-f` (fail on HTTP error) with `|| true` so a
-        # first-ever run before these pages exist doesn't break the build.
-        run: |
-          curl -sf -o pre-breakout.html https://brianyumcha.github.io/asx-screeners/pre-breakout.html || true
-          curl -sf -o pullback.html https://brianyumcha.github.io/asx-screeners/pullback.html || true
-          curl -sf -o momentum.html https://brianyumcha.github.io/asx-screeners/momentum.html || true
-          curl -sf -o higher-high.html https://brianyumcha.github.io/asx-screeners/higher-high.html || true
-          curl -sf -o volume-anomaly.html https://brianyumcha.github.io/asx-screeners/volume-anomaly.html || true
-
       - name: Build homepage (fresh nav)
         run: python3 build_site_index.py
 
       - name: Build Pages site
         run: |
           mkdir -p _site
-          python3 deploy_site.py
+          # This workflow only regenerates the sector-index/red-folder
+          # pages - --preserve-from-live falls back to whatever's
+          # currently live for the gitignored screener pages (pre-
+          # breakout/pullback/momentum/higher-high/lower-low/volume-
+          # anomaly) it never generates itself, so deploying here doesn't
+          # wipe them.
+          python3 deploy_site.py --preserve-from-live
           # This workflow owns these pages - fail loud rather than silently
           # deploying an incomplete site if one didn't get generated.
           for f in index.html materials-index.html healthcare-index.html energy-index.html tech-index.html real-estate-index.html financials-index.html staples-index.html discretionary-index.html industrials-index.html utilities-index.html comms-index.html red-folder-news.html sector-rotation.html earnings-calendar.html insider-index.html craig-bullish-map.html timing-the-carts.html; do
