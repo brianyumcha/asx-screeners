@@ -253,7 +253,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt after each screener run — last rebuilt 6 Nov 2026.</div>
+  <div class="session">Rebuilt after each screener run — last rebuilt 9 Nov 2026.</div>
 
   <div class="notice">⚠ Each signal has its own independent definition and lookback window (see footer) — this page doesn't judge whether they agree for the same reason, just that they agree at all. A high count means several unrelated methods currently point at the same ticker, not that it's a stronger buy than a 1-signal ticker outside this list. Not financial advice.</div>
 
@@ -307,16 +307,11 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["BEN","BENDIGO AND ADELAIDE BANK LIMITED","Financials",3,true,false,true,true,false,6216235780,10.83,1.5,"2026-08-31",null,"1M"],
-["BKI","BKI INVESTMENT COMPANY LIMITED","Other",3,true,false,true,false,true,1440734599,1.8,0.8,"2026-08-04",null,"1M"],
-["DEV","DEVEX RESOURCES LIMITED","Energy",3,false,false,true,true,true,124307824,0.19,8.6,null,null,"1M"],
 ["GDI","GDI Property Group","Real Estate",3,true,false,false,true,true,342389760,0.64,0.0,"2026-08-25",null,null],
 ["NHF","nib holdings limited","Financials",3,true,false,false,true,true,3228749312,6.76,-0.1,"2026-08-28",null,null],
-["PNC","PIONEER CREDIT LIMITED","Financials",3,true,false,true,true,false,118081841,0.65,5.7,"2026-06-17",null,null],
 ["PNI","Pinnacle Investment Management Group Limited","Financials",3,true,false,false,true,true,3823832320,15.84,-3.5,"2026-09-30",null,null],
 ["3DA","Amaero Inc.","Other",2,true,false,false,false,true,232039040,0.185,-2.6,"2026-08-21",null,null],
 ["A2M","","Consumer Staples",2,false,false,false,true,true,null,7.13,-1.8,null,null,null],
-["AAL","ALFABS AUSTRALIA LIMITED","Industrials",2,true,false,true,false,false,51660369,0.24,33.3,"2026-09-17",null,"1M"],
 ["ACL","Australian Clinical Labs Limited","Healthcare",2,true,false,false,true,false,602456320,3.24,1.2,"2026-09-10",null,null],
 ["ADH","Adairs Limited","Consumer Discretionary",2,true,false,false,true,false,247891824,1.445,-1.7,"2026-10-06",null,null],
 ["AEG","Aland Equity Group Limited","Other",2,true,false,false,false,true,59761140,0.069,-4.2,"2026-10-16",null,null],
@@ -339,7 +334,9 @@ const DATA = [
 ["AZJ","Aurizon Holdings Limited","Industrials",2,true,false,false,true,false,6598564352,3.85,0.0,"2026-09-04",null,null],
 ["AZY","Antipa Minerals Limited","Other",2,true,false,false,false,true,304415168,0.475,-5.9,"2026-07-07",null,null],
 ["BBN","Baby Bunting Group Limited","Consumer Discretionary",2,true,false,false,true,false,151896736,1.31,-3.0,"2026-10-14",null,null],
+["BEN","Bendigo and Adelaide Bank Limited","Financials",2,true,false,false,true,false,6169728512,10.83,1.5,"2026-08-31",null,null],
 ["BGA","Bega Cheese Limited","Consumer Staples",2,true,false,false,true,false,1908338688,6.43,0.3,"2026-08-26",null,null],
+["BKI","BKI Investment Company Limited","Other",2,true,false,false,false,true,1440734592,1.8,0.8,"2026-08-04",null,null],
 ["BNL","Blue Star Helium Limited","Other",2,true,false,false,false,true,12305831,0.105,12.9,"2026-06-25",null,null],
 ["BOA","BOA Resources Limited","Other",2,true,false,false,false,true,53834916,0.096,-4.0,"2026-06-30",null,null],
 ["BOQ","Bank of Queensland Limited","Financials",2,true,false,false,true,false,4555737600,7.01,0.4,"2026-10-20",null,null],
@@ -353,14 +350,13 @@ const DATA = [
 ["CTD","Corporate Travel Management Limited","Consumer Discretionary",2,true,false,false,true,false,483500512,3.64,-0.8,"2026-09-09",null,null],
 ["CTT","Cettire Limited","Consumer Discretionary",2,true,false,false,true,false,129620992,0.38,-2.6,"2026-10-01",null,null],
 ["CUP","Count Limited","Industrials",2,true,false,false,true,false,368068032,1.66,0.0,"2026-05-25",null,null],
-["DGL","DGL GROUP LIMITED","Materials",2,true,false,true,false,false,68454063,0.26,8.3,"2026-10-01",null,null],
+["DEV","","Energy",2,false,false,false,true,true,null,0.19,8.6,null,null,null],
 ["DOW","Downer EDI Limited","Industrials",2,true,false,false,true,false,4706843648,7.1,-1.0,"2026-08-24",null,null],
 ["DTL","Data#3 Limited","Info Tech",2,true,false,false,true,false,2295160576,14.28,-4.0,"2026-09-04",null,null],
 ["DXC","","Real Estate",2,false,false,false,true,true,null,2.76,1.5,null,null,null],
 ["EOS","Electro Optic Systems Holdings Limited","Other",2,true,false,false,false,true,1798004480,7.02,-4.6,"2026-06-26",null,null],
 ["EWC","Energy World Corporation Ltd","Other",2,true,false,false,false,true,262030528,0.063,-3.1,"2026-06-25",null,null],
 ["FGG","Future Generation Global Limited","Other",2,true,false,false,false,true,655448000,1.53,-3.2,"2026-09-21",null,null],
-["FHE","FRONTIER ENERGY LIMITED","Materials",2,true,false,true,false,false,211388721,0.195,2.6,"2026-05-19",null,null],
 ["FLT","Flight Centre Travel Group Limited","Consumer Discretionary",2,true,false,false,true,false,2363458816,12.235,-3.0,"2026-05-28",null,null],
 ["GDF","","Real Estate",2,false,false,false,true,true,null,1.12,0.0,null,null,null],
 ["HLI","Helia Group Limited","Other",2,true,false,false,false,true,1356832000,5.0,1.0,"2026-08-28",null,null],
@@ -373,7 +369,6 @@ const DATA = [
 ["KLS","Kelsian Group Limited","Industrials",2,true,false,false,true,false,1098727040,4.23,-0.5,"2026-10-14",null,null],
 ["KSL","Kina Securities Limited","Other",2,true,false,false,false,true,311096864,1.06,0.0,"2026-09-29",null,null],
 ["KZR","Kalamazoo Resources Limited","Other",2,true,false,false,false,true,51062880,0.145,0.0,"2026-09-23",null,null],
-["LAC","LAC GOLD LIMITED","Materials",2,false,false,true,false,true,56950195,0.305,15.1,null,null,null],
 ["MAF","MA Financial Group Limited","Financials",2,true,false,false,true,false,943066432,5.0,-4.9,"2026-09-16",null,null],
 ["MCA","Murray Cod Australia Limited","Other",2,true,false,false,false,true,34701884,0.15,0.0,"2026-09-29",null,null],
 ["MGR","Mirvac Group","Real Estate",2,true,false,false,true,false,7257870336,1.96,1.0,"2026-09-16",null,null],
@@ -386,7 +381,9 @@ const DATA = [
 ["PE1","","Other",2,false,false,false,true,true,null,1.47,-1.0,null,null,null],
 ["PGC","Paragon Care Limited","Other",2,true,false,false,false,true,256572336,0.15,-3.2,"2026-06-29",null,null],
 ["PGL","Pilbara Gold Limited","Other",2,true,false,false,false,true,94776496,0.4,-8.1,"2026-07-13",null,null],
+["PLA","PACIFIC LIME AND CEMENT LIMITED","Materials",2,true,false,true,false,false,354189266,0.405,6.6,"2026-05-11",null,"1M"],
 ["PME","","Healthcare",2,false,false,false,true,true,null,205.13,-1.5,null,null,null],
+["PNC","Pioneer Credit Limited","Financials",2,true,false,false,true,false,117121824,0.65,5.7,"2026-06-17",null,null],
 ["PRN","Perenti Limited","Other",2,true,false,false,false,true,1912347520,2.02,-2.9,"2026-09-11",null,null],
 ["PWH","PWR Holdings Limited","Consumer Discretionary",2,true,false,false,true,false,1131458816,11.14,-2.6,"2026-08-24",null,null],
 ["PXA","PEXA Group Limited","Real Estate",2,true,false,false,true,false,1261462656,7.35,-2.8,"2026-09-16",null,null],
