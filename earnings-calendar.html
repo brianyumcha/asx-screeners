@@ -250,7 +250,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 10 Nov 2026, 9:59AM Sydney time.</div>
+  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 10 Nov 2026, 10:27AM Sydney time.</div>
 
   <div class="notice" id="seasonNotice" style="display:none"></div>
 
@@ -516,9 +516,14 @@ const DATA = [
 [1788130800,"Mon 31 Aug","WEEK 4 (24th August – 31st August)","MHJ","Michael Hill International Ltd","FY26","Cons. Disc",0.02,"",10.0,"","reported"],
 [1788130800,"Mon 31 Aug","WEEK 4 (24th August – 31st August)","MVF","Monash IVF Group Ltd","FY26","Health Care",0.013,"",8.3,"","reported"],
 [1788130800,"Mon 31 Aug","WEEK 4 (24th August – 31st August)","SGR","The Star Entertainment Group","FY26","Cons. Disc",null,"",-307.3,"","reported"],
-[1789426800,"Tue 15 Sep","Beyond August","NHC","New Hope Corporation Ltd","FY26","Energy",null,"",null,"","awaiting"],
-[1790204400,"Thu 24 Sep","Beyond August","SOL","Washington H Soul Pattinson & Company Ltd","FY26","Financials",null,"",null,"","awaiting"],
-[1792015200,"Thu 15 Oct","Beyond August","BOQ","Bank of Queensland","FY26","Financials",null,"",null,"","awaiting"],
+[1789426800,"Tue 15 Sep","Beyond August","NHC","New Hope Corporation Ltd","FY26","Energy",0.3,"",161.0,"","reported"],
+[1790204400,"Thu 24 Sep","Beyond August","SOL","Washington H Soul Pattinson & Company Ltd","FY26","Financials",0.63,"",2200.0,"","reported"],
+[1792015200,"Thu 15 Oct","Beyond August","BOQ","Bank of Queensland","FY26","Financials",0.2,"",250.0,"","reported"],
+[1793570400,"Mon 2 Nov","Beyond August","WBC","Westpac Banking Corporation","FY26","Financials",0.77,"",6800.0,"","reported"],
+[1793829600,"Thu 5 Nov","Beyond August","NAB","National Australia Banka","FY26","Financials",0.85,"",6140.0,"","reported"],
+[1793916000,"Fri 6 Nov","Beyond August","MQG","Macquarie Group Ltd","HY27","Financials",3.25,"",2480.0,"","reported"],
+[1794175200,"Mon 9 Nov","Beyond August","ANZ","ANZ Group Holdings Ltd","FY26","Financials",0.83,"",7300.0,"","reported"],
+[1794175200,"Mon 9 Nov","Beyond August","DNL","Dyno Nobel Ltd","FY26","Materials",0.05,"",66.0,"","reported"],
 [1794434400,"Thu 12 Nov","Beyond August","ALL","Aristocrat Leisure Ltd","FY26","Cons. Disc",null,"",null,"","upcoming"],
 [1794434400,"Thu 12 Nov","Beyond August","GNC","GrainCorp Ltd","FY26","Cons. Staple",null,"",null,"","upcoming"],
 [1794434400,"Thu 12 Nov","Beyond August","ORI","Orica Ltd","FY26","Materials",null,"",null,"","upcoming"],
@@ -558,7 +563,7 @@ const SEASON_ACTIVE = true;
 const NEXT_SEASON_NOTE = "";
 
 document.getElementById('sessionLine').textContent =
-  `Rebuilt daily — last rebuilt 10 Nov 2026, 9:59AM Sydney time. ${SEASON_LABEL} reporting season.`;
+  `Rebuilt daily — last rebuilt 10 Nov 2026, 10:27AM Sydney time. ${SEASON_LABEL} reporting season.`;
 
 if (!SEASON_ACTIVE) {
   const notice = document.getElementById('seasonNotice');
