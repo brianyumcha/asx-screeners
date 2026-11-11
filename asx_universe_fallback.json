@@ -7,25 +7,25 @@
 },
 "14D":{
 "industry":"Capital Goods",
-"market_cap":20246225,
+"market_cap":19523145,
 "name":"1414 DEGREES LIMITED",
 "sector":"Industrials"
 },
 "1AD":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":9636507,
+"market_cap":8030423,
 "name":"ADALTA LIMITED",
 "sector":"Healthcare"
 },
 "1AE":{
 "industry":"Materials",
-"market_cap":6625358,
+"market_cap":7341613,
 "name":"AURORA ENERGY METALS LIMITED",
 "sector":"Materials"
 },
 "1AI":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":18248139,
+"market_cap":19261924,
 "name":"ALGORAE PHARMACEUTICALS LIMITED",
 "sector":"Healthcare"
 },
@@ -43,7 +43,7 @@
 },
 "1MC":{
 "industry":"Materials",
-"market_cap":10160459,
+"market_cap":9718700,
 "name":"MORELLA CORPORATION LIMITED",
 "sector":"Materials"
 },
@@ -55,13 +55,13 @@
 },
 "29M":{
 "industry":"Materials",
-"market_cap":428768754,
+"market_cap":446269519,
 "name":"29METALS LIMITED",
 "sector":"Materials"
 },
 "360":{
 "industry":"Software & Services",
-"market_cap":5506340416,
+"market_cap":5476907861,
 "name":"LIFE360 INC.",
 "sector":"Info Tech"
 },
@@ -79,19 +79,19 @@
 },
 "3DP":{
 "industry":"Software & Services",
-"market_cap":20825397,
+"market_cap":21626374,
 "name":"POINTERRA LIMITED",
 "sector":"Info Tech"
 },
 "3PL":{
 "industry":"Consumer Services",
-"market_cap":81871957,
+"market_cap":79142891,
 "name":"3P LEARNING LIMITED..",
 "sector":"Consumer Discretionary"
 },
 "49M":{
 "industry":"Materials",
-"market_cap":6578932,
+"market_cap":6743406,
 "name":"49 METALS LIMITED",
 "sector":"Materials"
 },
@@ -103,7 +103,7 @@
 },
 "4DX":{
 "industry":"Health Care Equipment & Services",
-"market_cap":1373334069,
+"market_cap":1409474439,
 "name":"4DMEDICAL LIMITED",
 "sector":"Healthcare"
 },
@@ -115,25 +115,25 @@
 },
 "5GG":{
 "industry":"Telecommunication Services",
-"market_cap":5631232,
+"market_cap":4764888,
 "name":"PENTANET LIMITED",
 "sector":"Communication Services"
 },
 "5GN":{
 "industry":"Software & Services",
-"market_cap":15053724,
+"market_cap":15317824,
 "name":"5G NETWORKS LIMITED.",
 "sector":"Info Tech"
 },
 "6KA":{
 "industry":"Materials",
-"market_cap":191475930,
+"market_cap":187458952,
 "name":"6K ADDITIVE, INC.",
 "sector":"Materials"
 },
 "88E":{
 "industry":"Energy",
-"market_cap":23291677,
+"market_cap":22626201,
 "name":"88 ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -163,55 +163,55 @@
 },
 "A1M":{
 "industry":"Materials",
-"market_cap":503675495,
+"market_cap":531657467,
 "name":"AIC MINES LIMITED",
 "sector":"Materials"
 },
 "A1N":{
 "industry":"Media & Entertainment",
-"market_cap":90784608,
+"market_cap":87654104,
 "name":"ARN MEDIA LIMITED",
 "sector":"Communication Services"
 },
 "A2M":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":5191038211,
+"market_cap":5118232626,
 "name":"THE A2 MILK COMPANY LIMITED",
 "sector":"Consumer Staples"
 },
 "A3D":{
 "industry":"Capital Goods",
-"market_cap":32702926,
+"market_cap":29069267,
 "name":"AURORA LABS LIMITED",
 "sector":"Industrials"
 },
 "A4N":{
 "industry":"Materials",
-"market_cap":537238665,
+"market_cap":551758629,
 "name":"ALPHA HPA LIMITED",
 "sector":"Materials"
 },
 "A8G":{
 "industry":"Materials",
-"market_cap":12209567,
+"market_cap":11192103,
 "name":"AUSTRALASIAN METALS LIMITED",
 "sector":"Materials"
 },
 "AA2":{
 "industry":"Materials",
-"market_cap":76898882,
+"market_cap":79974838,
 "name":"ARIANA RESOURCES PLC",
 "sector":"Materials"
 },
 "AAC":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":798665940,
+"market_cap":831818111,
 "name":"AUSTRALIAN AGRICULTURAL COMPANY LIMITED.",
 "sector":"Consumer Staples"
 },
 "AAI":{
 "industry":"Materials",
-"market_cap":14766474752,
+"market_cap":15518788892,
 "name":"ALCOA CORPORATION",
 "sector":"Materials"
 },
@@ -223,7 +223,7 @@
 },
 "AAL":{
 "industry":"Capital Goods",
-"market_cap":68880492,
+"market_cap":71750512,
 "name":"ALFABS AUSTRALIA LIMITED",
 "sector":"Industrials"
 },
@@ -241,7 +241,7 @@
 },
 "AAR":{
 "industry":"Materials",
-"market_cap":244189307,
+"market_cap":280365500,
 "name":"ASTRAL RESOURCES NL",
 "sector":"Materials"
 },
@@ -253,7 +253,7 @@
 },
 "ABB":{
 "industry":"Telecommunication Services",
-"market_cap":1389480310,
+"market_cap":1392500920,
 "name":"AUSSIE BROADBAND LIMITED",
 "sector":"Communication Services"
 },
@@ -265,7 +265,7 @@
 },
 "ABG":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":777482141,
+"market_cap":768545564,
 "name":"ABACUS GROUP",
 "sector":"Real Estate"
 },
@@ -295,19 +295,19 @@
 },
 "ACE":{
 "industry":"Software & Services",
-"market_cap":188793242,
+"market_cap":185376170,
 "name":"ACUSENSUS LIMITED.",
 "sector":"Info Tech"
 },
 "ACF":{
 "industry":"Capital Goods",
-"market_cap":371612737,
+"market_cap":365278429,
 "name":"ACROW LIMITED",
 "sector":"Industrials"
 },
 "ACL":{
 "industry":"Health Care Equipment & Services",
-"market_cap":604321511,
+"market_cap":600591132,
 "name":"AUSTRALIAN CLINICAL LABS LIMITED",
 "sector":"Healthcare"
 },
@@ -325,7 +325,7 @@
 },
 "ACQ":{
 "industry":"Not Applic",
-"market_cap":71668566,
+"market_cap":74227113,
 "name":"ACORN CAPITAL INVESTMENT FUND LIMITED",
 "sector":"Other"
 },
@@ -343,13 +343,13 @@
 },
 "ACU":{
 "industry":"Real Estate Management & Development",
-"market_cap":19842999,
+"market_cap":18282314,
 "name":"ACUMENTIS GROUP LIMITED",
 "sector":"Real Estate"
 },
 "ACW":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":158840901,
+"market_cap":185960080,
 "name":"ACTINOGEN MEDICAL LIMITED",
 "sector":"Healthcare"
 },
@@ -361,7 +361,7 @@
 },
 "AD8":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":169982603,
+"market_cap":175902395,
 "name":"AUDINATE GROUP LIMITED",
 "sector":"Info Tech"
 },
@@ -379,7 +379,7 @@
 },
 "ADD":{
 "industry":"Energy",
-"market_cap":11694634,
+"market_cap":13156464,
 "name":"ADAVALE RESOURCES LIMITED",
 "sector":"Energy"
 },
@@ -391,7 +391,7 @@
 },
 "ADH":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":260511766,
+"market_cap":265018890,
 "name":"ADAIRS LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -409,7 +409,7 @@
 },
 "ADR":{
 "industry":"Health Care Equipment & Services",
-"market_cap":3348148,
+"market_cap":2854159,
 "name":"ADHERIUM LIMITED",
 "sector":"Healthcare"
 },
@@ -445,19 +445,19 @@
 },
 "AEE":{
 "industry":"Energy",
-"market_cap":74273239,
+"market_cap":79360447,
 "name":"AURA ENERGY LIMITED",
 "sector":"Energy"
 },
 "AEF":{
 "industry":"Financial Services",
-"market_cap":519065160,
+"market_cap":512235356,
 "name":"AUSTRALIAN ETHICAL INVESTMENT LIMITED",
 "sector":"Financials"
 },
 "AEG":{
 "industry":"Financial Services",
-"market_cap":51543984,
+"market_cap":49302941,
 "name":"ALAND EQUITY GROUP LIMITED",
 "sector":"Financials"
 },
@@ -475,7 +475,7 @@
 },
 "AEM":{
 "industry":"Materials",
-"market_cap":185693522,
+"market_cap":176850973,
 "name":"ADVANCED ENGINEERED MATERIALS LTD",
 "sector":"Materials"
 },
@@ -487,13 +487,13 @@
 },
 "AEU":{
 "industry":"Materials",
-"market_cap":149502543,
+"market_cap":157371098,
 "name":"ATOMIC EAGLE LTD",
 "sector":"Materials"
 },
 "AEV":{
 "industry":"Materials",
-"market_cap":81451343,
+"market_cap":67876119,
 "name":"AVENIRA LIMITED",
 "sector":"Materials"
 },
@@ -511,7 +511,7 @@
 },
 "AFG":{
 "industry":"Financial Services",
-"market_cap":412743107,
+"market_cap":408787103,
 "name":"AUSTRALIAN FINANCE GROUP LTD",
 "sector":"Financials"
 },
@@ -523,37 +523,37 @@
 },
 "AFL":{
 "industry":"Commercial & Professional Services",
-"market_cap":13446657,
+"market_cap":12982980,
 "name":"AF LEGAL GROUP LTD",
 "sector":"Industrials"
 },
 "AFP":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":376500029,
+"market_cap":372305043,
 "name":"AFT PHARMACEUTICALS LIMITED",
 "sector":"Healthcare"
 },
 "AGC":{
 "industry":"Materials",
-"market_cap":34811530,
+"market_cap":35640376,
 "name":"AUSTRALIAN GOLD AND COPPER LTD",
 "sector":"Materials"
 },
 "AGD":{
 "industry":"Materials",
-"market_cap":76831923,
+"market_cap":80172441,
 "name":"AUSTRAL GOLD LIMITED",
 "sector":"Materials"
 },
 "AGE":{
 "industry":"Energy",
-"market_cap":164345736,
+"market_cap":178846830,
 "name":"ALLIGATOR ENERGY LIMITED",
 "sector":"Energy"
 },
 "AGI":{
 "industry":"Consumer Services",
-"market_cap":434464168,
+"market_cap":410888593,
 "name":"AINSWORTH GAME TECHNOLOGY LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -571,13 +571,13 @@
 },
 "AGL":{
 "industry":"Utilities",
-"market_cap":6081634986,
+"market_cap":6054725097,
 "name":"AGL ENERGY LIMITED.",
 "sector":"Utilities"
 },
 "AGN":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":12203388,
+"market_cap":14130238,
 "name":"ARGENICA THERAPEUTICS LIMITED",
 "sector":"Healthcare"
 },
@@ -589,31 +589,31 @@
 },
 "AGT":{
 "industry":"Media & Entertainment",
-"market_cap":6305251,
+"market_cap":6433930,
 "name":"ARBITR GROUP LIMITED",
 "sector":"Communication Services"
 },
 "AGY":{
 "industry":"Materials",
-"market_cap":49218993,
+"market_cap":47578360,
 "name":"ARGOSY MINERALS LIMITED",
 "sector":"Materials"
 },
 "AHC":{
 "industry":"Health Care Equipment & Services",
-"market_cap":99309089,
+"market_cap":97435333,
 "name":"AUSTCO HEALTHCARE LIMITED",
 "sector":"Healthcare"
 },
 "AHE":{
 "industry":"Health Care Equipment & Services",
-"market_cap":8931735,
+"market_cap":7655773,
 "name":"ADHERIS HEALTH LIMITED",
 "sector":"Healthcare"
 },
 "AHF":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":13469494,
+"market_cap":15394281,
 "name":"AUSTRALIAN DAIRY NUTRITIONALS LIMITED",
 "sector":"Consumer Staples"
 },
@@ -631,13 +631,13 @@
 },
 "AHL":{
 "industry":"Automobiles & Components",
-"market_cap":97179020,
+"market_cap":96772414,
 "name":"ADRAD HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
 "AHN":{
 "industry":"Materials",
-"market_cap":7381257,
+"market_cap":7852401,
 "name":"ATHENA RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -655,19 +655,19 @@
 },
 "AI1":{
 "industry":"Software & Services",
-"market_cap":82418086,
+"market_cap":80063284,
 "name":"ADISYN LTD",
 "sector":"Info Tech"
 },
 "AIA":{
 "industry":"Transportation",
-"market_cap":12102686227,
+"market_cap":12204962449,
 "name":"AUCKLAND INTERNATIONAL AIRPORT LIMITED",
 "sector":"Industrials"
 },
 "AIH":{
 "industry":"Capital Goods",
-"market_cap":165769860,
+"market_cap":162602283,
 "name":"ADVANCED INNERGY HOLDINGS LIMITED",
 "sector":"Industrials"
 },
@@ -679,7 +679,7 @@
 },
 "AIM":{
 "industry":"Software & Services",
-"market_cap":40990358,
+"market_cap":43092428,
 "name":"AI-MEDIA TECHNOLOGIES LIMITED",
 "sector":"Info Tech"
 },
@@ -691,7 +691,7 @@
 },
 "AIS":{
 "industry":"Materials",
-"market_cap":555267180,
+"market_cap":592785233,
 "name":"AERIS RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -709,13 +709,13 @@
 },
 "AIX":{
 "industry":"Not Applic",
-"market_cap":228247517,
+"market_cap":234654465,
 "name":"AI PRIVATE OPPORTUNITIES TRUST",
 "sector":"Other"
 },
 "AIZ":{
 "industry":"Transportation",
-"market_cap":986236449,
+"market_cap":1002404259,
 "name":"AIR NEW ZEALAND LIMITED",
 "sector":"Industrials"
 },
@@ -727,7 +727,7 @@
 },
 "AJX":{
 "industry":"Materials",
-"market_cap":15838131,
+"market_cap":15914730,
 "name":"ALEXIUM INTERNATIONAL GROUP LIMITED",
 "sector":"Materials"
 },
@@ -739,7 +739,7 @@
 },
 "AKA":{
 "industry":"Materials",
-"market_cap":27472825,
+"market_cap":31868477,
 "name":"AUREKA LIMITED",
 "sector":"Materials"
 },
@@ -757,7 +757,7 @@
 },
 "AKN":{
 "industry":"Materials",
-"market_cap":21782327,
+"market_cap":21834518,
 "name":"AUKING MINING LIMITED",
 "sector":"Materials"
 },
@@ -781,19 +781,19 @@
 },
 "AL3":{
 "industry":"Capital Goods",
-"market_cap":60103774,
+"market_cap":62965858,
 "name":"AML3D LIMITED",
 "sector":"Industrials"
 },
 "ALA":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":61047019,
+"market_cap":60442593,
 "name":"AROVELLA THERAPEUTICS LIMITED",
 "sector":"Healthcare"
 },
 "ALB":{
 "industry":"Materials",
-"market_cap":7952812,
+"market_cap":9189917,
 "name":"ALBION RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -805,25 +805,25 @@
 },
 "ALD":{
 "industry":"Energy",
-"market_cap":8586024627,
+"market_cap":8566960459,
 "name":"AMPOL LIMITED",
 "sector":"Energy"
 },
 "ALI":{
 "industry":"Not Applic",
-"market_cap":473792944,
+"market_cap":477568186,
 "name":"ARGO GLOBAL LISTED INFRASTRUCTURE LIMITED",
 "sector":"Other"
 },
 "ALK":{
 "industry":"Materials",
-"market_cap":2356703316,
+"market_cap":2527478919,
 "name":"ALKANE RESOURCES LIMITED",
 "sector":"Materials"
 },
 "ALL":{
 "industry":"Consumer Services",
-"market_cap":39012077874,
+"market_cap":38822526326,
 "name":"ARISTOCRAT LEISURE LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -835,31 +835,31 @@
 },
 "ALQ":{
 "industry":"Commercial & Professional Services",
-"market_cap":10683770741,
+"market_cap":10556885102,
 "name":"ALS LIMITED",
 "sector":"Industrials"
 },
 "ALR":{
 "industry":"Materials",
-"market_cap":185610123,
+"market_cap":198867989,
 "name":"ALTAIR MINERALS LIMITED",
 "sector":"Materials"
 },
 "ALU":{
 "industry":"Materials",
-"market_cap":97490660,
+"market_cap":90178860,
 "name":"ALURION RESOURCES LIMITED",
 "sector":"Materials"
 },
 "ALV":{
 "industry":"Materials",
-"market_cap":24340669,
+"market_cap":21636150,
 "name":"ALVO MINERALS LIMITED",
 "sector":"Materials"
 },
 "ALX":{
 "industry":"Transportation",
-"market_cap":5450600509,
+"market_cap":5421530639,
 "name":"ATLAS ARTERIA",
 "sector":"Industrials"
 },
@@ -871,7 +871,7 @@
 },
 "AM3":{
 "industry":"Materials",
-"market_cap":10898745,
+"market_cap":9341782,
 "name":"AMARA MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -895,7 +895,7 @@
 },
 "AMC":{
 "industry":"Materials",
-"market_cap":30057093307,
+"market_cap":30010858738,
 "name":"AMCOR PLC",
 "sector":"Materials"
 },
@@ -907,19 +907,19 @@
 },
 "AMD":{
 "industry":"Materials",
-"market_cap":38093855,
+"market_cap":42422702,
 "name":"ARROW MINERALS LTD",
 "sector":"Materials"
 },
 "AMH":{
 "industry":"Not Applic",
-"market_cap":269205694,
+"market_cap":280225810,
 "name":"AMCIL LIMITED",
 "sector":"Other"
 },
 "AMI":{
 "industry":"Materials",
-"market_cap":688193670,
+"market_cap":714000933,
 "name":"AURELIA METALS LIMITED",
 "sector":"Materials"
 },
@@ -931,19 +931,19 @@
 },
 "AMN":{
 "industry":"Materials",
-"market_cap":13647530,
+"market_cap":14427389,
 "name":"AGRIMIN LIMITED",
 "sector":"Materials"
 },
 "AMO":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":7632383,
+"market_cap":7441573,
 "name":"AMBERTECH LIMITED",
 "sector":"Info Tech"
 },
 "AMP":{
 "industry":"Financial Services",
-"market_cap":5332985279,
+"market_cap":5260917910,
 "name":"AMP LIMITED",
 "sector":"Financials"
 },
@@ -955,7 +955,7 @@
 },
 "AMU":{
 "industry":"Materials",
-"market_cap":6122610,
+"market_cap":5992342,
 "name":"AMERICAN URANIUM LTD",
 "sector":"Materials"
 },
@@ -967,7 +967,7 @@
 },
 "AMX":{
 "industry":"Commercial & Professional Services",
-"market_cap":33246724,
+"market_cap":35146536,
 "name":"AEROMETREX LIMITED",
 "sector":"Industrials"
 },
@@ -985,7 +985,7 @@
 },
 "ANN":{
 "industry":"Health Care Equipment & Services",
-"market_cap":6406729523,
+"market_cap":6420760907,
 "name":"ANSELL LIMITED",
 "sector":"Healthcare"
 },
@@ -1015,7 +1015,7 @@
 },
 "ANZ":{
 "industry":"Banks",
-"market_cap":121662208645,
+"market_cap":117771671978,
 "name":"ANZ GROUP HOLDINGS LIMITED",
 "sector":"Financials"
 },
@@ -1051,13 +1051,13 @@
 },
 "AOV":{
 "industry":"Automobiles & Components",
-"market_cap":686650305,
+"market_cap":669249810,
 "name":"AMOTIV LIMITED",
 "sector":"Consumer Discretionary"
 },
 "APA":{
 "industry":"Utilities",
-"market_cap":14980835587,
+"market_cap":14807569695,
 "name":"APA GROUP",
 "sector":"Utilities"
 },
@@ -1069,7 +1069,7 @@
 },
 "APE":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":4592892603,
+"market_cap":4363531135,
 "name":"EAGERS AUTOMOTIVE LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -1093,7 +1093,7 @@
 },
 "APZ":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":1157632811,
+"market_cap":1143878758,
 "name":"ASPEN GROUP",
 "sector":"Real Estate"
 },
@@ -1129,7 +1129,7 @@
 },
 "AQN":{
 "industry":"Commercial & Professional Services",
-"market_cap":46593516,
+"market_cap":44074948,
 "name":"AQUIRIAN LIMITED",
 "sector":"Industrials"
 },
@@ -1147,7 +1147,7 @@
 },
 "AQZ":{
 "industry":"Transportation",
-"market_cap":86264329,
+"market_cap":87356282,
 "name":"ALLIANCE AVIATION SERVICES LIMITED",
 "sector":"Industrials"
 },
@@ -1165,7 +1165,7 @@
 },
 "AR9":{
 "industry":"Software & Services",
-"market_cap":38219126,
+"market_cap":37251553,
 "name":"ARCHTIS LIMITED",
 "sector":"Info Tech"
 },
@@ -1177,7 +1177,7 @@
 },
 "ARB":{
 "industry":"Automobiles & Components",
-"market_cap":1557706538,
+"market_cap":1528331684,
 "name":"ARB CORPORATION LIMITED.",
 "sector":"Consumer Discretionary"
 },
@@ -1189,19 +1189,19 @@
 },
 "ARD":{
 "industry":"Materials",
-"market_cap":30646317,
+"market_cap":32348891,
 "name":"ARGENT MINERALS LIMITED",
 "sector":"Materials"
 },
 "ARF":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":1156580825,
+"market_cap":1144320251,
 "name":"ARENA REIT.",
 "sector":"Real Estate"
 },
 "ARG":{
 "industry":"Not Applic",
-"market_cap":7163623661,
+"market_cap":7095900328,
 "name":"ARGO INVESTMENTS LIMITED",
 "sector":"Other"
 },
@@ -1213,13 +1213,13 @@
 },
 "ARL":{
 "industry":"Materials",
-"market_cap":58224238,
+"market_cap":59322809,
 "name":"ARDEA RESOURCES LIMITED",
 "sector":"Materials"
 },
 "ARN":{
 "industry":"Materials",
-"market_cap":95021086,
+"market_cap":100959904,
 "name":"ALDORO RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -1231,19 +1231,19 @@
 },
 "ARR":{
 "industry":"Materials",
-"market_cap":177695379,
+"market_cap":166043223,
 "name":"AMERICAN RARE EARTHS LIMITED",
 "sector":"Materials"
 },
 "ART":{
 "industry":"Media & Entertainment",
-"market_cap":90576733,
+"market_cap":93024753,
 "name":"AIRTASKER LIMITED",
 "sector":"Communication Services"
 },
 "ARU":{
 "industry":"Materials",
-"market_cap":880815738,
+"market_cap":911188694,
 "name":"ARAFURA RARE EARTHS LTD",
 "sector":"Materials"
 },
@@ -1255,13 +1255,13 @@
 },
 "ARX":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":183328406,
+"market_cap":174680840,
 "name":"AROA BIOSURGERY LIMITED",
 "sector":"Healthcare"
 },
 "AS1":{
 "industry":"Materials",
-"market_cap":230268663,
+"market_cap":251202177,
 "name":"ASARA RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -1273,13 +1273,13 @@
 },
 "ASB":{
 "industry":"Capital Goods",
-"market_cap":1785306781,
+"market_cap":1823382044,
 "name":"AUSTAL LIMITED",
 "sector":"Industrials"
 },
 "ASG":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":234764974,
+"market_cap":239033428,
 "name":"AUTOSPORTS GROUP LIMITED.",
 "sector":"Consumer Discretionary"
 },
@@ -1297,7 +1297,7 @@
 },
 "ASL":{
 "industry":"Materials",
-"market_cap":326872538,
+"market_cap":379816681,
 "name":"ANDEAN SILVER LIMITED",
 "sector":"Materials"
 },
@@ -1309,7 +1309,7 @@
 },
 "ASN":{
 "industry":"Materials",
-"market_cap":56826747,
+"market_cap":60073990,
 "name":"ANSON RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -1333,25 +1333,25 @@
 },
 "ASV":{
 "industry":"Commercial & Professional Services",
-"market_cap":42927359,
+"market_cap":43680471,
 "name":"ASSET VISION CO LTD",
 "sector":"Industrials"
 },
 "ASX":{
 "industry":"Financial Services",
-"market_cap":13036915897,
+"market_cap":13030995409,
 "name":"ASX LIMITED",
 "sector":"Financials"
 },
 "AT1":{
 "industry":"Health Care Equipment & Services",
-"market_cap":13536493,
+"market_cap":12634060,
 "name":"ATOMO DIAGNOSTICS LIMITED",
 "sector":"Healthcare"
 },
 "AT4":{
 "industry":"Materials",
-"market_cap":106457407,
+"market_cap":112211862,
 "name":"AMERICAN TUNGSTEN & ANTIMONY LTD",
 "sector":"Materials"
 },
@@ -1369,19 +1369,19 @@
 },
 "ATC":{
 "industry":"Materials",
-"market_cap":2669056,
+"market_cap":5338113,
 "name":"ALTECH BATTERIES LTD",
 "sector":"Materials"
 },
 "ATG":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":108571928,
+"market_cap":109913535,
 "name":"ARTICORE GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
 "ATH":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":60724974,
+"market_cap":68745254,
 "name":"ALTERITY THERAPEUTICS LIMITED",
 "sector":"Healthcare"
 },
@@ -1405,25 +1405,25 @@
 },
 "ATP":{
 "industry":"Consumer Durables & Apparel",
-"market_cap":36879577,
+"market_cap":36440534,
 "name":"ATLAS PEARLS LTD",
 "sector":"Consumer Discretionary"
 },
 "ATR":{
 "industry":"Materials",
-"market_cap":240769981,
+"market_cap":233245919,
 "name":"ASTRON LIMITED",
 "sector":"Materials"
 },
 "ATS":{
 "industry":"Energy",
-"market_cap":43296873,
+"market_cap":44693547,
 "name":"AUSTRALIS OIL & GAS LIMITED",
 "sector":"Energy"
 },
 "ATT":{
 "industry":"Materials",
-"market_cap":2423250,
+"market_cap":2077071,
 "name":"ALTITUDE MINERALS LTD",
 "sector":"Materials"
 },
@@ -1435,7 +1435,7 @@
 },
 "ATX":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":45684769,
+"market_cap":42091585,
 "name":"AMPLIA THERAPEUTICS LIMITED",
 "sector":"Healthcare"
 },
@@ -1453,19 +1453,19 @@
 },
 "AUB":{
 "industry":"Insurance",
-"market_cap":3963633286,
+"market_cap":3951875639,
 "name":"AUB GROUP LIMITED",
 "sector":"Financials"
 },
 "AUC":{
 "industry":"Materials",
-"market_cap":714630813,
+"market_cap":744981929,
 "name":"AUSGOLD LIMITED",
 "sector":"Materials"
 },
 "AUE":{
 "industry":"Materials",
-"market_cap":236527816,
+"market_cap":254722263,
 "name":"AURUM RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -1477,13 +1477,13 @@
 },
 "AUG":{
 "industry":"Materials",
-"market_cap":6452627,
+"market_cap":6183768,
 "name":"AUGUSTUS MINERALS LIMITED",
 "sector":"Materials"
 },
 "AUI":{
 "industry":"Not Applic",
-"market_cap":2647514520,
+"market_cap":2680012652,
 "name":"AUSTRALIAN UNITED INVESTMENT COMPANY LIMITED",
 "sector":"Other"
 },
@@ -1501,7 +1501,7 @@
 },
 "AUQ":{
 "industry":"Materials",
-"market_cap":49871699,
+"market_cap":50795249,
 "name":"ALARA RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -1519,13 +1519,13 @@
 },
 "AUV":{
 "industry":"Materials",
-"market_cap":4619405,
+"market_cap":5081345,
 "name":"AURAVELLE METALS LIMITED",
 "sector":"Materials"
 },
 "AUZ":{
 "industry":"Materials",
-"market_cap":58980383,
+"market_cap":69512594,
 "name":"AUSTRALIAN MINES LIMITED",
 "sector":"Materials"
 },
@@ -1561,31 +1561,31 @@
 },
 "AVG":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":25698108,
+"market_cap":24709719,
 "name":"AUSTRALIAN VINTAGE LTD",
 "sector":"Consumer Staples"
 },
 "AVH":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":714809982,
+"market_cap":768224355,
 "name":"AVITA MEDICAL INC.",
 "sector":"Healthcare"
 },
 "AVL":{
 "industry":"Materials",
-"market_cap":66799232,
+"market_cap":68707782,
 "name":"AUSTRALIAN VANADIUM LIMITED",
 "sector":"Materials"
 },
 "AVM":{
 "industry":"Materials",
-"market_cap":18330634,
+"market_cap":19816902,
 "name":"ADVANCE METALS LIMITED",
 "sector":"Materials"
 },
 "AVR":{
 "industry":"Health Care Equipment & Services",
-"market_cap":799446118,
+"market_cap":804320789,
 "name":"ANTERIS TECHNOLOGIES GLOBAL CORP.",
 "sector":"Healthcare"
 },
@@ -1597,19 +1597,19 @@
 },
 "AW1":{
 "industry":"Materials",
-"market_cap":36887102,
+"market_cap":35657532,
 "name":"AMERICAN WEST METALS LIMITED",
 "sector":"Materials"
 },
 "AWJ":{
 "industry":"Materials",
-"market_cap":44154996,
+"market_cap":46033932,
 "name":"AURIC MINING LIMITED",
 "sector":"Materials"
 },
 "AX1":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":399788473,
+"market_cap":393776616,
 "name":"ACCENT GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -1621,7 +1621,7 @@
 },
 "AXE":{
 "industry":"Semiconductors & Semiconductor Equipment",
-"market_cap":52596197,
+"market_cap":49753160,
 "name":"ARCHER MATERIALS LIMITED",
 "sector":"Info Tech"
 },
@@ -1639,7 +1639,7 @@
 },
 "AXN":{
 "industry":"Materials",
-"market_cap":22413888,
+"market_cap":21583744,
 "name":"ALLIANCE NICKEL LIMITED",
 "sector":"Materials"
 },
@@ -1663,7 +1663,7 @@
 },
 "AXQ":{
 "industry":"Class Pend",
-"market_cap":839070108,
+"market_cap":863181318,
 "name":"AURA CONSOLIDATED GROUP, INC.",
 "sector":"Other"
 },
@@ -1675,7 +1675,7 @@
 },
 "AYA":{
 "industry":"Health Care Equipment & Services",
-"market_cap":572717663,
+"market_cap":569444991,
 "name":"ARTRYA LIMITED",
 "sector":"Healthcare"
 },
@@ -1711,13 +1711,13 @@
 },
 "AZY":{
 "industry":"Materials",
-"market_cap":317843536,
+"market_cap":327880700,
 "name":"ANTIPA MINERALS LIMITED",
 "sector":"Materials"
 },
 "B4P":{
 "industry":"Financial Services",
-"market_cap":70829471,
+"market_cap":68791213,
 "name":"BEFOREPAY GROUP LIMITED",
 "sector":"Financials"
 },
@@ -1729,13 +1729,13 @@
 },
 "BAP":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":575203882,
+"market_cap":571840116,
 "name":"BAPCOR LIMITED",
 "sector":"Consumer Discretionary"
 },
 "BAS":{
 "industry":"Energy",
-"market_cap":18350297,
+"market_cap":19451315,
 "name":"BASS OIL LIMITED",
 "sector":"Energy"
 },
@@ -1747,13 +1747,13 @@
 },
 "BBC":{
 "industry":"Banks",
-"market_cap":35930959,
+"market_cap":35634009,
 "name":"BNK BANKING CORPORATION LIMITED",
 "sector":"Financials"
 },
 "BBL":{
 "industry":"Media & Entertainment",
-"market_cap":146080542,
+"market_cap":147060948,
 "name":"BRISBANE BRONCOS LIMITED",
 "sector":"Communication Services"
 },
@@ -1765,19 +1765,19 @@
 },
 "BBT":{
 "industry":"Consumer Services",
-"market_cap":131198470,
+"market_cap":125950531,
 "name":"BETR ENTERTAINMENT LIMITED",
 "sector":"Consumer Discretionary"
 },
 "BC8":{
 "industry":"Materials",
-"market_cap":448322514,
+"market_cap":488416398,
 "name":"BLACK CAT SYNDICATE LIMITED",
 "sector":"Materials"
 },
 "BCA":{
 "industry":"Materials",
-"market_cap":44530737,
+"market_cap":46211142,
 "name":"BLACK CANYON LIMITED",
 "sector":"Materials"
 },
@@ -1789,13 +1789,13 @@
 },
 "BCC":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":3456877,
+"market_cap":3370455,
 "name":"BEAM COMMUNICATIONS HOLDINGS LIMITED",
 "sector":"Info Tech"
 },
 "BCI":{
 "industry":"Materials",
-"market_cap":1572952951,
+"market_cap":1646455425,
 "name":"BCI MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -1807,13 +1807,13 @@
 },
 "BCM":{
 "industry":"Materials",
-"market_cap":103267774,
+"market_cap":116737483,
 "name":"BRAZILIAN CRITICAL MINERALS LIMITED",
 "sector":"Materials"
 },
 "BCN":{
 "industry":"Materials",
-"market_cap":317733764,
+"market_cap":320061484,
 "name":"BEACON MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -1825,7 +1825,7 @@
 },
 "BDX":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":24701780,
+"market_cap":25070464,
 "name":"BCAL DIAGNOSTICS LIMITED",
 "sector":"Healthcare"
 },
@@ -1837,7 +1837,7 @@
 },
 "BEN":{
 "industry":"Banks",
-"market_cap":6309450187,
+"market_cap":6175454477,
 "name":"BENDIGO AND ADELAIDE BANK LIMITED",
 "sector":"Financials"
 },
@@ -1867,7 +1867,7 @@
 },
 "BFG":{
 "industry":"Financial Services",
-"market_cap":436211769,
+"market_cap":441022929,
 "name":"BELL FINANCIAL GROUP LIMITED",
 "sector":"Financials"
 },
@@ -1879,13 +1879,13 @@
 },
 "BGA":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":1966445189,
+"market_cap":1963386953,
 "name":"BEGA CHEESE LIMITED",
 "sector":"Consumer Staples"
 },
 "BGD":{
 "industry":"Materials",
-"market_cap":214849162,
+"market_cap":231166820,
 "name":"BARTON GOLD HOLDINGS LIMITED",
 "sector":"Materials"
 },
@@ -1897,7 +1897,7 @@
 },
 "BGL":{
 "industry":"Materials",
-"market_cap":2103018361,
+"market_cap":2170135969,
 "name":"BELLEVUE GOLD LIMITED",
 "sector":"Materials"
 },
@@ -1915,7 +1915,7 @@
 },
 "BH6":{
 "industry":"Materials",
-"market_cap":64507653,
+"market_cap":69883290,
 "name":"BROKEN HILL GOLD LTD",
 "sector":"Materials"
 },
@@ -1927,19 +1927,19 @@
 },
 "BHL":{
 "industry":"Materials",
-"market_cap":10990333,
+"market_cap":12283314,
 "name":"BLACK HORSE MINING LIMITED",
 "sector":"Materials"
 },
 "BHM":{
 "industry":"Materials",
-"market_cap":177950352,
+"market_cap":201534133,
 "name":"BROKEN HILL MINES LIMITED",
 "sector":"Materials"
 },
 "BHP":{
 "industry":"Materials",
-"market_cap":292950590464,
+"market_cap":300983598672,
 "name":"BHP GROUP LIMITED",
 "sector":"Materials"
 },
@@ -1951,13 +1951,13 @@
 },
 "BIO":{
 "industry":"Household & Personal Products",
-"market_cap":74050211,
+"market_cap":80992418,
 "name":"BIOME AUSTRALIA LIMITED",
 "sector":"Consumer Staples"
 },
 "BIS":{
 "industry":"Materials",
-"market_cap":204836957,
+"market_cap":202421427,
 "name":"BISALLOY STEEL GROUP LIMITED",
 "sector":"Materials"
 },
@@ -1969,25 +1969,25 @@
 },
 "BJY":{
 "industry":"Financial Services",
-"market_cap":2510575756,
+"market_cap":2554466941,
 "name":"BARRENJOEY GROUP LIMITED",
 "sector":"Financials"
 },
 "BKB":{
 "industry":"Materials",
-"market_cap":63845761,
+"market_cap":66469559,
 "name":"BLACK BEAR MINERALS LIMITED",
 "sector":"Materials"
 },
 "BKI":{
 "industry":"Not Applic",
-"market_cap":1452841612,
+"market_cap":1444770270,
 "name":"BKI INVESTMENT COMPANY LIMITED",
 "sector":"Other"
 },
 "BKT":{
 "industry":"Materials",
-"market_cap":23630574,
+"market_cap":21482340,
 "name":"BLACK ROCK MINING LIMITED",
 "sector":"Materials"
 },
@@ -1999,13 +1999,13 @@
 },
 "BLG":{
 "industry":"Semiconductors & Semiconductor Equipment",
-"market_cap":32804625,
+"market_cap":33769467,
 "name":"BLUGLASS LIMITED",
 "sector":"Info Tech"
 },
 "BLS":{
 "industry":"Household & Personal Products",
-"market_cap":217182430,
+"market_cap":207739716,
 "name":"BLS PHARMACEUTICALS LIMITED",
 "sector":"Consumer Staples"
 },
@@ -2017,13 +2017,13 @@
 },
 "BLX":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":432309945,
+"market_cap":442630342,
 "name":"BEACON LIGHTING GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
 "BLZ":{
 "industry":"Energy",
-"market_cap":0,
+"market_cap":2835002,
 "name":"BLAZE MINERALS LIMITED",
 "sector":"Energy"
 },
@@ -2035,19 +2035,19 @@
 },
 "BM1":{
 "industry":"Materials",
-"market_cap":319084341,
+"market_cap":332161568,
 "name":"BALLARD MINING LIMITED",
 "sector":"Materials"
 },
 "BM8":{
 "industry":"Materials",
-"market_cap":7751715,
+"market_cap":7530237,
 "name":"BATTERY AGE MINERALS LTD",
 "sector":"Materials"
 },
 "BMC":{
 "industry":"Materials",
-"market_cap":664628304,
+"market_cap":714063467,
 "name":"BMC MINERALS LTD.",
 "sector":"Materials"
 },
@@ -2065,19 +2065,19 @@
 },
 "BML":{
 "industry":"Materials",
-"market_cap":177848090,
+"market_cap":195341345,
 "name":"BOAB METALS LIMITED",
 "sector":"Materials"
 },
 "BMM":{
 "industry":"Materials",
-"market_cap":6384482,
+"market_cap":6248642,
 "name":"BAYAN MINING AND MINERALS LIMITED",
 "sector":"Materials"
 },
 "BMN":{
 "industry":"Energy",
-"market_cap":834427196,
+"market_cap":882245373,
 "name":"BANNERMAN ENERGY LTD",
 "sector":"Energy"
 },
@@ -2089,7 +2089,7 @@
 },
 "BMR":{
 "industry":"Materials",
-"market_cap":24221490,
+"market_cap":24970609,
 "name":"BALLYMORE RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -2107,7 +2107,7 @@
 },
 "BNL":{
 "industry":"Energy",
-"market_cap":12921207,
+"market_cap":11567557,
 "name":"BLUE STAR HELIUM LIMITED",
 "sector":"Energy"
 },
@@ -2131,13 +2131,13 @@
 },
 "BNZ":{
 "industry":"Materials",
-"market_cap":1557521727,
+"market_cap":1717072733,
 "name":"BENZ MINING CORP.",
 "sector":"Materials"
 },
 "BOA":{
 "industry":"Materials",
-"market_cap":49220496,
+"market_cap":44606075,
 "name":"BOA RESOURCES LTD",
 "sector":"Materials"
 },
@@ -2149,19 +2149,19 @@
 },
 "BOE":{
 "industry":"Energy",
-"market_cap":581282316,
+"market_cap":643562564,
 "name":"BOSS ENERGY LTD",
 "sector":"Energy"
 },
 "BOL":{
 "industry":"Capital Goods",
-"market_cap":78090981,
+"market_cap":77732766,
 "name":"BOOM LOGISTICS LIMITED",
 "sector":"Industrials"
 },
 "BOQ":{
 "industry":"Banks",
-"market_cap":4624828524,
+"market_cap":4545658849,
 "name":"BANK OF QUEENSLAND LIMITED.",
 "sector":"Financials"
 },
@@ -2185,7 +2185,7 @@
 },
 "BPG":{
 "industry":"Software & Services",
-"market_cap":10326329,
+"market_cap":11309789,
 "name":"BLACK PEARL GROUP LIMITED",
 "sector":"Info Tech"
 },
@@ -2197,7 +2197,7 @@
 },
 "BPM":{
 "industry":"Materials",
-"market_cap":57203812,
+"market_cap":53285743,
 "name":"BPM MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -2227,43 +2227,43 @@
 },
 "BRE":{
 "industry":"Materials",
-"market_cap":468080549,
+"market_cap":527453598,
 "name":"BRAZILIAN RARE EARTHS LIMITED",
 "sector":"Materials"
 },
 "BRG":{
 "industry":"Consumer Durables & Apparel",
-"market_cap":4806496437,
+"market_cap":4803578988,
 "name":"BREVILLE GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
 "BRI":{
 "industry":"Materials",
-"market_cap":104551606,
+"market_cap":108319231,
 "name":"BIG RIVER INDUSTRIES LIMITED",
 "sector":"Materials"
 },
 "BRK":{
 "industry":"Energy",
-"market_cap":31218000,
+"market_cap":32637000,
 "name":"BROOKSIDE ENERGY LIMITED",
 "sector":"Energy"
 },
 "BRL":{
 "industry":"Materials",
-"market_cap":81017881,
+"market_cap":80417748,
 "name":"BATHURST RESOURCES LIMITED.",
 "sector":"Materials"
 },
 "BRN":{
 "industry":"Software & Services",
-"market_cap":227594181,
+"market_cap":238973890,
 "name":"BRAINCHIP HOLDINGS LTD",
 "sector":"Info Tech"
 },
 "BRU":{
 "industry":"Energy",
-"market_cap":17662586,
+"market_cap":18341916,
 "name":"BURU ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -2275,7 +2275,7 @@
 },
 "BRY":{
 "industry":"Materials",
-"market_cap":2901068,
+"market_cap":3263701,
 "name":"BARYS RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -2293,19 +2293,19 @@
 },
 "BSA":{
 "industry":"Commercial & Professional Services",
-"market_cap":14454047,
+"market_cap":14253296,
 "name":"BSA LIMITED",
 "sector":"Industrials"
 },
 "BSL":{
 "industry":"Materials",
-"market_cap":13760012108,
+"market_cap":13987812372,
 "name":"BLUESCOPE STEEL LIMITED",
 "sector":"Materials"
 },
 "BSN":{
 "industry":"Energy",
-"market_cap":4470871,
+"market_cap":4235562,
 "name":"BASIN ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -2317,13 +2317,13 @@
 },
 "BST":{
 "industry":"Capital Goods",
-"market_cap":37624101,
+"market_cap":36578987,
 "name":"BORESIGHT LTD",
 "sector":"Industrials"
 },
 "BSX":{
 "industry":"Materials",
-"market_cap":36154857,
+"market_cap":41319837,
 "name":"BLACKSTONE MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -2335,7 +2335,7 @@
 },
 "BTE":{
 "industry":"Energy",
-"market_cap":18235537,
+"market_cap":18649981,
 "name":"BOTALA ENERGY LTD",
 "sector":"Energy"
 },
@@ -2347,55 +2347,55 @@
 },
 "BTL":{
 "industry":"Energy",
-"market_cap":309146270,
+"market_cap":301606117,
 "name":"BEETALOO ENERGY AUSTRALIA LIMITED",
 "sector":"Energy"
 },
 "BTM":{
 "industry":"Energy",
-"market_cap":14032666,
+"market_cap":13642870,
 "name":"BREAKTHROUGH MINERALS LIMITED",
 "sector":"Energy"
 },
 "BTN":{
 "industry":"Financial Services",
-"market_cap":3817169,
+"market_cap":4198886,
 "name":"BUTN LIMITED",
 "sector":"Financials"
 },
 "BTR":{
 "industry":"Materials",
-"market_cap":782436361,
+"market_cap":865142324,
 "name":"BRIGHTSTAR RESOURCES LIMITED",
 "sector":"Materials"
 },
 "BUB":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":68925013,
+"market_cap":70715273,
 "name":"BUBS AUSTRALIA LIMITED",
 "sector":"Consumer Staples"
 },
 "BUR":{
 "industry":"Materials",
-"market_cap":6391024,
+"market_cap":5706272,
 "name":"BURLEY MINERALS LTD",
 "sector":"Materials"
 },
 "BUS":{
 "industry":"Materials",
-"market_cap":6988801,
+"market_cap":6814081,
 "name":"BUBALUS RESOURCES LIMITED",
 "sector":"Materials"
 },
 "BUX":{
 "industry":"Materials",
-"market_cap":9330522,
+"market_cap":7930943,
 "name":"BUXTON RESOURCES LIMITED",
 "sector":"Materials"
 },
 "BUY":{
 "industry":"Energy",
-"market_cap":9513340,
+"market_cap":8154292,
 "name":"BOUNTY OIL & GAS NL",
 "sector":"Energy"
 },
@@ -2407,7 +2407,7 @@
 },
 "BVR":{
 "industry":"Materials",
-"market_cap":42114973,
+"market_cap":46434458,
 "name":"BELLAVISTA RESOURCES LTD",
 "sector":"Materials"
 },
@@ -2425,19 +2425,19 @@
 },
 "BWN":{
 "industry":"Transportation",
-"market_cap":105452787,
+"market_cap":107442462,
 "name":"BHAGWAN MARINE LIMITED",
 "sector":"Industrials"
 },
 "BWP":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":2898298360,
+"market_cap":2882589426,
 "name":"BWP GROUP",
 "sector":"Real Estate"
 },
 "BXB":{
 "industry":"Commercial & Professional Services",
-"market_cap":29464986364,
+"market_cap":28958929676,
 "name":"BRAMBLES LIMITED",
 "sector":"Industrials"
 },
@@ -2467,7 +2467,7 @@
 },
 "C79":{
 "industry":"Commercial & Professional Services",
-"market_cap":722582203,
+"market_cap":713243500,
 "name":"CHRYSOS CORPORATION LIMITED",
 "sector":"Industrials"
 },
@@ -2479,25 +2479,25 @@
 },
 "CAA":{
 "industry":"Materials",
-"market_cap":206781119,
+"market_cap":205947629,
 "name":"CAPRAL LIMITED",
 "sector":"Materials"
 },
 "CAE":{
 "industry":"Materials",
-"market_cap":28633663,
+"market_cap":30065346,
 "name":"CANNINDAH RESOURCES LIMITED",
 "sector":"Materials"
 },
 "CAF":{
 "industry":"Financial Services",
-"market_cap":78952188,
+"market_cap":80004884,
 "name":"CENTREPOINT ALLIANCE LIMITED",
 "sector":"Financials"
 },
 "CAM":{
 "industry":"Not Applic",
-"market_cap":0,
+"market_cap":87220578,
 "name":"CLIME CAPITAL LIMITED",
 "sector":"Other"
 },
@@ -2515,19 +2515,19 @@
 },
 "CAR":{
 "industry":"Media & Entertainment",
-"market_cap":9890504278,
+"market_cap":9833596888,
 "name":"CAR GROUP LIMITED",
 "sector":"Communication Services"
 },
 "CAT":{
 "industry":"Software & Services",
-"market_cap":1162789954,
+"market_cap":1188067997,
 "name":"CATAPULT SPORTS LTD",
 "sector":"Info Tech"
 },
 "CAV":{
 "industry":"Materials",
-"market_cap":27793791,
+"market_cap":25750130,
 "name":"CARNAVALE RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -2539,37 +2539,37 @@
 },
 "CAZ":{
 "industry":"Materials",
-"market_cap":8835462,
+"market_cap":9424492,
 "name":"CAZALY RESOURCES LIMITED",
 "sector":"Materials"
 },
 "CBA":{
 "industry":"Banks",
-"market_cap":280321679589,
+"market_cap":277744547557,
 "name":"COMMONWEALTH BANK OF AUSTRALIA.",
 "sector":"Financials"
 },
 "CBE":{
 "industry":"Materials",
-"market_cap":292926336,
+"market_cap":305945285,
 "name":"COBRE LIMITED",
 "sector":"Materials"
 },
 "CBL":{
 "industry":"Health Care Equipment & Services",
-"market_cap":26662507,
+"market_cap":27206640,
 "name":"CONTROL BIONICS LIMITED",
 "sector":"Healthcare"
 },
 "CBO":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":1297125452,
+"market_cap":1330754630,
 "name":"COBRAM ESTATE OLIVES LIMITED",
 "sector":"Consumer Staples"
 },
 "CBY":{
 "industry":"Materials",
-"market_cap":9111618,
+"market_cap":8817695,
 "name":"CANTERBURY RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -2587,13 +2587,13 @@
 },
 "CCA":{
 "industry":"Financial Services",
-"market_cap":28999027,
+"market_cap":27618121,
 "name":"CHANGE FINANCIAL LIMITED",
 "sector":"Financials"
 },
 "CCE":{
 "industry":"Utilities",
-"market_cap":59822436,
+"market_cap":66231982,
 "name":"CARNEGIE CLEAN ENERGY LIMITED",
 "sector":"Utilities"
 },
@@ -2605,7 +2605,7 @@
 },
 "CCL":{
 "industry":"Financial Services",
-"market_cap":1176896326,
+"market_cap":1186886957,
 "name":"CUSCAL LIMITED",
 "sector":"Financials"
 },
@@ -2629,31 +2629,31 @@
 },
 "CCP":{
 "industry":"Financial Services",
-"market_cap":1064565628,
+"market_cap":1051632925,
 "name":"CREDIT CORP GROUP LIMITED",
 "sector":"Financials"
 },
 "CCR":{
 "industry":"Software & Services",
-"market_cap":90587132,
+"market_cap":83038204,
 "name":"CREDIT CLEAR LIMITED",
 "sector":"Info Tech"
 },
 "CCV":{
 "industry":"Financial Services",
-"market_cap":189895113,
+"market_cap":186312187,
 "name":"CASH CONVERTERS INTERNATIONAL",
 "sector":"Financials"
 },
 "CCX":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":15406312,
+"market_cap":15021154,
 "name":"CITY CHIC COLLECTIVE LIMITED",
 "sector":"Consumer Discretionary"
 },
 "CD1":{
 "industry":"Not Applic",
-"market_cap":10234330,
+"market_cap":10599842,
 "name":"CD PRIVATE EQUITY FUND I",
 "sector":"Other"
 },
@@ -2665,19 +2665,19 @@
 },
 "CD3":{
 "industry":"Not Applic",
-"market_cap":55461883,
+"market_cap":54741599,
 "name":"CD PRIVATE EQUITY FUND III",
 "sector":"Other"
 },
 "CDA":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":9934725671,
+"market_cap":10226440868,
 "name":"CODAN LIMITED",
 "sector":"Info Tech"
 },
 "CDE":{
 "industry":"Commercial & Professional Services",
-"market_cap":4798235,
+"market_cap":3598676,
 "name":"CODEIFAI LIMITED",
 "sector":"Industrials"
 },
@@ -2689,13 +2689,13 @@
 },
 "CDO":{
 "industry":"Not Applic",
-"market_cap":38843699,
+"market_cap":39948259,
 "name":"CADENCE OPPORTUNITIES FUND LIMITED.",
 "sector":"Other"
 },
 "CDP":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":435197740,
+"market_cap":430233508,
 "name":"CARINDALE PROPERTY TRUST",
 "sector":"Real Estate"
 },
@@ -2713,13 +2713,13 @@
 },
 "CEH":{
 "industry":"Consumer Services",
-"market_cap":172910034,
+"market_cap":176795653,
 "name":"COAST ENTERTAINMENT HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
 "CEL":{
 "industry":"Materials",
-"market_cap":274234107,
+"market_cap":257094476,
 "name":"CHALLENGER GOLD LIMITED",
 "sector":"Materials"
 },
@@ -2731,7 +2731,7 @@
 },
 "CEN":{
 "industry":"Utilities",
-"market_cap":7617354701,
+"market_cap":7465873216,
 "name":"CONTACT ENERGY LIMITED",
 "sector":"Utilities"
 },
@@ -2743,13 +2743,13 @@
 },
 "CG1":{
 "industry":"Materials",
-"market_cap":26866483,
+"market_cap":28166475,
 "name":"CARBONXT GROUP LIMITED",
 "sector":"Materials"
 },
 "CGF":{
 "industry":"Financial Services",
-"market_cap":8106615283,
+"market_cap":8093171477,
 "name":"CHALLENGER LIMITED",
 "sector":"Financials"
 },
@@ -2761,19 +2761,19 @@
 },
 "CGR":{
 "industry":"Materials",
-"market_cap":5758660,
+"market_cap":5182794,
 "name":"CGN RESOURCES LIMITED",
 "sector":"Materials"
 },
 "CGS":{
 "industry":"Health Care Equipment & Services",
-"market_cap":567940909,
+"market_cap":580024758,
 "name":"COGSTATE LTD",
 "sector":"Healthcare"
 },
 "CHC":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":10481617930,
+"market_cap":10311338938,
 "name":"CHARTER HALL GROUP",
 "sector":"Real Estate"
 },
@@ -2785,7 +2785,7 @@
 },
 "CHL":{
 "industry":"Transportation",
-"market_cap":28778890,
+"market_cap":28573327,
 "name":"CAMPLIFY HOLDINGS LIMITED",
 "sector":"Industrials"
 },
@@ -2803,7 +2803,7 @@
 },
 "CHN":{
 "industry":"Materials",
-"market_cap":413572291,
+"market_cap":442834482,
 "name":"CHALICE MINING LIMITED",
 "sector":"Materials"
 },
@@ -2821,7 +2821,7 @@
 },
 "CHW":{
 "industry":"Materials",
-"market_cap":60855156,
+"market_cap":61904382,
 "name":"CHILWA MINERALS LTD",
 "sector":"Materials"
 },
@@ -2833,7 +2833,7 @@
 },
 "CIA":{
 "industry":"Materials",
-"market_cap":1153696659,
+"market_cap":1176098536,
 "name":"CHAMPION IRON LIMITED",
 "sector":"Materials"
 },
@@ -2845,25 +2845,25 @@
 },
 "CIP":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":1854432571,
+"market_cap":1823213167,
 "name":"CENTURIA INDUSTRIAL REIT",
 "sector":"Real Estate"
 },
 "CIW":{
 "industry":"Financial Services",
-"market_cap":21366395,
+"market_cap":21777287,
 "name":"CLIME INVESTMENT MANAGEMENT LTD",
 "sector":"Financials"
 },
 "CKA":{
 "industry":"Materials",
-"market_cap":37763214,
+"market_cap":34526367,
 "name":"COKAL LIMITED",
 "sector":"Materials"
 },
 "CKF":{
 "industry":"Consumer Services",
-"market_cap":1099129594,
+"market_cap":1088469932,
 "name":"COLLINS FOODS LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -2905,13 +2905,13 @@
 },
 "CLW":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":2571588364,
+"market_cap":2521023424,
 "name":"CHARTER HALL LONG WALE REIT",
 "sector":"Real Estate"
 },
 "CLX":{
 "industry":"Transportation",
-"market_cap":225377694,
+"market_cap":223756272,
 "name":"CTI LOGISTICS LIMITED",
 "sector":"Industrials"
 },
@@ -2935,25 +2935,25 @@
 },
 "CMD":{
 "industry":"Materials",
-"market_cap":17322640,
+"market_cap":16410922,
 "name":"CASSIUS MINING LIMITED",
 "sector":"Materials"
 },
 "CMG":{
 "industry":"Materials",
-"market_cap":7856921,
+"market_cap":7977753,
 "name":"CRITICAL MINERALS GROUP LIMITED",
 "sector":"Materials"
 },
 "CML":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":40503663,
+"market_cap":37610544,
 "name":"CONNECTED MINERALS LIMITED",
 "sector":"Info Tech"
 },
 "CMM":{
 "industry":"Materials",
-"market_cap":6377148979,
+"market_cap":6660577823,
 "name":"CAPRICORN METALS LTD",
 "sector":"Materials"
 },
@@ -2971,7 +2971,7 @@
 },
 "CMP":{
 "industry":"Health Care Equipment & Services",
-"market_cap":47942821,
+"market_cap":46944012,
 "name":"COMPUMEDICS LIMITED",
 "sector":"Healthcare"
 },
@@ -2995,13 +2995,13 @@
 },
 "CND":{
 "industry":"Energy",
-"market_cap":16412698,
+"market_cap":14685045,
 "name":"CONDOR ENERGY LIMITED",
 "sector":"Energy"
 },
 "CNI":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":1224211943,
+"market_cap":1199125632,
 "name":"CENTURIA CAPITAL GROUP",
 "sector":"Real Estate"
 },
@@ -3025,61 +3025,61 @@
 },
 "CNU":{
 "industry":"Telecommunication Services",
-"market_cap":2894028251,
+"market_cap":2828945157,
 "name":"CHORUS LIMITED",
 "sector":"Communication Services"
 },
 "COB":{
 "industry":"Materials",
-"market_cap":28198311,
+"market_cap":29960706,
 "name":"COBALT BLUE HOLDINGS LIMITED",
 "sector":"Materials"
 },
 "COD":{
 "industry":"Materials",
-"market_cap":37108907,
+"market_cap":39241603,
 "name":"CODA MINERALS LTD",
 "sector":"Materials"
 },
 "COF":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":540589923,
+"market_cap":534616553,
 "name":"CENTURIA OFFICE REIT",
 "sector":"Real Estate"
 },
 "COG":{
 "industry":"Financial Services",
-"market_cap":336971422,
+"market_cap":341236883,
 "name":"COG FINANCIAL SERVICES LIMITED",
 "sector":"Financials"
 },
 "COH":{
 "industry":"Health Care Equipment & Services",
-"market_cap":10167569626,
+"market_cap":9940635384,
 "name":"COCHLEAR LIMITED",
 "sector":"Healthcare"
 },
 "COI":{
 "industry":"Energy",
-"market_cap":109135587,
+"market_cap":107456578,
 "name":"COMET RIDGE LIMITED",
 "sector":"Energy"
 },
 "COL":{
 "industry":"Consumer Staples Distribution & Retail",
-"market_cap":30375581528,
+"market_cap":30335259960,
 "name":"COLES GROUP LIMITED.",
 "sector":"Consumer Staples"
 },
 "COS":{
 "industry":"Software & Services",
-"market_cap":28208263,
+"market_cap":27298319,
 "name":"COSOL LIMITED",
 "sector":"Info Tech"
 },
 "COV":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":38443611,
+"market_cap":41291286,
 "name":"CLEO DIAGNOSTICS LTD",
 "sector":"Healthcare"
 },
@@ -3103,13 +3103,13 @@
 },
 "CPM":{
 "industry":"Materials",
-"market_cap":10349511,
+"market_cap":10924483,
 "name":"COOPER METALS LIMITED",
 "sector":"Materials"
 },
 "CPN":{
 "industry":"Materials",
-"market_cap":25623684,
+"market_cap":25921634,
 "name":"CASPIN RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -3121,31 +3121,31 @@
 },
 "CPU":{
 "industry":"Commercial & Professional Services",
-"market_cap":24864860139,
+"market_cap":24899563364,
 "name":"COMPUTERSHARE LIMITED.",
 "sector":"Industrials"
 },
 "CPV":{
 "industry":"Capital Goods",
-"market_cap":20426314,
+"market_cap":21520581,
 "name":"CLEARVUE TECHNOLOGIES LIMITED",
 "sector":"Industrials"
 },
 "CQE":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":983438206,
+"market_cap":968593856,
 "name":"CHARTER HALL SOCIAL INFRASTRUCTURE REIT",
 "sector":"Real Estate"
 },
 "CQR":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":2290044659,
+"market_cap":2243546291,
 "name":"CHARTER HALL RETAIL REIT",
 "sector":"Real Estate"
 },
 "CQT":{
 "industry":"Health Care Equipment & Services",
-"market_cap":4065631,
+"market_cap":5082038,
 "name":"CONNEQT HEALTH LIMITED",
 "sector":"Healthcare"
 },
@@ -3181,43 +3181,43 @@
 },
 "CRD":{
 "industry":"Energy",
-"market_cap":138162266,
+"market_cap":139135240,
 "name":"CONRAD ASIA ENERGY LTD.",
 "sector":"Energy"
 },
 "CRI":{
 "industry":"Materials",
-"market_cap":60616122,
+"market_cap":57585316,
 "name":"CRITICA LIMITED",
 "sector":"Materials"
 },
 "CRN":{
 "industry":"Materials",
-"market_cap":226321254,
+"market_cap":251468060,
 "name":"CORONADO GLOBAL RESOURCES INC.",
 "sector":"Materials"
 },
 "CRR":{
 "industry":"Materials",
-"market_cap":20629713,
+"market_cap":22348855,
 "name":"CRITICAL RESOURCES LIMITED",
 "sector":"Materials"
 },
 "CRS":{
 "industry":"Materials",
-"market_cap":66229730,
+"market_cap":67101174,
 "name":"CAPRICE RESOURCES LTD",
 "sector":"Materials"
 },
 "CSC":{
 "industry":"Materials",
-"market_cap":10776549554,
+"market_cap":8827206624,
 "name":"CAPSTONE COPPER CORP.",
 "sector":"Materials"
 },
 "CSL":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":96955818719,
+"market_cap":96346365691,
 "name":"CSL LIMITED",
 "sector":"Healthcare"
 },
@@ -3229,7 +3229,7 @@
 },
 "CSX":{
 "industry":"Health Care Equipment & Services",
-"market_cap":35721807,
+"market_cap":34927989,
 "name":"CLEANSPACE HOLDINGS LIMITED",
 "sector":"Healthcare"
 },
@@ -3241,7 +3241,7 @@
 },
 "CTD":{
 "industry":"Consumer Services",
-"market_cap":505730396,
+"market_cap":493226073,
 "name":"CORPORATE TRAVEL MANAGEMENT LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -3253,7 +3253,7 @@
 },
 "CTM":{
 "industry":"Materials",
-"market_cap":233658407,
+"market_cap":253404188,
 "name":"CENTAURUS METALS LIMITED",
 "sector":"Materials"
 },
@@ -3271,7 +3271,7 @@
 },
 "CTP":{
 "industry":"Energy",
-"market_cap":37638198,
+"market_cap":35379906,
 "name":"CENTRAL PETROLEUM LIMITED",
 "sector":"Energy"
 },
@@ -3283,55 +3283,55 @@
 },
 "CTS":{
 "industry":"Health Care Equipment & Services",
-"market_cap":64237500,
+"market_cap":64951250,
 "name":"CERETAS LIMITED",
 "sector":"Healthcare"
 },
 "CTT":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":144870524,
+"market_cap":133433377,
 "name":"CETTIRE LIMITED",
 "sector":"Consumer Discretionary"
 },
 "CU6":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":557756439,
+"market_cap":585737531,
 "name":"CLARITY PHARMACEUTICALS LTD",
 "sector":"Healthcare"
 },
 "CUE":{
 "industry":"Energy",
-"market_cap":65394879,
+"market_cap":63285367,
 "name":"CUE ENERGY RESOURCES LIMITED",
 "sector":"Energy"
 },
 "CUF":{
 "industry":"Materials",
-"market_cap":108092871,
+"market_cap":99778035,
 "name":"CUFE LTD",
 "sector":"Materials"
 },
 "CUL":{
 "industry":"Materials",
-"market_cap":3467009,
+"market_cap":4507112,
 "name":"CULLEN RESOURCES LIMITED",
 "sector":"Materials"
 },
 "CUP":{
 "industry":"Commercial & Professional Services",
-"market_cap":368068044,
+"market_cap":361572725,
 "name":"COUNT LIMITED",
 "sector":"Industrials"
 },
 "CUV":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":379663188,
+"market_cap":382187544,
 "name":"CLINUVEL PHARMACEUTICALS LIMITED",
 "sector":"Healthcare"
 },
 "CVB":{
 "industry":"Health Care Equipment & Services",
-"market_cap":14741141,
+"market_cap":15608266,
 "name":"CURVEBEAM AI LIMITED",
 "sector":"Healthcare"
 },
@@ -3343,7 +3343,7 @@
 },
 "CVL":{
 "industry":"Capital Goods",
-"market_cap":842230620,
+"market_cap":832021764,
 "name":"CIVMEC LIMITED",
 "sector":"Industrials"
 },
@@ -3361,7 +3361,7 @@
 },
 "CVV":{
 "industry":"Materials",
-"market_cap":103371073,
+"market_cap":108958699,
 "name":"CARAVEL MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -3373,7 +3373,7 @@
 },
 "CWP":{
 "industry":"Real Estate Management & Development",
-"market_cap":541092090,
+"market_cap":535108450,
 "name":"CEDAR WOODS PROPERTIES LIMITED",
 "sector":"Real Estate"
 },
@@ -3385,19 +3385,19 @@
 },
 "CXL":{
 "industry":"Materials",
-"market_cap":54059045,
+"market_cap":55140225,
 "name":"CALIX LIMITED",
 "sector":"Materials"
 },
 "CXO":{
 "industry":"Materials",
-"market_cap":744464383,
+"market_cap":809200416,
 "name":"CORE LITHIUM LTD",
 "sector":"Materials"
 },
 "CXU":{
 "industry":"Energy",
-"market_cap":114070714,
+"market_cap":122218622,
 "name":"CAULDRON ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -3427,19 +3427,19 @@
 },
 "CYG":{
 "industry":"Capital Goods",
-"market_cap":51454368,
+"market_cap":50063709,
 "name":"COVENTRY GROUP LIMITED",
 "sector":"Industrials"
 },
 "CYL":{
 "industry":"Materials",
-"market_cap":1077048457,
+"market_cap":1172082145,
 "name":"CATALYST METALS LIMITED",
 "sector":"Materials"
 },
 "CYM":{
 "industry":"Materials",
-"market_cap":182591135,
+"market_cap":198607902,
 "name":"CYPRIUM METALS LIMITED",
 "sector":"Materials"
 },
@@ -3451,7 +3451,7 @@
 },
 "CYP":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":4040997,
+"market_cap":5051246,
 "name":"CYNATA THERAPEUTICS LIMITED",
 "sector":"Healthcare"
 },
@@ -3475,13 +3475,13 @@
 },
 "CZN":{
 "industry":"Materials",
-"market_cap":17926513,
+"market_cap":17687492,
 "name":"CORAZON MINING LIMITED",
 "sector":"Materials"
 },
 "CZR":{
 "industry":"Materials",
-"market_cap":46065099,
+"market_cap":47277338,
 "name":"CZR RESOURCES LTD",
 "sector":"Materials"
 },
@@ -3499,25 +3499,25 @@
 },
 "DAI":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":60334613,
+"market_cap":56785518,
 "name":"DECIDR AI INDUSTRIES LTD",
 "sector":"Consumer Staples"
 },
 "DAL":{
 "industry":"Materials",
-"market_cap":50433318,
+"market_cap":46398653,
 "name":"DALAROO METALS LTD",
 "sector":"Materials"
 },
 "DBF":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":35888412,
+"market_cap":35352764,
 "name":"DUXTON FARMS LTD",
 "sector":"Consumer Staples"
 },
 "DBI":{
 "industry":"Transportation",
-"market_cap":2776265335,
+"market_cap":2726689169,
 "name":"DALRYMPLE BAY INFRASTRUCTURE LIMITED",
 "sector":"Industrials"
 },
@@ -3529,13 +3529,13 @@
 },
 "DCC":{
 "industry":"Software & Services",
-"market_cap":36949793,
+"market_cap":35581282,
 "name":"DIGITALX LIMITED",
 "sector":"Info Tech"
 },
 "DDR":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":2565787812,
+"market_cap":2573051189,
 "name":"DICKER DATA LIMITED",
 "sector":"Info Tech"
 },
@@ -3553,31 +3553,31 @@
 },
 "DEM":{
 "industry":"Utilities",
-"market_cap":36000246,
+"market_cap":34363871,
 "name":"DE.MEM LIMITED",
 "sector":"Utilities"
 },
 "DES":{
 "industry":"Materials",
-"market_cap":33334269,
+"market_cap":36112125,
 "name":"DESOTO RESOURCES LIMITED",
 "sector":"Materials"
 },
 "DEV":{
 "industry":"Energy",
-"market_cap":134962780,
+"market_cap":124307824,
 "name":"DEVEX RESOURCES LIMITED",
 "sector":"Energy"
 },
 "DGH":{
 "industry":"Real Estate Management & Development",
-"market_cap":32318892,
+"market_cap":32727992,
 "name":"DESANE GROUP HOLDINGS LIMITED",
 "sector":"Real Estate"
 },
 "DGL":{
 "industry":"Materials",
-"market_cap":74158568,
+"market_cap":75584694,
 "name":"DGL GROUP LIMITED",
 "sector":"Materials"
 },
@@ -3589,13 +3589,13 @@
 },
 "DGT":{
 "industry":"Class Pend",
-"market_cap":1358525484,
+"market_cap":1369706763,
 "name":"DIGICO INFRASTRUCTURE REIT",
 "sector":"Other"
 },
 "DJW":{
 "industry":"Not Applic",
-"market_cap":769036114,
+"market_cap":774232304,
 "name":"DJERRIWARRH INVESTMENTS LIMITED",
 "sector":"Other"
 },
@@ -3607,7 +3607,7 @@
 },
 "DLI":{
 "industry":"Materials",
-"market_cap":106165021,
+"market_cap":107964429,
 "name":"DELTA LITHIUM LIMITED",
 "sector":"Materials"
 },
@@ -3643,19 +3643,19 @@
 },
 "DMP":{
 "industry":"Consumer Services",
-"market_cap":2135594360,
+"market_cap":2127067142,
 "name":"DOMINO'S PIZZA ENTERPRISES LIMITED",
 "sector":"Consumer Discretionary"
 },
 "DN1":{
 "industry":"Not Applic",
-"market_cap":339066000,
+"market_cap":339825000,
 "name":"DOMINION INCOME TRUST 1",
 "sector":"Other"
 },
 "DNL":{
 "industry":"Materials",
-"market_cap":6690152878,
+"market_cap":5954586331,
 "name":"DYNO NOBEL LIMITED.",
 "sector":"Materials"
 },
@@ -3667,13 +3667,13 @@
 },
 "DOW":{
 "industry":"Commercial & Professional Services",
-"market_cap":4635032998,
+"market_cap":4530581550,
 "name":"DOWNER EDI LIMITED",
 "sector":"Industrials"
 },
 "DPM":{
 "industry":"Materials",
-"market_cap":12265136445,
+"market_cap":12956992672,
 "name":"DPM METALS INC.",
 "sector":"Materials"
 },
@@ -3685,25 +3685,25 @@
 },
 "DRO":{
 "industry":"Capital Goods",
-"market_cap":1180381898,
+"market_cap":1166495052,
 "name":"DRONESHIELD LIMITED",
 "sector":"Industrials"
 },
 "DRR":{
 "industry":"Materials",
-"market_cap":2079573812,
+"market_cap":2074255209,
 "name":"DETERRA ROYALTIES LIMITED",
 "sector":"Materials"
 },
 "DRX":{
 "industry":"Materials",
-"market_cap":70115946,
+"market_cap":80132509,
 "name":"DIATREME RESOURCES LIMITED",
 "sector":"Materials"
 },
 "DSK":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":44832863,
+"market_cap":43587506,
 "name":"DUSK GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -3721,19 +3721,19 @@
 },
 "DTL":{
 "industry":"Software & Services",
-"market_cap":2216017081,
+"market_cap":2217568914,
 "name":"DATA#3 LIMITED",
 "sector":"Info Tech"
 },
 "DTM":{
 "industry":"Materials",
-"market_cap":2673785,
+"market_cap":3008008,
 "name":"DART MINING NL",
 "sector":"Materials"
 },
 "DTR":{
 "industry":"Materials",
-"market_cap":321146830,
+"market_cap":345232843,
 "name":"DATELINE RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -3751,13 +3751,13 @@
 },
 "DUB":{
 "industry":"Software & Services",
-"market_cap":20341380,
+"market_cap":21697472,
 "name":"DUBBER CORPORATION LIMITED",
 "sector":"Info Tech"
 },
 "DUG":{
 "industry":"Software & Services",
-"market_cap":197453281,
+"market_cap":225273159,
 "name":"DUG TECHNOLOGY LTD",
 "sector":"Info Tech"
 },
@@ -3769,13 +3769,13 @@
 },
 "DUN":{
 "industry":"Materials",
-"market_cap":14101511,
+"market_cap":14689074,
 "name":"DUNDAS MINERALS LIMITED",
 "sector":"Materials"
 },
 "DUR":{
 "industry":"Capital Goods",
-"market_cap":491980272,
+"market_cap":502420172,
 "name":"DURATEC LIMITED",
 "sector":"Industrials"
 },
@@ -3787,7 +3787,7 @@
 },
 "DVP":{
 "industry":"Materials",
-"market_cap":1171448436,
+"market_cap":1240745386,
 "name":"DEVELOP GLOBAL LIMITED",
 "sector":"Materials"
 },
@@ -3805,13 +3805,13 @@
 },
 "DXB":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":123081339,
+"market_cap":132087291,
 "name":"DIMERIX LIMITED",
 "sector":"Healthcare"
 },
 "DXC":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":368682889,
+"market_cap":359332236,
 "name":"DEXUS CONVENIENCE RETAIL REIT",
 "sector":"Real Estate"
 },
@@ -3829,37 +3829,37 @@
 },
 "DXS":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":6413926024,
+"market_cap":6275649012,
 "name":"DEXUS",
 "sector":"Real Estate"
 },
 "DYL":{
 "industry":"Energy",
-"market_cap":735701986,
+"market_cap":813657164,
 "name":"DEEP YELLOW LIMITED",
 "sector":"Energy"
 },
 "DYM":{
 "industry":"Materials",
-"market_cap":31748546,
+"market_cap":32273316,
 "name":"DYNAMIC METALS LIMITED",
 "sector":"Materials"
 },
 "E25":{
 "industry":"Materials",
-"market_cap":67115680,
+"market_cap":65478712,
 "name":"ELEMENT 25 LIMITED",
 "sector":"Materials"
 },
 "E79":{
 "industry":"Materials",
-"market_cap":8838892,
+"market_cap":9192448,
 "name":"E79 GOLD MINES LIMITED",
 "sector":"Materials"
 },
 "EAU":{
 "industry":"Materials",
-"market_cap":20806254,
+"market_cap":22015920,
 "name":"EAU LITHIUM LTD",
 "sector":"Materials"
 },
@@ -3871,13 +3871,13 @@
 },
 "EBO":{
 "industry":"Health Care Equipment & Services",
-"market_cap":3614697316,
+"market_cap":3566612852,
 "name":"EBOS GROUP LIMITED",
 "sector":"Healthcare"
 },
 "EBR":{
 "industry":"Health Care Equipment & Services",
-"market_cap":105682608,
+"market_cap":114137216,
 "name":"EBR SYSTEMS INC.",
 "sector":"Healthcare"
 },
@@ -3895,7 +3895,7 @@
 },
 "ECH":{
 "industry":"Energy",
-"market_cap":73903777,
+"market_cap":71664268,
 "name":"ECHELON RESOURCES LIMITED",
 "sector":"Energy"
 },
@@ -3907,7 +3907,7 @@
 },
 "ECP":{
 "industry":"Not Applic",
-"market_cap":10305321,
+"market_cap":11242169,
 "name":"ECP EMERGING GROWTH LIMITED",
 "sector":"Other"
 },
@@ -3919,13 +3919,13 @@
 },
 "ECT":{
 "industry":"Commercial & Professional Services",
-"market_cap":31846982,
+"market_cap":31398433,
 "name":"ENVIRONMENTAL CLEAN TECHNOLOGIES LIMITED.",
 "sector":"Industrials"
 },
 "EDE":{
 "industry":"Energy",
-"market_cap":32225864,
+"market_cap":32857744,
 "name":"EDEN INNOVATIONS LTD",
 "sector":"Energy"
 },
@@ -3943,7 +3943,7 @@
 },
 "EDV":{
 "industry":"Consumer Staples Distribution & Retail",
-"market_cap":6464612423,
+"market_cap":6410740653,
 "name":"ENDEAVOUR GROUP LIMITED",
 "sector":"Consumer Staples"
 },
@@ -3961,13 +3961,13 @@
 },
 "EF2":{
 "industry":"Class Pend",
-"market_cap":2515865411,
+"market_cap":2574127557,
 "name":"ENERGY FUELS INC.",
 "sector":"Other"
 },
 "EFE":{
 "industry":"Materials",
-"market_cap":3241503,
+"market_cap":3371164,
 "name":"EASTERN RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -3979,13 +3979,13 @@
 },
 "EG1":{
 "industry":"Materials",
-"market_cap":7426371,
+"market_cap":7508629,
 "name":"EVERGOLD MINERALS LIMITED",
 "sector":"Materials"
 },
 "EGA":{
 "industry":"Energy",
-"market_cap":16200000,
+"market_cap":15300000,
 "name":"EASTERN GAS CORPORATION LIMITED",
 "sector":"Energy"
 },
@@ -3997,19 +3997,19 @@
 },
 "EGH":{
 "industry":"Real Estate Management & Development",
-"market_cap":354224462,
+"market_cap":348601852,
 "name":"EUREKA GROUP HOLDINGS LIMITED",
 "sector":"Real Estate"
 },
 "EGL":{
 "industry":"Capital Goods",
-"market_cap":27395841,
+"market_cap":26634846,
 "name":"ENVIRONMENTAL GROUP LIMITED (THE)",
 "sector":"Industrials"
 },
 "EGR":{
 "industry":"Materials",
-"market_cap":103811448,
+"market_cap":101397228,
 "name":"ECOGRAF LIMITED",
 "sector":"Materials"
 },
@@ -4021,49 +4021,49 @@
 },
 "EHL":{
 "industry":"Capital Goods",
-"market_cap":662551559,
+"market_cap":642007325,
 "name":"EMECO HOLDINGS LIMITED",
 "sector":"Industrials"
 },
 "EIQ":{
 "industry":"Software & Services",
-"market_cap":370437390,
+"market_cap":355619894,
 "name":"ECHOIQ LIMITED",
 "sector":"Info Tech"
 },
 "EL8":{
 "industry":"Energy",
-"market_cap":104998022,
+"market_cap":109770660,
 "name":"ELEVATE URANIUM LTD",
 "sector":"Energy"
 },
 "ELD":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":1378552448,
+"market_cap":1382860424,
 "name":"ELDERS LIMITED",
 "sector":"Consumer Staples"
 },
 "ELK":{
 "industry":"Materials",
-"market_cap":18600412,
+"market_cap":18285150,
 "name":"ELK RANGE MINING LIMITED",
 "sector":"Materials"
 },
 "ELS":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":323528003,
+"market_cap":328052871,
 "name":"ELSIGHT LIMITED",
 "sector":"Info Tech"
 },
 "ELT":{
 "industry":"Materials",
-"market_cap":160073077,
+"market_cap":157880295,
 "name":"ELEMENTOS LIMITED",
 "sector":"Materials"
 },
 "ELV":{
 "industry":"Materials",
-"market_cap":648013537,
+"market_cap":694577384,
 "name":"ELEVRA LITHIUM LIMITED",
 "sector":"Materials"
 },
@@ -4075,7 +4075,7 @@
 },
 "EM3":{
 "industry":"Materials",
-"market_cap":36651051,
+"market_cap":37062861,
 "name":"EMC GOLD CORPORATION",
 "sector":"Materials"
 },
@@ -4087,55 +4087,55 @@
 },
 "EMB":{
 "industry":"Capital Goods",
-"market_cap":25462713,
+"market_cap":26541641,
 "name":"EMBELTON LIMITED",
 "sector":"Industrials"
 },
 "EMC":{
 "industry":"Materials",
-"market_cap":22468682,
+"market_cap":22739389,
 "name":"EVEREST METALS CORPORATION LTD",
 "sector":"Materials"
 },
 "EMD":{
 "industry":"Health Care Equipment & Services",
-"market_cap":30654069,
+"market_cap":29040697,
 "name":"EMYRIA LIMITED",
 "sector":"Healthcare"
 },
 "EME":{
 "industry":"Energy",
-"market_cap":15935932,
+"market_cap":16774665,
 "name":"ENERGY METALS LTD",
 "sector":"Energy"
 },
 "EMH":{
 "industry":"Materials",
-"market_cap":38050993,
+"market_cap":33294619,
 "name":"EUROPEAN METALS HOLDINGS LIMITED",
 "sector":"Materials"
 },
 "EML":{
 "industry":"Financial Services",
-"market_cap":109553498,
+"market_cap":121291373,
 "name":"EML PAYMENTS LIMITED",
 "sector":"Financials"
 },
 "EMN":{
 "industry":"Materials",
-"market_cap":10292724,
+"market_cap":9720906,
 "name":"EURO MANGANESE INC",
 "sector":"Materials"
 },
 "EMP":{
 "industry":"Energy",
-"market_cap":81912755,
+"market_cap":80901487,
 "name":"EMPEROR ENERGY LIMITED",
 "sector":"Energy"
 },
 "EMR":{
 "industry":"Materials",
-"market_cap":4392168765,
+"market_cap":4611113734,
 "name":"EMERALD RESOURCES NL",
 "sector":"Materials"
 },
@@ -4177,7 +4177,7 @@
 },
 "EMV":{
 "industry":"Health Care Equipment & Services",
-"market_cap":133856008,
+"market_cap":139433342,
 "name":"EMVISION MEDICAL DEVICES LTD",
 "sector":"Healthcare"
 },
@@ -4207,7 +4207,7 @@
 },
 "ENR":{
 "industry":"Materials",
-"market_cap":123329736,
+"market_cap":126132684,
 "name":"ENCOUNTER RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -4219,7 +4219,7 @@
 },
 "ENV":{
 "industry":"Materials",
-"market_cap":2372395,
+"market_cap":3558593,
 "name":"ENOVA MINING LIMITED",
 "sector":"Materials"
 },
@@ -4237,19 +4237,19 @@
 },
 "EOL":{
 "industry":"Software & Services",
-"market_cap":547234817,
+"market_cap":551507055,
 "name":"ENERGY ONE LIMITED",
 "sector":"Info Tech"
 },
 "EOS":{
 "industry":"Capital Goods",
-"market_cap":1556349177,
+"market_cap":1658332172,
 "name":"ELECTRO OPTIC SYSTEMS HOLDINGS LIMITED",
 "sector":"Industrials"
 },
 "EPI":{
 "industry":"Health Care Equipment & Services",
-"market_cap":57417988,
+"market_cap":55251271,
 "name":"EPIMINDER LIMITED",
 "sector":"Healthcare"
 },
@@ -4279,13 +4279,13 @@
 },
 "EQR":{
 "industry":"Materials",
-"market_cap":1453577853,
+"market_cap":1583361590,
 "name":"EQ RESOURCES LIMITED",
 "sector":"Materials"
 },
 "EQT":{
 "industry":"Financial Services",
-"market_cap":570765476,
+"market_cap":578010736,
 "name":"EQT HOLDINGS LIMITED",
 "sector":"Financials"
 },
@@ -4315,7 +4315,7 @@
 },
 "ERE":{
 "industry":"Materials",
-"market_cap":9798808,
+"market_cap":9098893,
 "name":"EUROPEAN RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -4339,7 +4339,7 @@
 },
 "ERL":{
 "industry":"Materials",
-"market_cap":16697132,
+"market_cap":18784274,
 "name":"EMPIRE RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -4351,13 +4351,13 @@
 },
 "ESK":{
 "industry":"Software & Services",
-"market_cap":74465840,
+"market_cap":75175038,
 "name":"ETHERSTACK PLC",
 "sector":"Info Tech"
 },
 "ESR":{
 "industry":"Materials",
-"market_cap":62083915,
+"market_cap":59784511,
 "name":"ESTRELLA RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -4375,7 +4375,7 @@
 },
 "EUZ":{
 "industry":"Materials",
-"market_cap":6368383,
+"market_cap":6200794,
 "name":"EUROPA METALS LTD",
 "sector":"Materials"
 },
@@ -4399,7 +4399,7 @@
 },
 "EVE":{
 "industry":"Financial Services",
-"market_cap":4227919,
+"market_cap":4404082,
 "name":"EVE HEALTH GROUP LIMITED.",
 "sector":"Financials"
 },
@@ -4411,7 +4411,7 @@
 },
 "EVN":{
 "industry":"Materials",
-"market_cap":26401148298,
+"market_cap":27669057821,
 "name":"EVOLUTION MINING LIMITED",
 "sector":"Materials"
 },
@@ -4447,7 +4447,7 @@
 },
 "EVT":{
 "industry":"Media & Entertainment",
-"market_cap":2565975195,
+"market_cap":2549683289,
 "name":"EVT LIMITED",
 "sector":"Communication Services"
 },
@@ -4459,7 +4459,7 @@
 },
 "EWC":{
 "industry":"Utilities",
-"market_cap":242763551,
+"market_cap":250470331,
 "name":"ENERGY WORLD CORPORATION LTD",
 "sector":"Utilities"
 },
@@ -4477,49 +4477,49 @@
 },
 "EXR":{
 "industry":"Energy",
-"market_cap":117845777,
+"market_cap":119843163,
 "name":"ELIXIR ENERGY LIMITED",
 "sector":"Energy"
 },
 "EXT":{
 "industry":"Software & Services",
-"market_cap":14254903,
+"market_cap":15680393,
 "name":"EXCITE TECHNOLOGY SERVICES LTD",
 "sector":"Info Tech"
 },
 "EYE":{
 "industry":"Health Care Equipment & Services",
-"market_cap":39888953,
+"market_cap":41313558,
 "name":"NOVA EYE MEDICAL LIMITED",
 "sector":"Healthcare"
 },
 "EZL":{
 "industry":"Financial Services",
-"market_cap":219214058,
+"market_cap":216741719,
 "name":"EUROZ HARTLEYS GROUP LIMITED",
 "sector":"Financials"
 },
 "EZZ":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":14112960,
+"market_cap":13642528,
 "name":"EZZ LIFE SCIENCE HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
 "FAL":{
 "industry":"Materials",
-"market_cap":95025099,
+"market_cap":113502201,
 "name":"FALCON METALS LTD",
 "sector":"Materials"
 },
 "FAR":{
 "industry":"Energy",
-"market_cap":28646991,
+"market_cap":27722894,
 "name":"FAR LIMITED",
 "sector":"Energy"
 },
 "FAU":{
 "industry":"Materials",
-"market_cap":30107879,
+"market_cap":31989621,
 "name":"FIRST AU LIMITED",
 "sector":"Materials"
 },
@@ -4537,7 +4537,7 @@
 },
 "FBU":{
 "industry":"Capital Goods",
-"market_cap":3119129124,
+"market_cap":3151395977,
 "name":"FLETCHER BUILDING LIMITED",
 "sector":"Industrials"
 },
@@ -4549,7 +4549,7 @@
 },
 "FCL":{
 "industry":"Software & Services",
-"market_cap":707335208,
+"market_cap":752190612,
 "name":"FINEOS CORPORATION HOLDINGS PLC",
 "sector":"Info Tech"
 },
@@ -4561,13 +4561,13 @@
 },
 "FDC":{
 "industry":"Capital Goods",
-"market_cap":1101320996,
+"market_cap":1081942914,
 "name":"FDC CONSOLIDATED HOLDINGS LIMITED",
 "sector":"Industrials"
 },
 "FDR":{
 "industry":"Energy",
-"market_cap":110850099,
+"market_cap":113621352,
 "name":"FINDER ENERGY HOLDINGS LIMITED",
 "sector":"Energy"
 },
@@ -4585,7 +4585,7 @@
 },
 "FEL":{
 "industry":"Energy",
-"market_cap":4330019,
+"market_cap":5196023,
 "name":"FORTE ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -4603,13 +4603,13 @@
 },
 "FFI":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":67458138,
+"market_cap":65108162,
 "name":"FFI HOLDINGS LIMITED",
 "sector":"Consumer Staples"
 },
 "FFM":{
 "industry":"Materials",
-"market_cap":1152057372,
+"market_cap":1243698299,
 "name":"FIREFLY METALS LTD",
 "sector":"Materials"
 },
@@ -4627,7 +4627,7 @@
 },
 "FGG":{
 "industry":"Not Applic",
-"market_cap":615236472,
+"market_cap":623278779,
 "name":"FUTURE GENERATION GLOBAL LIMITED",
 "sector":"Other"
 },
@@ -4639,19 +4639,19 @@
 },
 "FGR":{
 "industry":"Materials",
-"market_cap":27515193,
+"market_cap":28402780,
 "name":"FIRST GRAPHENE LIMITED",
 "sector":"Materials"
 },
 "FGX":{
 "industry":"Not Applic",
-"market_cap":562199299,
+"market_cap":547783932,
 "name":"FUTURE GENERATION AUSTRALIA LIMITED",
 "sector":"Other"
 },
 "FHE":{
 "industry":"Materials",
-"market_cap":216951582,
+"market_cap":211388721,
 "name":"FRONTIER ENERGY LIMITED",
 "sector":"Materials"
 },
@@ -4663,7 +4663,7 @@
 },
 "FID":{
 "industry":"Financial Services",
-"market_cap":277593504,
+"market_cap":268414243,
 "name":"FIDUCIAN GROUP LIMITED",
 "sector":"Financials"
 },
@@ -4687,7 +4687,7 @@
 },
 "FLG":{
 "industry":"Materials",
-"market_cap":48523686,
+"market_cap":50256674,
 "name":"FLAGSHIP MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -4699,7 +4699,7 @@
 },
 "FLT":{
 "industry":"Consumer Services",
-"market_cap":2494761997,
+"market_cap":2492741947,
 "name":"FLIGHT CENTRE TRAVEL GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -4711,31 +4711,31 @@
 },
 "FME":{
 "industry":"Energy",
-"market_cap":9704349,
+"market_cap":10917393,
 "name":"FUTURE METALS NL",
 "sector":"Energy"
 },
 "FMG":{
 "industry":"Materials",
-"market_cap":46738687455,
+"market_cap":47046583947,
 "name":"FORTESCUE LTD",
 "sector":"Materials"
 },
 "FML":{
 "industry":"Materials",
-"market_cap":512939975,
+"market_cap":521536734,
 "name":"FOCUS MINERALS LTD",
 "sector":"Materials"
 },
 "FMN":{
 "industry":"Materials",
-"market_cap":33056539,
+"market_cap":37564249,
 "name":"FAMIEN RESOURCES LIMITED",
 "sector":"Materials"
 },
 "FMR":{
 "industry":"Materials",
-"market_cap":35639513,
+"market_cap":37124493,
 "name":"FMR RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -4765,7 +4765,7 @@
 },
 "FPC":{
 "industry":"Not Applic",
-"market_cap":41546629,
+"market_cap":40268271,
 "name":"FAT PROPHETS GLOBAL CONTRARIAN FUND LTD",
 "sector":"Other"
 },
@@ -4777,19 +4777,19 @@
 },
 "FPH":{
 "industry":"Health Care Equipment & Services",
-"market_cap":23060004621,
+"market_cap":22936468882,
 "name":"FISHER & PAYKEL HEALTHCARE CORPORATION LIMITED",
 "sector":"Healthcare"
 },
 "FPR":{
 "industry":"Financial Services",
-"market_cap":1085726848,
+"market_cap":1083606288,
 "name":"FLEETPARTNERS GROUP LIMITED",
 "sector":"Financials"
 },
 "FRB":{
 "industry":"Materials",
-"market_cap":23706982,
+"market_cap":22795175,
 "name":"FIREBIRD METALS LIMITED",
 "sector":"Materials"
 },
@@ -4801,7 +4801,7 @@
 },
 "FRI":{
 "industry":"Real Estate Management & Development",
-"market_cap":197289278,
+"market_cap":195928662,
 "name":"FINBAR GROUP LIMITED",
 "sector":"Real Estate"
 },
@@ -4813,7 +4813,7 @@
 },
 "FRS":{
 "industry":"Materials",
-"market_cap":815593386,
+"market_cap":841080680,
 "name":"FORRESTANIA RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -4837,37 +4837,37 @@
 },
 "FSA":{
 "industry":"Financial Services",
-"market_cap":141801983,
+"market_cap":143627759,
 "name":"FSA GROUP LIMITED",
 "sector":"Financials"
 },
 "FSI":{
 "industry":"Not Applic",
-"market_cap":28849415,
+"market_cap":28329606,
 "name":"FLAGSHIP INVESTMENTS LIMITED",
 "sector":"Other"
 },
 "FTI":{
 "industry":"Media & Entertainment",
-"market_cap":84883077,
+"market_cap":97133077,
 "name":"FORTIFAI LTD",
 "sector":"Communication Services"
 },
 "FUL":{
 "industry":"Materials",
-"market_cap":8716500,
+"market_cap":8046000,
 "name":"FULCRUM LITHIUM LTD",
 "sector":"Materials"
 },
 "FUN":{
 "industry":"Materials",
-"market_cap":27833010,
+"market_cap":29098147,
 "name":"FORTUNA METALS LTD",
 "sector":"Materials"
 },
 "FWD":{
 "industry":"Consumer Durables & Apparel",
-"market_cap":184171592,
+"market_cap":185977196,
 "name":"FLEETWOOD LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -4885,7 +4885,7 @@
 },
 "FZR":{
 "industry":"Energy",
-"market_cap":30227190,
+"market_cap":31306733,
 "name":"FITZROY RIVER CORPORATION LTD",
 "sector":"Energy"
 },
@@ -4903,31 +4903,31 @@
 },
 "G50":{
 "industry":"Materials",
-"market_cap":74764731,
+"market_cap":77256889,
 "name":"G50 CORP LIMITED",
 "sector":"Materials"
 },
 "G6M":{
 "industry":"Materials",
-"market_cap":611701137,
+"market_cap":637704626,
 "name":"GROUP 6 METALS LIMITED",
 "sector":"Materials"
 },
 "G88":{
 "industry":"Materials",
-"market_cap":4130784,
+"market_cap":3755259,
 "name":"GOLDEN MILE RESOURCES LTD",
 "sector":"Materials"
 },
 "GA8":{
 "industry":"Materials",
-"market_cap":28294012,
+"market_cap":29019499,
 "name":"GOLDARC RESOURCES LIMITED",
 "sector":"Materials"
 },
 "GAL":{
 "industry":"Materials",
-"market_cap":19762493,
+"market_cap":21738742,
 "name":"GALILEO MINING LTD",
 "sector":"Materials"
 },
@@ -4945,43 +4945,43 @@
 },
 "GBE":{
 "industry":"Materials",
-"market_cap":47089647,
+"market_cap":54777753,
 "name":"GLOBE METALS & MINING LIMITED",
 "sector":"Materials"
 },
 "GBL":{
 "industry":"Energy",
-"market_cap":10481224,
+"market_cap":9782476,
 "name":"GREAT BEAR EXPLORATION LTD",
 "sector":"Energy"
 },
 "GBM":{
 "industry":"Materials",
-"market_cap":83442795,
+"market_cap":88351195,
 "name":"GBM RESOURCES LIMITED.",
 "sector":"Materials"
 },
 "GBR":{
 "industry":"Materials",
-"market_cap":120350536,
+"market_cap":134161253,
 "name":"GREAT BOULDER RESOURCES LIMITED",
 "sector":"Materials"
 },
 "GC1":{
 "industry":"Not Applic",
-"market_cap":19126381,
+"market_cap":19371591,
 "name":"GLENNON SMALL COMPANIES LIMITED",
 "sector":"Other"
 },
 "GCI":{
 "industry":"Not Applic",
-"market_cap":1354755778,
+"market_cap":1356453467,
 "name":"GRYPHON CAPITAL INCOME TRUST",
 "sector":"Other"
 },
 "GCM":{
 "industry":"Materials",
-"market_cap":9658755,
+"market_cap":9079230,
 "name":"GCM CORPORATION LIMITED",
 "sector":"Materials"
 },
@@ -5005,7 +5005,7 @@
 },
 "GDG":{
 "industry":"Insurance",
-"market_cap":1295297711,
+"market_cap":1275121734,
 "name":"GENERATION DEVELOPMENT GROUP LIMITED",
 "sector":"Financials"
 },
@@ -5017,7 +5017,7 @@
 },
 "GDM":{
 "industry":"Materials",
-"market_cap":13544502,
+"market_cap":12849912,
 "name":"GREAT DIVIDE MINING LTD",
 "sector":"Materials"
 },
@@ -5029,13 +5029,13 @@
 },
 "GED":{
 "industry":"Materials",
-"market_cap":8436264,
+"market_cap":8664271,
 "name":"GOLDEN DEEPS LIMITED.",
 "sector":"Materials"
 },
 "GEM":{
 "industry":"Consumer Services",
-"market_cap":79444910,
+"market_cap":74148583,
 "name":"G8 EDUCATION LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -5053,13 +5053,13 @@
 },
 "GFL":{
 "industry":"Not Applic",
-"market_cap":34643255,
+"market_cap":34981789,
 "name":"GLOBAL MASTERS FUND LIMITED",
 "sector":"Other"
 },
 "GG1":{
 "industry":"Materials",
-"market_cap":5619064,
+"market_cap":5547937,
 "name":"GREEN & GOLD MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -5077,13 +5077,13 @@
 },
 "GGM":{
 "industry":"Materials",
-"market_cap":58287822,
+"market_cap":59675627,
 "name":"GLOBAL GOLD MINING LIMITED",
 "sector":"Materials"
 },
 "GGP":{
 "industry":"Materials",
-"market_cap":6969313839,
+"market_cap":7340380888,
 "name":"GREATLAND RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -5095,13 +5095,13 @@
 },
 "GHM":{
 "industry":"Materials",
-"market_cap":108545451,
+"market_cap":112376466,
 "name":"GOLDEN HORSE MINERALS LIMITED",
 "sector":"Materials"
 },
 "GHY":{
 "industry":"Energy",
-"market_cap":85354877,
+"market_cap":66497404,
 "name":"GOLD HYDROGEN LIMITED",
 "sector":"Energy"
 },
@@ -5113,19 +5113,19 @@
 },
 "GL1":{
 "industry":"Materials",
-"market_cap":249745355,
+"market_cap":252520303,
 "name":"GLOBAL LITHIUM RESOURCES LIMITED",
 "sector":"Materials"
 },
 "GLB":{
 "industry":"Consumer Durables & Apparel",
-"market_cap":116098690,
+"market_cap":115269414,
 "name":"GLOBE INTERNATIONAL LIMITED",
 "sector":"Consumer Discretionary"
 },
 "GLC":{
 "industry":"Materials",
-"market_cap":111098959184,
+"market_cap":115083521011,
 "name":"GLENCORE PLC",
 "sector":"Materials"
 },
@@ -5137,13 +5137,13 @@
 },
 "GLF":{
 "industry":"Real Estate Management & Development",
-"market_cap":1521153848,
+"market_cap":1467913463,
 "name":"GEMLIFE COMMUNITIES GROUP",
 "sector":"Real Estate"
 },
 "GLH":{
 "industry":"Health Care Equipment & Services",
-"market_cap":3247449,
+"market_cap":2952227,
 "name":"GLOBAL HEALTH LIMITED",
 "sector":"Healthcare"
 },
@@ -5155,19 +5155,19 @@
 },
 "GLN":{
 "industry":"Materials",
-"market_cap":267147293,
+"market_cap":286229242,
 "name":"GALAN LITHIUM LIMITED",
 "sector":"Materials"
 },
 "GLS":{
 "industry":"Not Applic",
-"market_cap":1617875283,
+"market_cap":1648319173,
 "name":"L1 GLOBAL LONG SHORT FUND LIMITED",
 "sector":"Other"
 },
 "GMD":{
 "industry":"Materials",
-"market_cap":8272628869,
+"market_cap":8801419067,
 "name":"GENESIS MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -5179,19 +5179,19 @@
 },
 "GMG":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":57204367563,
+"market_cap":57882436575,
 "name":"GOODMAN GROUP",
 "sector":"Real Estate"
 },
 "GML":{
 "industry":"Materials",
-"market_cap":155907188,
+"market_cap":161681529,
 "name":"GATEWAY MINING LIMITED",
 "sector":"Materials"
 },
 "GMN":{
 "industry":"Materials",
-"market_cap":14314759,
+"market_cap":14619328,
 "name":"GOLD MOUNTAIN LIMITED",
 "sector":"Materials"
 },
@@ -5203,7 +5203,7 @@
 },
 "GNE":{
 "industry":"Utilities",
-"market_cap":2514369091,
+"market_cap":2573763637,
 "name":"GENESIS ENERGY LIMITED",
 "sector":"Utilities"
 },
@@ -5215,31 +5215,31 @@
 },
 "GNG":{
 "industry":"Materials",
-"market_cap":1285862951,
+"market_cap":1356347291,
 "name":"GR ENGINEERING SERVICES LIMITED",
 "sector":"Materials"
 },
 "GNM":{
 "industry":"Materials",
-"market_cap":10370607,
+"market_cap":9382930,
 "name":"GREAT NORTHERN MINERALS LIMITED",
 "sector":"Materials"
 },
 "GNP":{
 "industry":"Capital Goods",
-"market_cap":1696029857,
+"market_cap":1728685065,
 "name":"GENUSPLUS GROUP LTD",
 "sector":"Industrials"
 },
 "GOW":{
 "industry":"Financial Services",
-"market_cap":106420494,
+"market_cap":108045234,
 "name":"GOWING BROS LIMITED",
 "sector":"Financials"
 },
 "GOZ":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":1577132279,
+"market_cap":1546947929,
 "name":"GROWTHPOINT PROPERTIES AUSTRALIA",
 "sector":"Real Estate"
 },
@@ -5251,13 +5251,13 @@
 },
 "GPT":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":9922691087,
+"market_cap":9577887150,
 "name":"GPT GROUP",
 "sector":"Real Estate"
 },
 "GQG":{
 "industry":"Financial Services",
-"market_cap":2780533105,
+"market_cap":2824903315,
 "name":"GQG PARTNERS INC.",
 "sector":"Financials"
 },
@@ -5269,7 +5269,7 @@
 },
 "GRE":{
 "industry":"Materials",
-"market_cap":10147926,
+"market_cap":11275473,
 "name":"GREENTECH METALS LIMITED",
 "sector":"Materials"
 },
@@ -5287,7 +5287,7 @@
 },
 "GRS":{
 "industry":"Materials",
-"market_cap":21450065,
+"market_cap":22110067,
 "name":"GWARDAR RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -5311,7 +5311,7 @@
 },
 "GSM":{
 "industry":"Materials",
-"market_cap":4824653,
+"market_cap":3859722,
 "name":"GOLDEN STATE MINING LIMITED",
 "sector":"Materials"
 },
@@ -5323,7 +5323,7 @@
 },
 "GSS":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":16126857,
+"market_cap":15445440,
 "name":"GENETIC SIGNATURES LIMITED",
 "sector":"Healthcare"
 },
@@ -5365,7 +5365,7 @@
 },
 "GTK":{
 "industry":"Software & Services",
-"market_cap":384654811,
+"market_cap":392527863,
 "name":"GENTRACK GROUP LIMITED",
 "sector":"Info Tech"
 },
@@ -5395,19 +5395,19 @@
 },
 "GVF":{
 "industry":"Not Applic",
-"market_cap":254403072,
+"market_cap":256430188,
 "name":"STAUDE CAPITAL GLOBAL VALUE FUND LIMITED",
 "sector":"Other"
 },
 "GW1":{
 "industry":"Materials",
-"market_cap":42694397,
+"market_cap":43748580,
 "name":"GREENWING RESOURCES LTD",
 "sector":"Materials"
 },
 "GWA":{
 "industry":"Capital Goods",
-"market_cap":539293081,
+"market_cap":531661576,
 "name":"GWA GROUP LIMITED.",
 "sector":"Industrials"
 },
@@ -5419,7 +5419,7 @@
 },
 "GYG":{
 "industry":"Consumer Services",
-"market_cap":2620878423,
+"market_cap":2607834235,
 "name":"GUZMAN Y GOMEZ LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -5431,7 +5431,7 @@
 },
 "H3E":{
 "industry":"Energy",
-"market_cap":5363051,
+"market_cap":4022288,
 "name":"H3 ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -5443,13 +5443,13 @@
 },
 "HAR":{
 "industry":"Materials",
-"market_cap":26276145,
+"market_cap":27182219,
 "name":"HARANGA RESOURCES LIMITED.",
 "sector":"Materials"
 },
 "HAS":{
 "industry":"Materials",
-"market_cap":54036594,
+"market_cap":52750009,
 "name":"HASTINGS TECHNOLOGY METALS LTD",
 "sector":"Materials"
 },
@@ -5485,13 +5485,13 @@
 },
 "HCH":{
 "industry":"Materials",
-"market_cap":241452971,
+"market_cap":268844694,
 "name":"HOT CHILI LIMITED",
 "sector":"Materials"
 },
 "HCL":{
 "industry":"Capital Goods",
-"market_cap":14165517,
+"market_cap":13882207,
 "name":"HIGHCOM LIMITED",
 "sector":"Industrials"
 },
@@ -5503,13 +5503,13 @@
 },
 "HCW":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":420884578,
+"market_cap":418133698,
 "name":"HEALTHCO HEALTHCARE AND WELLNESS REIT",
 "sector":"Real Estate"
 },
 "HDN":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":2468825154,
+"market_cap":2426980660,
 "name":"HOMECO DAILY NEEDS REIT",
 "sector":"Real Estate"
 },
@@ -5533,7 +5533,7 @@
 },
 "HGH":{
 "industry":"Banks",
-"market_cap":945206975,
+"market_cap":959385080,
 "name":"HEARTLAND GROUP HOLDINGS LIMITED",
 "sector":"Financials"
 },
@@ -5557,7 +5557,7 @@
 },
 "HIO":{
 "industry":"Materials",
-"market_cap":12403217,
+"market_cap":13781352,
 "name":"HAWSONS IRON LTD",
 "sector":"Materials"
 },
@@ -5569,37 +5569,37 @@
 },
 "HIT":{
 "industry":"Commercial & Professional Services",
-"market_cap":51393000,
+"market_cap":50467000,
 "name":"HITECH GROUP AUSTRALIA LIMITED",
 "sector":"Industrials"
 },
 "HLI":{
 "industry":"Financial Services",
-"market_cap":1359551230,
+"market_cap":1324202898,
 "name":"HELIA GROUP LIMITED",
 "sector":"Financials"
 },
 "HLM":{
 "industry":"Materials",
-"market_cap":2606536,
+"market_cap":1737691,
 "name":"HIGHLAND METALS LIMITED",
 "sector":"Materials"
 },
 "HLO":{
 "industry":"Consumer Services",
-"market_cap":253533746,
+"market_cap":250727100,
 "name":"HELLOWORLD TRAVEL LIMITED",
 "sector":"Consumer Discretionary"
 },
 "HLS":{
 "industry":"Health Care Equipment & Services",
-"market_cap":363089399,
+"market_cap":377612975,
 "name":"HEALIUS LIMITED",
 "sector":"Healthcare"
 },
 "HLX":{
 "industry":"Materials",
-"market_cap":8337908,
+"market_cap":8099682,
 "name":"HELIX RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -5611,13 +5611,13 @@
 },
 "HM1":{
 "industry":"Not Applic",
-"market_cap":627411138,
+"market_cap":648019533,
 "name":"HEARTS AND MINDS INVESTMENTS LIMITED",
 "sector":"Other"
 },
 "HMC":{
 "industry":"Financial Services",
-"market_cap":1365758070,
+"market_cap":1378136542,
 "name":"HMC CAPITAL LIMITED",
 "sector":"Financials"
 },
@@ -5629,7 +5629,7 @@
 },
 "HMG":{
 "industry":"Materials",
-"market_cap":43729905,
+"market_cap":39981628,
 "name":"HAMELIN GOLD LIMITED",
 "sector":"Materials"
 },
@@ -5647,7 +5647,7 @@
 },
 "HMY":{
 "industry":"Financial Services",
-"market_cap":67984038,
+"market_cap":68241553,
 "name":"HARMONEY CORP LIMITED",
 "sector":"Financials"
 },
@@ -5665,7 +5665,7 @@
 },
 "HPC":{
 "industry":"Household & Personal Products",
-"market_cap":1075977,
+"market_cap":1613965,
 "name":"THE HYDRATION PHARMACEUTICALS COMPANY LIMITED",
 "sector":"Consumer Staples"
 },
@@ -5683,13 +5683,13 @@
 },
 "HRE":{
 "industry":"Materials",
-"market_cap":8414005,
+"market_cap":9255406,
 "name":"HEAVY RARE EARTHS LIMITED",
 "sector":"Materials"
 },
 "HRN":{
 "industry":"Materials",
-"market_cap":223245998,
+"market_cap":224229460,
 "name":"HORIZON GOLD LIMITED",
 "sector":"Materials"
 },
@@ -5707,7 +5707,7 @@
 },
 "HSN":{
 "industry":"Software & Services",
-"market_cap":740204862,
+"market_cap":727902288,
 "name":"HANSEN TECHNOLOGIES LIMITED",
 "sector":"Info Tech"
 },
@@ -5725,7 +5725,7 @@
 },
 "HTM":{
 "industry":"Materials",
-"market_cap":25267158,
+"market_cap":24214360,
 "name":"HIGH-TECH METALS LTD",
 "sector":"Materials"
 },
@@ -5737,19 +5737,19 @@
 },
 "HUB":{
 "industry":"Financial Services",
-"market_cap":6356353283,
+"market_cap":6349810459,
 "name":"HUB24 LIMITED",
 "sector":"Financials"
 },
 "HUM":{
 "industry":"Financial Services",
-"market_cap":245623394,
+"market_cap":266092011,
 "name":"HUMM GROUP LIMITED",
 "sector":"Financials"
 },
 "HVN":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":5544729610,
+"market_cap":5519809477,
 "name":"HARVEY NORMAN HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -5761,7 +5761,7 @@
 },
 "HWK":{
 "industry":"Materials",
-"market_cap":2759933,
+"market_cap":3449916,
 "name":"HAWK RESOURCES LIMITED.",
 "sector":"Materials"
 },
@@ -5785,7 +5785,7 @@
 },
 "HYD":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":3627373,
+"market_cap":4352848,
 "name":"HYDRIX LIMITED",
 "sector":"Info Tech"
 },
@@ -5797,7 +5797,7 @@
 },
 "HYTDC":{
 "industry":"Energy",
-"market_cap":5357195,
+"market_cap":7500073,
 "name":"HYTERRA LTD",
 "sector":"Energy"
 },
@@ -5815,19 +5815,19 @@
 },
 "HZR":{
 "industry":"Materials",
-"market_cap":74997395,
+"market_cap":73658155,
 "name":"HAZER GROUP LIMITED",
 "sector":"Materials"
 },
 "I88":{
 "industry":"Materials",
-"market_cap":11902796,
+"market_cap":13525905,
 "name":"INFINI RESOURCES LIMITED",
 "sector":"Materials"
 },
 "IAG":{
 "industry":"Insurance",
-"market_cap":20842353633,
+"market_cap":20912529908,
 "name":"INSURANCE AUSTRALIA GROUP LIMITED",
 "sector":"Financials"
 },
@@ -5839,25 +5839,25 @@
 },
 "IBC":{
 "industry":"Not Applic",
-"market_cap":44487897,
+"market_cap":44987761,
 "name":"IRONBARK BALANCED INCOME LIMITED",
 "sector":"Other"
 },
 "IBR":{
 "industry":"Materials",
-"market_cap":23231318,
+"market_cap":21018812,
 "name":"IRON BEAR RESOURCES LTD",
 "sector":"Materials"
 },
 "IBX":{
 "industry":"Health Care Equipment & Services",
-"market_cap":4806041,
+"market_cap":4820400,
 "name":"IMAGION BIOSYSTEMS LIMITED",
 "sector":"Healthcare"
 },
 "ICE":{
 "industry":"Software & Services",
-"market_cap":29894666,
+"market_cap":28566014,
 "name":"ICETANA LIMITED",
 "sector":"Info Tech"
 },
@@ -5869,7 +5869,7 @@
 },
 "ICL":{
 "industry":"Materials",
-"market_cap":7491078,
+"market_cap":6609775,
 "name":"ICENI GOLD LIMITED",
 "sector":"Materials"
 },
@@ -5893,7 +5893,7 @@
 },
 "ID8":{
 "industry":"Software & Services",
-"market_cap":3760125,
+"market_cap":3736022,
 "name":"IDENTITII LIMITED",
 "sector":"Info Tech"
 },
@@ -5911,7 +5911,7 @@
 },
 "IDA":{
 "industry":"Materials",
-"market_cap":10307719,
+"market_cap":10951952,
 "name":"INDIANA RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -5923,7 +5923,7 @@
 },
 "IDX":{
 "industry":"Health Care Equipment & Services",
-"market_cap":650232648,
+"market_cap":642758709,
 "name":"INTEGRAL DIAGNOSTICS LIMITED",
 "sector":"Healthcare"
 },
@@ -5953,13 +5953,13 @@
 },
 "IFN":{
 "industry":"Commercial & Professional Services",
-"market_cap":125338011,
+"market_cap":127536924,
 "name":"INFRAGREEN GROUP LIMITED",
 "sector":"Industrials"
 },
 "IFT":{
 "industry":"Capital Goods",
-"market_cap":10512067656,
+"market_cap":10602256987,
 "name":"INFRATIL LIMITED.",
 "sector":"Industrials"
 },
@@ -5971,7 +5971,7 @@
 },
 "IGL":{
 "industry":"Media & Entertainment",
-"market_cap":351094155,
+"market_cap":349560993,
 "name":"IVE GROUP LIMITED",
 "sector":"Communication Services"
 },
@@ -5983,19 +5983,19 @@
 },
 "IGO":{
 "industry":"Materials",
-"market_cap":3756048352,
+"market_cap":3937792628,
 "name":"IGO LIMITED",
 "sector":"Materials"
 },
 "IIQ":{
 "industry":"Health Care Equipment & Services",
-"market_cap":18652748,
+"market_cap":18300810,
 "name":"INOVIQ LTD",
 "sector":"Healthcare"
 },
 "IKE":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":132627553,
+"market_cap":144329984,
 "name":"IKEGPS GROUP LIMITED",
 "sector":"Info Tech"
 },
@@ -6007,13 +6007,13 @@
 },
 "ILT":{
 "industry":"Materials",
-"market_cap":30949175,
+"market_cap":32769715,
 "name":"ILTANI RESOURCES LIMITED.",
 "sector":"Materials"
 },
 "ILU":{
 "industry":"Materials",
-"market_cap":2557309179,
+"market_cap":2673746528,
 "name":"ILUKA RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -6025,19 +6025,19 @@
 },
 "IMB":{
 "industry":"Commercial & Professional Services",
-"market_cap":215098825,
+"market_cap":213010487,
 "name":"INTELLIGENT MONITORING GROUP LIMITED",
 "sector":"Industrials"
 },
 "IMC":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":11299683,
+"market_cap":10976835,
 "name":"IMMURON LIMITED",
 "sector":"Healthcare"
 },
 "IMD":{
 "industry":"Materials",
-"market_cap":1664905152,
+"market_cap":1706527781,
 "name":"IMDEX LIMITED",
 "sector":"Materials"
 },
@@ -6055,25 +6055,25 @@
 },
 "IMM":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":30956314,
+"market_cap":38326865,
 "name":"IMMUTEP LIMITED",
 "sector":"Healthcare"
 },
 "IMR":{
 "industry":"Health Care Equipment & Services",
-"market_cap":459072796,
+"market_cap":457279543,
 "name":"IMRICOR MEDICAL SYSTEMS INC.",
 "sector":"Healthcare"
 },
 "IMU":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":19784689,
+"market_cap":20883838,
 "name":"IMUGENE LIMITED",
 "sector":"Healthcare"
 },
 "INA":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":2135736303,
+"market_cap":2119432973,
 "name":"INGENIA COMMUNITIES GROUP",
 "sector":"Real Estate"
 },
@@ -6091,19 +6091,19 @@
 },
 "ING":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":814341503,
+"market_cap":810623048,
 "name":"INGHAMS GROUP LIMITED",
 "sector":"Consumer Staples"
 },
 "INN":{
 "industry":"Capital Goods",
-"market_cap":99718138,
+"market_cap":91804001,
 "name":"INNOVAERO TECHNOLOGIES LIMITED",
 "sector":"Industrials"
 },
 "INR":{
 "industry":"Materials",
-"market_cap":293444075,
+"market_cap":308888500,
 "name":"IONEER LTD",
 "sector":"Materials"
 },
@@ -6121,13 +6121,13 @@
 },
 "ION":{
 "industry":"Materials",
-"market_cap":100841940,
+"market_cap":106149411,
 "name":"IONDRIVE LIMITED",
 "sector":"Materials"
 },
 "IOV":{
 "industry":"Software & Services",
-"market_cap":70736182,
+"market_cap":74980353,
 "name":"ION VIDEO LTD",
 "sector":"Info Tech"
 },
@@ -6151,25 +6151,25 @@
 },
 "IPD":{
 "industry":"Health Care Equipment & Services",
-"market_cap":10997997,
+"market_cap":12830997,
 "name":"IMPEDIMED LIMITED",
 "sector":"Healthcare"
 },
 "IPG":{
 "industry":"Capital Goods",
-"market_cap":536166691,
+"market_cap":541372192,
 "name":"IPD GROUP LTD",
 "sector":"Industrials"
 },
 "IPH":{
 "industry":"Commercial & Professional Services",
-"market_cap":1027057748,
+"market_cap":1024490104,
 "name":"IPH LIMITED",
 "sector":"Industrials"
 },
 "IPT":{
 "industry":"Materials",
-"market_cap":14642455,
+"market_cap":12885361,
 "name":"IMPACT MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -6181,7 +6181,7 @@
 },
 "IPX":{
 "industry":"Materials",
-"market_cap":724607080,
+"market_cap":778952611,
 "name":"IPERIONX LIMITED",
 "sector":"Materials"
 },
@@ -6193,19 +6193,19 @@
 },
 "IRD":{
 "industry":"Materials",
-"market_cap":5041157,
+"market_cap":5881349,
 "name":"IRON ROAD LIMITED",
 "sector":"Materials"
 },
 "IRE":{
 "industry":"Software & Services",
-"market_cap":1081511054,
+"market_cap":1075907370,
 "name":"IRESS LIMITED",
 "sector":"Info Tech"
 },
 "IRI":{
 "industry":"Software & Services",
-"market_cap":48788968,
+"market_cap":49244940,
 "name":"INTEGRATED RESEARCH LIMITED",
 "sector":"Info Tech"
 },
@@ -6235,19 +6235,19 @@
 },
 "ITS":{
 "industry":"Software & Services",
-"market_cap":48358047,
+"market_cap":42555082,
 "name":"INFOTRUST LTD",
 "sector":"Info Tech"
 },
 "IVG":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":17686082,
+"market_cap":17150140,
 "name":"INVERT GRAPHITE LIMITED",
 "sector":"Healthcare"
 },
 "IVR":{
 "industry":"Materials",
-"market_cap":107537168,
+"market_cap":120651457,
 "name":"INVESTIGATOR SILVER LIMITED",
 "sector":"Materials"
 },
@@ -6259,7 +6259,7 @@
 },
 "IVZ":{
 "industry":"Energy",
-"market_cap":114325593,
+"market_cap":126829954,
 "name":"INVICTUS ENERGY LTD",
 "sector":"Energy"
 },
@@ -6271,7 +6271,7 @@
 },
 "IXR":{
 "industry":"Materials",
-"market_cap":118433263,
+"market_cap":119720581,
 "name":"IONIC RARE EARTHS LIMITED",
 "sector":"Materials"
 },
@@ -6283,7 +6283,7 @@
 },
 "JAN":{
 "industry":"Software & Services",
-"market_cap":24169607,
+"market_cap":24689384,
 "name":"JANISON EDUCATION GROUP LIMITED",
 "sector":"Info Tech"
 },
@@ -6307,7 +6307,7 @@
 },
 "JBH":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":8463543469,
+"market_cap":8397943081,
 "name":"JB HI-FI LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -6319,31 +6319,31 @@
 },
 "JDO":{
 "industry":"Banks",
-"market_cap":1050068496,
+"market_cap":1021991798,
 "name":"JUDO CAPITAL HOLDINGS LIMITED",
 "sector":"Financials"
 },
 "JGH":{
 "industry":"Materials",
-"market_cap":144203173,
+"market_cap":148640194,
 "name":"JADE GAS HOLDINGS LIMITED",
 "sector":"Materials"
 },
 "JHX":{
 "industry":"Materials",
-"market_cap":22800850442,
+"market_cap":24365500638,
 "name":"JAMES HARDIE INDUSTRIES PLC",
 "sector":"Materials"
 },
 "JIN":{
 "industry":"Consumer Services",
-"market_cap":395699084,
+"market_cap":389428100,
 "name":"JUMBO INTERACTIVE LIMITED",
 "sector":"Consumer Discretionary"
 },
 "JLL":{
 "industry":"Materials",
-"market_cap":47970620,
+"market_cap":46077043,
 "name":"JINDALEE LITHIUM LIMITED",
 "sector":"Materials"
 },
@@ -6361,13 +6361,13 @@
 },
 "JNO":{
 "industry":"Materials",
-"market_cap":4812452,
+"market_cap":5021689,
 "name":"JUNO MINERALS LIMITED",
 "sector":"Materials"
 },
 "JNS":{
 "industry":"Utilities",
-"market_cap":125575248,
+"market_cap":121798549,
 "name":"JANUS ELECTRIC HOLDINGS LIMITED",
 "sector":"Utilities"
 },
@@ -6385,7 +6385,7 @@
 },
 "JYC":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":161724259,
+"market_cap":159943809,
 "name":"JOYCE CORPORATION LTD",
 "sector":"Consumer Discretionary"
 },
@@ -6427,13 +6427,13 @@
 },
 "KAO":{
 "industry":"Materials",
-"market_cap":55977195,
+"market_cap":55616052,
 "name":"KAOKO METALS LIMITED",
 "sector":"Materials"
 },
 "KAR":{
 "industry":"Energy",
-"market_cap":1101560704,
+"market_cap":1084130946,
 "name":"KAROON ENERGY LTD",
 "sector":"Energy"
 },
@@ -6445,7 +6445,7 @@
 },
 "KAU":{
 "industry":"Materials",
-"market_cap":90798360,
+"market_cap":96851584,
 "name":"KAISER REEF LIMITED",
 "sector":"Materials"
 },
@@ -6457,19 +6457,19 @@
 },
 "KCC":{
 "industry":"Materials",
-"market_cap":40932866,
+"market_cap":43822245,
 "name":"KINCORA COPPER LIMITED",
 "sector":"Materials"
 },
 "KCN":{
 "industry":"Materials",
-"market_cap":1124245997,
+"market_cap":1182855978,
 "name":"KINGSGATE CONSOLIDATED LIMITED.",
 "sector":"Materials"
 },
 "KEY":{
 "industry":"Energy",
-"market_cap":2834340,
+"market_cap":3045858,
 "name":"KEY PETROLEUM LIMITED",
 "sector":"Energy"
 },
@@ -6487,7 +6487,7 @@
 },
 "KGL":{
 "industry":"Materials",
-"market_cap":306637753,
+"market_cap":340708615,
 "name":"KGL RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -6505,13 +6505,13 @@
 },
 "KIT":{
 "industry":"Class Pend",
-"market_cap":160305475,
+"market_cap":159336272,
 "name":"KAPSTREAM INVESTMENT TRUST",
 "sector":"Other"
 },
 "KKC":{
 "industry":"Not Applic",
-"market_cap":637004415,
+"market_cap":635391746,
 "name":"KKR CREDIT INCOME FUND",
 "sector":"Other"
 },
@@ -6553,7 +6553,7 @@
 },
 "KM1":{
 "industry":"Materials",
-"market_cap":16555753,
+"market_cap":16954687,
 "name":"KALI METALS LIMITED",
 "sector":"Materials"
 },
@@ -6571,7 +6571,7 @@
 },
 "KNB":{
 "industry":"Materials",
-"market_cap":20967162,
+"market_cap":23433887,
 "name":"KOONENBERRY GOLD LIMITED",
 "sector":"Materials"
 },
@@ -6619,7 +6619,7 @@
 },
 "KOV":{
 "industry":"Capital Goods",
-"market_cap":190841872,
+"market_cap":189887663,
 "name":"KORVEST LTD",
 "sector":"Industrials"
 },
@@ -6631,19 +6631,19 @@
 },
 "KPG":{
 "industry":"Commercial & Professional Services",
-"market_cap":192418567,
+"market_cap":194682315,
 "name":"KELLY PARTNERS GROUP HOLDINGS LIMITED",
 "sector":"Industrials"
 },
 "KPO":{
 "industry":"Utilities",
-"market_cap":35906055,
+"market_cap":38898226,
 "name":"KALINA POWER LIMITED",
 "sector":"Utilities"
 },
 "KRM":{
 "industry":"Materials",
-"market_cap":14317004,
+"market_cap":13563477,
 "name":"KINGSROSE MINING LIMITED",
 "sector":"Materials"
 },
@@ -6655,7 +6655,7 @@
 },
 "KSC":{
 "industry":"Transportation",
-"market_cap":424226667,
+"market_cap":418752775,
 "name":"K & S CORPORATION LIMITED",
 "sector":"Industrials"
 },
@@ -6667,7 +6667,7 @@
 },
 "KSN":{
 "industry":"Materials",
-"market_cap":36413059,
+"market_cap":35199290,
 "name":"KINGSTON RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -6679,25 +6679,25 @@
 },
 "KTA":{
 "industry":"Materials",
-"market_cap":9055175,
+"market_cap":10061305,
 "name":"KRAKATOA RESOURCES LIMITED",
 "sector":"Materials"
 },
 "KTK":{
 "industry":"Capital Goods",
-"market_cap":16157500,
+"market_cap":17562500,
 "name":"KTEK AEROSYSTEMS LTD",
 "sector":"Industrials"
 },
 "KYN":{
 "industry":"Consumer Services",
-"market_cap":3298037,
+"market_cap":2902273,
 "name":"KYRON CAPITAL GROUP",
 "sector":"Consumer Discretionary"
 },
 "KYP":{
 "industry":"Software & Services",
-"market_cap":51303964,
+"market_cap":54578686,
 "name":"KINATICO LTD",
 "sector":"Info Tech"
 },
@@ -6709,19 +6709,19 @@
 },
 "L1G":{
 "industry":"Financial Services",
-"market_cap":3195520654,
+"market_cap":3234020903,
 "name":"L1 GROUP LIMITED",
 "sector":"Financials"
 },
 "L1M":{
 "industry":"Materials",
-"market_cap":3420955,
+"market_cap":3040849,
 "name":"LIGHTNING MINERALS LTD",
 "sector":"Materials"
 },
 "LAC":{
 "industry":"Materials",
-"market_cap":65546450,
+"market_cap":64471919,
 "name":"LAC GOLD LIMITED",
 "sector":"Materials"
 },
@@ -6733,13 +6733,13 @@
 },
 "LAT":{
 "industry":"Materials",
-"market_cap":21845517,
+"market_cap":20935287,
 "name":"LATITUDE 66 LIMITED",
 "sector":"Materials"
 },
 "LAU":{
 "industry":"Transportation",
-"market_cap":253315534,
+"market_cap":262493633,
 "name":"LINDSAY AUSTRALIA LIMITED",
 "sector":"Industrials"
 },
@@ -6769,25 +6769,25 @@
 },
 "LDR":{
 "industry":"Materials",
-"market_cap":14207266,
+"market_cap":14613188,
 "name":"LODE RESOURCES LTD",
 "sector":"Materials"
 },
 "LDX":{
 "industry":"Health Care Equipment & Services",
-"market_cap":59289976,
+"market_cap":72136138,
 "name":"LUMOS DIAGNOSTICS HOLDINGS LIMITED",
 "sector":"Healthcare"
 },
 "LED":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":136345779,
+"market_cap":142450814,
 "name":"LDR CAPITAL PROPERTY FUND",
 "sector":"Real Estate"
 },
 "LEG":{
 "industry":"Materials",
-"market_cap":23315817,
+"market_cap":26230295,
 "name":"LEGEND MINING LIMITED",
 "sector":"Materials"
 },
@@ -6805,43 +6805,43 @@
 },
 "LF1":{
 "industry":"Not Applic",
-"market_cap":254277641,
+"market_cap":253603164,
 "name":"LA TROBE PRIVATE CREDIT FUND",
 "sector":"Other"
 },
 "LFG":{
 "industry":"Financial Services",
-"market_cap":1017060000,
+"market_cap":992772000,
 "name":"LIBERTY FINANCIAL GROUP",
 "sector":"Financials"
 },
 "LFS":{
 "industry":"Financial Services",
-"market_cap":899368959,
+"market_cap":888971630,
 "name":"LATITUDE GROUP HOLDINGS LIMITED",
 "sector":"Financials"
 },
 "LFT":{
 "industry":"Materials",
-"market_cap":126855614,
+"market_cap":141055870,
 "name":"LI-FT POWER LTD.",
 "sector":"Materials"
 },
 "LGF":{
 "industry":"Not Applic",
-"market_cap":1476229116,
+"market_cap":1527576215,
 "name":"L1 GOLD FUND LIMITED",
 "sector":"Other"
 },
 "LGI":{
 "industry":"Utilities",
-"market_cap":260669490,
+"market_cap":258600685,
 "name":"LGI LIMITED",
 "sector":"Utilities"
 },
 "LGM":{
 "industry":"Materials",
-"market_cap":20011523,
+"market_cap":19010947,
 "name":"LEGACY MINERALS HOLDINGS LIMITED",
 "sector":"Materials"
 },
@@ -6853,7 +6853,7 @@
 },
 "LGP":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":48022764,
+"market_cap":47194785,
 "name":"LITTLE GREEN PHARMA LTD",
 "sector":"Healthcare"
 },
@@ -6865,25 +6865,25 @@
 },
 "LIC":{
 "industry":"Real Estate Management & Development",
-"market_cap":525917033,
+"market_cap":521047431,
 "name":"LIFESTYLE COMMUNITIES LIMITED",
 "sector":"Real Estate"
 },
 "LIN":{
 "industry":"Materials",
-"market_cap":693523652,
+"market_cap":702770634,
 "name":"LINDIAN RESOURCES LIMITED",
 "sector":"Materials"
 },
 "LIO":{
 "industry":"Energy",
-"market_cap":7234684,
+"market_cap":7686851,
 "name":"LION ENERGY LIMITED",
 "sector":"Energy"
 },
 "LIS":{
 "industry":"Capital Goods",
-"market_cap":86427031,
+"market_cap":96030035,
 "name":"LI-S ENERGY LIMITED",
 "sector":"Industrials"
 },
@@ -6901,7 +6901,7 @@
 },
 "LKO":{
 "industry":"Energy",
-"market_cap":26814505,
+"market_cap":28729827,
 "name":"LAKES BLUE ENERGY NL",
 "sector":"Energy"
 },
@@ -6913,13 +6913,13 @@
 },
 "LKY":{
 "industry":"Materials",
-"market_cap":22543548,
+"market_cap":22919274,
 "name":"LOCKSLEY RESOURCES LIMITED",
 "sector":"Materials"
 },
 "LLC":{
 "industry":"Real Estate Management & Development",
-"market_cap":1783811337,
+"market_cap":1687015373,
 "name":"LENDLEASE GROUP",
 "sector":"Real Estate"
 },
@@ -6937,13 +6937,13 @@
 },
 "LM8":{
 "industry":"Materials",
-"market_cap":68224832,
+"market_cap":70498993,
 "name":"LUNNON METALS LIMITED",
 "sector":"Materials"
 },
 "LMG":{
 "industry":"Materials",
-"market_cap":51669638,
+"market_cap":55644226,
 "name":"LATROBE MAGNESIUM LIMITED",
 "sector":"Materials"
 },
@@ -6961,25 +6961,25 @@
 },
 "LMS":{
 "industry":"Materials",
-"market_cap":10277052,
+"market_cap":9614016,
 "name":"LITCHFIELD MINERALS LIMITED",
 "sector":"Materials"
 },
 "LNQ":{
 "industry":"Materials",
-"market_cap":118948354,
+"market_cap":114846687,
 "name":"LINQ MINERALS LIMITED",
 "sector":"Materials"
 },
 "LNW":{
 "industry":"Consumer Services",
-"market_cap":8973147619,
+"market_cap":8866819749,
 "name":"LIGHT & WONDER INC.",
 "sector":"Consumer Discretionary"
 },
 "LOT":{
 "industry":"Materials",
-"market_cap":98468162,
+"market_cap":106673842,
 "name":"LOTUS RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -6991,7 +6991,7 @@
 },
 "LOV":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":3151617539,
+"market_cap":3100677832,
 "name":"LOVISA HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -7003,7 +7003,7 @@
 },
 "LPM":{
 "industry":"Materials",
-"market_cap":15467000,
+"market_cap":15992775,
 "name":"LITHIUM PLUS MINERALS LTD.",
 "sector":"Materials"
 },
@@ -7027,25 +7027,25 @@
 },
 "LRT":{
 "industry":"Not Applic",
-"market_cap":90945294,
+"market_cap":96534111,
 "name":"LOWELL RESOURCES FUND",
 "sector":"Other"
 },
 "LRV":{
 "industry":"Materials",
-"market_cap":385013785,
+"market_cap":408905636,
 "name":"LARVOTTO RESOURCES LIMITED",
 "sector":"Materials"
 },
 "LSA":{
 "industry":"Materials",
-"market_cap":30467635,
+"market_cap":28609853,
 "name":"LACHLAN STAR LIMITED",
 "sector":"Materials"
 },
 "LSF":{
 "industry":"Not Applic",
-"market_cap":2789511461,
+"market_cap":2859408104,
 "name":"L1 LONG SHORT FUND LIMITED",
 "sector":"Other"
 },
@@ -7057,19 +7057,19 @@
 },
 "LSX":{
 "industry":"Not Applic",
-"market_cap":114672940,
+"market_cap":119689881,
 "name":"LION SELECTION GROUP LIMITED.",
 "sector":"Other"
 },
 "LTP":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":76555341,
+"market_cap":83025314,
 "name":"LTR PHARMA LIMITED",
 "sector":"Healthcare"
 },
 "LTR":{
 "industry":"Materials",
-"market_cap":2058827724,
+"market_cap":2154587153,
 "name":"LIONTOWN LIMITED",
 "sector":"Materials"
 },
@@ -7081,7 +7081,7 @@
 },
 "LUX":{
 "industry":"Materials",
-"market_cap":20555120,
+"market_cap":21764244,
 "name":"LUX COPPER CORP. LTD",
 "sector":"Materials"
 },
@@ -7093,19 +7093,19 @@
 },
 "LYC":{
 "industry":"Materials",
-"market_cap":12390046735,
+"market_cap":13235508901,
 "name":"LYNAS RARE EARTHS LIMITED",
 "sector":"Materials"
 },
 "LYL":{
 "industry":"Capital Goods",
-"market_cap":778908430,
+"market_cap":784869464,
 "name":"LYCOPODIUM LIMITED",
 "sector":"Industrials"
 },
 "M24":{
 "industry":"Materials",
-"market_cap":32990185,
+"market_cap":31790542,
 "name":"MAMBA EXPLORATION LIMITED",
 "sector":"Materials"
 },
@@ -7141,7 +7141,7 @@
 },
 "M79":{
 "industry":"Materials",
-"market_cap":14531737,
+"market_cap":13972824,
 "name":"MAMMOTH MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -7153,7 +7153,7 @@
 },
 "M96":{
 "industry":"Materials",
-"market_cap":7393913,
+"market_cap":9242391,
 "name":"MAVERICK MINERALS AUSTRALIA LTD",
 "sector":"Materials"
 },
@@ -7165,25 +7165,25 @@
 },
 "MAD":{
 "industry":"Commercial & Professional Services",
-"market_cap":1162847004,
+"market_cap":1154389935,
 "name":"MADER GROUP LIMITED",
 "sector":"Industrials"
 },
 "MAF":{
 "industry":"Financial Services",
-"market_cap":996898995,
+"market_cap":986930005,
 "name":"MA FINANCIAL GROUP LIMITED",
 "sector":"Financials"
 },
 "MAG":{
 "industry":"Materials",
-"market_cap":9040159,
+"market_cap":10546852,
 "name":"MAGMATIC RESOURCES LIMITED",
 "sector":"Materials"
 },
 "MAH":{
 "industry":"Materials",
-"market_cap":2004136811,
+"market_cap":2014911740,
 "name":"MACMAHON HOLDINGS LIMITED",
 "sector":"Materials"
 },
@@ -7195,19 +7195,19 @@
 },
 "MAN":{
 "industry":"Materials",
-"market_cap":11290679,
+"market_cap":11917938,
 "name":"MANDRAKE RESOURCES LIMITED",
 "sector":"Materials"
 },
 "MAP":{
 "industry":"Health Care Equipment & Services",
-"market_cap":27481464,
+"market_cap":25253237,
 "name":"MICROBA LIFE SCIENCES LIMITED",
 "sector":"Healthcare"
 },
 "MAQ":{
 "industry":"Software & Services",
-"market_cap":1285078278,
+"market_cap":1289975287,
 "name":"MACQUARIE TECHNOLOGY GROUP LIMITED",
 "sector":"Info Tech"
 },
@@ -7237,13 +7237,13 @@
 },
 "MBG":{
 "industry":"Materials",
-"market_cap":10486270,
+"market_cap":11651412,
 "name":"MB GOLD LIMITED",
 "sector":"Materials"
 },
 "MBH":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":25087381,
+"market_cap":24639392,
 "name":"MAGGIE BEER HOLDINGS LTD",
 "sector":"Consumer Staples"
 },
@@ -7255,13 +7255,13 @@
 },
 "MC2":{
 "industry":"Materials",
-"market_cap":887828383,
+"market_cap":956957005,
 "name":"MARIMACA COPPER CORP.",
 "sector":"Materials"
 },
 "MCA":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":37180589,
+"market_cap":40898648,
 "name":"MURRAY COD AUSTRALIA LIMITED",
 "sector":"Consumer Staples"
 },
@@ -7273,13 +7273,13 @@
 },
 "MCM":{
 "industry":"Energy",
-"market_cap":202782048,
+"market_cap":211231301,
 "name":"MC MINING LIMITED",
 "sector":"Energy"
 },
 "MCO":{
 "industry":"Materials",
-"market_cap":9446129,
+"market_cap":8186645,
 "name":"MYECO GROUP LTD",
 "sector":"Materials"
 },
@@ -7291,7 +7291,7 @@
 },
 "MCY":{
 "industry":"Utilities",
-"market_cap":7572635345,
+"market_cap":7644481980,
 "name":"MERCURY NZ LIMITED",
 "sector":"Utilities"
 },
@@ -7303,13 +7303,13 @@
 },
 "MDX":{
 "industry":"Materials",
-"market_cap":95755608,
+"market_cap":83786157,
 "name":"MINDAX LIMITED",
 "sector":"Materials"
 },
 "MEC":{
 "industry":"Financial Services",
-"market_cap":32332494,
+"market_cap":33221561,
 "name":"MORPHIC ETHICAL EQUITIES FUND LIMITED",
 "sector":"Financials"
 },
@@ -7327,7 +7327,7 @@
 },
 "MEK":{
 "industry":"Materials",
-"market_cap":258544970,
+"market_cap":279228567,
 "name":"MEEKA METALS LIMITED",
 "sector":"Materials"
 },
@@ -7345,7 +7345,7 @@
 },
 "MEU":{
 "industry":"Energy",
-"market_cap":94565434,
+"market_cap":99747101,
 "name":"MARMOTA LIMITED",
 "sector":"Energy"
 },
@@ -7357,7 +7357,7 @@
 },
 "MEZ":{
 "industry":"Utilities",
-"market_cap":11748425540,
+"market_cap":12014227023,
 "name":"MERIDIAN ENERGY LIMITED",
 "sector":"Utilities"
 },
@@ -7375,7 +7375,7 @@
 },
 "MFF":{
 "industry":"Not Applic",
-"market_cap":3111747915,
+"market_cap":3135638494,
 "name":"MFF CAPITAL INVESTMENTS LIMITED",
 "sector":"Other"
 },
@@ -7393,7 +7393,7 @@
 },
 "MGH":{
 "industry":"Capital Goods",
-"market_cap":1225075641,
+"market_cap":1264070091,
 "name":"MAAS GROUP HOLDINGS LIMITED",
 "sector":"Industrials"
 },
@@ -7405,7 +7405,7 @@
 },
 "MGR":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":7607179834,
+"market_cap":7393713053,
 "name":"MIRVAC GROUP",
 "sector":"Real Estate"
 },
@@ -7423,13 +7423,13 @@
 },
 "MGU":{
 "industry":"Materials",
-"market_cap":19278223,
+"market_cap":22491260,
 "name":"MAGNUM MINING AND EXPLORATION LIMITED",
 "sector":"Materials"
 },
 "MGX":{
 "industry":"Materials",
-"market_cap":342324333,
+"market_cap":348226477,
 "name":"MGX RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -7441,7 +7441,7 @@
 },
 "MHJ":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":130846485,
+"market_cap":132770698,
 "name":"MICHAEL HILL INTERNATIONAL LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -7459,13 +7459,13 @@
 },
 "MI6":{
 "industry":"Materials",
-"market_cap":1918696911,
+"market_cap":2072192664,
 "name":"MINERALS 260 LIMITED",
 "sector":"Materials"
 },
 "MIN":{
 "industry":"Materials",
-"market_cap":9253450394,
+"market_cap":9698346914,
 "name":"MINERAL RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -7483,7 +7483,7 @@
 },
 "MKR":{
 "industry":"Materials",
-"market_cap":80942973,
+"market_cap":86339171,
 "name":"MANUKA RESOURCES LTD.",
 "sector":"Materials"
 },
@@ -7495,49 +7495,49 @@
 },
 "MLG":{
 "industry":"Materials",
-"market_cap":121856235,
+"market_cap":132278150,
 "name":"MLG OZ LIMITED",
 "sector":"Materials"
 },
 "MLS":{
 "industry":"Materials",
-"market_cap":13583061,
+"market_cap":13950171,
 "name":"METALS AUSTRALIA LTD",
 "sector":"Materials"
 },
 "MLX":{
 "industry":"Materials",
-"market_cap":1347315138,
+"market_cap":1427090376,
 "name":"METALS X LIMITED",
 "sector":"Materials"
 },
 "MM1":{
 "industry":"Materials",
-"market_cap":208179239,
+"market_cap":228005833,
 "name":"MIDAS MINERALS LTD",
 "sector":"Materials"
 },
 "MM8":{
 "industry":"Materials",
-"market_cap":352739695,
+"market_cap":403794124,
 "name":"MEDALLION METALS LIMITED.",
 "sector":"Materials"
 },
 "MMA":{
 "industry":"Materials",
-"market_cap":114708382,
+"market_cap":120993773,
 "name":"MARONAN METALS LIMITED",
 "sector":"Materials"
 },
 "MME":{
 "industry":"Financial Services",
-"market_cap":54877975,
+"market_cap":54058901,
 "name":"MONEYME LIMITED",
 "sector":"Financials"
 },
 "MMI":{
 "industry":"Materials",
-"market_cap":250101968,
+"market_cap":277891076,
 "name":"METRO MINING LIMITED",
 "sector":"Materials"
 },
@@ -7555,19 +7555,19 @@
 },
 "MMR":{
 "industry":"Energy",
-"market_cap":2807985,
+"market_cap":1871990,
 "name":"MEC RESOURCES LIMITED",
 "sector":"Energy"
 },
 "MMS":{
 "industry":"Commercial & Professional Services",
-"market_cap":1317646014,
+"market_cap":1304413840,
 "name":"MCMILLAN SHAKESPEARE LIMITED",
 "sector":"Industrials"
 },
 "MNB":{
 "industry":"Materials",
-"market_cap":23677564,
+"market_cap":22099060,
 "name":"MINBOS RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -7579,13 +7579,13 @@
 },
 "MND":{
 "industry":"Capital Goods",
-"market_cap":2861698557,
+"market_cap":2846610515,
 "name":"MONADELPHOUS GROUP LIMITED",
 "sector":"Industrials"
 },
 "MNE":{
 "industry":"Energy",
-"market_cap":25727496,
+"market_cap":24923512,
 "name":"MACALLUM NEW ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -7609,7 +7609,7 @@
 },
 "MOT":{
 "industry":"Not Applic",
-"market_cap":437553886,
+"market_cap":440893992,
 "name":"METRICS INCOME OPPORTUNITIES TRUST",
 "sector":"Other"
 },
@@ -7621,19 +7621,19 @@
 },
 "MP1":{
 "industry":"Software & Services",
-"market_cap":4059690287,
+"market_cap":4126320608,
 "name":"MEGAPORT LIMITED",
 "sector":"Info Tech"
 },
 "MPK":{
 "industry":"Materials",
-"market_cap":181152476,
+"market_cap":187988418,
 "name":"MANY PEAKS MINERALS LTD",
 "sector":"Materials"
 },
 "MPL":{
 "industry":"Insurance",
-"market_cap":14348356880,
+"market_cap":14265736783,
 "name":"MEDIBANK PRIVATE LIMITED",
 "sector":"Financials"
 },
@@ -7657,7 +7657,7 @@
 },
 "MPW":{
 "industry":"Capital Goods",
-"market_cap":207189761,
+"market_cap":201934948,
 "name":"METAL POWDER WORKS LIMITED",
 "sector":"Industrials"
 },
@@ -7669,7 +7669,7 @@
 },
 "MQG":{
 "industry":"Financial Services",
-"market_cap":95470416882,
+"market_cap":95117476339,
 "name":"MACQUARIE GROUP LIMITED",
 "sector":"Financials"
 },
@@ -7693,13 +7693,13 @@
 },
 "MRD":{
 "industry":"Materials",
-"market_cap":60000835,
+"market_cap":61396203,
 "name":"MOUNT RIDLEY MINES LIMITED",
 "sector":"Materials"
 },
 "MRE":{
 "industry":"Not Applic",
-"market_cap":219553570,
+"market_cap":221824814,
 "name":"METRICS REAL ESTATE MULTI-STRATEGY FUND",
 "sector":"Other"
 },
@@ -7717,19 +7717,19 @@
 },
 "MRT":{
 "industry":"Materials",
-"market_cap":197946917,
+"market_cap":211018883,
 "name":"MARITANA MINERALS LIMITED",
 "sector":"Materials"
 },
 "MRZ":{
 "industry":"Materials",
-"market_cap":12127064,
+"market_cap":12512050,
 "name":"MONT ROYAL RESOURCES LIMITED",
 "sector":"Materials"
 },
 "MSB":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":2641635163,
+"market_cap":2654648144,
 "name":"MESOBLAST LIMITED",
 "sector":"Healthcare"
 },
@@ -7753,7 +7753,7 @@
 },
 "MSX":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":18316772,
+"market_cap":18706490,
 "name":"MIRO SCIENCES LTD",
 "sector":"Healthcare"
 },
@@ -7765,7 +7765,7 @@
 },
 "MTH":{
 "industry":"Materials",
-"market_cap":35622674,
+"market_cap":37497552,
 "name":"MITHRIL SILVER AND GOLD LIMITED",
 "sector":"Materials"
 },
@@ -7777,13 +7777,13 @@
 },
 "MTM":{
 "industry":"Materials",
-"market_cap":158611376,
+"market_cap":173717222,
 "name":"METALLIUM LIMITED",
 "sector":"Materials"
 },
 "MTO":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":212347311,
+"market_cap":210867539,
 "name":"MOTORCYCLE HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -7807,19 +7807,19 @@
 },
 "MVP":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":45063330,
+"market_cap":46753204,
 "name":"MEDICAL DEVELOPMENTS INTERNATIONAL LIMITED",
 "sector":"Healthcare"
 },
 "MX1":{
 "industry":"Health Care Equipment & Services",
-"market_cap":23339037,
+"market_cap":22586165,
 "name":"MICRO-X LIMITED",
 "sector":"Healthcare"
 },
 "MXI":{
 "industry":"Capital Goods",
-"market_cap":111131914,
+"market_cap":116688510,
 "name":"MAXIPARTS LIMITED",
 "sector":"Industrials"
 },
@@ -7831,37 +7831,37 @@
 },
 "MXT":{
 "industry":"Not Applic",
-"market_cap":2017612150,
+"market_cap":1993081911,
 "name":"METRICS MASTER INCOME TRUST",
 "sector":"Other"
 },
 "MYE":{
 "industry":"Materials",
-"market_cap":169867531,
+"market_cap":191487035,
 "name":"MASTERMYNE GROUP LIMITED",
 "sector":"Materials"
 },
 "MYG":{
 "industry":"Capital Goods",
-"market_cap":181871487,
+"market_cap":183631533,
 "name":"MAYFIELD GROUP HOLDINGS LIMITED",
 "sector":"Industrials"
 },
 "MYR":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":432686550,
+"market_cap":415379088,
 "name":"MYER HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
 "MYS":{
 "industry":"Banks",
-"market_cap":853655043,
+"market_cap":841679923,
 "name":"MYSTATE LIMITED",
 "sector":"Financials"
 },
 "MYX":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":252223932,
+"market_cap":267783200,
 "name":"MAYNE PHARMA GROUP LIMITED",
 "sector":"Healthcare"
 },
@@ -7873,7 +7873,7 @@
 },
 "NAB":{
 "industry":"Banks",
-"market_cap":124699079520,
+"market_cap":122984467177,
 "name":"NATIONAL AUSTRALIA BANK LIMITED",
 "sector":"Financials"
 },
@@ -7889,9 +7889,15 @@
 "name":"NEW AGE EXPLORATION LIMITED",
 "sector":"Energy"
 },
+"NAEDA":{
+"industry":"Energy",
+"market_cap":0,
+"name":"NEW AGE EXPLORATION LIMITED",
+"sector":"Energy"
+},
 "NAG":{
 "industry":"Materials",
-"market_cap":15411534,
+"market_cap":14127240,
 "name":"NAGAMBIE RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -7903,7 +7909,7 @@
 },
 "NC1":{
 "industry":"Materials",
-"market_cap":12721871,
+"market_cap":11627516,
 "name":"NICO RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -7915,13 +7921,13 @@
 },
 "NCC":{
 "industry":"Not Applic",
-"market_cap":30626834,
+"market_cap":30995832,
 "name":"NAOS EMERGING OPPORTUNITIES COMPANY LIMITED",
 "sector":"Other"
 },
 "NCK":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":1214535926,
+"market_cap":1178613032,
 "name":"NICK SCALI LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -7933,13 +7939,13 @@
 },
 "NEC":{
 "industry":"Media & Entertainment",
-"market_cap":1292396130,
+"market_cap":1324111373,
 "name":"NINE ENTERTAINMENT CO. HOLDINGS LIMITED",
 "sector":"Communication Services"
 },
 "NEM":{
 "industry":"Materials",
-"market_cap":177855566804,
+"market_cap":185671799092,
 "name":"NEWMONT CORPORATION",
 "sector":"Materials"
 },
@@ -7951,7 +7957,7 @@
 },
 "NEU":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":2946227202,
+"market_cap":3022291588,
 "name":"NEUREN PHARMACEUTICALS LIMITED",
 "sector":"Healthcare"
 },
@@ -7987,55 +7993,55 @@
 },
 "NGX":{
 "industry":"Materials",
-"market_cap":16423396,
+"market_cap":16989720,
 "name":"NGX LIMITED",
 "sector":"Materials"
 },
 "NGY":{
 "industry":"Energy",
-"market_cap":35995813,
+"market_cap":39995347,
 "name":"NUENERGY GAS LIMITED",
 "sector":"Energy"
 },
 "NH3":{
 "industry":"Materials",
-"market_cap":70118280,
+"market_cap":69356125,
 "name":"NH3 CLEAN ENERGY LIMITED",
 "sector":"Materials"
 },
 "NHC":{
 "industry":"Energy",
-"market_cap":4448857991,
+"market_cap":4533276548,
 "name":"NEW HOPE CORPORATION LIMITED",
 "sector":"Energy"
 },
 "NHE":{
 "industry":"Energy",
-"market_cap":34433558,
+"market_cap":35757926,
 "name":"NOBLE HELIUM LIMITED",
 "sector":"Energy"
 },
 "NHF":{
 "industry":"Insurance",
-"market_cap":3317073729,
+"market_cap":3287632246,
 "name":"NIB HOLDINGS LIMITED",
 "sector":"Financials"
 },
 "NHU":{
 "industry":"Energy",
-"market_cap":10237867,
+"market_cap":9598000,
 "name":"NEU HORIZON URANIUM LIMITED",
 "sector":"Energy"
 },
 "NIC":{
 "industry":"Materials",
-"market_cap":2561742166,
+"market_cap":2648580884,
 "name":"NICKEL INDUSTRIES LIMITED",
 "sector":"Materials"
 },
 "NIM":{
 "industry":"Materials",
-"market_cap":11422724,
+"market_cap":11779684,
 "name":"NIMY RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -8053,19 +8059,19 @@
 },
 "NMG":{
 "industry":"Materials",
-"market_cap":625159176,
+"market_cap":669029995,
 "name":"NEW MURCHISON GOLD LIMITED",
 "sector":"Materials"
 },
 "NMR":{
 "industry":"Materials",
-"market_cap":44136800,
+"market_cap":48663651,
 "name":"NATIVE MINERAL RESOURCES HOLDINGS LIMITED",
 "sector":"Materials"
 },
 "NMT":{
 "industry":"Materials",
-"market_cap":21897435,
+"market_cap":18393845,
 "name":"NEOMETALS LTD",
 "sector":"Materials"
 },
@@ -8083,19 +8089,19 @@
 },
 "NNL":{
 "industry":"Materials",
-"market_cap":64837655,
+"market_cap":62930665,
 "name":"NORDIC RESOURCES LTD",
 "sector":"Materials"
 },
 "NOL":{
 "industry":"Insurance",
-"market_cap":126736006,
+"market_cap":129065712,
 "name":"NOBLEOAK LIFE LIMITED",
 "sector":"Financials"
 },
 "NOR":{
 "industry":"Software & Services",
-"market_cap":9858434,
+"market_cap":9278526,
 "name":"NORWOOD SYSTEMS LIMITED",
 "sector":"Info Tech"
 },
@@ -8107,7 +8113,7 @@
 },
 "NOV":{
 "industry":"Software & Services",
-"market_cap":8810648,
+"market_cap":9439980,
 "name":"NOVATTI GROUP LIMITED",
 "sector":"Info Tech"
 },
@@ -8143,7 +8149,7 @@
 },
 "NS1":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":6038550,
+"market_cap":0,
 "name":"NODESTREAM LTD",
 "sector":"Info Tech"
 },
@@ -8155,7 +8161,7 @@
 },
 "NSC":{
 "industry":"Not Applic",
-"market_cap":39600388,
+"market_cap":38280375,
 "name":"NAOS SMALL CAP OPPORTUNITIES COMPANY LIMITED",
 "sector":"Other"
 },
@@ -8173,7 +8179,7 @@
 },
 "NST":{
 "industry":"Materials",
-"market_cap":36562648475,
+"market_cap":36847737352,
 "name":"NORTHERN STAR RESOURCES LTD",
 "sector":"Materials"
 },
@@ -8215,7 +8221,7 @@
 },
 "NUZ":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":54618692,
+"market_cap":51322088,
 "name":"NEURIZON THERAPEUTICS LIMITED",
 "sector":"Healthcare"
 },
@@ -8257,7 +8263,7 @@
 },
 "NVX":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":81830046,
+"market_cap":80832118,
 "name":"NOVONIX LIMITED",
 "sector":"Info Tech"
 },
@@ -8269,19 +8275,19 @@
 },
 "NWH":{
 "industry":"Capital Goods",
-"market_cap":2809965749,
+"market_cap":2823807945,
 "name":"NRW HOLDINGS LIMITED",
 "sector":"Industrials"
 },
 "NWL":{
 "industry":"Financial Services",
-"market_cap":4780604764,
+"market_cap":4758483713,
 "name":"NETWEALTH GROUP LIMITED",
 "sector":"Financials"
 },
 "NWM":{
 "industry":"Materials",
-"market_cap":9463203,
+"market_cap":8111317,
 "name":"NORWEST MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -8293,7 +8299,7 @@
 },
 "NWS":{
 "industry":"Media & Entertainment",
-"market_cap":23143915943,
+"market_cap":22846163899,
 "name":"NEWS CORPORATION..",
 "sector":"Communication Services"
 },
@@ -8317,13 +8323,13 @@
 },
 "NXG":{
 "industry":"Energy",
-"market_cap":7843596275,
+"market_cap":8414665127,
 "name":"NEXGEN ENERGY (CANADA) LTD",
 "sector":"Energy"
 },
 "NXL":{
 "industry":"Software & Services",
-"market_cap":652728405,
+"market_cap":651010699,
 "name":"NUIX LIMITED",
 "sector":"Info Tech"
 },
@@ -8335,7 +8341,7 @@
 },
 "NXN":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":33329373,
+"market_cap":32319392,
 "name":"NEXSEN LIMITED",
 "sector":"Healthcare"
 },
@@ -8347,7 +8353,7 @@
 },
 "NXT":{
 "industry":"Software & Services",
-"market_cap":7910392121,
+"market_cap":8001665876,
 "name":"NEXTDC LIMITED",
 "sector":"Info Tech"
 },
@@ -8359,7 +8365,7 @@
 },
 "NYR":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":128628494,
+"market_cap":122132106,
 "name":"NYRADA INC.",
 "sector":"Healthcare"
 },
@@ -8371,31 +8377,31 @@
 },
 "NZM":{
 "industry":"Media & Entertainment",
-"market_cap":147722571,
+"market_cap":144899847,
 "name":"NZME LIMITED",
 "sector":"Communication Services"
 },
 "OAK":{
 "industry":"Software & Services",
-"market_cap":2559828,
+"market_cap":1951869,
 "name":"OAKRIDGE INTERNATIONAL LIMITED",
 "sector":"Info Tech"
 },
 "OB1":{
 "industry":"Materials",
-"market_cap":4137024,
+"market_cap":5319031,
 "name":"ORBMINCO LIMITED",
 "sector":"Materials"
 },
 "OBL":{
 "industry":"Financial Services",
-"market_cap":530045259,
+"market_cap":514114937,
 "name":"OMNI BRIDGEWAY LIMITED",
 "sector":"Financials"
 },
 "OBM":{
 "industry":"Materials",
-"market_cap":2791809809,
+"market_cap":2966297922,
 "name":"ORA BANDA MINING LTD",
 "sector":"Materials"
 },
@@ -8407,19 +8413,19 @@
 },
 "OCA":{
 "industry":"Health Care Equipment & Services",
-"market_cap":380221291,
+"market_cap":387463601,
 "name":"OCEANIA HEALTHCARE LIMITED",
 "sector":"Healthcare"
 },
 "OCC":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":156626384,
+"market_cap":160712289,
 "name":"ORTHOCELL LIMITED",
 "sector":"Healthcare"
 },
 "OCL":{
 "industry":"Software & Services",
-"market_cap":619836017,
+"market_cap":615104445,
 "name":"OBJECTIVE CORPORATION LIMITED",
 "sector":"Info Tech"
 },
@@ -8437,13 +8443,13 @@
 },
 "OD6":{
 "industry":"Materials",
-"market_cap":28680948,
+"market_cap":30519470,
 "name":"OD6 METALS LIMITED",
 "sector":"Materials"
 },
 "ODA":{
 "industry":"Software & Services",
-"market_cap":12938481,
+"market_cap":14063566,
 "name":"ORCODA LIMITED",
 "sector":"Info Tech"
 },
@@ -8455,19 +8461,19 @@
 },
 "ODY":{
 "industry":"Materials",
-"market_cap":36733344,
+"market_cap":33907702,
 "name":"ODYSSEY GOLD LTD",
 "sector":"Materials"
 },
 "OEC":{
 "industry":"Capital Goods",
-"market_cap":19729583,
+"market_cap":17935985,
 "name":"ORBITAL CORPORATION LIMITED",
 "sector":"Industrials"
 },
 "OEL":{
 "industry":"Energy",
-"market_cap":33565068,
+"market_cap":38360078,
 "name":"OTTO ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -8479,13 +8485,13 @@
 },
 "OFX":{
 "industry":"Financial Services",
-"market_cap":105902669,
+"market_cap":104738904,
 "name":"OFX GROUP LIMITED",
 "sector":"Financials"
 },
 "OIL":{
 "industry":"Health Care Equipment & Services",
-"market_cap":172526043,
+"market_cap":167297981,
 "name":"OPTISCAN IMAGING LIMITED",
 "sector":"Healthcare"
 },
@@ -8509,13 +8515,13 @@
 },
 "OLL":{
 "industry":"Software & Services",
-"market_cap":7821398,
+"market_cap":7039258,
 "name":"OPENLEARNING LIMITED",
 "sector":"Info Tech"
 },
 "OLY":{
 "industry":"Materials",
-"market_cap":4580878,
+"market_cap":5786373,
 "name":"OLYMPIO METALS LIMITED",
 "sector":"Materials"
 },
@@ -8527,7 +8533,7 @@
 },
 "OMA":{
 "industry":"Energy",
-"market_cap":412742797,
+"market_cap":420889036,
 "name":"OMEGA OIL & GAS LIMITED",
 "sector":"Energy"
 },
@@ -8539,13 +8545,13 @@
 },
 "OMH":{
 "industry":"Materials",
-"market_cap":168576496,
+"market_cap":160913928,
 "name":"OM HOLDINGS LIMITED",
 "sector":"Materials"
 },
 "OML":{
 "industry":"Media & Entertainment",
-"market_cap":882113643,
+"market_cap":879472584,
 "name":"OOH!MEDIA LIMITED",
 "sector":"Communication Services"
 },
@@ -8581,19 +8587,19 @@
 },
 "OR3":{
 "industry":"Materials",
-"market_cap":36508074,
+"market_cap":33189158,
 "name":"ORE RESOURCES LIMITED",
 "sector":"Materials"
 },
 "ORA":{
 "industry":"Materials",
-"market_cap":1935165409,
+"market_cap":1947374654,
 "name":"ORORA LIMITED",
 "sector":"Materials"
 },
 "ORD":{
 "industry":"Materials",
-"market_cap":34436394,
+"market_cap":33679550,
 "name":"ORDELL MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -8605,31 +8611,31 @@
 },
 "ORG":{
 "industry":"Utilities",
-"market_cap":20879701773,
+"market_cap":21017521586,
 "name":"ORIGIN ENERGY LIMITED",
 "sector":"Utilities"
 },
 "ORI":{
 "industry":"Materials",
-"market_cap":10429706835,
+"market_cap":10221112698,
 "name":"ORICA LIMITED",
 "sector":"Materials"
 },
 "ORN":{
 "industry":"Materials",
-"market_cap":196996368,
+"market_cap":201473558,
 "name":"ORION MINERALS LTD",
 "sector":"Materials"
 },
 "ORP":{
 "industry":"Materials",
-"market_cap":30704783,
+"market_cap":36248702,
 "name":"ORPHEUS URANIUM LIMITED",
 "sector":"Materials"
 },
 "OSL":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":25142200,
+"market_cap":24224601,
 "name":"ONCOSIL MEDICAL LTD",
 "sector":"Healthcare"
 },
@@ -8641,7 +8647,7 @@
 },
 "OSM":{
 "industry":"Materials",
-"market_cap":114454157,
+"market_cap":116698356,
 "name":"OSMOND RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -8677,19 +8683,19 @@
 },
 "OWL":{
 "industry":"Capital Goods",
-"market_cap":16020000,
+"market_cap":17355000,
 "name":"OVERWATCH TECHNOLOGIES LIMITED",
 "sector":"Industrials"
 },
 "OZM":{
 "industry":"Materials",
-"market_cap":19443525,
+"market_cap":20023929,
 "name":"OZAURUM RESOURCES LIMITED",
 "sector":"Materials"
 },
 "OZZ":{
 "industry":"Materials",
-"market_cap":5487752,
+"market_cap":5213364,
 "name":"OZZ RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -8701,25 +8707,25 @@
 },
 "P1E":{
 "industry":"Energy",
-"market_cap":15172361,
+"market_cap":14305369,
 "name":"PURE ONE CORPORATION LIMITED",
 "sector":"Energy"
 },
 "PAB":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":14846597,
+"market_cap":13496906,
 "name":"PATRYS LIMITED",
 "sector":"Healthcare"
 },
 "PAC":{
 "industry":"Financial Services",
-"market_cap":307894921,
+"market_cap":304542163,
 "name":"PACIFIC CURRENT GROUP LIMITED",
 "sector":"Financials"
 },
 "PAF":{
 "industry":"Class Pend",
-"market_cap":5067530936,
+"market_cap":5481704138,
 "name":"PAN AFRICAN RESOURCES PLC",
 "sector":"Other"
 },
@@ -8737,7 +8743,7 @@
 },
 "PBH":{
 "industry":"Consumer Services",
-"market_cap":258952004,
+"market_cap":260689937,
 "name":"POINTSBET HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -8749,19 +8755,19 @@
 },
 "PC2":{
 "industry":"Materials",
-"market_cap":323295595,
+"market_cap":358141827,
 "name":"PC GOLD LTD",
 "sector":"Materials"
 },
 "PCG":{
 "industry":"Financial Services",
-"market_cap":89637000,
+"market_cap":92059622,
 "name":"PENGANA CAPITAL GROUP LIMITED",
 "sector":"Financials"
 },
 "PCI":{
 "industry":"Not Applic",
-"market_cap":790237502,
+"market_cap":779359620,
 "name":"PERPETUAL CREDIT INCOME TRUST",
 "sector":"Other"
 },
@@ -8773,13 +8779,13 @@
 },
 "PCL":{
 "industry":"Energy",
-"market_cap":58002562,
+"market_cap":49716481,
 "name":"PANCONTINENTAL ENERGY NL",
 "sector":"Energy"
 },
 "PCX":{
 "industry":"Not Applic",
-"market_cap":250290842,
+"market_cap":249650712,
 "name":"PENGANA GLOBAL PRIVATE CREDIT TRUST",
 "sector":"Other"
 },
@@ -8797,37 +8803,37 @@
 },
 "PDN":{
 "industry":"Energy",
-"market_cap":3352213821,
+"market_cap":3716194142,
 "name":"PALADIN ENERGY LTD",
 "sector":"Energy"
 },
 "PE1":{
 "industry":"Not Applic",
-"market_cap":390759225,
+"market_cap":370822530,
 "name":"PENGANA PRIVATE EQUITY TRUST",
 "sector":"Other"
 },
 "PEB":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":273214358,
+"market_cap":291842610,
 "name":"PACIFIC EDGE LIMITED",
 "sector":"Healthcare"
 },
 "PEC":{
 "industry":"Materials",
-"market_cap":10839342,
+"market_cap":9755407,
 "name":"PERPETUAL RESOURCES LIMITED",
 "sector":"Materials"
 },
 "PEN":{
 "industry":"Energy",
-"market_cap":114313071,
+"market_cap":117170897,
 "name":"PENINSULA ENERGY LIMITED",
 "sector":"Energy"
 },
 "PER":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":6938454,
+"market_cap":7929662,
 "name":"PERCHERON THERAPEUTICS LIMITED",
 "sector":"Healthcare"
 },
@@ -8851,7 +8857,7 @@
 },
 "PFE":{
 "industry":"Materials",
-"market_cap":6548651,
+"market_cap":6557238,
 "name":"PANTERA MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -8869,7 +8875,7 @@
 },
 "PFP":{
 "industry":"Consumer Services",
-"market_cap":362870552,
+"market_cap":380807119,
 "name":"PROPEL FUNERAL PARTNERS LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -8881,25 +8887,25 @@
 },
 "PGC":{
 "industry":"Health Care Equipment & Services",
-"market_cap":248295808,
+"market_cap":264848862,
 "name":"PARAGON CARE LIMITED",
 "sector":"Healthcare"
 },
 "PGD":{
 "industry":"Materials",
-"market_cap":15360746,
+"market_cap":14791829,
 "name":"PEREGRINE GOLD LTD",
 "sector":"Materials"
 },
 "PGF":{
 "industry":"Not Applic",
-"market_cap":1961463258,
+"market_cap":1955371757,
 "name":"PM CAPITAL GLOBAL OPPORTUNITIES FUND LIMITED",
 "sector":"Other"
 },
 "PGL":{
 "industry":"Materials",
-"market_cap":93606411,
+"market_cap":98286732,
 "name":"PILBARA GOLD LIMITED",
 "sector":"Materials"
 },
@@ -8929,13 +8935,13 @@
 },
 "PHO":{
 "industry":"Materials",
-"market_cap":78415518,
+"market_cap":75711535,
 "name":"PHOSCO LTD",
 "sector":"Materials"
 },
 "PHX":{
 "industry":"Software & Services",
-"market_cap":43460213,
+"market_cap":42791594,
 "name":"PHARMX TECHNOLOGIES LIMITED",
 "sector":"Info Tech"
 },
@@ -8947,7 +8953,7 @@
 },
 "PIC":{
 "industry":"Not Applic",
-"market_cap":417315779,
+"market_cap":425043849,
 "name":"PERPETUAL EQUITY INVESTMENT COMPANY LIMITED",
 "sector":"Other"
 },
@@ -8965,7 +8971,7 @@
 },
 "PIQ":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":16206565,
+"market_cap":15875819,
 "name":"PROTEOMICS INTERNATIONAL LABORATORIES LTD",
 "sector":"Healthcare"
 },
@@ -8977,13 +8983,13 @@
 },
 "PKO":{
 "industry":"Materials",
-"market_cap":20883853,
+"market_cap":23867261,
 "name":"PEAKO LIMITED",
 "sector":"Materials"
 },
 "PKP":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":18748701,
+"market_cap":20087894,
 "name":"PEAK PROCESSING LIMITED",
 "sector":"Healthcare"
 },
@@ -9001,7 +9007,7 @@
 },
 "PL8":{
 "industry":"Not Applic",
-"market_cap":1040604354,
+"market_cap":1036861173,
 "name":"PLATO INCOME MAXIMISER LIMITED.",
 "sector":"Other"
 },
@@ -9013,7 +9019,7 @@
 },
 "PLA":{
 "industry":"Materials",
-"market_cap":354189266,
+"market_cap":358849652,
 "name":"PACIFIC LIME AND CEMENT LIMITED",
 "sector":"Materials"
 },
@@ -9031,61 +9037,61 @@
 },
 "PLS":{
 "industry":"Materials",
-"market_cap":9129429353,
+"market_cap":9322986160,
 "name":"PLS GROUP LIMITED",
 "sector":"Materials"
 },
 "PLT":{
 "industry":"Financial Services",
-"market_cap":145673783,
+"market_cap":140141867,
 "name":"PLENTI GROUP LIMITED",
 "sector":"Financials"
 },
 "PLY":{
 "industry":"Media & Entertainment",
-"market_cap":43795040,
+"market_cap":43114288,
 "name":"PLAYSIDE STUDIOS LIMITED",
 "sector":"Communication Services"
 },
 "PM1":{
 "industry":"Materials",
-"market_cap":14521813,
+"market_cap":13940941,
 "name":"PALISADE METALS LTD",
 "sector":"Materials"
 },
 "PME":{
 "industry":"Health Care Equipment & Services",
-"market_cap":21429923510,
+"market_cap":21467532697,
 "name":"PRO MEDICUS LIMITED",
 "sector":"Healthcare"
 },
 "PMM":{
 "industry":"Materials",
-"market_cap":14979205,
+"market_cap":15728166,
 "name":"PIONEER MINERALS LIMITED",
 "sector":"Materials"
 },
 "PMT":{
 "industry":"Materials",
-"market_cap":613611243,
+"market_cap":641502663,
 "name":"PMET RESOURCES INC.",
 "sector":"Materials"
 },
 "PMV":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":2263474715,
+"market_cap":2244319781,
 "name":"PREMIER INVESTMENTS LIMITED",
 "sector":"Consumer Discretionary"
 },
 "PNC":{
 "industry":"Financial Services",
-"market_cap":124801945,
+"market_cap":119041856,
 "name":"PIONEER CREDIT LIMITED",
 "sector":"Financials"
 },
 "PNI":{
 "industry":"Financial Services",
-"market_cap":3859910287,
+"market_cap":3857473475,
 "name":"PINNACLE INVESTMENT MANAGEMENT GROUP LIMITED",
 "sector":"Financials"
 },
@@ -9097,13 +9103,13 @@
 },
 "PNN":{
 "industry":"Materials",
-"market_cap":71528113,
+"market_cap":73994600,
 "name":"POWER MINERALS LIMITED",
 "sector":"Materials"
 },
 "PNR":{
 "industry":"Materials",
-"market_cap":1182354872,
+"market_cap":1267360778,
 "name":"PANTORO GOLD LIMITED",
 "sector":"Materials"
 },
@@ -9115,19 +9121,19 @@
 },
 "PNV":{
 "industry":"Health Care Equipment & Services",
-"market_cap":614850262,
+"market_cap":628667122,
 "name":"POLYNOVO LIMITED",
 "sector":"Healthcare"
 },
 "POD":{
 "industry":"Materials",
-"market_cap":25641020,
+"market_cap":25083606,
 "name":"PODIUM MINERALS LIMITED",
 "sector":"Materials"
 },
 "POL":{
 "industry":"Materials",
-"market_cap":132623244,
+"market_cap":141876029,
 "name":"POLYMETALS RESOURCES LTD",
 "sector":"Materials"
 },
@@ -9139,13 +9145,13 @@
 },
 "PPC":{
 "industry":"Real Estate Management & Development",
-"market_cap":705818286,
+"market_cap":689349193,
 "name":"PEET LIMITED",
 "sector":"Real Estate"
 },
 "PPE":{
 "industry":"Commercial & Professional Services",
-"market_cap":46062184,
+"market_cap":46568362,
 "name":"PEOPLEIN LIMITED",
 "sector":"Industrials"
 },
@@ -9157,7 +9163,7 @@
 },
 "PPK":{
 "industry":"Materials",
-"market_cap":29968124,
+"market_cap":31784374,
 "name":"PPK GROUP LIMITED",
 "sector":"Materials"
 },
@@ -9169,25 +9175,25 @@
 },
 "PPM":{
 "industry":"Financial Services",
-"market_cap":797654837,
+"market_cap":813383243,
 "name":"PEPPER MONEY LIMITED",
 "sector":"Financials"
 },
 "PPS":{
 "industry":"Software & Services",
-"market_cap":290046101,
+"market_cap":285171377,
 "name":"PRAEMIUM LIMITED",
 "sector":"Info Tech"
 },
 "PPT":{
 "industry":"Financial Services",
-"market_cap":2055565254,
+"market_cap":2043932174,
 "name":"PERPETUAL LIMITED",
 "sector":"Financials"
 },
 "PPY":{
 "industry":"Materials",
-"market_cap":5191054,
+"market_cap":5839936,
 "name":"PAPYRUS AUSTRALIA LIMITED",
 "sector":"Materials"
 },
@@ -9223,13 +9229,13 @@
 },
 "PRM":{
 "industry":"Energy",
-"market_cap":2707667,
+"market_cap":4061501,
 "name":"PROMINENCE ENERGY LIMITED",
 "sector":"Energy"
 },
 "PRN":{
 "industry":"Materials",
-"market_cap":1884361977,
+"market_cap":1940333125,
 "name":"PERENTI LIMITED",
 "sector":"Materials"
 },
@@ -9241,25 +9247,25 @@
 },
 "PRU":{
 "industry":"Materials",
-"market_cap":8327980565,
+"market_cap":8646247339,
 "name":"PERSEUS MINING LIMITED",
 "sector":"Materials"
 },
 "PRX":{
 "industry":"Materials",
-"market_cap":16180482,
+"market_cap":15843389,
 "name":"PRODIGY GOLD NL",
 "sector":"Materials"
 },
 "PSC":{
 "industry":"Materials",
-"market_cap":209347733,
+"market_cap":196843492,
 "name":"PROSPECT RESOURCES LIMITED",
 "sector":"Materials"
 },
 "PSL":{
 "industry":"Materials",
-"market_cap":24298616,
+"market_cap":22089651,
 "name":"PATERSON RESOURCES LTD",
 "sector":"Materials"
 },
@@ -9271,25 +9277,25 @@
 },
 "PTN":{
 "industry":"Materials",
-"market_cap":65087960,
+"market_cap":68046504,
 "name":"PATRONUS RESOURCES LIMITED",
 "sector":"Materials"
 },
 "PTR":{
 "industry":"Materials",
-"market_cap":31225917,
+"market_cap":31621182,
 "name":"PTR MINERALS LTD",
 "sector":"Materials"
 },
 "PTX":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":61767898,
+"market_cap":64055598,
 "name":"PRESCIENT THERAPEUTICS LIMITED",
 "sector":"Healthcare"
 },
 "PUR":{
 "industry":"Materials",
-"market_cap":18864806,
+"market_cap":20960895,
 "name":"PURSUIT MINERALS LTD",
 "sector":"Materials"
 },
@@ -9301,7 +9307,7 @@
 },
 "PVE":{
 "industry":"Energy",
-"market_cap":88081083,
+"market_cap":92716930,
 "name":"PO VALLEY ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -9325,7 +9331,7 @@
 },
 "PWH":{
 "industry":"Automobiles & Components",
-"market_cap":1120395719,
+"market_cap":1131458873,
 "name":"PWR HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -9343,7 +9349,7 @@
 },
 "PXA":{
 "industry":"Real Estate Management & Development",
-"market_cap":1293131085,
+"market_cap":1284334275,
 "name":"PEXA GROUP LIMITED",
 "sector":"Real Estate"
 },
@@ -9355,55 +9361,55 @@
 },
 "PXX":{
 "industry":"Materials",
-"market_cap":43600308,
+"market_cap":40875289,
 "name":"POLARX LIMITED",
 "sector":"Materials"
 },
 "PYC":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":1851330840,
+"market_cap":1959653390,
 "name":"PYC THERAPEUTICS LIMITED",
 "sector":"Healthcare"
 },
 "QAL":{
 "industry":"Real Estate Management & Development",
-"market_cap":825903177,
+"market_cap":837960157,
 "name":"QUALITAS LIMITED",
 "sector":"Real Estate"
 },
 "QAN":{
 "industry":"Transportation",
-"market_cap":14299733187,
+"market_cap":14087885287,
 "name":"QANTAS AIRWAYS LIMITED",
 "sector":"Industrials"
 },
 "QBE":{
 "industry":"Insurance",
-"market_cap":39968634239,
+"market_cap":39326147782,
 "name":"QBE INSURANCE GROUP LIMITED",
 "sector":"Financials"
 },
 "QEM":{
 "industry":"Materials",
-"market_cap":3646479,
+"market_cap":3281831,
 "name":"QEM LIMITED",
 "sector":"Materials"
 },
 "QFE":{
 "industry":"Financial Services",
-"market_cap":29650813,
+"market_cap":30420964,
 "name":"QUICKFEE LIMITED",
 "sector":"Financials"
 },
 "QGL":{
 "industry":"Materials",
-"market_cap":131469145,
+"market_cap":133222067,
 "name":"QUANTUM GRAPHITE LIMITED",
 "sector":"Materials"
 },
 "QML":{
 "industry":"Materials",
-"market_cap":40143556,
+"market_cap":45597737,
 "name":"QMINES LIMITED",
 "sector":"Materials"
 },
@@ -9421,7 +9427,7 @@
 },
 "QRI":{
 "industry":"Financial Services",
-"market_cap":937221483,
+"market_cap":934065855,
 "name":"QUALITAS REAL ESTATE INCOME FUND",
 "sector":"Financials"
 },
@@ -9433,7 +9439,7 @@
 },
 "QUE":{
 "industry":"Financial Services",
-"market_cap":752164,
+"market_cap":537260,
 "name":"QUESTE COMMUNICATIONS LIMITED",
 "sector":"Financials"
 },
@@ -9457,7 +9463,7 @@
 },
 "RAC":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":289201687,
+"market_cap":287240997,
 "name":"RACURA ONCOLOGY LTD",
 "sector":"Healthcare"
 },
@@ -9469,13 +9475,13 @@
 },
 "RAG":{
 "industry":"Materials",
-"market_cap":5861872,
+"market_cap":6838851,
 "name":"RAGNAR METALS LIMITED",
 "sector":"Materials"
 },
 "RAN":{
 "industry":"Materials",
-"market_cap":1648894,
+"market_cap":1480257,
 "name":"RANGE INTERNATIONAL LIMITED",
 "sector":"Materials"
 },
@@ -9505,7 +9511,7 @@
 },
 "RAU":{
 "industry":"Materials",
-"market_cap":24231830,
+"market_cap":26595911,
 "name":"RESOURO STRATEGIC METALS INC.",
 "sector":"Materials"
 },
@@ -9529,13 +9535,13 @@
 },
 "RC1":{
 "industry":"Materials",
-"market_cap":9977810,
+"market_cap":9708140,
 "name":"REDCASTLE RESOURCES LIMITED",
 "sector":"Materials"
 },
 "RCE":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":100928550,
+"market_cap":105516212,
 "name":"RECCE PHARMACEUTICALS LTD",
 "sector":"Healthcare"
 },
@@ -9553,7 +9559,7 @@
 },
 "RCR":{
 "industry":"Materials",
-"market_cap":6788978,
+"market_cap":6266749,
 "name":"RINCON RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -9565,7 +9571,7 @@
 },
 "RDM":{
 "industry":"Materials",
-"market_cap":50458802,
+"market_cap":50653802,
 "name":"RED METAL LIMITED",
 "sector":"Materials"
 },
@@ -9583,19 +9589,19 @@
 },
 "RDX":{
 "industry":"Capital Goods",
-"market_cap":1759022784,
+"market_cap":1748521155,
 "name":"REDOX LIMITED",
 "sector":"Industrials"
 },
 "RDY":{
 "industry":"Software & Services",
-"market_cap":153219493,
+"market_cap":156926416,
 "name":"READYTECH HOLDINGS LIMITED",
 "sector":"Info Tech"
 },
 "REA":{
 "industry":"Media & Entertainment",
-"market_cap":22875603736,
+"market_cap":22709411774,
 "name":"REA GROUP LTD",
 "sector":"Communication Services"
 },
@@ -9619,13 +9625,13 @@
 },
 "REG":{
 "industry":"Health Care Equipment & Services",
-"market_cap":1515346689,
+"market_cap":1536519198,
 "name":"REGIS HEALTHCARE LIMITED",
 "sector":"Healthcare"
 },
 "REH":{
 "industry":"Capital Goods",
-"market_cap":11305390170,
+"market_cap":11280786491,
 "name":"REECE LIMITED",
 "sector":"Industrials"
 },
@@ -9637,31 +9643,31 @@
 },
 "REP":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":230489984,
+"market_cap":235500636,
 "name":"RAM ESSENTIAL SERVICES PROPERTY FUND",
 "sector":"Real Estate"
 },
 "REV":{
 "industry":"Not Applic",
-"market_cap":435170890,
+"market_cap":431890707,
 "name":"REVOLUTION PRIVATE CREDIT INCOME TRUST",
 "sector":"Other"
 },
 "REZ":{
 "industry":"Materials",
-"market_cap":6504941,
+"market_cap":7434219,
 "name":"RESOURCES & ENERGY GROUP LIMITED",
 "sector":"Materials"
 },
 "RF1":{
 "industry":"Not Applic",
-"market_cap":618237683,
+"market_cap":630769528,
 "name":"REGAL INVESTMENT FUND",
 "sector":"Other"
 },
 "RFF":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":767754308,
+"market_cap":756062618,
 "name":"RURAL FUNDS GROUP",
 "sector":"Real Estate"
 },
@@ -9679,49 +9685,49 @@
 },
 "RG1":{
 "industry":"Not Applic",
-"market_cap":567773221,
+"market_cap":586312755,
 "name":"REGAL PARTNERS GLOBAL INVESTMENTS LIMITED",
 "sector":"Other"
 },
 "RG8":{
 "industry":"Not Applic",
-"market_cap":278830153,
+"market_cap":272524949,
 "name":"REGAL ASIAN INVESTMENTS LIMITED",
 "sector":"Other"
 },
 "RGL":{
 "industry":"Materials",
-"market_cap":16112863,
+"market_cap":17263782,
 "name":"RIVERSGOLD LIMITED",
 "sector":"Materials"
 },
 "RGN":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":2720576759,
+"market_cap":2663180625,
 "name":"REGION GROUP",
 "sector":"Real Estate"
 },
 "RGT":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":2592911,
+"market_cap":2239332,
 "name":"ARGENT BIOPHARMA LIMITED",
 "sector":"Healthcare"
 },
 "RHC":{
 "industry":"Health Care Equipment & Services",
-"market_cap":12868761963,
+"market_cap":12808746212,
 "name":"RAMSAY HEALTH CARE LIMITED",
 "sector":"Healthcare"
 },
 "RHI":{
 "industry":"Materials",
-"market_cap":266550429,
+"market_cap":267835009,
 "name":"RED HILL MINERALS LIMITED",
 "sector":"Materials"
 },
 "RHT":{
 "industry":"Health Care Equipment & Services",
-"market_cap":36738258,
+"market_cap":42594470,
 "name":"RESONANCE HEALTH LIMITED",
 "sector":"Healthcare"
 },
@@ -9739,7 +9745,7 @@
 },
 "RIC":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":1004606238,
+"market_cap":997109177,
 "name":"RIDLEY CORPORATION LIMITED",
 "sector":"Consumer Staples"
 },
@@ -9763,13 +9769,13 @@
 },
 "RIO":{
 "industry":"Materials",
-"market_cap":55747154915,
+"market_cap":56613498348,
 "name":"RIO TINTO LIMITED",
 "sector":"Materials"
 },
 "RIV":{
 "industry":"Utilities",
-"market_cap":194433061,
+"market_cap":192865053,
 "name":"RIVCO AUSTRALIA LTD",
 "sector":"Utilities"
 },
@@ -9781,7 +9787,7 @@
 },
 "RKN":{
 "industry":"Software & Services",
-"market_cap":44751459,
+"market_cap":45884407,
 "name":"RECKON LIMITED",
 "sector":"Info Tech"
 },
@@ -9793,7 +9799,7 @@
 },
 "RLC":{
 "industry":"Materials",
-"market_cap":7647620,
+"market_cap":10196827,
 "name":"REEDY LAGOON CORPORATION LIMITED",
 "sector":"Materials"
 },
@@ -9817,13 +9823,13 @@
 },
 "RMD":{
 "industry":"Health Care Equipment & Services",
-"market_cap":48878332173,
+"market_cap":48203178232,
 "name":"RESMED INC",
 "sector":"Healthcare"
 },
 "RMI":{
 "industry":"Materials",
-"market_cap":104677085,
+"market_cap":94209377,
 "name":"RESOURCE MINERALS INTERNATIONAL LTD",
 "sector":"Materials"
 },
@@ -9835,7 +9841,7 @@
 },
 "RMS":{
 "industry":"Materials",
-"market_cap":6903525968,
+"market_cap":7317361312,
 "name":"RAMELIUS RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -9853,25 +9859,25 @@
 },
 "RND":{
 "industry":"Materials",
-"market_cap":130814710,
+"market_cap":133089749,
 "name":"RAND MINING LIMITED",
 "sector":"Materials"
 },
 "RNT":{
 "industry":"Media & Entertainment",
-"market_cap":54831292,
+"market_cap":53081358,
 "name":"RENT.COM.AU LIMITED",
 "sector":"Communication Services"
 },
 "RNU":{
 "industry":"Materials",
-"market_cap":127311882,
+"market_cap":124765644,
 "name":"RENASCOR RESOURCES LIMITED",
 "sector":"Materials"
 },
 "RNV":{
 "industry":"Health Care Equipment & Services",
-"market_cap":13880382,
+"market_cap":13533373,
 "name":"RENERVE LIMITED",
 "sector":"Healthcare"
 },
@@ -9883,7 +9889,7 @@
 },
 "ROC":{
 "industry":"Software & Services",
-"market_cap":38010720,
+"market_cap":39038037,
 "name":"ROCKETBOOTS LIMITED",
 "sector":"Info Tech"
 },
@@ -9907,7 +9913,7 @@
 },
 "RPL":{
 "industry":"Financial Services",
-"market_cap":903095694,
+"market_cap":907257426,
 "name":"REGAL PARTNERS LIMITED",
 "sector":"Financials"
 },
@@ -9937,25 +9943,25 @@
 },
 "RRL":{
 "industry":"Materials",
-"market_cap":5030156893,
+"market_cap":5227417948,
 "name":"REGIS RESOURCES LIMITED",
 "sector":"Materials"
 },
 "RRR":{
 "industry":"Materials",
-"market_cap":15857938,
+"market_cap":16870147,
 "name":"REVOLVER RESOURCES HOLDINGS LTD",
 "sector":"Materials"
 },
 "RSG":{
 "industry":"Materials",
-"market_cap":2607649488,
+"market_cap":2746581633,
 "name":"RESOLUTE MINING LIMITED",
 "sector":"Materials"
 },
 "RTG":{
 "industry":"Materials",
-"market_cap":51953546,
+"market_cap":53877752,
 "name":"RTG MINING INC.",
 "sector":"Materials"
 },
@@ -9967,7 +9973,7 @@
 },
 "RTR":{
 "industry":"Materials",
-"market_cap":29192643,
+"market_cap":31846520,
 "name":"RUMBLE RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -9997,13 +10003,13 @@
 },
 "RWL":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":53754445,
+"market_cap":48867677,
 "name":"RUBICON WATER LIMITED",
 "sector":"Info Tech"
 },
 "RXL":{
 "industry":"Materials",
-"market_cap":768360142,
+"market_cap":810270695,
 "name":"ROX RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -10015,13 +10021,13 @@
 },
 "RYD":{
 "industry":"Not Applic",
-"market_cap":165127080,
+"market_cap":163516084,
 "name":"RYDER CAPITAL LIMITED",
 "sector":"Other"
 },
 "RYM":{
 "industry":"Health Care Equipment & Services",
-"market_cap":1457594615,
+"market_cap":1523618064,
 "name":"RYMAN HEALTHCARE LIMITED",
 "sector":"Healthcare"
 },
@@ -10033,7 +10039,7 @@
 },
 "RZI":{
 "industry":"Financial Services",
-"market_cap":42682954,
+"market_cap":43736854,
 "name":"RAIZ INVEST LIMITED",
 "sector":"Financials"
 },
@@ -10045,7 +10051,7 @@
 },
 "S32":{
 "industry":"Materials",
-"market_cap":19878465396,
+"market_cap":20550035173,
 "name":"SOUTH32 LIMITED",
 "sector":"Materials"
 },
@@ -10075,7 +10081,7 @@
 },
 "SBM":{
 "industry":"Materials",
-"market_cap":907282499,
+"market_cap":919543073,
 "name":"ST BARBARA LIMITED",
 "sector":"Materials"
 },
@@ -10087,25 +10093,25 @@
 },
 "SBZ":{
 "industry":"Capital Goods",
-"market_cap":54168196,
+"market_cap":51459786,
 "name":"SCHOOLBLAZER LIMITED",
 "sector":"Industrials"
 },
 "SCG":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":18878220127,
+"market_cap":18041512310,
 "name":"SCENTRE GROUP",
 "sector":"Real Estate"
 },
 "SCN":{
 "industry":"Materials",
-"market_cap":7592637,
+"market_cap":9219630,
 "name":"SCORPION MINERALS LIMITED",
 "sector":"Materials"
 },
 "SCP":{
 "industry":"Financial Services",
-"market_cap":19950577,
+"market_cap":19785696,
 "name":"SCALARE PARTNERS HOLDINGS LIMITED",
 "sector":"Financials"
 },
@@ -10123,7 +10129,7 @@
 },
 "SCX":{
 "industry":"Software & Services",
-"market_cap":46273016,
+"market_cap":53776749,
 "name":"SCX.AI HOLDINGS LIMITED",
 "sector":"Info Tech"
 },
@@ -10141,25 +10147,25 @@
 },
 "SDR":{
 "industry":"Software & Services",
-"market_cap":965319396,
+"market_cap":1007782127,
 "name":"SITEMINDER LIMITED",
 "sector":"Info Tech"
 },
 "SDV":{
 "industry":"Materials",
-"market_cap":36116830,
+"market_cap":34215945,
 "name":"SCIDEV LTD",
 "sector":"Materials"
 },
 "SEA":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":87453241,
+"market_cap":85771448,
 "name":"SEA FOREST LIMITED",
 "sector":"Consumer Staples"
 },
 "SEC":{
 "industry":"Not Applic",
-"market_cap":130066582,
+"market_cap":131864737,
 "name":"SPHERIA EMERGING COMPANIES LIMITED",
 "sector":"Other"
 },
@@ -10171,19 +10177,19 @@
 },
 "SEK":{
 "industry":"Media & Entertainment",
-"market_cap":5201306861,
+"market_cap":5097495506,
 "name":"SEEK LIMITED",
 "sector":"Communication Services"
 },
 "SEN":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":36470256,
+"market_cap":37133351,
 "name":"SENETAS CORPORATION LIMITED",
 "sector":"Info Tech"
 },
 "SEQ":{
 "industry":"Financial Services",
-"market_cap":5883613,
+"market_cap":6128763,
 "name":"SEQUOIA FINANCIAL GROUP LTD",
 "sector":"Financials"
 },
@@ -10225,7 +10231,7 @@
 },
 "SFR":{
 "industry":"Materials",
-"market_cap":8942611890,
+"market_cap":9448002829,
 "name":"SANDFIRE RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -10243,55 +10249,55 @@
 },
 "SGC":{
 "industry":"Materials",
-"market_cap":156103823,
+"market_cap":161678959,
 "name":"SINCLAIR GOLD LTD",
 "sector":"Materials"
 },
 "SGH":{
 "industry":"Capital Goods",
-"market_cap":17182669194,
+"market_cap":17247417829,
 "name":"SGH LIMITED",
 "sector":"Industrials"
 },
 "SGI":{
 "industry":"Capital Goods",
-"market_cap":184588924,
+"market_cap":183088201,
 "name":"STEALTH GROUP HOLDINGS LTD",
 "sector":"Industrials"
 },
 "SGLLV":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":1054262598,
+"market_cap":1013394337,
 "name":"RICEGROWERS LIMITED",
 "sector":"Consumer Staples"
 },
 "SGM":{
 "industry":"Materials",
-"market_cap":3797028273,
+"market_cap":3887847779,
 "name":"SIMS LIMITED",
 "sector":"Materials"
 },
 "SGP":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":11185562961,
+"market_cap":10796499902,
 "name":"STOCKLAND",
 "sector":"Real Estate"
 },
 "SGQ":{
 "industry":"Materials",
-"market_cap":249169571,
+"market_cap":268886822,
 "name":"ST GEORGE MINING LIMITED",
 "sector":"Materials"
 },
 "SGR":{
 "industry":"Consumer Services",
-"market_cap":1045028594,
+"market_cap":1146160393,
 "name":"THE STAR ENTERTAINMENT GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
 "SHA":{
 "industry":"Capital Goods",
-"market_cap":569370476,
+"market_cap":560872409,
 "name":"SHAPE AUSTRALIA CORPORATION LIMITED",
 "sector":"Industrials"
 },
@@ -10303,19 +10309,19 @@
 },
 "SHG":{
 "industry":"Health Care Equipment & Services",
-"market_cap":70109629,
+"market_cap":66848716,
 "name":"SINGULAR HEALTH GROUP LTD",
 "sector":"Healthcare"
 },
 "SHJ":{
 "industry":"Consumer Services",
-"market_cap":105202144,
+"market_cap":107768049,
 "name":"SHINE JUSTICE LTD",
 "sector":"Consumer Discretionary"
 },
 "SHL":{
 "industry":"Health Care Equipment & Services",
-"market_cap":9914413337,
+"market_cap":9776026710,
 "name":"SONIC HEALTHCARE LIMITED",
 "sector":"Healthcare"
 },
@@ -10327,7 +10333,7 @@
 },
 "SHN":{
 "industry":"Materials",
-"market_cap":82756172,
+"market_cap":75559983,
 "name":"SUNSHINE METALS LIMITED",
 "sector":"Materials"
 },
@@ -10345,25 +10351,25 @@
 },
 "SHV":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":558699927,
+"market_cap":550340327,
 "name":"SELECT HARVESTS LIMITED",
 "sector":"Consumer Staples"
 },
 "SIG":{
 "industry":"Health Care Equipment & Services",
-"market_cap":32553241998,
+"market_cap":32899553083,
 "name":"SIGMA HEALTHCARE LIMITED",
 "sector":"Healthcare"
 },
 "SIO":{
 "industry":"Consumer Durables & Apparel",
-"market_cap":50386903,
+"market_cap":53985968,
 "name":"SIMONDS GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
 "SIQ":{
 "industry":"Commercial & Professional Services",
-"market_cap":1533796674,
+"market_cap":1548941884,
 "name":"SMARTGROUP CORPORATION LTD",
 "sector":"Industrials"
 },
@@ -10387,19 +10393,19 @@
 },
 "SK1":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":292568557,
+"market_cap":291451883,
 "name":"SKINKANDY LIMITED",
 "sector":"Consumer Discretionary"
 },
 "SKC":{
 "industry":"Consumer Services",
-"market_cap":606680276,
+"market_cap":628741377,
 "name":"SKYCITY ENTERTAINMENT GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
 "SKG":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":1517788921,
+"market_cap":1484936347,
 "name":"STORAGE KING GROUP",
 "sector":"Real Estate"
 },
@@ -10411,7 +10417,7 @@
 },
 "SKM":{
 "industry":"Materials",
-"market_cap":38576232,
+"market_cap":46585704,
 "name":"SKYLARK MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -10429,13 +10435,13 @@
 },
 "SKS":{
 "industry":"Capital Goods",
-"market_cap":606087673,
+"market_cap":630331180,
 "name":"SKS TECHNOLOGIES GROUP LIMITED",
 "sector":"Industrials"
 },
 "SKT":{
 "industry":"Media & Entertainment",
-"market_cap":402834933,
+"market_cap":406973649,
 "name":"SKY NETWORK TELEVISION LIMITED.",
 "sector":"Communication Services"
 },
@@ -10453,31 +10459,31 @@
 },
 "SLB":{
 "industry":"Materials",
-"market_cap":16339933,
+"market_cap":18790923,
 "name":"STELAR METALS LIMITED",
 "sector":"Materials"
 },
 "SLC":{
 "industry":"Telecommunication Services",
-"market_cap":1452858650,
+"market_cap":1416794783,
 "name":"SUPERLOOP LIMITED",
 "sector":"Communication Services"
 },
 "SLD":{
 "industry":"Health Care Equipment & Services",
-"market_cap":57173495,
+"market_cap":59714539,
 "name":"SALUDA MEDICAL, INC.",
 "sector":"Healthcare"
 },
 "SLM":{
 "industry":"Materials",
-"market_cap":11963809,
+"market_cap":11631481,
 "name":"SOLIS MINERALS LIMITED",
 "sector":"Materials"
 },
 "SLS":{
 "industry":"Materials",
-"market_cap":326328130,
+"market_cap":345654880,
 "name":"SOLSTICE MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -10489,7 +10495,7 @@
 },
 "SLX":{
 "industry":"Capital Goods",
-"market_cap":828000960,
+"market_cap":928364713,
 "name":"SILEX SYSTEMS LIMITED",
 "sector":"Industrials"
 },
@@ -10501,13 +10507,19 @@
 },
 "SM1":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":253343201,
+"market_cap":247311220,
 "name":"SYNLAIT MILK LIMITED",
 "sector":"Consumer Staples"
 },
+"SMG":{
+"industry":"Media & Entertainment",
+"market_cap":225026195,
+"name":"SEVEN MEDIA GROUP LIMITED",
+"sector":"Communication Services"
+},
 "SMI":{
 "industry":"Materials",
-"market_cap":435866448,
+"market_cap":490349754,
 "name":"SANTANA MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -10525,13 +10537,13 @@
 },
 "SMN":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":54996823,
+"market_cap":54211154,
 "name":"STRUCTURAL MONITORING SYSTEMS PLC",
 "sector":"Info Tech"
 },
 "SMR":{
 "industry":"Materials",
-"market_cap":2226437336,
+"market_cap":2271506918,
 "name":"STANMORE RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -10543,7 +10555,7 @@
 },
 "SMX":{
 "industry":"Materials",
-"market_cap":6127868,
+"market_cap":5719344,
 "name":"STRATA MINERALS LIMITED.",
 "sector":"Materials"
 },
@@ -10555,7 +10567,7 @@
 },
 "SNC":{
 "industry":"Not Applic",
-"market_cap":109605088,
+"market_cap":111159770,
 "name":"SANDON CAPITAL INVESTMENTS LIMITED",
 "sector":"Other"
 },
@@ -10567,13 +10579,13 @@
 },
 "SNG":{
 "industry":"Materials",
-"market_cap":11137437,
+"market_cap":10836425,
 "name":"SIREN GOLD LIMITED",
 "sector":"Materials"
 },
 "SNL":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":1531865147,
+"market_cap":1513440653,
 "name":"SUPPLY NETWORK LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -10591,7 +10603,7 @@
 },
 "SNT":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":35361347,
+"market_cap":37325866,
 "name":"SYNTARA LIMITED",
 "sector":"Healthcare"
 },
@@ -10615,31 +10627,31 @@
 },
 "SOL":{
 "industry":"Financial Services",
-"market_cap":18054378482,
+"market_cap":17917574098,
 "name":"WASHINGTON H. SOUL PATTINSON AND COMPANY LIMITED",
 "sector":"Financials"
 },
 "SOM":{
 "industry":"Health Care Equipment & Services",
-"market_cap":63732793,
+"market_cap":61535111,
 "name":"SOMNOMED LIMITED",
 "sector":"Healthcare"
 },
 "SOP":{
 "industry":"Commercial & Professional Services",
-"market_cap":43530716,
+"market_cap":44170873,
 "name":"SYNERTEC CORPORATION LIMITED",
 "sector":"Industrials"
 },
 "SOR":{
 "industry":"Financial Services",
-"market_cap":19026480,
+"market_cap":20145685,
 "name":"STRATEGIC ELEMENTS LIMITED",
 "sector":"Financials"
 },
 "SP3":{
 "industry":"Technology Hardware & Equipment",
-"market_cap":2495536,
+"market_cap":2911459,
 "name":"SPECTUR LIMITED",
 "sector":"Info Tech"
 },
@@ -10651,13 +10663,13 @@
 },
 "SPA":{
 "industry":"Software & Services",
-"market_cap":30204202,
+"market_cap":30606925,
 "name":"SPACETALK LTD",
 "sector":"Info Tech"
 },
 "SPD":{
 "industry":"Materials",
-"market_cap":211726258,
+"market_cap":217019414,
 "name":"SOUTHERN PALLADIUM LIMITED",
 "sector":"Materials"
 },
@@ -10675,13 +10687,13 @@
 },
 "SPK":{
 "industry":"Telecommunication Services",
-"market_cap":3194180813,
+"market_cap":3203659095,
 "name":"SPARK NEW ZEALAND LIMITED",
 "sector":"Communication Services"
 },
 "SPL":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":214895419,
+"market_cap":217309974,
 "name":"STARPHARMA HOLDINGS LIMITED",
 "sector":"Healthcare"
 },
@@ -10693,13 +10705,13 @@
 },
 "SPN":{
 "industry":"Materials",
-"market_cap":20215932,
+"market_cap":19253268,
 "name":"SPARC TECHNOLOGIES LIMITED",
 "sector":"Materials"
 },
 "SPQ":{
 "industry":"Materials",
-"market_cap":9242348,
+"market_cap":10562683,
 "name":"SUPERIOR RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -10717,7 +10729,7 @@
 },
 "SPZ":{
 "industry":"Commercial & Professional Services",
-"market_cap":334108075,
+"market_cap":321500223,
 "name":"SMART PARKING LIMITED",
 "sector":"Industrials"
 },
@@ -10735,7 +10747,7 @@
 },
 "SRG":{
 "industry":"Capital Goods",
-"market_cap":2102779177,
+"market_cap":2090111833,
 "name":"SRG GLOBAL LIMITED",
 "sector":"Industrials"
 },
@@ -10747,7 +10759,7 @@
 },
 "SRJ":{
 "industry":"Energy",
-"market_cap":6964004,
+"market_cap":6093504,
 "name":"SRJ TECHNOLOGIES GROUP PLC",
 "sector":"Energy"
 },
@@ -10759,13 +10771,13 @@
 },
 "SRL":{
 "industry":"Materials",
-"market_cap":1995937520,
+"market_cap":2170021880,
 "name":"SUNRISE ENERGY METALS LIMITED",
 "sector":"Materials"
 },
 "SRN":{
 "industry":"Materials",
-"market_cap":3166615,
+"market_cap":2940428,
 "name":"SUREFIRE RESOURCES NL",
 "sector":"Materials"
 },
@@ -10777,7 +10789,7 @@
 },
 "SRR":{
 "industry":"Materials",
-"market_cap":12142264,
+"market_cap":11636336,
 "name":"SARAMA RESOURCES LTD",
 "sector":"Materials"
 },
@@ -10795,7 +10807,7 @@
 },
 "SRZ":{
 "industry":"Materials",
-"market_cap":93506488,
+"market_cap":102007077,
 "name":"STELLAR RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -10807,13 +10819,13 @@
 },
 "SS1":{
 "industry":"Materials",
-"market_cap":149337097,
+"market_cap":156757574,
 "name":"SUN SILVER LIMITED",
 "sector":"Materials"
 },
 "SSG":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":155249805,
+"market_cap":157214993,
 "name":"SHAVER SHOP GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -10831,13 +10843,13 @@
 },
 "SSM":{
 "industry":"Capital Goods",
-"market_cap":1360491902,
+"market_cap":0,
 "name":"SERVICE STREAM LIMITED",
 "sector":"Industrials"
 },
 "SST":{
 "industry":"Capital Goods",
-"market_cap":0,
+"market_cap":278143886,
 "name":"STEAMSHIPS TRADING COMPANY LIMITED",
 "sector":"Industrials"
 },
@@ -10855,7 +10867,7 @@
 },
 "STK":{
 "industry":"Materials",
-"market_cap":116499626,
+"market_cap":127090501,
 "name":"STRICKLAND METALS LIMITED",
 "sector":"Materials"
 },
@@ -10873,31 +10885,31 @@
 },
 "STN":{
 "industry":"Materials",
-"market_cap":285830260,
+"market_cap":304634882,
 "name":"SATURN METALS LIMITED",
 "sector":"Materials"
 },
 "STO":{
 "industry":"Energy",
-"market_cap":27800936546,
+"market_cap":27995802924,
 "name":"SANTOS LIMITED",
 "sector":"Energy"
 },
 "STP":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":25020939,
+"market_cap":24094238,
 "name":"STEP ONE CLOTHING LIMITED",
 "sector":"Consumer Discretionary"
 },
 "STV":{
 "industry":"Media & Entertainment",
-"market_cap":5801342,
+"market_cap":4351006,
 "name":"SWIFT TV LTD",
 "sector":"Communication Services"
 },
 "STX":{
 "industry":"Energy",
-"market_cap":342593296,
+"market_cap":346199542,
 "name":"STRIKE ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -10909,7 +10921,7 @@
 },
 "SUL":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":3093823050,
+"market_cap":3030591630,
 "name":"SUPER RETAIL GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -10921,7 +10933,7 @@
 },
 "SUN":{
 "industry":"Insurance",
-"market_cap":21508443028,
+"market_cap":21529644056,
 "name":"SUNCORP GROUP LIMITED",
 "sector":"Financials"
 },
@@ -10933,19 +10945,19 @@
 },
 "SVL":{
 "industry":"Materials",
-"market_cap":306273637,
+"market_cap":344557842,
 "name":"SILVER MINES LIMITED",
 "sector":"Materials"
 },
 "SVM":{
 "industry":"Materials",
-"market_cap":255824869,
+"market_cap":262384481,
 "name":"SOVEREIGN METALS LIMITED",
 "sector":"Materials"
 },
 "SVR":{
 "industry":"Financial Services",
-"market_cap":256281968,
+"market_cap":257217304,
 "name":"SOLVAR LIMITED",
 "sector":"Financials"
 },
@@ -10957,19 +10969,19 @@
 },
 "SWP":{
 "industry":"Telecommunication Services",
-"market_cap":21152163,
+"market_cap":20530040,
 "name":"SWOOP HOLDINGS LIMITED",
 "sector":"Communication Services"
 },
 "SX2":{
 "industry":"Materials",
-"market_cap":2316351525,
+"market_cap":2429607363,
 "name":"SOUTHERN CROSS GOLD CONSOLIDATED LTD.",
 "sector":"Materials"
 },
 "SXE":{
 "industry":"Capital Goods",
-"market_cap":1089709362,
+"market_cap":1114405325,
 "name":"SOUTHERN CROSS ELECTRICAL ENGINEERING LTD",
 "sector":"Industrials"
 },
@@ -10987,13 +10999,13 @@
 },
 "SYR":{
 "industry":"Materials",
-"market_cap":146281432,
+"market_cap":155569142,
 "name":"SYRAH RESOURCES LIMITED",
 "sector":"Materials"
 },
 "T3D":{
 "industry":"Commercial & Professional Services",
-"market_cap":5496282,
+"market_cap":6764655,
 "name":"333D LIMITED",
 "sector":"Industrials"
 },
@@ -11011,7 +11023,7 @@
 },
 "TAH":{
 "industry":"Consumer Services",
-"market_cap":2099384749,
+"market_cap":2064968606,
 "name":"TABCORP HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -11035,7 +11047,7 @@
 },
 "TAR":{
 "industry":"Materials",
-"market_cap":21318979,
+"market_cap":20303790,
 "name":"TARUGA MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -11053,37 +11065,37 @@
 },
 "TBN":{
 "industry":"Energy",
-"market_cap":1398400240,
+"market_cap":1503280258,
 "name":"TAMBORAN RESOURCES CORPORATION",
 "sector":"Energy"
 },
 "TBR":{
 "industry":"Materials",
-"market_cap":270735277,
+"market_cap":271259958,
 "name":"TRIBUNE RESOURCES LIMITED",
 "sector":"Materials"
 },
 "TCF":{
 "industry":"Not Applic",
-"market_cap":40109942,
+"market_cap":40642375,
 "name":"360 CAPITAL MORTGAGE REIT",
 "sector":"Other"
 },
 "TCG":{
 "industry":"Materials",
-"market_cap":896952385,
+"market_cap":940554238,
 "name":"TURACO GOLD LIMITED",
 "sector":"Materials"
 },
 "TCL":{
 "industry":"Transportation",
-"market_cap":45568172376,
+"market_cap":45786649915,
 "name":"TRANSURBAN GROUP",
 "sector":"Industrials"
 },
 "TCO":{
 "industry":"Consumer Services",
-"market_cap":40549817,
+"market_cap":40415990,
 "name":"TRANSMETRO CORPORATION LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -11101,7 +11113,7 @@
 },
 "TEA":{
 "industry":"Capital Goods",
-"market_cap":2507058533,
+"market_cap":2557763088,
 "name":"TASMEA LIMITED",
 "sector":"Industrials"
 },
@@ -11131,7 +11143,7 @@
 },
 "TER":{
 "industry":"Energy",
-"market_cap":41918032,
+"market_cap":49208125,
 "name":"TERRACOM LIMITED",
 "sector":"Energy"
 },
@@ -11167,7 +11179,7 @@
 },
 "TGF":{
 "industry":"Not Applic",
-"market_cap":165074170,
+"market_cap":167284985,
 "name":"TRIBECA GLOBAL NATURAL RESOURCES LIMITED",
 "sector":"Other"
 },
@@ -11185,7 +11197,7 @@
 },
 "TGN":{
 "industry":"Materials",
-"market_cap":295685639,
+"market_cap":311248041,
 "name":"TUNGSTEN MINING NL",
 "sector":"Materials"
 },
@@ -11197,7 +11209,7 @@
 },
 "THL":{
 "industry":"Transportation",
-"market_cap":502794864,
+"market_cap":496149998,
 "name":"TOURISM HOLDINGS RENTALS LIMITED",
 "sector":"Industrials"
 },
@@ -11239,13 +11251,13 @@
 },
 "TLC":{
 "industry":"Consumer Services",
-"market_cap":12219486649,
+"market_cap":12174971215,
 "name":"THE LOTTERY CORPORATION LIMITED",
 "sector":"Consumer Discretionary"
 },
 "TLG":{
 "industry":"Materials",
-"market_cap":102185359,
+"market_cap":97076091,
 "name":"TALGA GROUP LTD",
 "sector":"Materials"
 },
@@ -11257,13 +11269,13 @@
 },
 "TLS":{
 "industry":"Telecommunication Services",
-"market_cap":56333897460,
+"market_cap":55781604347,
 "name":"TELSTRA GROUP LIMITED",
 "sector":"Communication Services"
 },
 "TLX":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":4652316363,
+"market_cap":4740802263,
 "name":"TELIX PHARMACEUTICALS LIMITED",
 "sector":"Healthcare"
 },
@@ -11275,13 +11287,13 @@
 },
 "TMB":{
 "industry":"Materials",
-"market_cap":7804312,
+"market_cap":7552560,
 "name":"TAMBOURAH METALS LTD",
 "sector":"Materials"
 },
 "TMK":{
 "industry":"Energy",
-"market_cap":25624266,
+"market_cap":25354537,
 "name":"TMK ENERGY LIMITED",
 "sector":"Energy"
 },
@@ -11317,13 +11329,13 @@
 },
 "TNE":{
 "industry":"Software & Services",
-"market_cap":10688582864,
+"market_cap":10675488122,
 "name":"TECHNOLOGY ONE LIMITED",
 "sector":"Info Tech"
 },
 "TNM":{
 "industry":"Materials",
-"market_cap":14767969,
+"market_cap":14299144,
 "name":"TERRANOVA METALS LTD",
 "sector":"Materials"
 },
@@ -11341,13 +11353,13 @@
 },
 "TOK":{
 "industry":"Materials",
-"market_cap":306274665,
+"market_cap":311894383,
 "name":"TOLU MINERALS LIMITED.",
 "sector":"Materials"
 },
 "TON":{
 "industry":"Materials",
-"market_cap":6273555,
+"market_cap":7841944,
 "name":"TRITON MINERALS LTD",
 "sector":"Materials"
 },
@@ -11359,13 +11371,13 @@
 },
 "TOR":{
 "industry":"Materials",
-"market_cap":132388803,
+"market_cap":139953878,
 "name":"TORQUE METALS LIMITED..",
 "sector":"Materials"
 },
 "TOT":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":90019268,
+"market_cap":90578394,
 "name":"360 CAPITAL REIT",
 "sector":"Real Estate"
 },
@@ -11377,19 +11389,19 @@
 },
 "TPC":{
 "industry":"Utilities",
-"market_cap":48011428,
+"market_cap":46571085,
 "name":"TPC CONSOLIDATED LIMITED",
 "sector":"Utilities"
 },
 "TPG":{
 "industry":"Telecommunication Services",
-"market_cap":8048420540,
+"market_cap":7930638776,
 "name":"TPG TELECOM LIMITED.",
 "sector":"Communication Services"
 },
 "TPW":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":713265994,
+"market_cap":692287582,
 "name":"TEMPLE & WEBSTER GROUP LTD",
 "sector":"Consumer Discretionary"
 },
@@ -11413,7 +11425,7 @@
 },
 "TRE":{
 "industry":"Materials",
-"market_cap":316774127,
+"market_cap":322143180,
 "name":"TOUBANI RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -11425,7 +11437,7 @@
 },
 "TRJ":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":38980227,
+"market_cap":40508863,
 "name":"TRAJAN GROUP HOLDINGS LIMITED",
 "sector":"Healthcare"
 },
@@ -11437,13 +11449,13 @@
 },
 "TRP":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":6924588,
+"market_cap":7190918,
 "name":"TISSUE REPAIR LTD",
 "sector":"Healthcare"
 },
 "TRU":{
 "industry":"Health Care Equipment & Services",
-"market_cap":9429470,
+"market_cap":8381751,
 "name":"TRUSCREEN GROUP LIMITED",
 "sector":"Healthcare"
 },
@@ -11467,13 +11479,13 @@
 },
 "TSO":{
 "industry":"Materials",
-"market_cap":166255955,
+"market_cap":170749359,
 "name":"TESORO GOLD LTD",
 "sector":"Materials"
 },
 "TSR":{
 "industry":"Materials",
-"market_cap":5169401,
+"market_cap":4045618,
 "name":"TURNSTONE RESOURCES LTD",
 "sector":"Materials"
 },
@@ -11485,7 +11497,7 @@
 },
 "TTT":{
 "industry":"Materials",
-"market_cap":164399712,
+"market_cap":148317132,
 "name":"TITOMIC LIMITED",
 "sector":"Materials"
 },
@@ -11497,7 +11509,7 @@
 },
 "TUA":{
 "industry":"Telecommunication Services",
-"market_cap":800658410,
+"market_cap":797916429,
 "name":"TUAS LIMITED",
 "sector":"Communication Services"
 },
@@ -11509,7 +11521,7 @@
 },
 "TVN":{
 "industry":"Materials",
-"market_cap":352127871,
+"market_cap":363865466,
 "name":"TIVAN LIMITED",
 "sector":"Materials"
 },
@@ -11521,7 +11533,7 @@
 },
 "TWE":{
 "industry":"Food, Beverage & Tobacco",
-"market_cap":5136751601,
+"market_cap":5144840974,
 "name":"TREASURY WINE ESTATES LIMITED",
 "sector":"Consumer Staples"
 },
@@ -11533,19 +11545,19 @@
 },
 "TWR":{
 "industry":"Insurance",
-"market_cap":585516353,
+"market_cap":578648126,
 "name":"TOWER LIMITED",
 "sector":"Financials"
 },
 "TXR":{
 "industry":"Materials",
-"market_cap":4659985,
+"market_cap":5324985,
 "name":"TALONX RESOURCES LIMITED",
 "sector":"Materials"
 },
 "TYR":{
 "industry":"Financial Services",
-"market_cap":386550293,
+"market_cap":397213749,
 "name":"TYRO PAYMENTS LIMITED",
 "sector":"Financials"
 },
@@ -11569,7 +11581,7 @@
 },
 "TZN":{
 "industry":"Materials",
-"market_cap":75609347,
+"market_cap":67650468,
 "name":"TERRAMIN AUSTRALIA LIMITED.",
 "sector":"Materials"
 },
@@ -11599,19 +11611,19 @@
 },
 "UM1":{
 "industry":"Materials",
-"market_cap":21495329,
+"market_cap":22472389,
 "name":"UNITY METALS LIMITED",
 "sector":"Materials"
 },
 "UNI":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":613766480,
+"market_cap":603792775,
 "name":"UNIVERSAL STORE HOLDINGS LIMITED",
 "sector":"Consumer Discretionary"
 },
 "UNT":{
 "industry":"Media & Entertainment",
-"market_cap":9227551,
+"market_cap":8304796,
 "name":"UNITH LTD",
 "sector":"Communication Services"
 },
@@ -11635,13 +11647,13 @@
 },
 "USC":{
 "industry":"Materials",
-"market_cap":15207891,
+"market_cap":16221750,
 "name":"US1 CRITICAL MINERALS LIMITED",
 "sector":"Materials"
 },
 "USL":{
 "industry":"Materials",
-"market_cap":389477205,
+"market_cap":439964991,
 "name":"UNICO SILVER LIMITED",
 "sector":"Materials"
 },
@@ -11665,7 +11677,7 @@
 },
 "VAN":{
 "industry":"Materials",
-"market_cap":8309302,
+"market_cap":7931606,
 "name":"VANTAGE METALS LIMITED",
 "sector":"Materials"
 },
@@ -11677,37 +11689,37 @@
 },
 "VAU":{
 "industry":"Materials",
-"market_cap":6041864827,
+"market_cap":6403962890,
 "name":"VAULT MINERALS LIMITED",
 "sector":"Materials"
 },
 "VBC":{
 "industry":"Capital Goods",
-"market_cap":65893493,
+"market_cap":62828679,
 "name":"VERBREC LIMITED",
 "sector":"Industrials"
 },
 "VBS":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":4352814,
+"market_cap":4725912,
 "name":"VECTUS BIOSYSTEMS LIMITED",
 "sector":"Healthcare"
 },
 "VBX":{
 "industry":"Materials",
-"market_cap":41531848,
+"market_cap":40628982,
 "name":"VBX LIMITED",
 "sector":"Materials"
 },
 "VCX":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":11560752581,
+"market_cap":11326729249,
 "name":"VICINITY CENTRES",
 "sector":"Real Estate"
 },
 "VEA":{
 "industry":"Energy",
-"market_cap":4399859796,
+"market_cap":4366778143,
 "name":"VIVA ENERGY GROUP LIMITED",
 "sector":"Energy"
 },
@@ -11731,25 +11743,25 @@
 },
 "VFX":{
 "industry":"Health Care Equipment & Services",
-"market_cap":3472638,
+"market_cap":3385822,
 "name":"VISIONFLEX GROUP LIMITED",
 "sector":"Healthcare"
 },
 "VFY":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":186803825,
+"market_cap":178416714,
 "name":"VITRAFY LIFE SCIENCES LIMITED",
 "sector":"Healthcare"
 },
 "VGL":{
 "industry":"Software & Services",
-"market_cap":538399577,
+"market_cap":514470707,
 "name":"VISTA GROUP INTERNATIONAL LIMITED.",
 "sector":"Info Tech"
 },
 "VGN":{
 "industry":"Transportation",
-"market_cap":2235060758,
+"market_cap":2203691484,
 "name":"VIRGIN AUSTRALIA HOLDINGS LIMITED.",
 "sector":"Industrials"
 },
@@ -11761,7 +11773,7 @@
 },
 "VHM":{
 "industry":"Materials",
-"market_cap":63913239,
+"market_cap":67030958,
 "name":"VHM LIMITED",
 "sector":"Materials"
 },
@@ -11779,37 +11791,37 @@
 },
 "VKA":{
 "industry":"Materials",
-"market_cap":23185289,
+"market_cap":20609145,
 "name":"VIKING MINES LIMITED",
 "sector":"Materials"
 },
 "VLS":{
 "industry":"Pharmaceuticals, Biotechnology & Life Sciences",
-"market_cap":145539734,
+"market_cap":142305517,
 "name":"VITA LIFE SCIENCES LIMITED..",
 "sector":"Healthcare"
 },
 "VMC":{
 "industry":"Materials",
-"market_cap":19059748,
+"market_cap":18645406,
 "name":"VENUS METALS CORPORATION LIMITED",
 "sector":"Materials"
 },
 "VML":{
 "industry":"Materials",
-"market_cap":20078252,
+"market_cap":18343094,
 "name":"VITAL METALS LIMITED",
 "sector":"Materials"
 },
 "VMM":{
 "industry":"Materials",
-"market_cap":528417423,
+"market_cap":518751251,
 "name":"VIRIDIS MINING AND MINERALS LIMITED",
 "sector":"Materials"
 },
 "VMS":{
 "industry":"Materials",
-"market_cap":16809164,
+"market_cap":16304889,
 "name":"VENARI MINERALS NL",
 "sector":"Materials"
 },
@@ -11821,13 +11833,13 @@
 },
 "VNL":{
 "industry":"Software & Services",
-"market_cap":62293396,
+"market_cap":65259748,
 "name":"VINYL GROUP LTD",
 "sector":"Info Tech"
 },
 "VNT":{
 "industry":"Capital Goods",
-"market_cap":4673443696,
+"market_cap":3914926656,
 "name":"VENTIA SERVICES GROUP LIMITED",
 "sector":"Industrials"
 },
@@ -11845,7 +11857,7 @@
 },
 "VR8":{
 "industry":"Materials",
-"market_cap":16122234,
+"market_cap":17524168,
 "name":"VANADIUM RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -11887,49 +11899,49 @@
 },
 "VSL":{
 "industry":"Materials",
-"market_cap":826428974,
+"market_cap":857200266,
 "name":"VULCAN STEEL LIMITED",
 "sector":"Materials"
 },
 "VSR":{
 "industry":"Energy",
-"market_cap":9919071,
+"market_cap":8752122,
 "name":"VOLTAIC STRATEGIC RESOURCES LTD",
 "sector":"Energy"
 },
 "VTA":{
 "industry":"Materials",
-"market_cap":1723383,
+"market_cap":1819127,
 "name":"VITA RESOURCES NL",
 "sector":"Materials"
 },
 "VTM":{
 "industry":"Materials",
-"market_cap":152681018,
+"market_cap":159951543,
 "name":"VICTORY METALS LIMITED",
 "sector":"Materials"
 },
 "VTX":{
 "industry":"Materials",
-"market_cap":25976588,
+"market_cap":26862153,
 "name":"VERTEX MINERALS LIMITED",
 "sector":"Materials"
 },
 "VUL":{
 "industry":"Materials",
-"market_cap":533706722,
+"market_cap":548066544,
 "name":"VULCAN ENERGY RESOURCES LIMITED",
 "sector":"Materials"
 },
 "VVA":{
 "industry":"Consumer Services",
-"market_cap":142858679,
+"market_cap":143353000,
 "name":"VIVA LEISURE LIMITED",
 "sector":"Consumer Discretionary"
 },
 "VYS":{
 "industry":"Materials",
-"market_cap":400196766,
+"market_cap":403205764,
 "name":"VYSARN LIMITED",
 "sector":"Materials"
 },
@@ -11941,7 +11953,7 @@
 },
 "WA1":{
 "industry":"Materials",
-"market_cap":591860857,
+"market_cap":638704116,
 "name":"WA1 RESOURCES LTD",
 "sector":"Materials"
 },
@@ -11959,7 +11971,7 @@
 },
 "WAF":{
 "industry":"Materials",
-"market_cap":3950090900,
+"market_cap":4144733060,
 "name":"WEST AFRICAN RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -11989,19 +12001,19 @@
 },
 "WAR":{
 "industry":"Not Applic",
-"market_cap":192734564,
+"market_cap":193635193,
 "name":"WAM STRATEGIC VALUE LIMITED",
 "sector":"Other"
 },
 "WAT":{
 "industry":"Consumer Durables & Apparel",
-"market_cap":255523608,
+"market_cap":261124126,
 "name":"WATERCO LIMITED",
 "sector":"Consumer Discretionary"
 },
 "WAU":{
 "industry":"Materials",
-"market_cap":13894140,
+"market_cap":15157243,
 "name":"WA GOLD LIMITED",
 "sector":"Materials"
 },
@@ -12013,13 +12025,13 @@
 },
 "WBC":{
 "industry":"Banks",
-"market_cap":126653831384,
+"market_cap":125901364657,
 "name":"WESTPAC BANKING CORPORATION",
 "sector":"Financials"
 },
 "WBT":{
 "industry":"Semiconductors & Semiconductor Equipment",
-"market_cap":520341580,
+"market_cap":551951115,
 "name":"WEEBIT NANO LTD",
 "sector":"Info Tech"
 },
@@ -12031,7 +12043,7 @@
 },
 "WC8":{
 "industry":"Materials",
-"market_cap":343470648,
+"market_cap":355561478,
 "name":"WILDCAT RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -12043,7 +12055,7 @@
 },
 "WCN":{
 "industry":"Materials",
-"market_cap":91004206,
+"market_cap":90180379,
 "name":"WHITE CLIFF MINERALS LIMITED",
 "sector":"Materials"
 },
@@ -12061,19 +12073,19 @@
 },
 "WDS":{
 "industry":"Energy",
-"market_cap":58439818396,
+"market_cap":58363774390,
 "name":"WOODSIDE ENERGY GROUP LTD",
 "sector":"Energy"
 },
 "WEB":{
 "industry":"Consumer Services",
-"market_cap":1376200732,
+"market_cap":1379793946,
 "name":"WEBBEDS GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
 "WEC":{
 "industry":"Energy",
-"market_cap":170806699,
+"market_cap":163042758,
 "name":"WHITE ENERGY COMPANY LIMITED",
 "sector":"Energy"
 },
@@ -12085,43 +12097,43 @@
 },
 "WES":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":92332544268,
+"market_cap":91049674786,
 "name":"WESFARMERS LIMITED",
 "sector":"Consumer Discretionary"
 },
 "WGB":{
 "industry":"Not Applic",
-"market_cap":665258805,
+"market_cap":683238773,
 "name":"WAM GLOBAL LIMITED",
 "sector":"Other"
 },
 "WGN":{
 "industry":"Materials",
-"market_cap":937649792,
+"market_cap":945681053,
 "name":"WAGNERS HOLDING COMPANY LIMITED",
 "sector":"Materials"
 },
 "WGR":{
 "industry":"Materials",
-"market_cap":23141925,
+"market_cap":23438617,
 "name":"WESTERN GOLD RESOURCES LIMITED.",
 "sector":"Materials"
 },
 "WGX":{
 "industry":"Materials",
-"market_cap":5247626842,
+"market_cap":5520352969,
 "name":"WESTGOLD RESOURCES LIMITED.",
 "sector":"Materials"
 },
 "WHC":{
 "industry":"Energy",
-"market_cap":5776612061,
+"market_cap":5907898699,
 "name":"WHITEHAVEN COAL LIMITED",
 "sector":"Energy"
 },
 "WHF":{
 "industry":"Not Applic",
-"market_cap":587655551,
+"market_cap":588864719,
 "name":"WHITEFIELD INDUSTRIALS LIMITED",
 "sector":"Other"
 },
@@ -12145,7 +12157,7 @@
 },
 "WIA":{
 "industry":"Materials",
-"market_cap":768726467,
+"market_cap":818643770,
 "name":"WIA GOLD LIMITED",
 "sector":"Materials"
 },
@@ -12157,49 +12169,49 @@
 },
 "WJL":{
 "industry":"Consumer Services",
-"market_cap":119721759,
+"market_cap":117759107,
 "name":"WEBJET GROUP LIMITED",
 "sector":"Consumer Discretionary"
 },
 "WLC":{
 "industry":"Materials",
-"market_cap":212447080,
+"market_cap":208111426,
 "name":"WHITEROCK LITHIUM CORP.",
 "sector":"Materials"
 },
 "WLE":{
 "industry":"Not Applic",
-"market_cap":2079181062,
+"market_cap":2095361459,
 "name":"WAM LEADERS LIMITED",
 "sector":"Other"
 },
 "WMA":{
 "industry":"Not Applic",
-"market_cap":189548921,
+"market_cap":188561687,
 "name":"WAM ALTERNATIVE ASSETS LIMITED",
 "sector":"Other"
 },
 "WMC":{
 "industry":"Materials",
-"market_cap":351968160,
+"market_cap":344711084,
 "name":"WILUNA MINING CORPORATION LIMITED",
 "sector":"Materials"
 },
 "WMG":{
 "industry":"Materials",
-"market_cap":16296440,
+"market_cap":15644583,
 "name":"WESTERN MINES GROUP LTD",
 "sector":"Materials"
 },
 "WMI":{
 "industry":"Not Applic",
-"market_cap":313782879,
+"market_cap":318023188,
 "name":"WAM MICROCAP LIMITED",
 "sector":"Other"
 },
 "WMX":{
 "industry":"Not Applic",
-"market_cap":474255679,
+"market_cap":483260533,
 "name":"WAM INCOME MAXIMISER LIMITED",
 "sector":"Other"
 },
@@ -12229,31 +12241,31 @@
 },
 "WOR":{
 "industry":"Capital Goods",
-"market_cap":4896130197,
+"market_cap":4867044275,
 "name":"WORLEY LIMITED",
 "sector":"Industrials"
 },
 "WOT":{
 "industry":"Real Estate Management & Development",
-"market_cap":92312178,
+"market_cap":90720588,
 "name":"WOTSO",
 "sector":"Real Estate"
 },
 "WOW":{
 "industry":"Consumer Staples Distribution & Retail",
-"market_cap":51856885700,
+"market_cap":51881317684,
 "name":"WOOLWORTHS GROUP LIMITED",
 "sector":"Consumer Staples"
 },
 "WPR":{
 "industry":"Equity Real Estate Investment Trusts (REITs)",
-"market_cap":1521661365,
+"market_cap":1495538423,
 "name":"WAYPOINT REIT",
 "sector":"Real Estate"
 },
 "WQG":{
 "industry":"Not Applic",
-"market_cap":533165954,
+"market_cap":534565339,
 "name":"WCM GLOBAL GROWTH LIMITED",
 "sector":"Other"
 },
@@ -12271,13 +12283,13 @@
 },
 "WRK":{
 "industry":"Software & Services",
-"market_cap":172706798,
+"market_cap":168334474,
 "name":"WRKR LTD",
 "sector":"Info Tech"
 },
 "WRX":{
 "industry":"Materials",
-"market_cap":11130436,
+"market_cap":11898052,
 "name":"WESTERN RIDGE RESOURCES LIMITED",
 "sector":"Materials"
 },
@@ -12295,37 +12307,37 @@
 },
 "WTC":{
 "industry":"Software & Services",
-"market_cap":14963999950,
+"market_cap":15233076146,
 "name":"WISETECH GLOBAL LIMITED",
 "sector":"Info Tech"
 },
 "WTL":{
 "industry":"Financial Services",
-"market_cap":49616940,
+"market_cap":47906011,
 "name":"WT FINANCIAL GROUP LIMITED",
 "sector":"Financials"
 },
 "WTM":{
 "industry":"Materials",
-"market_cap":297013029,
+"market_cap":306719338,
 "name":"WARATAH MINERALS LIMITED",
 "sector":"Materials"
 },
 "WTN":{
 "industry":"Real Estate Management & Development",
-"market_cap":261020088,
+"market_cap":275850774,
 "name":"WINTON LAND LIMITED",
 "sector":"Real Estate"
 },
 "WWG":{
 "industry":"Transportation",
-"market_cap":45961299,
+"market_cap":44193557,
 "name":"WISEWAY GROUP LIMITED",
 "sector":"Industrials"
 },
 "WWI":{
 "industry":"Materials",
-"market_cap":156696844,
+"market_cap":165402225,
 "name":"WEST WITS MINING LIMITED",
 "sector":"Materials"
 },
@@ -12343,7 +12355,7 @@
 },
 "WZR":{
 "industry":"Financial Services",
-"market_cap":65230353,
+"market_cap":68756318,
 "name":"WISR LIMITED",
 "sector":"Financials"
 },
@@ -12355,7 +12367,7 @@
 },
 "XEN":{
 "industry":"Consumer Discretionary Distribution & Retail",
-"market_cap":9389718,
+"market_cap":14084576,
 "name":"XENITRA LIMITED",
 "sector":"Consumer Discretionary"
 },
@@ -12379,19 +12391,19 @@
 },
 "XPN":{
 "industry":"Software & Services",
-"market_cap":6068276,
+"market_cap":6573966,
 "name":"XPON TECHNOLOGIES GROUP LIMITED",
 "sector":"Info Tech"
 },
 "XRA":{
 "industry":"Materials",
-"market_cap":12789077,
+"market_cap":13093579,
 "name":"XENORA MINERALS LTD",
 "sector":"Materials"
 },
 "XRF":{
 "industry":"Capital Goods",
-"market_cap":300841436,
+"market_cap":297948730,
 "name":"XRF SCIENTIFIC LIMITED",
 "sector":"Industrials"
 },
@@ -12403,25 +12415,25 @@
 },
 "XRO":{
 "industry":"Software & Services",
-"market_cap":12071981619,
+"market_cap":12044677165,
 "name":"XERO LIMITED",
 "sector":"Info Tech"
 },
 "XST":{
 "industry":"Energy",
-"market_cap":4319036,
+"market_cap":4798929,
 "name":"XSTATE RESOURCES LIMITED",
 "sector":"Energy"
 },
 "XYZ":{
 "industry":"Financial Services",
-"market_cap":74150674653,
+"market_cap":75661979778,
 "name":"BLOCK, INC.",
 "sector":"Financials"
 },
 "YAL":{
 "industry":"Energy",
-"market_cap":7315234481,
+"market_cap":7513300397,
 "name":"YANCOAL AUSTRALIA LIMITED",
 "sector":"Energy"
 },
@@ -12445,25 +12457,25 @@
 },
 "YRL":{
 "industry":"Materials",
-"market_cap":35766462,
+"market_cap":36720235,
 "name":"YANDAL RESOURCES LIMITED",
 "sector":"Materials"
 },
 "YUG":{
 "industry":"Materials",
-"market_cap":15519621,
+"market_cap":16812923,
 "name":"YUGO METALS LIMITED",
 "sector":"Materials"
 },
 "ZAG":{
 "industry":"Materials",
-"market_cap":32237359,
+"market_cap":31197445,
 "name":"ZULEIKA GOLD LIMITED",
 "sector":"Materials"
 },
 "ZEO":{
 "industry":"Materials",
-"market_cap":135783166,
+"market_cap":141955128,
 "name":"ZEOTECH LIMITED",
 "sector":"Materials"
 },
@@ -12475,19 +12487,19 @@
 },
 "ZGL":{
 "industry":"Capital Goods",
-"market_cap":32337031,
+"market_cap":30181229,
 "name":"ZICOM GROUP LIMITED",
 "sector":"Industrials"
 },
 "ZIM":{
 "industry":"Materials",
-"market_cap":1527378239,
+"market_cap":1562898663,
 "name":"ZIMPLATS HOLDINGS LIMITED",
 "sector":"Materials"
 },
 "ZIP":{
 "industry":"Financial Services",
-"market_cap":2516762040,
+"market_cap":2541680476,
 "name":"ZIP CO LIMITED..",
 "sector":"Financials"
 },
@@ -12511,13 +12523,13 @@
 },
 "ZNC":{
 "industry":"Materials",
-"market_cap":44781484,
+"market_cap":48427705,
 "name":"ZENITH MINERALS LIMITED",
 "sector":"Materials"
 },
 "ZNO":{
 "industry":"Materials",
-"market_cap":15679637,
+"market_cap":14854393,
 "name":"ZOONO GROUP LIMITED",
 "sector":"Materials"
 }
