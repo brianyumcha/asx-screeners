@@ -250,7 +250,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 12 Nov 2026, 2:51AM Sydney time.</div>
+  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 13 Nov 2026, 3:35AM Sydney time.</div>
 
   <div class="notice" id="seasonNotice" style="display:none"></div>
 
@@ -524,9 +524,9 @@ const DATA = [
 [1793916000,"Fri 6 Nov","Beyond August","MQG","Macquarie Group Ltd","HY27","Financials",3.25,"",2480.0,"","reported"],
 [1794175200,"Mon 9 Nov","Beyond August","ANZ","ANZ Group Holdings Ltd","FY26","Financials",0.83,"",7300.0,"","reported"],
 [1794175200,"Mon 9 Nov","Beyond August","DNL","Dyno Nobel Ltd","FY26","Materials",0.05,"",66.0,"","reported"],
-[1794434400,"Thu 12 Nov","Beyond August","ALL","Aristocrat Leisure Ltd","FY26","Cons. Disc",null,"",null,"","upcoming"],
-[1794434400,"Thu 12 Nov","Beyond August","GNC","GrainCorp Ltd","FY26","Cons. Staple",null,"",null,"","upcoming"],
-[1794434400,"Thu 12 Nov","Beyond August","ORI","Orica Ltd","FY26","Materials",null,"",null,"","upcoming"],
+[1794434400,"Thu 12 Nov","Beyond August","ALL","Aristocrat Leisure Ltd","FY26","Cons. Disc",null,"",null,"","awaiting"],
+[1794434400,"Thu 12 Nov","Beyond August","GNC","GrainCorp Ltd","FY26","Cons. Staple",null,"",null,"","awaiting"],
+[1794434400,"Thu 12 Nov","Beyond August","ORI","Orica Ltd","FY26","Materials",null,"",null,"","awaiting"],
 [1794780000,"Mon 16 Nov","Beyond August","ELD","Elders Ltd","FY26","Cons. Staple",null,"",null,"","upcoming"],
 [1794866400,"Tue 17 Nov","Beyond August","TNE","TechnologyOne Ltd","FY26","Info Tech",null,"",null,"","upcoming"],
 [1794952800,"Wed 18 Nov","Beyond August","WJL","Webjet Group Ltd","HY27","Cons. Disc",null,"",null,"","upcoming"],
@@ -563,7 +563,7 @@ const SEASON_ACTIVE = true;
 const NEXT_SEASON_NOTE = "";
 
 document.getElementById('sessionLine').textContent =
-  `Rebuilt daily — last rebuilt 12 Nov 2026, 2:51AM Sydney time. ${SEASON_LABEL} reporting season.`;
+  `Rebuilt daily — last rebuilt 13 Nov 2026, 3:35AM Sydney time. ${SEASON_LABEL} reporting season.`;
 
 if (!SEASON_ACTIVE) {
   const notice = document.getElementById('seasonNotice');
