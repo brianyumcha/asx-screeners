@@ -2370,5 +2370,639 @@
       "sort": null,
       "source": "Quarterly Activities Report September 2026 Revised (14 Oct 2026, as BLS Pharmaceuticals, ASX:BLS)"
     }
+  ],
+  "RAC": [
+    {
+      "catalyst": "Bisantrene (RC110/RC220) — initiation of pivotal Phase 3 AML program (RAC-030)",
+      "timing": "FY2027 priority",
+      "sort": "2027-06-30",
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    },
+    {
+      "catalyst": "HARNESS-1 Phase 1a/b (RC220 + osimertinib, EGFR-mutated NSCLC) — dose escalation to 100 mg/m² cohort and safety data",
+      "timing": "Ongoing; no date given",
+      "sort": null,
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    },
+    {
+      "catalyst": "CPACS Phase 1a/b (RC220 cardioprotection in solid tumours) — next dose level cohort",
+      "timing": "Ongoing; no date given",
+      "sort": null,
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    }
+  ],
+  "TTX": [
+    {
+      "catalyst": "Tegenix (bone regeneration) — response to FDA 510(k) additional-information request (chemical characterisation, labelling), then FDA clearance decision",
+      "timing": "Response 'expedited'; clearance decision timing rests with FDA (previously guided CY26)",
+      "sort": "2026-12-31",
+      "source": "Tegenix FDA Review Progress (6 Oct 2026); Q4 FY26 Quarterly Activities Report (22 Jul 2026)"
+    },
+    {
+      "catalyst": "TegenEOS (bone regeneration) — FDA 510(k) clearance",
+      "timing": "On track for CY26",
+      "sort": "2026-12-31",
+      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)"
+    },
+    {
+      "catalyst": "Superpower Health partnership — commercial product launch (follows US$3M licence fee)",
+      "timing": "Q1 FY27",
+      "sort": "2026-09-30",
+      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)"
+    },
+    {
+      "catalyst": "Radiation spacer — pivotal US/AU trial (N=230, 12-month follow-up) toward FDA submission",
+      "timing": "FDA submission 2028",
+      "sort": "2028-12-31",
+      "source": "Q3 FY26 Quarterly Activities Report (23 Apr 2026)"
+    },
+    {
+      "catalyst": "Advanced manufacturing campus completion",
+      "timing": "Nearing completion; no date given",
+      "sort": null,
+      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)"
+    }
+  ],
+  "NUZ": [
+    {
+      "catalyst": "NUZ-001 (ALS) — HEALEY ALS Platform Trial Regimen I (Phase 2/3, 250 pts) topline efficacy and safety results",
+      "timing": "Late Q2 CY2027",
+      "sort": "2027-06-30",
+      "source": "HEALEY Regimen I enrolment completed release (Jul 2026); Q4 FY26 Quarterly Activities Report"
+    },
+    {
+      "catalyst": "NUZ-001 — NDA preparation for traditional approval (FDA Type C feedback: HEALEY may serve as single registrational study)",
+      "timing": "Following topline data; no date given",
+      "sort": null,
+      "source": "FDA Type C meeting feedback announcement (6 Oct 2026)"
+    }
+  ],
+  "TLX": [
+    {
+      "catalyst": "ITM merger — Telix shareholder General Meeting vote",
+      "timing": "General Meeting expected 1 December 2026",
+      "sort": "2026-12-01",
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+    },
+    {
+      "catalyst": "Zircaix (TLX250-Px, kidney cancer imaging) — BLA resubmission to FDA",
+      "timing": "Planned in the near term",
+      "sort": null,
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+    },
+    {
+      "catalyst": "OPTIMAL-PSMA Phase 2 — data readout",
+      "timing": "First half of 2027",
+      "sort": "2027-06-30",
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+    },
+    {
+      "catalyst": "ProstACT Global Phase 3 (TLX591-Tx) — US IND amendment for Part 2; international Part 2 enrolling",
+      "timing": "IND amendment being finalised; no date given",
+      "sort": null,
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+    },
+    {
+      "catalyst": "BiPASS Phase 3 (enrolment complete, Fast Track) — supports regulatory submissions",
+      "timing": "No date given",
+      "sort": null,
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+    },
+    {
+      "catalyst": "Pixlumi (TLX101-Px) — European MAA decision",
+      "timing": "Remains under review",
+      "sort": null,
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+    },
+    {
+      "catalyst": "Pixclara brain metastases — Phase 3 registrational study progress",
+      "timing": "Advancing; no date given",
+      "sort": null,
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+    }
+  ],
+  "ENP": [
+    {
+      "catalyst": "TRP-8803 (IV psilocin) BED Phase 2 — Cohort 2 (shorter infusion regimen) topline results",
+      "timing": "Q4 CY2026",
+      "sort": "2026-12-31",
+      "source": "TRP-8803 BED 12-week results announcement (14 Sep 2026)"
+    },
+    {
+      "catalyst": "TRP-8803 — proposed US Phase 2 Major Depressive Disorder study with UCSF",
+      "timing": "Progressing; no date given",
+      "sort": null,
+      "source": "TRP-8803 BED 12-week results announcement (14 Sep 2026); ASX announcement 26 Aug 2026"
+    },
+    {
+      "catalyst": "TRP-8803 — expansion into broader multi-indication clinical program",
+      "timing": "No date given",
+      "sort": null,
+      "source": "TRP-8803 BED 12-week results announcement (14 Sep 2026); ASX announcement 4 Aug 2026"
+    }
+  ],
+  "OSL": [
+    {
+      "catalyst": "OncoSil device — US commercial launch for distal cholangiocarcinoma under FDA HDE (initially ≤5 centres)",
+      "timing": "Second half of FY2027",
+      "sort": "2027-06-30",
+      "source": "FDA HDE approval announcement (17 Aug 2026)"
+    },
+    {
+      "catalyst": "FDA-mandated US post-approval study (up to 30 patients, 24 months) — commencement",
+      "timing": "Planned alongside US launch, H2 FY2027 (some reports say H2 2027)",
+      "sort": "2027-06-30",
+      "source": "FDA HDE approval announcement (17 Aug 2026)"
+    },
+    {
+      "catalyst": "PANCOSIL / TRIPP-FFX pivotal studies — label expansion (new delivery methods, chemo combinations)",
+      "timing": "Ongoing; no date given",
+      "sort": null,
+      "source": "Quarterly Activities Report (30 Oct 2026) summary"
+    }
+  ],
+  "ATH": [
+    {
+      "catalyst": "ATH434 (MSA) — Phase 3 registrational trial initiation (~200 pts, 12 months; design confirmed at FDA End-of-Phase 2)",
+      "timing": "Operational start-up underway; no start date given (Craig: 'late this year')",
+      "sort": null,
+      "source": "Q1 FY27 Appendix 4C & Corporate Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "ATH434 — strategic funding / pharma partnering outcome to fund Phase 3",
+      "timing": "Ongoing discussions; no timeline",
+      "sort": null,
+      "source": "Q1 FY27 Appendix 4C & Corporate Update (30 Oct 2026)"
+    }
+  ],
+  "CMP": [
+    {
+      "catalyst": "Somfit D — planned US release",
+      "timing": "FY27",
+      "sort": "2027-06-30",
+      "source": "FY26 results announcement (25 Aug 2026)"
+    },
+    {
+      "catalyst": "MEG open orders (~A$13.1M entering FY27) — conversion to installed/recognised revenue",
+      "timing": "FY27",
+      "sort": "2027-06-30",
+      "source": "FY26 results announcement (25 Aug 2026)"
+    }
+  ],
+  "PER": [
+    {
+      "catalyst": "HMBD-002 (minperstobart) — Phase II study commencement",
+      "timing": "Q4 CY2026",
+      "sort": "2026-12-31",
+      "source": "June 2026 Quarterly Activities Report (Jul 2026); Edison note 4 Aug 2026"
+    },
+    {
+      "catalyst": "HMBD-002 — final drug product release (fill-and-finish)",
+      "timing": "September 2026",
+      "sort": "2026-09-30",
+      "source": "June 2026 Quarterly Activities Report (Jul 2026); Edison note 4 Aug 2026"
+    }
+  ],
+  "IMR": [
+    {
+      "catalyst": "VISABL-AFL clinical trial — enrolment completion (later stages of enrolment)",
+      "timing": "Targeted 2H26",
+      "sort": "2026-12-31",
+      "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)"
+    },
+    {
+      "catalyst": "Vision-MR Ablation Catheter — fourth/final PMA module submission to FDA (after VISABL-AFL)",
+      "timing": "Targeted 2H26",
+      "sort": "2026-12-31",
+      "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)"
+    },
+    {
+      "catalyst": "Vision-MR Ablation Catheter + RF-5000 generator — FDA PMA approval, completing US platform",
+      "timing": "Following final module; FDA decisions flagged for 2H26 — no firm date",
+      "sort": null,
+      "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)"
+    }
+  ],
+  "RHT": [
+    {
+      "catalyst": "DEVIMLA study (liver fibrosis device) — readout (recruitment complete)",
+      "timing": "Within approximately three months (from late Aug 2026)",
+      "sort": "2026-11-30",
+      "source": "FY26 Full Year Results (28 Aug 2026)"
+    },
+    {
+      "catalyst": "Liver fibrosis device — use in clinical trials",
+      "timing": "FY27/28",
+      "sort": "2028-06-30",
+      "source": "FY26 Full Year Results (28 Aug 2026)"
+    },
+    {
+      "catalyst": "Liver fibrosis device — FDA 510(k) clearance and commercial launch",
+      "timing": "From FY28",
+      "sort": "2028-06-30",
+      "source": "FY26 Full Year Results (28 Aug 2026)"
+    }
+  ],
+  "ATX": [
+    {
+      "catalyst": "ACCENT-Mini (daily narmafotinib + gem/Abraxane) — ethics approval and trial start (3 AU sites)",
+      "timing": "Ethics approval expected imminently",
+      "sort": "2026-12-31",
+      "source": "Clinical Trial Updates (22 Oct 2026)"
+    },
+    {
+      "catalyst": "ACCENT-Mini — safety and PK data (feeds FDA protocol for registrational study)",
+      "timing": "Late Q1/early Q2 2027",
+      "sort": "2027-06-30",
+      "source": "Clinical Trial Updates (22 Oct 2026)"
+    },
+    {
+      "catalyst": "Narmafotinib pancreatic cancer — FDA protocol submission for registrational study (narmafotinib + gem/Abraxane)",
+      "timing": "After ACCENT-Mini data; no date given",
+      "sort": null,
+      "source": "Clinical Trial Updates (22 Oct 2026)"
+    },
+    {
+      "catalyst": "PRROSE ovarian cancer study (ANZGOG-sponsored) — ethics approval and start",
+      "timing": "Ethics submitted; no date given",
+      "sort": null,
+      "source": "Clinical Trial Updates (22 Oct 2026)"
+    },
+    {
+      "catalyst": "Narmafotinib + Lilly olomorasib (KRAS G12C) NSCLC trial — progress update",
+      "timing": "Separate announcement to follow; no date given",
+      "sort": null,
+      "source": "Clinical Trial Updates (22 Oct 2026)"
+    },
+    {
+      "catalyst": "ACCENT trial — scientific paper publication and further biomarker results",
+      "timing": "Being drafted; no date given",
+      "sort": null,
+      "source": "Clinical Trial Updates (22 Oct 2026)"
+    }
+  ],
+  "BOT": [
+    {
+      "catalyst": "Strategic review — evaluating broader strategic transactions incl. sale of the company, licensing, product acquisitions",
+      "timing": "Board actively evaluating; no timeline",
+      "sort": null,
+      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)"
+    },
+    {
+      "catalyst": "Sofdra — gross-to-net yield improvement after PA-submission issue addressed",
+      "timing": "Expected in Q2 FY27",
+      "sort": "2026-12-31",
+      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)"
+    },
+    {
+      "catalyst": "Piramal alternate API supply — 25-40% COGS reduction",
+      "timing": "No date given",
+      "sort": null,
+      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)"
+    },
+    {
+      "catalyst": "~50% operating expense reduction (cost actions taken Oct 2026)",
+      "timing": "Remainder of FY27",
+      "sort": "2027-06-30",
+      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)"
+    }
+  ],
+  "ILA": [
+    {
+      "catalyst": "Galidesivir — first 5kg GMP API batch completion",
+      "timing": "By end of October 2026",
+      "sort": "2026-10-31",
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+    },
+    {
+      "catalyst": "Galidesivir — USAMRIID 20-NHP Marburg dose study, dosing start",
+      "timing": "Planned dosing in Q4 CY26",
+      "sort": "2026-12-31",
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+    },
+    {
+      "catalyst": "Galidesivir — ~700-800 treatment courses available and shipped to Africa for compassionate use in Uganda Bundibugyo Ebola outbreak (prospective human data)",
+      "timing": "Courses this quarter; shipped prior to end of CY26",
+      "sort": "2026-12-31",
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+    },
+    {
+      "catalyst": "Galidesivir — Texas Biomed 12-NHP Marburg-Angola dose optimisation study",
+      "timing": "No date given",
+      "sort": null,
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+    },
+    {
+      "catalyst": "Galidesivir — pivotal Marburg efficacy study under FDA Animal Rule, then FDA submission (PRV-eligible)",
+      "timing": "After 32-NHP dose program; no date given",
+      "sort": null,
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+    }
+  ],
+  "CMB": [
+    {
+      "catalyst": "Elate Ocular — pivotal Phase 3 trial start (single-trial pathway per FDA Type D; IND amendment filed 3 Jun 2026)",
+      "timing": "H2 CY2026",
+      "sort": "2026-12-31",
+      "source": "June 2026 Quarterly Activities Report (30 Jul 2026)"
+    },
+    {
+      "catalyst": "Elate Ocular — rolling BLA submission",
+      "timing": "By mid-CY2028",
+      "sort": "2028-06-30",
+      "source": "June 2026 Quarterly Activities Report (30 Jul 2026)"
+    }
+  ],
+  "CVL": [
+    {
+      "catalyst": "Henderson Defence Precinct (naval shipbuilding) — further detail / work packages from Government",
+      "timing": "Awaiting detail; no date given",
+      "sort": null,
+      "source": "Q1 FY27 Business Update / AGM (late Oct 2026)"
+    },
+    {
+      "catalyst": "CSBP Sodium Cyanide Expansion — final shutdown",
+      "timing": "November 2026",
+      "sort": "2026-11-30",
+      "source": "Q1 FY27 Business Update / AGM (late Oct 2026)"
+    },
+    {
+      "catalyst": "M5 bridge steel package — delivery and installation",
+      "timing": "Early 2027",
+      "sort": "2027-03-31",
+      "source": "Q1 FY27 Business Update / AGM (late Oct 2026)"
+    }
+  ],
+  "SPZ": [
+    {
+      "catalyst": "US expansion — sales team build-out and CEO relocation to US",
+      "timing": "H1 FY27",
+      "sort": "2026-12-31",
+      "source": "FY26 Results Presentation (Aug 2026)"
+    },
+    {
+      "catalyst": "450-600 net new ANPR sites (US and Germany focus)",
+      "timing": "FY27",
+      "sort": "2027-06-30",
+      "source": "FY26 Results Presentation (Aug 2026)"
+    },
+    {
+      "catalyst": "3,000 ANPR sites target",
+      "timing": "By end of 2028",
+      "sort": "2028-12-31",
+      "source": "FY26 Results Presentation (Aug 2026)"
+    }
+  ],
+  "SOP": [
+    {
+      "catalyst": "Amplitude Energy Orbost project — Synertec-selected solution presented for Final Investment Decision",
+      "timing": "December 2026",
+      "sort": "2026-12-31",
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "TasNetworks urban battery units — first unit delivery",
+      "timing": "Inaugural unit in February (2027)",
+      "sort": "2027-02-28",
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "GLNG JV Powerhouse units #5 and #6 — delivery",
+      "timing": "Around mid-CY2027",
+      "sort": "2027-07-31",
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "Central Australia 12MW/12MWh Powerhouse system — delivery",
+      "timing": "Targeted by 30 September 2027",
+      "sort": "2027-09-30",
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "TasNetworks urban battery project — completion",
+      "timing": "Targeted for Q4 CY2027",
+      "sort": "2027-12-31",
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "All 11 Powerhouse units under construction — delivered",
+      "timing": "Within the next 15 months",
+      "sort": "2028-01-31",
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "Hitachi Energy collaboration (BESS/microgrids) — conversion of LOI/MoU into contracted projects",
+      "timing": "No date given",
+      "sort": null,
+      "source": "Hitachi Energy MoU (5 May 2026) / LOI (19 May 2026)"
+    }
+  ],
+  "14D": [
+    {
+      "catalyst": "SiNTL silicon anode — initial material production at George Washington University",
+      "timing": "Targeted November 2026",
+      "sort": "2026-11-30",
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    },
+    {
+      "catalyst": "SiNTL — initial material production at Tonsley (SA) facility under A$1M accelerated program",
+      "timing": "Targeted December 2026",
+      "sort": "2026-12-31",
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    },
+    {
+      "catalyst": "Aurora Energy Precinct — development partner selection",
+      "timing": "Targeted December 2026",
+      "sort": "2026-12-31",
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    },
+    {
+      "catalyst": "Aurora Energy Precinct — financial close",
+      "timing": "Early 2027",
+      "sort": "2027-03-31",
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    },
+    {
+      "catalyst": "SiNTL — battery cells (RIT) delivered to commercial partners for evaluation (incl. drone/aerospace)",
+      "timing": "H1 2027",
+      "sort": "2027-06-30",
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    },
+    {
+      "catalyst": "Aurora — up to 1GW AI data centre HoA progression; BHP 275kV connection negotiations; 70MW initial solar",
+      "timing": "Ongoing; no date given",
+      "sort": null,
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    },
+    {
+      "catalyst": "Aurora Energy Precinct — commercial operation",
+      "timing": "Targeted 2028/29",
+      "sort": "2029-12-31",
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+    }
+  ],
+  "DXN": [
+    {
+      "catalyst": "Seven Hills (NSW) temporary manufacturing facility — production start",
+      "timing": "Q2 FY27",
+      "sort": "2026-12-31",
+      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "Cancelled AI data centre contract — remaining ~A$1.1M payment received",
+      "timing": "Q2 FY27",
+      "sort": "2026-12-31",
+      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "1H FY27 revenue ~A$11M (≈ all of FY26) — half-year result",
+      "timing": "1H FY27 (result due ~Feb 2027)",
+      "sort": "2027-02-28",
+      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)"
+    },
+    {
+      "catalyst": "Pipeline conversion — 93 identified projects, 13% in final negotiation/verbal win, incl. new AI/HPC data centre contracts",
+      "timing": "No date given",
+      "sort": null,
+      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)"
+    }
+  ],
+  "X2M": [
+    {
+      "catalyst": "Second QLD 10MW AI data centre site (~$250M project) — conversion of 60-day binding exclusivity into definitive contract",
+      "timing": "60-day exclusivity from 23 Oct 2026 (~late Dec 2026)",
+      "sort": "2026-12-22",
+      "source": "Second Queensland AI data centre agreement (23 Oct 2026)"
+    },
+    {
+      "catalyst": "First binding AI data centre contract (>$250M project cost) — Managed Delivery execution; 2.5MW initial grid-connected phase",
+      "timing": "Three-to-five-year delivery period",
+      "sort": null,
+      "source": "First binding data centre contract announcement (27 Aug 2026)"
+    },
+    {
+      "catalyst": "Remaining 7.5MW of 10MW site — behind-the-meter renewable generation",
+      "timing": "Expected by end of calendar 2028",
+      "sort": "2028-12-31",
+      "source": "Second Queensland AI data centre agreement (23 Oct 2026)"
+    },
+    {
+      "catalyst": "~200MW data centre pipeline (incl. Resi Ventures regional precincts) — further binding agreements",
+      "timing": "No date given",
+      "sort": null,
+      "source": "Second Queensland AI data centre agreement (23 Oct 2026)"
+    }
+  ],
+  "CEH": [
+    {
+      "catalyst": "Coomera 55ha landholding — outcome of Barrenjoey-led capital/funding review (land sale, third-party partnering or self-development)",
+      "timing": "Review underway; no date given",
+      "sort": null,
+      "source": "FY26 Results (Aug 2026); Coomera landholding approval (20 Jul 2026)"
+    },
+    {
+      "catalyst": "Independent valuation of Dreamworld business and surrounding land",
+      "timing": "Commissioned; no date given",
+      "sort": null,
+      "source": "FY26 Results (Aug 2026); Coomera landholding approval (20 Jul 2026)"
+    }
+  ],
+  "NCK": [
+    {
+      "catalyst": "UK — new Nick Scali store opening (continuing UK network rebrand/expansion)",
+      "timing": "Late December (2026)",
+      "sort": "2026-12-31",
+      "source": "H1 FY27 Trading Update (21 Oct 2026)"
+    },
+    {
+      "catalyst": "UK business — path to profitability (written orders +35% YoY early FY27); H1 FY27 result",
+      "timing": "H1 FY27 result (~Feb 2027)",
+      "sort": "2027-02-28",
+      "source": "H1 FY27 Trading Update (21 Oct 2026)"
+    }
+  ],
+  "MNC": [
+    {
+      "catalyst": "China exclusive distribution agreement — further purchase orders toward CNY30M (~A$6.5M) minimum annual commitment (yr 1 of 3)",
+      "timing": "Ongoing over initial 3-year term; no order dates given",
+      "sort": null,
+      "source": "China distribution agreement (May 2026); Q4 FY26 Quarterly Report (Jul 2026)"
+    }
+  ],
+  "INA": [
+    {
+      "catalyst": "Takeover contest — Warburg Pincus consortium due diligence access ends (possible counter-bid)",
+      "timing": "Until 13 November 2026",
+      "sort": "2026-11-13",
+      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)"
+    },
+    {
+      "catalyst": "AVID $5.55 cash proposal — written confirmation it will not withdraw/reduce",
+      "timing": "By 27 November 2026",
+      "sort": "2026-11-27",
+      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)"
+    },
+    {
+      "catalyst": "Peet Limited acquisition — Peet scheme meeting",
+      "timing": "Early December 2026",
+      "sort": "2026-12-10",
+      "source": "Peet scheme update (Peet Limited)"
+    },
+    {
+      "catalyst": "AVID exclusivity period ends — binding scheme implementation deed expected",
+      "timing": "Exclusivity ends 14 December 2026",
+      "sort": "2026-12-14",
+      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)"
+    }
+  ],
+  "DEM": [
+    {
+      "catalyst": "Record CY2026 full-year result — test of conversion to solid statutory profitability (Sept qtr receipts record ~$10.1M, +29%)",
+      "timing": "CY2026 result (reported ~Feb 2027)",
+      "sort": "2027-02-28",
+      "source": "September 2026 Quarterly Activities Report (12 Oct 2026)"
+    }
+  ],
+  "SKK": [
+    {
+      "catalyst": "First full quarter of consolidated cash flows incl. ParaScript (US$63M acquisition completed 14 Sep 2026)",
+      "timing": "December 2026 quarterly report (due late Jan 2027)",
+      "sort": "2027-01-31",
+      "source": "September 2026 Quarterly Activities Report & 4C (30 Oct 2026)"
+    },
+    {
+      "catalyst": "IBM contract delivery",
+      "timing": "Runs to Sep 2027",
+      "sort": "2027-09-30",
+      "source": "September 2026 Quarterly Activities Report & 4C (30 Oct 2026)"
+    }
+  ],
+  "PLY": [
+    {
+      "catalyst": "Game of Thrones: War for Westeros (Warner Bros./HBO licence) — release",
+      "timing": "Early 2027",
+      "sort": "2027-03-31",
+      "source": "Dumb Ways to Build sales update (Oct 2026); FY26 results (Aug 2026)"
+    },
+    {
+      "catalyst": "Dew (co-op platformer, original IP) — release",
+      "timing": "CY2028",
+      "sort": "2028-12-31",
+      "source": "Dumb Ways to Build sales update (Oct 2026); FY26 results (Aug 2026)"
+    }
+  ],
+  "FTI": [
+    {
+      "catalyst": "Internally developed games — launch",
+      "timing": "Targeting late 2026",
+      "sort": "2026-12-31",
+      "source": "FY26 Annual Report (31 Aug 2026)"
+    },
+    {
+      "catalyst": "New work-for-hire development contracts as existing contracts approach completion",
+      "timing": "No date given",
+      "sort": null,
+      "source": "FY26 Annual Report (31 Aug 2026)"
+    }
   ]
 }
