@@ -64,6 +64,7 @@ TRACKER_PATH = (
     "MtM Academy - Call Summaries/MtM Live Call Summary Tickers.xlsx"
 )
 OUT_PATH = os.path.join(SCRIPT_DIR, "craig-bullish-map.html")
+CATALYSTS_PATH = os.path.join(SCRIPT_DIR, "bullmap_catalysts.json")
 
 # HH SCREENER.py has a space in its filename so it can't be `import`ed
 # normally - load it by path. We only need its classify_commodity() /
@@ -114,6 +115,22 @@ def slugify(label):
     s = (label or "").lower()
     s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
     return s or "unclassified"
+
+
+def fmt_market_cap(value):
+    if not value:
+        return ""
+    try:
+        v = float(value)
+    except (TypeError, ValueError):
+        return ""
+    if v >= 1_000_000_000:
+        return f"${v / 1_000_000_000:.1f}B"
+    if v >= 1_000_000:
+        return f"${v / 1_000_000:.1f}M"
+    if v >= 1_000:
+        return f"${v / 1_000:.0f}K"
+    return f"${v:.0f}"
 
 
 INVALIDATION_PREFIX_RE = re.compile(r"^FA invalidation:\s*", re.IGNORECASE)
@@ -255,6 +272,7 @@ def classify_and_group(survivors, universe):
         desc = desc_from_note(display["note"])
         invalidation = invalidation_from_note(display["note"])
         date_iso = display["date"]
+        mcap = fmt_market_cap(uni.get("market_cap"))
 
         bucket_counts[bucket] += 1
 
@@ -276,7 +294,7 @@ def classify_and_group(survivors, universe):
             group_label = BUCKET_LABELS[bucket]
 
         groups[group_key].append({
-            "row": [ticker, name, desc, date_iso, invalidation or ""],
+            "row": [ticker, name, desc, date_iso, invalidation or "", mcap],
             "bucket": bucket,
             "group_label": group_label,
         })
@@ -424,6 +442,16 @@ def render_html(groups, bucket_counts, unresolved, total_calls, total_tickers_se
         color_lines.append(f"  'g-{b}':'var({BUCKET_COLOR_VAR[b]})',")
     color_by_group_js = "const COLOR_BY_GROUP = {\n" + "\n".join(color_lines) + "\n};"
 
+    # ---- upcoming catalysts (separate weekly job, decoupled from this
+    # rebuild - just re-embed whatever's currently in the JSON, missing
+    # file or any ticker not present is fine, that ticker's column is
+    # simply empty) ----
+    catalysts_data = {}
+    if os.path.exists(CATALYSTS_PATH):
+        with open(CATALYSTS_PATH, encoding="utf-8") as f:
+            catalysts_data = json.load(f)
+    catalysts_js = "const CATALYSTS = " + json.dumps(catalysts_data) + ";"
+
     today_str = datetime.now().strftime("%-d %b %Y")
     footer_text = (
         f"Rebuilt {today_str} from Craig's own call log ({total_calls:,} calls, {total_tickers_seen:,} tickers across his "
@@ -446,6 +474,7 @@ def render_html(groups, bucket_counts, unresolved, total_calls, total_tickers_se
     template = template.replace("##FOOTER_TEXT##", footer_text)
     template = template.replace("##DATA_JS##", data_js)
     template = template.replace("##COLOR_BY_GROUP_JS##", color_by_group_js)
+    template = template.replace("##CATALYSTS_JS##", catalysts_js)
     return template
 
 
@@ -531,10 +560,12 @@ p{color:var(--ink-soft)}
 .commgroup .clabel .ccount::before{content:'· '}
 .grouptablewrap{overflow-x:auto}
 table.grouptable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.85rem;margin-bottom:.3rem}
-table.grouptable th:nth-child(1), table.grouptable td:nth-child(1){width:7%}
-table.grouptable th:nth-child(2), table.grouptable td:nth-child(2){width:20%}
-table.grouptable th:nth-child(3), table.grouptable td:nth-child(3){width:60%}
-table.grouptable th:nth-child(4), table.grouptable td:nth-child(4){width:13%}
+table.grouptable th:nth-child(1), table.grouptable td:nth-child(1){width:6%}
+table.grouptable th:nth-child(2), table.grouptable td:nth-child(2){width:14%}
+table.grouptable th:nth-child(3), table.grouptable td:nth-child(3){width:7%}
+table.grouptable th:nth-child(4), table.grouptable td:nth-child(4){width:35%}
+table.grouptable th:nth-child(5), table.grouptable td:nth-child(5){width:9%}
+table.grouptable th:nth-child(6), table.grouptable td:nth-child(6){width:29%}
 table.grouptable th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--ink-faint);text-transform:uppercase;
   letter-spacing:.05em;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap}
 table.grouptable td{padding:.5rem .6rem;vertical-align:top;border-bottom:1px solid var(--border)}
@@ -549,6 +580,12 @@ table.grouptable td.desc .point:last-child{margin-bottom:0}
 table.grouptable td.desc .invalidation{margin-top:.5rem;padding:.3rem .55rem;border-left:2px solid var(--risk);
   background:var(--risk-bg);color:var(--risk);font-weight:600;font-size:.8rem;border-radius:0 4px 4px 0}
 table.grouptable td.lastdate{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);white-space:nowrap}
+table.grouptable td.catalysts{color:var(--ink-soft);line-height:1.4;min-width:12rem}
+table.grouptable td.catalysts .catitem{margin-bottom:.4rem}
+table.grouptable td.catalysts .catitem:last-child{margin-bottom:0}
+table.grouptable td.catalysts .cwhen{display:block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.03em;color:var(--accent);text-transform:uppercase}
+table.grouptable td.catalysts .cwhat{display:block;font-size:.78rem}
+table.grouptable td.catalysts .nocat{color:var(--ink-faint)}
 
 .unresolvedbox{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:.9rem 1.1rem;margin-top:1rem;font-size:.87rem;color:var(--ink-soft)}
 .unresolvedbox li{margin:.3rem 0}
@@ -594,14 +631,25 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
 <script>
 ##DATA_JS##
 ##COLOR_BY_GROUP_JS##
+##CATALYSTS_JS##
 function fmtDate(iso){
   const d = new Date(iso+'T00:00:00');
   return d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'});
 }
+function catalystsHtml(tk){
+  const items = CATALYSTS[tk];
+  if(!items || !items.length) return '<span class="nocat">—</span>';
+  const sorted = [...items].sort((a,b) => {
+    if(!a.sort) return 1;
+    if(!b.sort) return -1;
+    return a.sort.localeCompare(b.sort);
+  });
+  return sorted.map(c => `<div class="catitem"><span class="cwhen">${c.timing}</span><span class="cwhat">${c.catalyst}</span></div>`).join('');
+}
 Object.entries(DATA).forEach(([id, tickers]) => {
   const el = document.getElementById(id);
   if(!el) return;
-  const rows = tickers.map(([tk, name, desc, date, invalidation]) => {
+  const rows = tickers.map(([tk, name, desc, date, invalidation, mcap]) => {
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(tk)}`;
     const points = desc.split(' · ').map(p => p.trim()).filter(Boolean)
       .map(p => `<div class="point">• ${p}</div>`).join('');
@@ -609,12 +657,14 @@ Object.entries(DATA).forEach(([id, tickers]) => {
     return `<tr>
       <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${tk}</a></td>
       <td class="cname">${name || '—'}</td>
+      <td class="mcap">${mcap || '—'}</td>
       <td class="desc">${points}${invalidationHtml}</td>
       <td class="lastdate">${fmtDate(date)}</td>
+      <td class="catalysts">${catalystsHtml(tk)}</td>
     </tr>`;
   }).join('');
   el.innerHTML = `<table class="grouptable">
-    <thead><tr><th>Ticker</th><th>Company</th><th>Comments</th><th>Last Bullish</th></tr></thead>
+    <thead><tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Comments</th><th>Last Bullish</th><th>Upcoming Catalysts</th></tr></thead>
     <tbody>${rows}</tbody>
   </table>`;
 });
