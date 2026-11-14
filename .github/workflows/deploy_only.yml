@@ -53,6 +53,9 @@ jobs:
           # wipe them.
           python3 deploy_site.py --preserve-from-live
 
+      - name: Refresh nav on any live-fetched pages
+        run: python3 refresh_nav.py _site/*.html
+
       - name: Check nav consistency across every deployed page
         run: python3 check_nav.py
 
