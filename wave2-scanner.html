@@ -251,10 +251,41 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 <a href="red-folder-news.html">Red Folder News</a>
 <a href="sector-rotation.html">Sector Rotation</a>
 <a href="earnings-calendar.html">Earnings Calendar</a>
+<a href="morning-brief.html">ASX Morning Brief</a>
 </div></div>
 <a class="cart-egg" href="timing-the-carts.html" title="Timing the Carts">🥟</a>
 </div>
 </nav>
+<script>
+document.querySelectorAll('.sitenav-drop').forEach(function(drop){
+  var toggle = drop.querySelector('.sitenav-toggle');
+  toggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    var willOpen = !drop.classList.contains('open');
+    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+    if (willOpen) drop.classList.add('open');
+  });
+});
+var sitenavEl = document.querySelector('.sitenav');
+var navburgerEl = document.querySelector('.navburger');
+if (navburgerEl && sitenavEl) {
+  navburgerEl.addEventListener('click', function(e){
+    e.stopPropagation();
+    sitenavEl.classList.toggle('menu-open');
+  });
+}
+document.addEventListener('click', function(){
+  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+  if (sitenavEl) sitenavEl.classList.remove('menu-open');
+});
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
+    if (sitenavEl) sitenavEl.classList.remove('menu-open');
+  }
+});
+</script>
+
 <script>
 document.querySelectorAll('.sitenav-drop').forEach(function(drop){
   var toggle = drop.querySelector('.sitenav-toggle');
