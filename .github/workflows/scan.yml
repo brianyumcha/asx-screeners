@@ -113,6 +113,19 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: python3 build_conviction_stack.py
 
+      - name: Build Reversal (RSI) divergence screener
+        # full_run only, not every intraday HH/LL slot - daily/weekly
+        # divergence needs the day's bar actually closed (an intraday run's
+        # "today" bar is still live/incomplete, which would corrupt both
+        # the RSI series and pivot confirmation), and recomputing something
+        # that's mechanically unchanged until the next close 4 more times a
+        # day would be pure waste anyway. Reads straight off the price
+        # cache this same job's OBV/Pullback/HH/LL steps just refreshed -
+        # no extra network calls, runs in seconds (pure math, no per-
+        # ticker fetch).
+        if: steps.gate.outputs.full_run == 'true'
+        run: python3 build_reversal_rsi.py
+
       - name: Commit updated price cache
         # Every successful run (including intraday HH-only ones) refreshes
         # price_cache.parquet - it has to be committed every time too, or
@@ -123,7 +136,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f price_cache.parquet seen_tickers_hh_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json realestate_category_cache.json financials_category_cache.json staples_category_cache.json discretionary_category_cache.json industrials_category_cache.json utilities_category_cache.json comms_category_cache.json conviction-stack.html
+          git add -f price_cache.parquet seen_tickers_hh_telegram.json materials_commodity_cache.json healthcare_indication_cache.json energy_fuel_cache.json tech_category_cache.json realestate_category_cache.json financials_category_cache.json staples_category_cache.json discretionary_category_cache.json industrials_category_cache.json utilities_category_cache.json comms_category_cache.json conviction-stack.html reversal-rsi.html
           # seen_tickers_ll_telegram.json only exists once LL's Telegram bot is configured
           # and actually sends a message (see send_ll_telegram()) - `git add -f` on a
           # not-yet-existing path fails the whole command, so it's added separately and

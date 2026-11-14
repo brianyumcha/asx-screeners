@@ -118,6 +118,7 @@ NAV_SCREENER_LINKS = [
     ('pre-breakout.html', 'Pre-Breakout (OBV)'),
     ('pullback.html', 'Pullback (Zag Zone)'),
     ('volume-anomaly.html', 'Volume Anomaly'),
+    ('reversal-rsi.html', 'Reversal (RSI)'),
 ]
 NAV_INDEX_LINKS = [
     ('comms-index.html', 'Communication Services'),

@@ -95,6 +95,7 @@ PAGES = {
     "craig-bear-map.html": ["craig-bear-map.html"],
     "mtm-call-archive.html": ["mtm-call-archive.html"],
     "timing-the-carts.html": ["timing-the-carts.html"],
+    "reversal-rsi.html": ["reversal-rsi.html"],
     "morning-brief.html": ["morning-brief.html"],
     "morning-brief-manifest.json": ["morning-brief-manifest.json"],
     "morning-brief-icon-192.png": ["morning-brief-icon-192.png"],
