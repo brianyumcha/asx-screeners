@@ -1,54 +1,103 @@
 <!doctype html><html><head><meta charset="utf-8"><title>Reversal (RSI) — Brian Yum Cha</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
+<script>
+// Applied before the stylesheet paints, so a saved explicit choice wins
+// immediately with no flash of the wrong theme.
+try{
+  var saved = localStorage.getItem('rsi-theme');
+  if(saved === 'light' || saved === 'dark'){
+    document.documentElement.setAttribute('data-rsi-theme', saved);
+  }
+}catch(e){}
+</script>
 <style>
-  body{font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;background:#0a0c0f;color:#e8edf2;margin:0;}
+  /* Light palette (default) - same cream/navy/gold identity used
+     elsewhere on this site's light-mode pages (Morning Brief). Only the
+     CONTENT area (hero/controls/table) follows this - the shared sitenav
+     bar stays the fixed dark navy every other page on the site uses. */
+  :root{
+    --bg:#faf8f2; --panel:#ffffff; --panel-2:#f0ece0; --border:#ddd6c4; --border-2:#e5e0d2;
+    --text:#1a1c20; --text-dim:#4a4d54; --text-mute:#8b8674; --text-faint:#6b6558;
+    --accent:#b8842f; --accent-ink:#ffffff; --good:#2f7a52; --bad:#b83f35; --row-hover:#f5f2ea;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-rsi-theme="light"]){
+      --bg:#0a0c0f; --panel:#141820; --panel-2:#0d1016; --border:#1e2530; --border-2:#14181f;
+      --text:#e8edf2; --text-dim:#9aa3b0; --text-mute:#5a6478; --text-faint:#7d8694;
+      --accent:#e8b355; --accent-ink:#0a0c0f; --good:#5fb88a; --bad:#e2695f; --row-hover:#10141a;
+    }
+  }
+  :root[data-rsi-theme="dark"]{
+    --bg:#0a0c0f; --panel:#141820; --panel-2:#0d1016; --border:#1e2530; --border-2:#14181f;
+    --text:#e8edf2; --text-dim:#9aa3b0; --text-mute:#5a6478; --text-faint:#7d8694;
+    --accent:#e8b355; --accent-ink:#0a0c0f; --good:#5fb88a; --bad:#e2695f; --row-hover:#10141a;
+  }
+
+  body{font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);margin:0;}
   html,body{overflow-x:clip;}
   .wrap{padding:0 1.5rem 3.5rem;max-width:1160px;margin:0 auto;}
-  .hero{padding:1.6rem 0 .4rem;}
-  h1{font-size:1.7rem;font-family:"Fraunces",Georgia,serif;font-weight:600;margin:0;}
-  p.lead{color:#9aa3b0;line-height:1.6;font-size:.86rem;margin:.5rem 0 0;max-width:720px;}
-  .session{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:#5a6478;margin-top:.7rem;letter-spacing:.02em;}
+  .hero{padding:1.6rem 0 .4rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+  h1{font-size:1.7rem;font-family:"Fraunces",Georgia,serif;font-weight:600;margin:0;color:var(--text);}
+  p.lead{color:var(--text-dim);line-height:1.6;font-size:.86rem;margin:.5rem 0 0;max-width:720px;}
+  .session{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--text-mute);margin-top:.7rem;letter-spacing:.02em;}
+
+  .themebtn{background:var(--panel);border:1px solid var(--border);border-radius:50%;width:36px;height:36px;
+    display:flex;align-items:center;justify-content:center;color:var(--text-faint);cursor:pointer;flex:none;}
+  .themebtn:hover{color:var(--accent);border-color:var(--accent);}
+  .themebtn .icon-moon{display:none;}
+  .themebtn.is-dark .icon-sun{display:none;}
+  .themebtn.is-dark .icon-moon{display:block;}
 
   .controls{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;margin:1.4rem 0 1.1rem;
-    padding:.9rem 1rem;background:#141820;border:1px solid #1e2530;border-radius:10px;}
+    padding:.9rem 1rem;background:var(--panel);border:1px solid var(--border);border-radius:10px;}
   .ctrl-group{display:flex;align-items:center;gap:.4rem;}
   .ctrl-label{font-family:"IBM Plex Mono",monospace;font-size:.68rem;text-transform:uppercase;
-    letter-spacing:.07em;color:#5a6478;margin-right:.2rem;}
-  .pill{background:transparent;border:1px solid #1e2530;color:#9aa3b0;font-family:inherit;
+    letter-spacing:.07em;color:var(--text-mute);margin-right:.2rem;}
+  .pill{background:transparent;border:1px solid var(--border);color:var(--text-dim);font-family:inherit;
     font-size:.78rem;padding:.4rem .75rem;border-radius:999px;cursor:pointer;transition:all .12s ease;}
-  .pill:hover{border-color:#e8b355;color:#e8b355;}
-  .pill.active{background:#e8b355;border-color:#e8b355;color:#0a0c0f;font-weight:600;}
-  .pill.bearish.active{background:#e2695f;border-color:#e2695f;color:#0a0c0f;}
-  .checkline{display:flex;align-items:center;gap:.35rem;font-size:.8rem;color:#c9c2b0;cursor:pointer;
+  .pill:hover{border-color:var(--accent);color:var(--accent);}
+  .pill.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600;}
+  .pill.bearish.active{background:var(--bad);border-color:var(--bad);color:var(--accent-ink);}
+  .checkline{display:flex;align-items:center;gap:.35rem;font-size:.8rem;color:var(--text-dim);cursor:pointer;
     padding:.35rem .6rem;border-radius:8px;}
-  .checkline:hover{background:#0a0c0f;}
-  .checkline input{accent-color:#e8b355;}
-  #search{background:#0a0c0f;border:1px solid #1e2530;border-radius:8px;color:#e8edf2;
+  .checkline:hover{background:var(--bg);}
+  .checkline input{accent-color:var(--accent);}
+  #search{background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);
     font-family:inherit;font-size:.8rem;padding:.45rem .7rem;width:150px;margin-left:auto;}
-  #search:focus{outline:none;border-color:#e8b355;}
+  #search:focus{outline:none;border-color:var(--accent);}
 
-  .tablewrap{overflow-x:auto;border:1px solid #1e2530;border-radius:10px;}
+  .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;}
   table{width:100%;border-collapse:collapse;font-size:.82rem;}
   thead th{text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.68rem;text-transform:uppercase;
-    letter-spacing:.06em;color:#5a6478;padding:.7rem .8rem;border-bottom:1px solid #1e2530;
-    background:#0d1016;white-space:nowrap;cursor:pointer;user-select:none;}
-  thead th:hover{color:#e8b355;}
-  thead th.sorted{color:#e8b355;}
-  tbody td{padding:.6rem .8rem;border-bottom:1px solid #14181f;vertical-align:middle;}
-  tbody tr:hover{background:#10141a;}
-  .tk{font-family:"IBM Plex Mono",monospace;font-weight:700;color:#f3f1ea;}
-  .nm{color:#7d8694;font-size:.74rem;display:block;}
+    letter-spacing:.06em;color:var(--text-mute);padding:.7rem .8rem;border-bottom:1px solid var(--border);
+    background:var(--panel-2);white-space:nowrap;cursor:pointer;user-select:none;}
+  thead th:hover{color:var(--accent);}
+  thead th.sorted{color:var(--accent);}
+  tbody td{padding:.6rem .8rem;border-bottom:1px solid var(--border-2);vertical-align:middle;}
+  tbody tr.datarow{cursor:pointer;}
+  tbody tr.datarow:hover{background:var(--row-hover);}
+  .tk{font-family:"IBM Plex Mono",monospace;font-weight:700;color:var(--text);}
+  .nm{color:var(--text-faint);font-size:.74rem;display:block;}
   .tfbadge{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;font-weight:700;
     padding:.1rem .4rem;border-radius:4px;margin-right:.25rem;letter-spacing:.03em;}
-  .tfbadge.d{background:rgba(232,179,85,.15);color:#e8b355;}
-  .tfbadge.w{background:rgba(95,184,138,.18);color:#5fb88a;}
+  .tfbadge.d{background:rgba(232,179,85,.18);color:var(--accent);}
+  .tfbadge.w{background:rgba(95,184,138,.18);color:var(--good);}
   .gap{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;}
-  .gap.strong{color:#5fb88a;font-weight:700;}
-  .pivdate{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:#7d8694;}
-  .empty{padding:2.5rem 1rem;text-align:center;color:#5a6478;font-size:.85rem;}
+  .gap.strong{color:var(--good);font-weight:700;}
+  .pivdate{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--text-faint);}
+  .empty{padding:2.5rem 1rem;text-align:center;color:var(--text-mute);font-size:.85rem;}
+  .chevron{display:inline-block;color:var(--text-mute);font-size:.7rem;margin-right:.4rem;transition:transform .12s ease;}
+  tr.datarow.open .chevron{transform:rotate(90deg);color:var(--accent);}
 
-  .note{color:#5a6478;font-size:.76rem;margin:1.6rem 0 0;line-height:1.6;
-    padding-top:1.1rem;border-top:1px solid #1e2530;}
+  .chartrow td{padding:.9rem 1rem 1.1rem;background:var(--panel-2);}
+  .chartbox{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;}
+  .chartbox canvas{display:block;max-width:100%;background:var(--panel);border:1px solid var(--border);border-radius:8px;}
+  .chartlegend{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--text-mute);line-height:1.8;min-width:180px;}
+  .chartlegend b{color:var(--text);}
+  .legend-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:.35rem;vertical-align:middle;}
+
+  .note{color:var(--text-mute);font-size:.76rem;margin:1.6rem 0 0;line-height:1.6;
+    padding-top:1.1rem;border-top:1px solid var(--border);}
 
   .sitenav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.4rem;
     background:#1c222c;border-bottom:1px solid #1e2530;padding:.7rem 1.1rem;margin-bottom:1.5rem;
@@ -109,9 +158,15 @@
 <<<NAV_HTML>>>
 <div class="wrap">
   <div class="hero">
-    <h1>Reversal (RSI)</h1>
-    <p class="lead">Classic RSI divergence across the ASX universe, daily and weekly: price prints a new swing extreme that RSI doesn't confirm - an early, not-yet-triggered reversal signal, same mechanics Jamie Bell describes picking up. A pivot pair only qualifies if it's at least 5 bars apart, the 2nd pivot formed within the last 8 bars, and price hasn't since closed back past that pivot's level (which would invalidate it). No minimum RSI-gap filter - a weak divergence still shows, just with a small gap number instead of being hidden.</p>
-    <div class="session" id="sessionLine"></div>
+    <div>
+      <h1>Reversal (RSI)</h1>
+      <p class="lead">Classic RSI divergence across the ASX universe, daily and weekly: price prints a new swing extreme that RSI doesn't confirm - an early, not-yet-triggered reversal signal, same mechanics Jamie Bell describes picking up. A pivot pair only qualifies if it's at least 5 bars apart, the 2nd pivot formed within the last 8 bars, and price hasn't since closed back past that pivot's level (which would invalidate it). No minimum RSI-gap filter - a weak divergence still shows, just with a small gap number instead of being hidden. Click a row to see the daily price+RSI chart.</p>
+      <div class="session" id="sessionLine"></div>
+    </div>
+    <button class="themebtn" id="themeBtn" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
   </div>
 
   <div class="controls">
@@ -154,13 +209,13 @@
     </table>
   </div>
 
-  <div class="note">Pivot definition, RSI(14) and divergence rule match the methodology agreed 2026-11-14 - see build_reversal_rsi.py. Weekly bars are resampled from the same daily price cache the other screeners keep warm, not a separate data pull. This is a new screener, still being validated for signal quality - treat it as an early-warning watchlist, not a trigger. Not financial advice.</div>
+  <div class="note">Pivot definition, RSI(14) and divergence rule match the methodology agreed 2026-11-14 - see build_reversal_rsi.py. Weekly bars are resampled from the same daily price cache the other screeners keep warm, not a separate data pull. Chart is daily-only (close price + RSI(14) over the trailing ~90 sessions) - weekly charting may follow. This is a new screener, still being validated for signal quality - treat it as an early-warning watchlist, not a trigger. Not financial advice.</div>
 </div>
 
 <script>
 const DATA = <<<DATA_JSON>>>;
 
-const state = { dir: 'bullish', tf: new Set(['daily','weekly','both']), sizes: new Set(['S','M','L']), search: '', sortKey: 'gap', sortDir: -1 };
+const state = { dir: 'bullish', tf: new Set(['daily','weekly','both']), sizes: new Set(['S','M','L']), search: '', sortKey: 'gap', sortDir: -1, open: null };
 
 const rows = Object.values(DATA).map(r => ({ ...r }));
 
@@ -177,7 +232,7 @@ function rowsForDirection(dir) {
       const both = !!(d && w);
       return {
         ticker: r.ticker, name: r.name, sector: r.sector, price: r.price,
-        market_cap: r.market_cap, size: r.size,
+        market_cap: r.market_cap, size: r.size, chart_daily: r.chart_daily,
         d, w, tfs, both,
         maxGap: Math.max(d ? d.rsi_gap : -Infinity, w ? w.rsi_gap : -Infinity),
         minAge: Math.min(d ? d.age_bars : Infinity, w ? w.age_bars : Infinity),
@@ -232,6 +287,117 @@ function pivot2Cell(piv) {
   return `<span class="pivdate">${piv.p2_date} · RSI ${piv.p2_rsi}</span>`;
 }
 
+// --- Chart: daily close price (top) + RSI(14) (bottom), with the two
+// pivot points marked and a dashed line connecting them on each panel -
+// that connecting-line "scissor" shape (price sloping one way, RSI the
+// other) IS the divergence, made visible rather than just stated as a gap
+// number.
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function drawChart(canvas, chart, div) {
+  const dpr = window.devicePixelRatio || 1;
+  const W = 560, H_PRICE = 140, H_RSI = 70, GAP = 14, PAD = 28;
+  canvas.width = (W) * dpr;
+  canvas.height = (H_PRICE + GAP + H_RSI) * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = (H_PRICE + GAP + H_RSI) + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const text = cssVar('--text-faint') || '#7d8694';
+  const border = cssVar('--border') || '#1e2530';
+  const accent = cssVar('--accent') || '#e8b355';
+  const good = cssVar('--good') || '#5fb88a';
+  const bad = cssVar('--bad') || '#e2695f';
+
+  const closes = chart.closes, rsi = chart.rsi;
+  const n = closes.length;
+  const offset = chart.offset;
+  const plotW = W - PAD;
+
+  function xAt(i) { return PAD * 0.3 + (i / (n - 1)) * (plotW - PAD * 0.3); }
+
+  // price panel
+  const lo = Math.min(...closes), hi = Math.max(...closes);
+  const priceY = v => H_PRICE - 6 - ((v - lo) / (hi - lo || 1)) * (H_PRICE - 16);
+
+  ctx.strokeStyle = border; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, H_PRICE - 0.5); ctx.lineTo(W, H_PRICE - 0.5); ctx.stroke();
+
+  ctx.strokeStyle = text; ctx.lineWidth = 1.4; ctx.beginPath();
+  closes.forEach((c, i) => { const x = xAt(i), y = priceY(c); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
+  ctx.stroke();
+
+  ctx.fillStyle = text; ctx.font = '10px "IBM Plex Mono", monospace'; ctx.textAlign = 'right';
+  ctx.fillText(hi.toFixed(3), W - 2, 10);
+  ctx.fillText(lo.toFixed(3), W - 2, H_PRICE - 4);
+
+  // RSI panel
+  const rsiTop = H_PRICE + GAP;
+  const rsiY = v => rsiTop + H_RSI - 4 - (v / 100) * (H_RSI - 8);
+
+  ctx.strokeStyle = border; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+  [30, 50, 70].forEach(lvl => {
+    ctx.beginPath(); ctx.moveTo(0, rsiY(lvl)); ctx.lineTo(W, rsiY(lvl)); ctx.stroke();
+  });
+  ctx.setLineDash([]);
+  ctx.fillStyle = text; ctx.textAlign = 'left'; ctx.font = '9px "IBM Plex Mono", monospace';
+  ctx.fillText('70', 2, rsiY(70) - 2);
+  ctx.fillText('30', 2, rsiY(30) + 9);
+
+  ctx.strokeStyle = accent; ctx.lineWidth = 1.4; ctx.beginPath();
+  let started = false;
+  rsi.forEach((v, i) => {
+    if (v == null) return;
+    const x = xAt(i), y = rsiY(v);
+    if (!started) { ctx.moveTo(x, y); started = true; } else { ctx.lineTo(x, y); }
+  });
+  ctx.stroke();
+
+  // pivot markers + connecting "scissor" line, if this ticker has a live
+  // divergence on the timeframe/direction currently being shown
+  if (div) {
+    const i1 = div.p1_idx - offset, i2 = div.p2_idx - offset;
+    if (i1 >= 0 && i2 >= 0 && i1 < n && i2 < n) {
+      const bull = div.rsi_gap !== undefined && closes[i2] <= closes[i1];
+      const markColor = bull ? good : bad;
+
+      [[i1, div.p1_val ?? closes[i1], div.p1_rsi], [i2, div.p2_val ?? closes[i2], div.p2_rsi]].forEach(([idx, pval, rval]) => {
+        const x = xAt(idx);
+        ctx.fillStyle = markColor;
+        ctx.beginPath(); ctx.arc(x, priceY(pval), 3.2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(x, rsiY(rval), 3.2, 0, Math.PI * 2); ctx.fill();
+      });
+
+      ctx.strokeStyle = markColor; ctx.lineWidth = 1.3; ctx.setLineDash([4, 3]);
+      ctx.beginPath(); ctx.moveTo(xAt(i1), priceY(div.p1_val ?? closes[i1])); ctx.lineTo(xAt(i2), priceY(div.p2_val ?? closes[i2])); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(xAt(i1), rsiY(div.p1_rsi)); ctx.lineTo(xAt(i2), rsiY(div.p2_rsi)); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  }
+}
+
+function chartRowHtml(r) {
+  const dailyDiv = r.d; // only daily is charted - use the daily divergence if present
+  const chart = r.chart_daily;
+  if (!chart) {
+    return `<tr class="chartrow"><td colspan="9"><div class="empty">No daily chart data for ${esc(r.ticker)}.</div></td></tr>`;
+  }
+  return `<tr class="chartrow"><td colspan="9">
+    <div class="chartbox">
+      <canvas id="chart-${esc(r.ticker)}"></canvas>
+      <div class="chartlegend">
+        <div><b>${esc(r.ticker)}</b> · daily close + RSI(14)</div>
+        <div><span class="legend-dot" style="background:var(--text)"></span>Price</div>
+        <div><span class="legend-dot" style="background:var(--accent)"></span>RSI(14)</div>
+        ${dailyDiv ? `<div style="margin-top:.4rem">Pivot markers show the daily ${state.dir} divergence pair (${dailyDiv.p1_date} → ${dailyDiv.p2_date}).</div>` : `<div style="margin-top:.4rem">This ticker's ${state.dir} divergence is weekly-only - no daily pivot pair to mark here.</div>`}
+      </div>
+    </div>
+  </td></tr>`;
+}
+
 function render() {
   let list = filtered();
   const sorters = {
@@ -260,13 +426,17 @@ function render() {
     return;
   }
 
+  let openTicker = state.open;
+  if (openTicker && !list.some(r => r.ticker === openTicker)) openTicker = state.open = null;
+
   tbody.innerHTML = list.map(r => {
     const primary = r.d || r.w;
     const pivotSource = r.tfs.length === 2
       ? (r.d.age_bars <= r.w.age_bars ? r.d : r.w)
       : primary;
-    return `<tr>
-      <td><span class="tk">${esc(r.ticker)}</span><span class="nm">${esc(r.name || '')}</span></td>
+    const isOpen = r.ticker === openTicker;
+    const row = `<tr class="datarow${isOpen ? ' open' : ''}" data-ticker="${esc(r.ticker)}">
+      <td><span class="chevron">▶</span><span class="tk">${esc(r.ticker)}</span><span class="nm">${esc(r.name || '')}</span></td>
       <td>${esc(r.sector || '')}</td>
       <td class="gap">$${Number(r.price).toFixed(3)}</td>
       <td class="gap">${fmtMcap(r.market_cap)}</td>
@@ -276,7 +446,22 @@ function render() {
       <td>${pivot2Cell(pivotSource)}</td>
       <td class="gap">${pivotSource ? pivotSource.age_bars + 'b' : '—'}</td>
     </tr>`;
+    return isOpen ? row + chartRowHtml(r) : row;
   }).join('');
+
+  tbody.querySelectorAll('tr.datarow').forEach(tr => tr.addEventListener('click', () => {
+    const tk = tr.dataset.ticker;
+    state.open = state.open === tk ? null : tk;
+    render();
+  }));
+
+  if (openTicker) {
+    const r = list.find(x => x.ticker === openTicker);
+    if (r && r.chart_daily) {
+      const canvas = document.getElementById('chart-' + openTicker);
+      if (canvas) drawChart(canvas, r.chart_daily, r.d || null);
+    }
+  }
 }
 
 document.querySelectorAll('#sizeToggle .pill[data-size]').forEach(el => el.addEventListener('click', () => {
@@ -288,6 +473,7 @@ document.querySelectorAll('#sizeToggle .pill[data-size]').forEach(el => el.addEv
 
 document.querySelectorAll('.pill[data-dir]').forEach(el => el.addEventListener('click', () => {
   state.dir = el.dataset.dir;
+  state.open = null;
   document.querySelectorAll('.pill[data-dir]').forEach(x => x.classList.remove('active'));
   el.classList.add('active');
   render();
@@ -314,6 +500,31 @@ document.querySelectorAll('thead th[data-key]').forEach(th => th.addEventListene
   th.classList.add('sorted');
   render();
 }));
+
+// Theme toggle
+(function(){
+  var btn = document.getElementById('themeBtn');
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  function effectiveTheme(){
+    var explicit = document.documentElement.getAttribute('data-rsi-theme');
+    if(explicit === 'light' || explicit === 'dark') return explicit;
+    return prefersDark.matches ? 'dark' : 'light';
+  }
+  function syncIcon(){
+    btn.classList.toggle('is-dark', effectiveTheme() === 'dark');
+  }
+  btn.addEventListener('click', function(){
+    var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-rsi-theme', next);
+    try{ localStorage.setItem('rsi-theme', next); }catch(e){}
+    syncIcon();
+    render(); // re-draw any open chart with the new theme's colors
+  });
+  prefersDark.addEventListener('change', function(){
+    if(!document.documentElement.getAttribute('data-rsi-theme')){ syncIcon(); render(); }
+  });
+  syncIcon();
+})();
 
 document.querySelectorAll('.sitenav-drop').forEach(function(drop){
   var toggle = drop.querySelector('.sitenav-toggle');

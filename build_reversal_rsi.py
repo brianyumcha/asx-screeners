@@ -45,6 +45,7 @@ PIVOT_RIGHT = 3
 MIN_PIVOT_SEPARATION = 5
 MAX_PIVOT_AGE = 8
 MIN_DAILY_HISTORY = 300  # enough for weekly resample + pivots on both timeframes
+CHART_WINDOW = 90  # trailing daily bars sent to the page for the on-demand chart
 
 TEMPLATE = "reversal_rsi_template.html"
 OUTPUT = "reversal-rsi.html"
@@ -208,6 +209,20 @@ def analyse_ticker(ticker, frame):
 
     out["ticker"] = ticker
     out["price"] = round(float(d_closes[-1]), 4)
+
+    # Daily-only chart window (90 trailing bars) for the page's on-demand
+    # price+RSI chart - "offset" lets the client map p1_idx/p2_idx (indices
+    # into the FULL daily series) onto this trimmed window.
+    n = len(d_closes)
+    start = max(0, n - CHART_WINDOW)
+    out["chart_daily"] = {
+        "offset": start,
+        "dates": [str(d)[:10] for d in frame["date"].iloc[start:].tolist()],
+        "closes": [round(float(c), 4) for c in d_closes[start:]],
+        "highs": [round(float(h), 4) for h in frame["high"].iloc[start:].tolist()],
+        "lows": [round(float(l), 4) for l in frame["low"].iloc[start:].tolist()],
+        "rsi": [round(v, 1) if v is not None else None for v in d_rsi[start:]],
+    }
     return out
 
 
