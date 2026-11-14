@@ -6,11 +6,17 @@ new swing extreme that RSI doesn't confirm - is a textbook early-reversal
 signal (Jamie Bell's mentioned picking up reversals from it). The rule is
 mechanical, not a vibe, once you pin down four things we agreed on:
 
-  1. What counts as a swing pivot - reuses the exact same body-based
-     fractal definition HH SCREENER.py / LL SCREENER.py already use
-     (max/min of open,close, not wicks; 3 bars confirmed on each side),
-     generalized here to return every confirmed pivot in the series
-     instead of just the latest breakout trigger (see find_pivots()).
+  1. What counts as a swing pivot - a closing-price fractal (3 bars
+     confirmed on each side). Originally reused HH/LL SCREENER.py's
+     body-based (max/min of open,close) definition for consistency, but
+     switched to pure close (2026-11-15, found via AXE's chart): RSI is
+     itself computed from closes, so comparing close-based pivots against
+     it is the internally consistent, textbook approach for divergence -
+     body-based made sense for HH/LL's breakout-TRIGGER use case (did a
+     close cross back above a level), not here. Body-based let a single
+     sharp reversal candle's OPEN satisfy "lower low" even though that
+     bar's CLOSE didn't (AXE, 6 Nov: opened ~$0.16, closed +16% at
+     $0.185 - that's not a low on any close-price chart).
   2. Minimum separation between the two compared pivots - 5 bars, so it's
      not comparing near-adjacent noise.
   3. Liveness - the divergence stays "live" as long as price hasn't since
@@ -79,28 +85,26 @@ def rsi_series(closes, period=RSI_PERIOD):
     return out
 
 
-def find_pivots(opens, closes, left=PIVOT_LEFT, right=PIVOT_RIGHT):
-    """Every confirmed fractal pivot high/low in the series, body-based
-    (max/min of open,close) to match HH/LL SCREENER.py exactly. Returns
-    (pivot_high_idxs, pivot_low_idxs), both ascending."""
+def find_pivots(closes, left=PIVOT_LEFT, right=PIVOT_RIGHT):
+    """Every confirmed fractal pivot high/low in the CLOSING price series.
+    Returns (pivot_high_idxs, pivot_low_idxs), both ascending."""
     n = len(closes)
     window = left + right + 1
     if n < window:
         return [], []
-    tops = [max(opens[i], closes[i]) for i in range(n)]
-    bots = [min(opens[i], closes[i]) for i in range(n)]
     highs, lows = [], []
     for i in range(left, n - right):
-        if all(tops[i] >= tops[i + off] for off in range(-left, right + 1)):
+        if all(closes[i] >= closes[i + off] for off in range(-left, right + 1)):
             highs.append(i)
-        if all(bots[i] <= bots[i + off] for off in range(-left, right + 1)):
+        if all(closes[i] <= closes[i + off] for off in range(-left, right + 1)):
             lows.append(i)
-    return highs, lows, tops, bots
+    return highs, lows
 
 
-def detect_divergence(pivot_idxs, pivot_vals, closes, rsi, direction):
+def detect_divergence(pivot_idxs, closes, rsi, direction):
     """direction: 'bullish' (pivot lows) or 'bearish' (pivot highs).
-    Returns a dict describing the live divergence, or None."""
+    Pivot value is the bar's CLOSE (see find_pivots()). Returns a dict
+    describing the live divergence, or None."""
     if len(pivot_idxs) < 2:
         return None
     n = len(closes)
@@ -119,7 +123,7 @@ def detect_divergence(pivot_idxs, pivot_vals, closes, rsi, direction):
     if rsi[p1] is None or rsi[p2] is None:
         return None
 
-    v1, v2 = pivot_vals[p1], pivot_vals[p2]
+    v1, v2 = closes[p1], closes[p2]
     r1, r2 = rsi[p1], rsi[p2]
 
     if direction == "bullish":
@@ -160,27 +164,26 @@ def analyse_ticker(ticker, frame):
 
     d_opens = frame["open"].tolist()
     d_closes = frame["close"].tolist()
-    d_highs, d_lows, d_tops, d_bots = find_pivots(d_opens, d_closes)
+    d_highs, d_lows = find_pivots(d_closes)
     d_rsi = rsi_series(d_closes)
 
     weekly = resample_weekly(frame)
     if len(weekly) < 20:
         weekly = None
     else:
-        w_opens = weekly["open"].tolist()
         w_closes = weekly["close"].tolist()
-        w_highs, w_lows, w_tops, w_bots = find_pivots(w_opens, w_closes)
+        w_highs, w_lows = find_pivots(w_closes)
         w_rsi = rsi_series(w_closes)
 
     out = {
-        "bull_daily": detect_divergence(d_lows, d_bots, d_closes, d_rsi, "bullish"),
-        "bear_daily": detect_divergence(d_highs, d_tops, d_closes, d_rsi, "bearish"),
+        "bull_daily": detect_divergence(d_lows, d_closes, d_rsi, "bullish"),
+        "bear_daily": detect_divergence(d_highs, d_closes, d_rsi, "bearish"),
         "bull_weekly": None,
         "bear_weekly": None,
     }
     if weekly is not None:
-        out["bull_weekly"] = detect_divergence(w_lows, w_bots, w_closes, w_rsi, "bullish")
-        out["bear_weekly"] = detect_divergence(w_highs, w_tops, w_closes, w_rsi, "bearish")
+        out["bull_weekly"] = detect_divergence(w_lows, w_closes, w_rsi, "bullish")
+        out["bear_weekly"] = detect_divergence(w_highs, w_closes, w_rsi, "bearish")
 
         def _dateify(d, frame_dates):
             if d is None:
@@ -218,6 +221,7 @@ def analyse_ticker(ticker, frame):
     out["chart_daily"] = {
         "offset": start,
         "dates": [str(d)[:10] for d in frame["date"].iloc[start:].tolist()],
+        "opens": [round(float(o), 4) for o in d_opens[start:]],
         "closes": [round(float(c), 4) for c in d_closes[start:]],
         "highs": [round(float(h), 4) for h in frame["high"].iloc[start:].tolist()],
         "lows": [round(float(l), 4) for l in frame["low"].iloc[start:].tolist()],

@@ -209,7 +209,7 @@ try{
     </table>
   </div>
 
-  <div class="note">Pivot definition, RSI(14) and divergence rule match the methodology agreed 2026-11-14 - see build_reversal_rsi.py. Weekly bars are resampled from the same daily price cache the other screeners keep warm, not a separate data pull. Chart is daily-only (close price + RSI(14) over the trailing ~90 sessions) - weekly charting may follow. This is a new screener, still being validated for signal quality - treat it as an early-warning watchlist, not a trigger. Not financial advice.</div>
+  <div class="note">Pivot definition (closing-price fractal), RSI(14) and divergence rule match the methodology agreed 2026-11-15 - see build_reversal_rsi.py. Weekly bars are resampled from the same daily price cache the other screeners keep warm, not a separate data pull. Chart is daily-only (candlesticks + RSI(14) over the trailing ~90 sessions) - weekly charting may follow. This is a new screener, still being validated for signal quality - treat it as an early-warning watchlist, not a trigger. Not financial advice.</div>
 </div>
 
 <script>
@@ -287,7 +287,7 @@ function pivot2Cell(piv) {
   return `<span class="pivdate">${piv.p2_date} · RSI ${piv.p2_rsi}</span>`;
 }
 
-// --- Chart: daily close price (top) + RSI(14) (bottom), with the two
+// --- Chart: daily candlesticks (top) + RSI(14) (bottom), with the two
 // pivot points marked and a dashed line connecting them on each panel -
 // that connecting-line "scissor" shape (price sloping one way, RSI the
 // other) IS the divergence, made visible rather than just stated as a gap
@@ -296,9 +296,9 @@ function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
-function drawChart(canvas, chart, div) {
+function drawChart(canvas, chart, div, isBullish) {
   const dpr = window.devicePixelRatio || 1;
-  const W = 560, H_PRICE = 140, H_RSI = 70, GAP = 14, PAD = 28;
+  const W = 560, H_PRICE = 150, H_RSI = 70, GAP = 14, PAD = 28;
   canvas.width = (W) * dpr;
   canvas.height = (H_PRICE + GAP + H_RSI) * dpr;
   canvas.style.width = W + 'px';
@@ -312,23 +312,35 @@ function drawChart(canvas, chart, div) {
   const good = cssVar('--good') || '#5fb88a';
   const bad = cssVar('--bad') || '#e2695f';
 
-  const closes = chart.closes, rsi = chart.rsi;
+  const opens = chart.opens, closes = chart.closes, highs = chart.highs, lows = chart.lows, rsi = chart.rsi;
   const n = closes.length;
   const offset = chart.offset;
   const plotW = W - PAD;
 
   function xAt(i) { return PAD * 0.3 + (i / (n - 1)) * (plotW - PAD * 0.3); }
+  const candleW = Math.max(1.2, (plotW / n) * 0.6);
 
-  // price panel
-  const lo = Math.min(...closes), hi = Math.max(...closes);
+  // price panel - real candlesticks (wick = high/low, body = open/close),
+  // so a pivot marker (always placed at that bar's CLOSE, see
+  // build_reversal_rsi.py) visibly lands on the candle itself instead of
+  // floating off a close-only line - that mismatch was the actual bug a
+  // user caught on AXE's chart (pivot plotted at the bar's OPEN while the
+  // line only ever showed closes).
+  const lo = Math.min(...lows), hi = Math.max(...highs);
   const priceY = v => H_PRICE - 6 - ((v - lo) / (hi - lo || 1)) * (H_PRICE - 16);
 
   ctx.strokeStyle = border; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(0, H_PRICE - 0.5); ctx.lineTo(W, H_PRICE - 0.5); ctx.stroke();
 
-  ctx.strokeStyle = text; ctx.lineWidth = 1.4; ctx.beginPath();
-  closes.forEach((c, i) => { const x = xAt(i), y = priceY(c); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
-  ctx.stroke();
+  for (let i = 0; i < n; i++) {
+    const x = xAt(i), o = opens[i], c = closes[i], h = highs[i], l = lows[i];
+    const up = c >= o;
+    ctx.strokeStyle = ctx.fillStyle = up ? good : bad;
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, priceY(h)); ctx.lineTo(x, priceY(l)); ctx.stroke();
+    const yTop = priceY(Math.max(o, c)), yBot = priceY(Math.min(o, c));
+    ctx.fillRect(x - candleW / 2, yTop, candleW, Math.max(1, yBot - yTop));
+  }
 
   ctx.fillStyle = text; ctx.font = '10px "IBM Plex Mono", monospace'; ctx.textAlign = 'right';
   ctx.fillText(hi.toFixed(3), W - 2, 10);
@@ -357,22 +369,24 @@ function drawChart(canvas, chart, div) {
   ctx.stroke();
 
   // pivot markers + connecting "scissor" line, if this ticker has a live
-  // divergence on the timeframe/direction currently being shown
+  // divergence on the timeframe/direction currently being shown. p1_val/
+  // p2_val are the bar's CLOSE (pivots are close-based, see
+  // build_reversal_rsi.py), so these always land exactly on the
+  // candlesticks drawn above.
   if (div) {
     const i1 = div.p1_idx - offset, i2 = div.p2_idx - offset;
     if (i1 >= 0 && i2 >= 0 && i1 < n && i2 < n) {
-      const bull = div.rsi_gap !== undefined && closes[i2] <= closes[i1];
-      const markColor = bull ? good : bad;
+      const markColor = isBullish ? good : bad;
 
-      [[i1, div.p1_val ?? closes[i1], div.p1_rsi], [i2, div.p2_val ?? closes[i2], div.p2_rsi]].forEach(([idx, pval, rval]) => {
+      [[i1, div.p1_val, div.p1_rsi], [i2, div.p2_val, div.p2_rsi]].forEach(([idx, pval, rval]) => {
         const x = xAt(idx);
         ctx.fillStyle = markColor;
-        ctx.beginPath(); ctx.arc(x, priceY(pval), 3.2, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(x, rsiY(rval), 3.2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(x, priceY(pval), 3.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(x, rsiY(rval), 3.5, 0, Math.PI * 2); ctx.fill();
       });
 
       ctx.strokeStyle = markColor; ctx.lineWidth = 1.3; ctx.setLineDash([4, 3]);
-      ctx.beginPath(); ctx.moveTo(xAt(i1), priceY(div.p1_val ?? closes[i1])); ctx.lineTo(xAt(i2), priceY(div.p2_val ?? closes[i2])); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(xAt(i1), priceY(div.p1_val)); ctx.lineTo(xAt(i2), priceY(div.p2_val)); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(xAt(i1), rsiY(div.p1_rsi)); ctx.lineTo(xAt(i2), rsiY(div.p2_rsi)); ctx.stroke();
       ctx.setLineDash([]);
     }
@@ -389,8 +403,9 @@ function chartRowHtml(r) {
     <div class="chartbox">
       <canvas id="chart-${esc(r.ticker)}"></canvas>
       <div class="chartlegend">
-        <div><b>${esc(r.ticker)}</b> · daily close + RSI(14)</div>
-        <div><span class="legend-dot" style="background:var(--text)"></span>Price</div>
+        <div><b>${esc(r.ticker)}</b> · daily candles + RSI(14)</div>
+        <div><span class="legend-dot" style="background:var(--good)"></span>Up day</div>
+        <div><span class="legend-dot" style="background:var(--bad)"></span>Down day</div>
         <div><span class="legend-dot" style="background:var(--accent)"></span>RSI(14)</div>
         ${dailyDiv ? `<div style="margin-top:.4rem">Pivot markers show the daily ${state.dir} divergence pair (${dailyDiv.p1_date} → ${dailyDiv.p2_date}).</div>` : `<div style="margin-top:.4rem">This ticker's ${state.dir} divergence is weekly-only - no daily pivot pair to mark here.</div>`}
       </div>
@@ -459,7 +474,7 @@ function render() {
     const r = list.find(x => x.ticker === openTicker);
     if (r && r.chart_daily) {
       const canvas = document.getElementById('chart-' + openTicker);
-      if (canvas) drawChart(canvas, r.chart_daily, r.d || null);
+      if (canvas) drawChart(canvas, r.chart_daily, r.d || null, state.dir === 'bullish');
     }
   }
 }
