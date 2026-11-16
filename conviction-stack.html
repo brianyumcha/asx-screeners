@@ -183,6 +183,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="volume-anomaly.html">Volume Anomaly</a>
+<a href="reversal-rsi.html">Reversal (RSI)</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -241,36 +242,6 @@ document.addEventListener('keydown', function(e){
 });
 </script>
 
-<script>
-document.querySelectorAll('.sitenav-drop').forEach(function(drop){
-  var toggle = drop.querySelector('.sitenav-toggle');
-  toggle.addEventListener('click', function(e){
-    e.stopPropagation();
-    var willOpen = !drop.classList.contains('open');
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (willOpen) drop.classList.add('open');
-  });
-});
-var sitenavEl = document.querySelector('.sitenav');
-var navburgerEl = document.querySelector('.navburger');
-if (navburgerEl && sitenavEl) {
-  navburgerEl.addEventListener('click', function(e){
-    e.stopPropagation();
-    sitenavEl.classList.toggle('menu-open');
-  });
-}
-document.addEventListener('click', function(){
-  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-  if (sitenavEl) sitenavEl.classList.remove('menu-open');
-});
-document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (sitenavEl) sitenavEl.classList.remove('menu-open');
-  }
-});
-</script>
-
 
 <div class="wrap">
   <div class="topbar">
@@ -284,7 +255,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt after each screener run — last rebuilt 13 Nov 2026.</div>
+  <div class="session">Rebuilt after each screener run — last rebuilt 16 Nov 2026.</div>
 
   <div class="notice">⚠ Each signal has its own independent definition and lookback window (see footer) — this page doesn't judge whether they agree for the same reason, just that they agree at all. A high count means several unrelated methods currently point at the same ticker, not that it's a stronger buy than a 1-signal ticker outside this list. Not financial advice.</div>
 
@@ -346,7 +317,6 @@ const DATA = [
 ["NHF","nib holdings limited","Financials",3,true,false,false,true,true,3228749312,6.91,-2.1,"2026-08-28",null,null],
 ["PNI","Pinnacle Investment Management Group Limited","Financials",3,true,false,false,true,true,3823832320,15.6,-1.4,"2026-09-30",null,null],
 ["REG","Regis Healthcare Limited","Healthcare",3,true,false,false,true,true,1469977088,5.13,0.0,"2026-09-08",null,null],
-["RMD","RESMED INC","Healthcare",3,false,false,true,true,true,47640549948,34.96,1.4,null,null,null],
 ["SDV","SciDev Limited","Materials",3,true,false,false,true,true,27562842,0.155,3.3,"2026-05-14",null,null],
 ["SGH","SGH Limited","Industrials",3,true,false,false,true,true,34065145856,42.45,-2.3,"2026-09-18",null,null],
 ["SKM","Skylark Minerals Limited","Materials",3,true,false,false,true,true,35960896,0.275,0.0,"2026-07-16",null,null],
@@ -358,7 +328,6 @@ const DATA = [
 ["AFG","Australian Finance Group Limited","Financials",2,true,false,false,true,false,827337709,1.545,-1.0,"2026-09-09",null,null],
 ["AFI","Australian Foundation Investment Company Limited","Other",2,true,false,false,true,false,8464794604,6.92,-0.3,"2026-10-09",null,null],
 ["AGL","AGL Energy Limited","Utilities",2,true,false,false,true,false,6108544824,9.08,0.9,"2026-10-16",null,null],
-["ALC","ALCIDION GROUP LIMITED","Healthcare",2,true,false,true,false,false,155227593,0.12,14.3,"2026-10-05",null,"6M"],
 ["ALI","Argo Global Listed Infrastructure Limited","Other",2,true,false,false,true,false,485118658,2.56,1.6,"2026-06-25",null,null],
 ["ALQ","ALS Limited","Industrials",2,true,false,false,true,false,10856334898,21.4,-0.9,"2026-08-27",null,null],
 ["ANG","Austin Engineering Limited","Industrials",2,true,false,false,true,false,124622176,0.195,-2.5,"2026-10-28",null,null],
@@ -371,7 +340,6 @@ const DATA = [
 ["ASX","ASX Limited","Financials",2,true,false,false,true,false,13255973614,67.27,-0.2,"2026-09-08",null,null],
 ["AUI","Australian United Investment Company Limited","Other",2,true,false,false,true,false,2671346466,12.33,0.3,"2026-10-16",null,null],
 ["AUZ","Australian Mines Limited","Materials",2,true,false,false,true,false,69512596,0.17,-5.6,"2026-06-29",null,null],
-["AV1","ADVERITAS LIMITED","Info Tech",2,true,false,true,false,false,46631273,0.053,8.2,"2026-06-22",null,null],
 ["AWJ","Auric Mining Limited","Other",2,true,false,false,false,true,42276060,0.195,-2.5,"2026-08-03",null,null],
 ["AX1","Accent Group Limited","Other",2,true,false,false,false,true,393776608,0.65,0.0,"2026-05-19",null,null],
 ["AZY","Antipa Minerals Limited","Other",2,true,false,false,false,true,304415168,0.48,-2.0,"2026-07-07",null,null],
@@ -408,9 +376,7 @@ const DATA = [
 ["EWC","Energy World Corporation Ltd","Utilities",2,true,false,false,true,false,269737280,0.07,-2.8,"2026-06-25",null,null],
 ["FCL","FINEOS Corporation Holdings plc","Other",2,true,false,false,false,true,724587264,2.16,-1.8,"2026-09-25",null,null],
 ["FRS","Forrestania Resources Limited","Other",2,true,false,false,false,true,802849733,0.31,-3.1,"2026-10-08",null,null],
-["G50","G50 CORP LIMITED","Materials",2,true,false,true,false,false,74764731,0.315,1.6,"2026-10-12",null,null],
 ["GDI","GDI Property Group","Other",2,true,false,false,false,true,342389760,0.63,0.0,"2026-08-25",null,null],
-["GHM","GOLDEN HORSE MINERALS LIMITED","Materials",2,true,false,true,false,false,112433960,0.475,5.6,"2026-10-29",null,null],
 ["GMG","Goodman Group","Real Estate",2,true,false,false,true,false,54779756544,28.94,-1.7,"2026-08-21",null,null],
 ["GOZ","Growthpoint Properties Australia","Real Estate",2,true,false,false,true,false,1516763648,2.06,-0.5,"2026-10-21",null,null],
 ["GPT","The GPT Group","Real Estate",2,true,false,false,true,false,9482107904,5.16,-1.1,"2026-09-25",null,null],
@@ -459,6 +425,7 @@ const DATA = [
 ["QAN","Qantas Airways Limited","Industrials",2,true,false,false,true,false,13316153344,9.7,-2.4,"2026-10-13",null,null],
 ["QRI","Qualitas Real Estate Income Fund","Financials",2,true,false,false,true,false,921443328,1.49,-1.0,"2026-10-06",null,null],
 ["RFF","","Real Estate",2,false,false,false,true,true,null,1.97,0.2,null,null,null],
+["RMD","","Healthcare",2,false,false,false,true,true,null,34.96,1.4,null,null,null],
 ["SDR","SiteMinder Limited","Info Tech",2,true,false,false,true,false,956826880,3.54,-1.9,"2026-09-02",null,null],
 ["SEK","SEEK Limited","Communication Services",2,true,false,false,true,false,4936408576,14.28,0.5,"2026-05-25",null,null],
 ["SGM","Sims Limited","Other",2,true,false,false,false,true,4111998208,20.54,-2.1,"2026-08-19",null,null],
@@ -475,7 +442,6 @@ const DATA = [
 ["TPW","Temple & Webster Group Ltd","Consumer Discretionary",2,true,false,false,true,false,636345152,6.29,-0.9,"2026-08-24",null,null],
 ["TYR","Tyro Payments Limited","Financials",2,true,false,false,true,false,373199328,0.725,-3.3,"2026-09-23",null,null],
 ["VCX","Vicinity Centres","Real Estate",2,true,false,false,true,false,11420338176,2.43,-0.8,"2026-10-06",null,null],
-["WAM","WAM CAPITAL LIMITED","Other",2,true,false,true,false,false,1130797805,1.02,3.0,"2026-10-29",null,"1M"],
 ["WES","Wesfarmers Limited","Consumer Discretionary",2,true,false,false,true,false,87553007616,80.82,-0.3,"2026-08-28",null,null],
 ["WGX","","Materials",2,false,false,false,true,true,null,5.71,-1.7,null,null,null],
 ["WHC","Whitehaven Coal Limited","Other",2,true,false,false,false,true,6334580224,7.26,-0.3,"2026-09-24",null,null],
