@@ -169,6 +169,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="volume-anomaly.html">Volume Anomaly</a>
+<a href="reversal-rsi.html">Reversal (RSI)</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -227,36 +228,6 @@ document.addEventListener('keydown', function(e){
 });
 </script>
 
-<script>
-document.querySelectorAll('.sitenav-drop').forEach(function(drop){
-  var toggle = drop.querySelector('.sitenav-toggle');
-  toggle.addEventListener('click', function(e){
-    e.stopPropagation();
-    var willOpen = !drop.classList.contains('open');
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (willOpen) drop.classList.add('open');
-  });
-});
-var sitenavEl = document.querySelector('.sitenav');
-var navburgerEl = document.querySelector('.navburger');
-if (navburgerEl && sitenavEl) {
-  navburgerEl.addEventListener('click', function(e){
-    e.stopPropagation();
-    sitenavEl.classList.toggle('menu-open');
-  });
-}
-document.addEventListener('click', function(){
-  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-  if (sitenavEl) sitenavEl.classList.remove('menu-open');
-});
-document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (sitenavEl) sitenavEl.classList.remove('menu-open');
-  }
-});
-</script>
-
 
 <div class="wrap">
   <div class="topbar">
@@ -270,7 +241,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily after ASX close — last rebuilt 13 Nov 2026.</div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt 16 Nov 2026.</div>
 
   <div class="notice">⚠ 'Category' is Yahoo's own industry classification passed through as-is - inspecting all 20 Utilities-sector tickers' real data found a clean, specific taxonomy already ('Utilities - Renewable', 'Utilities - Independent Power Producers', 'Utilities - Diversified', 'Utilities - Regulated Gas', 'Utilities - Regulated Electric'), no systematic mistagging cluster to fix. Utilities has no natural explorer/producer or clinical-trial lifecycle the way Materials or Healthcare do, so this index skips an inferred 'Stage' column and shows dividend yield instead — the metric that actually matters for this sector.</div>
 
@@ -317,26 +288,26 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["AGL","AGL Energy Limited","Utilities - Independent Power Producers",6108545024,9.08,0.9,10.63,5.78],
-["APA","APA Group","Utilities - Regulated Gas",15100788736,11.33,1.6,11.62,5.2],
-["CCE","Carnegie Clean Energy Limited","Utilities - Renewable",81187592,0.19,-9.5,0.365,0.0],
-["CEN","Contact Energy Limited","Utilities - Renewable",7530793984,6.96,-1.6,8.59,4.5],
-["DEL","Delorean Corporation Limited","Utilities - Renewable",19574252,0.08,-7.0,0.15,0.0],
-["DEM","De.mem Limited","Pollution & Treatment Controls",36000248,0.11,0.0,0.13,0.0],
-["EWC","Energy World Corporation Ltd","Utilities - Independent Power Producers",269737280,0.07,-2.8,0.086,0.0],
-["FLC","Fluence Corporation Limited","Pollution & Treatment Controls",60720572,0.053,0.0,0.1225,0.0],
-["GNE","Genesis Energy Limited","Utilities - Independent Power Producers",2586962432,1.96,0.5,2.32,6.45],
-["JNS","Janus Electric Holdings Limited","Utilities - Renewable",116133504,0.615,-6.1,0.9,0.0],
+["AGL","AGL Energy Limited","Utilities - Independent Power Producers",6128727552,9.11,0.3,10.63,5.73],
+["APA","APA Group","Utilities - Regulated Gas",14994163712,11.25,-0.7,11.62,5.12],
+["CCE","Carnegie Clean Energy Limited","Utilities - Renewable",70505016,0.165,-13.2,0.365,0.0],
+["CEN","Contact Energy Limited","Utilities - Renewable",7660635136,7.08,1.7,8.59,4.57],
+["DEL","Delorean Corporation Limited","Utilities - Renewable",20240924,0.08,0.0,0.15,0.0],
+["DEM","De.mem Limited","Pollution & Treatment Controls",34363872,0.105,-4.5,0.13,0.0],
+["EWC","Energy World Corporation Ltd","Utilities - Independent Power Producers",296711008,0.077,10.0,0.086,0.0],
+["FLC","Fluence Corporation Limited","Pollution & Treatment Controls",57283560,0.05,-5.7,0.1225,0.0],
+["GNE","Genesis Energy Limited","Utilities - Independent Power Producers",2613360128,1.98,1.0,2.32,6.41],
+["JNS","Janus Electric Holdings Limited","Utilities - Renewable",125575256,0.665,8.1,0.9,0.0],
 ["KPO","Kalina Power Limited","Utilities - Diversified",35906056,0.012,0.0,0.027,0.0],
 ["LGI","LGI Limited","Utilities - Renewable",258600672,2.5,0.0,4.43,1.08],
-["LPE","Locality Planning Energy Holdings Limited","Utilities - Regulated Electric",18262444,0.1,-9.1,0.18,0.0],
-["MCY","Mercury NZ Limited","Utilities - Renewable",7802544640,5.43,0.0,5.93,4.04],
-["MEZ","Meridian Energy Limited","Utilities - Renewable",11748425728,4.42,-6.0,5.18,3.82],
-["ORG","Origin Energy Limited","Utilities - Diversified",21155340288,12.28,1.2,12.84,4.94],
-["RIV","Rivco Australia Ltd","Utilities",186593040,1.19,-3.6,1.53,2.92],
+["LPE","Locality Planning Energy Holdings Limited","Utilities - Regulated Electric",19175564,0.105,5.0,0.18,0.0],
+["MCY","Mercury NZ Limited","Utilities - Renewable",7874391552,5.48,0.9,5.93,4.04],
+["MEZ","Meridian Energy Limited","Utilities - Renewable",12439507968,4.68,5.9,5.18,4.06],
+["ORG","Origin Energy Limited","Utilities - Diversified",21293160448,12.36,0.7,12.84,4.89],
+["RIV","Rivco Australia Ltd","Utilities",184241008,1.175,-1.3,1.53,3.03],
 ["TML","Timah Resources Limited","Utilities - Renewable",4437988,0.05,0.0,0.05,0.0],
-["TPC","TPC Consolidated Limited","Utilities - Diversified",46811144,3.9,0.0,6.7,5.13],
-["VPR","Volt Group Limited","Utilities - Renewable",16364368,0.1,0.0,0.18,0.0]
+["TPC","TPC Consolidated Limited","Utilities - Diversified",46811144,3.9,0.0,6.69,5.13],
+["VPR","Volt Group Limited","Utilities - Renewable",17937224,0.11,10.0,0.18,0.0]
 ];
 
 // Computed from DATA itself (not hand-maintained) so counts never drift out

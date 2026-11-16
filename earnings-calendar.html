@@ -180,6 +180,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="volume-anomaly.html">Volume Anomaly</a>
+<a href="reversal-rsi.html">Reversal (RSI)</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -238,36 +239,6 @@ document.addEventListener('keydown', function(e){
 });
 </script>
 
-<script>
-document.querySelectorAll('.sitenav-drop').forEach(function(drop){
-  var toggle = drop.querySelector('.sitenav-toggle');
-  toggle.addEventListener('click', function(e){
-    e.stopPropagation();
-    var willOpen = !drop.classList.contains('open');
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (willOpen) drop.classList.add('open');
-  });
-});
-var sitenavEl = document.querySelector('.sitenav');
-var navburgerEl = document.querySelector('.navburger');
-if (navburgerEl && sitenavEl) {
-  navburgerEl.addEventListener('click', function(e){
-    e.stopPropagation();
-    sitenavEl.classList.toggle('menu-open');
-  });
-}
-document.addEventListener('click', function(){
-  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-  if (sitenavEl) sitenavEl.classList.remove('menu-open');
-});
-document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (sitenavEl) sitenavEl.classList.remove('menu-open');
-  }
-});
-</script>
-
 
 <div class="wrap">
   <div class="topbar">
@@ -281,7 +252,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 14 Nov 2026, 2:58AM Sydney time.</div>
+  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 17 Nov 2026, 4:53AM Sydney time.</div>
 
   <div class="notice" id="seasonNotice" style="display:none"></div>
 
@@ -558,7 +529,7 @@ const DATA = [
 [1794434400,"Thu 12 Nov","Beyond August","ALL","Aristocrat Leisure Ltd","FY26","Cons. Disc",null,"",null,"","awaiting"],
 [1794434400,"Thu 12 Nov","Beyond August","GNC","GrainCorp Ltd","FY26","Cons. Staple",null,"",null,"","awaiting"],
 [1794434400,"Thu 12 Nov","Beyond August","ORI","Orica Ltd","FY26","Materials",null,"",null,"","awaiting"],
-[1794780000,"Mon 16 Nov","Beyond August","ELD","Elders Ltd","FY26","Cons. Staple",null,"",null,"","upcoming"],
+[1794780000,"Mon 16 Nov","Beyond August","ELD","Elders Ltd","FY26","Cons. Staple",null,"",null,"","awaiting"],
 [1794866400,"Tue 17 Nov","Beyond August","TNE","TechnologyOne Ltd","FY26","Info Tech",null,"",null,"","upcoming"],
 [1794952800,"Wed 18 Nov","Beyond August","WJL","Webjet Group Ltd","HY27","Cons. Disc",null,"",null,"","upcoming"],
 [1795039200,"Thu 19 Nov","Beyond August","NUF","Nufarm Limited","FY26","Materials",null,"",null,"","upcoming"]
@@ -594,7 +565,7 @@ const SEASON_ACTIVE = true;
 const NEXT_SEASON_NOTE = "";
 
 document.getElementById('sessionLine').textContent =
-  `Rebuilt daily — last rebuilt 14 Nov 2026, 2:58AM Sydney time. ${SEASON_LABEL} reporting season.`;
+  `Rebuilt daily — last rebuilt 17 Nov 2026, 4:53AM Sydney time. ${SEASON_LABEL} reporting season.`;
 
 if (!SEASON_ACTIVE) {
   const notice = document.getElementById('seasonNotice');

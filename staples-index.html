@@ -169,6 +169,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="volume-anomaly.html">Volume Anomaly</a>
+<a href="reversal-rsi.html">Reversal (RSI)</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -227,36 +228,6 @@ document.addEventListener('keydown', function(e){
 });
 </script>
 
-<script>
-document.querySelectorAll('.sitenav-drop').forEach(function(drop){
-  var toggle = drop.querySelector('.sitenav-toggle');
-  toggle.addEventListener('click', function(e){
-    e.stopPropagation();
-    var willOpen = !drop.classList.contains('open');
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (willOpen) drop.classList.add('open');
-  });
-});
-var sitenavEl = document.querySelector('.sitenav');
-var navburgerEl = document.querySelector('.navburger');
-if (navburgerEl && sitenavEl) {
-  navburgerEl.addEventListener('click', function(e){
-    e.stopPropagation();
-    sitenavEl.classList.toggle('menu-open');
-  });
-}
-document.addEventListener('click', function(){
-  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-  if (sitenavEl) sitenavEl.classList.remove('menu-open');
-});
-document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (sitenavEl) sitenavEl.classList.remove('menu-open');
-  }
-});
-</script>
-
 
 <div class="wrap">
   <div class="topbar">
@@ -270,7 +241,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily after ASX close — last rebuilt 13 Nov 2026.</div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt 16 Nov 2026.</div>
 
   <div class="notice">⚠ 'Category' is mostly Yahoo's own industry classification passed through as-is (it's already a specific Consumer Staples taxonomy for most tickers here — 'Packaged Foods', 'Farm Products', 'Beverages - Wineries &amp; Distilleries', 'Beverages - Non-Alcoholic', 'Household &amp; Personal Products', 'Grocery Stores', 'Confectioners', 'Food Distribution'), with a small hand-checked exclusion for the handful of tickers Yahoo tags with an unrelated industry (pharma, biotech, AI). Consumer Staples has no natural explorer/producer or clinical-trial lifecycle the way Materials or Healthcare do, so this index skips an inferred 'Stage' column and shows dividend yield instead — the metric that actually matters for this sector.</div>
 
@@ -317,59 +288,59 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["A2M","The a2 Milk Company Limited","Packaged Foods",5285685760,7.26,1.0,9.97,1.8],
-["AAC","Australian Agricultural Company Limited","Farm Products",813735104,1.35,-1.1,1.5,0.0],
+["A2M","The a2 Milk Company Limited","Packaged Foods",5380332544,7.39,1.8,9.97,1.79],
+["AAC","Australian Agricultural Company Limited","Farm Products",816748928,1.355,0.4,1.5,0.0],
 ["AAP","Australian Agricultural Projects Ltd","Farm Products",20641808,0.056,0.0,0.074,0.0],
-["AHF","Australian Dairy Nutritionals Limited","Packaged Foods",14488735,0.016,-5.9,0.04,0.0],
+["AHF","Australian Dairy Nutritionals Limited","Packaged Foods",14488735,0.016,0.0,0.04,0.0],
 ["AHFN","","Consumer Staples",null,null,null,null,null],
-["AVG","Australian Vintage Ltd","Beverages - Wineries & Distilleries",24709720,0.075,0.0,0.1225,0.0],
-["BGA","Bega Cheese Limited","Packaged Foods",2027609984,6.63,-1.6,6.93,2.23],
-["BIO","Biome Australia Limited","Packaged Foods",85620560,0.37,-2.6,0.49,0.0],
+["AVG","Australian Vintage Ltd","Beverages - Wineries & Distilleries",26027572,0.079,5.3,0.1225,0.0],
+["BGA","Bega Cheese Limited","Packaged Foods",2042901120,6.68,0.8,6.93,2.26],
+["BIO","Biome Australia Limited","Packaged Foods",83306488,0.36,-2.7,0.49,0.0],
 ["BUB","Bubs Australia Limited","Packaged Foods",70715280,0.079,0.0,0.15,0.0],
 ["BXN","","Consumer Staples",null,null,null,null,null],
 ["BXNDA","","Consumer Staples",null,null,null,null,null],
-["CBO","Cobram Estate Olives Limited","Packaged Foods",1253887872,2.61,0.8,4.44,1.74],
+["CBO","Cobram Estate Olives Limited","Packaged Foods",1258692096,2.62,0.4,4.44,1.72],
 ["CCO","The Calmer Co International Limited","Packaged Foods",5339063,0.001,0.0,0.005,0.0],
 ["CCON","","Consumer Staples",null,null,null,null,null],
-["COL","Coles Group Limited","Grocery Stores",29891721216,22.24,-0.8,24.75,3.3],
+["COL","Coles Group Limited","Grocery Stores",29864839168,22.22,-0.1,24.75,3.33],
 ["DBF","Duxton Farms Limited","Farm Products",35352768,0.33,0.0,0.95,0.0],
-["EDV","Endeavour Group Limited","Beverages - Wineries & Distilleries",6392783360,3.56,-0.8,4.12,3.34],
-["ELD","Elders Limited","Farm Products",1408708224,6.54,-0.5,7.77,5.48],
+["EDV","Endeavour Group Limited","Beverages - Wineries & Distilleries",6518484480,3.63,2.0,4.12,3.37],
+["ELD","Elders Limited","Farm Products",1514253696,7.03,7.5,7.77,5.5],
 ["ERG","Eneco Refresh Limited","Beverages - Non-Alcoholic",3268300,0.012,0.0,0.024,0.0],
 ["FFI","FFI Holdings Limited","Confectioners",66352268,4.8,0.0,5.0,4.69],
-["FRM","Farm Pride Foods Limited","Farm Products",61095796,0.265,-11.7,0.305,0.0],
-["GNC","GrainCorp Limited","Farm Products",1599865216,7.37,5.3,8.61,4.0],
-["HCT","Holista Colltech Limited","Packaged Foods",12138534,0.033,0.0,0.09,0.0],
+["FRM","Farm Pride Foods Limited","Farm Products",62248556,0.27,1.9,0.305,0.0],
+["GNC","GrainCorp Limited","Farm Products",1547766528,7.13,-3.3,8.61,3.8],
+["HCT","Holista Colltech Limited","Packaged Foods",12506369,0.034,3.0,0.09,0.0],
 ["HPC","The Hydration Pharmaceuticals Company Limited","Food Distribution",1613965,0.003,0.0,0.0065,0.0],
-["ING","Inghams Group Limited","Farm Products",803186176,2.16,-5.3,2.69,4.43],
-["LRK","LARK Distilling Co. Ltd.","Beverages - Wineries & Distilleries",67734952,0.63,0.8,0.945,0.0],
-["MBH","Maggie Beer Holdings Limited","Packaged Foods",24639392,0.055,0.0,0.115,0.0],
-["MCA","Murray Cod Australia Limited","Farm Products",39659292,0.16,0.0,1.08,0.0],
-["MCP","McPherson's Limited","Household & Personal Products",19793006,0.1375,5.8,0.25,0.0],
-["MTS","Metcash Limited","Food Distribution",3750066432,3.41,-1.2,3.89,5.51],
+["ING","Inghams Group Limited","Farm Products",818059968,2.2,1.9,2.69,4.68],
+["LRK","LARK Distilling Co. Ltd.","Beverages - Wineries & Distilleries",68810112,0.64,1.6,0.945,0.0],
+["MBH","Maggie Beer Holdings Limited","Packaged Foods",22847436,0.051,-7.3,0.115,0.0],
+["MCA","Murray Cod Australia Limited","Farm Products",42138000,0.17,6.3,1.08,0.0],
+["MCP","McPherson's Limited","Household & Personal Products",19793006,0.1375,0.0,0.25,0.0],
+["MTS","Metcash Limited","Food Distribution",3772060718,3.43,0.6,3.87,5.57],
 ["NGS","Nutritional Growth Solutions Ltd.","Packaged Foods",19281852,0.02,0.0,0.029,0.0],
 ["NOU","Noumi Limited","Packaged Foods",34638664,0.125,0.0,0.1375,0.0],
 ["NUC","Nuchev Limited","Packaged Foods",9565945,0.061,0.0,0.2,0.0],
-["NZK","New Zealand King Salmon Investments Limited","Farm Products",107636408,0.2,0.0,0.22,0.0],
+["NZK","New Zealand King Salmon Investments Limited","Farm Products",110327312,0.205,2.5,0.22,0.0],
 ["OMG","OMG Group Limited","Packaged Foods",7041909,0.006,0.0,0.013,0.0],
-["PFT","Pure Foods Tasmania Limited","Packaged Foods",6165802,0.018,12.5,0.04,0.0],
+["PFT","Pure Foods Tasmania Limited","Packaged Foods",6165802,0.018,0.0,0.04,0.0],
 ["PTL","Prestal Holdings Limited","Household & Personal Products",3920568,0.023,0.0,0.051,0.0],
-["RIC","Ridley Corporation Limited","Packaged Foods",1027097472,2.74,0.0,3.06,3.91],
+["RIC","Ridley Corporation Limited","Packaged Foods",1030846016,2.75,0.4,3.06,3.91],
 ["S66","Star Combo Pharma Limited","Household & Personal Products",18911606,0.14,0.0,0.275,2.11],
-["SEA","Sea Forest Limited","Packaged Foods",78483672,1.4,-6.7,3.88,0.0],
+["SEA","Sea Forest Limited","Packaged Foods",79324568,1.415,1.1,3.88,0.0],
 ["SFG","Seafarms Group Limited","Farm Products",9733499,0.002,0.0,0.003,0.0],
-["SGLLV","Ricegrowers Limited","Farm Products",1043881024,15.07,0.0,17.8,4.65],
-["SHV","Select Harvests Limited","Packaged Foods",604289920,4.3,-0.7,5.21,1.62],
+["SGLLV","Ricegrowers Limited","Farm Products",1045959168,15.1,0.2,17.8,4.65],
+["SHV","Select Harvests Limited","Packaged Foods",625369728,4.45,3.5,5.21,1.63],
 ["SKN","Skin Elements Limited","Household & Personal Products",7693214,0.002,-20.0,0.008,0.0],
-["SM1","Synlait Milk Limited","Packaged Foods",253343184,0.42,0.0,0.62,0.0],
-["SPG","SPC Global Holdings Ltd","Packaged Foods",68018824,0.057,-1.7,0.45,0.0],
+["SM1","Synlait Milk Limited","Packaged Foods",250327200,0.415,-1.2,0.62,0.0],
+["SPG","SPC Global Holdings Ltd","Packaged Foods",66825508,0.056,-1.8,0.45,0.0],
 ["SPGN","","Consumer Staples",null,null,null,null,null],
 ["TFL","TasFoods Limited","Packaged Foods",1937952,0.005,0.0,0.009,0.0],
-["TWE","Treasury Wine Estates Limited","Beverages - Wineries & Distilleries",5161019904,6.38,-0.8,6.49,0.0],
+["TWE","Treasury Wine Estates Limited","Beverages - Wineries & Distilleries",5258092544,6.5,1.9,6.54,0.0],
 ["WNR","Wingara AG Limited","Farm Products",1665337,0.007,0.0,0.008,null],
 ["WNX","Wellnex Life Limited","Packaged Foods",4381609,0.06,0.0,0.185,0.0],
 ["WOA","Wide Open Agriculture Limited","Packaged Foods",7198915,0.011,0.0,0.02,0.0],
-["WOW","Woolworths Group Limited","Grocery Stores",51233869824,41.94,-0.0,42.73,2.31],
+["WOW","Woolworths Group Limited","Grocery Stores",51539269910,42.19,0.6,42.73,2.31],
 ["YOW","Yowie Group Limited","Confectioners",3211150,0.014,0.0,0.014,null]
 ];
 

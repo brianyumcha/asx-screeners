@@ -179,6 +179,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
 <a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="volume-anomaly.html">Volume Anomaly</a>
+<a href="reversal-rsi.html">Reversal (RSI)</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -237,36 +238,6 @@ document.addEventListener('keydown', function(e){
 });
 </script>
 
-<script>
-document.querySelectorAll('.sitenav-drop').forEach(function(drop){
-  var toggle = drop.querySelector('.sitenav-toggle');
-  toggle.addEventListener('click', function(e){
-    e.stopPropagation();
-    var willOpen = !drop.classList.contains('open');
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (willOpen) drop.classList.add('open');
-  });
-});
-var sitenavEl = document.querySelector('.sitenav');
-var navburgerEl = document.querySelector('.navburger');
-if (navburgerEl && sitenavEl) {
-  navburgerEl.addEventListener('click', function(e){
-    e.stopPropagation();
-    sitenavEl.classList.toggle('menu-open');
-  });
-}
-document.addEventListener('click', function(){
-  document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-  if (sitenavEl) sitenavEl.classList.remove('menu-open');
-});
-document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.sitenav-drop.open').forEach(function(d){ d.classList.remove('open'); });
-    if (sitenavEl) sitenavEl.classList.remove('menu-open');
-  }
-});
-</script>
-
 
 <div class="wrap">
   <div class="topbar">
@@ -279,7 +250,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily — last rebuilt 14 Nov 2026, 2:57AM Sydney time.</div>
+  <div class="session">Rebuilt daily — last rebuilt 17 Nov 2026, 4:53AM Sydney time.</div>
 
   <div class="notice">⚠ "Red folder" is ForexFactory's own term for its highest ("High") impact tier — the events most likely to move price on release. This page shows the full Sunday-Saturday calendar week, sourced from the same feed ForexFactory's own site exports — no month-ahead feed exists (checked directly against forexfactory.com). Already-released events this week are shown dimmed for context — this feed has no "actual" outcome field, so only forecast/previous are ever shown either way. All times are Sydney local (AEST/AEDT), computed at build time — not your browser's timezone.</div>
 
@@ -319,11 +290,19 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-[1794317400,"Wed 11 Nov","12:30am","USD","Core CPI m/m","0.2%","0.3%",true,true],
-[1794317400,"Wed 11 Nov","12:30am","USD","CPI m/m","0.3%","0.6%",true,true],
-[1794466800,"Thu 12 Nov","6:00pm","GBP","GDP m/m","0.0%","0.1%",false,true],
-[1794576600,"Today","12:30am","USD","Core PPI m/m","0.3%","0.7%",true,true],
-[1794576600,"Today","12:30am","USD","PPI m/m","0.4%","1.3%",true,true]
+[1794835800,"Today","12:30am","CAD","CPI m/m","0.3%","0.1%",false,true],
+[1794835800,"Today","12:30am","CAD","Median CPI y/y","2.0%","1.9%",false,true],
+[1794835800,"Today","12:30am","CAD","Trimmed CPI y/y","1.9%","1.8%",false,true],
+[1794848400,"Today","4:00am","USD","Fed Chairman Warsh Speaks","","",false,true],
+[1794869400,"Today","9:50am","AUD","RBA Gov Bullock Speaks","","",false,false],
+[1794880800,"Today","1:00pm","NZD","Inflation Expectations q/q","","2.34%",false,false],
+[1794922200,"Tomorrow","12:30am","USD","Core Retail Sales m/m","0.4%","0.9%",false,false],
+[1794922200,"Tomorrow","12:30am","USD","Retail Sales m/m","0.2%","0.8%",false,false],
+[1794985200,"Tomorrow","6:00pm","GBP","CPI y/y","3.6%","3.5%",false,false],
+[1795014000,"Thu 19 Nov","2:00am","GBP","BOE Gov Bailey Speaks","","",false,false],
+[1795028400,"Thu 19 Nov","6:00am","USD","FOMC Meeting Minutes","","",true,false],
+[1795048200,"Thu 19 Nov","11:30am","AUD","Employment Change","25.2K","-39.3K",false,false],
+[1795048200,"Thu 19 Nov","11:30am","AUD","Unemployment Rate","4.7%","4.7%",false,false]
 ];
 
 // [unixTs, dateLabel, timeLabel, country, title, forecast, previous, isBigUS, isPast]
