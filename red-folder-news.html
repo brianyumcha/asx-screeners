@@ -250,7 +250,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily — last rebuilt 17 Nov 2026, 4:53AM Sydney time.</div>
+  <div class="session">Rebuilt daily — last rebuilt 18 Nov 2026, 4:24AM Sydney time.</div>
 
   <div class="notice">⚠ "Red folder" is ForexFactory's own term for its highest ("High") impact tier — the events most likely to move price on release. This page shows the full Sunday-Saturday calendar week, sourced from the same feed ForexFactory's own site exports — no month-ahead feed exists (checked directly against forexfactory.com). Already-released events this week are shown dimmed for context — this feed has no "actual" outcome field, so only forecast/previous are ever shown either way. All times are Sydney local (AEST/AEDT), computed at build time — not your browser's timezone.</div>
 
@@ -290,19 +290,19 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-[1794835800,"Today","12:30am","CAD","CPI m/m","0.3%","0.1%",false,true],
-[1794835800,"Today","12:30am","CAD","Median CPI y/y","2.0%","1.9%",false,true],
-[1794835800,"Today","12:30am","CAD","Trimmed CPI y/y","1.9%","1.8%",false,true],
-[1794848400,"Today","4:00am","USD","Fed Chairman Warsh Speaks","","",false,true],
-[1794869400,"Today","9:50am","AUD","RBA Gov Bullock Speaks","","",false,false],
-[1794880800,"Today","1:00pm","NZD","Inflation Expectations q/q","","2.34%",false,false],
-[1794922200,"Tomorrow","12:30am","USD","Core Retail Sales m/m","0.4%","0.9%",false,false],
-[1794922200,"Tomorrow","12:30am","USD","Retail Sales m/m","0.2%","0.8%",false,false],
-[1794985200,"Tomorrow","6:00pm","GBP","CPI y/y","3.6%","3.5%",false,false],
-[1795014000,"Thu 19 Nov","2:00am","GBP","BOE Gov Bailey Speaks","","",false,false],
-[1795028400,"Thu 19 Nov","6:00am","USD","FOMC Meeting Minutes","","",true,false],
-[1795048200,"Thu 19 Nov","11:30am","AUD","Employment Change","25.2K","-39.3K",false,false],
-[1795048200,"Thu 19 Nov","11:30am","AUD","Unemployment Rate","4.7%","4.7%",false,false]
+[1794835800,"Tue 17 Nov","12:30am","CAD","CPI m/m","0.3%","0.1%",false,true],
+[1794835800,"Tue 17 Nov","12:30am","CAD","Median CPI y/y","2.0%","1.9%",false,true],
+[1794835800,"Tue 17 Nov","12:30am","CAD","Trimmed CPI y/y","1.9%","1.8%",false,true],
+[1794848400,"Tue 17 Nov","4:00am","USD","Fed Chairman Warsh Speaks","","",false,true],
+[1794869400,"Tue 17 Nov","9:50am","AUD","RBA Gov Bullock Speaks","","",false,true],
+[1794880800,"Tue 17 Nov","1:00pm","NZD","Inflation Expectations q/q","","2.34%",false,true],
+[1794922200,"Today","12:30am","USD","Core Retail Sales m/m","0.4%","0.9%",false,true],
+[1794922200,"Today","12:30am","USD","Retail Sales m/m","0.1%","0.8%",false,true],
+[1794985200,"Today","6:00pm","GBP","CPI y/y","3.6%","3.5%",false,false],
+[1795014000,"Tomorrow","2:00am","GBP","BOE Gov Bailey Speaks","","",false,false],
+[1795028400,"Tomorrow","6:00am","USD","FOMC Meeting Minutes","","",true,false],
+[1795048200,"Tomorrow","11:30am","AUD","Employment Change","25.5K","-39.3K",false,false],
+[1795048200,"Tomorrow","11:30am","AUD","Unemployment Rate","4.7%","4.7%",false,false]
 ];
 
 // [unixTs, dateLabel, timeLabel, country, title, forecast, previous, isBigUS, isPast]
