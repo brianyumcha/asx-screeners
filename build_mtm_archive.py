@@ -44,6 +44,12 @@ HEADING_RE = re.compile(
     r"^(?P<ticker>.+?) — (?P<bias>Bullish \(Unchanged\)|Bearish \(Unchanged\)|Bullish|Bearish|Neutral|Informational)"
     r"(?: — (?P<timeframe>[^—]+?))? — (?P<ts>.+?)\s*$"
 )
+# Matches a bare uppercase ticker-looking token (ASX codes run 2-6 chars) -
+# used both to pull the symbol out of a section's own ticker field (which
+# may carry a trailing parenthetical, e.g. "MNRS (Gold Miners, AUD-hedged)")
+# and to find the same symbol again inside a Bullish/Bearish Setups line, so
+# that line can link straight down to this call's own write-up for it.
+TICKER_TOKEN_RE = re.compile(r"\b[A-Z][A-Z0-9]{1,5}\b")
 
 # Same convention as append_tracker.py's BIAS_COLORS, reused here so the
 # archive's badge colors match what the tracker spreadsheet already shows.
@@ -194,21 +200,45 @@ def tfbadge_html(timeframe):
     return f'<span class="tfbadge mono">{esc(timeframe)}</span>'
 
 
+def linkify_setups(val, lookup):
+    # Walks the raw setups-line text (e.g. "DMP, COL, Silver / SLVM") and
+    # wraps only the uppercase ticker tokens that have a matching section
+    # further down THIS SAME call in an in-page anchor link; everything
+    # else (punctuation, lowercase words, unmatched tickers) stays plain
+    # escaped text.
+    out = []
+    pos = 0
+    for m in TICKER_TOKEN_RE.finditer(val):
+        token = m.group(0)
+        start, end = m.span()
+        out.append(esc(val[pos:start]))
+        sec_id = lookup.get(token)
+        out.append(f'<a href="#{sec_id}">{esc(token)}</a>' if sec_id else esc(token))
+        pos = end
+    out.append(esc(val[pos:]))
+    return "".join(out)
+
+
 def render_call(call, anchor):
+    sections_html = ""
+    token_lookup = {}
+    for i, (ticker, bias, timeframe, ts, bullets) in enumerate(call["sections"]):
+        sec_id = f"{anchor}-tk-{i}"
+        m = TICKER_TOKEN_RE.search(ticker)
+        if m:
+            token_lookup[m.group(0)] = sec_id
+        bullets_html = "".join(f"<li>{esc(b)}</li>" for b in bullets)
+        sections_html += f"""
+        <div class="tickersec" id="{sec_id}">
+          <div class="tickerhead"><span class="tk">{esc(ticker)}</span> {badge_html(bias)} {tfbadge_html(timeframe)} {typebadge_html(call["call_type"])} <span class="ts mono">{esc(ts)}</span></div>
+          <ul>{bullets_html}</ul>
+        </div>"""
+
     setups_html = ""
     for label, val in call["setups"].items():
         if not val:
             continue
-        setups_html += f'<div class="setupline"><span class="setuplabel">{esc(label)}:</span> {esc(val)}</div>'
-
-    sections_html = ""
-    for ticker, bias, timeframe, ts, bullets in call["sections"]:
-        bullets_html = "".join(f"<li>{esc(b)}</li>" for b in bullets)
-        sections_html += f"""
-        <div class="tickersec">
-          <div class="tickerhead"><span class="tk">{esc(ticker)}</span> {badge_html(bias)} {tfbadge_html(timeframe)} {typebadge_html(call["call_type"])} <span class="ts mono">{esc(ts)}</span></div>
-          <ul>{bullets_html}</ul>
-        </div>"""
+        setups_html += f'<div class="setupline"><span class="setuplabel">{esc(label)}:</span> {linkify_setups(val, token_lookup)}</div>'
 
     themes_html = ""
     if call["themes"]:
@@ -378,6 +408,8 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 .setups{margin-bottom:1rem}
 .setupline{font-size:.85rem;color:var(--ink-soft);margin:.2rem 0}
 .setuplabel{color:var(--ink-faint);font-weight:600}
+.setupline a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+.setupline a:hover{text-decoration:none;border-bottom-style:solid}
 .tickersec{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.8rem 1rem;margin-bottom:.7rem}
 .tickerhead{display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem}
 .tk{font-family:"IBM Plex Mono",monospace;font-weight:700}
