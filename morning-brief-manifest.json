@@ -2,7 +2,7 @@
   "name": "Morning Brief",
   "short_name": "Morning Brief",
   "description": "Overnight US close, ASX pre-market, crypto, and catalysts due.",
-  "start_url": ".",
+  "start_url": "morning-brief.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0c1016",
