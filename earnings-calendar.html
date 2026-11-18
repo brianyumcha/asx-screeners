@@ -252,7 +252,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 18 Nov 2026, 4:25AM Sydney time.</div>
+  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 19 Nov 2026, 3:59AM Sydney time.</div>
 
   <div class="notice" id="seasonNotice" style="display:none"></div>
 
@@ -531,7 +531,7 @@ const DATA = [
 [1794434400,"Thu 12 Nov","Beyond August","ORI","Orica Ltd","FY26","Materials",null,"",null,"","awaiting"],
 [1794780000,"Mon 16 Nov","Beyond August","ELD","Elders Ltd","FY26","Cons. Staple",null,"",null,"","awaiting"],
 [1794866400,"Tue 17 Nov","Beyond August","TNE","TechnologyOne Ltd","FY26","Info Tech",null,"",null,"","awaiting"],
-[1794952800,"Wed 18 Nov","Beyond August","WJL","Webjet Group Ltd","HY27","Cons. Disc",null,"",null,"","upcoming"],
+[1794952800,"Wed 18 Nov","Beyond August","WJL","Webjet Group Ltd","HY27","Cons. Disc",null,"",null,"","awaiting"],
 [1795039200,"Thu 19 Nov","Beyond August","NUF","Nufarm Limited","FY26","Materials",null,"",null,"","upcoming"]
 ];
 // [unixTs, dateLabel, weekLabel, ticker, company, period, sector, dpsValue, dpsCurrency, npatValue, npatCurrency, status]
@@ -565,7 +565,7 @@ const SEASON_ACTIVE = true;
 const NEXT_SEASON_NOTE = "";
 
 document.getElementById('sessionLine').textContent =
-  `Rebuilt daily — last rebuilt 18 Nov 2026, 4:25AM Sydney time. ${SEASON_LABEL} reporting season.`;
+  `Rebuilt daily — last rebuilt 19 Nov 2026, 3:59AM Sydney time. ${SEASON_LABEL} reporting season.`;
 
 if (!SEASON_ACTIVE) {
   const notice = document.getElementById('seasonNotice');
