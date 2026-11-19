@@ -398,7 +398,7 @@ h4{font-size:1rem;margin:1rem 0 .4rem;color:var(--ink-faint)}
 .monthsep{position:sticky;top:0;background:color-mix(in srgb, var(--accent) 22%, var(--surface2));color:var(--accent);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.4rem .8rem;border-bottom:1px solid var(--border);border-left:3px solid var(--accent);z-index:1}
 .monthsep:first-child{border-top:none}
 
-.detailpane{flex:1;min-width:0;max-height:calc(100vh - 230px);overflow-y:auto;border:1px solid var(--border);border-radius:8px;background:var(--surface);padding:1.3rem 1.5rem}
+.detailpane{flex:1;min-width:0;border:1px solid var(--border);border-radius:8px;background:var(--surface);padding:1.3rem 1.5rem}
 .detailempty{color:var(--ink-faint);font-size:.9rem;padding:1rem .2rem}
 .call{display:none}
 .call.active{display:block}
@@ -435,7 +435,7 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
   .archivelayout{flex-direction:column}
   .listpane{flex:none;width:100%}
   .listscroll{max-height:40vh}
-  .detailpane{max-height:none;width:100%}
+  .detailpane{width:100%}
 }
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -499,26 +499,15 @@ function selectCall(anchor, opts){
   listRows.forEach(r => r.classList.toggle('active', r.dataset.anchor === anchor));
   detailEmpty.style.display = 'none';
   if(!opts.skipHash) history.replaceState(null, '', '#' + anchor);
-  if(!opts.skipScroll) detailPane.scrollTop = 0;
+  // detailPane has no scroll of its own (it grows with its content, so the
+  // page itself is the only scrollable area) - switching to a different
+  // call still needs to land on ITS top, not wherever the page happened to
+  // be scrolled to for the previous (likely differently-sized) call.
+  if(!opts.skipScroll) detailPane.scrollIntoView({block: 'start'});
 }
 
 listRows.forEach(r => {
   r.addEventListener('click', () => selectCall(r.dataset.anchor));
-});
-
-// Setups-line ticker links jump to a tickersec further down the SAME call,
-// inside detailPane's own scroll area. A plain <a href="#id"> would use the
-// browser's native scrollIntoView, which also drags the outer page/window
-// scroll position along to keep detailPane in view - intercept and scroll
-// detailPane itself instead, leaving the page's own scroll position alone.
-detailPane.addEventListener('click', (e) => {
-  const a = e.target.closest('.setupline a[href^="#"]');
-  if(!a) return;
-  const target = document.getElementById(a.getAttribute('href').slice(1));
-  if(!target) return;
-  e.preventDefault();
-  const offset = target.getBoundingClientRect().top - detailPane.getBoundingClientRect().top;
-  detailPane.scrollBy({top: offset - 16, behavior: 'smooth'});
 });
 
 function updateListCount(visible, total){
