@@ -506,6 +506,21 @@ listRows.forEach(r => {
   r.addEventListener('click', () => selectCall(r.dataset.anchor));
 });
 
+// Setups-line ticker links jump to a tickersec further down the SAME call,
+// inside detailPane's own scroll area. A plain <a href="#id"> would use the
+// browser's native scrollIntoView, which also drags the outer page/window
+// scroll position along to keep detailPane in view - intercept and scroll
+// detailPane itself instead, leaving the page's own scroll position alone.
+detailPane.addEventListener('click', (e) => {
+  const a = e.target.closest('.setupline a[href^="#"]');
+  if(!a) return;
+  const target = document.getElementById(a.getAttribute('href').slice(1));
+  if(!target) return;
+  e.preventDefault();
+  const offset = target.getBoundingClientRect().top - detailPane.getBoundingClientRect().top;
+  detailPane.scrollBy({top: offset - 16, behavior: 'smooth'});
+});
+
 function updateListCount(visible, total){
   listCount.textContent = visible === total ? `${total} call${total === 1 ? '' : 's'}` : `${visible} of ${total} calls`;
 }
