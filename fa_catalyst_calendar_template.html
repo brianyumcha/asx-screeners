@@ -53,6 +53,10 @@ p{color:var(--ink-soft)}
 .chipsection{margin-top:1.3rem}
 .chipsection h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);font-weight:700;margin-bottom:.6rem}
 .divider{border:none;border-top:1px solid var(--border);margin:1.4rem 0}
+.chipgroups{display:flex;flex-direction:column;gap:.5rem}
+.chipgroup{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.chipgroup .glabel{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--ink-faint);width:4.2rem;flex:none}
 .commchips{display:flex;flex-wrap:wrap;gap:.4rem}
 .commchip{font-size:.78rem;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:.35rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
 .commchip:hover{border-color:var(--accent);color:var(--accent)}
@@ -64,26 +68,33 @@ p{color:var(--ink-soft)}
 .controls input:focus{outline:none;border-color:var(--accent2)}
 .controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
 
-.calgrid{display:flex;flex-direction:column;gap:0;margin-top:.6rem}
-.monthsep{position:sticky;top:0;background:color-mix(in srgb, var(--accent2) 22%, var(--surface2));
-  color:var(--accent2);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
-  padding:.45rem .8rem;border-radius:6px;border-left:3px solid var(--accent2);z-index:1;margin:1.1rem 0 .6rem}
-.monthsep:first-child{margin-top:0}
-.calcard{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;
-  box-shadow:var(--shadow);display:flex;gap:1rem;align-items:flex-start;margin-bottom:.6rem}
-.caldate{flex:none;width:4.6rem;text-align:center;padding-top:.1rem}
-.caldate .dnum{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.3rem;color:var(--accent2);line-height:1}
-.caldate .dmon{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em}
-.caldate.nodate .dnum{font-size:.85rem;color:var(--ink-faint)}
-.calbody{flex:1;min-width:0}
-.calhead{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem}
-.tk{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1rem}
-.tk a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
-.tk a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-.typebadge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;letter-spacing:.04em;
-  padding:.15rem .5rem;border-radius:4px;border:1px solid var(--accent2);color:var(--accent2);background:transparent;white-space:nowrap}
-.timingbadge{font-size:.72rem;color:var(--warn);background:var(--warn-bg);border-radius:4px;padding:.15rem .55rem;white-space:nowrap}
-.calcatalyst{color:var(--ink-soft);font-size:.9rem;margin:.3rem 0 0;line-height:1.5}
+.calgridwrap{overflow-x:auto;margin-top:.6rem}
+table.calgrid{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.85rem}
+table.calgrid th:nth-child(1), table.calgrid td:nth-child(1){width:7%}
+table.calgrid th:nth-child(2), table.calgrid td:nth-child(2){width:6%}
+table.calgrid th:nth-child(3), table.calgrid td:nth-child(3){width:19%}
+table.calgrid th:nth-child(4), table.calgrid td:nth-child(4){width:13%}
+table.calgrid th:nth-child(5), table.calgrid td:nth-child(5){width:40%}
+table.calgrid th:nth-child(6), table.calgrid td:nth-child(6){width:15%}
+table.calgrid th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--ink-faint);text-transform:uppercase;
+  letter-spacing:.05em;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap}
+table.calgrid td{padding:.5rem .6rem;vertical-align:top;border-bottom:1px solid var(--border)}
+table.calgrid tr:last-child td{border-bottom:none}
+tr.monthsep td{background:color-mix(in srgb, var(--accent2) 16%, var(--surface2));
+  color:var(--accent2);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  padding:.4rem .6rem;border-left:3px solid var(--accent2);border-bottom:1px solid var(--border)}
+td.caldate{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);white-space:nowrap}
+td.tk{font-family:"IBM Plex Mono",monospace;font-weight:700;white-space:nowrap}
+td.tk a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
+td.tk a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+td.company{color:var(--ink-soft)}
+td.company .cname{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.company .csector{display:block;font-size:.76rem;color:var(--ink-faint)}
+td.typebadge span{font-family:"IBM Plex Mono",monospace;font-size:.6rem;font-weight:600;letter-spacing:.03em;
+  padding:.15rem .4rem;border-radius:4px;border:1px solid var(--accent2);color:var(--accent2);background:transparent;
+  white-space:normal;word-break:break-word;display:inline-block;line-height:1.3}
+td.calcatalyst{color:var(--ink-soft);line-height:1.45}
+td.timing{color:var(--warn);font-size:.8rem}
 .emptystate{color:var(--ink-faint);font-size:.9rem;padding:2rem 0;text-align:center}
 
 footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint)}
@@ -162,7 +173,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 
   <div class="chipsection">
     <h2>Catalyst type</h2>
-    <div class="commchips" id="typechips"><<<TYPE_CHIPS>>></div>
+    <div class="chipgroups" id="typechips"><<<TYPE_CHIPS>>></div>
   </div>
 
   <hr class="divider">
@@ -173,7 +184,21 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
     <span class="hint" id="countLabel"></span>
   </div>
 
-  <div class="calgrid" id="calGrid"></div>
+  <div class="calgridwrap">
+    <table class="calgrid">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Ticker</th>
+          <th>Company</th>
+          <th>Type</th>
+          <th>Catalyst</th>
+          <th>Timing</th>
+        </tr>
+      </thead>
+      <tbody id="calGrid"></tbody>
+    </table>
+  </div>
 
   <footer>
     Dates shown are the company's own stated timing where given — a vague phrase ("toward year-end", "coming months") is kept as-is rather than sharpened into a false precision; undated items sort to the bottom. Not financial advice.
@@ -184,13 +209,15 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 const DATA = [
 <<<FULL_DATA>>>
 ];
-// [ticker, catalyst, catalystTypeKey, catalystTypeLabel, timing, sortDate|null, source]
+// [ticker, companyName, sectorLabel, catalyst, catalystTypeKey, catalystTypeLabel, timing, sortDate|null, dayPrecise]
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function fmtSort(iso){
-  if(!iso) return null;
+function fmtDate(iso, dayPrecise){
+  if(!iso) return '—';
   const d = new Date(iso+'T00:00:00');
-  return d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'});
+  return dayPrecise
+    ? d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'})
+    : d.toLocaleDateString('en-AU', {month:'short', year:'numeric'});
 }
 function monthLabel(iso){
   if(!iso) return 'No firm date';
@@ -199,46 +226,42 @@ function monthLabel(iso){
 }
 
 const typeCounts = {};
-DATA.forEach(r => { typeCounts[r[2]] = (typeCounts[r[2]] || 0) + 1; });
+DATA.forEach(r => { typeCounts[r[4]] = (typeCounts[r[4]] || 0) + 1; });
 
 const activeTypes = new Set();
 
 function render(){
   const q = document.getElementById('filterInput').value.trim().toUpperCase();
-  const rows = DATA.filter(([ticker, catalyst, typeKey, typeLabel, timing, sort, source]) => {
-    const textMatch = !q || ticker.toUpperCase().includes(q) || catalyst.toUpperCase().includes(q);
+  const rows = DATA.filter(([ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise]) => {
+    const textMatch = !q || ticker.toUpperCase().includes(q) || catalyst.toUpperCase().includes(q) || (company||'').toUpperCase().includes(q);
     if(!textMatch) return false;
     if(activeTypes.size && !activeTypes.has(typeKey)) return false;
     return true;
   });
   const grid = document.getElementById('calGrid');
   if(!rows.length){
-    grid.innerHTML = '<div class="emptystate">No catalysts match the current filters.</div>';
+    grid.innerHTML = '<tr><td colspan="6"><div class="emptystate">No catalysts match the current filters.</div></td></tr>';
   } else {
     let html = '';
     let lastMonth = null;
-    for(const [ticker, catalyst, typeKey, typeLabel, timing, sort, source] of rows){
+    for(const [ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise] of rows){
       const bucket = monthLabel(sort);
       if(bucket !== lastMonth){
-        html += `<div class="monthsep">${esc(bucket)}</div>`;
+        html += `<tr class="monthsep"><td colspan="6">${esc(bucket)}</td></tr>`;
         lastMonth = bucket;
       }
       const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(ticker)}`;
-      const d = sort ? new Date(sort+'T00:00:00') : null;
-      const dateChip = d
-        ? `<div class="caldate"><div class="dnum">${d.getDate()}</div><div class="dmon">${d.toLocaleDateString('en-AU',{month:'short'})}</div></div>`
-        : `<div class="caldate nodate"><div class="dnum">&mdash;</div></div>`;
-      html += `<div class="calcard">
-        ${dateChip}
-        <div class="calbody">
-          <div class="calhead">
-            <span class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></span>
-            <span class="typebadge">${esc(typeLabel)}</span>
-            <span class="timingbadge">${esc(timing || 'No timing given')}</span>
-          </div>
-          <div class="calcatalyst">${esc(catalyst)}</div>
-        </div>
-      </div>`;
+      const companyLine = company
+        ? `<span class="cname">${esc(company)}</span>${sector ? `<span class="csector">${esc(sector)}</span>` : ''}`
+        : '';
+      html += `<tr>
+        <td class="caldate">${fmtDate(sort, dayPrecise)}</td>
+        <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></td>
+        <td class="company">${companyLine}</td>
+        <td class="typebadge"><span>${esc(typeLabel)}</span></td>
+        <td class="calcatalyst">${esc(catalyst)}</td>
+        <td class="timing">${esc(timing || '—')}</td>
+      </tr>`;
     }
     grid.innerHTML = html;
   }

@@ -3,22 +3,28 @@ fundamental-analysis catalysts (resource upgrades, feasibility studies,
 capital raises, drilling results, trial/regulatory readouts, M&A
 situations, FID/production milestones) across a watchlist of ASX tickers.
 
-Source of the underlying data (fa_catalyst_calendar.json): mined from an
-internal archive of FA-focused call summaries this site already tracks for
-other pages (see build_mtm_archive.py), by reading each ticker's most
-recent mention for a still-open, forward-looking catalyst and manually
-judging - not keyword-matching alone, which produced real false positives
-on things already resolved by the time a later call rolled around - which
-ones were genuinely still pending as of 2026-11-21. Deliberately excludes
-anything that has already happened or whose own stated timing window has
-clearly lapsed with no later confirmation, same discipline the rest of
-this site's catalyst tracking already follows (see bullmap_catalysts.json/
-Instructions/bullmap_catalysts_instructions.md for the sibling pipeline
-this one's schema borrows from). The published page intentionally doesn't
-name the source - it's presented as a generic FA catalyst calendar.
+Source of the underlying data (fa_catalyst_calendar.json): two merged
+sources, both deliberately excluding anything already resolved or whose
+own stated timing window has clearly lapsed:
+  1. An internal archive of FA-focused call summaries this site already
+     tracks for other pages (see build_mtm_archive.py) - each ticker's
+     most recent mention for a still-open catalyst, manually judged (not
+     keyword-matching alone, which produced real false positives on
+     things already resolved by the time a later call rolled around).
+  2. bullmap_catalysts.json - mined from each ticker's own latest ASX
+     quarterly/presentation (see Instructions/bullmap_catalysts_
+     instructions.md), merged in with a keyword-inferred catalyst_type
+     and de-duplicated against (1) where the same underlying event was
+     independently present in both.
+The published page intentionally doesn't name either source - it's
+presented as a generic FA catalyst calendar. Company name and sector/
+commodity/indication context per ticker comes from a lookup join against
+asx_universe_fallback.json plus the materials/healthcare specialty caches
+(see load_company_lookup()) - no new research, just joining data this
+repo already has.
 
-This is a one-shot build for now (no live re-scan each run) - re-run
-_mine_fa_catalysts-style curation by hand to refresh fa_catalyst_calendar.json
+This is a one-shot build for now (no live re-scan each run) - re-run the
+underlying curation/mining by hand to refresh fa_catalyst_calendar.json
 when it's worth doing again, then just re-run this script.
 """
 import json
@@ -42,7 +48,18 @@ TYPE_LABELS = {
     "trial_regulatory": "Trial Data / Regulatory Clearance",
     "board_ma": "Activist / Board / M&A",
     "production_fid": "FID / Production",
+    "other": "Other",
 }
+
+# Mining and biotech catalyst types read as sector-specific; Capital Raise and
+# Activist/Board/M&A apply equally to either (and "other" is a true catch-all),
+# so those get their own "General" cluster rather than being forced into one
+# of the two sector groups.
+TYPE_GROUPS = [
+    ("Mining", ["mre_upgrade", "dfs_bfs_scoping", "drilling_assay", "metallurgy", "production_fid"]),
+    ("Biotech", ["trial_regulatory"]),
+    ("General", ["capital_raise", "board_ma", "other"]),
+]
 
 
 def esc_js(s):
@@ -51,20 +68,48 @@ def esc_js(s):
     return str(s).replace("\\", "\\\\").replace('"', '\\"')
 
 
+def load_company_lookup():
+    """Ticker -> (name, sector_label). Prefers the specific commodity/indication
+    caches over the broad GICS sector when one exists, since "Lithium" tells a
+    reader more than "Materials" does - falls back to the plain sector if a
+    ticker isn't in either specialised cache (most non-resource/non-health
+    sectors), and to nothing at all if the ticker is missing from the universe
+    file entirely (a ~2100-ticker list, not guaranteed complete)."""
+    universe = json.load(open("asx_universe_fallback.json", encoding="utf-8"))
+    commodity = json.load(open("materials_commodity_cache.json", encoding="utf-8"))
+    indication = json.load(open("healthcare_indication_cache.json", encoding="utf-8"))
+    lookup = {}
+    for tk, info in universe.items():
+        name = info.get("name")
+        sector = info.get("sector")
+        if tk in commodity:
+            label = commodity[tk]
+        elif tk in indication:
+            label = indication[tk]
+        else:
+            label = sector
+        lookup[tk] = (name, label)
+    return lookup
+
+
 def main():
     with open(DATA_PATH, encoding="utf-8") as f:
         catalysts = json.load(f)
+    company_lookup = load_company_lookup()
 
     rows = []
     for ticker, items in catalysts.items():
+        name, sector = company_lookup.get(ticker, (None, None))
         for it in items:
             rows.append({
                 "ticker": ticker,
+                "company": name,
+                "sector": sector,
                 "catalyst": it["catalyst"],
                 "catalyst_type": it["catalyst_type"],
                 "timing": it.get("timing") or "",
                 "sort": it.get("sort"),
-                "source": it.get("source", ""),
+                "day_precise": bool(it.get("day_precise")),
             })
 
     # Undated rows sort to the end, newest/soonest-dated first among the rest.
@@ -75,25 +120,34 @@ def main():
     type_counts = {}
     for r in rows:
         type_counts[r["catalyst_type"]] = type_counts.get(r["catalyst_type"], 0) + 1
-    type_chip_lines = []
-    for t in sorted(type_counts, key=lambda t: (-type_counts[t], t)):
-        label = TYPE_LABELS.get(t, t)
-        type_chip_lines.append(
-            f'<button class="commchip" data-type="{t}"><span>{label}</span><span class="cnt">{type_counts[t]}</span></button>'
+    group_blocks = []
+    for group_label, type_keys in TYPE_GROUPS:
+        present = [t for t in type_keys if type_counts.get(t)]
+        if not present:
+            continue
+        chips = "".join(
+            f'<button class="commchip" data-type="{t}"><span>{TYPE_LABELS.get(t, t)}</span>'
+            f'<span class="cnt">{type_counts[t]}</span></button>'
+            for t in sorted(present, key=lambda t: (-type_counts[t], t))
         )
-    type_chips_html = "".join(type_chip_lines)
+        group_blocks.append(
+            f'<div class="chipgroup"><span class="glabel">{group_label}</span>{chips}</div>'
+        )
+    type_chips_html = "".join(group_blocks)
 
     data_lines = []
     for r in rows:
         data_lines.append(
             "[" + ",".join([
                 f'"{esc_js(r["ticker"])}"',
+                f'"{esc_js(r["company"])}"',
+                f'"{esc_js(r["sector"])}"',
                 f'"{esc_js(r["catalyst"])}"',
                 f'"{r["catalyst_type"]}"',
                 f'"{esc_js(TYPE_LABELS.get(r["catalyst_type"], r["catalyst_type"]))}"',
                 f'"{esc_js(r["timing"])}"',
                 "null" if r["sort"] is None else f'"{r["sort"]}"',
-                f'"{esc_js(r["source"])}"',
+                "true" if r["day_precise"] else "false",
             ]) + "]"
         )
     data_block = ",\n".join(data_lines)

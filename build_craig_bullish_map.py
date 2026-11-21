@@ -587,6 +587,16 @@ table.grouptable td.catalysts .cwhen{display:block;font-family:"IBM Plex Mono",m
 table.grouptable td.catalysts .cwhat{display:block;font-size:.78rem}
 table.grouptable td.catalysts .nocat{color:var(--ink-faint)}
 
+table.calendartable th:nth-child(1), table.calendartable td:nth-child(1){width:9%}
+table.calendartable th:nth-child(2), table.calendartable td:nth-child(2){width:8%}
+table.calendartable th:nth-child(3), table.calendartable td:nth-child(3){width:58%}
+table.calendartable th:nth-child(4), table.calendartable td:nth-child(4){width:25%}
+table.calendartable tr.monthsep td{background:color-mix(in srgb, var(--accent2) 16%, var(--surface2));
+  color:var(--accent2);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  border-left:3px solid var(--accent2)}
+table.calendartable td.caldate{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);white-space:nowrap}
+table.calendartable td.timing{color:var(--warn);font-size:.8rem}
+
 .unresolvedbox{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:.9rem 1.1rem;margin-top:1rem;font-size:.87rem;color:var(--ink-soft)}
 .unresolvedbox li{margin:.3rem 0}
 
@@ -623,6 +633,17 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
 
 ##UNRESOLVED_BOX##
 
+  <div class="sector">
+    <div class="sechead"><h2>Catalyst Calendar</h2></div>
+    <p class="subtitle" style="margin:0 0 .6rem">Every tracked catalyst across the bull map, in one chronological list — the per-ticker lists above still show just that ticker's own.</p>
+    <div class="grouptablewrap">
+      <table class="grouptable calendartable" id="catalystCalendarTable">
+        <thead><tr><th>Date</th><th>Ticker</th><th>Catalyst</th><th>Timing</th></tr></thead>
+        <tbody id="catalystCalendarBody"></tbody>
+      </table>
+    </div>
+  </div>
+
   <footer>
     ##FOOTER_TEXT##
   </footer>
@@ -636,6 +657,50 @@ function fmtDate(iso){
   const d = new Date(iso+'T00:00:00');
   return d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'});
 }
+function escHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmtCalDate(iso, dayPrecise){
+  if(!iso) return '—';
+  const d = new Date(iso+'T00:00:00');
+  return dayPrecise
+    ? d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'})
+    : d.toLocaleDateString('en-AU', {month:'short', year:'numeric'});
+}
+function calMonthLabel(iso){
+  if(!iso) return 'No firm date';
+  const d = new Date(iso+'T00:00:00');
+  return d.toLocaleDateString('en-AU', {month:'long', year:'numeric'});
+}
+(function renderCatalystCalendar(){
+  const body = document.getElementById('catalystCalendarBody');
+  if(!body) return;
+  const flat = [];
+  Object.entries(CATALYSTS).forEach(([tk, items]) => {
+    (items || []).forEach(c => flat.push({tk, catalyst: c.catalyst, timing: c.timing, sort: c.sort, dayPrecise: !!c.day_precise}));
+  });
+  flat.sort((a, b) => {
+    if(!a.sort && !b.sort) return a.tk.localeCompare(b.tk);
+    if(!a.sort) return 1;
+    if(!b.sort) return -1;
+    return a.sort.localeCompare(b.sort) || a.tk.localeCompare(b.tk);
+  });
+  let html = '';
+  let lastMonth = null;
+  for(const r of flat){
+    const bucket = calMonthLabel(r.sort);
+    if(bucket !== lastMonth){
+      html += `<tr class="monthsep"><td colspan="4">${escHtml(bucket)}</td></tr>`;
+      lastMonth = bucket;
+    }
+    const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(r.tk)}`;
+    html += `<tr>
+      <td class="caldate">${fmtCalDate(r.sort, r.dayPrecise)}</td>
+      <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${escHtml(r.tk)}</a></td>
+      <td class="desc">${escHtml(r.catalyst)}</td>
+      <td class="timing">${escHtml(r.timing || '—')}</td>
+    </tr>`;
+  }
+  body.innerHTML = html || '<tr><td colspan="4" class="nocat">No catalysts tracked yet.</td></tr>';
+})();
 function catalystsHtml(tk){
   const items = CATALYSTS[tk];
   if(!items || !items.length) return '<span class="nocat">—</span>';
