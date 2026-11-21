@@ -86,6 +86,7 @@ PAGES = {
     "red-folder-news.html": ["red-folder-news.html"],
     "sector-rotation.html": ["sector-rotation.html"],
     "earnings-calendar.html": ["earnings-calendar.html"],
+    "fa-catalyst-calendar.html": ["fa-catalyst-calendar.html"],
     "insider-index.html": ["insider-index.html"],
     "options-us-csp.html": ["options-us-csp.html"],
     "options-us-etf.html": ["options-us-etf.html"],
