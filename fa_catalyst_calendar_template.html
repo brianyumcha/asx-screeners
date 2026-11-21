@@ -64,8 +64,18 @@ p{color:var(--ink-soft)}
 .controls input:focus{outline:none;border-color:var(--accent2)}
 .controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
 
-.calgrid{display:flex;flex-direction:column;gap:.7rem;margin-top:.6rem}
-.calcard{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;box-shadow:var(--shadow)}
+.calgrid{display:flex;flex-direction:column;gap:0;margin-top:.6rem}
+.monthsep{position:sticky;top:0;background:color-mix(in srgb, var(--accent2) 22%, var(--surface2));
+  color:var(--accent2);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  padding:.45rem .8rem;border-radius:6px;border-left:3px solid var(--accent2);z-index:1;margin:1.1rem 0 .6rem}
+.monthsep:first-child{margin-top:0}
+.calcard{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;
+  box-shadow:var(--shadow);display:flex;gap:1rem;align-items:flex-start;margin-bottom:.6rem}
+.caldate{flex:none;width:4.6rem;text-align:center;padding-top:.1rem}
+.caldate .dnum{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.3rem;color:var(--accent2);line-height:1}
+.caldate .dmon{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em}
+.caldate.nodate .dnum{font-size:.85rem;color:var(--ink-faint)}
+.calbody{flex:1;min-width:0}
 .calhead{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem}
 .tk{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1rem}
 .tk a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
@@ -73,8 +83,7 @@ p{color:var(--ink-soft)}
 .typebadge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;letter-spacing:.04em;
   padding:.15rem .5rem;border-radius:4px;border:1px solid var(--accent2);color:var(--accent2);background:transparent;white-space:nowrap}
 .timingbadge{font-size:.72rem;color:var(--warn);background:var(--warn-bg);border-radius:4px;padding:.15rem .55rem;white-space:nowrap}
-.calcatalyst{color:var(--ink-soft);font-size:.9rem;margin:.3rem 0 .4rem;line-height:1.5}
-.calsource{font-size:.7rem;color:var(--ink-faint)}
+.calcatalyst{color:var(--ink-soft);font-size:.9rem;margin:.3rem 0 0;line-height:1.5}
 .emptystate{color:var(--ink-faint);font-size:.9rem;padding:2rem 0;text-align:center}
 
 footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--ink-faint)}
@@ -183,6 +192,11 @@ function fmtSort(iso){
   const d = new Date(iso+'T00:00:00');
   return d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'});
 }
+function monthLabel(iso){
+  if(!iso) return 'No firm date';
+  const d = new Date(iso+'T00:00:00');
+  return d.toLocaleDateString('en-AU', {month:'long', year:'numeric'});
+}
 
 const typeCounts = {};
 DATA.forEach(r => { typeCounts[r[2]] = (typeCounts[r[2]] || 0) + 1; });
@@ -201,19 +215,32 @@ function render(){
   if(!rows.length){
     grid.innerHTML = '<div class="emptystate">No catalysts match the current filters.</div>';
   } else {
-    grid.innerHTML = rows.map(([ticker, catalyst, typeKey, typeLabel, timing, sort, source]) => {
+    let html = '';
+    let lastMonth = null;
+    for(const [ticker, catalyst, typeKey, typeLabel, timing, sort, source] of rows){
+      const bucket = monthLabel(sort);
+      if(bucket !== lastMonth){
+        html += `<div class="monthsep">${esc(bucket)}</div>`;
+        lastMonth = bucket;
+      }
       const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(ticker)}`;
-      const dateStr = fmtSort(sort);
-      return `<div class="calcard">
-        <div class="calhead">
-          <span class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></span>
-          <span class="typebadge">${esc(typeLabel)}</span>
-          <span class="timingbadge">${esc(timing || (dateStr || 'No date given'))}</span>
+      const d = sort ? new Date(sort+'T00:00:00') : null;
+      const dateChip = d
+        ? `<div class="caldate"><div class="dnum">${d.getDate()}</div><div class="dmon">${d.toLocaleDateString('en-AU',{month:'short'})}</div></div>`
+        : `<div class="caldate nodate"><div class="dnum">&mdash;</div></div>`;
+      html += `<div class="calcard">
+        ${dateChip}
+        <div class="calbody">
+          <div class="calhead">
+            <span class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></span>
+            <span class="typebadge">${esc(typeLabel)}</span>
+            <span class="timingbadge">${esc(timing || 'No timing given')}</span>
+          </div>
+          <div class="calcatalyst">${esc(catalyst)}</div>
         </div>
-        <div class="calcatalyst">${esc(catalyst)}</div>
-        <div class="calsource mono">${esc(source)}</div>
       </div>`;
-    }).join('');
+    }
+    grid.innerHTML = html;
   }
   document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} catalysts`;
   document.querySelectorAll('#typechips .commchip').forEach(c => c.classList.toggle('active', activeTypes.has(c.dataset.type)));
