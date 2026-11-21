@@ -70,11 +70,11 @@ p{color:var(--ink-soft)}
 
 .calgridwrap{overflow-x:auto;margin-top:.6rem}
 table.calgrid{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.85rem}
-table.calgrid th:nth-child(1), table.calgrid td:nth-child(1){width:7%}
+table.calgrid th:nth-child(1), table.calgrid td:nth-child(1){width:11%}
 table.calgrid th:nth-child(2), table.calgrid td:nth-child(2){width:6%}
-table.calgrid th:nth-child(3), table.calgrid td:nth-child(3){width:19%}
-table.calgrid th:nth-child(4), table.calgrid td:nth-child(4){width:13%}
-table.calgrid th:nth-child(5), table.calgrid td:nth-child(5){width:40%}
+table.calgrid th:nth-child(3), table.calgrid td:nth-child(3){width:18%}
+table.calgrid th:nth-child(4), table.calgrid td:nth-child(4){width:12%}
+table.calgrid th:nth-child(5), table.calgrid td:nth-child(5){width:38%}
 table.calgrid th:nth-child(6), table.calgrid td:nth-child(6){width:15%}
 table.calgrid th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--ink-faint);text-transform:uppercase;
   letter-spacing:.05em;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap}
@@ -83,7 +83,7 @@ table.calgrid tr:last-child td{border-bottom:none}
 tr.monthsep td{background:color-mix(in srgb, var(--accent2) 16%, var(--surface2));
   color:var(--accent2);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
   padding:.4rem .6rem;border-left:3px solid var(--accent2);border-bottom:1px solid var(--border)}
-td.caldate{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);white-space:nowrap}
+td.caldate{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);white-space:normal}
 td.tk{font-family:"IBM Plex Mono",monospace;font-weight:700;white-space:nowrap}
 td.tk a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
 td.tk a:hover{color:var(--accent);border-bottom-color:var(--accent)}
@@ -209,15 +209,16 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 const DATA = [
 <<<FULL_DATA>>>
 ];
-// [ticker, companyName, sectorLabel, catalyst, catalystTypeKey, catalystTypeLabel, timing, sortDate|null, dayPrecise]
+// [ticker, companyName, sectorLabel, catalyst, catalystTypeKey, catalystTypeLabel, timing, sortDate|null, dayPrecise, estimated]
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function fmtDate(iso, dayPrecise){
+function fmtDate(iso, dayPrecise, estimated){
   if(!iso) return '—';
   const d = new Date(iso+'T00:00:00');
-  return dayPrecise
+  const base = dayPrecise
     ? d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'})
     : d.toLocaleDateString('en-AU', {month:'short', year:'numeric'});
+  return estimated ? `${base} (est.)` : base;
 }
 function monthLabel(iso){
   if(!iso) return 'No firm date';
@@ -232,7 +233,7 @@ const activeTypes = new Set();
 
 function render(){
   const q = document.getElementById('filterInput').value.trim().toUpperCase();
-  const rows = DATA.filter(([ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise]) => {
+  const rows = DATA.filter(([ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise, estimated]) => {
     const textMatch = !q || ticker.toUpperCase().includes(q) || catalyst.toUpperCase().includes(q) || (company||'').toUpperCase().includes(q);
     if(!textMatch) return false;
     if(activeTypes.size && !activeTypes.has(typeKey)) return false;
@@ -244,7 +245,7 @@ function render(){
   } else {
     let html = '';
     let lastMonth = null;
-    for(const [ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise] of rows){
+    for(const [ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise, estimated] of rows){
       const bucket = monthLabel(sort);
       if(bucket !== lastMonth){
         html += `<tr class="monthsep"><td colspan="6">${esc(bucket)}</td></tr>`;
@@ -255,7 +256,7 @@ function render(){
         ? `<span class="cname">${esc(company)}</span>${sector ? `<span class="csector">${esc(sector)}</span>` : ''}`
         : '';
       html += `<tr>
-        <td class="caldate">${fmtDate(sort, dayPrecise)}</td>
+        <td class="caldate">${fmtDate(sort, dayPrecise, estimated)}</td>
         <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></td>
         <td class="company">${companyLine}</td>
         <td class="typebadge"><span>${esc(typeLabel)}</span></td>

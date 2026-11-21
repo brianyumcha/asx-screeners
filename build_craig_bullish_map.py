@@ -587,14 +587,14 @@ table.grouptable td.catalysts .cwhen{display:block;font-family:"IBM Plex Mono",m
 table.grouptable td.catalysts .cwhat{display:block;font-size:.78rem}
 table.grouptable td.catalysts .nocat{color:var(--ink-faint)}
 
-table.calendartable th:nth-child(1), table.calendartable td:nth-child(1){width:9%}
+table.calendartable th:nth-child(1), table.calendartable td:nth-child(1){width:12%}
 table.calendartable th:nth-child(2), table.calendartable td:nth-child(2){width:8%}
-table.calendartable th:nth-child(3), table.calendartable td:nth-child(3){width:58%}
+table.calendartable th:nth-child(3), table.calendartable td:nth-child(3){width:55%}
 table.calendartable th:nth-child(4), table.calendartable td:nth-child(4){width:25%}
 table.calendartable tr.monthsep td{background:color-mix(in srgb, var(--accent2) 16%, var(--surface2));
   color:var(--accent2);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
   border-left:3px solid var(--accent2)}
-table.calendartable td.caldate{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);white-space:nowrap}
+table.calendartable td.caldate{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);white-space:normal}
 table.calendartable td.timing{color:var(--warn);font-size:.8rem}
 
 .unresolvedbox{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:.9rem 1.1rem;margin-top:1rem;font-size:.87rem;color:var(--ink-soft)}
@@ -658,12 +658,13 @@ function fmtDate(iso){
   return d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'});
 }
 function escHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function fmtCalDate(iso, dayPrecise){
+function fmtCalDate(iso, dayPrecise, estimated){
   if(!iso) return '—';
   const d = new Date(iso+'T00:00:00');
-  return dayPrecise
+  const base = dayPrecise
     ? d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'})
     : d.toLocaleDateString('en-AU', {month:'short', year:'numeric'});
+  return estimated ? `${base} (est.)` : base;
 }
 function calMonthLabel(iso){
   if(!iso) return 'No firm date';
@@ -675,13 +676,21 @@ function calMonthLabel(iso){
   if(!body) return;
   const flat = [];
   Object.entries(CATALYSTS).forEach(([tk, items]) => {
-    (items || []).forEach(c => flat.push({tk, catalyst: c.catalyst, timing: c.timing, sort: c.sort, dayPrecise: !!c.day_precise}));
+    (items || []).forEach(c => flat.push({tk, catalyst: c.catalyst, timing: c.timing, sort: c.sort, dayPrecise: !!c.day_precise, estimated: !!c.estimated}));
   });
+  // Group by month (YYYY-MM), undated last; within a month, non-estimated
+  // rows (genuinely-stated timing) before estimated (quarter/half/vague-year
+  // midpoint guesses), then day-known-first, then ticker alphabetically -
+  // same convention as the public FA Catalyst Calendar.
   flat.sort((a, b) => {
-    if(!a.sort && !b.sort) return a.tk.localeCompare(b.tk);
-    if(!a.sort) return 1;
-    if(!b.sort) return -1;
-    return a.sort.localeCompare(b.sort) || a.tk.localeCompare(b.tk);
+    const am = a.sort ? a.sort.slice(0,7) : null, bm = b.sort ? b.sort.slice(0,7) : null;
+    if(!am && !bm) return a.tk.localeCompare(b.tk);
+    if(!am) return 1;
+    if(!bm) return -1;
+    if(am !== bm) return am.localeCompare(bm);
+    if(a.estimated !== b.estimated) return a.estimated ? 1 : -1;
+    if(a.dayPrecise !== b.dayPrecise) return a.dayPrecise ? -1 : 1;
+    return a.tk.localeCompare(b.tk);
   });
   let html = '';
   let lastMonth = null;
@@ -693,7 +702,7 @@ function calMonthLabel(iso){
     }
     const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(r.tk)}`;
     html += `<tr>
-      <td class="caldate">${fmtCalDate(r.sort, r.dayPrecise)}</td>
+      <td class="caldate">${fmtCalDate(r.sort, r.dayPrecise, r.estimated)}</td>
       <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${escHtml(r.tk)}</a></td>
       <td class="desc">${escHtml(r.catalyst)}</td>
       <td class="timing">${escHtml(r.timing || '—')}</td>

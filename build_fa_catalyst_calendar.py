@@ -110,10 +110,22 @@ def main():
                 "timing": it.get("timing") or "",
                 "sort": it.get("sort"),
                 "day_precise": bool(it.get("day_precise")),
+                "estimated": bool(it.get("estimated")),
             })
 
-    # Undated rows sort to the end, newest/soonest-dated first among the rest.
-    rows.sort(key=lambda r: (r["sort"] is None, r["sort"] or "", r["ticker"]))
+    # Undated rows sort to the end. Within the same month, an estimated
+    # (quarter/half/vague-year) row sorts after a non-estimated one, since a
+    # month bucket is a mix of "this is genuinely when it's due" and "this is
+    # our best guess at the middle of a wider window" - estimated rows read
+    # as the softer, lower-confidence tail of that same month rather than
+    # being interleaved as if equally precise.
+    rows.sort(key=lambda r: (
+        r["sort"] is None,
+        (r["sort"] or "")[:7],  # YYYY-MM - groups by month without breaking ties on exact day
+        r["estimated"],
+        not r["day_precise"],
+        r["ticker"],
+    ))
 
     print(f"Loaded {len(rows)} catalysts across {len(catalysts)} tickers.")
 
@@ -148,6 +160,7 @@ def main():
                 f'"{esc_js(r["timing"])}"',
                 "null" if r["sort"] is None else f'"{r["sort"]}"',
                 "true" if r["day_precise"] else "false",
+                "true" if r["estimated"] else "false",
             ]) + "]"
         )
     data_block = ",\n".join(data_lines)

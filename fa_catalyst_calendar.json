@@ -6,7 +6,8 @@
       "timing": "November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Placement Tranche 2 (incl. Directors) \u2014 subject to shareholder approval",
@@ -14,7 +15,8 @@
       "timing": "At Annual General Meeting (date not given)",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "London-Victoria to Calarie corridor \u2014 drilling of Ashes walk-up targets and six adjacent prospects; depth extensions below pit",
@@ -22,7 +24,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "AEE": [
@@ -32,7 +35,8 @@
       "timing": "Pilot plant start imminent; FID likely Q1 2027",
       "sort": "2027-02-14",
       "source": "FA call, 16 Oct 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "AUE": [
@@ -42,7 +46,8 @@
       "timing": "Very soon",
       "sort": "2026-11-10",
       "source": "FA call, 20 Oct 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": false
     },
     {
       "catalyst": "Boundiali gold \u2014 Definitive Feasibility Study (incorporating 2026 drilling and Oct 2026 3.84Moz MRE)",
@@ -50,7 +55,8 @@
       "timing": "Late CY2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Napi\u00e9 gold \u2014 30,000m diamond drilling program to grow 1.16Moz resource",
@@ -58,7 +64,8 @@
       "timing": "Commencing Q4 CY2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Boundiali \u2014 ongoing 150,000m resource-growth drilling (16 rigs) and scout drilling on BD/BM/BST tenements",
@@ -66,7 +73,8 @@
       "timing": "CY2026 program; no specific date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "AUV": [
@@ -76,7 +84,8 @@
       "timing": "Next 3-4 months",
       "sort": "2027-02-01",
       "source": "FA call, 19 Oct 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "AVM": [
@@ -86,7 +95,8 @@
       "timing": "Soon",
       "sort": "2026-11-16",
       "source": "FA call, 26 Oct 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": false
     }
   ],
   "CHN": [
@@ -96,7 +106,8 @@
       "timing": "Q4 CY26 (imminent)",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Gonneville Pd-Pt-Ni (WA) \u2014 8-week continuous pilot plant of full flowsheet (5t ore); FS engineering commences",
@@ -104,7 +115,8 @@
       "timing": "Commencing November 2026 (~2-month run)",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Nyanzaga (Perseus) commercial production triggers A$5M contingent payment to Chalice",
@@ -112,7 +124,8 @@
       "timing": "Early CY27",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Gonneville \u2014 Definitive Feasibility Study completion",
@@ -120,7 +133,8 @@
       "timing": "Q3 CY27",
       "sort": "2027-08-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Gonneville \u2014 Final Investment Decision",
@@ -128,7 +142,8 @@
       "timing": "H1 CY28",
       "sort": "2028-06-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly; Corporate Presentation Nov 2026"
+      "source": "September 2026 Quarterly; Corporate Presentation Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "Warrego North Cu-Au (NT) \u2014 assays from initial drilling of targets; Goomalling Cu (WA) Deep Blue follow-up drilling, soils and IP",
@@ -136,7 +151,8 @@
       "timing": "Assays pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities & Cashflow Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "FLG": [
@@ -146,7 +162,8 @@
       "timing": "Late 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "June 2026 Quarterly Activities Report"
+      "source": "June 2026 Quarterly Activities Report",
+      "estimated": true
     },
     {
       "catalyst": "Whipsaw copper (Canada) porphyry - evaluating a spin-out into a dedicated ASX-listed vehicle via IPO, subject to shareholder/ASX approval",
@@ -154,7 +171,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "June 2026 Quarterly Activities Report"
+      "source": "June 2026 Quarterly Activities Report",
+      "estimated": true
     }
   ],
   "GBR": [
@@ -164,7 +182,8 @@
       "timing": "H2 2026",
       "sort": "2026-09-30",
       "source": "FA call, 5 May 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     },
     {
       "catalyst": "Side Well \u2014 Mining Lease grant for 122koz @ 2.7g/t shallow deposit (Ironbark; Mining Agreement being negotiated)",
@@ -172,7 +191,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Investor Presentation (Noosa Mining Conference), 11 Nov 2026"
+      "source": "Investor Presentation (Noosa Mining Conference), 11 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Peak Hill \u2014 project-wide resource update from 40,000m 3-rig drilling (Durack, Jubilee, Enigma, Five Ways, Harmony, Mt Pleasant)",
@@ -180,7 +200,8 @@
       "timing": "End of calendar year 2026 / next year",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Side Well \u2014 mining approvals for that deposit",
@@ -188,7 +209,8 @@
       "timing": "Q3 2027",
       "sort": "2027-08-16",
       "day_precise": false,
-      "source": "Investor Presentation (Noosa Mining Conference), 11 Nov 2026"
+      "source": "Investor Presentation (Noosa Mining Conference), 11 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Peak Hill \u2014 scoping and feasibility studies, targeting mining",
@@ -196,7 +218,8 @@
       "timing": "Mining at end of 2027",
       "sort": "2027-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     }
   ],
   "GL1": [
@@ -206,7 +229,8 @@
       "timing": "Pending",
       "sort": null,
       "source": "FA call, 22 Sep 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "GT1": [
@@ -216,7 +240,8 @@
       "timing": "December 2026 (targeted CY2026)",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Seymour \u2014 Definitive Feasibility Study and ore reserve declaration (re-forecast)",
@@ -224,7 +249,8 @@
       "timing": "Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Seymour \u2014 Impact Benefit Agreements and financing, then Final Investment Decision",
@@ -232,7 +258,8 @@
       "timing": "FID mid-2027",
       "sort": "2027-06-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Seymour \u2014 tantalum by-product metallurgical testwork on 2024 bulk sample",
@@ -240,7 +267,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "HAR": [
@@ -250,7 +278,8 @@
       "timing": "Coming months",
       "sort": "2026-12-15",
       "source": "FA call, 16 Oct 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     },
     {
       "catalyst": "Lincoln gold (California) \u2014 Phase 2 underground diamond drilling results (16 holes, ~1,500m) to lift confidence in southern resource",
@@ -258,7 +287,8 @@
       "timing": "Underway since Sept 2026; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation 8 Nov 2026"
+      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation 8 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Lincoln \u2014 plant audit/restart costing and staged Mining Study (MSO); work elevated from Scoping Study straight to PFS, then Feasibility Study and project financing",
@@ -266,7 +296,8 @@
       "timing": "No firm dates given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation 8 Nov 2026"
+      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation 8 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Lincoln \u2014 completion of 60-acre adjoining land acquisition (drilling access, development, tailings)",
@@ -274,7 +305,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "HAS": [
@@ -284,7 +316,17 @@
       "timing": "Q1 2027 commissioning; mid-2027 first production",
       "sort": "2027-02-14",
       "source": "FA call, 17 Nov 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
+    },
+    {
+      "catalyst": "Thai hydromet plant (Kabin Buri, 49% stake) \u2014 first MREC flake production (converting African monazite feedstock)",
+      "catalyst_type": "production_fid",
+      "timing": "Q4 CY2026",
+      "sort": "2026-11-15",
+      "day_precise": false,
+      "estimated": true,
+      "source": "Company announcements, 2026"
     }
   ],
   "ILT": [
@@ -294,7 +336,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Herberton regional \u2014 results from Union Jack and Boonmoo Epithermal drilling (8 RC holes)",
@@ -302,7 +345,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "KFM": [
@@ -312,7 +356,8 @@
       "timing": "Ongoing",
       "sort": null,
       "source": "FA call, 10 Nov 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "KGL": [
@@ -322,7 +367,8 @@
       "timing": "H1 CY2028",
       "sort": "2028-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Jervois copper (NT) \u2014 commencement of principal construction following FID (15 Oct 2026); long-lead SAG/ball mill procurement",
@@ -330,7 +376,8 @@
       "timing": "Post-FID; no firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Jervois \u2014 results from A$20M 2026\u20132028 onsite drilling and geophysics exploration program",
@@ -338,7 +385,8 @@
       "timing": "2026\u20132028 program; no specific date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "KNI": [
@@ -348,7 +396,8 @@
       "timing": "December 2026",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "Placement release & Investor Presentation, 10 Nov 2026"
+      "source": "Placement release & Investor Presentation, 10 Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "Commonwealth \u2014 Phase 3 district-scale drilling at Welcome Jack, Walls and Stringers (within 1km of resource)",
@@ -356,7 +405,8 @@
       "timing": "Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "Placement release & Investor Presentation, 10 Nov 2026"
+      "source": "Placement release & Investor Presentation, 10 Nov 2026",
+      "estimated": true
     }
   ],
   "KTA": [
@@ -366,7 +416,8 @@
       "timing": "~March 2027",
       "sort": "2027-03-16",
       "source": "FA call, 19 Oct 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": false
     }
   ],
   "KZR": [
@@ -376,7 +427,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Ashburton \u2014 Pre-Feasibility Study completion",
@@ -384,7 +436,8 @@
       "timing": "April 2027",
       "sort": "2027-04-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Ashburton \u2014 growth drilling beneath Mt Olympus and at Peake deposit; accelerated evaluation of Xanadu as second hub",
@@ -392,7 +445,8 @@
       "timing": "Underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "LPM": [
@@ -402,7 +456,8 @@
       "timing": "Possible production mid-late 2027",
       "sort": "2027-11-15",
       "source": "FA call, 3 Nov 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     },
     {
       "catalyst": "Lei Lithium Project (Bynoe, NT) \u2014 targeted drilling: 8 RC holes on Lei Secondary Pegmatite + 2 diamond holes at depth on Primary (resource upgrade)",
@@ -410,7 +465,8 @@
       "timing": "Commencing post quarter (Q4 2026)",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Lei DSO project \u2014 environmental approval (SER lodged Sept 2026), enabling mining licence application",
@@ -418,7 +474,8 @@
       "timing": "Q1 CY2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Lei \u2014 conversion of non-binding Canmax offtake MOU (50% of DSO/spodumene) to binding offtake",
@@ -426,7 +483,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "NOX": [
@@ -436,7 +494,8 @@
       "timing": "OLE start Q1 2027; Phase 2 ~mid-2028",
       "sort": "2027-02-14",
       "source": "FA call, 11 Sep 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "NTI": [
@@ -446,7 +505,8 @@
       "timing": "Toward year-end 2026",
       "sort": "2026-11-15",
       "source": "FA call, 4 Aug 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "QML": [
@@ -456,7 +516,8 @@
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Woods Shaft \u2014 commence 39-hole, 7,000m resource drilling program",
@@ -464,7 +525,8 @@
       "timing": "This quarter (December quarter 2026)",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Botos \u2014 settle freehold properties, Tier 1 validation drilling (64 holes, 11,360m) results; Tier 2 extension drilling subject to results",
@@ -472,7 +534,8 @@
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Mt Chalmers \u2014 updated Mineral Resource incorporating 2026 drilling",
@@ -480,7 +543,8 @@
       "timing": "Updates pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly (25 Oct 2026); IMARC Presentation 27 Oct 2026"
+      "source": "September 2026 Quarterly (25 Oct 2026); IMARC Presentation 27 Oct 2026",
+      "estimated": true
     },
     {
       "catalyst": "Mt Chalmers copper-gold \u2014 DFS completion (geomet testwork to locked-cycle tests) and development financing discussions",
@@ -488,7 +552,8 @@
       "timing": "No firm date given in latest reports",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
+      "estimated": true
     }
   ],
   "SBM": [
@@ -498,7 +563,8 @@
       "timing": "November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Touquoy restart \u2014 commencement of stockpile processing",
@@ -506,7 +572,8 @@
       "timing": "By end of Q2 (December) FY27",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "15-Mile Processing Hub \u2014 Feasibility Study completion",
@@ -514,7 +581,8 @@
       "timing": "Q3 (March) FY27",
       "sort": "2027-03-16",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "New Simberi \u2014 completion of sale of remaining interest to Lingbao Gold (A$410M)",
@@ -522,7 +590,8 @@
       "timing": "Q3 (March) FY27",
       "sort": "2027-03-16",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "15-Mile Processing Hub \u2014 Final Investment Decision",
@@ -530,7 +599,8 @@
       "timing": "Q4 (June) FY27",
       "sort": "2027-06-15",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Atlantic \u2014 federal decision on whether impact assessment required (15-Mile)",
@@ -538,7 +608,8 @@
       "timing": "Awaited; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Touquoy \u2014 assessment of Old Austen down-plunge underground and Mill Shaft West prospect",
@@ -546,7 +617,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "SGQ": [
@@ -556,7 +628,8 @@
       "timing": "Toward year-end 2026",
       "sort": "2026-11-15",
       "source": "FA call, 14 Aug 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "SNM": [
@@ -566,7 +639,8 @@
       "timing": "Mid-to-late Nov 2026",
       "sort": "2026-11-15",
       "source": "FA call, 20 Oct 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": false
     }
   ],
   "TGN": [
@@ -576,7 +650,8 @@
       "timing": "Speculative, no fixed date",
       "sort": null,
       "source": "FA call, 17 Nov 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": false
     }
   ],
   "THL": [
@@ -586,7 +661,8 @@
       "timing": "Ongoing process",
       "sort": null,
       "source": "FA call, 6 Nov 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "USL": [
@@ -596,7 +672,8 @@
       "timing": "~January 2027",
       "sort": "2027-01-16",
       "source": "FA call, 10 Nov 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": false
     }
   ],
   "VBX": [
@@ -606,7 +683,8 @@
       "timing": "Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Wuudagu bauxite (WA Kimberley) \u2014 finalise and lodge Environmental Review Document (ERD)",
@@ -614,7 +692,8 @@
       "timing": "Upcoming; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Wuudagu \u2014 offtake/marketing agreements and formal development funding process",
@@ -622,7 +701,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)",
+      "estimated": true
     }
   ],
   "WCN": [
@@ -632,7 +712,8 @@
       "timing": "FY2026-27",
       "sort": "2026-12-31",
       "source": "FA call, 25 Aug 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "WWI": [
@@ -642,7 +723,8 @@
       "timing": "Late 2026/early 2027",
       "sort": "2027-01-31",
       "source": "FA call, 15 May 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "ZMI": [
@@ -652,7 +734,8 @@
       "timing": "Commissioning by year-end 2026; pilot plant Q1 2027",
       "sort": "2027-03-31",
       "source": "FA call, 20 Nov 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "ALM": [
@@ -662,7 +745,8 @@
       "timing": "Near term",
       "sort": "2027-01-02",
       "source": "FA call, 3 Nov 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "AEU": [
@@ -672,7 +756,8 @@
       "timing": "~2 months (resource); ~4-5 months (study)",
       "sort": "2026-12-26",
       "source": "FA call, 27 Oct 2026",
-      "day_precise": false
+      "day_precise": false,
+      "estimated": true
     },
     {
       "catalyst": "Muntanga uranium (Zambia) \u2014 complete 2026 drilling at Muntanga North/Chisebuka targets (resource growth)",
@@ -680,7 +765,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Madaouela uranium (Niger; Mining Convention executed late Sept 2026) \u2014 converted JORC Mineral Resource",
@@ -688,7 +774,8 @@
       "timing": "Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Madaouela \u2014 value optimisation program culminating in Scoping Study",
@@ -696,7 +783,8 @@
       "timing": "Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "AA2": [
@@ -706,7 +794,8 @@
       "timing": "End of 2026",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report"
+      "source": "September 2026 Quarterly Activities Report",
+      "estimated": false
     },
     {
       "catalyst": "Dokwe gold - Definitive Feasibility Study completion",
@@ -714,7 +803,8 @@
       "timing": "Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report"
+      "source": "September 2026 Quarterly Activities Report",
+      "estimated": true
     }
   ],
   "BPM": [
@@ -724,7 +814,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report, 2026"
+      "source": "Quarterly Activities Report, 2026",
+      "estimated": true
     },
     {
       "catalyst": "Beachcomber gold - maiden JORC Mineral Resource Estimate",
@@ -732,7 +823,8 @@
       "timing": "H1 2027",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "Quarterly Activities Report, 2026"
+      "source": "Quarterly Activities Report, 2026",
+      "estimated": true
     },
     {
       "catalyst": "Bonnie & Clyde gold - assay results following drilling completion",
@@ -740,7 +832,8 @@
       "timing": "Q4 2026-Q1 2027",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report, 2026"
+      "source": "Quarterly Activities Report, 2026",
+      "estimated": true
     }
   ],
   "RR1": [
@@ -750,7 +843,8 @@
       "timing": "November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Murchison South \u2014 step-out RC expansion program (~24 holes, Primrose Shear) results",
@@ -758,7 +852,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Murchison South \u2014 satisfy Andel Right-to-Mine conditions (FIRB, mining services/toll milling agreements, environmental baseline audit) and Mining Proposal submission to fast-track mining",
@@ -766,7 +861,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "IND": [
@@ -776,7 +872,8 @@
       "timing": "Heritage survey \"as soon as practicable\"; no drilling date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": false
     }
   ],
   "ML8": [
@@ -786,7 +883,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Clermont \u2014 Goldfinger maiden RC drilling results",
@@ -794,7 +892,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Peak Downs copper \u2014 next phase: diamond drilling, metallurgical testwork and modelling ahead of maiden MRE",
@@ -802,7 +901,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "AKA": [
@@ -812,7 +912,8 @@
       "timing": "Shortly after 23 Oct 2026 GM",
       "sort": "2026-10-23",
       "day_precise": true,
-      "source": "Q1 FY27 Quarterly Activities Report (19 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Activities Report (19 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Fiddlers Creek \u2014 results from diamond drilling (first surface drilling since May 2025) targeting historical high-grade",
@@ -820,7 +921,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Activities Report (19 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Activities Report (19 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Comstock (St Arnaud) \u2014 pre-development steps after production licence grant: Parks Victoria/Crown Land Minister consent, Djaara engagement, resource definition, mine design, Work Plan approval, metallurgical testing",
@@ -828,7 +930,8 @@
       "timing": "Coming months; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "Comstock Production Licence Granted, 4 Nov 2026"
+      "source": "Comstock Production Licence Granted, 4 Nov 2026",
+      "estimated": true
     }
   ],
   "ALK": [
@@ -838,7 +941,8 @@
       "timing": "Q2 FY27 (December quarter 2026)",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Quarterly Report \u2013 September 2026 (22 Oct 2026)"
+      "source": "Quarterly Report \u2013 September 2026 (22 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Tomingley \u2014 Newell Highway traffic switch to new alignment, then San Antonio open-pit mining commences",
@@ -846,7 +950,8 @@
       "timing": "Early in the June 2027 quarter",
       "sort": "2027-06-15",
       "day_precise": false,
-      "source": "Quarterly Report \u2013 September 2026 (22 Oct 2026)"
+      "source": "Quarterly Report \u2013 September 2026 (22 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Boda-Kaiser Au-Cu (NSW) \u2014 environmental baseline studies toward development approval",
@@ -854,7 +959,8 @@
       "timing": "Ongoing; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Report \u2013 September 2026 (22 Oct 2026)"
+      "source": "Quarterly Report \u2013 September 2026 (22 Oct 2026)",
+      "estimated": true
     }
   ],
   "CAV": [
@@ -864,7 +970,8 @@
       "timing": "2H 2027",
       "sort": "2027-09-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Kookynie Gold Project \u2014 results from exploration drilling (~4,000m greenstone-granite boundary) and ~3,000m sterilisation drilling",
@@ -872,7 +979,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Kookynie \u2014 operating permits approvals (Mining Proposal, NVCP, Works Approval) after BFS",
@@ -880,7 +988,8 @@
       "timing": "Submitted; no approval date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Kookynie \u2014 project funding (bank debt/equity) and toll-treatment/ore-purchase agreement selection",
@@ -888,7 +997,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "LGM": [
@@ -898,7 +1008,8 @@
       "timing": "December 2026 Quarter",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Mt Carrington \u2014 Emu prospect drilling assays",
@@ -906,7 +1017,8 @@
       "timing": "Awaited; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Mt Carrington \u2014 Mascotte silver-gold Phase 2 diamond drilling (10 holes) results",
@@ -914,7 +1026,8 @@
       "timing": "Underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "NiCo Young (Ni-Co-Sc) \u2014 updated MRE by WSP, first to assess scandium",
@@ -922,7 +1035,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Rockley \u2014 testing three untested IP chargeability targets at Crystal Hill",
@@ -930,7 +1044,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "AGR": [
@@ -940,7 +1055,8 @@
       "timing": "Anticipated by mid-November 2026",
       "sort": "2026-11-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Santa Barbara gold (Colombia) \u2014 lift production from ~100t to 200t per month",
@@ -948,7 +1064,8 @@
       "timing": "Before Q1 2027",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Tr\u00eas Estradas \u2014 US$3M working-capital finance (loan/royalty term sheet; due diligence in progress) to unlock 11,000t of sales agreements",
@@ -956,7 +1073,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Lucena phosphate \u2014 ANM licence extensions/approvals to progress to feasibility",
@@ -964,7 +1082,8 @@
       "timing": "Awaited; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "BCA": [
@@ -974,7 +1093,8 @@
       "timing": "Early November 2026 / early Q4",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Wandanya \u2014 Scoping Study on 3.4km base case",
@@ -982,7 +1102,8 @@
       "timing": "December 2026 / Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly (26 Oct 2026); Corporate Presentation 30 Oct 2026"
+      "source": "September 2026 Quarterly (26 Oct 2026); Corporate Presentation 30 Oct 2026",
+      "estimated": true
     },
     {
       "catalyst": "Wandanya \u2014 Mining Licence applications lodged",
@@ -990,7 +1111,8 @@
       "timing": "By end of 2026",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "Corporate Presentation Update, 30 Oct 2026"
+      "source": "Corporate Presentation Update, 30 Oct 2026",
+      "estimated": true
     },
     {
       "catalyst": "Wandanya \u2014 referral to Environmental Protection Authority for approval pathway",
@@ -998,7 +1120,8 @@
       "timing": "Early 2027",
       "sort": "2027-01-31",
       "day_precise": false,
-      "source": "Corporate Presentation Update, 30 Oct 2026"
+      "source": "Corporate Presentation Update, 30 Oct 2026",
+      "estimated": true
     },
     {
       "catalyst": "Wandanya \u2014 feasibility studies (DSO Fe/Mn and beneficiated Mn)",
@@ -1006,7 +1129,8 @@
       "timing": "Through 2027",
       "sort": "2027-12-31",
       "day_precise": false,
-      "source": "Corporate Presentation Update, 30 Oct 2026"
+      "source": "Corporate Presentation Update, 30 Oct 2026",
+      "estimated": false
     }
   ],
   "RSG": [
@@ -1016,7 +1140,8 @@
       "timing": "By end of 2026",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "Q3 2026 Activities Report (28 Oct 2026)"
+      "source": "Q3 2026 Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "ABC Project \u2014 Mineral Resource Estimate update",
@@ -1024,7 +1149,8 @@
       "timing": "Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "Corporate Presentation, 10 Nov 2026"
+      "source": "Corporate Presentation, 10 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Resettlement (RAP Phase 2) after exploitation permit grant",
@@ -1032,7 +1158,8 @@
       "timing": "Q2 2027 to end of 2028",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Q3 2026 Activities Report (28 Oct 2026)"
+      "source": "Q3 2026 Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "ABC Project \u2014 feasibility studies, then FID",
@@ -1040,7 +1167,8 @@
       "timing": "Feasibility studies planned for 2027; FID 2027\u201328 roadmap",
       "sort": "2027-12-31",
       "day_precise": false,
-      "source": "Corporate Presentation, 10 Nov 2026"
+      "source": "Corporate Presentation, 10 Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "Doropo (C\u00f4te d\u2019Ivoire) \u2014 commissioning and first gold",
@@ -1048,7 +1176,8 @@
       "timing": "H1 2028",
       "sort": "2028-03-31",
       "day_precise": false,
-      "source": "Q3 2026 Activities Report (28 Oct 2026); Corporate Presentation 10 Nov 2026"
+      "source": "Q3 2026 Activities Report (28 Oct 2026); Corporate Presentation 10 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Syama \u2014 Sulphide Conversion Project full commissioning (transition to full sulphide)",
@@ -1056,7 +1185,8 @@
       "timing": "Commissioning nearing completion; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "Q3 2026 Activities Report (28 Oct 2026); Corporate Presentation 10 Nov 2026"
+      "source": "Q3 2026 Activities Report (28 Oct 2026); Corporate Presentation 10 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "La Debo \u2014 technical studies on expanded 0.9Moz MRE; Doropo expansion study",
@@ -1064,7 +1194,8 @@
       "timing": "2027 roadmap; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "Corporate Presentation, 10 Nov 2026"
+      "source": "Corporate Presentation, 10 Nov 2026",
+      "estimated": true
     }
   ],
   "L1M": [
@@ -1074,7 +1205,8 @@
       "timing": "December 2026",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "Investor Presentation, 10 Nov 2026"
+      "source": "Investor Presentation, 10 Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "Mt Turner \u2014 maiden Mineral Resource Estimate",
@@ -1082,7 +1214,8 @@
       "timing": "By Q3 2027",
       "sort": "2027-09-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Warby \u2014 trenching and maiden drill program",
@@ -1090,7 +1223,8 @@
       "timing": "2027",
       "sort": "2027-06-30",
       "day_precise": false,
-      "source": "Investor Presentation, 10 Nov 2026"
+      "source": "Investor Presentation, 10 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Mt Turner gold (QLD) \u2014 Phase 2 diamond drilling results, Drummer Fault (commenced 5 Oct 2026)",
@@ -1098,7 +1232,8 @@
       "timing": "Assays pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation 10 Nov 2026"
+      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation 10 Nov 2026",
+      "estimated": true
     }
   ],
   "AGC": [
@@ -1108,7 +1243,8 @@
       "timing": "Commencing December 2026",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Junee \u2014 drilling program (deferred for cropping and to prioritise Evergreen)",
@@ -1116,7 +1252,8 @@
       "timing": "January\u2013March 2027 quarter",
       "sort": "2027-03-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "South Cobar \u2014 Evergreen and Achilles pending RC assays (incl. Achilles oxide gold-silver extensions)",
@@ -1124,7 +1261,8 @@
       "timing": "Pending at quarter end; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "CDT": [
@@ -1134,7 +1272,8 @@
       "timing": "November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as TerraNova Metals)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as TerraNova Metals)",
+      "estimated": false
     },
     {
       "catalyst": "Nielle gold (C\u00f4te d\u2019Ivoire) \u2014 grant of exploration permit (condition precedent to completing 90% acquisition)",
@@ -1142,7 +1281,8 @@
       "timing": "Anticipated December quarter 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as TerraNova Metals)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as TerraNova Metals)",
+      "estimated": true
     },
     {
       "catalyst": "Nielle \u2014 maiden 2,500\u20133,000m RC/diamond drilling program (subject to permit grant)",
@@ -1150,7 +1290,8 @@
       "timing": "After permit grant; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as TerraNova Metals)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as TerraNova Metals)",
+      "estimated": true
     }
   ],
   "DM1": [
@@ -1160,7 +1301,8 @@
       "timing": "This quarter (December quarter 2026)",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Nyan \u2014 infill soil sampling, ground geophysics, auger and maiden aircore drilling",
@@ -1168,7 +1310,8 @@
       "timing": "Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Adzope \u2014 possible follow-up on stream-sediment Target 2 (2.5km \u00d7 1.5km anomaly)",
@@ -1176,7 +1319,8 @@
       "timing": "Under consideration; no date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     }
   ],
   "AS1": [
@@ -1186,7 +1330,8 @@
       "timing": "By end of Q2 CY2027",
       "sort": "2027-06-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Kada Gold Project (Guinea) \u2014 further resource update using 19,251m drilled after MRE cut-off (Massan Inferred\u2192Indicated conversion)",
@@ -1194,7 +1339,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Damissa Koura \u2014 complete Arafura Ouest acquisition; power-auger drilling recommencing at Sogosogoba target",
@@ -1202,7 +1348,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "estimated": true
     }
   ],
   "VAU": [
@@ -1212,7 +1359,8 @@
       "timing": "Second court hearing 16 Nov 2026; implementation late November 2026",
       "sort": "2026-11-16",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026); Results of Scheme Meeting 11 Nov 2026"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026); Results of Scheme Meeting 11 Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "King of the Hills \u2014 stage 2 processing upgrade performance testing and full commissioning",
@@ -1220,7 +1368,8 @@
       "timing": "Performance testing late October 2026, then full commissioning",
       "sort": "2026-10-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Production growth to 380\u2013400koz (FY28) from FY27 guidance of 355\u2013375koz",
@@ -1228,7 +1377,8 @@
       "timing": "FY28",
       "sort": "2027-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Sugar Zone (Canada) \u2014 underground ramp-up after July 2026 restart",
@@ -1236,7 +1386,8 @@
       "timing": "Ongoing; no milestone date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": true
     }
   ],
   "GG8": [
@@ -1246,7 +1397,8 @@
       "timing": "By end of 2026",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Comet Vale \u2014 diamond drilling of high-grade Sovereign footwall lode and Lakeview depth extensions; discovery drilling along 30km soil-anomaly strike",
@@ -1254,7 +1406,8 @@
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Mulwarrie \u2014 heritage surveys then RC drilling of step-out areas",
@@ -1262,7 +1415,8 @@
       "timing": "RC access early 2027",
       "sort": "2027-01-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Vivien \u2014 growth drilling at Val and Vince prospects (DHEM-guided)",
@@ -1270,7 +1424,8 @@
       "timing": "Underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "OCN": [
@@ -1280,7 +1435,8 @@
       "timing": "Update imminent",
       "sort": "2026-11-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Serra Negra \u2014 aeromagnetic survey interpretation and inversion modelling results",
@@ -1288,7 +1444,8 @@
       "timing": "Update imminent",
       "sort": "2026-11-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Serra Negra \u2014 assay results from maiden ~20,000m diamond drilling (4 rigs, Central REE target)",
@@ -1296,7 +1453,8 @@
       "timing": "Throughout Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Serra Negra \u2014 maiden Mineral Resource Estimate",
@@ -1304,7 +1462,8 @@
       "timing": "Coming months",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Solon\u00f3pole (Brazil) \u2014 divestment/partnering process (information memorandum completed)",
@@ -1312,7 +1471,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "FIN": [
@@ -1322,7 +1482,8 @@
       "timing": "December Quarter 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Cabin Lake \u2014 winter geophysics expanding IP footprint (MIP-supported)",
@@ -1330,7 +1491,8 @@
       "timing": "2026\u201327 winter",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Cabin Lake \u2014 potential winter drilling of targets not tested in summer campaign",
@@ -1338,7 +1500,8 @@
       "timing": "2026\u201327 winter season",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     }
   ],
   "XPD": [
@@ -1348,7 +1511,8 @@
       "timing": "Commencing in coming days (late Oct 2026), subject to approvals",
       "sort": "2026-10-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Springfield \u2014 assays from regional soil geochemistry program along strike",
@@ -1356,7 +1520,8 @@
       "timing": "\"November 2027\" per report (likely typo for Nov 2026)",
       "sort": "2027-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Neeld gold project (bonanza-grade, acquisition completed 1 Sep 2026) \u2014 follow-up exploration",
@@ -1364,7 +1529,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "VRL": [
@@ -1374,7 +1540,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Monument \u2014 Gum Well intrusion-related target mapping/infill soils; McKenzie Well toward first-pass drilling; Korong Syenite infill",
@@ -1382,7 +1549,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Monument \u2014 scoping-level technical studies and processing pathways (incl. third-party processing, Laverton)",
@@ -1390,7 +1558,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Monument \u2014 resolution of Warden\u2019s Court proceedings / objections on mining lease M39/1189 and haul-road licence L39/397",
@@ -1398,7 +1567,8 @@
       "timing": "Outcomes and timing uncertain",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     }
   ],
   "PGO": [
@@ -1408,7 +1578,8 @@
       "timing": "Mid-December 2026",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)",
+      "estimated": false
     },
     {
       "catalyst": "White Dam (SA) \u2014 Icebreaker oxide resource upgrade (Inferred\u2192Indicated), then mine optimisations and open-pit designs",
@@ -1416,7 +1587,8 @@
       "timing": "Second half of 2026",
       "sort": "2026-09-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)",
+      "estimated": true
     },
     {
       "catalyst": "White Dam \u2014 Icebreaker sulphide gold-copper diamond drilling (commenced post quarter; initial 3,000m) and RC recommencing on oxide MRE area",
@@ -1424,7 +1596,8 @@
       "timing": "Underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)",
+      "estimated": true
     },
     {
       "catalyst": "White Dam \u2014 technical/financial evaluation of Vertigo pit restart and heap-leach pad expansion (pad relined Oct 2026); updates on remaining two oxide MREs",
@@ -1432,7 +1605,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)",
+      "estimated": true
     },
     {
       "catalyst": ">30,000m drilling, geophysics and geochemistry program across tenements",
@@ -1440,7 +1614,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Broken Hill Gold, ASX:BH6)",
+      "estimated": true
     }
   ],
   "CAZ": [
@@ -1450,7 +1625,8 @@
       "timing": "Early 2027",
       "sort": "2027-01-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Goongarrie Gold Project (51% earned from Brightstar) \u2014 RC drilling at Gulls Blow (first drilling since 1980s, commenced 8 Oct 2026) results",
@@ -1458,7 +1634,8 @@
       "timing": "Underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Goongarrie \u2014 follow-up of Hastings AC results along the Bardoc Tectonic Zone",
@@ -1466,7 +1643,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "estimated": true
     }
   ],
   "AKN": [
@@ -1476,7 +1654,8 @@
       "timing": "Coming months; deep-hole assays within four to six weeks of 21 Oct",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Machinga heavy REE (Malawi) \u2014 field activities and UAV magnetic/LiDAR survey",
@@ -1484,7 +1663,8 @@
       "timing": "Field work Nov 2026; UAV survey early December 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Machinga Heavy Rare Earths Exploration Commences, 8 Nov 2026"
+      "source": "Machinga Heavy Rare Earths Exploration Commences, 8 Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "Halls Creek (Onedin; JV with CBH, AKN 49%\u219225%) \u2014 Pre-Feasibility Study",
@@ -1492,7 +1672,8 @@
       "timing": "H1 2028",
       "sort": "2028-03-31",
       "day_precise": false,
-      "source": "Updated Halls Creek Scoping Study, 10 Nov 2026"
+      "source": "Updated Halls Creek Scoping Study, 10 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Tundulu \u2014 1,000m diamond hole beneath Nathace Hill target",
@@ -1500,7 +1681,8 @@
       "timing": "Planning underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": true
     }
   ],
   "AAU": [
@@ -1510,7 +1692,8 @@
       "timing": "Negotiating; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "TGM": [
@@ -1520,7 +1703,8 @@
       "timing": "Early November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities & Cashflow Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities & Cashflow Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "TGME Gold Plant \u2014 mechanical/piping installation then first gold (production start)",
@@ -1528,7 +1712,8 @@
       "timing": "Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities & Cashflow Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities & Cashflow Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Rietfontein Underground Mine \u2014 Environmental Authorisation grant by Dept of Mineral and Petroleum Resources (final review stage); water-use licence 90-day appeal period running",
@@ -1536,7 +1721,8 @@
       "timing": "Final stages; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities & Cashflow Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities & Cashflow Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "DES": [
@@ -1546,7 +1732,8 @@
       "timing": "Early November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Siguiri \u2014 airborne magnetic data interpretation generating new targets; integrate with auger results to prioritise follow-up drilling",
@@ -1554,7 +1741,8 @@
       "timing": "Underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "DeSoto-Fortuna JV (SE Siguiri) \u2014 BLEG stream sediment sampling and mapping ahead of planned airborne magnetic survey",
@@ -1562,7 +1750,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": true
     }
   ],
   "PXX": [
@@ -1572,7 +1761,8 @@
       "timing": "2027",
       "sort": "2027-06-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Caribou Dome copper (Alaska Range, NST earning in) \u2014 assays for further 13 holes from 2026 season; inputs to future MRE update",
@@ -1580,7 +1770,8 @@
       "timing": "Pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Alaska Range \u2014 Gemini\u2013Jupiter magnetic anomaly survey results to refine drill targeting",
@@ -1588,7 +1779,8 @@
       "timing": "Results pending; for 2027 drilling",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "TNC": [
@@ -1598,7 +1790,8 @@
       "timing": "Q4 2026 (late 2026)",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation Nov 2026"
+      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Mt Oxide \u2014 Aquila Phase 2 drilling assays and regional geophysics results; Vero drilling planned",
@@ -1606,7 +1799,8 @@
       "timing": "From late 2026 through end of 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation Nov 2026"
+      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Mt Oxide \u2014 next drilling program after wet season (2027 exploration program)",
@@ -1614,7 +1808,8 @@
       "timing": "Q2 2027 (post wet season)",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Investor Presentation, November 2026"
+      "source": "Investor Presentation, November 2026",
+      "estimated": true
     },
     {
       "catalyst": "Cloncurry Copper Project \u2014 potential mining commencement (staged open pit into underground), subject to permitting",
@@ -1622,7 +1817,8 @@
       "timing": "From late 2027",
       "sort": "2027-11-15",
       "day_precise": false,
-      "source": "Investor Presentation, November 2026"
+      "source": "Investor Presentation, November 2026",
+      "estimated": true
     },
     {
       "catalyst": "Mt Oxide acquisition \u2014 completion of remaining ~$7.5M payment (funded by $18M placement)",
@@ -1630,7 +1826,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "PVT": [
@@ -1640,7 +1837,8 @@
       "timing": "November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Horden Lake copper (Quebec) \u2014 winter step-out and infill drilling to grow resource and enlarge production target",
@@ -1648,7 +1846,8 @@
       "timing": "Q1 2027 (winter field season)",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Horden Lake \u2014 strategic initiatives / non-equity financing (strategic adviser appointed) after maiden Scoping Study",
@@ -1656,7 +1855,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "EM2": [
@@ -1666,7 +1866,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September Quarter Activities Report (26 Oct 2026)"
+      "source": "September Quarter Activities Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Oracle Ridge \u2014 completion of ~6-month drilling program (started mid-Aug 2026); IP survey interpretation",
@@ -1674,7 +1875,8 @@
       "timing": "~February 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September Quarter Activities Report (26 Oct 2026)"
+      "source": "September Quarter Activities Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Silver Mountain (porphyry Cu / VMS) \u2014 exploration; assessment of new opportunities",
@@ -1682,7 +1884,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September Quarter Activities Report (26 Oct 2026)"
+      "source": "September Quarter Activities Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "SLS": [
@@ -1692,7 +1895,8 @@
       "timing": "Throughout remainder of 2026",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Nanadie copper-gold (WA) \u2014 assays from 14 diamond + 50+ RC holes (MRE definition, step-out, pre-collars) progressively reported",
@@ -1700,7 +1904,8 @@
       "timing": "Coming months",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "GRL": [
@@ -1710,7 +1915,8 @@
       "timing": "GLPDD011/012 expected Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities and Cashflow Reports (28 Oct 2026, as Orbit Resources, ASX:OBT)"
+      "source": "Quarterly Activities and Cashflow Reports (28 Oct 2026, as Orbit Resources, ASX:OBT)",
+      "estimated": true
     },
     {
       "catalyst": "Goodrich porphyry Cu-Au (OBT 49%, partner-funded) \u2014 Stage 2 diamond drilling (4 holes, ~1,000m) first results",
@@ -1718,7 +1924,8 @@
       "timing": "Q1 CY2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "Second Stage of Partner Funded Drilling Underway at Goodrich, 10 Nov 2026"
+      "source": "Second Stage of Partner Funded Drilling Underway at Goodrich, 10 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Lewis Ponds \u2014 Mineral Resource update and next-stage metallurgical/flowsheet study work",
@@ -1726,7 +1933,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities and Cashflow Reports (28 Oct 2026, as Orbit Resources, ASX:OBT)"
+      "source": "Quarterly Activities and Cashflow Reports (28 Oct 2026, as Orbit Resources, ASX:OBT)",
+      "estimated": true
     }
   ],
   "AM5": [
@@ -1736,7 +1944,8 @@
       "timing": "December 2026 quarter (priority for coming quarter)",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 30 Sept 2026 (28 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 30 Sept 2026 (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Quinns \u2014 results of first aircore program on gold targets (incl. historic Enterprise mine, 90% earn-in); Phase One RC/diamond drilling at Austin (EIS co-funded), then Phase Two at Defiance and 4E",
@@ -1744,7 +1953,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 30 Sept 2026 (28 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 30 Sept 2026 (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Meekatharra-belt project \u2014 maiden drilling (PoW approved)",
@@ -1752,7 +1962,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 30 Sept 2026 (28 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 30 Sept 2026 (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "CPO": [
@@ -1762,7 +1973,8 @@
       "timing": "Underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Fortuna (Chile) \u2014 El Quillay South 4-hole, ~1,000m diamond program results",
@@ -1770,7 +1982,8 @@
       "timing": "Underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Follow-up drilling of new anomalies (one 250m hole planned per anomaly)",
@@ -1778,7 +1991,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "RRR": [
@@ -1788,7 +2002,8 @@
       "timing": "Set to commence shortly",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Dianne \u2014 comprehensive project funding package (~A$20M pre-production capex + ~A$10M working capital) and offtake, then FID and full-scale construction",
@@ -1796,7 +2011,8 @@
       "timing": "Negotiations advancing; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Dianne \u2014 first copper cathode",
@@ -1804,7 +2020,8 @@
       "timing": "Within 12 months of FID / construction start",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "SLM": [
@@ -1814,7 +2031,8 @@
       "timing": "Commencing October 2026",
       "sort": "2026-10-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Brazil Lithium Project \u2014 assays from Mandacaru (7 holes, ~1,454m) and Campo Grande diamond drilling; follow-up drilling scope",
@@ -1822,7 +2040,8 @@
       "timing": "Assays pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Cinto copper (Peru) \u2014 results from initial 5-hole, 2,500m diamond program",
@@ -1830,7 +2049,8 @@
       "timing": "Underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "A8G": [
@@ -1840,7 +2060,8 @@
       "timing": "Commencing November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "C\u00f4te d\u2019Ivoire lithium \u2014 decision to exercise acquisition option after due diligence (option expires 6 Dec 2026); preliminary pegmatite metallurgical testwork (120kg sample)",
@@ -1848,7 +2069,8 @@
       "timing": "By 6 December 2026",
       "sort": "2026-12-06",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Australia \u2014 May Queen South alumina further metallurgical testwork; Barrow Creek tantalum field follow-up; Mt Peake revisit",
@@ -1856,7 +2078,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": true
     }
   ],
   "SAU": [
@@ -1866,7 +2089,8 @@
       "timing": "4Q 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "3Q26 Results Preview, 2 Nov 2026"
+      "source": "3Q26 Results Preview, 2 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Refinance US$100M secured debt (extended to June 2027) via upsized US$125M convertible bonds",
@@ -1874,7 +2098,8 @@
       "timing": "Debt maturity June 2027",
       "sort": "2027-06-15",
       "day_precise": false,
-      "source": "Debt extension 25 Oct 2026; Convertible Bonds 3 Nov 2026"
+      "source": "Debt extension 25 Oct 2026; Convertible Bonds 3 Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "Plant 1 \u2014 return to industrial production cadence; 240kt over next 12 months, 330kt FY27 at AISC US$620/t",
@@ -1882,7 +2107,8 @@
       "timing": "2027",
       "sort": "2027-06-30",
       "day_precise": false,
-      "source": "3Q26 Results Preview, 2 Nov 2026"
+      "source": "3Q26 Results Preview, 2 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Phase 2 expansion resumes (to 580ktpa), then Phase 3 (830ktpa)",
@@ -1890,7 +2116,8 @@
       "timing": "Phase 2 resumes in 2027",
       "sort": "2027-12-31",
       "day_precise": false,
-      "source": "3Q26 Earnings Results Date notice, 10 Nov 2026"
+      "source": "3Q26 Earnings Results Date notice, 10 Nov 2026",
+      "estimated": false
     }
   ],
   "CHR": [
@@ -1900,7 +2127,8 @@
       "timing": "Expected shortly (from late Oct 2026)",
       "sort": "2026-10-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Medcalf lithium \u2014 resource growth from current drilling (deposit open down-dip/along strike)",
@@ -1908,7 +2136,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Medcalf \u2014 fast-tracked Scoping Study (open pit then underground, ore-sorting) and permitting",
@@ -1916,7 +2145,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": true
     }
   ],
   "GLN": [
@@ -1926,7 +2156,8 @@
       "timing": "Q4 CY2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "HMW Phase 1 \u2014 reach initial 4 ktpa LCE throughput as plant moves into warmer conditions",
@@ -1934,7 +2165,8 @@
       "timing": "H1 CY2027",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "HMW Phase 1 expansion to 5.2 ktpa LCE (earthworks commenced) \u2014 higher production volumes; additional winter-resilience processing capacity",
@@ -1942,7 +2174,8 @@
       "timing": "H2 2027",
       "sort": "2027-09-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "ELV": [
@@ -1952,7 +2185,8 @@
       "timing": "Underway; completion date not given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Moblan lithium (Qu\u00e9bec) \u2014 updated Scoping Study on plant sizing and staging; environmental permitting",
@@ -1960,7 +2194,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Carolina Lithium (US) \u2014 final air permit from NC Division of Air Quality (draft received) and further permitting",
@@ -1968,7 +2203,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Eastern Canada lithium conversion facility \u2014 Final Investment Decision (tied to CGF convertible notes)",
@@ -1976,7 +2212,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "LIT": [
@@ -1986,7 +2223,8 @@
       "timing": "November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026, Q1 FY27 (29 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 September 2026, Q1 FY27 (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Envirostream \u2014 elevated Sell & Parker contract recycling volumes continue",
@@ -1994,7 +2232,8 @@
       "timing": "Q2 FY27 (December quarter 2026)",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026, Q1 FY27 (29 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 September 2026, Q1 FY27 (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Envirostream \u00d7 Sumitomo \u2014 potential binding black-mass purchase arrangement / expanded recycling operations (from May 2026 MOU)",
@@ -2002,7 +2241,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Sumitomo Collaboration Advances, 1 Nov 2026"
+      "source": "Sumitomo Collaboration Advances, 1 Nov 2026",
+      "estimated": true
     }
   ],
   "MAN": [
@@ -2012,7 +2252,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Utah Lithium Project (Paradox Basin) \u2014 DLE test results on 8,000L bulk brine delivered to Electroflow",
@@ -2020,7 +2261,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)",
+      "estimated": true
     }
   ],
   "POL": [
@@ -2030,7 +2272,8 @@
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Endeavor \u2014 December quarter production target: 105\u2013115kt ore processed, >350koz silver",
@@ -2038,7 +2281,8 @@
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Endeavor \u2014 updated Ore Reserve estimate (following Sept 2026 MRE upgrade to 54.3Moz Ag)",
@@ -2046,7 +2290,8 @@
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Enlarged ~$50M financing facility (releases cash from bond, adds working capital)",
@@ -2054,7 +2299,8 @@
       "timing": "Process starts December quarter; targeted close H1 CY2027",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "BHM": [
@@ -2064,7 +2310,8 @@
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report and Appendix 5B (29 Oct 2026)"
+      "source": "Quarterly Activities Report and Appendix 5B (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Rasp Tailings Dewatering Plant \u2014 available",
@@ -2072,7 +2319,8 @@
       "timing": "1H CY2027",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "Quarterly Activities Report and Appendix 5B (29 Oct 2026)"
+      "source": "Quarterly Activities Report and Appendix 5B (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Centenary Zone \u2014 production decline and accelerated resource drilling (A$85M raise proceeds); Pinnacles production expansion",
@@ -2080,7 +2328,8 @@
       "timing": "FY27; no firm dates",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report and Appendix 5B (29 Oct 2026)"
+      "source": "Quarterly Activities Report and Appendix 5B (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "BKB": [
@@ -2090,7 +2339,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Shafter \u2014 access to existing mine decline and start of underground drilling (Presidio East, Ramp areas)",
@@ -2098,7 +2348,8 @@
       "timing": "Final readiness underway; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Shafter \u2014 further surface exploration drilling; Independence gold (Nevada, next to NGM Phoenix) exploration",
@@ -2106,7 +2357,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "SVL": [
@@ -2116,7 +2368,8 @@
       "timing": "Anticipated soon",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Bowdens \u2014 project financing and development decision for Stage 1 following July 2026 DFS (NPV5 A$1.04B)",
@@ -2124,7 +2377,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "AW1": [
@@ -2134,7 +2388,8 @@
       "timing": "Early to mid Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities and Cashflow Report (30 Oct 2026)"
+      "source": "Quarterly Activities and Cashflow Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Storm Copper (Nunavut) \u2014 community engagement in Resolute Bay and Taloyoak (Nunavut govt-funded)",
@@ -2142,7 +2397,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities and Cashflow Report (30 Oct 2026)"
+      "source": "Quarterly Activities and Cashflow Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Storm Copper \u2014 final mining application",
@@ -2150,7 +2406,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Corporate Presentation, 9 Nov 2026"
+      "source": "Corporate Presentation, 9 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Storm Copper \u2014 new copper targets drill-tested; West Desert new exploration areas",
@@ -2158,7 +2415,8 @@
       "timing": "2027",
       "sort": "2027-06-30",
       "day_precise": false,
-      "source": "Quarterly Activities and Cashflow Report (30 Oct 2026)"
+      "source": "Quarterly Activities and Cashflow Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Storm Copper \u2014 Final Investment Decision (after BFS; PFS released 5 Nov 2026)",
@@ -2166,7 +2424,8 @@
       "timing": "Early 2028",
       "sort": "2028-01-31",
       "day_precise": false,
-      "source": "Corporate Presentation, 9 Nov 2026"
+      "source": "Corporate Presentation, 9 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Storm Copper \u2014 pre-development, construction 2029\u20132030, first copper production",
@@ -2174,7 +2433,8 @@
       "timing": "Pre-development H2 2028; first production 2030",
       "sort": "2028-09-30",
       "day_precise": false,
-      "source": "Corporate Presentation, 9 Nov 2026"
+      "source": "Corporate Presentation, 9 Nov 2026",
+      "estimated": true
     }
   ],
   "FG1": [
@@ -2184,7 +2444,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Resource definition drilling at Brilliant and Trafalgar; spring flora/fauna surveys; non-binding Ore Purchase Agreement with Henty Gold (KAU) toward binding terms",
@@ -2192,7 +2453,8 @@
       "timing": "Coming months",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Golden Ridge \u2014 Brilliant prospect (Tasmania) \u2014 results from 21-hole, ~2,500m infill/extension drilling and Henty processing testwork, toward maiden MRE",
@@ -2200,7 +2462,8 @@
       "timing": "Results pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Firetower \u2014 metallurgical testwork ahead of maiden Mineral Resource Estimate",
@@ -2208,7 +2471,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "S32": [
@@ -2218,7 +2482,8 @@
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "Quarterly Report September 2026 (18 Oct 2026)"
+      "source": "Quarterly Report September 2026 (18 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Completion of sale of aluminium value chain assets to Alcoa (shareholder-approved 15 Oct 2026)",
@@ -2226,7 +2491,8 @@
       "timing": "June 2027 half year",
       "sort": "2027-06-15",
       "day_precise": false,
-      "source": "Quarterly Report September 2026 (18 Oct 2026)"
+      "source": "Quarterly Report September 2026 (18 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Sierra Gorda (Chile) \u2014 fourth grinding line (+25% capacity to ~60Mtpa) first production; full rates FY31",
@@ -2234,7 +2500,8 @@
       "timing": "Mid FY30",
       "sort": "2029-12-31",
       "day_precise": false,
-      "source": "Quarterly Report September 2026 (18 Oct 2026)"
+      "source": "Quarterly Report September 2026 (18 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Ambler Metals JV (Alaska) \u2014 follow-up to 2026 summer field season; reinvestment of US$17.8M stake-sale proceeds",
@@ -2242,7 +2509,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Report September 2026 (18 Oct 2026)"
+      "source": "Quarterly Report September 2026 (18 Oct 2026)",
+      "estimated": true
     }
   ],
   "PNN": [
@@ -2252,7 +2520,8 @@
       "timing": "Program completion ~six weeks from 30 Oct 2026 (mid-Dec 2026); MRE no date",
       "sort": "2026-10-30",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Morro do Ferro \u2014 larger metallurgical test program",
@@ -2260,7 +2529,8 @@
       "timing": "2027",
       "sort": "2027-06-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Morro do Ferro \u2014 initial metallurgical/mineralogical study results (>100kg samples)",
@@ -2268,7 +2538,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "VMM": [
@@ -2278,7 +2549,8 @@
       "timing": "2028",
       "sort": "2028-06-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Colossus REE (Brazil) \u2014 senior project debt financing (Goldman Sachs / Cutfield Freeman) in final stages",
@@ -2286,7 +2558,8 @@
       "timing": "Final stages; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Colossus \u2014 Final Investment Decision (pre-FID EPCM mobilisation, detailed engineering, long-lead procurement underway)",
@@ -2294,7 +2567,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "AXL": [
@@ -2304,7 +2578,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Woolrich deposit \u2014 design of controlled in-situ recovery (ISR) field validation program (next major milestone)",
@@ -2312,7 +2587,8 @@
       "timing": "After supporting work; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Further infill drilling and bulk density work recommended by GE21 for MRE confidence; follow-up of Minas Gerais auger program",
@@ -2320,7 +2596,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "SMR": [
@@ -2330,7 +2607,8 @@
       "timing": "Within Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report Q3 2026 (26 Oct 2026)"
+      "source": "Quarterly Activities Report Q3 2026 (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Eagle Downs studies \u2014 expanded scope incorporating Moranbah South as potential integrated joint development",
@@ -2338,7 +2616,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report Q3 2026 (26 Oct 2026)"
+      "source": "Quarterly Activities Report Q3 2026 (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Isaac Downs Extension \u2014 drilling program (after 3D seismic)",
@@ -2346,7 +2625,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report Q3 2026 (26 Oct 2026)"
+      "source": "Quarterly Activities Report Q3 2026 (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "YAR": [
@@ -2356,7 +2636,8 @@
       "timing": "Coming periods; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (27 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 September 2026 (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Rolleston South \u2014 advance toward next stage of development (development studies)",
@@ -2364,7 +2645,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (27 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 September 2026 (27 Oct 2026)",
+      "estimated": true
     }
   ],
   "EVG": [
@@ -2374,7 +2656,8 @@
       "timing": "Within six months (by ~Q1 2027)",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Maniry graphite (Madagascar) \u2014 completion of Mining Permit Decree (formal presidential issue) and FMISC levy payment",
@@ -2382,7 +2665,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Maniry \u2014 final environmental approval, project funding and Stage 1 Final Investment Decision",
@@ -2390,7 +2674,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Carp fluorspar (Nevada) \u2014 exploration with specialist Nevada geologists (new zone 300m SW of historic pits)",
@@ -2398,7 +2683,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)",
+      "estimated": true
     }
   ],
   "BKT": [
@@ -2408,7 +2694,8 @@
       "timing": "Financial Close deadline 30 November 2026",
       "sort": "2026-11-30",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "POSCO South Korean spherical purified graphite (SPG) plant (Mahenge offtake partner) \u2014 commissioning",
@@ -2416,7 +2703,8 @@
       "timing": "Second half of 2027",
       "sort": "2027-09-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Mahenge \u2014 completion of early works (final earthworks, access road, grave relocation, Mdindo stream diversion), subject to wet season and FID funding",
@@ -2424,7 +2712,8 @@
       "timing": "Nearing completion; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "AMD": [
@@ -2434,7 +2723,8 @@
       "timing": "Heritage end November 2026; drilling early 2027",
       "sort": "2027-01-31",
       "day_precise": false,
-      "source": "Corporate Presentation, 10 Nov 2026"
+      "source": "Corporate Presentation, 10 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Pilbara iron ore \u2014 target drilling incl. BBQ Valley (>2km mineralisation) and grant of 13 new tenement applications",
@@ -2442,7 +2732,8 @@
       "timing": "Early 2027",
       "sort": "2027-01-31",
       "day_precise": false,
-      "source": "Corporate Presentation, 10 Nov 2026"
+      "source": "Corporate Presentation, 10 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Pannawonica Iron Ore Project (Pilbara) \u2014 12-month option to acquire 70% of 62.5Mt resource on granted ML (from Red Hill); exercise decision",
@@ -2450,7 +2741,8 @@
       "timing": "Within 12-month option period; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly (29 Oct 2026); Corporate Presentation 10 Nov 2026"
+      "source": "September 2026 Quarterly (29 Oct 2026); Corporate Presentation 10 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Niagara bauxite (Guinea) \u2014 Scoping Study, move to feasibility and permitting; resolution of Simandou North tenement status",
@@ -2458,7 +2750,8 @@
       "timing": "2026\u20132027; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "Corporate Presentation, 10 Nov 2026"
+      "source": "Corporate Presentation, 10 Nov 2026",
+      "estimated": true
     }
   ],
   "FEX": [
@@ -2468,7 +2761,8 @@
       "timing": "Current (December) quarter 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "C1 cash costs return to FY27 guidance range (A$70\u201380/wmt)",
@@ -2476,7 +2770,8 @@
       "timing": "Second half of FY27 (Jan\u2013Jun 2027)",
       "sort": "2027-06-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Weld Range 290Mt / 10Mtpa Project \u2014 Definitive Feasibility Study",
@@ -2484,7 +2779,8 @@
       "timing": "First half of calendar year 2027",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
+      "estimated": true
     }
   ],
   "E25": [
@@ -2494,7 +2790,8 @@
       "timing": "Targeting Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "Investor Update \u2013 IMARC Conference, 29 Oct 2026"
+      "source": "Investor Update \u2013 IMARC Conference, 29 Oct 2026",
+      "estimated": true
     },
     {
       "catalyst": "Butcherbird (WA) \u2014 award of E&I and remaining work packages; transition from early works to main construction phase",
@@ -2502,7 +2799,8 @@
       "timing": "In line with project plan; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Louisiana HPMSM facility \u2014 repositioning review with US DoE under revised grant agreement",
@@ -2510,7 +2808,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": true
     }
   ],
   "PTR": [
@@ -2520,7 +2819,8 @@
       "timing": "Coming months",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Rosewood Titanium Project (Muckanippie, SA) \u2014 finalise Scoping Study (integration of technical workstreams into financial model)",
@@ -2528,7 +2828,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Rosewood \u2014 further customer product sample dispatch; metallurgical/geomet flowsheet optimisation; environmental baseline toward Mining Lease application",
@@ -2536,7 +2837,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "DVP": [
@@ -2546,7 +2848,8 @@
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (28 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 September 2026 (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Yitirrti (Sulphur Springs) \u2014 processing plant construction (GR Engineering A$275M) to first concentrate",
@@ -2554,7 +2857,8 @@
       "timing": "June 2028 quarter",
       "sort": "2028-06-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (28 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 September 2026 (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Woodlawn (NSW) \u2014 continued ramp-up; >1.54Mt @ 2.8% CuEq developed ore; FY27 guidance unchanged",
@@ -2562,7 +2866,8 @@
       "timing": "FY27; no specific milestone date",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (28 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 September 2026 (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "CTM": [
@@ -2572,7 +2877,8 @@
       "timing": "December Quarter / Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly (29 Oct 2026); Presentation to Australia Metals & Mining Conference, 11 Nov 2026"
+      "source": "September 2026 Quarterly (29 Oct 2026); Presentation to Australia Metals & Mining Conference, 11 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Jaguar \u2014 Minerasul Bridge upgrade to receive heavy equipment",
@@ -2580,7 +2886,8 @@
       "timing": "December Quarter 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Jaguar \u2014 Final Investment Decision and start of full-scale construction (all key approvals held)",
@@ -2588,7 +2895,8 @@
       "timing": "After funding package; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "SMX": [
@@ -2598,7 +2906,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Zelica \u2014 satisfaction of conditions precedent to start full BMLV Mining Services & Profit Share arrangement (BMLV funds capex/opex) toward mining",
@@ -2606,7 +2915,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Zelica \u2014 expansion via acquisition of E39/2491 and new licence application; resource expansion",
@@ -2614,7 +2924,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (23 Oct 2026)",
+      "estimated": true
     }
   ],
   "ARO": [
@@ -2624,7 +2935,8 @@
       "timing": "March 2027 quarter",
       "sort": "2027-03-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Novales (Spain) \u2014 Emilia and Ud\u00edas underground drilling assays (pending at quarter end)",
@@ -2632,7 +2944,8 @@
       "timing": "Pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Guajaraz Zn-Pb-Ag-Cu \u2014 maiden 5-hole, ~1,430m diamond drilling results (first modern drilling)",
@@ -2640,7 +2953,8 @@
       "timing": "Assays pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Novales \u2014 surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE",
@@ -2648,7 +2962,8 @@
       "timing": "Underway from 20 Oct 2026",
       "sort": "2026-10-20",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     }
   ],
   "JGH": [
@@ -2658,7 +2973,8 @@
       "timing": "Late 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "TTCBM \u2014 Phase 1 drilling",
@@ -2666,7 +2982,8 @@
       "timing": "Towards end of Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "TTCBM \u2014 approval of Plan of Development and Operation (PDO), key milestone to long-term production rights",
@@ -2674,7 +2991,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "TTCBM \u2014 targeted 2D/3D seismic surveys for deeper gas potential",
@@ -2682,7 +3000,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "GWR": [
@@ -2692,7 +3011,8 @@
       "timing": "Royalty period ends 31 March 2027",
       "sort": "2027-03-31",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Arthur River / Lyons River magnesite (Tasmania, EL 05/2016) \u2014 scoping study commencement and Arthur River MRE update (subject to Board approval and consultant appointment)",
@@ -2700,7 +3020,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Corporate \u2014 due diligence on advanced-stage project acquisitions (cash ~$37M + TGN stake)",
@@ -2708,7 +3029,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "CLE": [
@@ -2718,7 +3040,8 @@
       "timing": "Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Iron Bear Resources, ASX:IBR)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Iron Bear Resources, ASX:IBR)",
+      "estimated": true
     },
     {
       "catalyst": "Iron Bear \u2014 revised PFS incorporating optimisation and Tailings Class 4/pilot plant/pellet-plant studies",
@@ -2726,7 +3049,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Iron Bear Resources, ASX:IBR)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Iron Bear Resources, ASX:IBR)",
+      "estimated": true
     },
     {
       "catalyst": "Iron Bear \u2014 secure non-dilutive funding/new partner after Vale declined Phase 2 (IBR retains 100%)",
@@ -2734,7 +3058,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Iron Bear Resources, ASX:IBR)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as Iron Bear Resources, ASX:IBR)",
+      "estimated": true
     }
   ],
   "ENR": [
@@ -2744,7 +3069,8 @@
       "timing": "Start of 2027 field season",
       "sort": "2027-06-30",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Aileron (West Arunta) \u2014 niobium assays from ongoing diamond drilling across Green\u2019s potential starter pits (5 holes pending)",
@@ -2752,7 +3078,8 @@
       "timing": "Upcoming; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Aileron \u2014 gold re-assaying of prior Green drilling and gold mineralogy; regional aircore assays across Aileron tenure",
@@ -2760,7 +3087,8 @@
       "timing": "Upcoming; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Aileron \u2014 project studies and oxide metallurgical testwork",
@@ -2768,7 +3096,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Sandover / Jessica (NT, South32 farm-in) \u2014 NTGS co-funded passive seismic survey (from Oct 2026) and planned MT geophysics for copper drill targets",
@@ -2776,7 +3105,8 @@
       "timing": "Commenced October 2026; no completion date",
       "sort": "2026-10-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     }
   ],
   "PHO": [
@@ -2786,7 +3116,8 @@
       "timing": "STUDI targeted November 2026; EBRD to follow",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly (27 Oct 2026); Investor Presentation 8 Nov 2026"
+      "source": "September 2026 Quarterly (27 Oct 2026); Investor Presentation 8 Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "Gasaat \u2014 US Government-backed partnership program (engineering/advisory) definitive documentation",
@@ -2794,7 +3125,8 @@
       "timing": "Within 30 days of 27 Oct 2026",
       "sort": "2026-10-27",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Gasaat \u2014 Pre-Feasibility Study (~12 months after Scoping Study released 5 Nov 2026)",
@@ -2802,7 +3134,8 @@
       "timing": "Indicative 2027",
       "sort": "2027-12-31",
       "day_precise": false,
-      "source": "Investor Presentation, November 2026"
+      "source": "Investor Presentation, November 2026",
+      "estimated": false
     },
     {
       "catalyst": "Gasaat \u2014 Bankable Feasibility Study (~12 months after PFS)",
@@ -2810,7 +3143,8 @@
       "timing": "Indicative 2028",
       "sort": "2028-12-31",
       "day_precise": false,
-      "source": "Investor Presentation, November 2026"
+      "source": "Investor Presentation, November 2026",
+      "estimated": false
     },
     {
       "catalyst": "Gasaat \u2014 commercial production",
@@ -2818,7 +3152,8 @@
       "timing": "Targeted mid-2030",
       "sort": "2030-06-30",
       "day_precise": false,
-      "source": "Investor Presentation, November 2026"
+      "source": "Investor Presentation, November 2026",
+      "estimated": true
     }
   ],
   "MLX": [
@@ -2828,7 +3163,8 @@
       "timing": "By 5pm London time, 20 November 2026",
       "sort": "2026-11-20",
       "day_precise": true,
-      "source": "Extension of deadline to make offer for First Tin, 6 Nov 2026"
+      "source": "Extension of deadline to make offer for First Tin, 6 Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "Renison \u2014 Rentails Front-End Engineering Design completion (delayed from late CY2026)",
@@ -2836,7 +3172,8 @@
       "timing": "H1 CY2027",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Rentails \u2014 environmental approvals, then joint-venture Final Investment Decision (previously late CY2026)",
@@ -2844,7 +3181,8 @@
       "timing": "Approvals H1 CY2027; FID to follow",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (27 Oct 2026)",
+      "estimated": true
     }
   ],
   "SLB": [
@@ -2854,7 +3192,8 @@
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Hill of Leaders \u2014 maiden 3,500m bedrock RC drilling program (approvals secured, funded by $2.6M placement) and results",
@@ -2862,7 +3201,8 @@
       "timing": "Upcoming; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Hill of Leaders \u2014 follow-up mapping, surface sampling, UHD geophysics and subsequent diamond drilling",
@@ -2870,7 +3210,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "VAR": [
@@ -2880,7 +3221,8 @@
       "timing": "March 2027 quarter",
       "sort": "2027-03-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Novales (Spain) \u2014 Emilia and Ud\u00edas underground drilling assays (pending at quarter end)",
@@ -2888,7 +3230,8 @@
       "timing": "Pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Guajaraz Zn-Pb-Ag-Cu \u2014 maiden 5-hole, ~1,430m diamond drilling results (first modern drilling)",
@@ -2896,7 +3239,8 @@
       "timing": "Assays pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Novales \u2014 surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE",
@@ -2904,7 +3248,8 @@
       "timing": "Underway from 20 Oct 2026",
       "sort": "2026-10-20",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     }
   ],
   "GHY": [
@@ -2914,7 +3259,8 @@
       "timing": "Targeted November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "FY2026 R&D refund receipt / Rockford R&D loan settlement; FY2027 R&D-backed loan",
@@ -2922,7 +3268,8 @@
       "timing": "FY26 refund expected within days of 30 Oct 2026",
       "sort": "2026-10-30",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Ramsay \u2014 evaluation of commercial helium development (as few as two wells): engineering, commercial and economic assessment",
@@ -2930,7 +3277,8 @@
       "timing": "After Contingent Resource; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "YAL": [
@@ -2940,7 +3288,8 @@
       "timing": "Expected Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 3Q 2026 (20 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 3Q 2026 (20 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Kestrel (80%, acquired 1 Oct 2026) \u2014 first earnings contribution; FY2026 production in upper half of 36.5\u201340.5Mt guidance",
@@ -2948,7 +3297,8 @@
       "timing": "4Q 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 3Q 2026 (20 Oct 2026)"
+      "source": "Quarterly Activities Report \u2013 3Q 2026 (20 Oct 2026)",
+      "estimated": true
     }
   ],
   "MHC": [
@@ -2958,7 +3308,8 @@
       "timing": "December quarter 2026; 2027 program",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Tibooburra Gold Project (NSW, Novo farm-in stage 2) \u2014 ~2,700m RC program at Clone and Pioneer South",
@@ -2966,7 +3317,8 @@
       "timing": "Commencing shortly (from late Oct 2026)",
       "sort": "2026-10-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Hook Lake (Canada) \u2014 Maiden 2026 RC campaign \u2014 assays for five pending holes (two at Jaws incl. 2.25km strike extension, three at Omega) plus 550 till samples; scoping metallurgical testwork",
@@ -2974,7 +3326,8 @@
       "timing": "Pending; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
+      "estimated": true
     }
   ],
   "EQU": [
@@ -2984,7 +3337,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Equus \u2014 FEED (funded under Alcoa facility of up to US$30M) and progression to Final Investment Decision",
@@ -2992,7 +3346,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "estimated": true
     }
   ],
   "EDE": [
@@ -3002,7 +3357,8 @@
       "timing": "October 2026",
       "sort": "2026-10-16",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Activities Report (29 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Eden US \u2014 continued year-on-year revenue growth",
@@ -3010,7 +3366,8 @@
       "timing": "FY27",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Activities Report (29 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "OptiBlend \u2014 conversion of ~US$916k of submitted quotes (16 USA, plus Mexico/Bolivia)",
@@ -3018,7 +3375,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Activities Report (29 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "BTE": [
@@ -3028,7 +3386,8 @@
       "timing": "Early 2027",
       "sort": "2027-01-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Serowe CBM (Botswana) \u2014 Pitse pilot dewatering to ~20m above coal for meaningful gas flow; completion at well 3.2 and remediation/restart of well 3.1",
@@ -3036,7 +3395,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Serowe \u2014 demonstrate sustained commercial gas production to support reserves certification",
@@ -3044,7 +3404,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Phase 2 Bankable Feasibility Study for modular LNG facility (subject to commercial agreements), ahead of SA gas cliff from mid-2028",
@@ -3052,7 +3413,8 @@
       "timing": "Continuing; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "estimated": true
     }
   ],
   "BMN": [
@@ -3062,7 +3424,8 @@
       "timing": "During 2028",
       "sort": "2028-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Etango uranium (Namibia; CNOL JV) \u2014 ramp-up of full-scale construction following FID (Oct 2026); ~two-year construction and commissioning",
@@ -3070,7 +3433,8 @@
       "timing": "Coming months",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026); Investor Presentation 11 Nov 2026"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026); Investor Presentation 11 Nov 2026",
+      "estimated": true
     },
     {
       "catalyst": "Etango \u2014 third-party uranium offtake contracts for volumes not committed under CNOL offtake",
@@ -3078,7 +3442,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Investor Presentation, 11 Nov 2026"
+      "source": "Investor Presentation, 11 Nov 2026",
+      "estimated": true
     }
   ],
   "BTM": [
@@ -3088,7 +3453,8 @@
       "timing": "2026 program; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Barbara copper-gold \u2014 DHEM surveys and follow-up of deep mineralisation (26BAR009 below MRE)",
@@ -3096,7 +3462,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "OMA": [
@@ -3106,7 +3473,8 @@
       "timing": "After vertical wells; 2026/27 program",
       "sort": "2027-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Taroom Trough (QLD) \u2014 remaining vertical appraisal wells of 2026/27 program (Canyon-5/6 after Canyon-3/4)",
@@ -3114,7 +3482,8 @@
       "timing": "2026/27 program; no specific dates",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Farm-down process with multiple industry participants",
@@ -3122,7 +3491,8 @@
       "timing": "Commenced; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     }
   ],
   "EMP": [
@@ -3132,7 +3502,8 @@
       "timing": "By 31 October 2026 (on track)",
       "sort": "2026-10-31",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Judith-2 \u2014 well-site geophysical survey",
@@ -3140,7 +3511,8 @@
       "timing": "Commencing 23 November 2026",
       "sort": "2026-11-23",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Judith-2 Appraisal Well spud (Valaris 107 jack-up; NOPSEMA Environment Plan accepted)",
@@ -3148,7 +3520,8 @@
       "timing": "April 2027",
       "sort": "2027-04-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Judith-2 \u2014 logistics, support vessel and aviation contracts",
@@ -3156,7 +3529,8 @@
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "AXP": [
@@ -3166,7 +3540,8 @@
       "timing": "Completion targeted by 3 Nov 2026; offer closes 3 Nov 2026",
       "sort": "2026-11-03",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Recompletion field work on acquired wellbores to add gas for gas-to-power (Bitcoin mining) expansion",
@@ -3174,7 +3549,8 @@
       "timing": "Commencing November 2026 (subject to funding/approvals)",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "estimated": false
     }
   ],
   "NGY": [
@@ -3184,7 +3560,8 @@
       "timing": "Q1 CY2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Muralim PSC \u2014 Plan of Development submission before exploration period expiry",
@@ -3192,7 +3569,8 @@
       "timing": "Before 12 August 2027",
       "sort": "2027-08-12",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Muara Enim PSC \u2014 Plan of Development submission before exploration period expiry",
@@ -3200,7 +3578,8 @@
       "timing": "Before 12 August 2027",
       "sort": "2027-08-12",
       "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "estimated": false
     }
   ],
   "BXN": [
@@ -3210,7 +3589,8 @@
       "timing": "FY27 (to June 2027)",
       "sort": "2027-06-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report September 2026 Revised (14 Oct 2026, as BLS Pharmaceuticals, ASX:BLS)"
+      "source": "Quarterly Activities Report September 2026 Revised (14 Oct 2026, as BLS Pharmaceuticals, ASX:BLS)",
+      "estimated": false
     },
     {
       "catalyst": "Scotland GMP manufacturing facility \u2014 commissioning/completion (UK capacity expansion)",
@@ -3218,7 +3598,8 @@
       "timing": "On track; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report September 2026 Revised (14 Oct 2026, as BLS Pharmaceuticals, ASX:BLS)"
+      "source": "Quarterly Activities Report September 2026 Revised (14 Oct 2026, as BLS Pharmaceuticals, ASX:BLS)",
+      "estimated": true
     }
   ],
   "RAC": [
@@ -3228,7 +3609,8 @@
       "timing": "FY2027 priority",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "HARNESS-1 Phase 1a/b (RC220 + osimertinib, EGFR-mutated NSCLC) \u2014 dose escalation to 100 mg/m\u00b2 cohort and safety data",
@@ -3236,7 +3618,8 @@
       "timing": "Ongoing; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "CPACS Phase 1a/b (RC220 cardioprotection in solid tumours) \u2014 next dose level cohort",
@@ -3244,7 +3627,8 @@
       "timing": "Ongoing; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": true
     }
   ],
   "TTX": [
@@ -3254,7 +3638,8 @@
       "timing": "Response 'expedited'; clearance decision timing rests with FDA (previously guided CY26)",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "Tegenix FDA Review Progress (6 Oct 2026); Q4 FY26 Quarterly Activities Report (22 Jul 2026)"
+      "source": "Tegenix FDA Review Progress (6 Oct 2026); Q4 FY26 Quarterly Activities Report (22 Jul 2026)",
+      "estimated": false
     },
     {
       "catalyst": "TegenEOS (bone regeneration) \u2014 FDA 510(k) clearance",
@@ -3262,7 +3647,8 @@
       "timing": "On track for CY26",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)"
+      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Superpower Health partnership \u2014 commercial product launch (follows US$3M licence fee)",
@@ -3270,7 +3656,8 @@
       "timing": "Q1 FY27",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)"
+      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Radiation spacer \u2014 pivotal US/AU trial (N=230, 12-month follow-up) toward FDA submission",
@@ -3278,7 +3665,8 @@
       "timing": "FDA submission 2028",
       "sort": "2028-12-31",
       "day_precise": false,
-      "source": "Q3 FY26 Quarterly Activities Report (23 Apr 2026)"
+      "source": "Q3 FY26 Quarterly Activities Report (23 Apr 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Advanced manufacturing campus completion",
@@ -3286,7 +3674,8 @@
       "timing": "Nearing completion; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)"
+      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)",
+      "estimated": true
     }
   ],
   "NUZ": [
@@ -3296,7 +3685,8 @@
       "timing": "Late Q2 CY2027",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "HEALEY Regimen I enrolment completed release (Jul 2026); Q4 FY26 Quarterly Activities Report"
+      "source": "HEALEY Regimen I enrolment completed release (Jul 2026); Q4 FY26 Quarterly Activities Report",
+      "estimated": true
     },
     {
       "catalyst": "NUZ-001 \u2014 NDA preparation for traditional approval (FDA Type C feedback: HEALEY may serve as single registrational study)",
@@ -3304,7 +3694,8 @@
       "timing": "Following topline data; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "FDA Type C meeting feedback announcement (6 Oct 2026)"
+      "source": "FDA Type C meeting feedback announcement (6 Oct 2026)",
+      "estimated": true
     }
   ],
   "TLX": [
@@ -3314,7 +3705,8 @@
       "timing": "General Meeting expected 1 December 2026",
       "sort": "2026-12-01",
       "day_precise": true,
-      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Zircaix (TLX250-Px, kidney cancer imaging) \u2014 BLA resubmission to FDA",
@@ -3322,7 +3714,8 @@
       "timing": "Planned in the near term",
       "sort": null,
       "day_precise": false,
-      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "OPTIMAL-PSMA Phase 2 \u2014 data readout",
@@ -3330,7 +3723,8 @@
       "timing": "First half of 2027",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "ProstACT Global Phase 3 (TLX591-Tx) \u2014 US IND amendment for Part 2; international Part 2 enrolling",
@@ -3338,7 +3732,8 @@
       "timing": "IND amendment being finalised; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "BiPASS Phase 3 (enrolment complete, Fast Track) \u2014 supports regulatory submissions",
@@ -3346,7 +3741,8 @@
       "timing": "No date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Pixlumi (TLX101-Px) \u2014 European MAA decision",
@@ -3354,7 +3750,8 @@
       "timing": "Remains under review",
       "sort": null,
       "day_precise": false,
-      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Pixclara brain metastases \u2014 Phase 3 registrational study progress",
@@ -3362,7 +3759,8 @@
       "timing": "Advancing; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)"
+      "source": "Q3 2026 Financial Performance & Business Update (20 Oct 2026)",
+      "estimated": true
     }
   ],
   "ENP": [
@@ -3372,7 +3770,8 @@
       "timing": "Q4 CY2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "TRP-8803 BED 12-week results announcement (14 Sep 2026)"
+      "source": "TRP-8803 BED 12-week results announcement (14 Sep 2026)",
+      "estimated": true
     },
     {
       "catalyst": "TRP-8803 \u2014 proposed US Phase 2 Major Depressive Disorder study with UCSF",
@@ -3380,7 +3779,8 @@
       "timing": "Progressing; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "TRP-8803 BED 12-week results announcement (14 Sep 2026); ASX announcement 26 Aug 2026"
+      "source": "TRP-8803 BED 12-week results announcement (14 Sep 2026); ASX announcement 26 Aug 2026",
+      "estimated": true
     },
     {
       "catalyst": "TRP-8803 \u2014 expansion into broader multi-indication clinical program",
@@ -3388,7 +3788,8 @@
       "timing": "No date given",
       "sort": null,
       "day_precise": false,
-      "source": "TRP-8803 BED 12-week results announcement (14 Sep 2026); ASX announcement 4 Aug 2026"
+      "source": "TRP-8803 BED 12-week results announcement (14 Sep 2026); ASX announcement 4 Aug 2026",
+      "estimated": true
     }
   ],
   "OSL": [
@@ -3398,7 +3799,8 @@
       "timing": "Second half of FY2027",
       "sort": "2027-09-30",
       "day_precise": false,
-      "source": "FDA HDE approval announcement (17 Aug 2026)"
+      "source": "FDA HDE approval announcement (17 Aug 2026)",
+      "estimated": true
     },
     {
       "catalyst": "FDA-mandated US post-approval study (up to 30 patients, 24 months) \u2014 commencement",
@@ -3406,7 +3808,8 @@
       "timing": "Planned alongside US launch, H2 FY2027 (some reports say H2 2027)",
       "sort": "2027-09-30",
       "day_precise": false,
-      "source": "FDA HDE approval announcement (17 Aug 2026)"
+      "source": "FDA HDE approval announcement (17 Aug 2026)",
+      "estimated": true
     },
     {
       "catalyst": "PANCOSIL / TRIPP-FFX pivotal studies \u2014 label expansion (new delivery methods, chemo combinations)",
@@ -3414,7 +3817,8 @@
       "timing": "Ongoing; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report (30 Oct 2026) summary"
+      "source": "Quarterly Activities Report (30 Oct 2026) summary",
+      "estimated": true
     }
   ],
   "ATH": [
@@ -3424,7 +3828,8 @@
       "timing": "Operational start-up underway; no firm start date given, expected late this year",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Appendix 4C & Corporate Update (30 Oct 2026)"
+      "source": "Q1 FY27 Appendix 4C & Corporate Update (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "ATH434 \u2014 strategic funding / pharma partnering outcome to fund Phase 3",
@@ -3432,7 +3837,8 @@
       "timing": "Ongoing discussions; no timeline",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Appendix 4C & Corporate Update (30 Oct 2026)"
+      "source": "Q1 FY27 Appendix 4C & Corporate Update (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "CMP": [
@@ -3442,7 +3848,8 @@
       "timing": "FY27",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "FY26 results announcement (25 Aug 2026)"
+      "source": "FY26 results announcement (25 Aug 2026)",
+      "estimated": true
     },
     {
       "catalyst": "MEG open orders (~A$13.1M entering FY27) \u2014 conversion to installed/recognised revenue",
@@ -3450,7 +3857,8 @@
       "timing": "FY27",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "FY26 results announcement (25 Aug 2026)"
+      "source": "FY26 results announcement (25 Aug 2026)",
+      "estimated": true
     }
   ],
   "PER": [
@@ -3460,7 +3868,8 @@
       "timing": "Q4 CY2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "June 2026 Quarterly Activities Report (Jul 2026); Edison note 4 Aug 2026"
+      "source": "June 2026 Quarterly Activities Report (Jul 2026); Edison note 4 Aug 2026",
+      "estimated": true
     },
     {
       "catalyst": "HMBD-002 \u2014 final drug product release (fill-and-finish)",
@@ -3468,7 +3877,8 @@
       "timing": "September 2026",
       "sort": "2026-09-15",
       "day_precise": false,
-      "source": "June 2026 Quarterly Activities Report (Jul 2026); Edison note 4 Aug 2026"
+      "source": "June 2026 Quarterly Activities Report (Jul 2026); Edison note 4 Aug 2026",
+      "estimated": false
     }
   ],
   "IMR": [
@@ -3478,7 +3888,8 @@
       "timing": "Targeted 2H26",
       "sort": "2026-09-30",
       "day_precise": false,
-      "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)"
+      "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Vision-MR Ablation Catheter \u2014 fourth/final PMA module submission to FDA (after VISABL-AFL)",
@@ -3486,7 +3897,8 @@
       "timing": "Targeted 2H26",
       "sort": "2026-09-30",
       "day_precise": false,
-      "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)"
+      "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Vision-MR Ablation Catheter + RF-5000 generator \u2014 FDA PMA approval, completing US platform",
@@ -3494,7 +3906,8 @@
       "timing": "Following final module; FDA decisions flagged for 2H26 \u2014 no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)"
+      "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)",
+      "estimated": true
     }
   ],
   "RHT": [
@@ -3504,7 +3917,8 @@
       "timing": "Within approximately three months (from late Aug 2026)",
       "sort": "2026-08-16",
       "day_precise": false,
-      "source": "FY26 Full Year Results (28 Aug 2026)"
+      "source": "FY26 Full Year Results (28 Aug 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Liver fibrosis device \u2014 use in clinical trials",
@@ -3512,7 +3926,8 @@
       "timing": "FY27/28",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "FY26 Full Year Results (28 Aug 2026)"
+      "source": "FY26 Full Year Results (28 Aug 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Liver fibrosis device \u2014 FDA 510(k) clearance and commercial launch",
@@ -3520,7 +3935,8 @@
       "timing": "From FY28",
       "sort": "2027-12-31",
       "day_precise": false,
-      "source": "FY26 Full Year Results (28 Aug 2026)"
+      "source": "FY26 Full Year Results (28 Aug 2026)",
+      "estimated": true
     }
   ],
   "ATX": [
@@ -3530,7 +3946,8 @@
       "timing": "Ethics approval expected imminently",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "Clinical Trial Updates (22 Oct 2026)"
+      "source": "Clinical Trial Updates (22 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "ACCENT-Mini \u2014 safety and PK data (feeds FDA protocol for registrational study)",
@@ -3538,7 +3955,8 @@
       "timing": "Late Q1/early Q2 2027",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Clinical Trial Updates (22 Oct 2026)"
+      "source": "Clinical Trial Updates (22 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Narmafotinib pancreatic cancer \u2014 FDA protocol submission for registrational study (narmafotinib + gem/Abraxane)",
@@ -3546,7 +3964,8 @@
       "timing": "After ACCENT-Mini data; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Clinical Trial Updates (22 Oct 2026)"
+      "source": "Clinical Trial Updates (22 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "PRROSE ovarian cancer study (ANZGOG-sponsored) \u2014 ethics approval and start",
@@ -3554,7 +3973,8 @@
       "timing": "Ethics submitted; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Clinical Trial Updates (22 Oct 2026)"
+      "source": "Clinical Trial Updates (22 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Narmafotinib + Lilly olomorasib (KRAS G12C) NSCLC trial \u2014 progress update",
@@ -3562,7 +3982,8 @@
       "timing": "Separate announcement to follow; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Clinical Trial Updates (22 Oct 2026)"
+      "source": "Clinical Trial Updates (22 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "ACCENT trial \u2014 scientific paper publication and further biomarker results",
@@ -3570,7 +3991,8 @@
       "timing": "Being drafted; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Clinical Trial Updates (22 Oct 2026)"
+      "source": "Clinical Trial Updates (22 Oct 2026)",
+      "estimated": true
     }
   ],
   "BOT": [
@@ -3580,7 +4002,8 @@
       "timing": "Board actively evaluating; no timeline",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Sofdra \u2014 gross-to-net yield improvement after PA-submission issue addressed",
@@ -3588,7 +4011,8 @@
       "timing": "Expected in Q2 FY27",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Piramal alternate API supply \u2014 25-40% COGS reduction",
@@ -3596,7 +4020,8 @@
       "timing": "No date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "~50% operating expense reduction (cost actions taken Oct 2026)",
@@ -3604,7 +4029,8 @@
       "timing": "Remainder of FY27",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)",
+      "estimated": true
     }
   ],
   "ILA": [
@@ -3614,7 +4040,8 @@
       "timing": "By end of October 2026",
       "sort": "2026-10-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Galidesivir \u2014 USAMRIID 20-NHP Marburg dose study, dosing start",
@@ -3622,7 +4049,8 @@
       "timing": "Planned dosing in Q4 CY26",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Galidesivir \u2014 ~700-800 treatment courses available and shipped to Africa for compassionate use in Uganda Bundibugyo Ebola outbreak (prospective human data)",
@@ -3630,7 +4058,8 @@
       "timing": "Courses this quarter; shipped prior to end of CY26",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Galidesivir \u2014 Texas Biomed 12-NHP Marburg-Angola dose optimisation study",
@@ -3638,7 +4067,8 @@
       "timing": "No date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Galidesivir \u2014 pivotal Marburg efficacy study under FDA Animal Rule, then FDA submission (PRV-eligible)",
@@ -3646,7 +4076,8 @@
       "timing": "After 32-NHP dose program; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "estimated": true
     }
   ],
   "CMB": [
@@ -3656,7 +4087,8 @@
       "timing": "H2 CY2026",
       "sort": "2026-09-30",
       "day_precise": false,
-      "source": "June 2026 Quarterly Activities Report (30 Jul 2026)"
+      "source": "June 2026 Quarterly Activities Report (30 Jul 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Elate Ocular \u2014 rolling BLA submission",
@@ -3664,7 +4096,8 @@
       "timing": "By mid-CY2028",
       "sort": "2028-06-30",
       "day_precise": false,
-      "source": "June 2026 Quarterly Activities Report (30 Jul 2026)"
+      "source": "June 2026 Quarterly Activities Report (30 Jul 2026)",
+      "estimated": true
     }
   ],
   "CVL": [
@@ -3674,7 +4107,8 @@
       "timing": "Awaiting detail; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Business Update / AGM (late Oct 2026)"
+      "source": "Q1 FY27 Business Update / AGM (late Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "CSBP Sodium Cyanide Expansion \u2014 final shutdown",
@@ -3682,7 +4116,8 @@
       "timing": "November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Q1 FY27 Business Update / AGM (late Oct 2026)"
+      "source": "Q1 FY27 Business Update / AGM (late Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "M5 bridge steel package \u2014 delivery and installation",
@@ -3690,7 +4125,8 @@
       "timing": "Early 2027",
       "sort": "2027-01-31",
       "day_precise": false,
-      "source": "Q1 FY27 Business Update / AGM (late Oct 2026)"
+      "source": "Q1 FY27 Business Update / AGM (late Oct 2026)",
+      "estimated": true
     }
   ],
   "SPZ": [
@@ -3700,7 +4136,8 @@
       "timing": "H1 FY27",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "FY26 Results Presentation (Aug 2026)"
+      "source": "FY26 Results Presentation (Aug 2026)",
+      "estimated": true
     },
     {
       "catalyst": "450-600 net new ANPR sites (US and Germany focus)",
@@ -3708,7 +4145,8 @@
       "timing": "FY27",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "FY26 Results Presentation (Aug 2026)"
+      "source": "FY26 Results Presentation (Aug 2026)",
+      "estimated": true
     },
     {
       "catalyst": "3,000 ANPR sites target",
@@ -3716,7 +4154,8 @@
       "timing": "By end of 2028",
       "sort": "2028-12-31",
       "day_precise": false,
-      "source": "FY26 Results Presentation (Aug 2026)"
+      "source": "FY26 Results Presentation (Aug 2026)",
+      "estimated": true
     }
   ],
   "SOP": [
@@ -3726,7 +4165,8 @@
       "timing": "December 2026",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "TasNetworks urban battery units \u2014 first unit delivery",
@@ -3734,7 +4174,8 @@
       "timing": "Inaugural unit in February (2027)",
       "sort": "2027-02-28",
       "day_precise": false,
-      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "GLNG JV Powerhouse units #5 and #6 \u2014 delivery",
@@ -3742,7 +4183,8 @@
       "timing": "Around mid-CY2027",
       "sort": "2027-06-30",
       "day_precise": false,
-      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Central Australia 12MW/12MWh Powerhouse system \u2014 delivery",
@@ -3750,7 +4192,8 @@
       "timing": "Targeted by 30 September 2027",
       "sort": "2027-09-30",
       "day_precise": true,
-      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "TasNetworks urban battery project \u2014 completion",
@@ -3758,7 +4201,8 @@
       "timing": "Targeted for Q4 CY2027",
       "sort": "2027-11-15",
       "day_precise": false,
-      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "All 11 Powerhouse units under construction \u2014 delivered",
@@ -3766,7 +4210,8 @@
       "timing": "Within the next 15 months",
       "sort": "2028-01-31",
       "day_precise": false,
-      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)"
+      "source": "FY27 Q1 4C and Trading & Business Update (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Hitachi Energy collaboration (BESS/microgrids) \u2014 conversion of LOI/MoU into contracted projects",
@@ -3774,7 +4219,8 @@
       "timing": "No date given",
       "sort": null,
       "day_precise": false,
-      "source": "Hitachi Energy MoU (5 May 2026) / LOI (19 May 2026)"
+      "source": "Hitachi Energy MoU (5 May 2026) / LOI (19 May 2026)",
+      "estimated": true
     }
   ],
   "14D": [
@@ -3784,7 +4230,8 @@
       "timing": "Targeted November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "SiNTL \u2014 initial material production at Tonsley (SA) facility under A$1M accelerated program",
@@ -3792,7 +4239,8 @@
       "timing": "Targeted December 2026",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Aurora Energy Precinct \u2014 development partner selection",
@@ -3800,7 +4248,8 @@
       "timing": "Targeted December 2026",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Aurora Energy Precinct \u2014 financial close",
@@ -3808,7 +4257,8 @@
       "timing": "Early 2027",
       "sort": "2027-01-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "SiNTL \u2014 battery cells (RIT) delivered to commercial partners for evaluation (incl. drone/aerospace)",
@@ -3816,7 +4266,8 @@
       "timing": "H1 2027",
       "sort": "2027-03-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Aurora \u2014 up to 1GW AI data centre HoA progression; BHP 275kV connection negotiations; 70MW initial solar",
@@ -3824,7 +4275,8 @@
       "timing": "Ongoing; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Aurora Energy Precinct \u2014 commercial operation",
@@ -3832,7 +4284,8 @@
       "timing": "Targeted 2028/29",
       "sort": "2029-12-31",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (Oct 2026)",
+      "estimated": false
     }
   ],
   "DXN": [
@@ -3842,7 +4295,8 @@
       "timing": "Q2 FY27",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Cancelled AI data centre contract \u2014 remaining ~A$1.1M payment received",
@@ -3850,7 +4304,8 @@
       "timing": "Q2 FY27",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)",
+      "estimated": true
     },
     {
       "catalyst": "1H FY27 revenue ~A$11M (\u2248 all of FY26) \u2014 half-year result",
@@ -3858,7 +4313,8 @@
       "timing": "1H FY27 (result due ~Feb 2027)",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Pipeline conversion \u2014 93 identified projects, 13% in final negotiation/verbal win, incl. new AI/HPC data centre contracts",
@@ -3866,7 +4322,8 @@
       "timing": "No date given",
       "sort": null,
       "day_precise": false,
-      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)"
+      "source": "Q1 FY27 Quarterly Update (30 Oct 2026)",
+      "estimated": true
     }
   ],
   "X2M": [
@@ -3876,7 +4333,8 @@
       "timing": "60-day exclusivity from 23 Oct 2026 (~late Dec 2026)",
       "sort": "2026-10-23",
       "day_precise": true,
-      "source": "Second Queensland AI data centre agreement (23 Oct 2026)"
+      "source": "Second Queensland AI data centre agreement (23 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "First binding AI data centre contract (>$250M project cost) \u2014 Managed Delivery execution; 2.5MW initial grid-connected phase",
@@ -3884,7 +4342,8 @@
       "timing": "Three-to-five-year delivery period",
       "sort": null,
       "day_precise": false,
-      "source": "First binding data centre contract announcement (27 Aug 2026)"
+      "source": "First binding data centre contract announcement (27 Aug 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Remaining 7.5MW of 10MW site \u2014 behind-the-meter renewable generation",
@@ -3892,7 +4351,8 @@
       "timing": "Expected by end of calendar 2028",
       "sort": "2028-12-31",
       "day_precise": false,
-      "source": "Second Queensland AI data centre agreement (23 Oct 2026)"
+      "source": "Second Queensland AI data centre agreement (23 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "~200MW data centre pipeline (incl. Resi Ventures regional precincts) \u2014 further binding agreements",
@@ -3900,7 +4360,8 @@
       "timing": "No date given",
       "sort": null,
       "day_precise": false,
-      "source": "Second Queensland AI data centre agreement (23 Oct 2026)"
+      "source": "Second Queensland AI data centre agreement (23 Oct 2026)",
+      "estimated": true
     }
   ],
   "CEH": [
@@ -3910,7 +4371,8 @@
       "timing": "Review underway; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "FY26 Results (Aug 2026); Coomera landholding approval (20 Jul 2026)"
+      "source": "FY26 Results (Aug 2026); Coomera landholding approval (20 Jul 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Independent valuation of Dreamworld business and surrounding land",
@@ -3918,7 +4380,8 @@
       "timing": "Commissioned; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "FY26 Results (Aug 2026); Coomera landholding approval (20 Jul 2026)"
+      "source": "FY26 Results (Aug 2026); Coomera landholding approval (20 Jul 2026)",
+      "estimated": true
     }
   ],
   "NCK": [
@@ -3928,7 +4391,8 @@
       "timing": "Late December (2026)",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "H1 FY27 Trading Update (21 Oct 2026)"
+      "source": "H1 FY27 Trading Update (21 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "UK business \u2014 path to profitability (written orders +35% YoY early FY27); H1 FY27 result",
@@ -3936,7 +4400,8 @@
       "timing": "H1 FY27 result (~Feb 2027)",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "H1 FY27 Trading Update (21 Oct 2026)"
+      "source": "H1 FY27 Trading Update (21 Oct 2026)",
+      "estimated": false
     }
   ],
   "MNC": [
@@ -3946,7 +4411,8 @@
       "timing": "Ongoing over initial 3-year term; no order dates given",
       "sort": null,
       "day_precise": false,
-      "source": "China distribution agreement (May 2026); Q4 FY26 Quarterly Report (Jul 2026)"
+      "source": "China distribution agreement (May 2026); Q4 FY26 Quarterly Report (Jul 2026)",
+      "estimated": true
     }
   ],
   "INA": [
@@ -3956,7 +4422,8 @@
       "timing": "Until 13 November 2026",
       "sort": "2026-11-13",
       "day_precise": true,
-      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)"
+      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)",
+      "estimated": false
     },
     {
       "catalyst": "AVID $5.55 cash proposal \u2014 written confirmation it will not withdraw/reduce",
@@ -3964,7 +4431,8 @@
       "timing": "By 27 November 2026",
       "sort": "2026-11-27",
       "day_precise": true,
-      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)"
+      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)",
+      "estimated": false
     },
     {
       "catalyst": "Peet Limited acquisition \u2014 Peet scheme meeting",
@@ -3972,7 +4440,8 @@
       "timing": "Early December 2026",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "Peet scheme update (Peet Limited)"
+      "source": "Peet scheme update (Peet Limited)",
+      "estimated": false
     },
     {
       "catalyst": "AVID exclusivity period ends \u2014 binding scheme implementation deed expected",
@@ -3980,7 +4449,8 @@
       "timing": "Exclusivity ends 14 December 2026",
       "sort": "2026-12-14",
       "day_precise": true,
-      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)"
+      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)",
+      "estimated": false
     }
   ],
   "DEM": [
@@ -3990,7 +4460,8 @@
       "timing": "CY2026 result (reported ~Feb 2027)",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (12 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report (12 Oct 2026)",
+      "estimated": false
     }
   ],
   "SKK": [
@@ -4000,7 +4471,8 @@
       "timing": "December 2026 quarterly report (due late Jan 2027)",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report & 4C (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report & 4C (30 Oct 2026)",
+      "estimated": false
     },
     {
       "catalyst": "IBM contract delivery",
@@ -4008,7 +4480,8 @@
       "timing": "Runs to Sep 2027",
       "sort": "2027-09-15",
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report & 4C (30 Oct 2026)"
+      "source": "September 2026 Quarterly Activities Report & 4C (30 Oct 2026)",
+      "estimated": false
     }
   ],
   "PLY": [
@@ -4018,7 +4491,8 @@
       "timing": "Early 2027",
       "sort": "2027-01-31",
       "day_precise": false,
-      "source": "Dumb Ways to Build sales update (Oct 2026); FY26 results (Aug 2026)"
+      "source": "Dumb Ways to Build sales update (Oct 2026); FY26 results (Aug 2026)",
+      "estimated": true
     },
     {
       "catalyst": "Dew (co-op platformer, original IP) \u2014 release",
@@ -4026,7 +4500,8 @@
       "timing": "CY2028",
       "sort": "2028-06-30",
       "day_precise": false,
-      "source": "Dumb Ways to Build sales update (Oct 2026); FY26 results (Aug 2026)"
+      "source": "Dumb Ways to Build sales update (Oct 2026); FY26 results (Aug 2026)",
+      "estimated": true
     }
   ],
   "FTI": [
@@ -4036,7 +4511,8 @@
       "timing": "Targeting late 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "FY26 Annual Report (31 Aug 2026)"
+      "source": "FY26 Annual Report (31 Aug 2026)",
+      "estimated": true
     },
     {
       "catalyst": "New work-for-hire development contracts as existing contracts approach completion",
@@ -4044,7 +4520,8 @@
       "timing": "No date given",
       "sort": null,
       "day_precise": false,
-      "source": "FY26 Annual Report (31 Aug 2026)"
+      "source": "FY26 Annual Report (31 Aug 2026)",
+      "estimated": true
     }
   ],
   "LRV": [
@@ -4054,7 +4531,8 @@
       "timing": "Faster than original 4-month ramp (started Aug 2026)",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Production update, Nov 2026"
+      "source": "Production update, Nov 2026",
+      "estimated": false
     },
     {
       "catalyst": "Ongoing resource-extension drilling at Midas, Metz, Clarks Gully and Freehold zones",
@@ -4062,7 +4540,28 @@
       "timing": "Ongoing",
       "sort": null,
       "day_precise": false,
-      "source": "October 2026 Quarterly Activities Report"
+      "source": "October 2026 Quarterly Activities Report",
+      "estimated": true
+    }
+  ],
+  "AUA": [
+    {
+      "catalyst": "ShokzHear distribution partnership (April 2026 agreement) \u2014 first orders",
+      "catalyst_type": "other",
+      "timing": "Later in 2026",
+      "sort": "2026-11-15",
+      "day_precise": false,
+      "estimated": true,
+      "source": "Company announcements, 2026"
+    },
+    {
+      "catalyst": "Revenue recognition against the reported A$8.4M Australian order",
+      "catalyst_type": "other",
+      "timing": "No firm date given",
+      "sort": null,
+      "day_precise": false,
+      "estimated": false,
+      "source": "Company announcements, 2026"
     }
   ]
 }
