@@ -1,0 +1,315 @@
+{
+  "ADD": [
+    {
+      "catalyst": "Scoping study for its project due within a couple of weeks",
+      "catalyst_type": "dfs_bfs_scoping",
+      "timing": "Next couple of weeks",
+      "sort": "2026-11-30",
+      "source": "FA call, 6 Nov 2026"
+    }
+  ],
+  "AEE": [
+    {
+      "catalyst": "Pilot plant starting (staff arriving within weeks) to prove the flow sheet; FID pricing incentive favours a decision before end-2026, though a Q1 2027 timeline looks more likely",
+      "catalyst_type": "metallurgy",
+      "timing": "Pilot plant start imminent; FID likely Q1 2027",
+      "sort": "2027-03-31",
+      "source": "FA call, 16 Oct 2026"
+    }
+  ],
+  "AUE": [
+    {
+      "catalyst": "Resource update due very soon, expected to come in materially bigger than the current estimate",
+      "catalyst_type": "mre_upgrade",
+      "timing": "Very soon",
+      "sort": "2026-11-30",
+      "source": "FA call, 20 Oct 2026"
+    },
+    {
+      "catalyst": "DFS is late-stage, due at year end",
+      "catalyst_type": "dfs_bfs_scoping",
+      "timing": "Year end 2026",
+      "sort": "2026-12-31",
+      "source": "FA call, 20 Oct 2026"
+    }
+  ],
+  "AUV": [
+    {
+      "catalyst": "Step-out RC drilling and soil/calcrete sampling results due over the next 3-4 months",
+      "catalyst_type": "drilling_assay",
+      "timing": "Next 3-4 months",
+      "sort": "2027-02-28",
+      "source": "FA call, 19 Oct 2026"
+    }
+  ],
+  "AVM": [
+    {
+      "catalyst": "Gavilanes resource estimate update is the next catalyst to watch; a capital raise is also expected soon given the ~$4M cash position against ongoing deep diamond drilling",
+      "catalyst_type": "mre_upgrade",
+      "timing": "Soon",
+      "sort": null,
+      "source": "FA call, 26 Oct 2026"
+    }
+  ],
+  "CHN": [
+    {
+      "catalyst": "EPA environmental review and Commonwealth reports due around year-end; Final Investment Decision still targeted for 1H CY2028",
+      "catalyst_type": "production_fid",
+      "timing": "Reports due year-end 2026; FID 1H CY2028",
+      "sort": "2028-06-30",
+      "source": "FA call, 3 Nov 2026"
+    }
+  ],
+  "FLG": [
+    {
+      "catalyst": "Plans to spin out its Whipsaw copper project via a ~$25M IPO, with a later raise to fund drilling toward a resource estimate and scoping study - targeted within about 6 months",
+      "catalyst_type": "capital_raise",
+      "timing": "Within ~6 months",
+      "sort": "2027-05-31",
+      "source": "FA call, 3 Nov 2026"
+    }
+  ],
+  "GBR": [
+    {
+      "catalyst": "60,000m, 6-rig drill program underway; a steady stream of assay results expected through the second half of 2026",
+      "catalyst_type": "drilling_assay",
+      "timing": "H2 2026",
+      "sort": "2026-12-31",
+      "source": "FA call, 5 May 2026"
+    }
+  ],
+  "GL1": [
+    {
+      "catalyst": "All-cash takeover proposal (~$333M) still pending, with the acquirer also funding ~$120M of studies while the deal proceeds",
+      "catalyst_type": "board_ma",
+      "timing": "Pending",
+      "sort": null,
+      "source": "FA call, 22 Sep 2026"
+    }
+  ],
+  "GT1": [
+    {
+      "catalyst": "Recapitalised and fully funded through to an expected Final Investment Decision around March 2027; permitting largely complete",
+      "catalyst_type": "production_fid",
+      "timing": "~March 2027",
+      "sort": "2027-03-31",
+      "source": "FA call, 26 May 2026"
+    }
+  ],
+  "HAR": [
+    {
+      "catalyst": "Another resource upgrade expected in coming months, with a restart study underway for South Spring Hill",
+      "catalyst_type": "mre_upgrade",
+      "timing": "Coming months",
+      "sort": "2027-01-31",
+      "source": "FA call, 16 Oct 2026"
+    }
+  ],
+  "HAS": [
+    {
+      "catalyst": "Commissioning targeted Q1 2027, first production targeted mid-2027",
+      "catalyst_type": "production_fid",
+      "timing": "Q1 2027 commissioning; mid-2027 first production",
+      "sort": "2027-03-31",
+      "source": "FA call, 17 Nov 2026"
+    }
+  ],
+  "ILT": [
+    {
+      "catalyst": "Resource upgrade expected by year-end, with roughly 20 more holes and several months of assays still to come",
+      "catalyst_type": "mre_upgrade",
+      "timing": "By year-end 2026",
+      "sort": "2026-12-31",
+      "source": "FA call, 11 Aug 2026"
+    }
+  ],
+  "KFM": [
+    {
+      "catalyst": "~3,500m RC and diamond drilling program underway",
+      "catalyst_type": "drilling_assay",
+      "timing": "Ongoing",
+      "sort": null,
+      "source": "FA call, 10 Nov 2026"
+    }
+  ],
+  "KGL": [
+    {
+      "catalyst": "Financing underway with advisers appointed, expected to close in the next month or two; FID and construction to follow",
+      "catalyst_type": "production_fid",
+      "timing": "Financing close ~1-2 months; construction ~Dec-Feb",
+      "sort": "2026-12-31",
+      "source": "FA call, 19 Oct 2026"
+    }
+  ],
+  "KNI": [
+    {
+      "catalyst": "Resource upgrade targeted toward year-end, alongside further drilling to lift its farm-in stake to 51%",
+      "catalyst_type": "mre_upgrade",
+      "timing": "Toward year-end 2026",
+      "sort": "2026-12-31",
+      "source": "FA call, 9 Jun 2026"
+    }
+  ],
+  "KTA": [
+    {
+      "catalyst": "Another capital raise expected around March next year, given ongoing diamond drilling costs",
+      "catalyst_type": "capital_raise",
+      "timing": "~March 2027",
+      "sort": "2027-03-31",
+      "source": "FA call, 19 Oct 2026"
+    }
+  ],
+  "KZR": [
+    {
+      "catalyst": "Updated resource estimate expected later this year, with further project work slated for early 2027",
+      "catalyst_type": "mre_upgrade",
+      "timing": "Later 2026",
+      "sort": "2026-12-31",
+      "source": "FA call, 1 Sep 2026"
+    }
+  ],
+  "LPM": [
+    {
+      "catalyst": "Recent capital raise funds the company through to about mid-2027, with possible production around mid-to-late 2027",
+      "catalyst_type": "production_fid",
+      "timing": "Possible production mid-late 2027",
+      "sort": "2027-09-30",
+      "source": "FA call, 3 Nov 2026"
+    }
+  ],
+  "NOX": [
+    {
+      "catalyst": "Open-label extension study starts Q1 2027, ahead of Phase 2 planning targeted mid-2028",
+      "catalyst_type": "trial_regulatory",
+      "timing": "OLE start Q1 2027; Phase 2 ~mid-2028",
+      "sort": "2027-03-31",
+      "source": "FA call, 11 Sep 2026"
+    }
+  ],
+  "NTI": [
+    {
+      "catalyst": "Major trial results expected toward year-end",
+      "catalyst_type": "trial_regulatory",
+      "timing": "Toward year-end 2026",
+      "sort": "2026-12-31",
+      "source": "FA call, 4 Aug 2026"
+    }
+  ],
+  "QML": [
+    {
+      "catalyst": "DFS still underway, with recent drilling results described as excellent",
+      "catalyst_type": "dfs_bfs_scoping",
+      "timing": "Underway, no date given",
+      "sort": null,
+      "source": "FA call, 3 Nov 2026"
+    }
+  ],
+  "SBM": [
+    {
+      "catalyst": "PFS for its flagship project due, DFS to follow, with Final Investment Decision targeted mid-2027; a mill restart to process existing stockpiles is targeted by year-end",
+      "catalyst_type": "production_fid",
+      "timing": "FID ~mid-2027; mill restart targeted year-end 2026",
+      "sort": "2027-06-30",
+      "source": "FA call, 11 Sep 2026"
+    }
+  ],
+  "SGQ": [
+    {
+      "catalyst": "Scoping study not expected until toward year-end, with metallurgical test work to separate niobium from the rare-earth by-product stream as the critical go/no-go step",
+      "catalyst_type": "dfs_bfs_scoping",
+      "timing": "Toward year-end 2026",
+      "sort": "2026-12-31",
+      "source": "FA call, 14 Aug 2026"
+    }
+  ],
+  "SNM": [
+    {
+      "catalyst": "Resource conversion to compliant status due mid-to-late November, potentially coming in at or above ~1Moz",
+      "catalyst_type": "mre_upgrade",
+      "timing": "Mid-to-late Nov 2026",
+      "sort": "2026-11-30",
+      "source": "FA call, 20 Oct 2026"
+    }
+  ],
+  "TGN": [
+    {
+      "catalyst": "Flagged as a more likely takeover target than project seller - speculative, no confirmed process yet",
+      "catalyst_type": "board_ma",
+      "timing": "Speculative, no fixed date",
+      "sort": null,
+      "source": "FA call, 17 Nov 2026"
+    }
+  ],
+  "THL": [
+    {
+      "catalyst": "Two competing parties both conducting due diligence and submitting revised non-binding offers",
+      "catalyst_type": "board_ma",
+      "timing": "Ongoing process",
+      "sort": null,
+      "source": "FA call, 6 Nov 2026"
+    }
+  ],
+  "USL": [
+    {
+      "catalyst": "PFS covering oxides due around January, with a separate sulphide study still to come",
+      "catalyst_type": "dfs_bfs_scoping",
+      "timing": "~January 2027",
+      "sort": "2027-01-31",
+      "source": "FA call, 10 Nov 2026"
+    }
+  ],
+  "VBX": [
+    {
+      "catalyst": "DFS delayed to Q1 2027",
+      "catalyst_type": "dfs_bfs_scoping",
+      "timing": "Q1 2027",
+      "sort": "2027-03-31",
+      "source": "FA call, 9 Oct 2026"
+    }
+  ],
+  "WCN": [
+    {
+      "catalyst": "Maiden resource estimate not expected until FY2026-27",
+      "catalyst_type": "mre_upgrade",
+      "timing": "FY2026-27",
+      "sort": "2027-06-30",
+      "source": "FA call, 25 Aug 2026"
+    }
+  ],
+  "WWI": [
+    {
+      "catalyst": "Infill drilling results on a dual-commodity project expected late 2026/early 2027, pending final bank drawdown conditions",
+      "catalyst_type": "drilling_assay",
+      "timing": "Late 2026/early 2027",
+      "sort": "2027-01-31",
+      "source": "FA call, 15 May 2026"
+    }
+  ],
+  "ZMI": [
+    {
+      "catalyst": "Commercial demonstration plant commissioning targeted by year-end, pilot plant construction planned for Q1 2027",
+      "catalyst_type": "metallurgy",
+      "timing": "Commissioning by year-end 2026; pilot plant Q1 2027",
+      "sort": "2026-12-31",
+      "source": "FA call, 20 Nov 2026"
+    }
+  ],
+  "ALM": [
+    {
+      "catalyst": "Significant drill program underway, with visuals or further assay results possible in the near term",
+      "catalyst_type": "drilling_assay",
+      "timing": "Near term",
+      "sort": null,
+      "source": "FA call, 3 Nov 2026"
+    }
+  ],
+  "AEU": [
+    {
+      "catalyst": "Resource update expected in about 2 months, with a study update in 4-5 months; partner/sale talks running through 1H 2027",
+      "catalyst_type": "mre_upgrade",
+      "timing": "~2 months (resource); ~4-5 months (study)",
+      "sort": "2026-12-31",
+      "source": "FA call, 27 Oct 2026"
+    }
+  ]
+}

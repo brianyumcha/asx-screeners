@@ -142,6 +142,7 @@ NAV_TOOLS_LINKS = [
     ('red-folder-news.html', 'Red Folder News'),
     ('sector-rotation.html', 'Sector Rotation'),
     ('earnings-calendar.html', 'Earnings Calendar'),
+    ('fa-catalyst-calendar.html', 'FA Catalyst Calendar'),
     ('morning-brief.html', 'ASX Morning Brief'),
 ]
 
