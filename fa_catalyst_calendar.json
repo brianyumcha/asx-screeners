@@ -1,7 +1,7 @@
 {
   "ADD": [
     {
-      "catalyst": "London-Victoria gold (NSW) \u2014 Scoping Study completion",
+      "catalyst": "London-Victoria gold (NSW) — Scoping Study completion",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "November 2026",
       "sort": "2026-11-15",
@@ -10,7 +10,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Placement Tranche 2 (incl. Directors) \u2014 subject to shareholder approval",
+      "catalyst": "Placement Tranche 2 (incl. Directors) — subject to shareholder approval",
       "catalyst_type": "production_fid",
       "timing": "At Annual General Meeting (date not given)",
       "sort": null,
@@ -19,7 +19,7 @@
       "estimated": true
     },
     {
-      "catalyst": "London-Victoria to Calarie corridor \u2014 drilling of Ashes walk-up targets and six adjacent prospects; depth extensions below pit",
+      "catalyst": "London-Victoria to Calarie corridor — drilling of Ashes walk-up targets and six adjacent prospects; depth extensions below pit",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -50,7 +50,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Boundiali gold \u2014 Definitive Feasibility Study (incorporating 2026 drilling and Oct 2026 3.84Moz MRE)",
+      "catalyst": "Boundiali gold — Definitive Feasibility Study (incorporating 2026 drilling and Oct 2026 3.84Moz MRE)",
       "catalyst_type": "mre_upgrade",
       "timing": "Late CY2026",
       "sort": "2026-11-15",
@@ -59,7 +59,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Napi\u00e9 gold \u2014 30,000m diamond drilling program to grow 1.16Moz resource",
+      "catalyst": "Napié gold — 30,000m diamond drilling program to grow 1.16Moz resource",
       "catalyst_type": "drilling_assay",
       "timing": "Commencing Q4 CY2026",
       "sort": "2026-11-15",
@@ -68,7 +68,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Boundiali \u2014 ongoing 150,000m resource-growth drilling (16 rigs) and scout drilling on BD/BM/BST tenements",
+      "catalyst": "Boundiali — ongoing 150,000m resource-growth drilling (16 rigs) and scout drilling on BD/BM/BST tenements",
       "catalyst_type": "drilling_assay",
       "timing": "CY2026 program; no specific date",
       "sort": null,
@@ -101,7 +101,7 @@
   ],
   "CHN": [
     {
-      "catalyst": "Gonneville \u2014 submission of Environmental Review Document (EPA) and Public Environment Report (Commonwealth)",
+      "catalyst": "Gonneville — submission of Environmental Review Document (EPA) and Public Environment Report (Commonwealth)",
       "catalyst_type": "production_fid",
       "timing": "Q4 CY26 (imminent)",
       "sort": "2026-11-15",
@@ -110,7 +110,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Gonneville Pd-Pt-Ni (WA) \u2014 8-week continuous pilot plant of full flowsheet (5t ore); FS engineering commences",
+      "catalyst": "Gonneville Pd-Pt-Ni (WA) — 8-week continuous pilot plant of full flowsheet (5t ore); FS engineering commences",
       "catalyst_type": "metallurgy",
       "timing": "Commencing November 2026 (~2-month run)",
       "sort": "2026-11-15",
@@ -128,7 +128,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Gonneville \u2014 Definitive Feasibility Study completion",
+      "catalyst": "Gonneville — Definitive Feasibility Study completion",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Q3 CY27",
       "sort": "2027-08-16",
@@ -137,7 +137,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Gonneville \u2014 Final Investment Decision",
+      "catalyst": "Gonneville — Final Investment Decision",
       "catalyst_type": "production_fid",
       "timing": "H1 CY28",
       "sort": "2028-06-30",
@@ -146,7 +146,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Warrego North Cu-Au (NT) \u2014 assays from initial drilling of targets; Goomalling Cu (WA) Deep Blue follow-up drilling, soils and IP",
+      "catalyst": "Warrego North Cu-Au (NT) — assays from initial drilling of targets; Goomalling Cu (WA) Deep Blue follow-up drilling, soils and IP",
       "catalyst_type": "drilling_assay",
       "timing": "Assays pending; no date given",
       "sort": null,
@@ -186,7 +186,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Side Well \u2014 Mining Lease grant for 122koz @ 2.7g/t shallow deposit (Ironbark; Mining Agreement being negotiated)",
+      "catalyst": "Side Well — Mining Lease grant for 122koz @ 2.7g/t shallow deposit (Ironbark; Mining Agreement being negotiated)",
       "catalyst_type": "production_fid",
       "timing": "Q4 2026",
       "sort": "2026-11-15",
@@ -195,7 +195,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Peak Hill \u2014 project-wide resource update from 40,000m 3-rig drilling (Durack, Jubilee, Enigma, Five Ways, Harmony, Mt Pleasant)",
+      "catalyst": "Peak Hill — project-wide resource update from 40,000m 3-rig drilling (Durack, Jubilee, Enigma, Five Ways, Harmony, Mt Pleasant)",
       "catalyst_type": "mre_upgrade",
       "timing": "End of calendar year 2026 / next year",
       "sort": "2027-03-31",
@@ -204,7 +204,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Side Well \u2014 mining approvals for that deposit",
+      "catalyst": "Side Well — mining approvals for that deposit",
       "catalyst_type": "production_fid",
       "timing": "Q3 2027",
       "sort": "2027-08-16",
@@ -213,7 +213,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Peak Hill \u2014 scoping and feasibility studies, targeting mining",
+      "catalyst": "Peak Hill — scoping and feasibility studies, targeting mining",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Mining at end of 2027",
       "sort": "2027-12-31",
@@ -235,7 +235,7 @@
   ],
   "GT1": [
     {
-      "catalyst": "Seymour lithium (Ontario) \u2014 Closure Plan submission with QP certification (opens remaining development permits / clearing approval)",
+      "catalyst": "Seymour lithium (Ontario) — Closure Plan submission with QP certification (opens remaining development permits / clearing approval)",
       "catalyst_type": "production_fid",
       "timing": "December 2026 (targeted CY2026)",
       "sort": "2026-12-16",
@@ -244,7 +244,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Seymour \u2014 Definitive Feasibility Study and ore reserve declaration (re-forecast)",
+      "catalyst": "Seymour — Definitive Feasibility Study and ore reserve declaration (re-forecast)",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Q1 2027",
       "sort": "2027-02-14",
@@ -253,7 +253,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Seymour \u2014 Impact Benefit Agreements and financing, then Final Investment Decision",
+      "catalyst": "Seymour — Impact Benefit Agreements and financing, then Final Investment Decision",
       "catalyst_type": "production_fid",
       "timing": "FID mid-2027",
       "sort": "2027-06-30",
@@ -262,7 +262,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Seymour \u2014 tantalum by-product metallurgical testwork on 2024 bulk sample",
+      "catalyst": "Seymour — tantalum by-product metallurgical testwork on 2024 bulk sample",
       "catalyst_type": "metallurgy",
       "timing": "No firm date given",
       "sort": null,
@@ -282,7 +282,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Lincoln gold (California) \u2014 Phase 2 underground diamond drilling results (16 holes, ~1,500m) to lift confidence in southern resource",
+      "catalyst": "Lincoln gold (California) — Phase 2 underground diamond drilling results (16 holes, ~1,500m) to lift confidence in southern resource",
       "catalyst_type": "drilling_assay",
       "timing": "Underway since Sept 2026; no date given",
       "sort": null,
@@ -291,7 +291,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Lincoln \u2014 plant audit/restart costing and staged Mining Study (MSO); work elevated from Scoping Study straight to PFS, then Feasibility Study and project financing",
+      "catalyst": "Lincoln — plant audit/restart costing and staged Mining Study (MSO); work elevated from Scoping Study straight to PFS, then Feasibility Study and project financing",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "No firm dates given",
       "sort": null,
@@ -300,7 +300,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Lincoln \u2014 completion of 60-acre adjoining land acquisition (drilling access, development, tailings)",
+      "catalyst": "Lincoln — completion of 60-acre adjoining land acquisition (drilling access, development, tailings)",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -320,7 +320,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Thai hydromet plant (Kabin Buri, 49% stake) \u2014 first MREC flake production (converting African monazite feedstock)",
+      "catalyst": "Thai hydromet plant (Kabin Buri, 49% stake) — first MREC flake production (converting African monazite feedstock)",
       "catalyst_type": "production_fid",
       "timing": "Q4 CY2026",
       "sort": "2026-11-15",
@@ -331,7 +331,7 @@
   ],
   "ILT": [
     {
-      "catalyst": "Orient silver-zinc-indium (QLD) \u2014 resource infill/extension drilling (41 RC + 7 DD holes this quarter) toward an updated MRE; ore-sorting follow-up",
+      "catalyst": "Orient silver-zinc-indium (QLD) — resource infill/extension drilling (41 RC + 7 DD holes this quarter) toward an updated MRE; ore-sorting follow-up",
       "catalyst_type": "mre_upgrade",
       "timing": "No firm date given",
       "sort": null,
@@ -340,7 +340,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Herberton regional \u2014 results from Union Jack and Boonmoo Epithermal drilling (8 RC holes)",
+      "catalyst": "Herberton regional — results from Union Jack and Boonmoo Epithermal drilling (8 RC holes)",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -362,7 +362,7 @@
   ],
   "KGL": [
     {
-      "catalyst": "Jervois \u2014 first copper concentrate production",
+      "catalyst": "Jervois — first copper concentrate production",
       "catalyst_type": "production_fid",
       "timing": "H1 CY2028",
       "sort": "2028-03-31",
@@ -371,7 +371,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Jervois copper (NT) \u2014 commencement of principal construction following FID (15 Oct 2026); long-lead SAG/ball mill procurement",
+      "catalyst": "Jervois copper (NT) — commencement of principal construction following FID (15 Oct 2026); long-lead SAG/ball mill procurement",
       "catalyst_type": "production_fid",
       "timing": "Post-FID; no firm date given",
       "sort": null,
@@ -380,9 +380,9 @@
       "estimated": true
     },
     {
-      "catalyst": "Jervois \u2014 results from A$20M 2026\u20132028 onsite drilling and geophysics exploration program",
+      "catalyst": "Jervois — results from A$20M 2026–2028 onsite drilling and geophysics exploration program",
       "catalyst_type": "drilling_assay",
-      "timing": "2026\u20132028 program; no specific date",
+      "timing": "2026–2028 program; no specific date",
       "sort": null,
       "day_precise": false,
       "source": "September 2026 Quarterly Activities and Cashflow Report (26 Oct 2026)",
@@ -391,7 +391,7 @@
   ],
   "KNI": [
     {
-      "catalyst": "Commonwealth\u2013Silica Hill gold-silver (NSW) \u2014 updated JORC MRE incorporating Phase 1 and Phase 2 2026 drilling",
+      "catalyst": "Commonwealth–Silica Hill gold-silver (NSW) — updated JORC MRE incorporating Phase 1 and Phase 2 2026 drilling",
       "catalyst_type": "mre_upgrade",
       "timing": "December 2026",
       "sort": "2026-12-16",
@@ -400,7 +400,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Commonwealth \u2014 Phase 3 district-scale drilling at Welcome Jack, Walls and Stringers (within 1km of resource)",
+      "catalyst": "Commonwealth — Phase 3 district-scale drilling at Welcome Jack, Walls and Stringers (within 1km of resource)",
       "catalyst_type": "drilling_assay",
       "timing": "Q1 2027",
       "sort": "2027-02-14",
@@ -422,7 +422,7 @@
   ],
   "KZR": [
     {
-      "catalyst": "Ashburton Gold Project \u2014 updated Mt Olympus Mineral Resource Estimate (~25,000m additional drilling)",
+      "catalyst": "Ashburton Gold Project — updated Mt Olympus Mineral Resource Estimate (~25,000m additional drilling)",
       "catalyst_type": "mre_upgrade",
       "timing": "Q4 2026",
       "sort": "2026-11-15",
@@ -431,7 +431,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Ashburton \u2014 Pre-Feasibility Study completion",
+      "catalyst": "Ashburton — Pre-Feasibility Study completion",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "April 2027",
       "sort": "2027-04-15",
@@ -440,7 +440,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Ashburton \u2014 growth drilling beneath Mt Olympus and at Peake deposit; accelerated evaluation of Xanadu as second hub",
+      "catalyst": "Ashburton — growth drilling beneath Mt Olympus and at Peake deposit; accelerated evaluation of Xanadu as second hub",
       "catalyst_type": "drilling_assay",
       "timing": "Underway; no date given",
       "sort": null,
@@ -460,7 +460,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Lei Lithium Project (Bynoe, NT) \u2014 targeted drilling: 8 RC holes on Lei Secondary Pegmatite + 2 diamond holes at depth on Primary (resource upgrade)",
+      "catalyst": "Lei Lithium Project (Bynoe, NT) — targeted drilling: 8 RC holes on Lei Secondary Pegmatite + 2 diamond holes at depth on Primary (resource upgrade)",
       "catalyst_type": "mre_upgrade",
       "timing": "Commencing post quarter (Q4 2026)",
       "sort": "2026-11-15",
@@ -469,7 +469,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Lei DSO project \u2014 environmental approval (SER lodged Sept 2026), enabling mining licence application",
+      "catalyst": "Lei DSO project — environmental approval (SER lodged Sept 2026), enabling mining licence application",
       "catalyst_type": "production_fid",
       "timing": "Q1 CY2027",
       "sort": "2027-02-14",
@@ -478,7 +478,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Lei \u2014 conversion of non-binding Canmax offtake MOU (50% of DSO/spodumene) to binding offtake",
+      "catalyst": "Lei — conversion of non-binding Canmax offtake MOU (50% of DSO/spodumene) to binding offtake",
       "catalyst_type": "capital_raise",
       "timing": "No firm date given",
       "sort": null,
@@ -511,7 +511,7 @@
   ],
   "QML": [
     {
-      "catalyst": "Mt Chalmers \u2014 complete in-pit pontoon drilling (first beneath historic pits since 1982); report 26MCDD052 and NNE corridor follow-up results",
+      "catalyst": "Mt Chalmers — complete in-pit pontoon drilling (first beneath historic pits since 1982); report 26MCDD052 and NNE corridor follow-up results",
       "catalyst_type": "drilling_assay",
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
@@ -520,7 +520,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Woods Shaft \u2014 commence 39-hole, 7,000m resource drilling program",
+      "catalyst": "Woods Shaft — commence 39-hole, 7,000m resource drilling program",
       "catalyst_type": "drilling_assay",
       "timing": "This quarter (December quarter 2026)",
       "sort": "2026-11-15",
@@ -529,7 +529,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Botos \u2014 settle freehold properties, Tier 1 validation drilling (64 holes, 11,360m) results; Tier 2 extension drilling subject to results",
+      "catalyst": "Botos — settle freehold properties, Tier 1 validation drilling (64 holes, 11,360m) results; Tier 2 extension drilling subject to results",
       "catalyst_type": "drilling_assay",
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
@@ -538,7 +538,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Mt Chalmers \u2014 updated Mineral Resource incorporating 2026 drilling",
+      "catalyst": "Mt Chalmers — updated Mineral Resource incorporating 2026 drilling",
       "catalyst_type": "mre_upgrade",
       "timing": "Updates pending; no date given",
       "sort": null,
@@ -547,7 +547,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Mt Chalmers copper-gold \u2014 DFS completion (geomet testwork to locked-cycle tests) and development financing discussions",
+      "catalyst": "Mt Chalmers copper-gold — DFS completion (geomet testwork to locked-cycle tests) and development financing discussions",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "No firm date given in latest reports",
       "sort": null,
@@ -558,7 +558,7 @@
   ],
   "SBM": [
     {
-      "catalyst": "Touquoy restart (Nova Scotia) \u2014 mill commissioning begins",
+      "catalyst": "Touquoy restart (Nova Scotia) — mill commissioning begins",
       "catalyst_type": "production_fid",
       "timing": "November 2026",
       "sort": "2026-11-15",
@@ -567,7 +567,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Touquoy restart \u2014 commencement of stockpile processing",
+      "catalyst": "Touquoy restart — commencement of stockpile processing",
       "catalyst_type": "other",
       "timing": "By end of Q2 (December) FY27",
       "sort": "2026-12-16",
@@ -576,7 +576,7 @@
       "estimated": true
     },
     {
-      "catalyst": "15-Mile Processing Hub \u2014 Feasibility Study completion",
+      "catalyst": "15-Mile Processing Hub — Feasibility Study completion",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Q3 (March) FY27",
       "sort": "2027-03-16",
@@ -585,7 +585,7 @@
       "estimated": true
     },
     {
-      "catalyst": "New Simberi \u2014 completion of sale of remaining interest to Lingbao Gold (A$410M)",
+      "catalyst": "New Simberi — completion of sale of remaining interest to Lingbao Gold (A$410M)",
       "catalyst_type": "board_ma",
       "timing": "Q3 (March) FY27",
       "sort": "2027-03-16",
@@ -594,7 +594,7 @@
       "estimated": true
     },
     {
-      "catalyst": "15-Mile Processing Hub \u2014 Final Investment Decision",
+      "catalyst": "15-Mile Processing Hub — Final Investment Decision",
       "catalyst_type": "production_fid",
       "timing": "Q4 (June) FY27",
       "sort": "2027-06-15",
@@ -603,7 +603,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Atlantic \u2014 federal decision on whether impact assessment required (15-Mile)",
+      "catalyst": "Atlantic — federal decision on whether impact assessment required (15-Mile)",
       "catalyst_type": "other",
       "timing": "Awaited; no date given",
       "sort": null,
@@ -612,7 +612,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Touquoy \u2014 assessment of Old Austen down-plunge underground and Mill Shaft West prospect",
+      "catalyst": "Touquoy — assessment of Old Austen down-plunge underground and Mill Shaft West prospect",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -652,6 +652,33 @@
       "source": "FA call, 17 Nov 2026",
       "day_precise": false,
       "estimated": false
+    },
+    {
+      "catalyst": "Watershed tungsten project — financial close and Final Investment Decision, subject to completing ~$255M funding / binding offtake",
+      "catalyst_type": "production_fid",
+      "timing": "Targeted December 2026",
+      "sort": "2026-12-15",
+      "day_precise": false,
+      "source": "FA call, November 2026",
+      "estimated": false
+    },
+    {
+      "catalyst": "Watershed — open-pit mining commencement",
+      "catalyst_type": "production_fid",
+      "timing": "April 2027",
+      "sort": "2027-04-15",
+      "day_precise": false,
+      "source": "FA call, November 2026",
+      "estimated": false
+    },
+    {
+      "catalyst": "Watershed — first tungsten concentrate production",
+      "catalyst_type": "production_fid",
+      "timing": "June 2027",
+      "sort": "2027-06-15",
+      "day_precise": false,
+      "source": "FA call, November 2026",
+      "estimated": false
     }
   ],
   "THL": [
@@ -678,7 +705,7 @@
   ],
   "VBX": [
     {
-      "catalyst": "Wuudagu \u2014 Definitive Feasibility Study completion (extended to assess expanded mining/beneficiation opportunities)",
+      "catalyst": "Wuudagu — Definitive Feasibility Study completion (extended to assess expanded mining/beneficiation opportunities)",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Q1 2027",
       "sort": "2027-02-14",
@@ -687,7 +714,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Wuudagu bauxite (WA Kimberley) \u2014 finalise and lodge Environmental Review Document (ERD)",
+      "catalyst": "Wuudagu bauxite (WA Kimberley) — finalise and lodge Environmental Review Document (ERD)",
       "catalyst_type": "production_fid",
       "timing": "Upcoming; no firm date",
       "sort": null,
@@ -696,7 +723,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Wuudagu \u2014 offtake/marketing agreements and formal development funding process",
+      "catalyst": "Wuudagu — offtake/marketing agreements and formal development funding process",
       "catalyst_type": "capital_raise",
       "timing": "No firm date given",
       "sort": null,
@@ -736,6 +763,24 @@
       "source": "FA call, 20 Nov 2026",
       "day_precise": false,
       "estimated": true
+    },
+    {
+      "catalyst": "ARGO critical-minerals recovery technology (Ge/Ga/In from zinc leach residue) — preliminary engineering for a full-scale plant, completion target",
+      "catalyst_type": "metallurgy",
+      "timing": "Q4 2026",
+      "sort": "2026-11-15",
+      "day_precise": false,
+      "source": "FA call, 2026",
+      "estimated": true
+    },
+    {
+      "catalyst": "ARGO pilot plant construction start",
+      "catalyst_type": "metallurgy",
+      "timing": "Q1 2027",
+      "sort": "2027-02-14",
+      "day_precise": false,
+      "source": "FA call, 2026",
+      "estimated": true
     }
   ],
   "ALM": [
@@ -760,7 +805,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Muntanga uranium (Zambia) \u2014 complete 2026 drilling at Muntanga North/Chisebuka targets (resource growth)",
+      "catalyst": "Muntanga uranium (Zambia) — complete 2026 drilling at Muntanga North/Chisebuka targets (resource growth)",
       "catalyst_type": "drilling_assay",
       "timing": "Q4 2026",
       "sort": "2026-11-15",
@@ -769,7 +814,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Madaouela uranium (Niger; Mining Convention executed late Sept 2026) \u2014 converted JORC Mineral Resource",
+      "catalyst": "Madaouela uranium (Niger; Mining Convention executed late Sept 2026) — converted JORC Mineral Resource",
       "catalyst_type": "mre_upgrade",
       "timing": "Q1 2027",
       "sort": "2027-02-14",
@@ -778,7 +823,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Madaouela \u2014 value optimisation program culminating in Scoping Study",
+      "catalyst": "Madaouela — value optimisation program culminating in Scoping Study",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Q1 2027",
       "sort": "2027-02-14",
@@ -838,7 +883,7 @@
   ],
   "RR1": [
     {
-      "catalyst": "Murchison South gold \u2014 remaining 40 grade-control hole assays (NW Pit)",
+      "catalyst": "Murchison South gold — remaining 40 grade-control hole assays (NW Pit)",
       "catalyst_type": "drilling_assay",
       "timing": "November 2026",
       "sort": "2026-11-15",
@@ -847,7 +892,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Murchison South \u2014 step-out RC expansion program (~24 holes, Primrose Shear) results",
+      "catalyst": "Murchison South — step-out RC expansion program (~24 holes, Primrose Shear) results",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -856,7 +901,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Murchison South \u2014 satisfy Andel Right-to-Mine conditions (FIRB, mining services/toll milling agreements, environmental baseline audit) and Mining Proposal submission to fast-track mining",
+      "catalyst": "Murchison South — satisfy Andel Right-to-Mine conditions (FIRB, mining services/toll milling agreements, environmental baseline audit) and Mining Proposal submission to fast-track mining",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -867,7 +912,7 @@
   ],
   "IND": [
     {
-      "catalyst": "Laverton (North Pool, E38/4061) \u2014 heritage survey with native title holders, then maiden RC drilling on Chatterbox Shear Zone target (POW lodged)",
+      "catalyst": "Laverton (North Pool, E38/4061) — heritage survey with native title holders, then maiden RC drilling on Chatterbox Shear Zone target (POW lodged)",
       "catalyst_type": "drilling_assay",
       "timing": "Heritage survey \"as soon as practicable\"; no drilling date given",
       "sort": null,
@@ -878,7 +923,7 @@
   ],
   "ML8": [
     {
-      "catalyst": "Clermont \u2014 Leo Grande maiden Mineral Resource Estimate (diamond drilling underway)",
+      "catalyst": "Clermont — Leo Grande maiden Mineral Resource Estimate (diamond drilling underway)",
       "catalyst_type": "mre_upgrade",
       "timing": "No firm date given",
       "sort": null,
@@ -887,7 +932,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Clermont \u2014 Goldfinger maiden RC drilling results",
+      "catalyst": "Clermont — Goldfinger maiden RC drilling results",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -896,7 +941,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Peak Downs copper \u2014 next phase: diamond drilling, metallurgical testwork and modelling ahead of maiden MRE",
+      "catalyst": "Peak Downs copper — next phase: diamond drilling, metallurgical testwork and modelling ahead of maiden MRE",
       "catalyst_type": "mre_upgrade",
       "timing": "No firm date given",
       "sort": null,
@@ -916,7 +961,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Fiddlers Creek \u2014 results from diamond drilling (first surface drilling since May 2025) targeting historical high-grade",
+      "catalyst": "Fiddlers Creek — results from diamond drilling (first surface drilling since May 2025) targeting historical high-grade",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -925,7 +970,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Comstock (St Arnaud) \u2014 pre-development steps after production licence grant: Parks Victoria/Crown Land Minister consent, Djaara engagement, resource definition, mine design, Work Plan approval, metallurgical testing",
+      "catalyst": "Comstock (St Arnaud) — pre-development steps after production licence grant: Parks Victoria/Crown Land Minister consent, Djaara engagement, resource definition, mine design, Work Plan approval, metallurgical testing",
       "catalyst_type": "metallurgy",
       "timing": "Coming months; no firm date",
       "sort": null,
@@ -936,36 +981,36 @@
   ],
   "ALK": [
     {
-      "catalyst": "Bj\u00f6rkdal \u2014 Storheden portal established; Storheden extension drilling recommences",
+      "catalyst": "Björkdal — Storheden portal established; Storheden extension drilling recommences",
       "catalyst_type": "drilling_assay",
       "timing": "Q2 FY27 (December quarter 2026)",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Quarterly Report \u2013 September 2026 (22 Oct 2026)",
+      "source": "Quarterly Report – September 2026 (22 Oct 2026)",
       "estimated": true
     },
     {
-      "catalyst": "Tomingley \u2014 Newell Highway traffic switch to new alignment, then San Antonio open-pit mining commences",
+      "catalyst": "Tomingley — Newell Highway traffic switch to new alignment, then San Antonio open-pit mining commences",
       "catalyst_type": "other",
       "timing": "Early in the June 2027 quarter",
       "sort": "2027-06-15",
       "day_precise": false,
-      "source": "Quarterly Report \u2013 September 2026 (22 Oct 2026)",
+      "source": "Quarterly Report – September 2026 (22 Oct 2026)",
       "estimated": false
     },
     {
-      "catalyst": "Boda-Kaiser Au-Cu (NSW) \u2014 environmental baseline studies toward development approval",
+      "catalyst": "Boda-Kaiser Au-Cu (NSW) — environmental baseline studies toward development approval",
       "catalyst_type": "production_fid",
       "timing": "Ongoing; no date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Report \u2013 September 2026 (22 Oct 2026)",
+      "source": "Quarterly Report – September 2026 (22 Oct 2026)",
       "estimated": true
     }
   ],
   "CAV": [
     {
-      "catalyst": "Kookynie \u2014 production start (Swiftsure and Tiptoe open pits)",
+      "catalyst": "Kookynie — production start (Swiftsure and Tiptoe open pits)",
       "catalyst_type": "production_fid",
       "timing": "2H 2027",
       "sort": "2027-09-30",
@@ -974,7 +1019,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Kookynie Gold Project \u2014 results from exploration drilling (~4,000m greenstone-granite boundary) and ~3,000m sterilisation drilling",
+      "catalyst": "Kookynie Gold Project — results from exploration drilling (~4,000m greenstone-granite boundary) and ~3,000m sterilisation drilling",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -983,7 +1028,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Kookynie \u2014 operating permits approvals (Mining Proposal, NVCP, Works Approval) after BFS",
+      "catalyst": "Kookynie — operating permits approvals (Mining Proposal, NVCP, Works Approval) after BFS",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Submitted; no approval date given",
       "sort": null,
@@ -992,7 +1037,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Kookynie \u2014 project funding (bank debt/equity) and toll-treatment/ore-purchase agreement selection",
+      "catalyst": "Kookynie — project funding (bank debt/equity) and toll-treatment/ore-purchase agreement selection",
       "catalyst_type": "capital_raise",
       "timing": "No firm date given",
       "sort": null,
@@ -1003,7 +1048,7 @@
   ],
   "LGM": [
     {
-      "catalyst": "Mt Carrington \u2014 larger Scoping Study (Ausenco/WSP) assessing throughput above 1Mtpa on updated MRE",
+      "catalyst": "Mt Carrington — larger Scoping Study (Ausenco/WSP) assessing throughput above 1Mtpa on updated MRE",
       "catalyst_type": "mre_upgrade",
       "timing": "December 2026 Quarter",
       "sort": "2026-12-16",
@@ -1012,7 +1057,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Mt Carrington \u2014 Emu prospect drilling assays",
+      "catalyst": "Mt Carrington — Emu prospect drilling assays",
       "catalyst_type": "drilling_assay",
       "timing": "Awaited; no date given",
       "sort": null,
@@ -1021,7 +1066,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Mt Carrington \u2014 Mascotte silver-gold Phase 2 diamond drilling (10 holes) results",
+      "catalyst": "Mt Carrington — Mascotte silver-gold Phase 2 diamond drilling (10 holes) results",
       "catalyst_type": "drilling_assay",
       "timing": "Underway; no date given",
       "sort": null,
@@ -1030,7 +1075,7 @@
       "estimated": true
     },
     {
-      "catalyst": "NiCo Young (Ni-Co-Sc) \u2014 updated MRE by WSP, first to assess scandium",
+      "catalyst": "NiCo Young (Ni-Co-Sc) — updated MRE by WSP, first to assess scandium",
       "catalyst_type": "mre_upgrade",
       "timing": "No firm date given",
       "sort": null,
@@ -1039,7 +1084,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Rockley \u2014 testing three untested IP chargeability targets at Crystal Hill",
+      "catalyst": "Rockley — testing three untested IP chargeability targets at Crystal Hill",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -1050,7 +1095,7 @@
   ],
   "AGR": [
     {
-      "catalyst": "Tr\u00eas Estradas phosphate \u2014 court resolution confirming validity of environmental licence (TRF4 appeal)",
+      "catalyst": "Três Estradas phosphate — court resolution confirming validity of environmental licence (TRF4 appeal)",
       "catalyst_type": "production_fid",
       "timing": "Anticipated by mid-November 2026",
       "sort": "2026-11-30",
@@ -1059,7 +1104,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Santa Barbara gold (Colombia) \u2014 lift production from ~100t to 200t per month",
+      "catalyst": "Santa Barbara gold (Colombia) — lift production from ~100t to 200t per month",
       "catalyst_type": "production_fid",
       "timing": "Before Q1 2027",
       "sort": "2027-03-31",
@@ -1068,7 +1113,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Tr\u00eas Estradas \u2014 US$3M working-capital finance (loan/royalty term sheet; due diligence in progress) to unlock 11,000t of sales agreements",
+      "catalyst": "Três Estradas — US$3M working-capital finance (loan/royalty term sheet; due diligence in progress) to unlock 11,000t of sales agreements",
       "catalyst_type": "board_ma",
       "timing": "No firm date given",
       "sort": null,
@@ -1077,7 +1122,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Lucena phosphate \u2014 ANM licence extensions/approvals to progress to feasibility",
+      "catalyst": "Lucena phosphate — ANM licence extensions/approvals to progress to feasibility",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Awaited; no date given",
       "sort": null,
@@ -1088,7 +1133,7 @@
   ],
   "BCA": [
     {
-      "catalyst": "Wandanya manganese-iron \u2014 assay results from RC drilling along broader 9km trend",
+      "catalyst": "Wandanya manganese-iron — assay results from RC drilling along broader 9km trend",
       "catalyst_type": "drilling_assay",
       "timing": "Early November 2026 / early Q4",
       "sort": "2026-11-15",
@@ -1097,7 +1142,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Wandanya \u2014 Scoping Study on 3.4km base case",
+      "catalyst": "Wandanya — Scoping Study on 3.4km base case",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "December 2026 / Q4 2026",
       "sort": "2026-11-15",
@@ -1106,7 +1151,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Wandanya \u2014 Mining Licence applications lodged",
+      "catalyst": "Wandanya — Mining Licence applications lodged",
       "catalyst_type": "production_fid",
       "timing": "By end of 2026",
       "sort": "2026-12-31",
@@ -1115,7 +1160,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Wandanya \u2014 referral to Environmental Protection Authority for approval pathway",
+      "catalyst": "Wandanya — referral to Environmental Protection Authority for approval pathway",
       "catalyst_type": "production_fid",
       "timing": "Early 2027",
       "sort": "2027-01-31",
@@ -1124,7 +1169,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Wandanya \u2014 feasibility studies (DSO Fe/Mn and beneficiated Mn)",
+      "catalyst": "Wandanya — feasibility studies (DSO Fe/Mn and beneficiated Mn)",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Through 2027",
       "sort": "2027-12-31",
@@ -1135,7 +1180,7 @@
   ],
   "RSG": [
     {
-      "catalyst": "ABC Project (C\u00f4te d\u2019Ivoire) \u2014 complete infill drilling campaign",
+      "catalyst": "ABC Project (Côte d’Ivoire) — complete infill drilling campaign",
       "catalyst_type": "drilling_assay",
       "timing": "By end of 2026",
       "sort": "2026-12-31",
@@ -1144,7 +1189,7 @@
       "estimated": true
     },
     {
-      "catalyst": "ABC Project \u2014 Mineral Resource Estimate update",
+      "catalyst": "ABC Project — Mineral Resource Estimate update",
       "catalyst_type": "mre_upgrade",
       "timing": "Q1 2027",
       "sort": "2027-02-14",
@@ -1162,16 +1207,16 @@
       "estimated": true
     },
     {
-      "catalyst": "ABC Project \u2014 feasibility studies, then FID",
+      "catalyst": "ABC Project — feasibility studies, then FID",
       "catalyst_type": "dfs_bfs_scoping",
-      "timing": "Feasibility studies planned for 2027; FID 2027\u201328 roadmap",
+      "timing": "Feasibility studies planned for 2027; FID 2027–28 roadmap",
       "sort": "2027-12-31",
       "day_precise": false,
       "source": "Corporate Presentation, 10 Nov 2026",
       "estimated": false
     },
     {
-      "catalyst": "Doropo (C\u00f4te d\u2019Ivoire) \u2014 commissioning and first gold",
+      "catalyst": "Doropo (Côte d’Ivoire) — commissioning and first gold",
       "catalyst_type": "production_fid",
       "timing": "H1 2028",
       "sort": "2028-03-31",
@@ -1180,7 +1225,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Syama \u2014 Sulphide Conversion Project full commissioning (transition to full sulphide)",
+      "catalyst": "Syama — Sulphide Conversion Project full commissioning (transition to full sulphide)",
       "catalyst_type": "production_fid",
       "timing": "Commissioning nearing completion; no firm date",
       "sort": null,
@@ -1189,7 +1234,7 @@
       "estimated": true
     },
     {
-      "catalyst": "La Debo \u2014 technical studies on expanded 0.9Moz MRE; Doropo expansion study",
+      "catalyst": "La Debo — technical studies on expanded 0.9Moz MRE; Doropo expansion study",
       "catalyst_type": "mre_upgrade",
       "timing": "2027 roadmap; no firm date",
       "sort": null,
@@ -1200,7 +1245,7 @@
   ],
   "L1M": [
     {
-      "catalyst": "Warby (tungsten) \u2014 final Phase 3 soil assays to drive drill target selection",
+      "catalyst": "Warby (tungsten) — final Phase 3 soil assays to drive drill target selection",
       "catalyst_type": "drilling_assay",
       "timing": "December 2026",
       "sort": "2026-12-16",
@@ -1209,7 +1254,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Mt Turner \u2014 maiden Mineral Resource Estimate",
+      "catalyst": "Mt Turner — maiden Mineral Resource Estimate",
       "catalyst_type": "mre_upgrade",
       "timing": "By Q3 2027",
       "sort": "2027-09-30",
@@ -1218,7 +1263,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Warby \u2014 trenching and maiden drill program",
+      "catalyst": "Warby — trenching and maiden drill program",
       "catalyst_type": "drilling_assay",
       "timing": "2027",
       "sort": "2027-06-30",
@@ -1227,7 +1272,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Mt Turner gold (QLD) \u2014 Phase 2 diamond drilling results, Drummer Fault (commenced 5 Oct 2026)",
+      "catalyst": "Mt Turner gold (QLD) — Phase 2 diamond drilling results, Drummer Fault (commenced 5 Oct 2026)",
       "catalyst_type": "drilling_assay",
       "timing": "Assays pending; no date given",
       "sort": null,
@@ -1238,7 +1283,7 @@
   ],
   "AGC": [
     {
-      "catalyst": "Evergreen \u2014 additional RC drilling targeting shallow extensions (permitting underway), toward an initial Mineral Resource Estimate",
+      "catalyst": "Evergreen — additional RC drilling targeting shallow extensions (permitting underway), toward an initial Mineral Resource Estimate",
       "catalyst_type": "mre_upgrade",
       "timing": "Commencing December 2026",
       "sort": "2026-12-16",
@@ -1247,16 +1292,16 @@
       "estimated": false
     },
     {
-      "catalyst": "Junee \u2014 drilling program (deferred for cropping and to prioritise Evergreen)",
+      "catalyst": "Junee — drilling program (deferred for cropping and to prioritise Evergreen)",
       "catalyst_type": "drilling_assay",
-      "timing": "January\u2013March 2027 quarter",
+      "timing": "January–March 2027 quarter",
       "sort": "2027-03-16",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
       "estimated": false
     },
     {
-      "catalyst": "South Cobar \u2014 Evergreen and Achilles pending RC assays (incl. Achilles oxide gold-silver extensions)",
+      "catalyst": "South Cobar — Evergreen and Achilles pending RC assays (incl. Achilles oxide gold-silver extensions)",
       "catalyst_type": "drilling_assay",
       "timing": "Pending at quarter end; no date given",
       "sort": null,
@@ -1267,7 +1312,7 @@
   ],
   "CDT": [
     {
-      "catalyst": "Ebony \u2014 regional soil sampling recommences after wet season",
+      "catalyst": "Ebony — regional soil sampling recommences after wet season",
       "catalyst_type": "other",
       "timing": "November 2026",
       "sort": "2026-11-15",
@@ -1276,7 +1321,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Nielle gold (C\u00f4te d\u2019Ivoire) \u2014 grant of exploration permit (condition precedent to completing 90% acquisition)",
+      "catalyst": "Nielle gold (Côte d’Ivoire) — grant of exploration permit (condition precedent to completing 90% acquisition)",
       "catalyst_type": "board_ma",
       "timing": "Anticipated December quarter 2026",
       "sort": "2026-11-15",
@@ -1285,7 +1330,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Nielle \u2014 maiden 2,500\u20133,000m RC/diamond drilling program (subject to permit grant)",
+      "catalyst": "Nielle — maiden 2,500–3,000m RC/diamond drilling program (subject to permit grant)",
       "catalyst_type": "drilling_assay",
       "timing": "After permit grant; no firm date",
       "sort": null,
@@ -1296,7 +1341,7 @@
   ],
   "DM1": [
     {
-      "catalyst": "Adzope (C\u00f4te d\u2019Ivoire) \u2014 Nyan field reconnaissance (7km gold-in-soil anomaly, never drilled)",
+      "catalyst": "Adzope (Côte d’Ivoire) — Nyan field reconnaissance (7km gold-in-soil anomaly, never drilled)",
       "catalyst_type": "drilling_assay",
       "timing": "This quarter (December quarter 2026)",
       "sort": "2026-11-15",
@@ -1305,7 +1350,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Nyan \u2014 infill soil sampling, ground geophysics, auger and maiden aircore drilling",
+      "catalyst": "Nyan — infill soil sampling, ground geophysics, auger and maiden aircore drilling",
       "catalyst_type": "drilling_assay",
       "timing": "Q1 2027",
       "sort": "2027-02-14",
@@ -1314,7 +1359,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Adzope \u2014 possible follow-up on stream-sediment Target 2 (2.5km \u00d7 1.5km anomaly)",
+      "catalyst": "Adzope — possible follow-up on stream-sediment Target 2 (2.5km × 1.5km anomaly)",
       "catalyst_type": "other",
       "timing": "Under consideration; no date",
       "sort": null,
@@ -1325,7 +1370,7 @@
   ],
   "AS1": [
     {
-      "catalyst": "Kada \u2014 Definitive Feasibility Study completion",
+      "catalyst": "Kada — Definitive Feasibility Study completion",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "By end of Q2 CY2027",
       "sort": "2027-06-30",
@@ -1334,7 +1379,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Kada Gold Project (Guinea) \u2014 further resource update using 19,251m drilled after MRE cut-off (Massan Inferred\u2192Indicated conversion)",
+      "catalyst": "Kada Gold Project (Guinea) — further resource update using 19,251m drilled after MRE cut-off (Massan Inferred→Indicated conversion)",
       "catalyst_type": "mre_upgrade",
       "timing": "No firm date given",
       "sort": null,
@@ -1343,7 +1388,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Damissa Koura \u2014 complete Arafura Ouest acquisition; power-auger drilling recommencing at Sogosogoba target",
+      "catalyst": "Damissa Koura — complete Arafura Ouest acquisition; power-auger drilling recommencing at Sogosogoba target",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -1354,7 +1399,7 @@
   ],
   "VAU": [
     {
-      "catalyst": "Merger with Genesis Minerals \u2014 Supreme Court of WA second court hearing and scheme implementation (shareholders approved 11 Nov)",
+      "catalyst": "Merger with Genesis Minerals — Supreme Court of WA second court hearing and scheme implementation (shareholders approved 11 Nov)",
       "catalyst_type": "board_ma",
       "timing": "Second court hearing 16 Nov 2026; implementation late November 2026",
       "sort": "2026-11-16",
@@ -1363,7 +1408,7 @@
       "estimated": false
     },
     {
-      "catalyst": "King of the Hills \u2014 stage 2 processing upgrade performance testing and full commissioning",
+      "catalyst": "King of the Hills — stage 2 processing upgrade performance testing and full commissioning",
       "catalyst_type": "production_fid",
       "timing": "Performance testing late October 2026, then full commissioning",
       "sort": "2026-10-16",
@@ -1372,7 +1417,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Production growth to 380\u2013400koz (FY28) from FY27 guidance of 355\u2013375koz",
+      "catalyst": "Production growth to 380–400koz (FY28) from FY27 guidance of 355–375koz",
       "catalyst_type": "production_fid",
       "timing": "FY28",
       "sort": "2027-12-31",
@@ -1381,7 +1426,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Sugar Zone (Canada) \u2014 underground ramp-up after July 2026 restart",
+      "catalyst": "Sugar Zone (Canada) — underground ramp-up after July 2026 restart",
       "catalyst_type": "production_fid",
       "timing": "Ongoing; no milestone date",
       "sort": null,
@@ -1401,7 +1446,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Comet Vale \u2014 diamond drilling of high-grade Sovereign footwall lode and Lakeview depth extensions; discovery drilling along 30km soil-anomaly strike",
+      "catalyst": "Comet Vale — diamond drilling of high-grade Sovereign footwall lode and Lakeview depth extensions; discovery drilling along 30km soil-anomaly strike",
       "catalyst_type": "drilling_assay",
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
@@ -1410,7 +1455,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Mulwarrie \u2014 heritage surveys then RC drilling of step-out areas",
+      "catalyst": "Mulwarrie — heritage surveys then RC drilling of step-out areas",
       "catalyst_type": "drilling_assay",
       "timing": "RC access early 2027",
       "sort": "2027-01-31",
@@ -1419,7 +1464,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Vivien \u2014 growth drilling at Val and Vince prospects (DHEM-guided)",
+      "catalyst": "Vivien — growth drilling at Val and Vince prospects (DHEM-guided)",
       "catalyst_type": "drilling_assay",
       "timing": "Underway; no date given",
       "sort": null,
@@ -1430,7 +1475,7 @@
   ],
   "OCN": [
     {
-      "catalyst": "Serra Negra REE (Brazil) \u2014 remaining historical core re-sampling assays (45 holes, ~4,750m)",
+      "catalyst": "Serra Negra REE (Brazil) — remaining historical core re-sampling assays (45 holes, ~4,750m)",
       "catalyst_type": "drilling_assay",
       "timing": "Update imminent",
       "sort": "2026-11-30",
@@ -1439,7 +1484,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Serra Negra \u2014 aeromagnetic survey interpretation and inversion modelling results",
+      "catalyst": "Serra Negra — aeromagnetic survey interpretation and inversion modelling results",
       "catalyst_type": "other",
       "timing": "Update imminent",
       "sort": "2026-11-30",
@@ -1448,7 +1493,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Serra Negra \u2014 assay results from maiden ~20,000m diamond drilling (4 rigs, Central REE target)",
+      "catalyst": "Serra Negra — assay results from maiden ~20,000m diamond drilling (4 rigs, Central REE target)",
       "catalyst_type": "drilling_assay",
       "timing": "Throughout Q4 2026",
       "sort": "2026-11-15",
@@ -1457,7 +1502,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Serra Negra \u2014 maiden Mineral Resource Estimate",
+      "catalyst": "Serra Negra — maiden Mineral Resource Estimate",
       "catalyst_type": "mre_upgrade",
       "timing": "Coming months",
       "sort": "2027-03-31",
@@ -1466,7 +1511,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Solon\u00f3pole (Brazil) \u2014 divestment/partnering process (information memorandum completed)",
+      "catalyst": "Solonópole (Brazil) — divestment/partnering process (information memorandum completed)",
       "catalyst_type": "board_ma",
       "timing": "No firm date given",
       "sort": null,
@@ -1477,7 +1522,7 @@
   ],
   "FIN": [
     {
-      "catalyst": "Cabin Lake gold (Canada) \u2014 assays from summer 2026 drilling program",
+      "catalyst": "Cabin Lake gold (Canada) — assays from summer 2026 drilling program",
       "catalyst_type": "drilling_assay",
       "timing": "December Quarter 2026",
       "sort": "2026-11-15",
@@ -1486,18 +1531,18 @@
       "estimated": true
     },
     {
-      "catalyst": "Cabin Lake \u2014 winter geophysics expanding IP footprint (MIP-supported)",
+      "catalyst": "Cabin Lake — winter geophysics expanding IP footprint (MIP-supported)",
       "catalyst_type": "drilling_assay",
-      "timing": "2026\u201327 winter",
+      "timing": "2026–27 winter",
       "sort": "2027-03-31",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
       "estimated": false
     },
     {
-      "catalyst": "Cabin Lake \u2014 potential winter drilling of targets not tested in summer campaign",
+      "catalyst": "Cabin Lake — potential winter drilling of targets not tested in summer campaign",
       "catalyst_type": "drilling_assay",
-      "timing": "2026\u201327 winter season",
+      "timing": "2026–27 winter season",
       "sort": "2027-03-31",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
@@ -1506,7 +1551,7 @@
   ],
   "XPD": [
     {
-      "catalyst": "Springfield gold (NSW) \u2014 third-phase 4,000\u20135,000m RC drilling (undrilled 1.1km northern strike extent, depth extensions)",
+      "catalyst": "Springfield gold (NSW) — third-phase 4,000–5,000m RC drilling (undrilled 1.1km northern strike extent, depth extensions)",
       "catalyst_type": "drilling_assay",
       "timing": "Commencing in coming days (late Oct 2026), subject to approvals",
       "sort": "2026-10-16",
@@ -1515,7 +1560,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Springfield \u2014 assays from regional soil geochemistry program along strike",
+      "catalyst": "Springfield — assays from regional soil geochemistry program along strike",
       "catalyst_type": "drilling_assay",
       "timing": "\"November 2027\" per report (likely typo for Nov 2026)",
       "sort": "2027-11-15",
@@ -1524,7 +1569,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Neeld gold project (bonanza-grade, acquisition completed 1 Sep 2026) \u2014 follow-up exploration",
+      "catalyst": "Neeld gold project (bonanza-grade, acquisition completed 1 Sep 2026) — follow-up exploration",
       "catalyst_type": "board_ma",
       "timing": "No firm date given",
       "sort": null,
@@ -1535,7 +1580,7 @@
   ],
   "VRL": [
     {
-      "catalyst": "Monument gold (WA) \u2014 re-assay of 1m splits from best AC composites at A4/A1, then RC drilling to define true width and grade",
+      "catalyst": "Monument gold (WA) — re-assay of 1m splits from best AC composites at A4/A1, then RC drilling to define true width and grade",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -1544,7 +1589,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Monument \u2014 Gum Well intrusion-related target mapping/infill soils; McKenzie Well toward first-pass drilling; Korong Syenite infill",
+      "catalyst": "Monument — Gum Well intrusion-related target mapping/infill soils; McKenzie Well toward first-pass drilling; Korong Syenite infill",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -1553,7 +1598,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Monument \u2014 scoping-level technical studies and processing pathways (incl. third-party processing, Laverton)",
+      "catalyst": "Monument — scoping-level technical studies and processing pathways (incl. third-party processing, Laverton)",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -1562,7 +1607,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Monument \u2014 resolution of Warden\u2019s Court proceedings / objections on mining lease M39/1189 and haul-road licence L39/397",
+      "catalyst": "Monument — resolution of Warden’s Court proceedings / objections on mining lease M39/1189 and haul-road licence L39/397",
       "catalyst_type": "production_fid",
       "timing": "Outcomes and timing uncertain",
       "sort": null,
@@ -1573,7 +1618,7 @@
   ],
   "PGO": [
     {
-      "catalyst": "Manda Resources ASX admission (BH6 holds 64M shares + $650k cash on listing) \u2014 North QLD assets spun out",
+      "catalyst": "Manda Resources ASX admission (BH6 holds 64M shares + $650k cash on listing) — North QLD assets spun out",
       "catalyst_type": "other",
       "timing": "Mid-December 2026",
       "sort": "2026-12-16",
@@ -1582,7 +1627,7 @@
       "estimated": false
     },
     {
-      "catalyst": "White Dam (SA) \u2014 Icebreaker oxide resource upgrade (Inferred\u2192Indicated), then mine optimisations and open-pit designs",
+      "catalyst": "White Dam (SA) — Icebreaker oxide resource upgrade (Inferred→Indicated), then mine optimisations and open-pit designs",
       "catalyst_type": "mre_upgrade",
       "timing": "Second half of 2026",
       "sort": "2026-09-30",
@@ -1591,7 +1636,7 @@
       "estimated": true
     },
     {
-      "catalyst": "White Dam \u2014 Icebreaker sulphide gold-copper diamond drilling (commenced post quarter; initial 3,000m) and RC recommencing on oxide MRE area",
+      "catalyst": "White Dam — Icebreaker sulphide gold-copper diamond drilling (commenced post quarter; initial 3,000m) and RC recommencing on oxide MRE area",
       "catalyst_type": "mre_upgrade",
       "timing": "Underway; no date given",
       "sort": null,
@@ -1600,7 +1645,7 @@
       "estimated": true
     },
     {
-      "catalyst": "White Dam \u2014 technical/financial evaluation of Vertigo pit restart and heap-leach pad expansion (pad relined Oct 2026); updates on remaining two oxide MREs",
+      "catalyst": "White Dam — technical/financial evaluation of Vertigo pit restart and heap-leach pad expansion (pad relined Oct 2026); updates on remaining two oxide MREs",
       "catalyst_type": "capital_raise",
       "timing": "No firm date given",
       "sort": null,
@@ -1620,7 +1665,7 @@
   ],
   "CAZ": [
     {
-      "catalyst": "Abenab North copper-REE (Namibia) \u2014 first drilling for Tsumeb-style copper",
+      "catalyst": "Abenab North copper-REE (Namibia) — first drilling for Tsumeb-style copper",
       "catalyst_type": "drilling_assay",
       "timing": "Early 2027",
       "sort": "2027-01-31",
@@ -1629,7 +1674,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Goongarrie Gold Project (51% earned from Brightstar) \u2014 RC drilling at Gulls Blow (first drilling since 1980s, commenced 8 Oct 2026) results",
+      "catalyst": "Goongarrie Gold Project (51% earned from Brightstar) — RC drilling at Gulls Blow (first drilling since 1980s, commenced 8 Oct 2026) results",
       "catalyst_type": "drilling_assay",
       "timing": "Underway; no date given",
       "sort": null,
@@ -1638,7 +1683,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Goongarrie \u2014 follow-up of Hastings AC results along the Bardoc Tectonic Zone",
+      "catalyst": "Goongarrie — follow-up of Hastings AC results along the Bardoc Tectonic Zone",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -1649,7 +1694,7 @@
   ],
   "AKN": [
     {
-      "catalyst": "Tundulu REE (Malawi) \u2014 steady flow of assays from 15,000m RC/diamond program (2,047 samples at lab; deep diamond holes 26NH023/032 results)",
+      "catalyst": "Tundulu REE (Malawi) — steady flow of assays from 15,000m RC/diamond program (2,047 samples at lab; deep diamond holes 26NH023/032 results)",
       "catalyst_type": "drilling_assay",
       "timing": "Coming months; deep-hole assays within four to six weeks of 21 Oct",
       "sort": "2026-12-31",
@@ -1658,7 +1703,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Machinga heavy REE (Malawi) \u2014 field activities and UAV magnetic/LiDAR survey",
+      "catalyst": "Machinga heavy REE (Malawi) — field activities and UAV magnetic/LiDAR survey",
       "catalyst_type": "other",
       "timing": "Field work Nov 2026; UAV survey early December 2026",
       "sort": "2026-11-15",
@@ -1667,7 +1712,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Halls Creek (Onedin; JV with CBH, AKN 49%\u219225%) \u2014 Pre-Feasibility Study",
+      "catalyst": "Halls Creek (Onedin; JV with CBH, AKN 49%→25%) — Pre-Feasibility Study",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "H1 2028",
       "sort": "2028-03-31",
@@ -1676,7 +1721,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Tundulu \u2014 1,000m diamond hole beneath Nathace Hill target",
+      "catalyst": "Tundulu — 1,000m diamond hole beneath Nathace Hill target",
       "catalyst_type": "drilling_assay",
       "timing": "Planning underway; no date given",
       "sort": null,
@@ -1687,7 +1732,7 @@
   ],
   "AAU": [
     {
-      "catalyst": "Cuba \u2014 OFAC licence / lifting of MLV sanction (designated 4 Jun 2026) so Nueva Sabana construction and La Demajagua DFS can resume; conditions include \u226551% U.S. shareholding by 30 Jun 2028",
+      "catalyst": "Cuba — OFAC licence / lifting of MLV sanction (designated 4 Jun 2026) so Nueva Sabana construction and La Demajagua DFS can resume; conditions include ≥51% U.S. shareholding by 30 Jun 2028",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Negotiating; no date given",
       "sort": null,
@@ -1698,7 +1743,7 @@
   ],
   "TGM": [
     {
-      "catalyst": "TGME Gold Project \u2014 further bond facility drawdown",
+      "catalyst": "TGME Gold Project — further bond facility drawdown",
       "catalyst_type": "other",
       "timing": "Early November 2026",
       "sort": "2026-11-15",
@@ -1707,7 +1752,7 @@
       "estimated": false
     },
     {
-      "catalyst": "TGME Gold Plant \u2014 mechanical/piping installation then first gold (production start)",
+      "catalyst": "TGME Gold Plant — mechanical/piping installation then first gold (production start)",
       "catalyst_type": "production_fid",
       "timing": "Q1 2027",
       "sort": "2027-02-14",
@@ -1716,7 +1761,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Rietfontein Underground Mine \u2014 Environmental Authorisation grant by Dept of Mineral and Petroleum Resources (final review stage); water-use licence 90-day appeal period running",
+      "catalyst": "Rietfontein Underground Mine — Environmental Authorisation grant by Dept of Mineral and Petroleum Resources (final review stage); water-use licence 90-day appeal period running",
       "catalyst_type": "production_fid",
       "timing": "Final stages; no date given",
       "sort": null,
@@ -1727,7 +1772,7 @@
   ],
   "DES": [
     {
-      "catalyst": "Timbakouna gold (Siguiri, Guinea) \u2014 initial assays from restarted 485-hole, 10,000m power auger program",
+      "catalyst": "Timbakouna gold (Siguiri, Guinea) — initial assays from restarted 485-hole, 10,000m power auger program",
       "catalyst_type": "drilling_assay",
       "timing": "Early November 2026",
       "sort": "2026-11-15",
@@ -1736,7 +1781,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Siguiri \u2014 airborne magnetic data interpretation generating new targets; integrate with auger results to prioritise follow-up drilling",
+      "catalyst": "Siguiri — airborne magnetic data interpretation generating new targets; integrate with auger results to prioritise follow-up drilling",
       "catalyst_type": "drilling_assay",
       "timing": "Underway; no date given",
       "sort": null,
@@ -1745,7 +1790,7 @@
       "estimated": true
     },
     {
-      "catalyst": "DeSoto-Fortuna JV (SE Siguiri) \u2014 BLEG stream sediment sampling and mapping ahead of planned airborne magnetic survey",
+      "catalyst": "DeSoto-Fortuna JV (SE Siguiri) — BLEG stream sediment sampling and mapping ahead of planned airborne magnetic survey",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -1756,7 +1801,7 @@
   ],
   "PXX": [
     {
-      "catalyst": "Caribou Dome \u2014 2027 field season: define western high-grade extension (60m outside MRE) and new drill targets",
+      "catalyst": "Caribou Dome — 2027 field season: define western high-grade extension (60m outside MRE) and new drill targets",
       "catalyst_type": "mre_upgrade",
       "timing": "2027",
       "sort": "2027-06-30",
@@ -1765,7 +1810,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Caribou Dome copper (Alaska Range, NST earning in) \u2014 assays for further 13 holes from 2026 season; inputs to future MRE update",
+      "catalyst": "Caribou Dome copper (Alaska Range, NST earning in) — assays for further 13 holes from 2026 season; inputs to future MRE update",
       "catalyst_type": "mre_upgrade",
       "timing": "Pending; no date given",
       "sort": null,
@@ -1774,7 +1819,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Alaska Range \u2014 Gemini\u2013Jupiter magnetic anomaly survey results to refine drill targeting",
+      "catalyst": "Alaska Range — Gemini–Jupiter magnetic anomaly survey results to refine drill targeting",
       "catalyst_type": "drilling_assay",
       "timing": "Results pending; for 2027 drilling",
       "sort": null,
@@ -1785,7 +1830,7 @@
   ],
   "TNC": [
     {
-      "catalyst": "Cloncurry Copper Project \u2014 Pre-Feasibility Study and Ore Reserve",
+      "catalyst": "Cloncurry Copper Project — Pre-Feasibility Study and Ore Reserve",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Q4 2026 (late 2026)",
       "sort": "2026-11-15",
@@ -1794,7 +1839,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Mt Oxide \u2014 Aquila Phase 2 drilling assays and regional geophysics results; Vero drilling planned",
+      "catalyst": "Mt Oxide — Aquila Phase 2 drilling assays and regional geophysics results; Vero drilling planned",
       "catalyst_type": "drilling_assay",
       "timing": "From late 2026 through end of 2026",
       "sort": "2026-11-15",
@@ -1803,7 +1848,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Mt Oxide \u2014 next drilling program after wet season (2027 exploration program)",
+      "catalyst": "Mt Oxide — next drilling program after wet season (2027 exploration program)",
       "catalyst_type": "drilling_assay",
       "timing": "Q2 2027 (post wet season)",
       "sort": "2027-05-16",
@@ -1812,7 +1857,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Cloncurry Copper Project \u2014 potential mining commencement (staged open pit into underground), subject to permitting",
+      "catalyst": "Cloncurry Copper Project — potential mining commencement (staged open pit into underground), subject to permitting",
       "catalyst_type": "production_fid",
       "timing": "From late 2027",
       "sort": "2027-11-15",
@@ -1821,7 +1866,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Mt Oxide acquisition \u2014 completion of remaining ~$7.5M payment (funded by $18M placement)",
+      "catalyst": "Mt Oxide acquisition — completion of remaining ~$7.5M payment (funded by $18M placement)",
       "catalyst_type": "board_ma",
       "timing": "No firm date given",
       "sort": null,
@@ -1832,7 +1877,7 @@
   ],
   "PVT": [
     {
-      "catalyst": "Bambino \u2014 IP survey; pending assays and continued exploration",
+      "catalyst": "Bambino — IP survey; pending assays and continued exploration",
       "catalyst_type": "drilling_assay",
       "timing": "November 2026",
       "sort": "2026-11-15",
@@ -1841,7 +1886,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Horden Lake copper (Quebec) \u2014 winter step-out and infill drilling to grow resource and enlarge production target",
+      "catalyst": "Horden Lake copper (Quebec) — winter step-out and infill drilling to grow resource and enlarge production target",
       "catalyst_type": "drilling_assay",
       "timing": "Q1 2027 (winter field season)",
       "sort": "2027-02-14",
@@ -1850,7 +1895,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Horden Lake \u2014 strategic initiatives / non-equity financing (strategic adviser appointed) after maiden Scoping Study",
+      "catalyst": "Horden Lake — strategic initiatives / non-equity financing (strategic adviser appointed) after maiden Scoping Study",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "No firm date given",
       "sort": null,
@@ -1861,7 +1906,7 @@
   ],
   "EM2": [
     {
-      "catalyst": "Oracle Ridge copper (Arizona; EM2 20% free-carried, Nittetsu operator) \u2014 first assays from 6,000m extension drilling program",
+      "catalyst": "Oracle Ridge copper (Arizona; EM2 20% free-carried, Nittetsu operator) — first assays from 6,000m extension drilling program",
       "catalyst_type": "drilling_assay",
       "timing": "Q4 2026",
       "sort": "2026-11-15",
@@ -1870,7 +1915,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Oracle Ridge \u2014 completion of ~6-month drilling program (started mid-Aug 2026); IP survey interpretation",
+      "catalyst": "Oracle Ridge — completion of ~6-month drilling program (started mid-Aug 2026); IP survey interpretation",
       "catalyst_type": "drilling_assay",
       "timing": "~February 2027",
       "sort": "2027-02-14",
@@ -1879,7 +1924,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Silver Mountain (porphyry Cu / VMS) \u2014 exploration; assessment of new opportunities",
+      "catalyst": "Silver Mountain (porphyry Cu / VMS) — exploration; assessment of new opportunities",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -1890,7 +1935,7 @@
   ],
   "SLS": [
     {
-      "catalyst": "Nanadie \u2014 multi-rig RC and diamond program continues (incl. planned Phase 4 RC on gold-bearing chert/ironstone horizon)",
+      "catalyst": "Nanadie — multi-rig RC and diamond program continues (incl. planned Phase 4 RC on gold-bearing chert/ironstone horizon)",
       "catalyst_type": "drilling_assay",
       "timing": "Throughout remainder of 2026",
       "sort": "2026-12-31",
@@ -1899,7 +1944,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Nanadie copper-gold (WA) \u2014 assays from 14 diamond + 50+ RC holes (MRE definition, step-out, pre-collars) progressively reported",
+      "catalyst": "Nanadie copper-gold (WA) — assays from 14 diamond + 50+ RC holes (MRE definition, step-out, pre-collars) progressively reported",
       "catalyst_type": "mre_upgrade",
       "timing": "Coming months",
       "sort": "2027-03-31",
@@ -1910,7 +1955,7 @@
   ],
   "GRL": [
     {
-      "catalyst": "Lewis Ponds (NSW) \u2014 assays from diamond drilling (GLPDD010\u2013013, incl. Tom\u2019s Lode semi-massive sulphides, Spicer\u2019s Lode)",
+      "catalyst": "Lewis Ponds (NSW) — assays from diamond drilling (GLPDD010–013, incl. Tom’s Lode semi-massive sulphides, Spicer’s Lode)",
       "catalyst_type": "drilling_assay",
       "timing": "GLPDD011/012 expected Q4 2026",
       "sort": "2026-11-15",
@@ -1919,7 +1964,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Goodrich porphyry Cu-Au (OBT 49%, partner-funded) \u2014 Stage 2 diamond drilling (4 holes, ~1,000m) first results",
+      "catalyst": "Goodrich porphyry Cu-Au (OBT 49%, partner-funded) — Stage 2 diamond drilling (4 holes, ~1,000m) first results",
       "catalyst_type": "drilling_assay",
       "timing": "Q1 CY2027",
       "sort": "2027-02-14",
@@ -1928,7 +1973,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Lewis Ponds \u2014 Mineral Resource update and next-stage metallurgical/flowsheet study work",
+      "catalyst": "Lewis Ponds — Mineral Resource update and next-stage metallurgical/flowsheet study work",
       "catalyst_type": "mre_upgrade",
       "timing": "No firm date given",
       "sort": null,
@@ -1939,36 +1984,36 @@
   ],
   "AM5": [
     {
-      "catalyst": "Quinns (WA) \u2014 copper exploration ramp-up: detailed aeromagnetics, ground IP and gravity surveys (Austin deposit and new targets)",
+      "catalyst": "Quinns (WA) — copper exploration ramp-up: detailed aeromagnetics, ground IP and gravity surveys (Austin deposit and new targets)",
       "catalyst_type": "production_fid",
       "timing": "December 2026 quarter (priority for coming quarter)",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 30 Sept 2026 (28 Oct 2026)",
+      "source": "Quarterly Activities Report – 30 Sept 2026 (28 Oct 2026)",
       "estimated": false
     },
     {
-      "catalyst": "Quinns \u2014 results of first aircore program on gold targets (incl. historic Enterprise mine, 90% earn-in); Phase One RC/diamond drilling at Austin (EIS co-funded), then Phase Two at Defiance and 4E",
+      "catalyst": "Quinns — results of first aircore program on gold targets (incl. historic Enterprise mine, 90% earn-in); Phase One RC/diamond drilling at Austin (EIS co-funded), then Phase Two at Defiance and 4E",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 30 Sept 2026 (28 Oct 2026)",
+      "source": "Quarterly Activities Report – 30 Sept 2026 (28 Oct 2026)",
       "estimated": true
     },
     {
-      "catalyst": "Meekatharra-belt project \u2014 maiden drilling (PoW approved)",
+      "catalyst": "Meekatharra-belt project — maiden drilling (PoW approved)",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 30 Sept 2026 (28 Oct 2026)",
+      "source": "Quarterly Activities Report – 30 Sept 2026 (28 Oct 2026)",
       "estimated": true
     }
   ],
   "CPO": [
     {
-      "catalyst": "Lana Corina (Chile) \u2014 maiden 4-hole, 2,000m diamond drilling at Vista Montana (incl. 600m CMVMD001 porphyry target) results; IP surveys at Lana Corina/Vista Montana",
+      "catalyst": "Lana Corina (Chile) — maiden 4-hole, 2,000m diamond drilling at Vista Montana (incl. 600m CMVMD001 porphyry target) results; IP surveys at Lana Corina/Vista Montana",
       "catalyst_type": "drilling_assay",
       "timing": "Underway; no date given",
       "sort": null,
@@ -1977,7 +2022,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Fortuna (Chile) \u2014 El Quillay South 4-hole, ~1,000m diamond program results",
+      "catalyst": "Fortuna (Chile) — El Quillay South 4-hole, ~1,000m diamond program results",
       "catalyst_type": "other",
       "timing": "Underway; no date given",
       "sort": null,
@@ -1997,7 +2042,7 @@
   ],
   "RRR": [
     {
-      "catalyst": "Dianne Copper Mine (QLD) \u2014 long-lead item procurement (funded by A$3M Blackbird bridge loan)",
+      "catalyst": "Dianne Copper Mine (QLD) — long-lead item procurement (funded by A$3M Blackbird bridge loan)",
       "catalyst_type": "other",
       "timing": "Set to commence shortly",
       "sort": "2026-12-31",
@@ -2006,7 +2051,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Dianne \u2014 comprehensive project funding package (~A$20M pre-production capex + ~A$10M working capital) and offtake, then FID and full-scale construction",
+      "catalyst": "Dianne — comprehensive project funding package (~A$20M pre-production capex + ~A$10M working capital) and offtake, then FID and full-scale construction",
       "catalyst_type": "production_fid",
       "timing": "Negotiations advancing; no date given",
       "sort": null,
@@ -2015,7 +2060,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Dianne \u2014 first copper cathode",
+      "catalyst": "Dianne — first copper cathode",
       "catalyst_type": "other",
       "timing": "Within 12 months of FID / construction start",
       "sort": null,
@@ -2026,7 +2071,7 @@
   ],
   "SLM": [
     {
-      "catalyst": "Cucho copper (Peru) \u2014 5,000m diamond drilling across three target zones",
+      "catalyst": "Cucho copper (Peru) — 5,000m diamond drilling across three target zones",
       "catalyst_type": "drilling_assay",
       "timing": "Commencing October 2026",
       "sort": "2026-10-16",
@@ -2035,7 +2080,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Brazil Lithium Project \u2014 assays from Mandacaru (7 holes, ~1,454m) and Campo Grande diamond drilling; follow-up drilling scope",
+      "catalyst": "Brazil Lithium Project — assays from Mandacaru (7 holes, ~1,454m) and Campo Grande diamond drilling; follow-up drilling scope",
       "catalyst_type": "drilling_assay",
       "timing": "Assays pending; no date given",
       "sort": null,
@@ -2044,7 +2089,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Cinto copper (Peru) \u2014 results from initial 5-hole, 2,500m diamond program",
+      "catalyst": "Cinto copper (Peru) — results from initial 5-hole, 2,500m diamond program",
       "catalyst_type": "other",
       "timing": "Underway; no date given",
       "sort": null,
@@ -2055,7 +2100,7 @@
   ],
   "A8G": [
     {
-      "catalyst": "C\u00f4te d\u2019Ivoire lithium (Tounvre/Tindara, Atex licence) \u2014 auger drilling on priority targets",
+      "catalyst": "Côte d’Ivoire lithium (Tounvre/Tindara, Atex licence) — auger drilling on priority targets",
       "catalyst_type": "drilling_assay",
       "timing": "Commencing November 2026",
       "sort": "2026-11-15",
@@ -2064,7 +2109,7 @@
       "estimated": false
     },
     {
-      "catalyst": "C\u00f4te d\u2019Ivoire lithium \u2014 decision to exercise acquisition option after due diligence (option expires 6 Dec 2026); preliminary pegmatite metallurgical testwork (120kg sample)",
+      "catalyst": "Côte d’Ivoire lithium — decision to exercise acquisition option after due diligence (option expires 6 Dec 2026); preliminary pegmatite metallurgical testwork (120kg sample)",
       "catalyst_type": "metallurgy",
       "timing": "By 6 December 2026",
       "sort": "2026-12-06",
@@ -2073,7 +2118,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Australia \u2014 May Queen South alumina further metallurgical testwork; Barrow Creek tantalum field follow-up; Mt Peake revisit",
+      "catalyst": "Australia — May Queen South alumina further metallurgical testwork; Barrow Creek tantalum field follow-up; Mt Peake revisit",
       "catalyst_type": "metallurgy",
       "timing": "No firm date given",
       "sort": null,
@@ -2084,7 +2129,7 @@
   ],
   "SAU": [
     {
-      "catalyst": "Grota do Cirilo \u2014 sale of unfinished intermediate volumes converted to high-grade lithium oxide concentrate",
+      "catalyst": "Grota do Cirilo — sale of unfinished intermediate volumes converted to high-grade lithium oxide concentrate",
       "catalyst_type": "board_ma",
       "timing": "4Q 2026",
       "sort": "2026-11-15",
@@ -2102,7 +2147,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Plant 1 \u2014 return to industrial production cadence; 240kt over next 12 months, 330kt FY27 at AISC US$620/t",
+      "catalyst": "Plant 1 — return to industrial production cadence; 240kt over next 12 months, 330kt FY27 at AISC US$620/t",
       "catalyst_type": "production_fid",
       "timing": "2027",
       "sort": "2027-06-30",
@@ -2122,7 +2167,7 @@
   ],
   "CHR": [
     {
-      "catalyst": "Lake Johnston \u2014 first assays from 10,000m RC/diamond program at Medcalf (4,390m done)",
+      "catalyst": "Lake Johnston — first assays from 10,000m RC/diamond program at Medcalf (4,390m done)",
       "catalyst_type": "drilling_assay",
       "timing": "Expected shortly (from late Oct 2026)",
       "sort": "2026-10-16",
@@ -2131,7 +2176,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Medcalf lithium \u2014 resource growth from current drilling (deposit open down-dip/along strike)",
+      "catalyst": "Medcalf lithium — resource growth from current drilling (deposit open down-dip/along strike)",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -2140,7 +2185,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Medcalf \u2014 fast-tracked Scoping Study (open pit then underground, ore-sorting) and permitting",
+      "catalyst": "Medcalf — fast-tracked Scoping Study (open pit then underground, ore-sorting) and permitting",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "No firm date given",
       "sort": null,
@@ -2151,7 +2196,7 @@
   ],
   "GLN": [
     {
-      "catalyst": "Hombre Muerto West (Argentina) \u2014 first lithium chloride concentrate sales (Phase 1)",
+      "catalyst": "Hombre Muerto West (Argentina) — first lithium chloride concentrate sales (Phase 1)",
       "catalyst_type": "trial_regulatory",
       "timing": "Q4 CY2026",
       "sort": "2026-11-15",
@@ -2160,7 +2205,7 @@
       "estimated": true
     },
     {
-      "catalyst": "HMW Phase 1 \u2014 reach initial 4 ktpa LCE throughput as plant moves into warmer conditions",
+      "catalyst": "HMW Phase 1 — reach initial 4 ktpa LCE throughput as plant moves into warmer conditions",
       "catalyst_type": "trial_regulatory",
       "timing": "H1 CY2027",
       "sort": "2027-03-31",
@@ -2169,7 +2214,7 @@
       "estimated": true
     },
     {
-      "catalyst": "HMW Phase 1 expansion to 5.2 ktpa LCE (earthworks commenced) \u2014 higher production volumes; additional winter-resilience processing capacity",
+      "catalyst": "HMW Phase 1 expansion to 5.2 ktpa LCE (earthworks commenced) — higher production volumes; additional winter-resilience processing capacity",
       "catalyst_type": "trial_regulatory",
       "timing": "H2 2027",
       "sort": "2027-09-30",
@@ -2180,7 +2225,7 @@
   ],
   "ELV": [
     {
-      "catalyst": "NAL (Qu\u00e9bec) \u2014 NAL Expansion in execution (detailed engineering, long-lead procurement, legacy carbonate plant demolition)",
+      "catalyst": "NAL (Québec) — NAL Expansion in execution (detailed engineering, long-lead procurement, legacy carbonate plant demolition)",
       "catalyst_type": "other",
       "timing": "Underway; completion date not given",
       "sort": null,
@@ -2189,7 +2234,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Moblan lithium (Qu\u00e9bec) \u2014 updated Scoping Study on plant sizing and staging; environmental permitting",
+      "catalyst": "Moblan lithium (Québec) — updated Scoping Study on plant sizing and staging; environmental permitting",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "No firm date given",
       "sort": null,
@@ -2198,7 +2243,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Carolina Lithium (US) \u2014 final air permit from NC Division of Air Quality (draft received) and further permitting",
+      "catalyst": "Carolina Lithium (US) — final air permit from NC Division of Air Quality (draft received) and further permitting",
       "catalyst_type": "production_fid",
       "timing": "No firm date given",
       "sort": null,
@@ -2207,7 +2252,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Eastern Canada lithium conversion facility \u2014 Final Investment Decision (tied to CGF convertible notes)",
+      "catalyst": "Eastern Canada lithium conversion facility — Final Investment Decision (tied to CGF convertible notes)",
       "catalyst_type": "production_fid",
       "timing": "No firm date given",
       "sort": null,
@@ -2218,25 +2263,25 @@
   ],
   "LIT": [
     {
-      "catalyst": "VSPC (LFP cathode) \u2014 conclude negotiations on Joint Development Agreement with large multinational industrial group for larger-scale manufacturing",
+      "catalyst": "VSPC (LFP cathode) — conclude negotiations on Joint Development Agreement with large multinational industrial group for larger-scale manufacturing",
       "catalyst_type": "other",
       "timing": "November 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026, Q1 FY27 (29 Oct 2026)",
+      "source": "Quarterly Activities Report – September 2026, Q1 FY27 (29 Oct 2026)",
       "estimated": false
     },
     {
-      "catalyst": "Envirostream \u2014 elevated Sell & Parker contract recycling volumes continue",
+      "catalyst": "Envirostream — elevated Sell & Parker contract recycling volumes continue",
       "catalyst_type": "other",
       "timing": "Q2 FY27 (December quarter 2026)",
       "sort": "2027-05-16",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026, Q1 FY27 (29 Oct 2026)",
+      "source": "Quarterly Activities Report – September 2026, Q1 FY27 (29 Oct 2026)",
       "estimated": true
     },
     {
-      "catalyst": "Envirostream \u00d7 Sumitomo \u2014 potential binding black-mass purchase arrangement / expanded recycling operations (from May 2026 MOU)",
+      "catalyst": "Envirostream × Sumitomo — potential binding black-mass purchase arrangement / expanded recycling operations (from May 2026 MOU)",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -2247,7 +2292,7 @@
   ],
   "MAN": [
     {
-      "catalyst": "Berinka gold-copper (NT) \u2014 results from 3,000m RC program (commenced post quarter)",
+      "catalyst": "Berinka gold-copper (NT) — results from 3,000m RC program (commenced post quarter)",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -2256,7 +2301,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Utah Lithium Project (Paradox Basin) \u2014 DLE test results on 8,000L bulk brine delivered to Electroflow",
+      "catalyst": "Utah Lithium Project (Paradox Basin) — DLE test results on 8,000L bulk brine delivered to Electroflow",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -2267,7 +2312,7 @@
   ],
   "POL": [
     {
-      "catalyst": "Endeavor (Cobar) \u2014 first ore from high-grade Upper Main Lode",
+      "catalyst": "Endeavor (Cobar) — first ore from high-grade Upper Main Lode",
       "catalyst_type": "other",
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
@@ -2276,7 +2321,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Endeavor \u2014 December quarter production target: 105\u2013115kt ore processed, >350koz silver",
+      "catalyst": "Endeavor — December quarter production target: 105–115kt ore processed, >350koz silver",
       "catalyst_type": "production_fid",
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
@@ -2285,7 +2330,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Endeavor \u2014 updated Ore Reserve estimate (following Sept 2026 MRE upgrade to 54.3Moz Ag)",
+      "catalyst": "Endeavor — updated Ore Reserve estimate (following Sept 2026 MRE upgrade to 54.3Moz Ag)",
       "catalyst_type": "mre_upgrade",
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
@@ -2305,7 +2350,7 @@
   ],
   "BHM": [
     {
-      "catalyst": "Rasp/Pinnacles \u2014 improved milled grades and recoveries as Pinnacles pit reaches fresh higher-grade ore and Rasp Plant optimisation continues",
+      "catalyst": "Rasp/Pinnacles — improved milled grades and recoveries as Pinnacles pit reaches fresh higher-grade ore and Rasp Plant optimisation continues",
       "catalyst_type": "other",
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
@@ -2314,7 +2359,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Rasp Tailings Dewatering Plant \u2014 available",
+      "catalyst": "Rasp Tailings Dewatering Plant — available",
       "catalyst_type": "other",
       "timing": "1H CY2027",
       "sort": "2027-03-31",
@@ -2323,7 +2368,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Centenary Zone \u2014 production decline and accelerated resource drilling (A$85M raise proceeds); Pinnacles production expansion",
+      "catalyst": "Centenary Zone — production decline and accelerated resource drilling (A$85M raise proceeds); Pinnacles production expansion",
       "catalyst_type": "drilling_assay",
       "timing": "FY27; no firm dates",
       "sort": null,
@@ -2334,7 +2379,7 @@
   ],
   "BKB": [
     {
-      "catalyst": "Shafter silver (Texas) \u2014 maiden JORC Mineral Resource Estimate (conversion of foreign estimate after historic-data validation)",
+      "catalyst": "Shafter silver (Texas) — maiden JORC Mineral Resource Estimate (conversion of foreign estimate after historic-data validation)",
       "catalyst_type": "mre_upgrade",
       "timing": "Q4 2026",
       "sort": "2026-11-15",
@@ -2343,7 +2388,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Shafter \u2014 access to existing mine decline and start of underground drilling (Presidio East, Ramp areas)",
+      "catalyst": "Shafter — access to existing mine decline and start of underground drilling (Presidio East, Ramp areas)",
       "catalyst_type": "drilling_assay",
       "timing": "Final readiness underway; no firm date",
       "sort": null,
@@ -2352,7 +2397,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Shafter \u2014 further surface exploration drilling; Independence gold (Nevada, next to NGM Phoenix) exploration",
+      "catalyst": "Shafter — further surface exploration drilling; Independence gold (Nevada, next to NGM Phoenix) exploration",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -2363,7 +2408,7 @@
   ],
   "SVL": [
     {
-      "catalyst": "Bowdens Silver (NSW) \u2014 Independent Planning Commission final determination on development consent (public hearing held 14\u201316 Oct 2026)",
+      "catalyst": "Bowdens Silver (NSW) — Independent Planning Commission final determination on development consent (public hearing held 14–16 Oct 2026)",
       "catalyst_type": "other",
       "timing": "Anticipated soon",
       "sort": "2026-12-31",
@@ -2372,7 +2417,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Bowdens \u2014 project financing and development decision for Stage 1 following July 2026 DFS (NPV5 A$1.04B)",
+      "catalyst": "Bowdens — project financing and development decision for Stage 1 following July 2026 DFS (NPV5 A$1.04B)",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "No firm date given",
       "sort": null,
@@ -2383,7 +2428,7 @@
   ],
   "AW1": [
     {
-      "catalyst": "West Desert (Utah) \u2014 assays from latest drilling (thick copper-zinc-molybdenum/indium zones)",
+      "catalyst": "West Desert (Utah) — assays from latest drilling (thick copper-zinc-molybdenum/indium zones)",
       "catalyst_type": "drilling_assay",
       "timing": "Early to mid Q4 2026",
       "sort": "2026-11-15",
@@ -2392,7 +2437,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Storm Copper (Nunavut) \u2014 community engagement in Resolute Bay and Taloyoak (Nunavut govt-funded)",
+      "catalyst": "Storm Copper (Nunavut) — community engagement in Resolute Bay and Taloyoak (Nunavut govt-funded)",
       "catalyst_type": "other",
       "timing": "Q4 2026",
       "sort": "2026-11-15",
@@ -2401,7 +2446,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Storm Copper \u2014 final mining application",
+      "catalyst": "Storm Copper — final mining application",
       "catalyst_type": "other",
       "timing": "Q4 2026",
       "sort": "2026-11-15",
@@ -2410,7 +2455,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Storm Copper \u2014 new copper targets drill-tested; West Desert new exploration areas",
+      "catalyst": "Storm Copper — new copper targets drill-tested; West Desert new exploration areas",
       "catalyst_type": "drilling_assay",
       "timing": "2027",
       "sort": "2027-06-30",
@@ -2419,7 +2464,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Storm Copper \u2014 Final Investment Decision (after BFS; PFS released 5 Nov 2026)",
+      "catalyst": "Storm Copper — Final Investment Decision (after BFS; PFS released 5 Nov 2026)",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Early 2028",
       "sort": "2028-01-31",
@@ -2428,7 +2473,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Storm Copper \u2014 pre-development, construction 2029\u20132030, first copper production",
+      "catalyst": "Storm Copper — pre-development, construction 2029–2030, first copper production",
       "catalyst_type": "production_fid",
       "timing": "Pre-development H2 2028; first production 2030",
       "sort": "2028-09-30",
@@ -2439,7 +2484,7 @@
   ],
   "FG1": [
     {
-      "catalyst": "Firetower gold-tungsten \u2014 project-wide geophysical reinterpretation (6km corridor) results",
+      "catalyst": "Firetower gold-tungsten — project-wide geophysical reinterpretation (6km corridor) results",
       "catalyst_type": "drilling_assay",
       "timing": "Q4 2026",
       "sort": "2026-11-15",
@@ -2457,7 +2502,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Golden Ridge \u2014 Brilliant prospect (Tasmania) \u2014 results from 21-hole, ~2,500m infill/extension drilling and Henty processing testwork, toward maiden MRE",
+      "catalyst": "Golden Ridge — Brilliant prospect (Tasmania) — results from 21-hole, ~2,500m infill/extension drilling and Henty processing testwork, toward maiden MRE",
       "catalyst_type": "mre_upgrade",
       "timing": "Results pending; no date given",
       "sort": null,
@@ -2466,7 +2511,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Firetower \u2014 metallurgical testwork ahead of maiden Mineral Resource Estimate",
+      "catalyst": "Firetower — metallurgical testwork ahead of maiden Mineral Resource Estimate",
       "catalyst_type": "mre_upgrade",
       "timing": "No firm date given",
       "sort": null,
@@ -2477,7 +2522,7 @@
   ],
   "S32": [
     {
-      "catalyst": "Hermosa (Arizona) \u2014 Taylor zinc-lead-silver: both shafts reach primary production level",
+      "catalyst": "Hermosa (Arizona) — Taylor zinc-lead-silver: both shafts reach primary production level",
       "catalyst_type": "production_fid",
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
@@ -2495,7 +2540,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Sierra Gorda (Chile) \u2014 fourth grinding line (+25% capacity to ~60Mtpa) first production; full rates FY31",
+      "catalyst": "Sierra Gorda (Chile) — fourth grinding line (+25% capacity to ~60Mtpa) first production; full rates FY31",
       "catalyst_type": "production_fid",
       "timing": "Mid FY30",
       "sort": "2029-12-31",
@@ -2504,7 +2549,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Ambler Metals JV (Alaska) \u2014 follow-up to 2026 summer field season; reinvestment of US$17.8M stake-sale proceeds",
+      "catalyst": "Ambler Metals JV (Alaska) — follow-up to 2026 summer field season; reinvestment of US$17.8M stake-sale proceeds",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -2515,7 +2560,7 @@
   ],
   "PNN": [
     {
-      "catalyst": "Morro do Ferro REE (Brazil) \u2014 complete current 2-rig drilling program, toward a potential maiden Mineral Resource estimate",
+      "catalyst": "Morro do Ferro REE (Brazil) — complete current 2-rig drilling program, toward a potential maiden Mineral Resource estimate",
       "catalyst_type": "mre_upgrade",
       "timing": "Program completion ~six weeks from 30 Oct 2026 (mid-Dec 2026); MRE no date",
       "sort": "2026-10-30",
@@ -2524,7 +2569,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Morro do Ferro \u2014 larger metallurgical test program",
+      "catalyst": "Morro do Ferro — larger metallurgical test program",
       "catalyst_type": "metallurgy",
       "timing": "2027",
       "sort": "2027-06-30",
@@ -2533,7 +2578,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Morro do Ferro \u2014 initial metallurgical/mineralogical study results (>100kg samples)",
+      "catalyst": "Morro do Ferro — initial metallurgical/mineralogical study results (>100kg samples)",
       "catalyst_type": "metallurgy",
       "timing": "No firm date given",
       "sort": null,
@@ -2544,7 +2589,7 @@
   ],
   "VMM": [
     {
-      "catalyst": "Colossus \u2014 first production (4,446tpa refined REO, MREC refining circuit)",
+      "catalyst": "Colossus — first production (4,446tpa refined REO, MREC refining circuit)",
       "catalyst_type": "production_fid",
       "timing": "2028",
       "sort": "2028-06-30",
@@ -2553,7 +2598,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Colossus REE (Brazil) \u2014 senior project debt financing (Goldman Sachs / Cutfield Freeman) in final stages",
+      "catalyst": "Colossus REE (Brazil) — senior project debt financing (Goldman Sachs / Cutfield Freeman) in final stages",
       "catalyst_type": "capital_raise",
       "timing": "Final stages; no date given",
       "sort": null,
@@ -2562,7 +2607,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Colossus \u2014 Final Investment Decision (pre-FID EPCM mobilisation, detailed engineering, long-lead procurement underway)",
+      "catalyst": "Colossus — Final Investment Decision (pre-FID EPCM mobilisation, detailed engineering, long-lead procurement underway)",
       "catalyst_type": "production_fid",
       "timing": "No firm date given",
       "sort": null,
@@ -2573,7 +2618,7 @@
   ],
   "AXL": [
     {
-      "catalyst": "Calad\u00e3o REE-Gallium (Brazil) \u2014 leach optimisation and hydrogeological characterisation of proposed ISR field test area",
+      "catalyst": "Caladão REE-Gallium (Brazil) — leach optimisation and hydrogeological characterisation of proposed ISR field test area",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -2582,7 +2627,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Woolrich deposit \u2014 design of controlled in-situ recovery (ISR) field validation program (next major milestone)",
+      "catalyst": "Woolrich deposit — design of controlled in-situ recovery (ISR) field validation program (next major milestone)",
       "catalyst_type": "other",
       "timing": "After supporting work; no date given",
       "sort": null,
@@ -2602,7 +2647,7 @@
   ],
   "SMR": [
     {
-      "catalyst": "Completion of Moranbah South acquisition (premium hard coking coal; conditional on Exxaro completing purchase of Anglo\u2019s 50%)",
+      "catalyst": "Completion of Moranbah South acquisition (premium hard coking coal; conditional on Exxaro completing purchase of Anglo’s 50%)",
       "catalyst_type": "board_ma",
       "timing": "Within Q4 2026",
       "sort": "2026-11-15",
@@ -2611,7 +2656,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Eagle Downs studies \u2014 expanded scope incorporating Moranbah South as potential integrated joint development",
+      "catalyst": "Eagle Downs studies — expanded scope incorporating Moranbah South as potential integrated joint development",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -2620,7 +2665,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Isaac Downs Extension \u2014 drilling program (after 3D seismic)",
+      "catalyst": "Isaac Downs Extension — drilling program (after 3D seismic)",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -2631,27 +2676,27 @@
   ],
   "YAR": [
     {
-      "catalyst": "Rolleston South + Arcadia coal (Bowen Basin) \u2014 updated geological modelling on combined 504.9Mt resource and targeted drilling program to lift confidence and delineate shallow coal",
+      "catalyst": "Rolleston South + Arcadia coal (Bowen Basin) — updated geological modelling on combined 504.9Mt resource and targeted drilling program to lift confidence and delineate shallow coal",
       "catalyst_type": "drilling_assay",
       "timing": "Coming periods; no firm date",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (27 Oct 2026)",
+      "source": "Quarterly Activities Report – September 2026 (27 Oct 2026)",
       "estimated": true
     },
     {
-      "catalyst": "Rolleston South \u2014 advance toward next stage of development (development studies)",
+      "catalyst": "Rolleston South — advance toward next stage of development (development studies)",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (27 Oct 2026)",
+      "source": "Quarterly Activities Report – September 2026 (27 Oct 2026)",
       "estimated": true
     }
   ],
   "EVG": [
     {
-      "catalyst": "Maniry \u2014 definitive long-form European offtake agreement (~10ktpa for 5 years)",
+      "catalyst": "Maniry — definitive long-form European offtake agreement (~10ktpa for 5 years)",
       "catalyst_type": "capital_raise",
       "timing": "Within six months (by ~Q1 2027)",
       "sort": "2027-03-31",
@@ -2660,7 +2705,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Maniry graphite (Madagascar) \u2014 completion of Mining Permit Decree (formal presidential issue) and FMISC levy payment",
+      "catalyst": "Maniry graphite (Madagascar) — completion of Mining Permit Decree (formal presidential issue) and FMISC levy payment",
       "catalyst_type": "production_fid",
       "timing": "No firm date given",
       "sort": null,
@@ -2669,7 +2714,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Maniry \u2014 final environmental approval, project funding and Stage 1 Final Investment Decision",
+      "catalyst": "Maniry — final environmental approval, project funding and Stage 1 Final Investment Decision",
       "catalyst_type": "production_fid",
       "timing": "No firm date given",
       "sort": null,
@@ -2678,7 +2723,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Carp fluorspar (Nevada) \u2014 exploration with specialist Nevada geologists (new zone 300m SW of historic pits)",
+      "catalyst": "Carp fluorspar (Nevada) — exploration with specialist Nevada geologists (new zone 300m SW of historic pits)",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -2689,7 +2734,7 @@
   ],
   "BKT": [
     {
-      "catalyst": "Mahenge graphite (Tanzania) \u2014 Financial Close on US$204M debt facility (deadline extended) and equity funding structure, then fully funded FID",
+      "catalyst": "Mahenge graphite (Tanzania) — Financial Close on US$204M debt facility (deadline extended) and equity funding structure, then fully funded FID",
       "catalyst_type": "production_fid",
       "timing": "Financial Close deadline 30 November 2026",
       "sort": "2026-11-30",
@@ -2698,7 +2743,7 @@
       "estimated": false
     },
     {
-      "catalyst": "POSCO South Korean spherical purified graphite (SPG) plant (Mahenge offtake partner) \u2014 commissioning",
+      "catalyst": "POSCO South Korean spherical purified graphite (SPG) plant (Mahenge offtake partner) — commissioning",
       "catalyst_type": "production_fid",
       "timing": "Second half of 2027",
       "sort": "2027-09-30",
@@ -2707,7 +2752,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Mahenge \u2014 completion of early works (final earthworks, access road, grave relocation, Mdindo stream diversion), subject to wet season and FID funding",
+      "catalyst": "Mahenge — completion of early works (final earthworks, access road, grave relocation, Mdindo stream diversion), subject to wet season and FID funding",
       "catalyst_type": "production_fid",
       "timing": "Nearing completion; no firm date",
       "sort": null,
@@ -2718,7 +2763,7 @@
   ],
   "AMD": [
     {
-      "catalyst": "Yarraloola copper-gold (Pilbara) \u2014 heritage work program, then drilling of 4 Newexco targets",
+      "catalyst": "Yarraloola copper-gold (Pilbara) — heritage work program, then drilling of 4 Newexco targets",
       "catalyst_type": "drilling_assay",
       "timing": "Heritage end November 2026; drilling early 2027",
       "sort": "2027-01-31",
@@ -2727,7 +2772,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Pilbara iron ore \u2014 target drilling incl. BBQ Valley (>2km mineralisation) and grant of 13 new tenement applications",
+      "catalyst": "Pilbara iron ore — target drilling incl. BBQ Valley (>2km mineralisation) and grant of 13 new tenement applications",
       "catalyst_type": "drilling_assay",
       "timing": "Early 2027",
       "sort": "2027-01-31",
@@ -2736,7 +2781,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Pannawonica Iron Ore Project (Pilbara) \u2014 12-month option to acquire 70% of 62.5Mt resource on granted ML (from Red Hill); exercise decision",
+      "catalyst": "Pannawonica Iron Ore Project (Pilbara) — 12-month option to acquire 70% of 62.5Mt resource on granted ML (from Red Hill); exercise decision",
       "catalyst_type": "other",
       "timing": "Within 12-month option period; no firm date",
       "sort": null,
@@ -2745,9 +2790,9 @@
       "estimated": true
     },
     {
-      "catalyst": "Niagara bauxite (Guinea) \u2014 Scoping Study, move to feasibility and permitting; resolution of Simandou North tenement status",
+      "catalyst": "Niagara bauxite (Guinea) — Scoping Study, move to feasibility and permitting; resolution of Simandou North tenement status",
       "catalyst_type": "dfs_bfs_scoping",
-      "timing": "2026\u20132027; no firm date",
+      "timing": "2026–2027; no firm date",
       "sort": null,
       "day_precise": false,
       "source": "Corporate Presentation, 10 Nov 2026",
@@ -2756,7 +2801,7 @@
   ],
   "FEX": [
     {
-      "catalyst": "Beebyn Hub \u2014 new 5Mtpa crushing and screening plant ramp-up completion",
+      "catalyst": "Beebyn Hub — new 5Mtpa crushing and screening plant ramp-up completion",
       "catalyst_type": "production_fid",
       "timing": "Current (December) quarter 2026",
       "sort": "2026-11-15",
@@ -2765,16 +2810,16 @@
       "estimated": true
     },
     {
-      "catalyst": "C1 cash costs return to FY27 guidance range (A$70\u201380/wmt)",
+      "catalyst": "C1 cash costs return to FY27 guidance range (A$70–80/wmt)",
       "catalyst_type": "other",
-      "timing": "Second half of FY27 (Jan\u2013Jun 2027)",
+      "timing": "Second half of FY27 (Jan–Jun 2027)",
       "sort": "2027-06-15",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
       "estimated": false
     },
     {
-      "catalyst": "Weld Range 290Mt / 10Mtpa Project \u2014 Definitive Feasibility Study",
+      "catalyst": "Weld Range 290Mt / 10Mtpa Project — Definitive Feasibility Study",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "First half of calendar year 2027",
       "sort": "2027-03-31",
@@ -2785,16 +2830,16 @@
   ],
   "E25": [
     {
-      "catalyst": "Butcherbird Expansion (1.1Mtpa Mn concentrate) \u2014 completion / mechanical completion",
+      "catalyst": "Butcherbird Expansion (1.1Mtpa Mn concentrate) — completion / mechanical completion",
       "catalyst_type": "other",
       "timing": "Targeting Q1 2027",
       "sort": "2027-02-14",
       "day_precise": false,
-      "source": "Investor Update \u2013 IMARC Conference, 29 Oct 2026",
+      "source": "Investor Update – IMARC Conference, 29 Oct 2026",
       "estimated": true
     },
     {
-      "catalyst": "Butcherbird (WA) \u2014 award of E&I and remaining work packages; transition from early works to main construction phase",
+      "catalyst": "Butcherbird (WA) — award of E&I and remaining work packages; transition from early works to main construction phase",
       "catalyst_type": "production_fid",
       "timing": "In line with project plan; no firm date",
       "sort": null,
@@ -2803,7 +2848,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Louisiana HPMSM facility \u2014 repositioning review with US DoE under revised grant agreement",
+      "catalyst": "Louisiana HPMSM facility — repositioning review with US DoE under revised grant agreement",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -2814,7 +2859,7 @@
   ],
   "PTR": [
     {
-      "catalyst": "Rosewood \u2014 infill drilling to upgrade significant portion of Resource to Measured",
+      "catalyst": "Rosewood — infill drilling to upgrade significant portion of Resource to Measured",
       "catalyst_type": "drilling_assay",
       "timing": "Coming months",
       "sort": "2027-03-31",
@@ -2823,7 +2868,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Rosewood Titanium Project (Muckanippie, SA) \u2014 finalise Scoping Study (integration of technical workstreams into financial model)",
+      "catalyst": "Rosewood Titanium Project (Muckanippie, SA) — finalise Scoping Study (integration of technical workstreams into financial model)",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "No firm date given",
       "sort": null,
@@ -2832,7 +2877,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Rosewood \u2014 further customer product sample dispatch; metallurgical/geomet flowsheet optimisation; environmental baseline toward Mining Lease application",
+      "catalyst": "Rosewood — further customer product sample dispatch; metallurgical/geomet flowsheet optimisation; environmental baseline toward Mining Lease application",
       "catalyst_type": "metallurgy",
       "timing": "No firm date given",
       "sort": null,
@@ -2843,36 +2888,36 @@
   ],
   "DVP": [
     {
-      "catalyst": "Pioneer Dome lithium (WA) \u2014 first DSO shipment (crushing from Oct 2026); capital recovered by end of calendar 2026",
+      "catalyst": "Pioneer Dome lithium (WA) — first DSO shipment (crushing from Oct 2026); capital recovered by end of calendar 2026",
       "catalyst_type": "other",
       "timing": "December 2026 quarter",
       "sort": "2026-12-16",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (28 Oct 2026)",
+      "source": "Quarterly Activities Report – September 2026 (28 Oct 2026)",
       "estimated": false
     },
     {
-      "catalyst": "Yitirrti (Sulphur Springs) \u2014 processing plant construction (GR Engineering A$275M) to first concentrate",
+      "catalyst": "Yitirrti (Sulphur Springs) — processing plant construction (GR Engineering A$275M) to first concentrate",
       "catalyst_type": "production_fid",
       "timing": "June 2028 quarter",
       "sort": "2028-06-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (28 Oct 2026)",
+      "source": "Quarterly Activities Report – September 2026 (28 Oct 2026)",
       "estimated": false
     },
     {
-      "catalyst": "Woodlawn (NSW) \u2014 continued ramp-up; >1.54Mt @ 2.8% CuEq developed ore; FY27 guidance unchanged",
+      "catalyst": "Woodlawn (NSW) — continued ramp-up; >1.54Mt @ 2.8% CuEq developed ore; FY27 guidance unchanged",
       "catalyst_type": "production_fid",
       "timing": "FY27; no specific milestone date",
       "sort": "2026-12-31",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 September 2026 (28 Oct 2026)",
+      "source": "Quarterly Activities Report – September 2026 (28 Oct 2026)",
       "estimated": true
     }
   ],
   "CTM": [
     {
-      "catalyst": "Jaguar nickel (Brazil) \u2014 finalise debt funding process and close out overarching funding package",
+      "catalyst": "Jaguar nickel (Brazil) — finalise debt funding process and close out overarching funding package",
       "catalyst_type": "capital_raise",
       "timing": "December Quarter / Q4 2026",
       "sort": "2026-11-15",
@@ -2881,7 +2926,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Jaguar \u2014 Minerasul Bridge upgrade to receive heavy equipment",
+      "catalyst": "Jaguar — Minerasul Bridge upgrade to receive heavy equipment",
       "catalyst_type": "other",
       "timing": "December Quarter 2026",
       "sort": "2026-11-15",
@@ -2890,7 +2935,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Jaguar \u2014 Final Investment Decision and start of full-scale construction (all key approvals held)",
+      "catalyst": "Jaguar — Final Investment Decision and start of full-scale construction (all key approvals held)",
       "catalyst_type": "production_fid",
       "timing": "After funding package; no firm date",
       "sort": null,
@@ -2901,7 +2946,7 @@
   ],
   "SMX": [
     {
-      "catalyst": "Zelica Gold Project (WA) \u2014 metallurgical, geological and environmental baseline programs with BMLV; metallurgical composites selected after assays",
+      "catalyst": "Zelica Gold Project (WA) — metallurgical, geological and environmental baseline programs with BMLV; metallurgical composites selected after assays",
       "catalyst_type": "metallurgy",
       "timing": "No firm date given",
       "sort": null,
@@ -2910,7 +2955,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Zelica \u2014 satisfaction of conditions precedent to start full BMLV Mining Services & Profit Share arrangement (BMLV funds capex/opex) toward mining",
+      "catalyst": "Zelica — satisfaction of conditions precedent to start full BMLV Mining Services & Profit Share arrangement (BMLV funds capex/opex) toward mining",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -2919,7 +2964,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Zelica \u2014 expansion via acquisition of E39/2491 and new licence application; resource expansion",
+      "catalyst": "Zelica — expansion via acquisition of E39/2491 and new licence application; resource expansion",
       "catalyst_type": "board_ma",
       "timing": "No firm date given",
       "sort": null,
@@ -2930,7 +2975,7 @@
   ],
   "ARO": [
     {
-      "catalyst": "Novales Project \u2014 upgraded combined JORC MRE (San Jos\u00e9, Ud\u00edas, Emilia, Margarita)",
+      "catalyst": "Novales Project — upgraded combined JORC MRE (San José, Udías, Emilia, Margarita)",
       "catalyst_type": "mre_upgrade",
       "timing": "March 2027 quarter",
       "sort": "2027-03-16",
@@ -2939,7 +2984,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Novales (Spain) \u2014 Emilia and Ud\u00edas underground drilling assays (pending at quarter end)",
+      "catalyst": "Novales (Spain) — Emilia and Udías underground drilling assays (pending at quarter end)",
       "catalyst_type": "drilling_assay",
       "timing": "Pending; no date given",
       "sort": null,
@@ -2948,7 +2993,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Guajaraz Zn-Pb-Ag-Cu \u2014 maiden 5-hole, ~1,430m diamond drilling results (first modern drilling)",
+      "catalyst": "Guajaraz Zn-Pb-Ag-Cu — maiden 5-hole, ~1,430m diamond drilling results (first modern drilling)",
       "catalyst_type": "drilling_assay",
       "timing": "Assays pending; no date given",
       "sort": null,
@@ -2957,7 +3002,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Novales \u2014 surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE",
+      "catalyst": "Novales — surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE",
       "catalyst_type": "mre_upgrade",
       "timing": "Underway from 20 Oct 2026",
       "sort": "2026-10-20",
@@ -2968,7 +3013,7 @@
   ],
   "JGH": [
     {
-      "catalyst": "TTCBM \u2014 Phase 1 development works commence (subject to definitive agreements)",
+      "catalyst": "TTCBM — Phase 1 development works commence (subject to definitive agreements)",
       "catalyst_type": "trial_regulatory",
       "timing": "Late 2026",
       "sort": "2026-11-15",
@@ -2977,7 +3022,7 @@
       "estimated": true
     },
     {
-      "catalyst": "TTCBM \u2014 Phase 1 drilling",
+      "catalyst": "TTCBM — Phase 1 drilling",
       "catalyst_type": "drilling_assay",
       "timing": "Towards end of Q1 2027",
       "sort": "2027-02-14",
@@ -2986,7 +3031,7 @@
       "estimated": true
     },
     {
-      "catalyst": "TTCBM \u2014 approval of Plan of Development and Operation (PDO), key milestone to long-term production rights",
+      "catalyst": "TTCBM — approval of Plan of Development and Operation (PDO), key milestone to long-term production rights",
       "catalyst_type": "production_fid",
       "timing": "No firm date given",
       "sort": null,
@@ -2995,7 +3040,7 @@
       "estimated": true
     },
     {
-      "catalyst": "TTCBM \u2014 targeted 2D/3D seismic surveys for deeper gas potential",
+      "catalyst": "TTCBM — targeted 2D/3D seismic surveys for deeper gas potential",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -3006,7 +3051,7 @@
   ],
   "GWR": [
     {
-      "catalyst": "Wiluna \u2014 transfer of tenements to Gold Valley; revised royalty period ends",
+      "catalyst": "Wiluna — transfer of tenements to Gold Valley; revised royalty period ends",
       "catalyst_type": "other",
       "timing": "Royalty period ends 31 March 2027",
       "sort": "2027-03-31",
@@ -3015,7 +3060,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Arthur River / Lyons River magnesite (Tasmania, EL 05/2016) \u2014 scoping study commencement and Arthur River MRE update (subject to Board approval and consultant appointment)",
+      "catalyst": "Arthur River / Lyons River magnesite (Tasmania, EL 05/2016) — scoping study commencement and Arthur River MRE update (subject to Board approval and consultant appointment)",
       "catalyst_type": "mre_upgrade",
       "timing": "No firm date given",
       "sort": null,
@@ -3024,7 +3069,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Corporate \u2014 due diligence on advanced-stage project acquisitions (cash ~$37M + TGN stake)",
+      "catalyst": "Corporate — due diligence on advanced-stage project acquisitions (cash ~$37M + TGN stake)",
       "catalyst_type": "board_ma",
       "timing": "No firm date given",
       "sort": null,
@@ -3035,7 +3080,7 @@
   ],
   "CLE": [
     {
-      "catalyst": "Iron Bear (Labrador/Qu\u00e9bec) \u2014 PFS optimisation studies (comminution, development cadence) completion, for planned PFS revision",
+      "catalyst": "Iron Bear (Labrador/Québec) — PFS optimisation studies (comminution, development cadence) completion, for planned PFS revision",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Q4 2026",
       "sort": "2026-11-15",
@@ -3044,7 +3089,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Iron Bear \u2014 revised PFS incorporating optimisation and Tailings Class 4/pilot plant/pellet-plant studies",
+      "catalyst": "Iron Bear — revised PFS incorporating optimisation and Tailings Class 4/pilot plant/pellet-plant studies",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "No firm date given",
       "sort": null,
@@ -3053,7 +3098,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Iron Bear \u2014 secure non-dilutive funding/new partner after Vale declined Phase 2 (IBR retains 100%)",
+      "catalyst": "Iron Bear — secure non-dilutive funding/new partner after Vale declined Phase 2 (IBR retains 100%)",
       "catalyst_type": "trial_regulatory",
       "timing": "No firm date given",
       "sort": null,
@@ -3064,7 +3109,7 @@
   ],
   "ENR": [
     {
-      "catalyst": "Lamil (Paterson, WA) \u2014 next phase of drilling",
+      "catalyst": "Lamil (Paterson, WA) — next phase of drilling",
       "catalyst_type": "drilling_assay",
       "timing": "Start of 2027 field season",
       "sort": "2027-06-30",
@@ -3073,7 +3118,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Aileron (West Arunta) \u2014 niobium assays from ongoing diamond drilling across Green\u2019s potential starter pits (5 holes pending)",
+      "catalyst": "Aileron (West Arunta) — niobium assays from ongoing diamond drilling across Green’s potential starter pits (5 holes pending)",
       "catalyst_type": "drilling_assay",
       "timing": "Upcoming; no date given",
       "sort": null,
@@ -3082,7 +3127,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Aileron \u2014 gold re-assaying of prior Green drilling and gold mineralogy; regional aircore assays across Aileron tenure",
+      "catalyst": "Aileron — gold re-assaying of prior Green drilling and gold mineralogy; regional aircore assays across Aileron tenure",
       "catalyst_type": "drilling_assay",
       "timing": "Upcoming; no date given",
       "sort": null,
@@ -3091,7 +3136,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Aileron \u2014 project studies and oxide metallurgical testwork",
+      "catalyst": "Aileron — project studies and oxide metallurgical testwork",
       "catalyst_type": "metallurgy",
       "timing": "No firm date given",
       "sort": null,
@@ -3100,7 +3145,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Sandover / Jessica (NT, South32 farm-in) \u2014 NTGS co-funded passive seismic survey (from Oct 2026) and planned MT geophysics for copper drill targets",
+      "catalyst": "Sandover / Jessica (NT, South32 farm-in) — NTGS co-funded passive seismic survey (from Oct 2026) and planned MT geophysics for copper drill targets",
       "catalyst_type": "drilling_assay",
       "timing": "Commenced October 2026; no completion date",
       "sort": "2026-10-16",
@@ -3111,7 +3156,7 @@
   ],
   "PHO": [
     {
-      "catalyst": "Gasaat phosphate (Tunisia) \u2014 A$1.4M STUDI investment, then A$7.5M from EBRD option exercise",
+      "catalyst": "Gasaat phosphate (Tunisia) — A$1.4M STUDI investment, then A$7.5M from EBRD option exercise",
       "catalyst_type": "other",
       "timing": "STUDI targeted November 2026; EBRD to follow",
       "sort": "2026-11-15",
@@ -3120,7 +3165,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Gasaat \u2014 US Government-backed partnership program (engineering/advisory) definitive documentation",
+      "catalyst": "Gasaat — US Government-backed partnership program (engineering/advisory) definitive documentation",
       "catalyst_type": "other",
       "timing": "Within 30 days of 27 Oct 2026",
       "sort": "2026-10-27",
@@ -3129,7 +3174,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Gasaat \u2014 Pre-Feasibility Study (~12 months after Scoping Study released 5 Nov 2026)",
+      "catalyst": "Gasaat — Pre-Feasibility Study (~12 months after Scoping Study released 5 Nov 2026)",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Indicative 2027",
       "sort": "2027-12-31",
@@ -3138,7 +3183,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Gasaat \u2014 Bankable Feasibility Study (~12 months after PFS)",
+      "catalyst": "Gasaat — Bankable Feasibility Study (~12 months after PFS)",
       "catalyst_type": "dfs_bfs_scoping",
       "timing": "Indicative 2028",
       "sort": "2028-12-31",
@@ -3147,7 +3192,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Gasaat \u2014 commercial production",
+      "catalyst": "Gasaat — commercial production",
       "catalyst_type": "production_fid",
       "timing": "Targeted mid-2030",
       "sort": "2030-06-30",
@@ -3158,7 +3203,7 @@
   ],
   "MLX": [
     {
-      "catalyst": "First Tin PLC (LSE:1SN) \u2014 firm intention to make an offer, or walk away, under UK Takeover Code (deadline extended)",
+      "catalyst": "First Tin PLC (LSE:1SN) — firm intention to make an offer, or walk away, under UK Takeover Code (deadline extended)",
       "catalyst_type": "board_ma",
       "timing": "By 5pm London time, 20 November 2026",
       "sort": "2026-11-20",
@@ -3167,7 +3212,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Renison \u2014 Rentails Front-End Engineering Design completion (delayed from late CY2026)",
+      "catalyst": "Renison — Rentails Front-End Engineering Design completion (delayed from late CY2026)",
       "catalyst_type": "other",
       "timing": "H1 CY2027",
       "sort": "2027-03-31",
@@ -3176,7 +3221,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Rentails \u2014 environmental approvals, then joint-venture Final Investment Decision (previously late CY2026)",
+      "catalyst": "Rentails — environmental approvals, then joint-venture Final Investment Decision (previously late CY2026)",
       "catalyst_type": "production_fid",
       "timing": "Approvals H1 CY2027; FID to follow",
       "sort": "2027-03-31",
@@ -3187,7 +3232,7 @@
   ],
   "SLB": [
     {
-      "catalyst": "Hill of Leaders tungsten (NT) \u2014 results of regional soil geochemical survey (1,350 samples, ~50km\u00b2)",
+      "catalyst": "Hill of Leaders tungsten (NT) — results of regional soil geochemical survey (1,350 samples, ~50km²)",
       "catalyst_type": "other",
       "timing": "December quarter 2026",
       "sort": "2026-11-15",
@@ -3196,7 +3241,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Hill of Leaders \u2014 maiden 3,500m bedrock RC drilling program (approvals secured, funded by $2.6M placement) and results",
+      "catalyst": "Hill of Leaders — maiden 3,500m bedrock RC drilling program (approvals secured, funded by $2.6M placement) and results",
       "catalyst_type": "drilling_assay",
       "timing": "Upcoming; no firm date",
       "sort": null,
@@ -3205,7 +3250,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Hill of Leaders \u2014 follow-up mapping, surface sampling, UHD geophysics and subsequent diamond drilling",
+      "catalyst": "Hill of Leaders — follow-up mapping, surface sampling, UHD geophysics and subsequent diamond drilling",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
       "sort": null,
@@ -3216,7 +3261,7 @@
   ],
   "VAR": [
     {
-      "catalyst": "Novales Project \u2014 upgraded combined JORC MRE (San Jos\u00e9, Ud\u00edas, Emilia, Margarita)",
+      "catalyst": "Novales Project — upgraded combined JORC MRE (San José, Udías, Emilia, Margarita)",
       "catalyst_type": "mre_upgrade",
       "timing": "March 2027 quarter",
       "sort": "2027-03-16",
@@ -3225,7 +3270,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Novales (Spain) \u2014 Emilia and Ud\u00edas underground drilling assays (pending at quarter end)",
+      "catalyst": "Novales (Spain) — Emilia and Udías underground drilling assays (pending at quarter end)",
       "catalyst_type": "drilling_assay",
       "timing": "Pending; no date given",
       "sort": null,
@@ -3234,7 +3279,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Guajaraz Zn-Pb-Ag-Cu \u2014 maiden 5-hole, ~1,430m diamond drilling results (first modern drilling)",
+      "catalyst": "Guajaraz Zn-Pb-Ag-Cu — maiden 5-hole, ~1,430m diamond drilling results (first modern drilling)",
       "catalyst_type": "drilling_assay",
       "timing": "Assays pending; no date given",
       "sort": null,
@@ -3243,7 +3288,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Novales \u2014 surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE",
+      "catalyst": "Novales — surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE",
       "catalyst_type": "mre_upgrade",
       "timing": "Underway from 20 Oct 2026",
       "sort": "2026-10-20",
@@ -3254,7 +3299,7 @@
   ],
   "GHY": [
     {
-      "catalyst": "Ramsay Project (SA) \u2014 independently certified maiden Helium Contingent Resource (PRMS)",
+      "catalyst": "Ramsay Project (SA) — independently certified maiden Helium Contingent Resource (PRMS)",
       "catalyst_type": "other",
       "timing": "Targeted November 2026",
       "sort": "2026-11-15",
@@ -3272,7 +3317,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Ramsay \u2014 evaluation of commercial helium development (as few as two wells): engineering, commercial and economic assessment",
+      "catalyst": "Ramsay — evaluation of commercial helium development (as few as two wells): engineering, commercial and economic assessment",
       "catalyst_type": "other",
       "timing": "After Contingent Resource; no firm date",
       "sort": null,
@@ -3283,21 +3328,21 @@
   ],
   "YAL": [
     {
-      "catalyst": "Hunter Valley Operations continuation \u2014 federal approval (NSW approval received 30 Sep 2026), enabling 19 more years of operation",
+      "catalyst": "Hunter Valley Operations continuation — federal approval (NSW approval received 30 Sep 2026), enabling 19 more years of operation",
       "catalyst_type": "production_fid",
       "timing": "Expected Q4 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 3Q 2026 (20 Oct 2026)",
+      "source": "Quarterly Activities Report – 3Q 2026 (20 Oct 2026)",
       "estimated": true
     },
     {
-      "catalyst": "Kestrel (80%, acquired 1 Oct 2026) \u2014 first earnings contribution; FY2026 production in upper half of 36.5\u201340.5Mt guidance",
+      "catalyst": "Kestrel (80%, acquired 1 Oct 2026) — first earnings contribution; FY2026 production in upper half of 36.5–40.5Mt guidance",
       "catalyst_type": "production_fid",
       "timing": "4Q 2026",
       "sort": "2026-11-15",
       "day_precise": false,
-      "source": "Quarterly Activities Report \u2013 3Q 2026 (20 Oct 2026)",
+      "source": "Quarterly Activities Report – 3Q 2026 (20 Oct 2026)",
       "estimated": true
     }
   ],
@@ -3312,7 +3357,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Tibooburra Gold Project (NSW, Novo farm-in stage 2) \u2014 ~2,700m RC program at Clone and Pioneer South",
+      "catalyst": "Tibooburra Gold Project (NSW, Novo farm-in stage 2) — ~2,700m RC program at Clone and Pioneer South",
       "catalyst_type": "drilling_assay",
       "timing": "Commencing shortly (from late Oct 2026)",
       "sort": "2026-10-16",
@@ -3321,7 +3366,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Hook Lake (Canada) \u2014 Maiden 2026 RC campaign \u2014 assays for five pending holes (two at Jaws incl. 2.25km strike extension, three at Omega) plus 550 till samples; scoping metallurgical testwork",
+      "catalyst": "Hook Lake (Canada) — Maiden 2026 RC campaign — assays for five pending holes (two at Jaws incl. 2.25km strike extension, three at Omega) plus 550 till samples; scoping metallurgical testwork",
       "catalyst_type": "metallurgy",
       "timing": "Pending; no date given",
       "sort": null,
@@ -3332,7 +3377,7 @@
   ],
   "EQU": [
     {
-      "catalyst": "Equus Gas Project (offshore WA) \u2014 Stage Two Project Partnering: secure operating, LNG offtake, infrastructure and financing partners (Alcoa funding US$1.5M)",
+      "catalyst": "Equus Gas Project (offshore WA) — Stage Two Project Partnering: secure operating, LNG offtake, infrastructure and financing partners (Alcoa funding US$1.5M)",
       "catalyst_type": "capital_raise",
       "timing": "No firm date given",
       "sort": null,
@@ -3341,7 +3386,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Equus \u2014 FEED (funded under Alcoa facility of up to US$30M) and progression to Final Investment Decision",
+      "catalyst": "Equus — FEED (funded under Alcoa facility of up to US$30M) and progression to Final Investment Decision",
       "catalyst_type": "production_fid",
       "timing": "No firm date given",
       "sort": null,
@@ -3352,7 +3397,7 @@
   ],
   "EDE": [
     {
-      "catalyst": "EdenCrete Pz7 \u2014 two further Amrize plant dispensing installations (taking total to 32 plants in USA/Canada/Ecuador)",
+      "catalyst": "EdenCrete Pz7 — two further Amrize plant dispensing installations (taking total to 32 plants in USA/Canada/Ecuador)",
       "catalyst_type": "other",
       "timing": "October 2026",
       "sort": "2026-10-16",
@@ -3361,7 +3406,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Eden US \u2014 continued year-on-year revenue growth",
+      "catalyst": "Eden US — continued year-on-year revenue growth",
       "catalyst_type": "other",
       "timing": "FY27",
       "sort": "2026-12-31",
@@ -3370,7 +3415,7 @@
       "estimated": true
     },
     {
-      "catalyst": "OptiBlend \u2014 conversion of ~US$916k of submitted quotes (16 USA, plus Mexico/Bolivia)",
+      "catalyst": "OptiBlend — conversion of ~US$916k of submitted quotes (16 USA, plus Mexico/Bolivia)",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -3381,7 +3426,7 @@
   ],
   "BTE": [
     {
-      "catalyst": "New Prospecting Licence PL0089/2026 (north of Pitse) \u2014 drilling",
+      "catalyst": "New Prospecting Licence PL0089/2026 (north of Pitse) — drilling",
       "catalyst_type": "drilling_assay",
       "timing": "Early 2027",
       "sort": "2027-01-31",
@@ -3390,7 +3435,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Serowe CBM (Botswana) \u2014 Pitse pilot dewatering to ~20m above coal for meaningful gas flow; completion at well 3.2 and remediation/restart of well 3.1",
+      "catalyst": "Serowe CBM (Botswana) — Pitse pilot dewatering to ~20m above coal for meaningful gas flow; completion at well 3.2 and remediation/restart of well 3.1",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -3399,7 +3444,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Serowe \u2014 demonstrate sustained commercial gas production to support reserves certification",
+      "catalyst": "Serowe — demonstrate sustained commercial gas production to support reserves certification",
       "catalyst_type": "production_fid",
       "timing": "No firm date given",
       "sort": null,
@@ -3419,7 +3464,7 @@
   ],
   "BMN": [
     {
-      "catalyst": "Etango-8 \u2014 first production (~3.5Mlbs U3O8 pa average)",
+      "catalyst": "Etango-8 — first production (~3.5Mlbs U3O8 pa average)",
       "catalyst_type": "production_fid",
       "timing": "During 2028",
       "sort": "2028-12-31",
@@ -3428,7 +3473,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Etango uranium (Namibia; CNOL JV) \u2014 ramp-up of full-scale construction following FID (Oct 2026); ~two-year construction and commissioning",
+      "catalyst": "Etango uranium (Namibia; CNOL JV) — ramp-up of full-scale construction following FID (Oct 2026); ~two-year construction and commissioning",
       "catalyst_type": "production_fid",
       "timing": "Coming months",
       "sort": null,
@@ -3437,7 +3482,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Etango \u2014 third-party uranium offtake contracts for volumes not committed under CNOL offtake",
+      "catalyst": "Etango — third-party uranium offtake contracts for volumes not committed under CNOL offtake",
       "catalyst_type": "capital_raise",
       "timing": "No firm date given",
       "sort": null,
@@ -3448,7 +3493,7 @@
   ],
   "BTM": [
     {
-      "catalyst": "Turpentine copper-gold (Mt Isa region) \u2014 4,000m resource expansion drilling results / resource growth",
+      "catalyst": "Turpentine copper-gold (Mt Isa region) — 4,000m resource expansion drilling results / resource growth",
       "catalyst_type": "drilling_assay",
       "timing": "2026 program; no firm date",
       "sort": null,
@@ -3457,7 +3502,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Barbara copper-gold \u2014 DHEM surveys and follow-up of deep mineralisation (26BAR009 below MRE)",
+      "catalyst": "Barbara copper-gold — DHEM surveys and follow-up of deep mineralisation (26BAR009 below MRE)",
       "catalyst_type": "mre_upgrade",
       "timing": "No firm date given",
       "sort": null,
@@ -3468,7 +3513,7 @@
   ],
   "OMA": [
     {
-      "catalyst": "Canyon PCA \u2014 one or two horizontal wells (up to 2,000m laterals), fracture stimulation and flow testing",
+      "catalyst": "Canyon PCA — one or two horizontal wells (up to 2,000m laterals), fracture stimulation and flow testing",
       "catalyst_type": "other",
       "timing": "After vertical wells; 2026/27 program",
       "sort": "2027-12-31",
@@ -3477,7 +3522,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Taroom Trough (QLD) \u2014 remaining vertical appraisal wells of 2026/27 program (Canyon-5/6 after Canyon-3/4)",
+      "catalyst": "Taroom Trough (QLD) — remaining vertical appraisal wells of 2026/27 program (Canyon-5/6 after Canyon-3/4)",
       "catalyst_type": "other",
       "timing": "2026/27 program; no specific dates",
       "sort": null,
@@ -3497,7 +3542,7 @@
   ],
   "EMP": [
     {
-      "catalyst": "Judith (Gippsland Basin, Vic) \u2014 binding Valaris 107 drilling contract execution",
+      "catalyst": "Judith (Gippsland Basin, Vic) — binding Valaris 107 drilling contract execution",
       "catalyst_type": "drilling_assay",
       "timing": "By 31 October 2026 (on track)",
       "sort": "2026-10-31",
@@ -3506,7 +3551,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Judith-2 \u2014 well-site geophysical survey",
+      "catalyst": "Judith-2 — well-site geophysical survey",
       "catalyst_type": "drilling_assay",
       "timing": "Commencing 23 November 2026",
       "sort": "2026-11-23",
@@ -3524,7 +3569,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Judith-2 \u2014 logistics, support vessel and aviation contracts",
+      "catalyst": "Judith-2 — logistics, support vessel and aviation contracts",
       "catalyst_type": "other",
       "timing": "No firm date given",
       "sort": null,
@@ -3535,7 +3580,7 @@
   ],
   "AXP": [
     {
-      "catalyst": "Oklahoma acquisition (wells, facilities, saltwater disposal; 100% WI) \u2014 completion; entitlement offer (min A$1.2M) closes",
+      "catalyst": "Oklahoma acquisition (wells, facilities, saltwater disposal; 100% WI) — completion; entitlement offer (min A$1.2M) closes",
       "catalyst_type": "board_ma",
       "timing": "Completion targeted by 3 Nov 2026; offer closes 3 Nov 2026",
       "sort": "2026-11-03",
@@ -3555,7 +3600,7 @@
   ],
   "NGY": [
     {
-      "catalyst": "Tanjung Enim POD 1 (Indonesia CBM) \u2014 complete Early Production Facilities and PGN CNG Mother Station; first commercial gas sales",
+      "catalyst": "Tanjung Enim POD 1 (Indonesia CBM) — complete Early Production Facilities and PGN CNG Mother Station; first commercial gas sales",
       "catalyst_type": "production_fid",
       "timing": "Q1 CY2027",
       "sort": "2027-02-14",
@@ -3564,7 +3609,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Muralim PSC \u2014 Plan of Development submission before exploration period expiry",
+      "catalyst": "Muralim PSC — Plan of Development submission before exploration period expiry",
       "catalyst_type": "other",
       "timing": "Before 12 August 2027",
       "sort": "2027-08-12",
@@ -3573,7 +3618,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Muara Enim PSC \u2014 Plan of Development submission before exploration period expiry",
+      "catalyst": "Muara Enim PSC — Plan of Development submission before exploration period expiry",
       "catalyst_type": "other",
       "timing": "Before 12 August 2027",
       "sort": "2027-08-12",
@@ -3584,7 +3629,7 @@
   ],
   "BXN": [
     {
-      "catalyst": "FY27 guidance delivery: revenue $105\u2013115M, adjusted EBITDA margin 23\u201326% (Q1 record $26.7M)",
+      "catalyst": "FY27 guidance delivery: revenue $105–115M, adjusted EBITDA margin 23–26% (Q1 record $26.7M)",
       "catalyst_type": "other",
       "timing": "FY27 (to June 2027)",
       "sort": "2027-06-15",
@@ -3593,7 +3638,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Scotland GMP manufacturing facility \u2014 commissioning/completion (UK capacity expansion)",
+      "catalyst": "Scotland GMP manufacturing facility — commissioning/completion (UK capacity expansion)",
       "catalyst_type": "production_fid",
       "timing": "On track; no date given",
       "sort": null,
@@ -3604,7 +3649,7 @@
   ],
   "RAC": [
     {
-      "catalyst": "Bisantrene (RC110/RC220) \u2014 initiation of pivotal Phase 3 AML program (RAC-030)",
+      "catalyst": "Bisantrene (RC110/RC220) — initiation of pivotal Phase 3 AML program (RAC-030)",
       "catalyst_type": "trial_regulatory",
       "timing": "FY2027 priority",
       "sort": "2026-12-31",
@@ -3613,7 +3658,7 @@
       "estimated": true
     },
     {
-      "catalyst": "HARNESS-1 Phase 1a/b (RC220 + osimertinib, EGFR-mutated NSCLC) \u2014 dose escalation to 100 mg/m\u00b2 cohort and safety data",
+      "catalyst": "HARNESS-1 Phase 1a/b (RC220 + osimertinib, EGFR-mutated NSCLC) — dose escalation to 100 mg/m² cohort and safety data",
       "catalyst_type": "trial_regulatory",
       "timing": "Ongoing; no date given",
       "sort": null,
@@ -3622,7 +3667,7 @@
       "estimated": true
     },
     {
-      "catalyst": "CPACS Phase 1a/b (RC220 cardioprotection in solid tumours) \u2014 next dose level cohort",
+      "catalyst": "CPACS Phase 1a/b (RC220 cardioprotection in solid tumours) — next dose level cohort",
       "catalyst_type": "trial_regulatory",
       "timing": "Ongoing; no date given",
       "sort": null,
@@ -3633,7 +3678,7 @@
   ],
   "TTX": [
     {
-      "catalyst": "Tegenix (bone regeneration) \u2014 response to FDA 510(k) additional-information request (chemical characterisation, labelling), then FDA clearance decision",
+      "catalyst": "Tegenix (bone regeneration) — response to FDA 510(k) additional-information request (chemical characterisation, labelling), then FDA clearance decision",
       "catalyst_type": "trial_regulatory",
       "timing": "Response 'expedited'; clearance decision timing rests with FDA (previously guided CY26)",
       "sort": "2026-12-31",
@@ -3642,7 +3687,7 @@
       "estimated": false
     },
     {
-      "catalyst": "TegenEOS (bone regeneration) \u2014 FDA 510(k) clearance",
+      "catalyst": "TegenEOS (bone regeneration) — FDA 510(k) clearance",
       "catalyst_type": "trial_regulatory",
       "timing": "On track for CY26",
       "sort": "2026-12-31",
@@ -3651,7 +3696,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Superpower Health partnership \u2014 commercial product launch (follows US$3M licence fee)",
+      "catalyst": "Superpower Health partnership — commercial product launch (follows US$3M licence fee)",
       "catalyst_type": "production_fid",
       "timing": "Q1 FY27",
       "sort": "2027-02-14",
@@ -3660,7 +3705,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Radiation spacer \u2014 pivotal US/AU trial (N=230, 12-month follow-up) toward FDA submission",
+      "catalyst": "Radiation spacer — pivotal US/AU trial (N=230, 12-month follow-up) toward FDA submission",
       "catalyst_type": "trial_regulatory",
       "timing": "FDA submission 2028",
       "sort": "2028-12-31",
@@ -3680,7 +3725,7 @@
   ],
   "NUZ": [
     {
-      "catalyst": "NUZ-001 (ALS) \u2014 HEALEY ALS Platform Trial Regimen I (Phase 2/3, 250 pts) topline efficacy and safety results",
+      "catalyst": "NUZ-001 (ALS) — HEALEY ALS Platform Trial Regimen I (Phase 2/3, 250 pts) topline efficacy and safety results",
       "catalyst_type": "trial_regulatory",
       "timing": "Late Q2 CY2027",
       "sort": "2027-05-16",
@@ -3689,7 +3734,7 @@
       "estimated": true
     },
     {
-      "catalyst": "NUZ-001 \u2014 NDA preparation for traditional approval (FDA Type C feedback: HEALEY may serve as single registrational study)",
+      "catalyst": "NUZ-001 — NDA preparation for traditional approval (FDA Type C feedback: HEALEY may serve as single registrational study)",
       "catalyst_type": "trial_regulatory",
       "timing": "Following topline data; no date given",
       "sort": null,
@@ -3700,7 +3745,7 @@
   ],
   "TLX": [
     {
-      "catalyst": "ITM merger \u2014 Telix shareholder General Meeting vote",
+      "catalyst": "ITM merger — Telix shareholder General Meeting vote",
       "catalyst_type": "board_ma",
       "timing": "General Meeting expected 1 December 2026",
       "sort": "2026-12-01",
@@ -3709,7 +3754,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Zircaix (TLX250-Px, kidney cancer imaging) \u2014 BLA resubmission to FDA",
+      "catalyst": "Zircaix (TLX250-Px, kidney cancer imaging) — BLA resubmission to FDA",
       "catalyst_type": "trial_regulatory",
       "timing": "Planned in the near term",
       "sort": null,
@@ -3718,7 +3763,7 @@
       "estimated": true
     },
     {
-      "catalyst": "OPTIMAL-PSMA Phase 2 \u2014 data readout",
+      "catalyst": "OPTIMAL-PSMA Phase 2 — data readout",
       "catalyst_type": "trial_regulatory",
       "timing": "First half of 2027",
       "sort": "2027-03-31",
@@ -3727,7 +3772,7 @@
       "estimated": true
     },
     {
-      "catalyst": "ProstACT Global Phase 3 (TLX591-Tx) \u2014 US IND amendment for Part 2; international Part 2 enrolling",
+      "catalyst": "ProstACT Global Phase 3 (TLX591-Tx) — US IND amendment for Part 2; international Part 2 enrolling",
       "catalyst_type": "trial_regulatory",
       "timing": "IND amendment being finalised; no date given",
       "sort": null,
@@ -3736,7 +3781,7 @@
       "estimated": true
     },
     {
-      "catalyst": "BiPASS Phase 3 (enrolment complete, Fast Track) \u2014 supports regulatory submissions",
+      "catalyst": "BiPASS Phase 3 (enrolment complete, Fast Track) — supports regulatory submissions",
       "catalyst_type": "trial_regulatory",
       "timing": "No date given",
       "sort": null,
@@ -3745,7 +3790,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Pixlumi (TLX101-Px) \u2014 European MAA decision",
+      "catalyst": "Pixlumi (TLX101-Px) — European MAA decision",
       "catalyst_type": "other",
       "timing": "Remains under review",
       "sort": null,
@@ -3754,7 +3799,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Pixclara brain metastases \u2014 Phase 3 registrational study progress",
+      "catalyst": "Pixclara brain metastases — Phase 3 registrational study progress",
       "catalyst_type": "trial_regulatory",
       "timing": "Advancing; no date given",
       "sort": null,
@@ -3765,7 +3810,7 @@
   ],
   "ENP": [
     {
-      "catalyst": "TRP-8803 (IV psilocin) BED Phase 2 \u2014 Cohort 2 (shorter infusion regimen) topline results",
+      "catalyst": "TRP-8803 (IV psilocin) BED Phase 2 — Cohort 2 (shorter infusion regimen) topline results",
       "catalyst_type": "trial_regulatory",
       "timing": "Q4 CY2026",
       "sort": "2026-11-15",
@@ -3774,7 +3819,7 @@
       "estimated": true
     },
     {
-      "catalyst": "TRP-8803 \u2014 proposed US Phase 2 Major Depressive Disorder study with UCSF",
+      "catalyst": "TRP-8803 — proposed US Phase 2 Major Depressive Disorder study with UCSF",
       "catalyst_type": "trial_regulatory",
       "timing": "Progressing; no date given",
       "sort": null,
@@ -3783,7 +3828,7 @@
       "estimated": true
     },
     {
-      "catalyst": "TRP-8803 \u2014 expansion into broader multi-indication clinical program",
+      "catalyst": "TRP-8803 — expansion into broader multi-indication clinical program",
       "catalyst_type": "trial_regulatory",
       "timing": "No date given",
       "sort": null,
@@ -3794,7 +3839,7 @@
   ],
   "OSL": [
     {
-      "catalyst": "OncoSil device \u2014 US commercial launch for distal cholangiocarcinoma under FDA HDE (initially \u22645 centres)",
+      "catalyst": "OncoSil device — US commercial launch for distal cholangiocarcinoma under FDA HDE (initially ≤5 centres)",
       "catalyst_type": "trial_regulatory",
       "timing": "Second half of FY2027",
       "sort": "2027-09-30",
@@ -3803,7 +3848,7 @@
       "estimated": true
     },
     {
-      "catalyst": "FDA-mandated US post-approval study (up to 30 patients, 24 months) \u2014 commencement",
+      "catalyst": "FDA-mandated US post-approval study (up to 30 patients, 24 months) — commencement",
       "catalyst_type": "trial_regulatory",
       "timing": "Planned alongside US launch, H2 FY2027 (some reports say H2 2027)",
       "sort": "2027-09-30",
@@ -3812,7 +3857,7 @@
       "estimated": true
     },
     {
-      "catalyst": "PANCOSIL / TRIPP-FFX pivotal studies \u2014 label expansion (new delivery methods, chemo combinations)",
+      "catalyst": "PANCOSIL / TRIPP-FFX pivotal studies — label expansion (new delivery methods, chemo combinations)",
       "catalyst_type": "other",
       "timing": "Ongoing; no date given",
       "sort": null,
@@ -3823,7 +3868,7 @@
   ],
   "ATH": [
     {
-      "catalyst": "ATH434 (MSA) \u2014 Phase 3 registrational trial initiation (~200 pts, 12 months; design confirmed at FDA End-of-Phase 2)",
+      "catalyst": "ATH434 (MSA) — Phase 3 registrational trial initiation (~200 pts, 12 months; design confirmed at FDA End-of-Phase 2)",
       "catalyst_type": "trial_regulatory",
       "timing": "Operational start-up underway; no firm start date given, expected late this year",
       "sort": null,
@@ -3832,7 +3877,7 @@
       "estimated": true
     },
     {
-      "catalyst": "ATH434 \u2014 strategic funding / pharma partnering outcome to fund Phase 3",
+      "catalyst": "ATH434 — strategic funding / pharma partnering outcome to fund Phase 3",
       "catalyst_type": "trial_regulatory",
       "timing": "Ongoing discussions; no timeline",
       "sort": null,
@@ -3843,7 +3888,7 @@
   ],
   "CMP": [
     {
-      "catalyst": "Somfit D \u2014 planned US release",
+      "catalyst": "Somfit D — planned US release",
       "catalyst_type": "other",
       "timing": "FY27",
       "sort": "2026-12-31",
@@ -3852,7 +3897,7 @@
       "estimated": true
     },
     {
-      "catalyst": "MEG open orders (~A$13.1M entering FY27) \u2014 conversion to installed/recognised revenue",
+      "catalyst": "MEG open orders (~A$13.1M entering FY27) — conversion to installed/recognised revenue",
       "catalyst_type": "other",
       "timing": "FY27",
       "sort": "2026-12-31",
@@ -3863,7 +3908,7 @@
   ],
   "PER": [
     {
-      "catalyst": "HMBD-002 (minperstobart) \u2014 Phase II study commencement",
+      "catalyst": "HMBD-002 (minperstobart) — Phase II study commencement",
       "catalyst_type": "other",
       "timing": "Q4 CY2026",
       "sort": "2026-11-15",
@@ -3872,7 +3917,7 @@
       "estimated": true
     },
     {
-      "catalyst": "HMBD-002 \u2014 final drug product release (fill-and-finish)",
+      "catalyst": "HMBD-002 — final drug product release (fill-and-finish)",
       "catalyst_type": "other",
       "timing": "September 2026",
       "sort": "2026-09-15",
@@ -3883,7 +3928,7 @@
   ],
   "IMR": [
     {
-      "catalyst": "VISABL-AFL clinical trial \u2014 enrolment completion (later stages of enrolment)",
+      "catalyst": "VISABL-AFL clinical trial — enrolment completion (later stages of enrolment)",
       "catalyst_type": "trial_regulatory",
       "timing": "Targeted 2H26",
       "sort": "2026-09-30",
@@ -3892,7 +3937,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Vision-MR Ablation Catheter \u2014 fourth/final PMA module submission to FDA (after VISABL-AFL)",
+      "catalyst": "Vision-MR Ablation Catheter — fourth/final PMA module submission to FDA (after VISABL-AFL)",
       "catalyst_type": "trial_regulatory",
       "timing": "Targeted 2H26",
       "sort": "2026-09-30",
@@ -3901,9 +3946,9 @@
       "estimated": true
     },
     {
-      "catalyst": "Vision-MR Ablation Catheter + RF-5000 generator \u2014 FDA PMA approval, completing US platform",
+      "catalyst": "Vision-MR Ablation Catheter + RF-5000 generator — FDA PMA approval, completing US platform",
       "catalyst_type": "trial_regulatory",
-      "timing": "Following final module; FDA decisions flagged for 2H26 \u2014 no firm date",
+      "timing": "Following final module; FDA decisions flagged for 2H26 — no firm date",
       "sort": null,
       "day_precise": false,
       "source": "Q2 CY2026 Quarterly Activities Report (Jul 2026)",
@@ -3912,7 +3957,7 @@
   ],
   "RHT": [
     {
-      "catalyst": "DEVIMLA study (liver fibrosis device) \u2014 readout (recruitment complete)",
+      "catalyst": "DEVIMLA study (liver fibrosis device) — readout (recruitment complete)",
       "catalyst_type": "other",
       "timing": "Within approximately three months (from late Aug 2026)",
       "sort": "2026-08-16",
@@ -3921,7 +3966,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Liver fibrosis device \u2014 use in clinical trials",
+      "catalyst": "Liver fibrosis device — use in clinical trials",
       "catalyst_type": "trial_regulatory",
       "timing": "FY27/28",
       "sort": "2026-12-31",
@@ -3930,7 +3975,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Liver fibrosis device \u2014 FDA 510(k) clearance and commercial launch",
+      "catalyst": "Liver fibrosis device — FDA 510(k) clearance and commercial launch",
       "catalyst_type": "trial_regulatory",
       "timing": "From FY28",
       "sort": "2027-12-31",
@@ -3941,7 +3986,7 @@
   ],
   "ATX": [
     {
-      "catalyst": "ACCENT-Mini (daily narmafotinib + gem/Abraxane) \u2014 ethics approval and trial start (3 AU sites)",
+      "catalyst": "ACCENT-Mini (daily narmafotinib + gem/Abraxane) — ethics approval and trial start (3 AU sites)",
       "catalyst_type": "trial_regulatory",
       "timing": "Ethics approval expected imminently",
       "sort": "2026-12-31",
@@ -3950,7 +3995,7 @@
       "estimated": false
     },
     {
-      "catalyst": "ACCENT-Mini \u2014 safety and PK data (feeds FDA protocol for registrational study)",
+      "catalyst": "ACCENT-Mini — safety and PK data (feeds FDA protocol for registrational study)",
       "catalyst_type": "trial_regulatory",
       "timing": "Late Q1/early Q2 2027",
       "sort": "2027-05-16",
@@ -3959,7 +4004,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Narmafotinib pancreatic cancer \u2014 FDA protocol submission for registrational study (narmafotinib + gem/Abraxane)",
+      "catalyst": "Narmafotinib pancreatic cancer — FDA protocol submission for registrational study (narmafotinib + gem/Abraxane)",
       "catalyst_type": "trial_regulatory",
       "timing": "After ACCENT-Mini data; no date given",
       "sort": null,
@@ -3968,7 +4013,7 @@
       "estimated": true
     },
     {
-      "catalyst": "PRROSE ovarian cancer study (ANZGOG-sponsored) \u2014 ethics approval and start",
+      "catalyst": "PRROSE ovarian cancer study (ANZGOG-sponsored) — ethics approval and start",
       "catalyst_type": "trial_regulatory",
       "timing": "Ethics submitted; no date given",
       "sort": null,
@@ -3977,7 +4022,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Narmafotinib + Lilly olomorasib (KRAS G12C) NSCLC trial \u2014 progress update",
+      "catalyst": "Narmafotinib + Lilly olomorasib (KRAS G12C) NSCLC trial — progress update",
       "catalyst_type": "trial_regulatory",
       "timing": "Separate announcement to follow; no date given",
       "sort": null,
@@ -3986,7 +4031,7 @@
       "estimated": true
     },
     {
-      "catalyst": "ACCENT trial \u2014 scientific paper publication and further biomarker results",
+      "catalyst": "ACCENT trial — scientific paper publication and further biomarker results",
       "catalyst_type": "trial_regulatory",
       "timing": "Being drafted; no date given",
       "sort": null,
@@ -3997,7 +4042,7 @@
   ],
   "BOT": [
     {
-      "catalyst": "Strategic review \u2014 evaluating broader strategic transactions incl. sale of the company, licensing, product acquisitions",
+      "catalyst": "Strategic review — evaluating broader strategic transactions incl. sale of the company, licensing, product acquisitions",
       "catalyst_type": "board_ma",
       "timing": "Board actively evaluating; no timeline",
       "sort": null,
@@ -4006,7 +4051,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Sofdra \u2014 gross-to-net yield improvement after PA-submission issue addressed",
+      "catalyst": "Sofdra — gross-to-net yield improvement after PA-submission issue addressed",
       "catalyst_type": "other",
       "timing": "Expected in Q2 FY27",
       "sort": "2027-05-16",
@@ -4015,7 +4060,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Piramal alternate API supply \u2014 25-40% COGS reduction",
+      "catalyst": "Piramal alternate API supply — 25-40% COGS reduction",
       "catalyst_type": "other",
       "timing": "No date given",
       "sort": null,
@@ -4035,7 +4080,7 @@
   ],
   "ILA": [
     {
-      "catalyst": "Galidesivir \u2014 first 5kg GMP API batch completion",
+      "catalyst": "Galidesivir — first 5kg GMP API batch completion",
       "catalyst_type": "other",
       "timing": "By end of October 2026",
       "sort": "2026-10-31",
@@ -4044,7 +4089,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Galidesivir \u2014 USAMRIID 20-NHP Marburg dose study, dosing start",
+      "catalyst": "Galidesivir — USAMRIID 20-NHP Marburg dose study, dosing start",
       "catalyst_type": "trial_regulatory",
       "timing": "Planned dosing in Q4 CY26",
       "sort": "2026-11-15",
@@ -4053,7 +4098,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Galidesivir \u2014 ~700-800 treatment courses available and shipped to Africa for compassionate use in Uganda Bundibugyo Ebola outbreak (prospective human data)",
+      "catalyst": "Galidesivir — ~700-800 treatment courses available and shipped to Africa for compassionate use in Uganda Bundibugyo Ebola outbreak (prospective human data)",
       "catalyst_type": "other",
       "timing": "Courses this quarter; shipped prior to end of CY26",
       "sort": "2026-12-31",
@@ -4062,7 +4107,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Galidesivir \u2014 Texas Biomed 12-NHP Marburg-Angola dose optimisation study",
+      "catalyst": "Galidesivir — Texas Biomed 12-NHP Marburg-Angola dose optimisation study",
       "catalyst_type": "trial_regulatory",
       "timing": "No date given",
       "sort": null,
@@ -4071,7 +4116,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Galidesivir \u2014 pivotal Marburg efficacy study under FDA Animal Rule, then FDA submission (PRV-eligible)",
+      "catalyst": "Galidesivir — pivotal Marburg efficacy study under FDA Animal Rule, then FDA submission (PRV-eligible)",
       "catalyst_type": "trial_regulatory",
       "timing": "After 32-NHP dose program; no date given",
       "sort": null,
@@ -4082,7 +4127,7 @@
   ],
   "CMB": [
     {
-      "catalyst": "Elate Ocular \u2014 pivotal Phase 3 trial start (single-trial pathway per FDA Type D; IND amendment filed 3 Jun 2026)",
+      "catalyst": "Elate Ocular — pivotal Phase 3 trial start (single-trial pathway per FDA Type D; IND amendment filed 3 Jun 2026)",
       "catalyst_type": "trial_regulatory",
       "timing": "H2 CY2026",
       "sort": "2026-09-30",
@@ -4091,7 +4136,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Elate Ocular \u2014 rolling BLA submission",
+      "catalyst": "Elate Ocular — rolling BLA submission",
       "catalyst_type": "other",
       "timing": "By mid-CY2028",
       "sort": "2028-06-30",
@@ -4102,7 +4147,7 @@
   ],
   "CVL": [
     {
-      "catalyst": "Henderson Defence Precinct (naval shipbuilding) \u2014 further detail / work packages from Government",
+      "catalyst": "Henderson Defence Precinct (naval shipbuilding) — further detail / work packages from Government",
       "catalyst_type": "other",
       "timing": "Awaiting detail; no date given",
       "sort": null,
@@ -4111,7 +4156,7 @@
       "estimated": true
     },
     {
-      "catalyst": "CSBP Sodium Cyanide Expansion \u2014 final shutdown",
+      "catalyst": "CSBP Sodium Cyanide Expansion — final shutdown",
       "catalyst_type": "other",
       "timing": "November 2026",
       "sort": "2026-11-15",
@@ -4120,7 +4165,7 @@
       "estimated": false
     },
     {
-      "catalyst": "M5 bridge steel package \u2014 delivery and installation",
+      "catalyst": "M5 bridge steel package — delivery and installation",
       "catalyst_type": "other",
       "timing": "Early 2027",
       "sort": "2027-01-31",
@@ -4131,7 +4176,7 @@
   ],
   "SPZ": [
     {
-      "catalyst": "US expansion \u2014 sales team build-out and CEO relocation to US",
+      "catalyst": "US expansion — sales team build-out and CEO relocation to US",
       "catalyst_type": "other",
       "timing": "H1 FY27",
       "sort": "2026-12-31",
@@ -4160,7 +4205,7 @@
   ],
   "SOP": [
     {
-      "catalyst": "Amplitude Energy Orbost project \u2014 Synertec-selected solution presented for Final Investment Decision",
+      "catalyst": "Amplitude Energy Orbost project — Synertec-selected solution presented for Final Investment Decision",
       "catalyst_type": "production_fid",
       "timing": "December 2026",
       "sort": "2026-12-16",
@@ -4169,7 +4214,7 @@
       "estimated": false
     },
     {
-      "catalyst": "TasNetworks urban battery units \u2014 first unit delivery",
+      "catalyst": "TasNetworks urban battery units — first unit delivery",
       "catalyst_type": "other",
       "timing": "Inaugural unit in February (2027)",
       "sort": "2027-02-28",
@@ -4178,7 +4223,7 @@
       "estimated": false
     },
     {
-      "catalyst": "GLNG JV Powerhouse units #5 and #6 \u2014 delivery",
+      "catalyst": "GLNG JV Powerhouse units #5 and #6 — delivery",
       "catalyst_type": "other",
       "timing": "Around mid-CY2027",
       "sort": "2027-06-30",
@@ -4187,7 +4232,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Central Australia 12MW/12MWh Powerhouse system \u2014 delivery",
+      "catalyst": "Central Australia 12MW/12MWh Powerhouse system — delivery",
       "catalyst_type": "other",
       "timing": "Targeted by 30 September 2027",
       "sort": "2027-09-30",
@@ -4196,7 +4241,7 @@
       "estimated": false
     },
     {
-      "catalyst": "TasNetworks urban battery project \u2014 completion",
+      "catalyst": "TasNetworks urban battery project — completion",
       "catalyst_type": "other",
       "timing": "Targeted for Q4 CY2027",
       "sort": "2027-11-15",
@@ -4205,7 +4250,7 @@
       "estimated": true
     },
     {
-      "catalyst": "All 11 Powerhouse units under construction \u2014 delivered",
+      "catalyst": "All 11 Powerhouse units under construction — delivered",
       "catalyst_type": "production_fid",
       "timing": "Within the next 15 months",
       "sort": "2028-01-31",
@@ -4214,7 +4259,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Hitachi Energy collaboration (BESS/microgrids) \u2014 conversion of LOI/MoU into contracted projects",
+      "catalyst": "Hitachi Energy collaboration (BESS/microgrids) — conversion of LOI/MoU into contracted projects",
       "catalyst_type": "other",
       "timing": "No date given",
       "sort": null,
@@ -4225,7 +4270,7 @@
   ],
   "14D": [
     {
-      "catalyst": "SiNTL silicon anode \u2014 initial material production at George Washington University",
+      "catalyst": "SiNTL silicon anode — initial material production at George Washington University",
       "catalyst_type": "production_fid",
       "timing": "Targeted November 2026",
       "sort": "2026-11-15",
@@ -4234,7 +4279,7 @@
       "estimated": false
     },
     {
-      "catalyst": "SiNTL \u2014 initial material production at Tonsley (SA) facility under A$1M accelerated program",
+      "catalyst": "SiNTL — initial material production at Tonsley (SA) facility under A$1M accelerated program",
       "catalyst_type": "production_fid",
       "timing": "Targeted December 2026",
       "sort": "2026-12-16",
@@ -4243,7 +4288,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Aurora Energy Precinct \u2014 development partner selection",
+      "catalyst": "Aurora Energy Precinct — development partner selection",
       "catalyst_type": "other",
       "timing": "Targeted December 2026",
       "sort": "2026-12-16",
@@ -4252,7 +4297,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Aurora Energy Precinct \u2014 financial close",
+      "catalyst": "Aurora Energy Precinct — financial close",
       "catalyst_type": "capital_raise",
       "timing": "Early 2027",
       "sort": "2027-01-31",
@@ -4261,7 +4306,7 @@
       "estimated": true
     },
     {
-      "catalyst": "SiNTL \u2014 battery cells (RIT) delivered to commercial partners for evaluation (incl. drone/aerospace)",
+      "catalyst": "SiNTL — battery cells (RIT) delivered to commercial partners for evaluation (incl. drone/aerospace)",
       "catalyst_type": "other",
       "timing": "H1 2027",
       "sort": "2027-03-31",
@@ -4270,7 +4315,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Aurora \u2014 up to 1GW AI data centre HoA progression; BHP 275kV connection negotiations; 70MW initial solar",
+      "catalyst": "Aurora — up to 1GW AI data centre HoA progression; BHP 275kV connection negotiations; 70MW initial solar",
       "catalyst_type": "other",
       "timing": "Ongoing; no date given",
       "sort": null,
@@ -4279,7 +4324,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Aurora Energy Precinct \u2014 commercial operation",
+      "catalyst": "Aurora Energy Precinct — commercial operation",
       "catalyst_type": "other",
       "timing": "Targeted 2028/29",
       "sort": "2029-12-31",
@@ -4290,7 +4335,7 @@
   ],
   "DXN": [
     {
-      "catalyst": "Seven Hills (NSW) temporary manufacturing facility \u2014 production start",
+      "catalyst": "Seven Hills (NSW) temporary manufacturing facility — production start",
       "catalyst_type": "production_fid",
       "timing": "Q2 FY27",
       "sort": "2027-05-16",
@@ -4299,7 +4344,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Cancelled AI data centre contract \u2014 remaining ~A$1.1M payment received",
+      "catalyst": "Cancelled AI data centre contract — remaining ~A$1.1M payment received",
       "catalyst_type": "other",
       "timing": "Q2 FY27",
       "sort": "2027-05-16",
@@ -4308,7 +4353,7 @@
       "estimated": true
     },
     {
-      "catalyst": "1H FY27 revenue ~A$11M (\u2248 all of FY26) \u2014 half-year result",
+      "catalyst": "1H FY27 revenue ~A$11M (≈ all of FY26) — half-year result",
       "catalyst_type": "other",
       "timing": "1H FY27 (result due ~Feb 2027)",
       "sort": "2027-02-14",
@@ -4317,7 +4362,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Pipeline conversion \u2014 93 identified projects, 13% in final negotiation/verbal win, incl. new AI/HPC data centre contracts",
+      "catalyst": "Pipeline conversion — 93 identified projects, 13% in final negotiation/verbal win, incl. new AI/HPC data centre contracts",
       "catalyst_type": "other",
       "timing": "No date given",
       "sort": null,
@@ -4328,7 +4373,7 @@
   ],
   "X2M": [
     {
-      "catalyst": "Second QLD 10MW AI data centre site (~$250M project) \u2014 conversion of 60-day binding exclusivity into definitive contract",
+      "catalyst": "Second QLD 10MW AI data centre site (~$250M project) — conversion of 60-day binding exclusivity into definitive contract",
       "catalyst_type": "other",
       "timing": "60-day exclusivity from 23 Oct 2026 (~late Dec 2026)",
       "sort": "2026-10-23",
@@ -4337,7 +4382,7 @@
       "estimated": false
     },
     {
-      "catalyst": "First binding AI data centre contract (>$250M project cost) \u2014 Managed Delivery execution; 2.5MW initial grid-connected phase",
+      "catalyst": "First binding AI data centre contract (>$250M project cost) — Managed Delivery execution; 2.5MW initial grid-connected phase",
       "catalyst_type": "other",
       "timing": "Three-to-five-year delivery period",
       "sort": null,
@@ -4346,7 +4391,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Remaining 7.5MW of 10MW site \u2014 behind-the-meter renewable generation",
+      "catalyst": "Remaining 7.5MW of 10MW site — behind-the-meter renewable generation",
       "catalyst_type": "other",
       "timing": "Expected by end of calendar 2028",
       "sort": "2028-12-31",
@@ -4355,7 +4400,7 @@
       "estimated": false
     },
     {
-      "catalyst": "~200MW data centre pipeline (incl. Resi Ventures regional precincts) \u2014 further binding agreements",
+      "catalyst": "~200MW data centre pipeline (incl. Resi Ventures regional precincts) — further binding agreements",
       "catalyst_type": "other",
       "timing": "No date given",
       "sort": null,
@@ -4366,7 +4411,7 @@
   ],
   "CEH": [
     {
-      "catalyst": "Coomera 55ha landholding \u2014 outcome of Barrenjoey-led capital/funding review (land sale, third-party partnering or self-development)",
+      "catalyst": "Coomera 55ha landholding — outcome of Barrenjoey-led capital/funding review (land sale, third-party partnering or self-development)",
       "catalyst_type": "capital_raise",
       "timing": "Review underway; no date given",
       "sort": null,
@@ -4386,7 +4431,7 @@
   ],
   "NCK": [
     {
-      "catalyst": "UK \u2014 new Nick Scali store opening (continuing UK network rebrand/expansion)",
+      "catalyst": "UK — new Nick Scali store opening (continuing UK network rebrand/expansion)",
       "catalyst_type": "other",
       "timing": "Late December (2026)",
       "sort": "2026-12-31",
@@ -4395,7 +4440,7 @@
       "estimated": false
     },
     {
-      "catalyst": "UK business \u2014 path to profitability (written orders +35% YoY early FY27); H1 FY27 result",
+      "catalyst": "UK business — path to profitability (written orders +35% YoY early FY27); H1 FY27 result",
       "catalyst_type": "other",
       "timing": "H1 FY27 result (~Feb 2027)",
       "sort": "2027-02-14",
@@ -4406,7 +4451,7 @@
   ],
   "MNC": [
     {
-      "catalyst": "China exclusive distribution agreement \u2014 further purchase orders toward CNY30M (~A$6.5M) minimum annual commitment (yr 1 of 3)",
+      "catalyst": "China exclusive distribution agreement — further purchase orders toward CNY30M (~A$6.5M) minimum annual commitment (yr 1 of 3)",
       "catalyst_type": "other",
       "timing": "Ongoing over initial 3-year term; no order dates given",
       "sort": null,
@@ -4417,7 +4462,7 @@
   ],
   "INA": [
     {
-      "catalyst": "Takeover contest \u2014 Warburg Pincus consortium due diligence access ends (possible counter-bid)",
+      "catalyst": "Takeover contest — Warburg Pincus consortium due diligence access ends (possible counter-bid)",
       "catalyst_type": "board_ma",
       "timing": "Until 13 November 2026",
       "sort": "2026-11-13",
@@ -4426,7 +4471,7 @@
       "estimated": false
     },
     {
-      "catalyst": "AVID $5.55 cash proposal \u2014 written confirmation it will not withdraw/reduce",
+      "catalyst": "AVID $5.55 cash proposal — written confirmation it will not withdraw/reduce",
       "catalyst_type": "other",
       "timing": "By 27 November 2026",
       "sort": "2026-11-27",
@@ -4435,7 +4480,7 @@
       "estimated": false
     },
     {
-      "catalyst": "Peet Limited acquisition \u2014 Peet scheme meeting",
+      "catalyst": "Peet Limited acquisition — Peet scheme meeting",
       "catalyst_type": "board_ma",
       "timing": "Early December 2026",
       "sort": "2026-12-16",
@@ -4444,7 +4489,7 @@
       "estimated": false
     },
     {
-      "catalyst": "AVID exclusivity period ends \u2014 binding scheme implementation deed expected",
+      "catalyst": "AVID exclusivity period ends — binding scheme implementation deed expected",
       "catalyst_type": "other",
       "timing": "Exclusivity ends 14 December 2026",
       "sort": "2026-12-14",
@@ -4455,7 +4500,7 @@
   ],
   "DEM": [
     {
-      "catalyst": "Record CY2026 full-year result \u2014 test of conversion to solid statutory profitability (Sept qtr receipts record ~$10.1M, +29%)",
+      "catalyst": "Record CY2026 full-year result — test of conversion to solid statutory profitability (Sept qtr receipts record ~$10.1M, +29%)",
       "catalyst_type": "other",
       "timing": "CY2026 result (reported ~Feb 2027)",
       "sort": "2027-02-14",
@@ -4486,7 +4531,7 @@
   ],
   "PLY": [
     {
-      "catalyst": "Game of Thrones: War for Westeros (Warner Bros./HBO licence) \u2014 release",
+      "catalyst": "Game of Thrones: War for Westeros (Warner Bros./HBO licence) — release",
       "catalyst_type": "production_fid",
       "timing": "Early 2027",
       "sort": "2027-01-31",
@@ -4495,7 +4540,7 @@
       "estimated": true
     },
     {
-      "catalyst": "Dew (co-op platformer, original IP) \u2014 release",
+      "catalyst": "Dew (co-op platformer, original IP) — release",
       "catalyst_type": "other",
       "timing": "CY2028",
       "sort": "2028-06-30",
@@ -4506,7 +4551,7 @@
   ],
   "FTI": [
     {
-      "catalyst": "Internally developed games \u2014 launch",
+      "catalyst": "Internally developed games — launch",
       "catalyst_type": "other",
       "timing": "Targeting late 2026",
       "sort": "2026-11-15",
@@ -4546,7 +4591,7 @@
   ],
   "AUA": [
     {
-      "catalyst": "ShokzHear distribution partnership (April 2026 agreement) \u2014 first orders",
+      "catalyst": "ShokzHear distribution partnership (April 2026 agreement) — first orders",
       "catalyst_type": "other",
       "timing": "Later in 2026",
       "sort": "2026-11-15",
@@ -4562,6 +4607,59 @@
       "day_precise": false,
       "estimated": false,
       "source": "Company announcements, 2026"
+    }
+  ],
+  "IOV": [
+    {
+      "catalyst": "Swinburne University independent validation of data-centre video technology (minimum 30% capacity increase / 30% cost reduction target), gating a Nordic data-centre tender (min. $1M bid)",
+      "catalyst_type": "other",
+      "timing": "Preliminary results by end of January 2027",
+      "sort": "2027-01-31",
+      "day_precise": false,
+      "source": "FA call, 28 October 2026",
+      "estimated": false
+    }
+  ],
+  "HCL": [
+    {
+      "catalyst": "Remaining Pakistan Army rifle-rated combat helmet deliveries (follow-on order ~$1.1M-$8.9M), subject to final in-field acceptance",
+      "catalyst_type": "other",
+      "timing": "During FY2026-27",
+      "sort": "2027-01-15",
+      "day_precise": false,
+      "source": "FA call, November 2026",
+      "estimated": true
+    }
+  ],
+  "VYS": [
+    {
+      "catalyst": "Kariyarra Water Scheme — Section 5C groundwater abstraction licence and Water Corporation offtake agreement, flagged as central to FY27 commercialisation",
+      "catalyst_type": "other",
+      "timing": "FY27 commercialisation target",
+      "sort": "2027-01-15",
+      "day_precise": false,
+      "source": "FA call, November 2026",
+      "estimated": true
+    },
+    {
+      "catalyst": "NewGround/Welltech acquisition integration — EPS accretion and EBIT contribution, management flags first visible in FY27 half-year results",
+      "catalyst_type": "other",
+      "timing": "FY27 half-year results",
+      "sort": "2027-02-15",
+      "day_precise": false,
+      "source": "FA call, November 2026",
+      "estimated": true
+    }
+  ],
+  "TVN": [
+    {
+      "catalyst": "Molyhil Tungsten Project — Final Investment Decision (Sumitomo Corp / ETFS Capital stage-gated up to $50M equity investment; Tivan retains an effective 82.5% interest at FID)",
+      "catalyst_type": "production_fid",
+      "timing": "No firm FID date given; ETFS standstill extended to 16 Nov 2027 absent an earlier FID",
+      "sort": null,
+      "day_precise": false,
+      "source": "FA call, 17 November 2026",
+      "estimated": true
     }
   ]
 }

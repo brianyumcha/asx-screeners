@@ -3891,12 +3891,47 @@
   "RIC": [],
   "OMG": [],
   "WSI": [],
-  "VYS": [],
+  "VYS": [
+    {
+      "catalyst": "Kariyarra Water Scheme — Section 5C groundwater abstraction licence and Water Corporation offtake agreement, flagged as central to FY27 commercialisation",
+      "timing": "FY27 commercialisation target",
+      "sort": "2027-01-15",
+      "source": "Investor update / FY26 results commentary",
+      "day_precise": false,
+      "estimated": true
+    },
+    {
+      "catalyst": "NewGround/Welltech acquisition integration — EPS accretion and EBIT contribution, management flags first visible in FY27 half-year results",
+      "timing": "FY27 half-year results",
+      "sort": "2027-02-15",
+      "source": "FY26 results commentary",
+      "day_precise": false,
+      "estimated": true
+    }
+  ],
   "PPL": [],
   "FPH": [],
   "IPH": [],
-  "IOV": [],
-  "HCL": [],
+  "IOV": [
+    {
+      "catalyst": "Swinburne University independent validation of data-centre video technology (minimum 30% capacity increase / 30% cost reduction target), gating a Nordic data-centre tender (min. $1M bid) with Priority Impact",
+      "timing": "Preliminary results by end of January 2027",
+      "sort": "2027-01-31",
+      "source": "ASX announcement, 28 October 2026",
+      "day_precise": false,
+      "estimated": false
+    }
+  ],
+  "HCL": [
+    {
+      "catalyst": "Remaining Pakistan Army rifle-rated combat helmet deliveries (follow-on order ~$1.1M-$8.9M), subject to final in-field acceptance",
+      "timing": "During FY2026-27",
+      "sort": "2027-01-15",
+      "source": "ASX announcement (Pakistan Army helmet delivery update)",
+      "day_precise": false,
+      "estimated": true
+    }
+  ],
   "HAS": [
     {
       "catalyst": "Thai hydromet plant (Kabin Buri, 49% stake) — first MREC flake production (converting African monazite feedstock)",
@@ -3908,7 +3943,58 @@
     }
   ],
   "LYL": [],
-  "TGN": [],
-  "TVN": [],
-  "ZMI": []
+  "TGN": [
+    {
+      "catalyst": "Watershed tungsten project — financial close and Final Investment Decision, subject to completing ~$255M funding / binding offtake",
+      "timing": "Targeted December 2026",
+      "sort": "2026-12-15",
+      "source": "DFS release, November 2026",
+      "day_precise": false,
+      "estimated": false
+    },
+    {
+      "catalyst": "Watershed — open-pit mining commencement",
+      "timing": "April 2027",
+      "sort": "2027-04-15",
+      "source": "DFS release, November 2026",
+      "day_precise": false,
+      "estimated": false
+    },
+    {
+      "catalyst": "Watershed — first tungsten concentrate production",
+      "timing": "June 2027",
+      "sort": "2027-06-15",
+      "source": "DFS release, November 2026",
+      "day_precise": false,
+      "estimated": false
+    }
+  ],
+  "TVN": [
+    {
+      "catalyst": "Molyhil Tungsten Project — Final Investment Decision (Sumitomo Corp / ETFS Capital stage-gated up to $50M equity investment; Tivan retains an effective 82.5% interest at FID)",
+      "timing": "No firm FID date given; ETFS standstill extended to 16 Nov 2027 absent an earlier FID",
+      "sort": null,
+      "source": "ASX announcement, 17 November 2026",
+      "day_precise": false,
+      "estimated": true
+    }
+  ],
+  "ZMI": [
+    {
+      "catalyst": "ARGO critical-minerals recovery technology (Ge/Ga/In from zinc leach residue) — preliminary engineering for a full-scale plant, completion target",
+      "timing": "Q4 2026",
+      "sort": "2026-11-15",
+      "source": "Company update, 2026",
+      "day_precise": false,
+      "estimated": true
+    },
+    {
+      "catalyst": "ARGO pilot plant construction start",
+      "timing": "Q1 2027",
+      "sort": "2027-02-14",
+      "source": "Company update, 2026",
+      "day_precise": false,
+      "estimated": true
+    }
+  ]
 }
