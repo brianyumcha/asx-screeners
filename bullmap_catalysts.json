@@ -197,130 +197,90 @@
   ],
   "ALK": [
     {
-      "catalyst": "Björkdal — Storheden portal established; Storheden extension drilling recommences",
-      "timing": "Q2 FY27 (December quarter 2026)",
-      "sort": "2026-11-15",
-      "source": "Quarterly Report – September 2026 (22 Oct 2026)",
+      "catalyst": "Boda-Kaiser copper-gold project — Pre-Feasibility Study update",
+      "timing": "Mid-2027",
+      "sort": "2027-06-30",
+      "source": "FY2026 results/Mining Forum Americas commentary",
       "day_precise": false,
       "estimated": true
     },
     {
-      "catalyst": "Tomingley — Newell Highway traffic switch to new alignment, then San Antonio open-pit mining commences",
-      "timing": "Early in the June 2027 quarter",
-      "sort": "2027-05-15",
-      "source": "Quarterly Report – September 2026 (22 Oct 2026)",
+      "catalyst": "Boda-Kaiser — NSW government project approval application submission",
+      "timing": "By end of 2027",
+      "sort": "2027-12-31",
+      "source": "FY2026 results/Mining Forum Americas commentary",
       "day_precise": false,
-      "estimated": true
+      "estimated": false
     },
     {
-      "catalyst": "Boda-Kaiser Au-Cu (NSW) — environmental baseline studies toward development approval",
-      "timing": "Ongoing; no date given",
-      "sort": null,
-      "source": "Quarterly Report – September 2026 (22 Oct 2026)",
+      "catalyst": "Boda-Kaiser — Final Investment Decision",
+      "timing": "Around end of 2029",
+      "sort": "2029-11-15",
+      "source": "FY2026 results/Mining Forum Americas commentary",
       "day_precise": false,
       "estimated": true
     }
   ],
   "KZR": [
     {
-      "catalyst": "Ashburton Gold Project — updated Mt Olympus Mineral Resource Estimate (~25,000m additional drilling)",
-      "timing": "Q4 2026",
+      "catalyst": "Mt Olympus — updated Mineral Resource Estimate (72-hole, 13,726m resource-definition program completed)",
+      "timing": "December 2026 quarter",
       "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "source": "Nov 2026 drilling/placement update",
       "day_precise": false,
       "estimated": true
     },
     {
-      "catalyst": "Ashburton — Pre-Feasibility Study completion",
-      "timing": "April 2027",
-      "sort": "2027-04-15",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "Ashburton — growth drilling beneath Mt Olympus and at Peake deposit; accelerated evaluation of Xanadu as second hub",
-      "timing": "Underway; no date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "catalyst": "Ashburton gold — Pre-Feasibility Study",
+      "timing": "Q1 2027",
+      "sort": "2027-02-14",
+      "source": "Nov 2026 drilling/placement update",
       "day_precise": false,
       "estimated": true
     }
   ],
   "CAV": [
     {
-      "catalyst": "Kookynie — production start (Swiftsure and Tiptoe open pits)",
-      "timing": "2H 2027",
-      "sort": "2027-09-30",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Kookynie Gold Project — results from exploration drilling (~4,000m greenstone-granite boundary) and ~3,000m sterilisation drilling",
-      "timing": "No firm date given",
+      "catalyst": "Kookynie Gold Project — toll processing agreement, the priority step ahead of financing/production (BFS completed late Oct 2026: A$104M pre-tax FCF, 35.6koz maiden Ore Reserve)",
+      "timing": "No firm date given; described as immediate priority",
       "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Kookynie — operating permits approvals (Mining Proposal, NVCP, Works Approval) after BFS",
-      "timing": "Submitted; no approval date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "source": "Oct/Nov 2026 BFS and production-timeline commentary",
       "day_precise": false,
       "estimated": false
     },
     {
-      "catalyst": "Kookynie — project funding (bank debt/equity) and toll-treatment/ore-purchase agreement selection",
-      "timing": "No firm date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "catalyst": "Kookynie — underground Swiftsure scoping study completion",
+      "timing": "Q1 2027",
+      "sort": "2027-02-14",
+      "source": "Nov 2026 production-timeline commentary",
+      "day_precise": false,
+      "estimated": true
+    },
+    {
+      "catalyst": "Kookynie — open-pit production start, subject to funding/approvals/FID",
+      "timing": "H2 2027",
+      "sort": "2027-09-30",
+      "source": "Nov 2026 production-timeline commentary",
       "day_precise": false,
       "estimated": true
     }
   ],
   "LGM": [
     {
-      "catalyst": "Mt Carrington — larger Scoping Study (Ausenco/WSP) assessing throughput above 1Mtpa on updated MRE",
-      "timing": "December 2026 Quarter",
+      "catalyst": "Mt Carrington gold-silver — larger-scale Scoping Study (Ausenco/WSP, evaluating throughput above 1Mtpa)",
+      "timing": "December 2026 quarter",
       "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
       "day_precise": false,
       "estimated": true
     },
     {
-      "catalyst": "Mt Carrington — Emu prospect drilling assays",
-      "timing": "Awaited; no date given",
+      "catalyst": "NiCo Young nickel-cobalt-scandium — updated Mineral Resource Estimate (WSP, first scandium assessment)",
+      "timing": "Originally expected October 2026; no confirmed release found as of this update",
       "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "source": "WSP engagement announcement",
       "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Mt Carrington — Mascotte silver-gold Phase 2 diamond drilling (10 holes) results",
-      "timing": "Underway; no date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "NiCo Young (Ni-Co-Sc) — updated MRE by WSP, first to assess scandium",
-      "timing": "No firm date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Rockley — testing three untested IP chargeability targets at Crystal Hill",
-      "timing": "No firm date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
+      "estimated": false
     }
   ],
   "AGR": [
@@ -359,316 +319,164 @@
   ],
   "BCA": [
     {
-      "catalyst": "Wandanya manganese-iron — assay results from RC drilling along broader 9km trend",
-      "timing": "Early November 2026 / early Q4",
-      "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Wandanya — Scoping Study on 3.4km base case",
-      "timing": "December 2026 / Q4 2026",
-      "sort": "2026-11-15",
-      "source": "September 2026 Quarterly (26 Oct 2026); Corporate Presentation 30 Oct 2026",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Wandanya — Mining Licence applications lodged",
-      "timing": "By end of 2026",
-      "sort": "2026-12-31",
-      "source": "Corporate Presentation Update, 30 Oct 2026",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "Wandanya — referral to Environmental Protection Authority for approval pathway",
-      "timing": "Early 2027",
-      "sort": "2027-01-31",
-      "source": "Corporate Presentation Update, 30 Oct 2026",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Wandanya — feasibility studies (DSO Fe/Mn and beneficiated Mn)",
-      "timing": "Through 2027",
-      "sort": "2027-12-31",
-      "source": "Corporate Presentation Update, 30 Oct 2026",
+      "catalyst": "Wandanya manganese-iron project — maiden Mineral Resource Estimate, incorporating Nov 2026 extension drilling (17,200m/640 holes, up to 61.3% Fe, multiple new Mn seams)",
+      "timing": "Originally targeted Sept 2026; pushed back to incorporate extension drilling, no new firm date given",
+      "sort": null,
+      "source": "Nov 2026 Wandanya extension drilling results announcement",
       "day_precise": false,
       "estimated": false
     }
   ],
   "RSG": [
     {
-      "catalyst": "ABC Project (Côte d’Ivoire) — complete infill drilling campaign",
-      "timing": "By end of 2026",
-      "sort": "2026-12-31",
-      "source": "Q3 2026 Activities Report (28 Oct 2026)",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "ABC Project — Mineral Resource Estimate update",
-      "timing": "Q1 2027",
-      "sort": "2027-02-14",
-      "source": "Corporate Presentation, 10 Nov 2026",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Resettlement (RAP Phase 2) after exploitation permit grant",
-      "timing": "Q2 2027 to end of 2028",
-      "sort": "2027-05-15",
-      "source": "Q3 2026 Activities Report (28 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "ABC Project — feasibility studies, then FID",
-      "timing": "Feasibility studies planned for 2027; FID 2027–28 roadmap",
-      "sort": "2027-12-31",
-      "source": "Corporate Presentation, 10 Nov 2026",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "Doropo (Côte d’Ivoire) — commissioning and first gold",
+      "catalyst": "Doropo gold project (Cote d'Ivoire) — first gold pour (construction >61% of $516M budget committed, 800+ people mobilised as of Q3 2026)",
       "timing": "H1 2028",
       "sort": "2028-03-31",
-      "source": "Q3 2026 Activities Report (28 Oct 2026); Corporate Presentation 10 Nov 2026",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Syama — Sulphide Conversion Project full commissioning (transition to full sulphide)",
-      "timing": "Commissioning nearing completion; no firm date",
-      "sort": null,
-      "source": "Q3 2026 Activities Report (28 Oct 2026); Corporate Presentation 10 Nov 2026",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "La Debo — technical studies on expanded 0.9Moz MRE; Doropo expansion study",
-      "timing": "2027 roadmap; no firm date",
-      "sort": null,
-      "source": "Corporate Presentation, 10 Nov 2026",
+      "source": "Q3 2026 earnings call/September quarter report",
       "day_precise": false,
       "estimated": true
     }
   ],
   "KNI": [
     {
-      "catalyst": "Commonwealth–Silica Hill gold-silver (NSW) — updated JORC MRE incorporating Phase 1 and Phase 2 2026 drilling",
-      "timing": "December 2026",
-      "sort": "2026-12-16",
-      "source": "Placement release & Investor Presentation, 10 Nov 2026",
+      "catalyst": "Commonwealth-Silica Hill gold-silver (NSW, farming into IPT) — updated Mineral Resource Estimate (Phase 1+2 drilling, 11 holes/2,731m total)",
+      "timing": "Targeted December 2026",
+      "sort": "2026-12-15",
+      "source": "Oct 2026 Phase 2 drilling completion announcement",
       "day_precise": false,
-      "estimated": false
+      "estimated": true
     },
     {
-      "catalyst": "Commonwealth — Phase 3 district-scale drilling at Welcome Jack, Walls and Stringers (within 1km of resource)",
-      "timing": "Q1 2027",
+      "catalyst": "Commonwealth-Silica Hill — regional drilling campaign start (land access secured, permitting in hand)",
+      "timing": "Q1 CY2027",
       "sort": "2027-02-14",
-      "source": "Placement release & Investor Presentation, 10 Nov 2026",
+      "source": "Oct 2026 Phase 2 drilling completion announcement",
       "day_precise": false,
       "estimated": true
     }
   ],
   "L1M": [
     {
-      "catalyst": "Warby (tungsten) — final Phase 3 soil assays to drive drill target selection",
+      "catalyst": "Mt Turner gold (Far North QLD) — Phase 2 diamond drilling assay results (4-hole, 518.4m)",
       "timing": "December 2026",
-      "sort": "2026-12-16",
-      "source": "Investor Presentation, 10 Nov 2026",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "Mt Turner — maiden Mineral Resource Estimate",
-      "timing": "By Q3 2027",
-      "sort": "2027-09-30",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "Warby — trenching and maiden drill program",
-      "timing": "2027",
-      "sort": "2027-06-30",
-      "source": "Investor Presentation, 10 Nov 2026",
+      "sort": "2026-12-15",
+      "source": "Nov 2026 Phase 2 drilling-completion announcement",
       "day_precise": false,
       "estimated": true
     },
     {
-      "catalyst": "Mt Turner gold (QLD) — Phase 2 diamond drilling results, Drummer Fault (commenced 5 Oct 2026)",
-      "timing": "Assays pending; no date given",
+      "catalyst": "Mt Turner — Phase 3 resource-definition drilling, ahead of maiden gold Mineral Resource Estimate",
+      "timing": "2027",
       "sort": null,
-      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation 10 Nov 2026",
+      "source": "Nov 2026 Phase 2 drilling-completion announcement",
+      "day_precise": false,
+      "estimated": true
+    },
+    {
+      "catalyst": "Warby tungsten — final Phase 3 assays (rock chips to 5.5% W, 5/6 samples above 1%)",
+      "timing": "December 2026",
+      "sort": "2026-12-15",
+      "source": "Nov 2026 Warby exploration update",
+      "day_precise": false,
+      "estimated": true
+    },
+    {
+      "catalyst": "Warby tungsten — new drill-target generation",
+      "timing": "Early 2027",
+      "sort": "2027-01-31",
+      "source": "Nov 2026 Warby exploration update",
       "day_precise": false,
       "estimated": true
     }
   ],
   "AGC": [
     {
-      "catalyst": "Evergreen — additional RC drilling targeting shallow extensions (permitting underway), toward an initial Mineral Resource Estimate",
-      "timing": "Commencing December 2026",
-      "sort": "2026-12-16",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "Junee — drilling program (deferred for cropping and to prioritise Evergreen)",
-      "timing": "January–March 2027 quarter",
-      "sort": "2027-02-14",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "South Cobar — Evergreen and Achilles pending RC assays (incl. Achilles oxide gold-silver extensions)",
-      "timing": "Pending at quarter end; no date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "catalyst": "Browns-Evergreen (zinc-gold-silver, NSW) — initial Mineral Resource Estimate (7,000m resource-definition drilling underway; timing pushed back from original Dec-quarter guidance)",
+      "timing": "Targeted FY2027",
+      "sort": "2027-02-15",
+      "source": "Nov 2026 drilling update",
       "day_precise": false,
       "estimated": true
     }
   ],
   "CDT": [
     {
-      "catalyst": "Ebony — regional soil sampling recommences after wet season",
-      "timing": "November 2026",
-      "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as TerraNova Metals)",
+      "catalyst": "Nielle Gold Project (Cote d'Ivoire, 90% interest) — acquisition completion, conditional on due diligence, regulatory approval and tenement granting",
+      "timing": "No firm date given",
+      "sort": null,
+      "source": "Sept 2026 Tranche 1 share-issue announcement",
       "day_precise": false,
       "estimated": false
-    },
-    {
-      "catalyst": "Nielle gold (Côte d’Ivoire) — grant of exploration permit (condition precedent to completing 90% acquisition)",
-      "timing": "Anticipated December quarter 2026",
-      "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as TerraNova Metals)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Nielle — maiden 2,500–3,000m RC/diamond drilling program (subject to permit grant)",
-      "timing": "After permit grant; no firm date",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026, as TerraNova Metals)",
-      "day_precise": false,
-      "estimated": true
     }
   ],
   "DM1": [
     {
-      "catalyst": "Adzope (Côte d’Ivoire) — Nyan field reconnaissance (7km gold-in-soil anomaly, never drilled)",
-      "timing": "This quarter (December quarter 2026)",
-      "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Nyan — infill soil sampling, ground geophysics, auger and maiden aircore drilling",
-      "timing": "Q1 2027",
-      "sort": "2027-02-14",
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Adzope — possible follow-up on stream-sediment Target 2 (2.5km × 1.5km anomaly)",
-      "timing": "Under consideration; no date",
+      "catalyst": "Adzope Gold Project (Cote d'Ivoire) — aircore drilling programme, funded via the Tengrela South permit sale (A$2.5-5M, avoids dilutive raise)",
+      "timing": "Planned; no firm date given",
       "sort": null,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "source": "Oct 2026 Tengrela South permit-sale announcement",
       "day_precise": false,
       "estimated": false
     }
   ],
   "AS1": [
     {
-      "catalyst": "Kada — Definitive Feasibility Study completion",
-      "timing": "By end of Q2 CY2027",
-      "sort": "2027-06-30",
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "catalyst": "Kada gold project (Guinea) — updated Mineral Resource Estimate, incorporating 154-hole/21,638m drilling not in the 31 Aug 2026 interim estimate (92.9Mt @ 0.7g/t, 2.08Moz, 3 rigs active)",
+      "timing": "No firm date given; post-completion of ongoing Phase 1/2 drilling",
+      "sort": null,
+      "source": "19 Oct 2026 drilling-results announcement",
       "day_precise": false,
       "estimated": false
     },
     {
-      "catalyst": "Kada Gold Project (Guinea) — further resource update using 19,251m drilled after MRE cut-off (Massan Inferred→Indicated conversion)",
-      "timing": "No firm date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "catalyst": "Kada — Definitive Feasibility Study",
+      "timing": "By end of Q2 2027",
+      "sort": "2027-06-30",
+      "source": "Recent company guidance",
       "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Damissa Koura — complete Arafura Ouest acquisition; power-auger drilling recommencing at Sogosogoba target",
-      "timing": "No firm date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
+      "estimated": false
     }
   ],
   "HAR": [
     {
-      "catalyst": "Lincoln gold (California) — Phase 2 underground diamond drilling results (16 holes, ~1,500m) to lift confidence in southern resource",
-      "timing": "Underway since Sept 2026; no date given",
-      "sort": null,
-      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation 8 Nov 2026",
+      "catalyst": "Lincoln Gold Project (California) — updated JORC Mineral Resource Estimate (maiden 402koz @ 5.1g/t announced May 2026; Phase 2 drilling >50% complete)",
+      "timing": "Q4 CY2026",
+      "sort": "2026-11-15",
+      "source": "Nov 2026 Phase 2 drilling update",
       "day_precise": false,
       "estimated": true
     },
     {
-      "catalyst": "Lincoln — plant audit/restart costing and staged Mining Study (MSO); work elevated from Scoping Study straight to PFS, then Feasibility Study and project financing",
-      "timing": "No firm dates given",
-      "sort": null,
-      "source": "September 2026 Quarterly (29 Oct 2026); Investor Presentation 8 Nov 2026",
+      "catalyst": "Lincoln — Phase 2 drilling programme completion (1,500m)",
+      "timing": "Early November 2026",
+      "sort": "2026-11-05",
+      "source": "Nov 2026 Phase 2 drilling update",
       "day_precise": false,
-      "estimated": true
+      "estimated": false
     },
     {
-      "catalyst": "Lincoln — completion of 60-acre adjoining land acquisition (drilling access, development, tailings)",
-      "timing": "No firm date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "catalyst": "South Spring Hill exploration target (202-308koz) — conversion to Inferred Resource without further drilling",
+      "timing": "Late Q4 CY2026",
+      "sort": "2026-12-15",
+      "source": "Nov 2026 Phase 2 drilling update",
       "day_precise": false,
       "estimated": true
     }
   ],
   "GBR": [
     {
-      "catalyst": "Side Well — Mining Lease grant for 122koz @ 2.7g/t shallow deposit (Ironbark; Mining Agreement being negotiated)",
-      "timing": "Q4 2026",
-      "sort": "2026-11-15",
-      "source": "Investor Presentation (Noosa Mining Conference), 11 Nov 2026",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Peak Hill — project-wide resource update from 40,000m 3-rig drilling (Durack, Jubilee, Enigma, Five Ways, Harmony, Mt Pleasant)",
-      "timing": "End of calendar year 2026 / next year",
-      "sort": "2027-03-31",
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "catalyst": "Peak Hill and Side Well gold (WA) — combined resource updates (Peak Hill 481koz, Side Well 1.02Moz currently)",
+      "timing": "By end of calendar 2026",
+      "sort": "2026-12-31",
+      "source": "Nov 2026 drilling/acquisition update",
       "day_precise": false,
       "estimated": false
     },
     {
-      "catalyst": "Side Well — mining approvals for that deposit",
-      "timing": "Q3 2027",
-      "sort": "2027-08-15",
-      "source": "Investor Presentation (Noosa Mining Conference), 11 Nov 2026",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Peak Hill — scoping and feasibility studies, targeting mining",
-      "timing": "Mining at end of 2027",
+      "catalyst": "Peak Hill/Side Well — scoping and feasibility studies, ahead of mining at end of 2027",
+      "timing": "After resource updates; mining targeted end of 2027",
       "sort": "2027-12-31",
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "source": "Nov 2026 drilling/acquisition update",
       "day_precise": false,
       "estimated": false
     }
@@ -701,102 +509,30 @@
   ],
   "GG8": [
     {
-      "catalyst": "Mineral Resource updates for Comet Vale, Mulwarrie and Vivien (all WA projects)",
-      "timing": "By end of 2026",
+      "catalyst": "North Kalgoorlie Hub gold (Comet Vale/Mulwarrie/Vivien, WA) — major resource update (current 2Moz global, 1.5Moz @ 3.8g/t WA; six rigs active, 150,000m+ drilling planned for the year)",
+      "timing": "Due before end of 2026",
       "sort": "2026-12-31",
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "source": "Nov 2026 drilling results update",
       "day_precise": false,
       "estimated": false
-    },
-    {
-      "catalyst": "Comet Vale — diamond drilling of high-grade Sovereign footwall lode and Lakeview depth extensions; discovery drilling along 30km soil-anomaly strike",
-      "timing": "December 2026 quarter",
-      "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Mulwarrie — heritage surveys then RC drilling of step-out areas",
-      "timing": "RC access early 2027",
-      "sort": "2027-01-31",
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Vivien — growth drilling at Val and Vince prospects (DHEM-guided)",
-      "timing": "Underway; no date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
     }
   ],
   "OCN": [
     {
-      "catalyst": "Serra Negra REE (Brazil) — remaining historical core re-sampling assays (45 holes, ~4,750m)",
-      "timing": "Update imminent",
-      "sort": "2026-11-30",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "Serra Negra — aeromagnetic survey interpretation and inversion modelling results",
-      "timing": "Update imminent",
-      "sort": "2026-11-30",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "Serra Negra — assay results from maiden ~20,000m diamond drilling (4 rigs, Central REE target)",
-      "timing": "Throughout Q4 2026",
-      "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Serra Negra — maiden Mineral Resource Estimate",
-      "timing": "Coming months",
-      "sort": "2027-03-31",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Solonópole (Brazil) — divestment/partnering process (information memorandum completed)",
+      "catalyst": "Serra Negra REE/niobium project (Brazil) — maiden rare earth diamond drilling assay results (up to 20,000m, 4 rigs, commenced 9 Sep 2026), ahead of a maiden Mineral Resource and metallurgy",
       "timing": "No firm date given",
       "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "source": "Sept 2026 Serra Negra drilling-commencement announcement",
       "day_precise": false,
-      "estimated": true
+      "estimated": false
     }
   ],
   "FIN": [
     {
-      "catalyst": "Cabin Lake gold (Canada) — assays from summer 2026 drilling program",
-      "timing": "December Quarter 2026",
-      "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Cabin Lake — winter geophysics expanding IP footprint (MIP-supported)",
-      "timing": "2026–27 winter",
-      "sort": "2027-03-31",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "Cabin Lake — potential winter drilling of targets not tested in summer campaign",
-      "timing": "2026–27 winter season",
-      "sort": "2027-03-31",
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "catalyst": "Cabin Lake Gold Project (Canada NWT) — 2026 summer diamond drilling assay results (1,149m, 9 holes across 8 priority targets)",
+      "timing": "Pending; no firm date given",
+      "sort": null,
+      "source": "September 2026 Quarterly Activities Report",
       "day_precise": false,
       "estimated": false
     }
@@ -829,34 +565,10 @@
   ],
   "VRL": [
     {
-      "catalyst": "Monument gold (WA) — re-assay of 1m splits from best AC composites at A4/A1, then RC drilling to define true width and grade",
-      "timing": "No firm date given",
+      "catalyst": "Monument Gold Project (WA, Laverton BIF trend) — scoping-level technical study and processing-pathway assessment, following the 137.7koz MRE upgrade (maiden 66.2koz open-pit Indicated + 77.1koz underground)",
+      "timing": "Advancing; no firm date given",
       "sort": null,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Monument — Gum Well intrusion-related target mapping/infill soils; McKenzie Well toward first-pass drilling; Korong Syenite infill",
-      "timing": "No firm date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Monument — scoping-level technical studies and processing pathways (incl. third-party processing, Laverton)",
-      "timing": "No firm date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Monument — resolution of Warden’s Court proceedings / objections on mining lease M39/1189 and haul-road licence L39/397",
-      "timing": "Outcomes and timing uncertain",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
+      "source": "Recent MRE-upgrade announcement",
       "day_precise": false,
       "estimated": false
     }
@@ -905,124 +617,76 @@
   ],
   "CAZ": [
     {
-      "catalyst": "Abenab North copper-REE (Namibia) — first drilling for Tsumeb-style copper",
-      "timing": "Early 2027",
-      "sort": "2027-01-31",
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Goongarrie Gold Project (51% earned from Brightstar) — RC drilling at Gulls Blow (first drilling since 1980s, commenced 8 Oct 2026) results",
-      "timing": "Underway; no date given",
+      "catalyst": "Goongarrie Gold Project (Hastings/Gulls Blow, WA) — RC drilling results (Hastings ~2,500m, Gulls Blow 4-6 holes, first drilling at Gulls Blow since the 1980s)",
+      "timing": "Underway since Oct 2026; no firm results date given",
       "sort": null,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "source": "Oct 2026 drilling-commencement announcement",
       "day_precise": false,
-      "estimated": true
+      "estimated": false
     },
     {
-      "catalyst": "Goongarrie — follow-up of Hastings AC results along the Bardoc Tectonic Zone",
+      "catalyst": "Comet Vale trend (Julie Margaret, next to GGA's Comet Vale ground) — DEMIRS program-of-work approval, ahead of drilling",
       "timing": "No firm date given",
       "sort": null,
-      "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
+      "source": "Recent quarterly commentary",
       "day_precise": false,
-      "estimated": true
+      "estimated": false
     }
   ],
   "AKN": [
     {
-      "catalyst": "Tundulu REE (Malawi) — steady flow of assays from 15,000m RC/diamond program (2,047 samples at lab; deep diamond holes 26NH023/032 results)",
-      "timing": "Coming months; deep-hole assays within four to six weeks of 21 Oct",
-      "sort": "2026-12-31",
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Machinga heavy REE (Malawi) — field activities and UAV magnetic/LiDAR survey",
-      "timing": "Field work Nov 2026; UAV survey early December 2026",
-      "sort": "2026-11-15",
-      "source": "Machinga Heavy Rare Earths Exploration Commences, 8 Nov 2026",
-      "day_precise": false,
+      "catalyst": "Cloncurry Gold Project (Orion JV, incl. Lorena processing plant + Tick Hill) — A$5M investment deadline to earn 50% interest in Orion Resources",
+      "timing": "By 30 June 2027",
+      "sort": "2027-06-30",
+      "source": "Recent quarterly/JV update",
+      "day_precise": true,
       "estimated": false
-    },
-    {
-      "catalyst": "Halls Creek (Onedin; JV with CBH, AKN 49%→25%) — Pre-Feasibility Study",
-      "timing": "H1 2028",
-      "sort": "2028-03-31",
-      "source": "Updated Halls Creek Scoping Study, 10 Nov 2026",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "Tundulu — 1,000m diamond hole beneath Nathace Hill target",
-      "timing": "Planning underway; no date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
     }
   ],
   "AAU": [
     {
-      "catalyst": "Cuba — OFAC licence / lifting of MLV sanction (designated 4 Jun 2026) so Nueva Sabana construction and La Demajagua DFS can resume; conditions include ≥51% U.S. shareholding by 30 Jun 2028",
-      "timing": "Negotiating; no date given",
+      "catalyst": "La Demajagua/Minera La Victoria JV (Cuba) — progress lifting US sanctions to restore international banking/offtake access, under GEM Global Yield binding MOU (first milestone already completed)",
+      "timing": "No firm date given",
       "sort": null,
-      "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
+      "source": "Late 2026 GEM MOU progress update",
       "day_precise": false,
-      "estimated": true
+      "estimated": false
     }
   ],
   "TGM": [
     {
-      "catalyst": "TGME Gold Project — further bond facility drawdown",
-      "timing": "Early November 2026",
+      "catalyst": "TGME gold restart (Pilgrim's Rest, South Africa) — plant commissioning (>70% concrete poured as of 30 Jun 2026, US$90M bond issued)",
+      "timing": "Q4 2026",
       "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities & Cashflow Report (30 Oct 2026)",
-      "day_precise": false,
-      "estimated": false
-    },
-    {
-      "catalyst": "TGME Gold Plant — mechanical/piping installation then first gold (production start)",
-      "timing": "Q1 2027",
-      "sort": "2027-02-14",
-      "source": "September 2026 Quarterly Activities & Cashflow Report (30 Oct 2026)",
+      "source": "FY2026 Annual Report",
       "day_precise": false,
       "estimated": true
     },
     {
-      "catalyst": "Rietfontein Underground Mine — Environmental Authorisation grant by Dept of Mineral and Petroleum Resources (final review stage); water-use licence 90-day appeal period running",
-      "timing": "Final stages; no date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities & Cashflow Report (30 Oct 2026)",
+      "catalyst": "TGME — first gold",
+      "timing": "Q1 2027",
+      "sort": "2027-02-14",
+      "source": "FY2026 Annual Report",
       "day_precise": false,
       "estimated": true
     }
   ],
   "DES": [
     {
-      "catalyst": "Timbakouna gold (Siguiri, Guinea) — initial assays from restarted 485-hole, 10,000m power auger program",
-      "timing": "Early November 2026",
-      "sort": "2026-11-15",
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "catalyst": "Timbakouna gold (Guinea, Siguiri Basin) — power auger drilling assay results (22,000m+/485 holes underway, testing historic high-grade intercepts)",
+      "timing": "No firm date given",
+      "sort": null,
+      "source": "Oct/Nov 2026 drilling-progress update",
       "day_precise": false,
       "estimated": false
     },
     {
-      "catalyst": "Siguiri — airborne magnetic data interpretation generating new targets; integrate with auger results to prioritise follow-up drilling",
-      "timing": "Underway; no date given",
-      "sort": null,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
-      "day_precise": false,
-      "estimated": true
-    },
-    {
-      "catalyst": "DeSoto-Fortuna JV (SE Siguiri) — BLEG stream sediment sampling and mapping ahead of planned airborne magnetic survey",
+      "catalyst": "Siguiri Basin regional soil sampling programme completion (1,105 of 2,239 points done as of Nov 2026), ahead of RC/diamond follow-up drilling",
       "timing": "No firm date given",
       "sort": null,
-      "source": "September 2026 Quarterly Activities Report (22 Oct 2026)",
+      "source": "Nov 2026 soil-sampling progress update",
       "day_precise": false,
-      "estimated": true
+      "estimated": false
     }
   ],
   "QML": [
