@@ -993,7 +993,7 @@
       "catalyst": "Björkdal — Storheden portal established; Storheden extension drilling recommences",
       "catalyst_type": "drilling_assay",
       "timing": "Q2 FY27 (December quarter 2026)",
-      "sort": "2026-05-15",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "Quarterly Report – September 2026 (22 Oct 2026)",
       "estimated": true
@@ -2266,7 +2266,7 @@
       "catalyst": "Envirostream — elevated Sell & Parker contract recycling volumes continue",
       "catalyst_type": "other",
       "timing": "Q2 FY27 (December quarter 2026)",
-      "sort": "2026-05-15",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "Quarterly Activities Report – September 2026, Q1 FY27 (29 Oct 2026)",
       "estimated": true
@@ -2804,7 +2804,7 @@
       "catalyst": "C1 cash costs return to FY27 guidance range (A$70–80/wmt)",
       "catalyst_type": "other",
       "timing": "Second half of FY27 (Jan–Jun 2027)",
-      "sort": "2027-06-15",
+      "sort": "2027-03-31",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
       "estimated": true
@@ -3678,13 +3678,13 @@
       "estimated": false
     },
     {
-      "catalyst": "Superpower Health partnership — commercial product launch (follows US$3M licence fee)",
-      "catalyst_type": "production_fid",
-      "timing": "Q1 FY27",
-      "sort": "2027-02-14",
+      "catalyst": "Superpower Health partnership — full commercial product launch (first commercial Tetramatrix polymer shipment/revenue to the US already begun Aug 2026 under a ~1,000-participant usability study; full launch now pushed to 2027)",
+      "timing": "2027, no more specific date given",
+      "sort": "2027-06-30",
+      "source": "First US polymer shipment announcement, 31 Aug 2026",
       "day_precise": false,
-      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)",
-      "estimated": true
+      "estimated": true,
+      "catalyst_type": "other"
     },
     {
       "catalyst": "Radiation spacer — pivotal US/AU trial (N=230, 12-month follow-up) toward FDA submission",
@@ -3824,7 +3824,7 @@
       "catalyst": "OncoSil device — US commercial launch for distal cholangiocarcinoma under FDA HDE (initially ≤5 centres)",
       "catalyst_type": "trial_regulatory",
       "timing": "Second half of FY2027",
-      "sort": "2027-09-30",
+      "sort": "2027-03-31",
       "day_precise": false,
       "source": "FDA HDE approval announcement (17 Aug 2026)",
       "estimated": true
@@ -3833,7 +3833,7 @@
       "catalyst": "FDA-mandated US post-approval study (up to 30 patients, 24 months) — commencement",
       "catalyst_type": "trial_regulatory",
       "timing": "Planned alongside US launch, H2 FY2027 (some reports say H2 2027)",
-      "sort": "2027-09-30",
+      "sort": "2027-06-30",
       "day_precise": false,
       "source": "FDA HDE approval announcement (17 Aug 2026)",
       "estimated": true
@@ -4036,7 +4036,7 @@
       "catalyst": "Sofdra — gross-to-net yield improvement after PA-submission issue addressed",
       "catalyst_type": "other",
       "timing": "Expected in Q2 FY27",
-      "sort": "2027-05-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)",
       "estimated": true
@@ -4161,7 +4161,7 @@
       "catalyst": "US expansion — sales team build-out and CEO relocation to US",
       "catalyst_type": "other",
       "timing": "H1 FY27",
-      "sort": "2026-12-31",
+      "sort": "2026-09-30",
       "day_precise": false,
       "source": "FY26 Results Presentation (Aug 2026)",
       "estimated": true
@@ -4320,7 +4320,7 @@
       "catalyst": "Seven Hills (NSW) temporary manufacturing facility — production start",
       "catalyst_type": "production_fid",
       "timing": "Q2 FY27",
-      "sort": "2027-05-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "Q1 FY27 Quarterly Update (30 Oct 2026)",
       "estimated": true
@@ -4329,7 +4329,7 @@
       "catalyst": "Cancelled AI data centre contract — remaining ~A$1.1M payment received",
       "catalyst_type": "other",
       "timing": "Q2 FY27",
-      "sort": "2027-05-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "Q1 FY27 Quarterly Update (30 Oct 2026)",
       "estimated": true
@@ -4425,7 +4425,7 @@
       "catalyst": "UK business — path to profitability (written orders +35% YoY early FY27); H1 FY27 result",
       "catalyst_type": "other",
       "timing": "H1 FY27 result (~Feb 2027)",
-      "sort": "2027-03-31",
+      "sort": "2027-02-15",
       "day_precise": false,
       "source": "H1 FY27 Trading Update (21 Oct 2026)",
       "estimated": true

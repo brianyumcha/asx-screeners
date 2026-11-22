@@ -199,7 +199,7 @@
     {
       "catalyst": "Björkdal — Storheden portal established; Storheden extension drilling recommences",
       "timing": "Q2 FY27 (December quarter 2026)",
-      "sort": "2026-05-15",
+      "sort": "2026-11-15",
       "source": "Quarterly Report – September 2026 (22 Oct 2026)",
       "day_precise": false,
       "estimated": true
@@ -1571,7 +1571,7 @@
     {
       "catalyst": "Envirostream — elevated Sell & Parker contract recycling volumes continue",
       "timing": "Q2 FY27 (December quarter 2026)",
-      "sort": "2026-05-15",
+      "sort": "2026-11-15",
       "source": "Quarterly Activities Report – September 2026, Q1 FY27 (29 Oct 2026)",
       "day_precise": false,
       "estimated": true
@@ -2071,7 +2071,7 @@
     {
       "catalyst": "C1 cash costs return to FY27 guidance range (A$70–80/wmt)",
       "timing": "Second half of FY27 (Jan–Jun 2027)",
-      "sort": "2027-06-15",
+      "sort": "2027-03-31",
       "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
       "day_precise": false,
       "estimated": true
@@ -2983,10 +2983,10 @@
       "estimated": false
     },
     {
-      "catalyst": "Superpower Health partnership — commercial product launch (follows US$3M licence fee)",
-      "timing": "Q1 FY27",
-      "sort": "2027-02-14",
-      "source": "Q4 FY26 Quarterly Activities Report (22 Jul 2026)",
+      "catalyst": "Superpower Health partnership — full commercial product launch (first commercial Tetramatrix polymer shipment/revenue to the US already begun Aug 2026 under a ~1,000-participant usability study; full launch now pushed to 2027)",
+      "timing": "2027, no more specific date given",
+      "sort": "2027-06-30",
+      "source": "First US polymer shipment announcement, 31 Aug 2026",
       "day_precise": false,
       "estimated": true
     },
@@ -3113,7 +3113,7 @@
     {
       "catalyst": "OncoSil device — US commercial launch for distal cholangiocarcinoma under FDA HDE (initially ≤5 centres)",
       "timing": "Second half of FY2027",
-      "sort": "2027-09-30",
+      "sort": "2027-03-31",
       "source": "FDA HDE approval announcement (17 Aug 2026)",
       "day_precise": false,
       "estimated": true
@@ -3121,7 +3121,7 @@
     {
       "catalyst": "FDA-mandated US post-approval study (up to 30 patients, 24 months) — commencement",
       "timing": "Planned alongside US launch, H2 FY2027 (some reports say H2 2027)",
-      "sort": "2027-09-30",
+      "sort": "2027-06-30",
       "source": "FDA HDE approval announcement (17 Aug 2026)",
       "day_precise": false,
       "estimated": true
@@ -3303,7 +3303,7 @@
     {
       "catalyst": "Sofdra — gross-to-net yield improvement after PA-submission issue addressed",
       "timing": "Expected in Q2 FY27",
-      "sort": "2027-05-16",
+      "sort": "2026-11-15",
       "source": "Q1 FY27 Quarterly Activities Report & 4C (27 Oct 2026)",
       "day_precise": false,
       "estimated": true
@@ -3415,7 +3415,7 @@
     {
       "catalyst": "US expansion — sales team build-out and CEO relocation to US",
       "timing": "H1 FY27",
-      "sort": "2026-12-31",
+      "sort": "2026-09-30",
       "source": "FY26 Results Presentation (Aug 2026)",
       "day_precise": false,
       "estimated": true
@@ -3557,7 +3557,7 @@
     {
       "catalyst": "Seven Hills (NSW) temporary manufacturing facility — production start",
       "timing": "Q2 FY27",
-      "sort": "2027-05-16",
+      "sort": "2026-11-15",
       "source": "Q1 FY27 Quarterly Update (30 Oct 2026)",
       "day_precise": false,
       "estimated": true
@@ -3565,7 +3565,7 @@
     {
       "catalyst": "Cancelled AI data centre contract — remaining ~A$1.1M payment received",
       "timing": "Q2 FY27",
-      "sort": "2027-05-16",
+      "sort": "2026-11-15",
       "source": "Q1 FY27 Quarterly Update (30 Oct 2026)",
       "day_precise": false,
       "estimated": true
@@ -3651,7 +3651,7 @@
     {
       "catalyst": "UK business — path to profitability (written orders +35% YoY early FY27); H1 FY27 result",
       "timing": "H1 FY27 result (~Feb 2027)",
-      "sort": "2027-03-31",
+      "sort": "2027-02-15",
       "source": "H1 FY27 Trading Update (21 Oct 2026)",
       "day_precise": false,
       "estimated": true

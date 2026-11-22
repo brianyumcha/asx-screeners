@@ -47,7 +47,7 @@ p{color:var(--ink-soft)}
 }
 .topbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;flex:none;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:.5rem .6rem}
 .themebtn{border:1px solid var(--border);background:var(--surface);color:var(--ink);width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex:none}
-.subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0;max-width:60rem}
+.subtitle{color:var(--ink-faint);font-size:.92rem;margin:.3rem 0 0}
 .session{font-size:.78rem;color:var(--ink-faint);margin:.6rem 0 1.1rem;letter-spacing:.03em}
 
 .chipsection{margin-top:1.3rem}
@@ -62,13 +62,15 @@ p{color:var(--ink-soft)}
 .commchip:hover{border-color:var(--accent);color:var(--accent)}
 .commchip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
 .commchip .cnt{opacity:.7;font-size:.85em}
+.groupchip{font-weight:700;border-style:dashed}
+.groupchip.active{border-style:solid}
 
 .controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:1.1rem 0 .7rem}
 .controls input{background:var(--surface);border:1px solid var(--border);color:var(--ink);border-radius:6px;padding:.5rem .7rem;font-size:.85rem;width:20rem}
 .controls input:focus{outline:none;border-color:var(--accent2)}
 .controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
 
-.calgridwrap{overflow-x:auto;margin-top:.6rem}
+.calgridwrap{margin-top:.6rem}
 table.calgrid{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.85rem}
 table.calgrid th:nth-child(1), table.calgrid td:nth-child(1){width:10%}
 table.calgrid th:nth-child(2), table.calgrid td:nth-child(2){width:6%}
@@ -79,7 +81,8 @@ table.calgrid th:nth-child(6), table.calgrid td:nth-child(6){width:36%}
 table.calgrid th:nth-child(7), table.calgrid td:nth-child(7){width:14%}
 table.calgrid td.lastclose{font-family:"IBM Plex Mono",monospace;text-align:right;color:var(--ink-soft)}
 table.calgrid th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--ink-faint);text-transform:uppercase;
-  letter-spacing:.05em;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap}
+  letter-spacing:.05em;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap;
+  position:sticky;top:var(--thead-top,0);background:var(--bg);z-index:10}
 table.calgrid td{padding:.5rem .6rem;vertical-align:top;border-bottom:1px solid var(--border)}
 table.calgrid tr:last-child td{border-bottom:none}
 tr.monthsep td{background:color-mix(in srgb, var(--accent2) 16%, var(--surface2));
@@ -235,6 +238,18 @@ function monthLabel(iso){
 const typeCounts = {};
 DATA.forEach(r => { typeCounts[r[4]] = (typeCounts[r[4]] || 0) + 1; });
 
+const TYPE_COLORS = {
+  mre_upgrade: '#b8860b',
+  dfs_bfs_scoping: '#8b5a2b',
+  drilling_assay: '#6b4fa0',
+  metallurgy: '#a0522d',
+  production_fid: '#2e7d32',
+  trial_regulatory: '#1f7a8c',
+  capital_raise: '#4472c4',
+  board_ma: '#a0792f',
+  other: '#5a6670',
+};
+
 const activeTypes = new Set();
 
 function render(){
@@ -267,7 +282,7 @@ function render(){
         <td class="tk"><a href="${asxUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></td>
         <td class="lastclose"${closeTitle}>${fmtClose(lastClose)}</td>
         <td class="company">${companyLine}</td>
-        <td class="typebadge"><span>${esc(typeLabel)}</span></td>
+        <td class="typebadge"><span style="color:${TYPE_COLORS[typeKey] || TYPE_COLORS.other};border-color:${TYPE_COLORS[typeKey] || TYPE_COLORS.other}">${esc(typeLabel)}</span></td>
         <td class="calcatalyst">${esc(catalyst)}</td>
         <td class="timing">${esc(timing || '—')}</td>
       </tr>`;
@@ -275,14 +290,24 @@ function render(){
     grid.innerHTML = html;
   }
   document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} catalysts`;
-  document.querySelectorAll('#typechips .commchip').forEach(c => c.classList.toggle('active', activeTypes.has(c.dataset.type)));
+  document.querySelectorAll('#typechips .commchip[data-type]').forEach(c => c.classList.toggle('active', activeTypes.has(c.dataset.type)));
+  document.querySelectorAll('#typechips .groupchip').forEach(c => {
+    const types = c.dataset.group.split(',');
+    c.classList.toggle('active', types.every(t => activeTypes.has(t)));
+  });
 }
 
 document.getElementById('typechips').addEventListener('click', (e) => {
   const btn = e.target.closest('.commchip');
   if(!btn) return;
-  const t = btn.dataset.type;
-  if(activeTypes.has(t)) activeTypes.delete(t); else activeTypes.add(t);
+  if(btn.dataset.group){
+    const types = btn.dataset.group.split(',');
+    const allActive = types.every(t => activeTypes.has(t));
+    types.forEach(t => allActive ? activeTypes.delete(t) : activeTypes.add(t));
+  } else {
+    const t = btn.dataset.type;
+    if(activeTypes.has(t)) activeTypes.delete(t); else activeTypes.add(t);
+  }
   render();
 });
 document.getElementById('filterInput').addEventListener('input', render);
@@ -292,6 +317,19 @@ document.getElementById('clearFiltersBtn').addEventListener('click', () => {
   render();
 });
 render();
+
+// Table header sticks just below the sticky topbar - topbar's height is
+// dynamic (subtitle wraps differently per viewport width/ticker count), so
+// this is measured at runtime rather than hardcoded, and only applies when
+// the topbar is actually sticky (it isn't below the 641px breakpoint).
+function updateTheadOffset(){
+  const topbar = document.querySelector('.topbar');
+  const isSticky = getComputedStyle(topbar).position === 'sticky';
+  const offset = isSticky ? Math.ceil(topbar.getBoundingClientRect().bottom) : 0;
+  document.documentElement.style.setProperty('--thead-top', offset + 'px');
+}
+updateTheadOffset();
+window.addEventListener('resize', updateTheadOffset);
 
 const themeBtn = document.getElementById('themeBtn');
 function isLightTheme(){ return document.documentElement.getAttribute('data-theme') === 'light'; }

@@ -156,13 +156,18 @@ def main():
         present = [t for t in type_keys if type_counts.get(t)]
         if not present:
             continue
+        group_total = sum(type_counts[t] for t in present)
+        group_chip = (
+            f'<button class="commchip groupchip" data-group="{",".join(present)}">'
+            f'<span>{group_label} (all)</span><span class="cnt">{group_total}</span></button>'
+        )
         chips = "".join(
             f'<button class="commchip" data-type="{t}"><span>{TYPE_LABELS.get(t, t)}</span>'
             f'<span class="cnt">{type_counts[t]}</span></button>'
             for t in sorted(present, key=lambda t: (-type_counts[t], t))
         )
         group_blocks.append(
-            f'<div class="chipgroup"><span class="glabel">{group_label}</span>{chips}</div>'
+            f'<div class="chipgroup"><span class="glabel">{group_label}</span>{group_chip}{chips}</div>'
         )
     type_chips_html = "".join(group_blocks)
 
