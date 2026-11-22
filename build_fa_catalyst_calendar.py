@@ -32,6 +32,8 @@ import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+import pandas as pd
+
 from dashboard_template import render_nav
 
 SYDNEY_TZ = ZoneInfo("Australia/Sydney")
@@ -92,14 +94,29 @@ def load_company_lookup():
     return lookup
 
 
+def load_price_lookup():
+    """Ticker -> (last_close, as_of_date) from the same daily OHLCV cache the
+    rest of this site's screeners already maintain - no new data pull, just
+    the most recent row per ticker. Missing from the cache (not guaranteed
+    complete) -> absent from the dict, rendered as "-" rather than guessed."""
+    df = pd.read_parquet("price_cache.parquet")
+    latest = df.sort_values("date").groupby("ticker").tail(1)
+    return {
+        row["ticker"]: (float(row["close"]), row["date"].strftime("%Y-%m-%d"))
+        for _, row in latest.iterrows()
+    }
+
+
 def main():
     with open(DATA_PATH, encoding="utf-8") as f:
         catalysts = json.load(f)
     company_lookup = load_company_lookup()
+    price_lookup = load_price_lookup()
 
     rows = []
     for ticker, items in catalysts.items():
         name, sector = company_lookup.get(ticker, (None, None))
+        last_close, close_date = price_lookup.get(ticker, (None, None))
         for it in items:
             rows.append({
                 "ticker": ticker,
@@ -111,6 +128,8 @@ def main():
                 "sort": it.get("sort"),
                 "day_precise": bool(it.get("day_precise")),
                 "estimated": bool(it.get("estimated")),
+                "last_close": last_close,
+                "close_date": close_date,
             })
 
     # Undated rows sort to the end. Within the same month, an estimated
@@ -161,6 +180,8 @@ def main():
                 "null" if r["sort"] is None else f'"{r["sort"]}"',
                 "true" if r["day_precise"] else "false",
                 "true" if r["estimated"] else "false",
+                "null" if r["last_close"] is None else f'{r["last_close"]:.4f}',
+                "null" if r["close_date"] is None else f'"{r["close_date"]}"',
             ]) + "]"
         )
     data_block = ",\n".join(data_lines)

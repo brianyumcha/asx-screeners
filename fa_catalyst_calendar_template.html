@@ -70,12 +70,14 @@ p{color:var(--ink-soft)}
 
 .calgridwrap{overflow-x:auto;margin-top:.6rem}
 table.calgrid{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.85rem}
-table.calgrid th:nth-child(1), table.calgrid td:nth-child(1){width:11%}
+table.calgrid th:nth-child(1), table.calgrid td:nth-child(1){width:10%}
 table.calgrid th:nth-child(2), table.calgrid td:nth-child(2){width:6%}
-table.calgrid th:nth-child(3), table.calgrid td:nth-child(3){width:18%}
-table.calgrid th:nth-child(4), table.calgrid td:nth-child(4){width:12%}
-table.calgrid th:nth-child(5), table.calgrid td:nth-child(5){width:38%}
-table.calgrid th:nth-child(6), table.calgrid td:nth-child(6){width:15%}
+table.calgrid th:nth-child(3), table.calgrid td:nth-child(3){width:7%}
+table.calgrid th:nth-child(4), table.calgrid td:nth-child(4){width:16%}
+table.calgrid th:nth-child(5), table.calgrid td:nth-child(5){width:11%}
+table.calgrid th:nth-child(6), table.calgrid td:nth-child(6){width:36%}
+table.calgrid th:nth-child(7), table.calgrid td:nth-child(7){width:14%}
+table.calgrid td.lastclose{font-family:"IBM Plex Mono",monospace;text-align:right;color:var(--ink-soft)}
 table.calgrid th{text-align:left;padding:.4rem .6rem;font-size:.66rem;color:var(--ink-faint);text-transform:uppercase;
   letter-spacing:.05em;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap}
 table.calgrid td{padding:.5rem .6rem;vertical-align:top;border-bottom:1px solid var(--border)}
@@ -190,6 +192,7 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
         <tr>
           <th>Date</th>
           <th>Ticker</th>
+          <th>Last Close</th>
           <th>Company</th>
           <th>Type</th>
           <th>Catalyst</th>
@@ -209,7 +212,10 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 const DATA = [
 <<<FULL_DATA>>>
 ];
-// [ticker, companyName, sectorLabel, catalyst, catalystTypeKey, catalystTypeLabel, timing, sortDate|null, dayPrecise, estimated]
+// [ticker, companyName, sectorLabel, catalyst, catalystTypeKey, catalystTypeLabel, timing, sortDate|null, dayPrecise, estimated, lastClose|null, closeDate|null]
+function fmtClose(v){
+  return v === null ? '—' : `$${v.toFixed(2)}`;
+}
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function fmtDate(iso, dayPrecise, estimated){
@@ -233,7 +239,7 @@ const activeTypes = new Set();
 
 function render(){
   const q = document.getElementById('filterInput').value.trim().toUpperCase();
-  const rows = DATA.filter(([ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise, estimated]) => {
+  const rows = DATA.filter(([ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise, estimated, lastClose, closeDate]) => {
     const textMatch = !q || ticker.toUpperCase().includes(q) || catalyst.toUpperCase().includes(q) || (company||'').toUpperCase().includes(q);
     if(!textMatch) return false;
     if(activeTypes.size && !activeTypes.has(typeKey)) return false;
@@ -241,23 +247,25 @@ function render(){
   });
   const grid = document.getElementById('calGrid');
   if(!rows.length){
-    grid.innerHTML = '<tr><td colspan="6"><div class="emptystate">No catalysts match the current filters.</div></td></tr>';
+    grid.innerHTML = '<tr><td colspan="7"><div class="emptystate">No catalysts match the current filters.</div></td></tr>';
   } else {
     let html = '';
     let lastMonth = null;
-    for(const [ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise, estimated] of rows){
+    for(const [ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise, estimated, lastClose, closeDate] of rows){
       const bucket = monthLabel(sort);
       if(bucket !== lastMonth){
-        html += `<tr class="monthsep"><td colspan="6">${esc(bucket)}</td></tr>`;
+        html += `<tr class="monthsep"><td colspan="7">${esc(bucket)}</td></tr>`;
         lastMonth = bucket;
       }
       const asxUrl = `https://www.asx.com.au/markets/company/${encodeURIComponent(ticker.toLowerCase())}`;
       const companyLine = company
         ? `<span class="cname">${esc(company)}</span>${sector ? `<span class="csector">${esc(sector)}</span>` : ''}`
         : '';
+      const closeTitle = closeDate ? ` title="as of ${esc(closeDate)}"` : '';
       html += `<tr>
         <td class="caldate">${fmtDate(sort, dayPrecise, estimated)}</td>
         <td class="tk"><a href="${asxUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></td>
+        <td class="lastclose"${closeTitle}>${fmtClose(lastClose)}</td>
         <td class="company">${companyLine}</td>
         <td class="typebadge"><span>${esc(typeLabel)}</span></td>
         <td class="calcatalyst">${esc(catalyst)}</td>

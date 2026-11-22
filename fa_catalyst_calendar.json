@@ -75,6 +75,33 @@
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
       "estimated": true
+    },
+    {
+      "catalyst": "Boundiali - Final Investment Decision",
+      "catalyst_type": "production_fid",
+      "timing": "Late Q4 CY2026",
+      "sort": "2026-12-15",
+      "source": "June 2026 PFS/Maiden Ore Reserve announcement",
+      "day_precise": false,
+      "estimated": true
+    },
+    {
+      "catalyst": "Boundiali - construction start",
+      "catalyst_type": "production_fid",
+      "timing": "Early 2027",
+      "sort": "2027-01-31",
+      "source": "June 2026 PFS/Maiden Ore Reserve announcement",
+      "day_precise": false,
+      "estimated": true
+    },
+    {
+      "catalyst": "Boundiali - first gold",
+      "catalyst_type": "production_fid",
+      "timing": "H1 CY2028",
+      "sort": "2028-03-31",
+      "source": "June 2026 PFS/Maiden Ore Reserve announcement",
+      "day_precise": false,
+      "estimated": true
     }
   ],
   "AUV": [
@@ -143,7 +170,7 @@
       "sort": "2028-06-30",
       "day_precise": false,
       "source": "September 2026 Quarterly; Corporate Presentation Nov 2026",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Warrego North Cu-Au (NT) — assays from initial drilling of targets; Goomalling Cu (WA) Deep Blue follow-up drilling, soils and IP",
@@ -207,7 +234,7 @@
       "catalyst": "Side Well — mining approvals for that deposit",
       "catalyst_type": "production_fid",
       "timing": "Q3 2027",
-      "sort": "2027-08-16",
+      "sort": "2027-08-15",
       "day_precise": false,
       "source": "Investor Presentation (Noosa Mining Conference), 11 Nov 2026",
       "estimated": true
@@ -514,10 +541,10 @@
       "catalyst": "Mt Chalmers — complete in-pit pontoon drilling (first beneath historic pits since 1982); report 26MCDD052 and NNE corridor follow-up results",
       "catalyst_type": "drilling_assay",
       "timing": "December 2026 quarter",
-      "sort": "2026-12-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Woods Shaft — commence 39-hole, 7,000m resource drilling program",
@@ -532,10 +559,10 @@
       "catalyst": "Botos — settle freehold properties, Tier 1 validation drilling (64 holes, 11,360m) results; Tier 2 extension drilling subject to results",
       "catalyst_type": "drilling_assay",
       "timing": "December 2026 quarter",
-      "sort": "2026-12-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Mt Chalmers — updated Mineral Resource incorporating 2026 drilling",
@@ -573,7 +600,7 @@
       "sort": "2026-12-16",
       "day_precise": false,
       "source": "Q1 FY27 Quarterly Report (26 Oct 2026)",
-      "estimated": true
+      "estimated": false
     },
     {
       "catalyst": "15-Mile Processing Hub — Feasibility Study completion",
@@ -755,15 +782,6 @@
     }
   ],
   "ZMI": [
-    {
-      "catalyst": "Commercial demonstration plant commissioning targeted by year-end, pilot plant construction planned for Q1 2027",
-      "catalyst_type": "metallurgy",
-      "timing": "Commissioning by year-end 2026; pilot plant Q1 2027",
-      "sort": "2027-03-31",
-      "source": "FA call, 20 Nov 2026",
-      "day_precise": false,
-      "estimated": true
-    },
     {
       "catalyst": "ARGO critical-minerals recovery technology (Ge/Ga/In from zinc leach residue) — preliminary engineering for a full-scale plant, completion target",
       "catalyst_type": "metallurgy",
@@ -952,15 +970,6 @@
   ],
   "AKA": [
     {
-      "catalyst": "Completion of HGH acquisition (Fiddlers Creek mine + Wedderburn mill) following 23 Oct shareholder approval",
-      "catalyst_type": "board_ma",
-      "timing": "Shortly after 23 Oct 2026 GM",
-      "sort": "2026-10-23",
-      "day_precise": true,
-      "source": "Q1 FY27 Quarterly Activities Report (19 Oct 2026)",
-      "estimated": false
-    },
-    {
       "catalyst": "Fiddlers Creek — results from diamond drilling (first surface drilling since May 2025) targeting historical high-grade",
       "catalyst_type": "drilling_assay",
       "timing": "No firm date given",
@@ -984,7 +993,7 @@
       "catalyst": "Björkdal — Storheden portal established; Storheden extension drilling recommences",
       "catalyst_type": "drilling_assay",
       "timing": "Q2 FY27 (December quarter 2026)",
-      "sort": "2027-05-16",
+      "sort": "2026-05-15",
       "day_precise": false,
       "source": "Quarterly Report – September 2026 (22 Oct 2026)",
       "estimated": true
@@ -993,10 +1002,10 @@
       "catalyst": "Tomingley — Newell Highway traffic switch to new alignment, then San Antonio open-pit mining commences",
       "catalyst_type": "other",
       "timing": "Early in the June 2027 quarter",
-      "sort": "2027-06-15",
+      "sort": "2027-05-15",
       "day_precise": false,
       "source": "Quarterly Report – September 2026 (22 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Boda-Kaiser Au-Cu (NSW) — environmental baseline studies toward development approval",
@@ -1051,10 +1060,10 @@
       "catalyst": "Mt Carrington — larger Scoping Study (Ausenco/WSP) assessing throughput above 1Mtpa on updated MRE",
       "catalyst_type": "mre_upgrade",
       "timing": "December 2026 Quarter",
-      "sort": "2026-12-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Mt Carrington — Emu prospect drilling assays",
@@ -1110,7 +1119,7 @@
       "sort": "2027-03-31",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "estimated": true
+      "estimated": false
     },
     {
       "catalyst": "Três Estradas — US$3M working-capital finance (loan/royalty term sheet; due diligence in progress) to unlock 11,000t of sales agreements",
@@ -1139,7 +1148,7 @@
       "sort": "2026-11-15",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Wandanya — Scoping Study on 3.4km base case",
@@ -1157,7 +1166,7 @@
       "sort": "2026-12-31",
       "day_precise": false,
       "source": "Corporate Presentation Update, 30 Oct 2026",
-      "estimated": true
+      "estimated": false
     },
     {
       "catalyst": "Wandanya — referral to Environmental Protection Authority for approval pathway",
@@ -1186,7 +1195,7 @@
       "sort": "2026-12-31",
       "day_precise": false,
       "source": "Q3 2026 Activities Report (28 Oct 2026)",
-      "estimated": true
+      "estimated": false
     },
     {
       "catalyst": "ABC Project — Mineral Resource Estimate update",
@@ -1201,7 +1210,7 @@
       "catalyst": "Resettlement (RAP Phase 2) after exploitation permit grant",
       "catalyst_type": "trial_regulatory",
       "timing": "Q2 2027 to end of 2028",
-      "sort": "2027-05-16",
+      "sort": "2027-05-15",
       "day_precise": false,
       "source": "Q3 2026 Activities Report (28 Oct 2026)",
       "estimated": true
@@ -1260,7 +1269,7 @@
       "sort": "2027-09-30",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "estimated": true
+      "estimated": false
     },
     {
       "catalyst": "Warby — trenching and maiden drill program",
@@ -1295,10 +1304,10 @@
       "catalyst": "Junee — drilling program (deferred for cropping and to prioritise Evergreen)",
       "catalyst_type": "drilling_assay",
       "timing": "January–March 2027 quarter",
-      "sort": "2027-03-16",
+      "sort": "2027-02-14",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "South Cobar — Evergreen and Achilles pending RC assays (incl. Achilles oxide gold-silver extensions)",
@@ -1376,7 +1385,7 @@
       "sort": "2027-06-30",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities and Cashflow Report (27 Oct 2026)",
-      "estimated": true
+      "estimated": false
     },
     {
       "catalyst": "Kada Gold Project (Guinea) — further resource update using 19,251m drilled after MRE cut-off (Massan Inferred→Indicated conversion)",
@@ -1408,15 +1417,6 @@
       "estimated": false
     },
     {
-      "catalyst": "King of the Hills — stage 2 processing upgrade performance testing and full commissioning",
-      "catalyst_type": "production_fid",
-      "timing": "Performance testing late October 2026, then full commissioning",
-      "sort": "2026-10-16",
-      "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
-      "estimated": false
-    },
-    {
       "catalyst": "Production growth to 380–400koz (FY28) from FY27 guidance of 355–375koz",
       "catalyst_type": "production_fid",
       "timing": "FY28",
@@ -1443,16 +1443,16 @@
       "sort": "2026-12-31",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "estimated": true
+      "estimated": false
     },
     {
       "catalyst": "Comet Vale — diamond drilling of high-grade Sovereign footwall lode and Lakeview depth extensions; discovery drilling along 30km soil-anomaly strike",
       "catalyst_type": "drilling_assay",
       "timing": "December 2026 quarter",
-      "sort": "2026-12-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Mulwarrie — heritage surveys then RC drilling of step-out areas",
@@ -1553,10 +1553,10 @@
     {
       "catalyst": "Springfield gold (NSW) — third-phase 4,000–5,000m RC drilling (undrilled 1.1km northern strike extent, depth extensions)",
       "catalyst_type": "drilling_assay",
-      "timing": "Commencing in coming days (late Oct 2026), subject to approvals",
-      "sort": "2026-10-16",
+      "timing": "Phase Three drilling commenced 10 Nov 2026 (not late Oct as previously recorded); assays reported progressively, no completion date given",
+      "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
+      "source": "Nov 2026 Phase Three drilling-commencement announcement",
       "estimated": false
     },
     {
@@ -1851,7 +1851,7 @@
       "catalyst": "Mt Oxide — next drilling program after wet season (2027 exploration program)",
       "catalyst_type": "drilling_assay",
       "timing": "Q2 2027 (post wet season)",
-      "sort": "2027-05-16",
+      "sort": "2027-05-15",
       "day_precise": false,
       "source": "Investor Presentation, November 2026",
       "estimated": true
@@ -1987,10 +1987,10 @@
       "catalyst": "Quinns (WA) — copper exploration ramp-up: detailed aeromagnetics, ground IP and gravity surveys (Austin deposit and new targets)",
       "catalyst_type": "production_fid",
       "timing": "December 2026 quarter (priority for coming quarter)",
-      "sort": "2026-12-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "Quarterly Activities Report – 30 Sept 2026 (28 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Quinns — results of first aircore program on gold targets (incl. historic Enterprise mine, 90% earn-in); Phase One RC/diamond drilling at Austin (EIS co-funded), then Phase Two at Defiance and 4E",
@@ -2073,10 +2073,10 @@
     {
       "catalyst": "Cucho copper (Peru) — 5,000m diamond drilling across three target zones",
       "catalyst_type": "drilling_assay",
-      "timing": "Commencing October 2026",
-      "sort": "2026-10-16",
+      "timing": "Drilling commenced early Nov 2026 (not Oct as previously recorded); results not yet released",
+      "sort": null,
       "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (28 Oct 2026)",
+      "source": "Nov 2026 drilling-commencement announcement",
       "estimated": false
     },
     {
@@ -2166,15 +2166,6 @@
     }
   ],
   "CHR": [
-    {
-      "catalyst": "Lake Johnston — first assays from 10,000m RC/diamond program at Medcalf (4,390m done)",
-      "catalyst_type": "drilling_assay",
-      "timing": "Expected shortly (from late Oct 2026)",
-      "sort": "2026-10-16",
-      "day_precise": false,
-      "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
-      "estimated": false
-    },
     {
       "catalyst": "Medcalf lithium — resource growth from current drilling (deposit open down-dip/along strike)",
       "catalyst_type": "drilling_assay",
@@ -2275,7 +2266,7 @@
       "catalyst": "Envirostream — elevated Sell & Parker contract recycling volumes continue",
       "catalyst_type": "other",
       "timing": "Q2 FY27 (December quarter 2026)",
-      "sort": "2027-05-16",
+      "sort": "2026-05-15",
       "day_precise": false,
       "source": "Quarterly Activities Report – September 2026, Q1 FY27 (29 Oct 2026)",
       "estimated": true
@@ -2525,10 +2516,10 @@
       "catalyst": "Hermosa (Arizona) — Taylor zinc-lead-silver: both shafts reach primary production level",
       "catalyst_type": "production_fid",
       "timing": "December 2026 quarter",
-      "sort": "2026-12-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "Quarterly Report September 2026 (18 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Completion of sale of aluminium value chain assets to Alcoa (shareholder-approved 15 Oct 2026)",
@@ -2702,7 +2693,7 @@
       "sort": "2027-03-31",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (23 Oct 2026)",
-      "estimated": true
+      "estimated": false
     },
     {
       "catalyst": "Maniry graphite (Madagascar) — completion of Mining Permit Decree (formal presidential issue) and FMISC levy payment",
@@ -2816,7 +2807,7 @@
       "sort": "2027-06-15",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (21 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Weld Range 290Mt / 10Mtpa Project — Definitive Feasibility Study",
@@ -2891,19 +2882,19 @@
       "catalyst": "Pioneer Dome lithium (WA) — first DSO shipment (crushing from Oct 2026); capital recovered by end of calendar 2026",
       "catalyst_type": "other",
       "timing": "December 2026 quarter",
-      "sort": "2026-12-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "Quarterly Activities Report – September 2026 (28 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Yitirrti (Sulphur Springs) — processing plant construction (GR Engineering A$275M) to first concentrate",
       "catalyst_type": "production_fid",
       "timing": "June 2028 quarter",
-      "sort": "2028-06-15",
+      "sort": "2028-05-15",
       "day_precise": false,
       "source": "Quarterly Activities Report – September 2026 (28 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Woodlawn (NSW) — continued ramp-up; >1.54Mt @ 2.8% CuEq developed ore; FY27 guidance unchanged",
@@ -2978,10 +2969,10 @@
       "catalyst": "Novales Project — upgraded combined JORC MRE (San José, Udías, Emilia, Margarita)",
       "catalyst_type": "mre_upgrade",
       "timing": "March 2027 quarter",
-      "sort": "2027-03-16",
+      "sort": "2027-02-14",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Novales (Spain) — Emilia and Udías underground drilling assays (pending at quarter end)",
@@ -3005,7 +2996,7 @@
       "catalyst": "Novales — surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE",
       "catalyst_type": "mre_upgrade",
       "timing": "Underway from 20 Oct 2026",
-      "sort": "2026-10-20",
+      "sort": null,
       "day_precise": true,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
       "estimated": false
@@ -3112,7 +3103,7 @@
       "catalyst": "Lamil (Paterson, WA) — next phase of drilling",
       "catalyst_type": "drilling_assay",
       "timing": "Start of 2027 field season",
-      "sort": "2027-06-30",
+      "sort": null,
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
       "estimated": false
@@ -3148,7 +3139,7 @@
       "catalyst": "Sandover / Jessica (NT, South32 farm-in) — NTGS co-funded passive seismic survey (from Oct 2026) and planned MT geophysics for copper drill targets",
       "catalyst_type": "drilling_assay",
       "timing": "Commenced October 2026; no completion date",
-      "sort": "2026-10-16",
+      "sort": null,
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
       "estimated": false
@@ -3264,10 +3255,10 @@
       "catalyst": "Novales Project — upgraded combined JORC MRE (San José, Udías, Emilia, Margarita)",
       "catalyst_type": "mre_upgrade",
       "timing": "March 2027 quarter",
-      "sort": "2027-03-16",
+      "sort": "2027-02-14",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Novales (Spain) — Emilia and Udías underground drilling assays (pending at quarter end)",
@@ -3291,7 +3282,7 @@
       "catalyst": "Novales — surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE",
       "catalyst_type": "mre_upgrade",
       "timing": "Underway from 20 Oct 2026",
-      "sort": "2026-10-20",
+      "sort": null,
       "day_precise": true,
       "source": "September 2026 Quarterly Activities Report (29 Oct 2026)",
       "estimated": false
@@ -3360,7 +3351,7 @@
       "catalyst": "Tibooburra Gold Project (NSW, Novo farm-in stage 2) — ~2,700m RC program at Clone and Pioneer South",
       "catalyst_type": "drilling_assay",
       "timing": "Commencing shortly (from late Oct 2026)",
-      "sort": "2026-10-16",
+      "sort": null,
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (25 Oct 2026)",
       "estimated": false
@@ -3396,15 +3387,6 @@
     }
   ],
   "EDE": [
-    {
-      "catalyst": "EdenCrete Pz7 — two further Amrize plant dispensing installations (taking total to 32 plants in USA/Canada/Ecuador)",
-      "catalyst_type": "other",
-      "timing": "October 2026",
-      "sort": "2026-10-16",
-      "day_precise": false,
-      "source": "Q1 FY27 Quarterly Activities Report (29 Oct 2026)",
-      "estimated": false
-    },
     {
       "catalyst": "Eden US — continued year-on-year revenue growth",
       "catalyst_type": "other",
@@ -3728,7 +3710,7 @@
       "catalyst": "NUZ-001 (ALS) — HEALEY ALS Platform Trial Regimen I (Phase 2/3, 250 pts) topline efficacy and safety results",
       "catalyst_type": "trial_regulatory",
       "timing": "Late Q2 CY2027",
-      "sort": "2027-05-16",
+      "sort": "2027-05-15",
       "day_precise": false,
       "source": "HEALEY Regimen I enrolment completed release (Jul 2026); Q4 FY26 Quarterly Activities Report",
       "estimated": true
@@ -3917,13 +3899,13 @@
       "estimated": true
     },
     {
-      "catalyst": "HMBD-002 — final drug product release (fill-and-finish)",
-      "catalyst_type": "other",
-      "timing": "September 2026",
-      "sort": "2026-09-15",
+      "catalyst": "HMBD-002 — Phase II trial initiation (drug product manufacture/fill-finish completed late Oct 2026)",
+      "timing": "Targeted Q4 CY2026",
+      "sort": "2026-11-15",
+      "source": "Oct 2026 manufacturing milestone announcement",
       "day_precise": false,
-      "source": "June 2026 Quarterly Activities Report (Jul 2026); Edison note 4 Aug 2026",
-      "estimated": false
+      "estimated": true,
+      "catalyst_type": "trial_regulatory"
     }
   ],
   "IMR": [
@@ -3957,15 +3939,6 @@
   ],
   "RHT": [
     {
-      "catalyst": "DEVIMLA study (liver fibrosis device) — readout (recruitment complete)",
-      "catalyst_type": "other",
-      "timing": "Within approximately three months (from late Aug 2026)",
-      "sort": "2026-08-16",
-      "day_precise": false,
-      "source": "FY26 Full Year Results (28 Aug 2026)",
-      "estimated": false
-    },
-    {
       "catalyst": "Liver fibrosis device — use in clinical trials",
       "catalyst_type": "trial_regulatory",
       "timing": "FY27/28",
@@ -3982,6 +3955,15 @@
       "day_precise": false,
       "source": "FY26 Full Year Results (28 Aug 2026)",
       "estimated": true
+    },
+    {
+      "catalyst": "DEVIMLA/EPoC liver fibrosis — algorithm refinement then FDA feedback on validation design/regulatory pathway (preliminary 50-patient China-arm readout already reported: AUROC 0.82 significant fibrosis, 0.79 advanced fibrosis)",
+      "timing": "No firm date given for FDA feedback",
+      "sort": null,
+      "source": "EPoC preliminary results announcement",
+      "day_precise": false,
+      "estimated": false,
+      "catalyst_type": "trial_regulatory"
     }
   ],
   "ATX": [
@@ -3998,7 +3980,7 @@
       "catalyst": "ACCENT-Mini — safety and PK data (feeds FDA protocol for registrational study)",
       "catalyst_type": "trial_regulatory",
       "timing": "Late Q1/early Q2 2027",
-      "sort": "2027-05-16",
+      "sort": "2027-02-14",
       "day_precise": false,
       "source": "Clinical Trial Updates (22 Oct 2026)",
       "estimated": true
@@ -4083,7 +4065,7 @@
       "catalyst": "Galidesivir — first 5kg GMP API batch completion",
       "catalyst_type": "other",
       "timing": "By end of October 2026",
-      "sort": "2026-10-31",
+      "sort": "2026-12-31",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
       "estimated": false
@@ -4104,7 +4086,7 @@
       "sort": "2026-12-31",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report (26 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Galidesivir — Texas Biomed 12-NHP Marburg-Angola dose optimisation study",
@@ -4200,7 +4182,7 @@
       "sort": "2028-12-31",
       "day_precise": false,
       "source": "FY26 Results Presentation (Aug 2026)",
-      "estimated": true
+      "estimated": false
     }
   ],
   "SOP": [
@@ -4376,10 +4358,10 @@
       "catalyst": "Second QLD 10MW AI data centre site (~$250M project) — conversion of 60-day binding exclusivity into definitive contract",
       "catalyst_type": "other",
       "timing": "60-day exclusivity from 23 Oct 2026 (~late Dec 2026)",
-      "sort": "2026-10-23",
-      "day_precise": true,
+      "sort": "2026-12-15",
+      "day_precise": false,
       "source": "Second Queensland AI data centre agreement (23 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "First binding AI data centre contract (>$250M project cost) — Managed Delivery execution; 2.5MW initial grid-connected phase",
@@ -4443,10 +4425,10 @@
       "catalyst": "UK business — path to profitability (written orders +35% YoY early FY27); H1 FY27 result",
       "catalyst_type": "other",
       "timing": "H1 FY27 result (~Feb 2027)",
-      "sort": "2027-02-14",
+      "sort": "2027-03-31",
       "day_precise": false,
       "source": "H1 FY27 Trading Update (21 Oct 2026)",
-      "estimated": false
+      "estimated": true
     }
   ],
   "MNC": [
@@ -4514,10 +4496,10 @@
       "catalyst": "First full quarter of consolidated cash flows incl. ParaScript (US$63M acquisition completed 14 Sep 2026)",
       "catalyst_type": "board_ma",
       "timing": "December 2026 quarterly report (due late Jan 2027)",
-      "sort": "2026-12-16",
+      "sort": "2026-11-15",
       "day_precise": false,
       "source": "September 2026 Quarterly Activities Report & 4C (30 Oct 2026)",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "IBM contract delivery",
@@ -4574,10 +4556,10 @@
       "catalyst": "Hillgrove ramp-up to nameplate capacity (~4,900t antimony + ~40,500oz gold/year) - running faster than the original 4-month ramp allowance",
       "catalyst_type": "production_fid",
       "timing": "Faster than original 4-month ramp (started Aug 2026)",
-      "sort": "2026-11-15",
+      "sort": "2026-12-01",
       "day_precise": false,
       "source": "Production update, Nov 2026",
-      "estimated": false
+      "estimated": true
     },
     {
       "catalyst": "Ongoing resource-extension drilling at Midas, Metz, Clarks Gully and Freehold zones",
@@ -4614,7 +4596,7 @@
       "catalyst": "Swinburne University independent validation of data-centre video technology (minimum 30% capacity increase / 30% cost reduction target), gating a Nordic data-centre tender (min. $1M bid)",
       "catalyst_type": "other",
       "timing": "Preliminary results by end of January 2027",
-      "sort": "2027-01-31",
+      "sort": "2027-12-31",
       "day_precise": false,
       "source": "FA call, 28 October 2026",
       "estimated": false

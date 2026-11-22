@@ -53,6 +53,7 @@ from collections import defaultdict
 from datetime import datetime
 
 import openpyxl
+import pandas as pd
 
 import rs_utils
 
@@ -452,6 +453,18 @@ def render_html(groups, bucket_counts, unresolved, total_calls, total_tickers_se
             catalysts_data = json.load(f)
     catalysts_js = "const CATALYSTS = " + json.dumps(catalysts_data) + ";"
 
+    # ---- last close per ticker (same daily OHLCV cache every screener on
+    # this site already maintains) for the Catalyst Calendar's price column -
+    # scoped to just the tickers that actually appear there, not the whole
+    # ASX universe, to keep the page lean ----
+    price_df = pd.read_parquet(os.path.join(SCRIPT_DIR, "price_cache.parquet"))
+    price_latest = price_df[price_df["ticker"].isin(catalysts_data.keys())].sort_values("date").groupby("ticker").tail(1)
+    prices_data = {
+        row["ticker"]: [round(float(row["close"]), 4), row["date"].strftime("%Y-%m-%d")]
+        for _, row in price_latest.iterrows()
+    }
+    prices_js = "const PRICES = " + json.dumps(prices_data) + ";"
+
     today_str = datetime.now().strftime("%-d %b %Y")
     footer_text = (
         f"Rebuilt {today_str} from Craig's own call log ({total_calls:,} calls, {total_tickers_seen:,} tickers across his "
@@ -475,6 +488,7 @@ def render_html(groups, bucket_counts, unresolved, total_calls, total_tickers_se
     template = template.replace("##DATA_JS##", data_js)
     template = template.replace("##COLOR_BY_GROUP_JS##", color_by_group_js)
     template = template.replace("##CATALYSTS_JS##", catalysts_js)
+    template = template.replace("##PRICES_JS##", prices_js)
     return template
 
 
@@ -587,10 +601,12 @@ table.grouptable td.catalysts .cwhen{display:block;font-family:"IBM Plex Mono",m
 table.grouptable td.catalysts .cwhat{display:block;font-size:.78rem}
 table.grouptable td.catalysts .nocat{color:var(--ink-faint)}
 
-table.calendartable th:nth-child(1), table.calendartable td:nth-child(1){width:12%}
-table.calendartable th:nth-child(2), table.calendartable td:nth-child(2){width:8%}
-table.calendartable th:nth-child(3), table.calendartable td:nth-child(3){width:55%}
-table.calendartable th:nth-child(4), table.calendartable td:nth-child(4){width:25%}
+table.calendartable th:nth-child(1), table.calendartable td:nth-child(1){width:11%}
+table.calendartable th:nth-child(2), table.calendartable td:nth-child(2){width:7%}
+table.calendartable th:nth-child(3), table.calendartable td:nth-child(3){width:8%}
+table.calendartable th:nth-child(4), table.calendartable td:nth-child(4){width:51%}
+table.calendartable th:nth-child(5), table.calendartable td:nth-child(5){width:23%}
+table.calendartable td.lastclose{font-family:"IBM Plex Mono",monospace;text-align:right;color:var(--ink-faint)}
 table.calendartable tr.monthsep td{background:color-mix(in srgb, var(--accent2) 16%, var(--surface2));
   color:var(--accent2);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
   border-left:3px solid var(--accent2)}
@@ -638,7 +654,7 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
     <p class="subtitle" style="margin:0 0 .6rem">Every tracked catalyst across the bull map, in one chronological list — the per-ticker lists above still show just that ticker's own.</p>
     <div class="grouptablewrap">
       <table class="grouptable calendartable" id="catalystCalendarTable">
-        <thead><tr><th>Date</th><th>Ticker</th><th>Catalyst</th><th>Timing</th></tr></thead>
+        <thead><tr><th>Date</th><th>Ticker</th><th>Last Close</th><th>Catalyst</th><th>Timing</th></tr></thead>
         <tbody id="catalystCalendarBody"></tbody>
       </table>
     </div>
@@ -653,6 +669,11 @@ footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);fon
 ##DATA_JS##
 ##COLOR_BY_GROUP_JS##
 ##CATALYSTS_JS##
+##PRICES_JS##
+function fmtClose(tk){
+  const p = PRICES[tk];
+  return p ? `$${p[0].toFixed(2)}` : '—';
+}
 function fmtDate(iso){
   const d = new Date(iso+'T00:00:00');
   return d.toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'});
@@ -697,18 +718,19 @@ function calMonthLabel(iso){
   for(const r of flat){
     const bucket = calMonthLabel(r.sort);
     if(bucket !== lastMonth){
-      html += `<tr class="monthsep"><td colspan="4">${escHtml(bucket)}</td></tr>`;
+      html += `<tr class="monthsep"><td colspan="5">${escHtml(bucket)}</td></tr>`;
       lastMonth = bucket;
     }
     const asxUrl = `https://www.asx.com.au/markets/company/${encodeURIComponent(r.tk.toLowerCase())}`;
     html += `<tr>
       <td class="caldate">${fmtCalDate(r.sort, r.dayPrecise, r.estimated)}</td>
       <td class="tk"><a href="${asxUrl}" target="_blank" rel="noopener noreferrer">${escHtml(r.tk)}</a></td>
+      <td class="lastclose">${fmtClose(r.tk)}</td>
       <td class="desc">${escHtml(r.catalyst)}</td>
       <td class="timing">${escHtml(r.timing || '—')}</td>
     </tr>`;
   }
-  body.innerHTML = html || '<tr><td colspan="4" class="nocat">No catalysts tracked yet.</td></tr>';
+  body.innerHTML = html || '<tr><td colspan="5" class="nocat">No catalysts tracked yet.</td></tr>';
 })();
 function catalystsHtml(tk){
   const items = CATALYSTS[tk];
