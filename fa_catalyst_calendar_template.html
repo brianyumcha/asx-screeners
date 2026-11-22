@@ -74,8 +74,8 @@ p{color:var(--ink-soft)}
 table.calgrid{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.85rem}
 table.calgrid th:nth-child(1), table.calgrid td:nth-child(1){width:10%}
 table.calgrid th:nth-child(2), table.calgrid td:nth-child(2){width:6%}
-table.calgrid th:nth-child(3), table.calgrid td:nth-child(3){width:7%}
-table.calgrid th:nth-child(4), table.calgrid td:nth-child(4){width:16%}
+table.calgrid th:nth-child(3), table.calgrid td:nth-child(3){width:16%}
+table.calgrid th:nth-child(4), table.calgrid td:nth-child(4){width:7%}
 table.calgrid th:nth-child(5), table.calgrid td:nth-child(5){width:11%}
 table.calgrid th:nth-child(6), table.calgrid td:nth-child(6){width:36%}
 table.calgrid th:nth-child(7), table.calgrid td:nth-child(7){width:14%}
@@ -195,8 +195,8 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
         <tr>
           <th>Date</th>
           <th>Ticker</th>
-          <th>Last Close</th>
           <th>Company</th>
+          <th>Last Close</th>
           <th>Type</th>
           <th>Catalyst</th>
           <th>Timing</th>
@@ -280,8 +280,8 @@ function render(){
       html += `<tr>
         <td class="caldate">${fmtDate(sort, dayPrecise, estimated)}</td>
         <td class="tk"><a href="${asxUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></td>
-        <td class="lastclose"${closeTitle}>${fmtClose(lastClose)}</td>
         <td class="company">${companyLine}</td>
+        <td class="lastclose"${closeTitle}>${fmtClose(lastClose)}</td>
         <td class="typebadge"><span style="color:${TYPE_COLORS[typeKey] || TYPE_COLORS.other};border-color:${TYPE_COLORS[typeKey] || TYPE_COLORS.other}">${esc(typeLabel)}</span></td>
         <td class="calcatalyst">${esc(catalyst)}</td>
         <td class="timing">${esc(timing || '—')}</td>
