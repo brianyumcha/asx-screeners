@@ -6,7 +6,7 @@
 // (dashboard_template.py's HTML_TEMPLATE), so a theme choice made on
 // Momentum/Pullback/etc. carries over here automatically, and vice versa.
 try {
-  if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
 } catch (e) {}
 </script>
 <style>
@@ -15,16 +15,16 @@ try {
    copied rather than re-derived so this page stays in visual lockstep with
    Higher-High/Momentum/Pullback/etc instead of drifting its own palette. */
 :root {
-  --bg:#121316; --surface:#1c1f24; --border:#454b56; --card:#262b32;
-  --accent:#e8b355; --accent-ink:#1c1204; --accent2:#8fc4db; --accent2-ink:#0a1f26;
-  --good:#a8d491; --bad:#f0998a; --warn:#eec27a;
-  --text:#f5f2e8; --muted:#c9c2b0;
-}
-[data-theme="light"] {
   --bg:#faf8f2; --surface:#f0ead8; --border:#a89b7a; --card:#e6ddc4;
   --accent:#7a4a0f; --accent-ink:#fdf8ef; --accent2:#163540; --accent2-ink:#eaf5f7;
   --good:#33481f; --bad:#6b241c; --warn:#6b4a0f;
   --text:#141209; --muted:#3d3829;
+}
+[data-theme="dark"] {
+  --bg:#121316; --surface:#1c1f24; --border:#454b56; --card:#262b32;
+  --accent:#e8b355; --accent-ink:#1c1204; --accent2:#8fc4db; --accent2-ink:#0a1f26;
+  --good:#a8d491; --bad:#f0998a; --warn:#eec27a;
+  --text:#f5f2e8; --muted:#c9c2b0;
 }
 .themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
   width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;
@@ -508,11 +508,11 @@ document.querySelectorAll('thead th[data-key]').forEach(th => th.addEventListene
 // Theme toggle - same mechanism/localStorage key as every other page on
 // the site (dashboard_template.py), so a choice here carries over there.
 const themeBtn = document.getElementById('themeBtn');
-function isLightTheme() { return document.documentElement.getAttribute('data-theme') === 'light'; }
+function isLightTheme() { return document.documentElement.getAttribute('data-theme') !== 'dark'; }
 function syncThemeBtn() { themeBtn.textContent = isLightTheme() ? '☀️' : '🌙'; }
 syncThemeBtn();
 themeBtn.addEventListener('click', () => {
-  const next = isLightTheme() ? null : 'light';
+  const next = isLightTheme() ? 'dark' : null;
   if (next) document.documentElement.setAttribute('data-theme', next);
   else document.documentElement.removeAttribute('data-theme');
   try { localStorage.setItem('theme', next || 'dark'); } catch (e) {}

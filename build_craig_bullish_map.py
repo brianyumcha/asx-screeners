@@ -623,7 +623,17 @@ table.calendartable td.timing{color:var(--warn);font-size:.8rem}
 
 footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--ink-faint)}
 
-@media (max-width:640px){h1{font-size:1.9rem}}
+@media (max-width:640px){
+  h1{font-size:1.9rem}
+  /* .grouptablewrap already has overflow-x:auto, but a fixed-layout table
+     at width:100% never actually overflows its own container, so that
+     scroll never engaged - it just silently crushed every column down to
+     unreadable slivers instead. Giving the table a real minimum width on
+     narrow viewports is what actually makes the existing horizontal
+     scroll do anything; this applies to both the per-sector tables and
+     the Catalyst Calendar table below them, since both share .grouptable. */
+  table.grouptable{min-width:700px}
+}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
