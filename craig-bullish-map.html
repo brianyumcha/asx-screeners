@@ -394,10 +394,10 @@ function calMonthLabel(iso){
       html += `<tr class="monthsep"><td colspan="4">${escHtml(bucket)}</td></tr>`;
       lastMonth = bucket;
     }
-    const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(r.tk)}`;
+    const asxUrl = `https://www.asx.com.au/markets/company/${encodeURIComponent(r.tk.toLowerCase())}`;
     html += `<tr>
       <td class="caldate">${fmtCalDate(r.sort, r.dayPrecise, r.estimated)}</td>
-      <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${escHtml(r.tk)}</a></td>
+      <td class="tk"><a href="${asxUrl}" target="_blank" rel="noopener noreferrer">${escHtml(r.tk)}</a></td>
       <td class="desc">${escHtml(r.catalyst)}</td>
       <td class="timing">${escHtml(r.timing || '—')}</td>
     </tr>`;

@@ -244,7 +244,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session" id="sessionLine">Last updated 22 Nov 2026, 9:19AM Sydney time.</div>
+  <div class="session" id="sessionLine">Last updated 22 Nov 2026, 1:02PM Sydney time.</div>
 
   <div class="chipsection">
     <h2>Catalyst type</h2>
@@ -808,13 +808,13 @@ function render(){
         html += `<tr class="monthsep"><td colspan="6">${esc(bucket)}</td></tr>`;
         lastMonth = bucket;
       }
-      const tvUrl = `https://www.tradingview.com/chart/?symbol=ASX:${encodeURIComponent(ticker)}`;
+      const asxUrl = `https://www.asx.com.au/markets/company/${encodeURIComponent(ticker.toLowerCase())}`;
       const companyLine = company
         ? `<span class="cname">${esc(company)}</span>${sector ? `<span class="csector">${esc(sector)}</span>` : ''}`
         : '';
       html += `<tr>
         <td class="caldate">${fmtDate(sort, dayPrecise, estimated)}</td>
-        <td class="tk"><a href="${tvUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></td>
+        <td class="tk"><a href="${asxUrl}" target="_blank" rel="noopener noreferrer">${esc(ticker)}</a></td>
         <td class="company">${companyLine}</td>
         <td class="typebadge"><span>${esc(typeLabel)}</span></td>
         <td class="calcatalyst">${esc(catalyst)}</td>
