@@ -282,7 +282,7 @@ def main():
     hosts_sorted = sorted(host_counts, key=lambda h: (-host_counts[h], h))
     host_chips = "".join(
         f'<button class="commchip" data-host="{esc(h)}">'
-        f'<i style="background:{TYPE_COLORS.get(HOST_TYPE.get(h, ""), "#a89b7a")}"></i>'
+        f'<i style="background:{TYPE_COLORS.get(HOST_TYPE.get(h, ""), "#b9a173")}"></i>'
         f'<span>{esc(h)}</span><span class="cnt">{host_counts[h]}</span></button>'
         for h in hosts_sorted
     )
@@ -342,23 +342,23 @@ HTML_TEMPLATE = r"""<meta charset="UTF-8">
 <title>Call Summary Archive</title>
 <style>
 :root{
-  --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
-  --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
-  --accent:#7a4a0f; --accent-ink:#fdf8ef;
+  --bg:#f6f2e4; --surface:#efe6d0; --surface2:#e7dab8; --border:#b9a173;
+  --ink:#2a1f14; --ink-soft:#4a3c28; --ink-faint:#7a6b4f;
+  --accent:#9c6b1f; --accent-ink:#fdf8ef;
   --shadow: 0 1px 2px rgba(20,18,9,.06), 0 4px 16px rgba(20,18,9,.05);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
-    --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
-    --accent:#e8b355; --accent-ink:#1c1204;
+    --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+    --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
+    --accent:#e0a63f; --accent-ink:#1c1204;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
-  --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
-  --accent:#e8b355; --accent-ink:#1c1204;
+  --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+  --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
+  --accent:#e0a63f; --accent-ink:#1c1204;
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}

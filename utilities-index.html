@@ -9,25 +9,25 @@ try {
 </script>
 <style>
 :root{
-  --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
-  --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
+  --bg:#f6f2e4; --surface:#efe6d0; --surface2:#e7dab8; --border:#b9a173;
+  --ink:#2a1f14; --ink-soft:#4a3c28; --ink-faint:#7a6b4f;
   --accent:#1f6b63; --accent-ink:#f0fbf9;
-  --nav-accent:#7a4a0f;
-  --accent2:#163540; --accent2-ink:#eaf5f7;
-  --good:#33481f; --good-bg:#d5dfc4;
-  --warn:#6b4a0f; --warn-bg:#ecdfc0;
-  --bad:#6b241c; --bad-bg:#e3c6bc;
+  --nav-accent:#9c6b1f;
+  --accent2:#2f6b63; --accent2-ink:#eaf5f2;
+  --good:#3f7a2f; --good-bg:#dfe8cf;
+  --warn:#8a6a1f; --warn-bg:#ecdfc0;
+  --bad:#9c3b2b; --bad-bg:#ecd3cb;
   --shadow: 0 1px 2px rgba(20,18,9,.06), 0 4px 16px rgba(20,18,9,.05);
 }
 :root[data-theme="dark"]{
-  --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
-  --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
+  --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+  --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
   --accent:#5fbfb5; --accent-ink:#082421;
-  --nav-accent:#e8b355;
-  --accent2:#8fc4db; --accent2-ink:#0a1f26;
-  --good:#a8d491; --good-bg:#233022;
-  --warn:#eec27a; --warn-bg:#332a1a;
-  --bad:#f0998a; --bad-bg:#3d2420;
+  --nav-accent:#e0a63f;
+  --accent2:#6fc9ba; --accent2-ink:#0a1f1c;
+  --good:#8fc97a; --good-bg:#263019;
+  --warn:#e0b86a; --warn-bg:#332a1a;
+  --bad:#e2816a; --bad-bg:#3d2420;
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
@@ -289,23 +289,23 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["AGL","AGL Energy Limited","Utilities - Independent Power Producers",6054725632,9.0,-1.3,10.63,5.78],
-["APA","APA Group","Utilities - Regulated Gas",14994163712,11.25,-0.9,11.62,5.16],
-["CCE","Carnegie Clean Energy Limited","Utilities - Renewable",81187592,0.19,-5.0,0.365,0.0],
-["CEN","Contact Energy Limited","Utilities - Renewable",7703915520,7.12,-0.4,8.59,4.47],
-["DEL","Delorean Corporation Limited","Utilities - Renewable",19447402,0.071,0.0,0.15,0.0],
-["DEM","De.mem Limited","Pollution & Treatment Controls",32727498,0.1,0.0,0.13,0.0],
-["EWC","Energy World Corporation Ltd","Utilities - Independent Power Producers",289004256,0.075,-1.3,0.086,0.0],
-["FLC","Fluence Corporation Limited","Pollution & Treatment Controls",65875096,0.056,-3.4,0.11,0.0],
-["GNE","Genesis Energy Limited","Utilities - Independent Power Producers",2606760704,1.975,-3.7,2.32,6.36],
-["JNS","Janus Electric Holdings Limited","Utilities - Renewable",110468448,0.585,1.7,0.9,0.0],
-["KPO","Kalina Power Limited","Utilities - Diversified",39795228,0.013,0.0,0.027,0.0],
-["LGI","LGI Limited","Utilities - Renewable",253428672,2.45,0.0,4.37,1.1],
+["AGL","AGL Energy Limited","Utilities - Independent Power Producers",6007633408,8.93,-0.8,10.63,5.78],
+["APA","APA Group","Utilities - Regulated Gas",15060805632,11.3,0.4,11.62,5.16],
+["CCE","Carnegie Clean Energy Limited","Utilities - Renewable",79051072,0.185,-2.6,0.365,0.0],
+["CEN","Contact Energy Limited","Utilities - Renewable",7552434176,6.98,-2.0,8.59,4.47],
+["DEL","Delorean Corporation Limited","Utilities - Renewable",18625682,0.068,-4.2,0.15,0.0],
+["DEM","De.mem Limited","Pollution & Treatment Controls",34363872,0.105,5.0,0.13,0.0],
+["EWC","Energy World Corporation Ltd","Utilities - Independent Power Producers",285150848,0.074,-1.3,0.086,0.0],
+["FLC","Fluence Corporation Limited","Pollution & Treatment Controls",64698756,0.055,-1.8,0.11,0.0],
+["GNE","Genesis Energy Limited","Utilities - Independent Power Producers",2534167296,1.92,-2.8,2.32,6.36],
+["JNS","Janus Electric Holdings Limited","Utilities - Renewable",116133504,0.615,5.1,0.9,0.0],
+["KPO","Kalina Power Limited","Utilities - Diversified",45917568,0.015,15.4,0.027,0.0],
+["LGI","LGI Limited","Utilities - Renewable",245153440,2.37,-3.3,4.37,1.1],
 ["LPE","Locality Planning Energy Holdings Limited","Utilities - Regulated Electric",19540814,0.107,-0.5,0.18,0.0],
-["MCY","Mercury NZ Limited","Utilities - Renewable",7845652992,5.46,-3.7,6.37,4.02],
-["MEZ","Meridian Energy Limited","Utilities - Renewable",12678729728,4.77,1.3,5.1,3.76],
-["ORG","Origin Energy Limited","Utilities - Diversified",21465436160,12.46,-0.1,12.84,4.82],
-["RIV","Rivco Australia Ltd","Utilities",177968976,1.135,0.0,1.53,3.17],
+["MCY","Mercury NZ Limited","Utilities - Renewable",7701959680,5.36,-1.8,6.37,4.02],
+["MEZ","Meridian Energy Limited","Utilities - Renewable",12226867200,4.6,-3.6,5.1,3.76],
+["ORG","Origin Energy Limited","Utilities - Diversified",21379297280,12.41,-0.4,12.84,4.82],
+["RIV","Rivco Australia Ltd","Utilities",175616976,1.12,-1.3,1.53,3.17],
 ["TML","Timah Resources Limited","Utilities - Renewable",4437988,0.05,0.0,0.05,0.0],
 ["TPC","TPC Consolidated Limited","Utilities - Diversified",46811144,3.9,0.0,6.41,5.13],
 ["VPR","Volt Group Limited","Utilities - Renewable",17182586,0.105,0.0,0.18,0.0]

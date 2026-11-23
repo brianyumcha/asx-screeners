@@ -19,24 +19,24 @@ try {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 :root {
-  --bg:#faf8f2; --surface:#f0ead8; --border:#a89b7a; --card:#e6ddc4;
-  --accent:#7a4a0f; --accent-ink:#fdf8ef; --accent2:#163540; --accent2-ink:#eaf5f7;
-  --good:#33481f; --bad:#6b241c; --warn:#6b4a0f;
-  --text:#141209; --muted:#3d3829;
+  --bg:#f6f2e4; --surface:#efe6d0; --border:#b9a173; --card:#e7dab8;
+  --accent:#9c6b1f; --accent-ink:#fdf8ef; --accent2:#2f6b63; --accent2-ink:#eaf5f2;
+  --good:#3f7a2f; --bad:#9c3b2b; --warn:#8a6a1f;
+  --text:#2a1f14; --muted:#4a3c28;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:#121316; --surface:#1c1f24; --border:#454b56; --card:#262b32;
-    --accent:#e8b355; --accent-ink:#1c1204; --accent2:#8fc4db; --accent2-ink:#0a1f26;
-    --good:#a8d491; --bad:#f0998a; --warn:#eec27a;
-    --text:#f5f2e8; --muted:#c9c2b0;
+    --bg:#1a1510; --surface:#251f17; --border:#4a3f2c; --card:#332a1d;
+    --accent:#e0a63f; --accent-ink:#1c1204; --accent2:#6fc9ba; --accent2-ink:#0a1f1c;
+    --good:#8fc97a; --bad:#e2816a; --warn:#e0b86a;
+    --text:#f3ecd8; --muted:#cdc2a3;
   }
 }
 [data-theme="dark"] {
-  --bg:#121316; --surface:#1c1f24; --border:#454b56; --card:#262b32;
-  --accent:#e8b355; --accent-ink:#1c1204; --accent2:#8fc4db; --accent2-ink:#0a1f26;
-  --good:#a8d491; --bad:#f0998a; --warn:#eec27a;
-  --text:#f5f2e8; --muted:#c9c2b0;
+  --bg:#1a1510; --surface:#251f17; --border:#4a3f2c; --card:#332a1d;
+  --accent:#e0a63f; --accent-ink:#1c1204; --accent2:#6fc9ba; --accent2-ink:#0a1f1c;
+  --good:#8fc97a; --bad:#e2816a; --warn:#e0b86a;
+  --text:#f3ecd8; --muted:#cdc2a3;
 }
 .themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
   width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;
@@ -325,7 +325,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Session 2026-11-23 · 536 scanned · 0 flagging · last run 2026-11-23 01:16 Sydney time</div>
+  <div class="session">Session 2026-11-23 · 536 scanned · 0 flagging · last run 2026-11-23 20:10 Sydney time</div>
 
   <div class="notice">⚠ Static report from a single scan run — not live. Re-run the script for fresh data. Nothing here is a trade recommendation.</div>
 
@@ -659,10 +659,10 @@ function drawChart(canvas, card, tf) {
       const above = HIGH_LABELS.has(pt.label);
       ctx.beginPath();
       ctx.arc(px, py, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = isLightTheme() ? '#7a4a0f' : '#e8b355';
+      ctx.fillStyle = isLightTheme() ? '#9c6b1f' : '#e0a63f';
       ctx.fill();
       const ly = above ? py - 8 : py + 15;
-      ctx.fillStyle = isLightTheme() ? '#141209' : '#f5f2e8';
+      ctx.fillStyle = isLightTheme() ? '#2a1f14' : '#f3ecd8';
       ctx.fillText(pt.label, px, ly);
     });
     ctx.textAlign = 'left';

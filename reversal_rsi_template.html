@@ -15,16 +15,16 @@ try {
    copied rather than re-derived so this page stays in visual lockstep with
    Higher-High/Momentum/Pullback/etc instead of drifting its own palette. */
 :root {
-  --bg:#faf8f2; --surface:#f0ead8; --border:#a89b7a; --card:#e6ddc4;
-  --accent:#7a4a0f; --accent-ink:#fdf8ef; --accent2:#163540; --accent2-ink:#eaf5f7;
-  --good:#33481f; --bad:#6b241c; --warn:#6b4a0f;
-  --text:#141209; --muted:#3d3829;
+  --bg:#f6f2e4; --surface:#efe6d0; --border:#b9a173; --card:#e7dab8;
+  --accent:#9c6b1f; --accent-ink:#fdf8ef; --accent2:#2f6b63; --accent2-ink:#eaf5f2;
+  --good:#3f7a2f; --bad:#9c3b2b; --warn:#8a6a1f;
+  --text:#2a1f14; --muted:#4a3c28;
 }
 [data-theme="dark"] {
-  --bg:#121316; --surface:#1c1f24; --border:#454b56; --card:#262b32;
-  --accent:#e8b355; --accent-ink:#1c1204; --accent2:#8fc4db; --accent2-ink:#0a1f26;
-  --good:#a8d491; --bad:#f0998a; --warn:#eec27a;
-  --text:#f5f2e8; --muted:#c9c2b0;
+  --bg:#1a1510; --surface:#251f17; --border:#4a3f2c; --card:#332a1d;
+  --accent:#e0a63f; --accent-ink:#1c1204; --accent2:#6fc9ba; --accent2-ink:#0a1f1c;
+  --good:#8fc97a; --bad:#e2816a; --warn:#e0b86a;
+  --text:#f3ecd8; --muted:#cdc2a3;
 }
 .themebtn{background:var(--surface);border:1px solid var(--border);color:var(--text);
   width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer;font-size:1.05rem;
@@ -295,11 +295,11 @@ function drawChart(canvas, chart, div, isBullish) {
   const ctx = canvas.getContext('2d');
   ctx.scale(dpr, dpr);
 
-  const text = cssVar('--muted') || '#c9c2b0';
-  const border = cssVar('--border') || '#454b56';
-  const accent = cssVar('--accent2') || '#8fc4db';
-  const good = cssVar('--good') || '#a8d491';
-  const bad = cssVar('--bad') || '#f0998a';
+  const text = cssVar('--muted') || '#cdc2a3';
+  const border = cssVar('--border') || '#4a3f2c';
+  const accent = cssVar('--accent2') || '#6fc9ba';
+  const good = cssVar('--good') || '#8fc97a';
+  const bad = cssVar('--bad') || '#e2816a';
 
   const opens = chart.opens, closes = chart.closes, highs = chart.highs, lows = chart.lows, rsi = chart.rsi;
   const n = closes.length;

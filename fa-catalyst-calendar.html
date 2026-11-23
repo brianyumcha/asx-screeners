@@ -10,38 +10,38 @@ try {
 </script>
 <style>
 :root{
-  --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
-  --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
+  --bg:#f6f2e4; --surface:#efe6d0; --surface2:#e7dab8; --border:#b9a173;
+  --ink:#2a1f14; --ink-soft:#4a3c28; --ink-faint:#7a6b4f;
   --accent:#1f6b63; --accent-ink:#f0fbf9;
-  --nav-accent:#7a4a0f;
-  --accent2:#163540; --accent2-ink:#eaf5f7;
-  --good:#33481f; --good-bg:#d5dfc4;
-  --warn:#6b4a0f; --warn-bg:#ecdfc0;
-  --bad:#6b241c; --bad-bg:#e3c6bc;
+  --nav-accent:#9c6b1f;
+  --accent2:#2f6b63; --accent2-ink:#eaf5f2;
+  --good:#3f7a2f; --good-bg:#dfe8cf;
+  --warn:#8a6a1f; --warn-bg:#ecdfc0;
+  --bad:#9c3b2b; --bad-bg:#ecd3cb;
   --shadow: 0 1px 2px rgba(20,18,9,.06), 0 4px 16px rgba(20,18,9,.05);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
-    --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
+    --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+    --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
     --accent:#5fbfb5; --accent-ink:#082421;
-    --nav-accent:#e8b355;
-    --accent2:#8fc4db; --accent2-ink:#0a1f26;
-    --good:#a8d491; --good-bg:#233022;
-    --warn:#eec27a; --warn-bg:#332a1a;
-    --bad:#f0998a; --bad-bg:#3d2420;
+    --nav-accent:#e0a63f;
+    --accent2:#6fc9ba; --accent2-ink:#0a1f1c;
+    --good:#8fc97a; --good-bg:#263019;
+    --warn:#e0b86a; --warn-bg:#332a1a;
+    --bad:#e2816a; --bad-bg:#3d2420;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
-  --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
+  --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+  --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
   --accent:#5fbfb5; --accent-ink:#082421;
-  --nav-accent:#e8b355;
-  --accent2:#8fc4db; --accent2-ink:#0a1f26;
-  --good:#a8d491; --good-bg:#233022;
-  --warn:#eec27a; --warn-bg:#332a1a;
-  --bad:#f0998a; --bad-bg:#3d2420;
+  --nav-accent:#e0a63f;
+  --accent2:#6fc9ba; --accent2-ink:#0a1f1c;
+  --good:#8fc97a; --good-bg:#263019;
+  --warn:#e0b86a; --warn-bg:#332a1a;
+  --bad:#e2816a; --bad-bg:#3d2420;
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
@@ -291,7 +291,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session" id="sessionLine">Last updated 22 Nov 2026, 8:20PM Sydney time.</div>
+  <div class="session" id="sessionLine">Last updated 23 Nov 2026, 8:09PM Sydney time.</div>
 
   <div id="watchSection"></div>
 
@@ -345,7 +345,7 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["CMB","CAMBIUM BIO LIMITED","Wound Care / Regenerative Medicine + Ophthalmology / Eye","Elate Ocular — pivotal Phase 3 trial start (single-trial pathway per FDA Type D; IND amendment filed 3 Jun 2026)","trial_regulatory","Trial Data / Regulatory Clearance","H2 CY2026","2026-09-30",false,true,0.3500,"2026-11-19"],
+["CMB","CAMBIUM BIO LIMITED","Wound Care / Regenerative Medicine + Ophthalmology / Eye","Elate Ocular — pivotal Phase 3 trial start (single-trial pathway per FDA Type D; IND amendment filed 3 Jun 2026)","trial_regulatory","Trial Data / Regulatory Clearance","H2 CY2026","2026-09-30",false,true,0.3500,"2026-11-20"],
 ["GBR","GREAT BOULDER RESOURCES LIMITED","Gold","60,000m, 6-rig drill program underway; a steady stream of assay results expected through the second half of 2026","drilling_assay","Drilling / Assay Results","H2 2026","2026-09-30",false,true,0.0510,"2026-11-20"],
 ["IMR","IMRICOR MEDICAL SYSTEMS INC.","Cardiovascular","VISABL-AFL clinical trial — enrolment completion (later stages of enrolment)","trial_regulatory","Trial Data / Regulatory Clearance","Targeted 2H26","2026-09-30",false,true,1.3250,"2026-11-20"],
 ["IMR","IMRICOR MEDICAL SYSTEMS INC.","Cardiovascular","Vision-MR Ablation Catheter — fourth/final PMA module submission to FDA (after VISABL-AFL)","trial_regulatory","Trial Data / Regulatory Clearance","Targeted 2H26","2026-09-30",false,true,1.3250,"2026-11-20"],
@@ -365,12 +365,12 @@ const DATA = [
 ["14D","1414 DEGREES LIMITED","Industrials","SiNTL silicon anode — initial material production at George Washington University","production_fid","FID / Production","Targeted November 2026","2026-11-15",false,false,0.0220,"2026-11-20"],
 ["A8G","AUSTRALASIAN METALS LIMITED","Gold + Lithium + Bauxite / Alumina","Côte d’Ivoire lithium (Tounvre/Tindara, Atex licence) — auger drilling on priority targets","drilling_assay","Drilling / Assay Results","Commencing November 2026","2026-11-15",false,false,0.1600,"2026-11-20"],
 ["ADD","ADAVALE RESOURCES LIMITED","Energy","London-Victoria gold (NSW) — Scoping Study completion","dfs_bfs_scoping","BFS / DFS / Scoping Study","November 2026","2026-11-15",false,false,0.0260,"2026-11-20"],
-["AGR","AGUIA RESOURCES LIMITED","Gold + Potash / Fertiliser + Copper","Três Estradas phosphate — court resolution confirming validity of environmental licence (TRF4 appeal)","production_fid","FID / Production","Anticipated by mid-November 2026","2026-11-30",false,false,0.0070,"2026-11-19"],
+["AGR","AGUIA RESOURCES LIMITED","Gold + Potash / Fertiliser + Copper","Três Estradas phosphate — court resolution confirming validity of environmental licence (TRF4 appeal)","production_fid","FID / Production","Anticipated by mid-November 2026","2026-11-30",false,false,0.0080,"2026-11-23"],
 ["AKN","AUKING MINING LIMITED","Copper + Gold + Silver + Uranium","Machinga heavy REE (Malawi) — field activities and UAV magnetic/LiDAR survey","other","Other","Field work Nov 2026; UAV survey early December 2026","2026-11-15",false,false,0.0070,"2026-11-20"],
 ["AUE","AURUM RESOURCES LIMITED","Gold","Resource update due very soon, expected to come in materially bigger than the current estimate","mre_upgrade","MRE / Resource Upgrade","Very soon","2026-11-10",false,false,0.3850,"2026-11-20"],
 ["AVM","ADVANCE METALS LIMITED","Silver","Gavilanes resource estimate update is the next catalyst to watch; a capital raise is also expected soon given the ~$4M cash position against ongoing deep diamond drilling","mre_upgrade","MRE / Resource Upgrade","Soon","2026-11-16",false,false,0.0270,"2026-11-20"],
 ["AXP","AXP ENERGY LIMITED","Energy","Recompletion field work on acquired wellbores to add gas for gas-to-power (Bitcoin mining) expansion","other","Other","Commencing November 2026 (subject to funding/approvals)","2026-11-15",false,false,0.0040,"2026-11-19"],
-["CDT","CASTLE MINERALS LIMITED","Gold","Ebony — regional soil sampling recommences after wet season","other","Other","November 2026","2026-11-15",false,false,0.0660,"2026-11-19"],
+["CDT","CASTLE MINERALS LIMITED","Gold","Ebony — regional soil sampling recommences after wet season","other","Other","November 2026","2026-11-15",false,false,0.0610,"2026-11-20"],
 ["CHN","CHALICE MINING LIMITED","Platinum Group Metals + Nickel + Copper","Gonneville Pd-Pt-Ni (WA) — 8-week continuous pilot plant of full flowsheet (5t ore); FS engineering commences","metallurgy","Metallurgical Test Work","Commencing November 2026 (~2-month run)","2026-11-15",false,false,0.8850,"2026-11-20"],
 ["CVL","CIVMEC LIMITED","Industrials","CSBP Sodium Cyanide Expansion — final shutdown","other","Other","November 2026","2026-11-15",false,false,1.5050,"2026-11-20"],
 ["DES","DESOTO RESOURCES LIMITED","Gold + Lithium + Rare Earths + Base Metals","Timbakouna gold (Siguiri, Guinea) — initial assays from restarted 485-hole, 10,000m power auger program","drilling_assay","Drilling / Assay Results","Early November 2026","2026-11-15",false,false,0.1050,"2026-11-20"],
@@ -379,15 +379,15 @@ const DATA = [
 ["OCN","OCEANA METALS LIMITED","Lithium","Serra Negra REE (Brazil) — remaining historical core re-sampling assays (45 holes, ~4,750m)","drilling_assay","Drilling / Assay Results","Update imminent","2026-11-30",false,false,0.1925,"2026-11-20"],
 ["OCN","OCEANA METALS LIMITED","Lithium","Serra Negra — aeromagnetic survey interpretation and inversion modelling results","other","Other","Update imminent","2026-11-30",false,false,0.1925,"2026-11-20"],
 ["PHO","PHOSCO LTD","Potash / Fertiliser","Gasaat phosphate (Tunisia) — A$1.4M STUDI investment, then A$7.5M from EBRD option exercise","other","Other","STUDI targeted November 2026; EBRD to follow","2026-11-15",false,false,0.1300,"2026-11-20"],
-["PVT","PIVOTAL METALS LIMITED","Copper + Nickel + Platinum Group Metals","Bambino — IP survey; pending assays and continued exploration","drilling_assay","Drilling / Assay Results","November 2026","2026-11-15",false,false,0.0120,"2026-11-19"],
+["PVT","PIVOTAL METALS LIMITED","Copper + Nickel + Platinum Group Metals","Bambino — IP survey; pending assays and continued exploration","drilling_assay","Drilling / Assay Results","November 2026","2026-11-15",false,false,0.0110,"2026-11-23"],
 ["RR1","REACH RESOURCES LIMITED","Gold + Rare Earths + Lithium + Niobium + Manganese","Murchison South gold — remaining 40 grade-control hole assays (NW Pit)","drilling_assay","Drilling / Assay Results","November 2026","2026-11-15",false,false,0.0120,"2026-11-20"],
-["SBM","ST BARBARA LIMITED","Gold","Touquoy restart (Nova Scotia) — mill commissioning begins","production_fid","FID / Production","November 2026","2026-11-15",false,false,0.6450,"2026-11-20"],
+["SBM","ST BARBARA LIMITED","Gold","Touquoy restart (Nova Scotia) — mill commissioning begins","production_fid","FID / Production","November 2026","2026-11-15",false,false,0.6800,"2026-11-23"],
 ["SNM","SENTINEL METALS LIMITED","Gold","Resource conversion to compliant status due mid-to-late November, potentially coming in at or above ~1Moz","mre_upgrade","MRE / Resource Upgrade","Mid-to-late Nov 2026","2026-11-15",false,false,0.2000,"2026-11-20"],
 ["TGM","THETA GOLD MINES LIMITED","Gold","TGME Gold Project — further bond facility drawdown","other","Other","Early November 2026","2026-11-15",false,false,0.1700,"2026-11-20"],
 ["AEU","ATOMIC EAGLE LTD","Uranium","Muntanga uranium (Zambia) — complete 2026 drilling at Muntanga North/Chisebuka targets (resource growth)","drilling_assay","Drilling / Assay Results","Q4 2026","2026-11-15",false,true,0.2700,"2026-11-20"],
 ["ALK","ALKANE RESOURCES LIMITED","Gold","Björkdal — Storheden portal established; Storheden extension drilling recommences","drilling_assay","Drilling / Assay Results","Q2 FY27 (December quarter 2026)","2026-11-15",false,true,1.5200,"2026-11-20"],
 ["AM5","ANTARES METALS LIMITED","Gold","Quinns (WA) — copper exploration ramp-up: detailed aeromagnetics, ground IP and gravity surveys (Austin deposit and new targets)","production_fid","FID / Production","December 2026 quarter (priority for coming quarter)","2026-11-15",false,true,0.0030,"2026-11-20"],
-["AUA","AUDEARA LIMITED","Consumer Discretionary","ShokzHear distribution partnership (April 2026 agreement) — first orders","other","Other","Later in 2026","2026-11-15",false,true,0.0220,"2026-11-20"],
+["AUA","AUDEARA LIMITED","Consumer Discretionary","ShokzHear distribution partnership (April 2026 agreement) — first orders","other","Other","Later in 2026","2026-11-15",false,true,0.0220,"2026-11-23"],
 ["AUE","AURUM RESOURCES LIMITED","Gold","Boundiali gold — Definitive Feasibility Study (incorporating 2026 drilling and Oct 2026 3.84Moz MRE)","mre_upgrade","MRE / Resource Upgrade","Late CY2026","2026-11-15",false,true,0.3850,"2026-11-20"],
 ["AUE","AURUM RESOURCES LIMITED","Gold","Napié gold — 30,000m diamond drilling program to grow 1.16Moz resource","drilling_assay","Drilling / Assay Results","Commencing Q4 CY2026","2026-11-15",false,true,0.3850,"2026-11-20"],
 ["AW1","AMERICAN WEST METALS LIMITED","Zinc / Lead + Silver + Copper + Gold + Indium","West Desert (Utah) — assays from latest drilling (thick copper-zinc-molybdenum/indium zones)","drilling_assay","Drilling / Assay Results","Early to mid Q4 2026","2026-11-15",false,true,0.0230,"2026-11-20"],
@@ -400,12 +400,12 @@ const DATA = [
 ["BOT","BOTANIX PHARMACEUTICALS LTD","Dermatology / Skin","Sofdra — gross-to-net yield improvement after PA-submission issue addressed","other","Other","Expected in Q2 FY27","2026-11-15",false,true,0.0080,"2026-11-20"],
 ["BPM","BPM MINERALS LIMITED","Gold + Silver + Copper + Nickel + Cobalt","Beachcomber gold - first assay results from the RC drilling campaign","drilling_assay","Drilling / Assay Results","Q4 2026","2026-11-15",false,true,0.2300,"2026-11-20"],
 ["BPM","BPM MINERALS LIMITED","Gold + Silver + Copper + Nickel + Cobalt","Bonnie & Clyde gold - assay results following drilling completion","drilling_assay","Drilling / Assay Results","Q4 2026-Q1 2027","2026-11-15",false,true,0.2300,"2026-11-20"],
-["CDT","CASTLE MINERALS LIMITED","Gold","Nielle gold (Côte d’Ivoire) — grant of exploration permit (condition precedent to completing 90% acquisition)","board_ma","Activist / Board / M&A","Anticipated December quarter 2026","2026-11-15",false,true,0.0660,"2026-11-19"],
+["CDT","CASTLE MINERALS LIMITED","Gold","Nielle gold (Côte d’Ivoire) — grant of exploration permit (condition precedent to completing 90% acquisition)","board_ma","Activist / Board / M&A","Anticipated December quarter 2026","2026-11-15",false,true,0.0610,"2026-11-20"],
 ["CHN","CHALICE MINING LIMITED","Platinum Group Metals + Nickel + Copper","Gonneville — submission of Environmental Review Document (EPA) and Public Environment Report (Commonwealth)","production_fid","FID / Production","Q4 CY26 (imminent)","2026-11-15",false,true,0.8850,"2026-11-20"],
 ["CLE","CYCLONE METALS LIMITED","Materials","Iron Bear (Labrador/Québec) — PFS optimisation studies (comminution, development cadence) completion, for planned PFS revision","dfs_bfs_scoping","BFS / DFS / Scoping Study","Q4 2026","2026-11-15",false,true,null,null],
 ["CTM","CENTAURUS METALS LIMITED","Nickel","Jaguar nickel (Brazil) — finalise debt funding process and close out overarching funding package","capital_raise","Capital Raise","December Quarter / Q4 2026","2026-11-15",false,true,0.3150,"2026-11-20"],
 ["CTM","CENTAURUS METALS LIMITED","Nickel","Jaguar — Minerasul Bridge upgrade to receive heavy equipment","other","Other","December Quarter 2026","2026-11-15",false,true,0.3150,"2026-11-20"],
-["DM1","DESERT METALS LIMITED","Gold","Adzope (Côte d’Ivoire) — Nyan field reconnaissance (7km gold-in-soil anomaly, never drilled)","drilling_assay","Drilling / Assay Results","This quarter (December quarter 2026)","2026-11-15",false,true,0.0070,"2026-11-19"],
+["DM1","DESERT METALS LIMITED","Gold","Adzope (Côte d’Ivoire) — Nyan field reconnaissance (7km gold-in-soil anomaly, never drilled)","drilling_assay","Drilling / Assay Results","This quarter (December quarter 2026)","2026-11-15",false,true,0.0070,"2026-11-20"],
 ["DVP","DEVELOP GLOBAL LIMITED","Mining Services","Pioneer Dome lithium (WA) — first DSO shipment (crushing from Oct 2026); capital recovered by end of calendar 2026","other","Other","December 2026 quarter","2026-11-15",false,true,2.7000,"2026-11-20"],
 ["DXN","DXN LIMITED","Info Tech","Seven Hills (NSW) temporary manufacturing facility — production start","production_fid","FID / Production","Q2 FY27","2026-11-15",false,true,0.2150,"2026-11-20"],
 ["DXN","DXN LIMITED","Info Tech","Cancelled AI data centre contract — remaining ~A$1.1M payment received","other","Other","Q2 FY27","2026-11-15",false,true,0.2150,"2026-11-20"],
@@ -413,12 +413,12 @@ const DATA = [
 ["ENP","ENTROPY NEURODYNAMICS LIMITED","Mental Health + Gastrointestinal","TRP-8803 (IV psilocin) BED Phase 2 — Cohort 2 (shorter infusion regimen) topline results","trial_regulatory","Trial Data / Regulatory Clearance","Q4 CY2026","2026-11-15",false,true,0.0260,"2026-11-20"],
 ["FEX","FENIX RESOURCES LTD","Iron Ore","Beebyn Hub — new 5Mtpa crushing and screening plant ramp-up completion","production_fid","FID / Production","Current (December) quarter 2026","2026-11-15",false,true,0.1800,"2026-11-20"],
 ["FG1","FLYNN GOLD LIMITED","Gold","Firetower gold-tungsten — project-wide geophysical reinterpretation (6km corridor) results","drilling_assay","Drilling / Assay Results","Q4 2026","2026-11-15",false,true,0.0140,"2026-11-20"],
-["FIN","FIN RESOURCES LIMITED","Lithium","Cabin Lake gold (Canada) — assays from summer 2026 drilling program","drilling_assay","Drilling / Assay Results","December Quarter 2026","2026-11-15",false,true,0.0040,"2026-11-19"],
+["FIN","FIN RESOURCES LIMITED","Lithium","Cabin Lake gold (Canada) — assays from summer 2026 drilling program","drilling_assay","Drilling / Assay Results","December Quarter 2026","2026-11-15",false,true,0.0040,"2026-11-20"],
 ["FLG","FLAGSHIP MINERALS LIMITED","Lithium + Gold + Copper","Isidora gold (Chile) - second Mineral Resource Estimate update expanding the 2.1Moz MRE","mre_upgrade","MRE / Resource Upgrade","Late 2026","2026-11-15",false,true,0.1400,"2026-11-20"],
 ["FTI","FORTIFAI LTD","Communication Services","Internally developed games — launch","other","Other","Targeting late 2026","2026-11-15",false,true,0.4550,"2026-11-20"],
 ["GBR","GREAT BOULDER RESOURCES LIMITED","Gold","Side Well — Mining Lease grant for 122koz @ 2.7g/t shallow deposit (Ironbark; Mining Agreement being negotiated)","production_fid","FID / Production","Q4 2026","2026-11-15",false,true,0.0510,"2026-11-20"],
 ["GG8","GORILLA GOLD MINES LTD","Gold","Comet Vale — diamond drilling of high-grade Sovereign footwall lode and Lakeview depth extensions; discovery drilling along 30km soil-anomaly strike","drilling_assay","Drilling / Assay Results","December 2026 quarter","2026-11-15",false,true,0.3550,"2026-11-20"],
-["GLN","GALAN LITHIUM LIMITED","Lithium","Hombre Muerto West (Argentina) — first lithium chloride concentrate sales (Phase 1)","trial_regulatory","Trial Data / Regulatory Clearance","Q4 CY2026","2026-11-15",false,true,0.1750,"2026-11-20"],
+["GLN","GALAN LITHIUM LIMITED","Lithium","Hombre Muerto West (Argentina) — first lithium chloride concentrate sales (Phase 1)","trial_regulatory","Trial Data / Regulatory Clearance","Q4 CY2026","2026-11-15",false,true,0.1820,"2026-11-23"],
 ["GRL","GODOLPHIN RESOURCES LIMITED","Gold + Silver + Copper + Base Metals + Rare Earths","Lewis Ponds (NSW) — assays from diamond drilling (GLPDD010–013, incl. Tom’s Lode semi-massive sulphides, Spicer’s Lode)","drilling_assay","Drilling / Assay Results","GLPDD011/012 expected Q4 2026","2026-11-15",false,true,0.0150,"2026-10-20"],
 ["HAS","HASTINGS TECHNOLOGY METALS LTD","Rare Earths","Thai hydromet plant (Kabin Buri, 49% stake) — first MREC flake production (converting African monazite feedstock)","production_fid","FID / Production","Q4 CY2026","2026-11-15",false,true,0.1850,"2026-11-20"],
 ["ILA","ISLAND PHARMACEUTICALS LIMITED","Infectious Disease","Galidesivir — USAMRIID 20-NHP Marburg dose study, dosing start","trial_regulatory","Trial Data / Regulatory Clearance","Planned dosing in Q4 CY26","2026-11-15",false,true,0.2800,"2026-11-20"],
@@ -454,7 +454,7 @@ const DATA = [
 ["TLX","TELIX PHARMACEUTICALS LIMITED","Cancer + Renal / Kidney","ITM merger — Telix shareholder General Meeting vote","board_ma","Activist / Board / M&A","General Meeting expected 1 December 2026","2026-12-01",true,false,12.9200,"2026-11-20"],
 ["14D","1414 DEGREES LIMITED","Industrials","SiNTL — initial material production at Tonsley (SA) facility under A$1M accelerated program","production_fid","FID / Production","Targeted December 2026","2026-12-16",false,false,0.0220,"2026-11-20"],
 ["14D","1414 DEGREES LIMITED","Industrials","Aurora Energy Precinct — development partner selection","other","Other","Targeted December 2026","2026-12-16",false,false,0.0220,"2026-11-20"],
-["AA2","ARIANA RESOURCES PLC","Gold","Dokwe gold (Zimbabwe) - revised Mineral Resource Estimate and Ore Reserve update underpinning the DFS","mre_upgrade","MRE / Resource Upgrade","End of 2026","2026-12-31",false,false,0.3100,"2026-11-19"],
+["AA2","ARIANA RESOURCES PLC","Gold","Dokwe gold (Zimbabwe) - revised Mineral Resource Estimate and Ore Reserve update underpinning the DFS","mre_upgrade","MRE / Resource Upgrade","End of 2026","2026-12-31",false,false,0.2650,"2026-11-23"],
 ["AGC","AUSTRALIAN GOLD AND COPPER LTD","Gold + Copper","Evergreen — additional RC drilling targeting shallow extensions (permitting underway), toward an initial Mineral Resource Estimate","mre_upgrade","MRE / Resource Upgrade","Commencing December 2026","2026-12-16",false,false,0.1100,"2026-11-20"],
 ["ATX","AMPLIA THERAPEUTICS LIMITED","Cancer","ACCENT-Mini (daily narmafotinib + gem/Abraxane) — ethics approval and trial start (3 AU sites)","trial_regulatory","Trial Data / Regulatory Clearance","Ethics approval expected imminently","2026-12-31",false,false,0.0790,"2026-11-20"],
 ["BCA","BLACK CANYON LIMITED","Manganese + Copper + Cobalt","Wandanya — Mining Licence applications lodged","production_fid","FID / Production","By end of 2026","2026-12-31",false,false,0.2300,"2026-11-20"],
@@ -468,7 +468,7 @@ const DATA = [
 ["PGO","PACGOLD LIMITED","Gold","Manda Resources ASX admission (BH6 holds 64M shares + $650k cash on listing) — North QLD assets spun out","other","Other","Mid-December 2026","2026-12-16",false,false,0.1200,"2026-10-15"],
 ["RRR","REVOLVER RESOURCES HOLDINGS LTD","Copper","Dianne Copper Mine (QLD) — long-lead item procurement (funded by A$3M Blackbird bridge loan)","other","Other","Set to commence shortly","2026-12-31",false,false,0.0480,"2026-11-20"],
 ["RSG","RESOLUTE MINING LIMITED","Gold","ABC Project (Côte d’Ivoire) — complete infill drilling campaign","drilling_assay","Drilling / Assay Results","By end of 2026","2026-12-31",false,false,1.0150,"2026-11-20"],
-["SBM","ST BARBARA LIMITED","Gold","Touquoy restart — commencement of stockpile processing","other","Other","By end of Q2 (December) FY27","2026-12-16",false,false,0.6450,"2026-11-20"],
+["SBM","ST BARBARA LIMITED","Gold","Touquoy restart — commencement of stockpile processing","other","Other","By end of Q2 (December) FY27","2026-12-16",false,false,0.6800,"2026-11-23"],
 ["SLS","SOLSTICE MINERALS LIMITED","Gold","Nanadie — multi-rig RC and diamond program continues (incl. planned Phase 4 RC on gold-bearing chert/ironstone horizon)","drilling_assay","Drilling / Assay Results","Throughout remainder of 2026","2026-12-31",false,false,1.6300,"2026-11-20"],
 ["SOP","SYNERTEC CORPORATION LIMITED","Industrials","Amplitude Energy Orbost project — Synertec-selected solution presented for Final Investment Decision","production_fid","FID / Production","December 2026","2026-12-16",false,false,0.0780,"2026-11-20"],
 ["SVL","SILVER MINES LIMITED","Silver","Bowdens Silver (NSW) — Independent Planning Commission final determination on development consent (public hearing held 14–16 Oct 2026)","other","Other","Anticipated soon","2026-12-31",false,false,0.1200,"2026-11-20"],
@@ -482,7 +482,7 @@ const DATA = [
 ["CMP","COMPUMEDICS LIMITED","Neurological / CNS","Somfit D — planned US release","other","Other","FY27","2026-12-31",false,true,0.2350,"2026-11-20"],
 ["CMP","COMPUMEDICS LIMITED","Neurological / CNS","MEG open orders (~A$13.1M entering FY27) — conversion to installed/recognised revenue","other","Other","FY27","2026-12-31",false,true,0.2350,"2026-11-20"],
 ["DVP","DEVELOP GLOBAL LIMITED","Mining Services","Woodlawn (NSW) — continued ramp-up; >1.54Mt @ 2.8% CuEq developed ore; FY27 guidance unchanged","production_fid","FID / Production","FY27; no specific milestone date","2026-12-31",false,true,2.7000,"2026-11-20"],
-["EDE","EDEN INNOVATIONS LTD","Energy","Eden US — continued year-on-year revenue growth","other","Other","FY27","2026-12-31",false,true,0.0490,"2026-11-20"],
+["EDE","EDEN INNOVATIONS LTD","Energy","Eden US — continued year-on-year revenue growth","other","Other","FY27","2026-12-31",false,true,0.0640,"2026-11-23"],
 ["HAR","HARANGA RESOURCES LIMITED.","Gold","Another resource upgrade expected in coming months, with a restart study underway for South Spring Hill","mre_upgrade","MRE / Resource Upgrade","Coming months","2026-12-15",false,true,0.0530,"2026-11-20"],
 ["ILA","ISLAND PHARMACEUTICALS LIMITED","Infectious Disease","Galidesivir — ~700-800 treatment courses available and shipped to Africa for compassionate use in Uganda Bundibugyo Ebola outbreak (prospective human data)","other","Other","Courses this quarter; shipped prior to end of CY26","2026-12-31",false,true,0.2800,"2026-11-20"],
 ["LRV","LARVOTTO RESOURCES LIMITED","Gold + Antimony + Copper + Cobalt + Rare Earths","Hillgrove ramp-up to nameplate capacity (~4,900t antimony + ~40,500oz gold/year) - running faster than the original 4-month ramp allowance","production_fid","FID / Production","Faster than original 4-month ramp (started Aug 2026)","2026-12-01",false,true,0.6400,"2026-11-20"],
@@ -498,7 +498,7 @@ const DATA = [
 ["AMD","ARROW MINERALS LTD","Bauxite / Alumina","Pilbara iron ore — target drilling incl. BBQ Valley (>2km mineralisation) and grant of 13 new tenement applications","drilling_assay","Drilling / Assay Results","Early 2027","2027-01-31",false,true,0.0170,"2026-11-20"],
 ["AUE","AURUM RESOURCES LIMITED","Gold","Boundiali - construction start","production_fid","FID / Production","Early 2027","2027-01-31",false,true,0.3850,"2026-11-20"],
 ["BCA","BLACK CANYON LIMITED","Manganese + Copper + Cobalt","Wandanya — referral to Environmental Protection Authority for approval pathway","production_fid","FID / Production","Early 2027","2027-01-31",false,true,0.2300,"2026-11-20"],
-["BTE","BOTALA ENERGY LTD","Energy","New Prospecting Licence PL0089/2026 (north of Pitse) — drilling","drilling_assay","Drilling / Assay Results","Early 2027","2027-01-31",false,true,0.0440,"2026-11-19"],
+["BTE","BOTALA ENERGY LTD","Energy","New Prospecting Licence PL0089/2026 (north of Pitse) — drilling","drilling_assay","Drilling / Assay Results","Early 2027","2027-01-31",false,true,0.0440,"2026-11-20"],
 ["CAZ","CAZALY RESOURCES LIMITED","Rare Earths + Lithium + Silver + Copper + Zinc / Lead","Abenab North copper-REE (Namibia) — first drilling for Tsumeb-style copper","drilling_assay","Drilling / Assay Results","Early 2027","2027-01-31",false,true,0.0150,"2026-11-20"],
 ["CVL","CIVMEC LIMITED","Industrials","M5 bridge steel package — delivery and installation","other","Other","Early 2027","2027-01-31",false,true,1.5050,"2026-11-20"],
 ["GG8","GORILLA GOLD MINES LTD","Gold","Mulwarrie — heritage surveys then RC drilling of step-out areas","drilling_assay","Drilling / Assay Results","RC access early 2027","2027-01-31",false,true,0.3550,"2026-11-20"],
@@ -510,15 +510,15 @@ const DATA = [
 ["DXN","DXN LIMITED","Info Tech","1H FY27 revenue ~A$11M (≈ all of FY26) — half-year result","other","Other","1H FY27 (result due ~Feb 2027)","2027-02-14",false,false,0.2150,"2026-11-20"],
 ["EM2","EAGLE MOUNTAIN MINING LIMITED","Copper","Oracle Ridge — completion of ~6-month drilling program (started mid-Aug 2026); IP survey interpretation","drilling_assay","Drilling / Assay Results","~February 2027","2027-02-14",false,false,0.0060,"2026-11-20"],
 ["SOP","SYNERTEC CORPORATION LIMITED","Industrials","TasNetworks urban battery units — first unit delivery","other","Other","Inaugural unit in February (2027)","2027-02-28",false,false,0.0780,"2026-11-20"],
-["AA2","ARIANA RESOURCES PLC","Gold","Dokwe gold - Definitive Feasibility Study completion","dfs_bfs_scoping","BFS / DFS / Scoping Study","Q1 2027","2027-02-14",false,true,0.3100,"2026-11-19"],
+["AA2","ARIANA RESOURCES PLC","Gold","Dokwe gold - Definitive Feasibility Study completion","dfs_bfs_scoping","BFS / DFS / Scoping Study","Q1 2027","2027-02-14",false,true,0.2650,"2026-11-23"],
 ["AEE","AURA ENERGY LIMITED","Energy","Pilot plant starting (staff arriving within weeks) to prove the flow sheet; FID pricing incentive favours a decision before end-2026, though a Q1 2027 timeline looks more likely","metallurgy","Metallurgical Test Work","Pilot plant start imminent; FID likely Q1 2027","2027-02-14",false,true,0.0610,"2026-11-20"],
 ["AEU","ATOMIC EAGLE LTD","Uranium","Madaouela uranium (Niger; Mining Convention executed late Sept 2026) — converted JORC Mineral Resource","mre_upgrade","MRE / Resource Upgrade","Q1 2027","2027-02-14",false,true,0.2700,"2026-11-20"],
 ["AEU","ATOMIC EAGLE LTD","Uranium","Madaouela — value optimisation program culminating in Scoping Study","dfs_bfs_scoping","BFS / DFS / Scoping Study","Q1 2027","2027-02-14",false,true,0.2700,"2026-11-20"],
 ["AGC","AUSTRALIAN GOLD AND COPPER LTD","Gold + Copper","Junee — drilling program (deferred for cropping and to prioritise Evergreen)","drilling_assay","Drilling / Assay Results","January–March 2027 quarter","2027-02-14",false,true,0.1100,"2026-11-20"],
-["ARO","ALTORO METALS LIMITED","Copper + Gold + Zinc / Lead + Uranium","Novales Project — upgraded combined JORC MRE (San José, Udías, Emilia, Margarita)","mre_upgrade","MRE / Resource Upgrade","March 2027 quarter","2027-02-14",false,true,0.0025,"2026-11-19"],
+["ARO","ALTORO METALS LIMITED","Copper + Gold + Zinc / Lead + Uranium","Novales Project — upgraded combined JORC MRE (San José, Udías, Emilia, Margarita)","mre_upgrade","MRE / Resource Upgrade","March 2027 quarter","2027-02-14",false,true,0.0025,"2026-11-20"],
 ["ATX","AMPLIA THERAPEUTICS LIMITED","Cancer","ACCENT-Mini — safety and PK data (feeds FDA protocol for registrational study)","trial_regulatory","Trial Data / Regulatory Clearance","Late Q1/early Q2 2027","2027-02-14",false,true,0.0790,"2026-11-20"],
 ["AUV","AURAVELLE METALS LIMITED","Nickel + Copper + Gold + Silver + Zinc / Lead","Step-out RC drilling and soil/calcrete sampling results due over the next 3-4 months","drilling_assay","Drilling / Assay Results","Next 3-4 months","2027-02-01",false,true,0.0050,"2026-11-20"],
-["DM1","DESERT METALS LIMITED","Gold","Nyan — infill soil sampling, ground geophysics, auger and maiden aircore drilling","drilling_assay","Drilling / Assay Results","Q1 2027","2027-02-14",false,true,0.0070,"2026-11-19"],
+["DM1","DESERT METALS LIMITED","Gold","Nyan — infill soil sampling, ground geophysics, auger and maiden aircore drilling","drilling_assay","Drilling / Assay Results","Q1 2027","2027-02-14",false,true,0.0070,"2026-11-20"],
 ["E25","ELEMENT 25 LIMITED","Manganese","Butcherbird Expansion (1.1Mtpa Mn concentrate) — completion / mechanical completion","other","Other","Targeting Q1 2027","2027-02-14",false,true,0.1800,"2026-11-20"],
 ["GRL","GODOLPHIN RESOURCES LIMITED","Gold + Silver + Copper + Base Metals + Rare Earths","Goodrich porphyry Cu-Au (OBT 49%, partner-funded) — Stage 2 diamond drilling (4 holes, ~1,000m) first results","drilling_assay","Drilling / Assay Results","Q1 CY2027","2027-02-14",false,true,0.0150,"2026-10-20"],
 ["GT1","GREEN TECHNOLOGY METALS LIMITED","Lithium","Seymour — Definitive Feasibility Study and ore reserve declaration (re-forecast)","dfs_bfs_scoping","BFS / DFS / Scoping Study","Q1 2027","2027-02-14",false,true,0.0130,"2026-11-20"],
@@ -529,7 +529,7 @@ const DATA = [
 ["NCK","NICK SCALI LIMITED","Consumer Discretionary","UK business — path to profitability (written orders +35% YoY early FY27); H1 FY27 result","other","Other","H1 FY27 result (~Feb 2027)","2027-02-15",false,true,12.5400,"2026-11-20"],
 ["NGY","NUENERGY GAS LIMITED","Energy","Tanjung Enim POD 1 (Indonesia CBM) — complete Early Production Facilities and PGN CNG Mother Station; first commercial gas sales","production_fid","FID / Production","Q1 CY2027","2027-02-14",false,true,0.0220,"2026-11-20"],
 ["NOX","NOXOPHARM LIMITED","Cancer + Autoimmune / Inflammatory","Open-label extension study starts Q1 2027, ahead of Phase 2 planning targeted mid-2028","trial_regulatory","Trial Data / Regulatory Clearance","OLE start Q1 2027; Phase 2 ~mid-2028","2027-02-14",false,true,0.0360,"2026-11-20"],
-["PVT","PIVOTAL METALS LIMITED","Copper + Nickel + Platinum Group Metals","Horden Lake copper (Quebec) — winter step-out and infill drilling to grow resource and enlarge production target","drilling_assay","Drilling / Assay Results","Q1 2027 (winter field season)","2027-02-14",false,true,0.0120,"2026-11-19"],
+["PVT","PIVOTAL METALS LIMITED","Copper + Nickel + Platinum Group Metals","Horden Lake copper (Quebec) — winter step-out and infill drilling to grow resource and enlarge production target","drilling_assay","Drilling / Assay Results","Q1 2027 (winter field season)","2027-02-14",false,true,0.0110,"2026-11-23"],
 ["RSG","RESOLUTE MINING LIMITED","Gold","ABC Project — Mineral Resource Estimate update","mre_upgrade","MRE / Resource Upgrade","Q1 2027","2027-02-14",false,true,1.0150,"2026-11-20"],
 ["TGM","THETA GOLD MINES LIMITED","Gold","TGME Gold Plant — mechanical/piping installation then first gold (production start)","production_fid","FID / Production","Q1 2027","2027-02-14",false,true,0.1700,"2026-11-20"],
 ["VAR","VARISCAN MINES LIMITED","Copper + Gold + Zinc / Lead + Uranium","Novales Project — upgraded combined JORC MRE (San José, Udías, Emilia, Margarita)","mre_upgrade","MRE / Resource Upgrade","March 2027 quarter","2027-02-14",false,true,0.0035,"2026-09-22"],
@@ -537,28 +537,28 @@ const DATA = [
 ["VYS","VYSARN LIMITED","Mining Services","NewGround/Welltech acquisition integration — EPS accretion and EBIT contribution, management flags first visible in FY27 half-year results","other","Other","FY27 half-year results","2027-02-15",false,true,0.6350,"2026-11-20"],
 ["ZMI","ZINC OF IRELAND NL","Zinc / Lead","ARGO pilot plant construction start","metallurgy","Metallurgical Test Work","Q1 2027","2027-02-14",false,true,0.0160,"2026-11-20"],
 ["GWR","GWR GROUP LIMITED","Magnesium","Wiluna — transfer of tenements to Gold Valley; revised royalty period ends","other","Other","Royalty period ends 31 March 2027","2027-03-31",true,false,0.0690,"2026-11-20"],
-["AGR","AGUIA RESOURCES LIMITED","Gold + Potash / Fertiliser + Copper","Santa Barbara gold (Colombia) — lift production from ~100t to 200t per month","production_fid","FID / Production","Before Q1 2027","2027-03-31",false,false,0.0070,"2026-11-19"],
+["AGR","AGUIA RESOURCES LIMITED","Gold + Potash / Fertiliser + Copper","Santa Barbara gold (Colombia) — lift production from ~100t to 200t per month","production_fid","FID / Production","Before Q1 2027","2027-03-31",false,false,0.0080,"2026-11-23"],
 ["CHN","CHALICE MINING LIMITED","Platinum Group Metals + Nickel + Copper","Nyanzaga (Perseus) commercial production triggers A$5M contingent payment to Chalice","production_fid","FID / Production","Early CY27","2027-03-31",false,false,0.8850,"2026-11-20"],
 ["EVG","EVION GROUP NL","Graphite","Maniry — definitive long-form European offtake agreement (~10ktpa for 5 years)","capital_raise","Capital Raise","Within six months (by ~Q1 2027)","2027-03-31",false,false,0.0090,"2026-11-20"],
-["FIN","FIN RESOURCES LIMITED","Lithium","Cabin Lake — winter geophysics expanding IP footprint (MIP-supported)","drilling_assay","Drilling / Assay Results","2026–27 winter","2027-03-31",false,false,0.0040,"2026-11-19"],
-["FIN","FIN RESOURCES LIMITED","Lithium","Cabin Lake — potential winter drilling of targets not tested in summer campaign","drilling_assay","Drilling / Assay Results","2026–27 winter season","2027-03-31",false,false,0.0040,"2026-11-19"],
+["FIN","FIN RESOURCES LIMITED","Lithium","Cabin Lake — winter geophysics expanding IP footprint (MIP-supported)","drilling_assay","Drilling / Assay Results","2026–27 winter","2027-03-31",false,false,0.0040,"2026-11-20"],
+["FIN","FIN RESOURCES LIMITED","Lithium","Cabin Lake — potential winter drilling of targets not tested in summer campaign","drilling_assay","Drilling / Assay Results","2026–27 winter season","2027-03-31",false,false,0.0040,"2026-11-20"],
 ["GBR","GREAT BOULDER RESOURCES LIMITED","Gold","Peak Hill — project-wide resource update from 40,000m 3-rig drilling (Durack, Jubilee, Enigma, Five Ways, Harmony, Mt Pleasant)","mre_upgrade","MRE / Resource Upgrade","End of calendar year 2026 / next year","2027-03-31",false,false,0.0510,"2026-11-20"],
-["KTA","KRAKATOA RESOURCES LIMITED","Gold + Copper + Lithium + Rare Earths + Base Metals","Another capital raise expected around March next year, given ongoing diamond drilling costs","capital_raise","Capital Raise","~March 2027","2027-03-16",false,false,0.0035,"2026-11-19"],
+["KTA","KRAKATOA RESOURCES LIMITED","Gold + Copper + Lithium + Rare Earths + Base Metals","Another capital raise expected around March next year, given ongoing diamond drilling costs","capital_raise","Capital Raise","~March 2027","2027-03-16",false,false,0.0035,"2026-11-20"],
 ["14D","1414 DEGREES LIMITED","Industrials","SiNTL — battery cells (RIT) delivered to commercial partners for evaluation (incl. drone/aerospace)","other","Other","H1 2027","2027-03-31",false,true,0.0220,"2026-11-20"],
 ["BHM","BROKEN HILL MINES LIMITED","Silver + Zinc / Lead + Copper + Gold + Lithium","Rasp Tailings Dewatering Plant — available","other","Other","1H CY2027","2027-03-31",false,true,0.4000,"2026-11-20"],
 ["BPM","BPM MINERALS LIMITED","Gold + Silver + Copper + Nickel + Cobalt","Beachcomber gold - maiden JORC Mineral Resource Estimate","mre_upgrade","MRE / Resource Upgrade","H1 2027","2027-03-31",false,true,0.2300,"2026-11-20"],
 ["FEX","FENIX RESOURCES LTD","Iron Ore","C1 cash costs return to FY27 guidance range (A$70–80/wmt)","other","Other","Second half of FY27 (Jan–Jun 2027)","2027-03-31",false,true,0.1800,"2026-11-20"],
 ["FEX","FENIX RESOURCES LTD","Iron Ore","Weld Range 290Mt / 10Mtpa Project — Definitive Feasibility Study","dfs_bfs_scoping","BFS / DFS / Scoping Study","First half of calendar year 2027","2027-03-31",false,true,0.1800,"2026-11-20"],
 ["FG1","FLYNN GOLD LIMITED","Gold","Resource definition drilling at Brilliant and Trafalgar; spring flora/fauna surveys; non-binding Ore Purchase Agreement with Henty Gold (KAU) toward binding terms","drilling_assay","Drilling / Assay Results","Coming months","2027-03-31",false,true,0.0140,"2026-11-20"],
-["GLN","GALAN LITHIUM LIMITED","Lithium","HMW Phase 1 — reach initial 4 ktpa LCE throughput as plant moves into warmer conditions","trial_regulatory","Trial Data / Regulatory Clearance","H1 CY2027","2027-03-31",false,true,0.1750,"2026-11-20"],
+["GLN","GALAN LITHIUM LIMITED","Lithium","HMW Phase 1 — reach initial 4 ktpa LCE throughput as plant moves into warmer conditions","trial_regulatory","Trial Data / Regulatory Clearance","H1 CY2027","2027-03-31",false,true,0.1820,"2026-11-23"],
 ["MLX","METALS X LIMITED","Tin","Renison — Rentails Front-End Engineering Design completion (delayed from late CY2026)","other","Other","H1 CY2027","2027-03-31",false,true,1.3350,"2026-11-20"],
 ["MLX","METALS X LIMITED","Tin","Rentails — environmental approvals, then joint-venture Final Investment Decision (previously late CY2026)","production_fid","FID / Production","Approvals H1 CY2027; FID to follow","2027-03-31",false,true,1.3350,"2026-11-20"],
 ["OCN","OCEANA METALS LIMITED","Lithium","Serra Negra — maiden Mineral Resource Estimate","mre_upgrade","MRE / Resource Upgrade","Coming months","2027-03-31",false,true,0.1925,"2026-11-20"],
 ["OSL","ONCOSIL MEDICAL LTD","Cancer","OncoSil device — US commercial launch for distal cholangiocarcinoma under FDA HDE (initially ≤5 centres)","trial_regulatory","Trial Data / Regulatory Clearance","Second half of FY2027","2027-03-31",false,true,0.6100,"2026-11-20"],
 ["POL","POLYMETALS RESOURCES LTD","Gold","Enlarged ~$50M financing facility (releases cash from bond, adds working capital)","capital_raise","Capital Raise","Process starts December quarter; targeted close H1 CY2027","2027-03-31",false,true,0.3600,"2026-11-20"],
 ["PTR","PTR MINERALS LTD","Copper","Rosewood — infill drilling to upgrade significant portion of Resource to Measured","drilling_assay","Drilling / Assay Results","Coming months","2027-03-31",false,true,0.0710,"2026-11-20"],
-["SBM","ST BARBARA LIMITED","Gold","15-Mile Processing Hub — Feasibility Study completion","dfs_bfs_scoping","BFS / DFS / Scoping Study","Q3 (March) FY27","2027-03-16",false,true,0.6450,"2026-11-20"],
-["SBM","ST BARBARA LIMITED","Gold","New Simberi — completion of sale of remaining interest to Lingbao Gold (A$410M)","board_ma","Activist / Board / M&A","Q3 (March) FY27","2027-03-16",false,true,0.6450,"2026-11-20"],
+["SBM","ST BARBARA LIMITED","Gold","15-Mile Processing Hub — Feasibility Study completion","dfs_bfs_scoping","BFS / DFS / Scoping Study","Q3 (March) FY27","2027-03-16",false,true,0.6800,"2026-11-23"],
+["SBM","ST BARBARA LIMITED","Gold","New Simberi — completion of sale of remaining interest to Lingbao Gold (A$410M)","board_ma","Activist / Board / M&A","Q3 (March) FY27","2027-03-16",false,true,0.6800,"2026-11-23"],
 ["SLS","SOLSTICE MINERALS LIMITED","Gold","Nanadie copper-gold (WA) — assays from 14 diamond + 50+ RC holes (MRE definition, step-out, pre-collars) progressively reported","mre_upgrade","MRE / Resource Upgrade","Coming months","2027-03-31",false,true,1.6300,"2026-11-20"],
 ["TLX","TELIX PHARMACEUTICALS LIMITED","Cancer + Renal / Kidney","OPTIMAL-PSMA Phase 2 — data readout","trial_regulatory","Trial Data / Regulatory Clearance","First half of 2027","2027-03-31",false,true,12.9200,"2026-11-20"],
 ["EMP","EMPEROR ENERGY LIMITED","Energy","Judith-2 Appraisal Well spud (Valaris 107 jack-up; NOPSEMA Environment Plan accepted)","other","Other","April 2027","2027-04-15",false,false,0.0650,"2026-11-20"],
@@ -580,7 +580,7 @@ const DATA = [
 ["PNN","POWER MINERALS LIMITED","Lithium","Morro do Ferro — larger metallurgical test program","metallurgy","Metallurgical Test Work","2027","2027-06-30",false,true,0.1150,"2026-11-20"],
 ["PXX","POLARX LIMITED","Gold","Caribou Dome — 2027 field season: define western high-grade extension (60m outside MRE) and new drill targets","mre_upgrade","MRE / Resource Upgrade","2027","2027-06-30",false,true,0.0130,"2026-11-20"],
 ["SAU","SIGMA LITHIUM CORPORATION","Materials","Plant 1 — return to industrial production cadence; 240kt over next 12 months, 330kt FY27 at AISC US$620/t","production_fid","FID / Production","2027","2027-06-30",false,true,null,null],
-["SBM","ST BARBARA LIMITED","Gold","15-Mile Processing Hub — Final Investment Decision","production_fid","FID / Production","Q4 (June) FY27","2027-06-15",false,true,0.6450,"2026-11-20"],
+["SBM","ST BARBARA LIMITED","Gold","15-Mile Processing Hub — Final Investment Decision","production_fid","FID / Production","Q4 (June) FY27","2027-06-15",false,true,0.6800,"2026-11-23"],
 ["SOP","SYNERTEC CORPORATION LIMITED","Industrials","GLNG JV Powerhouse units #5 and #6 — delivery","other","Other","Around mid-CY2027","2027-06-30",false,true,0.0780,"2026-11-20"],
 ["TTX","TETRATHERIX LIMITED","Wound Care / Regenerative Medicine + Bone / Orthopaedic","Superpower Health partnership — full commercial product launch (first commercial Tetramatrix polymer shipment/revenue to the US already begun Aug 2026 under a ~1,000-participant usability study; full launch now pushed to 2027)","other","Other","2027, no more specific date given","2027-06-30",false,true,5.8100,"2026-11-20"],
 ["NGY","NUENERGY GAS LIMITED","Energy","Muralim PSC — Plan of Development submission before exploration period expiry","other","Other","Before 12 August 2027","2027-08-12",true,false,0.0220,"2026-11-20"],
@@ -592,7 +592,7 @@ const DATA = [
 ["SKK","STAKK LIMITED","Communication Services","IBM contract delivery","other","Other","Runs to Sep 2027","2027-09-15",false,false,0.0140,"2026-11-20"],
 ["BKT","BLACK ROCK MINING LIMITED","Graphite","POSCO South Korean spherical purified graphite (SPG) plant (Mahenge offtake partner) — commissioning","production_fid","FID / Production","Second half of 2027","2027-09-30",false,true,0.0110,"2026-11-20"],
 ["CAV","CARNAVALE RESOURCES LIMITED","Lithium + Cobalt + Silver + Nickel + Gold","Kookynie — production start (Swiftsure and Tiptoe open pits)","production_fid","FID / Production","2H 2027","2027-09-30",false,true,0.0590,"2026-11-20"],
-["GLN","GALAN LITHIUM LIMITED","Lithium","HMW Phase 1 expansion to 5.2 ktpa LCE (earthworks commenced) — higher production volumes; additional winter-resilience processing capacity","trial_regulatory","Trial Data / Regulatory Clearance","H2 2027","2027-09-30",false,true,0.1750,"2026-11-20"],
+["GLN","GALAN LITHIUM LIMITED","Lithium","HMW Phase 1 expansion to 5.2 ktpa LCE (earthworks commenced) — higher production volumes; additional winter-resilience processing capacity","trial_regulatory","Trial Data / Regulatory Clearance","H2 2027","2027-09-30",false,true,0.1820,"2026-11-23"],
 ["XPD","XPEDRA RESOURCES LIMITED","Uranium + Lithium + Copper + Antimony + Gold","Springfield — assays from regional soil geochemistry program along strike","drilling_assay","Drilling / Assay Results","\"November 2027\" per report (likely typo for Nov 2026)","2027-11-15",false,false,0.0170,"2026-11-20"],
 ["LPM","LITHIUM PLUS MINERALS LTD.","Lithium","Recent capital raise funds the company through to about mid-2027, with possible production around mid-to-late 2027","production_fid","FID / Production","Possible production mid-late 2027","2027-11-15",false,true,0.0900,"2026-11-20"],
 ["SOP","SYNERTEC CORPORATION LIMITED","Industrials","TasNetworks urban battery project — completion","other","Other","Targeted for Q4 CY2027","2027-11-15",false,true,0.0780,"2026-11-20"],
@@ -614,7 +614,7 @@ const DATA = [
 ["RSG","RESOLUTE MINING LIMITED","Gold","Doropo (Côte d’Ivoire) — commissioning and first gold","production_fid","FID / Production","H1 2028","2028-03-31",false,true,1.0150,"2026-11-20"],
 ["DVP","DEVELOP GLOBAL LIMITED","Mining Services","Yitirrti (Sulphur Springs) — processing plant construction (GR Engineering A$275M) to first concentrate","production_fid","FID / Production","June 2028 quarter","2028-05-15",false,true,2.7000,"2026-11-20"],
 ["CHN","CHALICE MINING LIMITED","Platinum Group Metals + Nickel + Copper","Gonneville — Final Investment Decision","production_fid","FID / Production","H1 CY28","2028-06-30",false,true,0.8850,"2026-11-20"],
-["CMB","CAMBIUM BIO LIMITED","Wound Care / Regenerative Medicine + Ophthalmology / Eye","Elate Ocular — rolling BLA submission","other","Other","By mid-CY2028","2028-06-30",false,true,0.3500,"2026-11-19"],
+["CMB","CAMBIUM BIO LIMITED","Wound Care / Regenerative Medicine + Ophthalmology / Eye","Elate Ocular — rolling BLA submission","other","Other","By mid-CY2028","2028-06-30",false,true,0.3500,"2026-11-20"],
 ["PLY","PLAYSIDE STUDIOS LIMITED","Communication Services","Dew (co-op platformer, original IP) — release","other","Other","CY2028","2028-06-30",false,true,0.0950,"2026-11-20"],
 ["VMM","VIRIDIS MINING AND MINERALS LIMITED","Gold + Copper + Nickel + Platinum Group Metals + Kaolin","Colossus — first production (4,446tpa refined REO, MREC refining circuit)","production_fid","FID / Production","2028","2028-06-30",false,true,2.3200,"2026-11-20"],
 ["AW1","AMERICAN WEST METALS LIMITED","Zinc / Lead + Silver + Copper + Gold + Indium","Storm Copper — pre-development, construction 2029–2030, first copper production","production_fid","FID / Production","Pre-development H2 2028; first production 2030","2028-09-30",false,true,0.0230,"2026-11-20"],
@@ -626,12 +626,12 @@ const DATA = [
 ["14D","1414 DEGREES LIMITED","Industrials","Aurora Energy Precinct — commercial operation","other","Other","Targeted 2028/29","2029-12-31",false,false,0.0220,"2026-11-20"],
 ["S32","SOUTH32 LIMITED","Manganese + Aluminium","Sierra Gorda (Chile) — fourth grinding line (+25% capacity to ~60Mtpa) first production; full rates FY31","production_fid","FID / Production","Mid FY30","2029-12-31",false,true,4.0200,"2026-11-20"],
 ["PHO","PHOSCO LTD","Potash / Fertiliser","Gasaat — commercial production","production_fid","FID / Production","Targeted mid-2030","2030-06-30",false,true,0.1300,"2026-11-20"],
-["ARO","ALTORO METALS LIMITED","Copper + Gold + Zinc / Lead + Uranium","Novales — surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE","mre_upgrade","MRE / Resource Upgrade","Underway from 20 Oct 2026",null,true,false,0.0025,"2026-11-19"],
+["ARO","ALTORO METALS LIMITED","Copper + Gold + Zinc / Lead + Uranium","Novales — surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE","mre_upgrade","MRE / Resource Upgrade","Underway from 20 Oct 2026",null,true,false,0.0025,"2026-11-20"],
 ["VAR","VARISCAN MINES LIMITED","Copper + Gold + Zinc / Lead + Uranium","Novales — surface drilling campaign (commenced 20 Oct 2026), incl. areas outside current MRE","mre_upgrade","MRE / Resource Upgrade","Underway from 20 Oct 2026",null,true,false,0.0035,"2026-09-22"],
-["AUA","AUDEARA LIMITED","Consumer Discretionary","Revenue recognition against the reported A$8.4M Australian order","other","Other","No firm date given",null,false,false,0.0220,"2026-11-20"],
+["AUA","AUDEARA LIMITED","Consumer Discretionary","Revenue recognition against the reported A$8.4M Australian order","other","Other","No firm date given",null,false,false,0.0220,"2026-11-23"],
 ["BOT","BOTANIX PHARMACEUTICALS LTD","Dermatology / Skin","Strategic review — evaluating broader strategic transactions incl. sale of the company, licensing, product acquisitions","board_ma","Activist / Board / M&A","Board actively evaluating; no timeline",null,false,false,0.0080,"2026-11-20"],
 ["CAV","CARNAVALE RESOURCES LIMITED","Lithium + Cobalt + Silver + Nickel + Gold","Kookynie — operating permits approvals (Mining Proposal, NVCP, Works Approval) after BFS","dfs_bfs_scoping","BFS / DFS / Scoping Study","Submitted; no approval date given",null,false,false,0.0590,"2026-11-20"],
-["DM1","DESERT METALS LIMITED","Gold","Adzope — possible follow-up on stream-sediment Target 2 (2.5km × 1.5km anomaly)","other","Other","Under consideration; no date",null,false,false,0.0070,"2026-11-19"],
+["DM1","DESERT METALS LIMITED","Gold","Adzope — possible follow-up on stream-sediment Target 2 (2.5km × 1.5km anomaly)","other","Other","Under consideration; no date",null,false,false,0.0070,"2026-11-20"],
 ["ENR","ENCOUNTER RESOURCES LIMITED","Copper + Gold + Niobium + Rare Earths","Lamil (Paterson, WA) — next phase of drilling","drilling_assay","Drilling / Assay Results","Start of 2027 field season",null,false,false,0.1800,"2026-11-20"],
 ["ENR","ENCOUNTER RESOURCES LIMITED","Copper + Gold + Niobium + Rare Earths","Sandover / Jessica (NT, South32 farm-in) — NTGS co-funded passive seismic survey (from Oct 2026) and planned MT geophysics for copper drill targets","drilling_assay","Drilling / Assay Results","Commenced October 2026; no completion date",null,false,false,0.1800,"2026-11-20"],
 ["IND","INDUSTRIAL MINERALS LTD","Silica","Laverton (North Pool, E38/4061) — heritage survey with native title holders, then maiden RC drilling on Chatterbox Shear Zone target (POW lodged)","drilling_assay","Drilling / Assay Results","Heritage survey \"as soon as practicable\"; no drilling date given",null,false,false,0.0700,"2026-11-20"],
@@ -645,12 +645,12 @@ const DATA = [
 ["XPD","XPEDRA RESOURCES LIMITED","Uranium + Lithium + Copper + Antimony + Gold","Springfield gold (NSW) — third-phase 4,000–5,000m RC drilling (undrilled 1.1km northern strike extent, depth extensions)","drilling_assay","Drilling / Assay Results","Phase Three drilling commenced 10 Nov 2026 (not late Oct as previously recorded); assays reported progressively, no completion date given",null,false,false,0.0170,"2026-11-20"],
 ["14D","1414 DEGREES LIMITED","Industrials","Aurora — up to 1GW AI data centre HoA progression; BHP 275kV connection negotiations; 70MW initial solar","other","Other","Ongoing; no date given",null,false,true,0.0220,"2026-11-20"],
 ["A8G","AUSTRALASIAN METALS LIMITED","Gold + Lithium + Bauxite / Alumina","Australia — May Queen South alumina further metallurgical testwork; Barrow Creek tantalum field follow-up; Mt Peake revisit","metallurgy","Metallurgical Test Work","No firm date given",null,false,true,0.1600,"2026-11-20"],
-["AAU","ANTILLES GOLD LIMITED","Gold","Cuba — OFAC licence / lifting of MLV sanction (designated 4 Jun 2026) so Nueva Sabana construction and La Demajagua DFS can resume; conditions include ≥51% U.S. shareholding by 30 Jun 2028","dfs_bfs_scoping","BFS / DFS / Scoping Study","Negotiating; no date given",null,false,true,0.0060,"2026-11-19"],
+["AAU","ANTILLES GOLD LIMITED","Gold","Cuba — OFAC licence / lifting of MLV sanction (designated 4 Jun 2026) so Nueva Sabana construction and La Demajagua DFS can resume; conditions include ≥51% U.S. shareholding by 30 Jun 2028","dfs_bfs_scoping","BFS / DFS / Scoping Study","Negotiating; no date given",null,false,true,0.0060,"2026-11-23"],
 ["ADD","ADAVALE RESOURCES LIMITED","Energy","Placement Tranche 2 (incl. Directors) — subject to shareholder approval","production_fid","FID / Production","At Annual General Meeting (date not given)",null,false,true,0.0260,"2026-11-20"],
 ["ADD","ADAVALE RESOURCES LIMITED","Energy","London-Victoria to Calarie corridor — drilling of Ashes walk-up targets and six adjacent prospects; depth extensions below pit","drilling_assay","Drilling / Assay Results","No firm date given",null,false,true,0.0260,"2026-11-20"],
 ["AGC","AUSTRALIAN GOLD AND COPPER LTD","Gold + Copper","South Cobar — Evergreen and Achilles pending RC assays (incl. Achilles oxide gold-silver extensions)","drilling_assay","Drilling / Assay Results","Pending at quarter end; no date given",null,false,true,0.1100,"2026-11-20"],
-["AGR","AGUIA RESOURCES LIMITED","Gold + Potash / Fertiliser + Copper","Três Estradas — US$3M working-capital finance (loan/royalty term sheet; due diligence in progress) to unlock 11,000t of sales agreements","board_ma","Activist / Board / M&A","No firm date given",null,false,true,0.0070,"2026-11-19"],
-["AGR","AGUIA RESOURCES LIMITED","Gold + Potash / Fertiliser + Copper","Lucena phosphate — ANM licence extensions/approvals to progress to feasibility","dfs_bfs_scoping","BFS / DFS / Scoping Study","Awaited; no date given",null,false,true,0.0070,"2026-11-19"],
+["AGR","AGUIA RESOURCES LIMITED","Gold + Potash / Fertiliser + Copper","Três Estradas — US$3M working-capital finance (loan/royalty term sheet; due diligence in progress) to unlock 11,000t of sales agreements","board_ma","Activist / Board / M&A","No firm date given",null,false,true,0.0080,"2026-11-23"],
+["AGR","AGUIA RESOURCES LIMITED","Gold + Potash / Fertiliser + Copper","Lucena phosphate — ANM licence extensions/approvals to progress to feasibility","dfs_bfs_scoping","BFS / DFS / Scoping Study","Awaited; no date given",null,false,true,0.0080,"2026-11-23"],
 ["AKA","AUREKA LIMITED","Gold","Fiddlers Creek — results from diamond drilling (first surface drilling since May 2025) targeting historical high-grade","drilling_assay","Drilling / Assay Results","No firm date given",null,false,true,0.1450,"2026-11-20"],
 ["AKA","AUREKA LIMITED","Gold","Comstock (St Arnaud) — pre-development steps after production licence grant: Parks Victoria/Crown Land Minister consent, Djaara engagement, resource definition, mine design, Work Plan approval, metallurgical testing","metallurgy","Metallurgical Test Work","Coming months; no firm date",null,false,true,0.1450,"2026-11-20"],
 ["AKN","AUKING MINING LIMITED","Copper + Gold + Silver + Uranium","Tundulu — 1,000m diamond hole beneath Nathace Hill target","drilling_assay","Drilling / Assay Results","Planning underway; no date given",null,false,true,0.0070,"2026-11-20"],
@@ -659,8 +659,8 @@ const DATA = [
 ["AM5","ANTARES METALS LIMITED","Gold","Meekatharra-belt project — maiden drilling (PoW approved)","drilling_assay","Drilling / Assay Results","No firm date given",null,false,true,0.0030,"2026-11-20"],
 ["AMD","ARROW MINERALS LTD","Bauxite / Alumina","Pannawonica Iron Ore Project (Pilbara) — 12-month option to acquire 70% of 62.5Mt resource on granted ML (from Red Hill); exercise decision","other","Other","Within 12-month option period; no firm date",null,false,true,0.0170,"2026-11-20"],
 ["AMD","ARROW MINERALS LTD","Bauxite / Alumina","Niagara bauxite (Guinea) — Scoping Study, move to feasibility and permitting; resolution of Simandou North tenement status","dfs_bfs_scoping","BFS / DFS / Scoping Study","2026–2027; no firm date",null,false,true,0.0170,"2026-11-20"],
-["ARO","ALTORO METALS LIMITED","Copper + Gold + Zinc / Lead + Uranium","Novales (Spain) — Emilia and Udías underground drilling assays (pending at quarter end)","drilling_assay","Drilling / Assay Results","Pending; no date given",null,false,true,0.0025,"2026-11-19"],
-["ARO","ALTORO METALS LIMITED","Copper + Gold + Zinc / Lead + Uranium","Guajaraz Zn-Pb-Ag-Cu — maiden 5-hole, ~1,430m diamond drilling results (first modern drilling)","drilling_assay","Drilling / Assay Results","Assays pending; no date given",null,false,true,0.0025,"2026-11-19"],
+["ARO","ALTORO METALS LIMITED","Copper + Gold + Zinc / Lead + Uranium","Novales (Spain) — Emilia and Udías underground drilling assays (pending at quarter end)","drilling_assay","Drilling / Assay Results","Pending; no date given",null,false,true,0.0025,"2026-11-20"],
+["ARO","ALTORO METALS LIMITED","Copper + Gold + Zinc / Lead + Uranium","Guajaraz Zn-Pb-Ag-Cu — maiden 5-hole, ~1,430m diamond drilling results (first modern drilling)","drilling_assay","Drilling / Assay Results","Assays pending; no date given",null,false,true,0.0025,"2026-11-20"],
 ["AS1","ASARA RESOURCES LIMITED","Gold","Kada Gold Project (Guinea) — further resource update using 19,251m drilled after MRE cut-off (Massan Inferred→Indicated conversion)","mre_upgrade","MRE / Resource Upgrade","No firm date given",null,false,true,0.1050,"2026-11-20"],
 ["AS1","ASARA RESOURCES LIMITED","Gold","Damissa Koura — complete Arafura Ouest acquisition; power-auger drilling recommencing at Sogosogoba target","drilling_assay","Drilling / Assay Results","No firm date given",null,false,true,0.1050,"2026-11-20"],
 ["ATH","ALTERITY THERAPEUTICS LIMITED","Neurological / CNS","ATH434 (MSA) — Phase 3 registrational trial initiation (~200 pts, 12 months; design confirmed at FDA End-of-Phase 2)","trial_regulatory","Trial Data / Regulatory Clearance","Operational start-up underway; no firm start date given, expected late this year",null,false,true,0.1850,"2026-11-20"],
@@ -670,9 +670,9 @@ const DATA = [
 ["ATX","AMPLIA THERAPEUTICS LIMITED","Cancer","Narmafotinib + Lilly olomorasib (KRAS G12C) NSCLC trial — progress update","trial_regulatory","Trial Data / Regulatory Clearance","Separate announcement to follow; no date given",null,false,true,0.0790,"2026-11-20"],
 ["ATX","AMPLIA THERAPEUTICS LIMITED","Cancer","ACCENT trial — scientific paper publication and further biomarker results","trial_regulatory","Trial Data / Regulatory Clearance","Being drafted; no date given",null,false,true,0.0790,"2026-11-20"],
 ["AUE","AURUM RESOURCES LIMITED","Gold","Boundiali — ongoing 150,000m resource-growth drilling (16 rigs) and scout drilling on BD/BM/BST tenements","drilling_assay","Drilling / Assay Results","CY2026 program; no specific date",null,false,true,0.3850,"2026-11-20"],
-["AXL","AXEL REE LIMITED","Rare Earths + Gallium","Caladão REE-Gallium (Brazil) — leach optimisation and hydrogeological characterisation of proposed ISR field test area","other","Other","No firm date given",null,false,true,0.0540,"2026-11-20"],
-["AXL","AXEL REE LIMITED","Rare Earths + Gallium","Woolrich deposit — design of controlled in-situ recovery (ISR) field validation program (next major milestone)","other","Other","After supporting work; no date given",null,false,true,0.0540,"2026-11-20"],
-["AXL","AXEL REE LIMITED","Rare Earths + Gallium","Further infill drilling and bulk density work recommended by GE21 for MRE confidence; follow-up of Minas Gerais auger program","mre_upgrade","MRE / Resource Upgrade","No firm date given",null,false,true,0.0540,"2026-11-20"],
+["AXL","AXEL REE LIMITED","Rare Earths + Gallium","Caladão REE-Gallium (Brazil) — leach optimisation and hydrogeological characterisation of proposed ISR field test area","other","Other","No firm date given",null,false,true,0.0510,"2026-11-23"],
+["AXL","AXEL REE LIMITED","Rare Earths + Gallium","Woolrich deposit — design of controlled in-situ recovery (ISR) field validation program (next major milestone)","other","Other","After supporting work; no date given",null,false,true,0.0510,"2026-11-23"],
+["AXL","AXEL REE LIMITED","Rare Earths + Gallium","Further infill drilling and bulk density work recommended by GE21 for MRE confidence; follow-up of Minas Gerais auger program","mre_upgrade","MRE / Resource Upgrade","No firm date given",null,false,true,0.0510,"2026-11-23"],
 ["BHM","BROKEN HILL MINES LIMITED","Silver + Zinc / Lead + Copper + Gold + Lithium","Centenary Zone — production decline and accelerated resource drilling (A$85M raise proceeds); Pinnacles production expansion","drilling_assay","Drilling / Assay Results","FY27; no firm dates",null,false,true,0.4000,"2026-11-20"],
 ["BKB","BLACK BEAR MINERALS LIMITED","Gold","Shafter — access to existing mine decline and start of underground drilling (Presidio East, Ramp areas)","drilling_assay","Drilling / Assay Results","Final readiness underway; no firm date",null,false,true,0.2550,"2026-11-20"],
 ["BKB","BLACK BEAR MINERALS LIMITED","Gold","Shafter — further surface exploration drilling; Independence gold (Nevada, next to NGM Phoenix) exploration","drilling_assay","Drilling / Assay Results","No firm date given",null,false,true,0.2550,"2026-11-20"],
@@ -680,9 +680,9 @@ const DATA = [
 ["BMN","BANNERMAN ENERGY LTD","Energy","Etango uranium (Namibia; CNOL JV) — ramp-up of full-scale construction following FID (Oct 2026); ~two-year construction and commissioning","production_fid","FID / Production","Coming months",null,false,true,3.0600,"2026-11-20"],
 ["BMN","BANNERMAN ENERGY LTD","Energy","Etango — third-party uranium offtake contracts for volumes not committed under CNOL offtake","capital_raise","Capital Raise","No firm date given",null,false,true,3.0600,"2026-11-20"],
 ["BOT","BOTANIX PHARMACEUTICALS LTD","Dermatology / Skin","Piramal alternate API supply — 25-40% COGS reduction","other","Other","No date given",null,false,true,0.0080,"2026-11-20"],
-["BTE","BOTALA ENERGY LTD","Energy","Serowe CBM (Botswana) — Pitse pilot dewatering to ~20m above coal for meaningful gas flow; completion at well 3.2 and remediation/restart of well 3.1","other","Other","No firm date given",null,false,true,0.0440,"2026-11-19"],
-["BTE","BOTALA ENERGY LTD","Energy","Serowe — demonstrate sustained commercial gas production to support reserves certification","production_fid","FID / Production","No firm date given",null,false,true,0.0440,"2026-11-19"],
-["BTE","BOTALA ENERGY LTD","Energy","Phase 2 Bankable Feasibility Study for modular LNG facility (subject to commercial agreements), ahead of SA gas cliff from mid-2028","dfs_bfs_scoping","BFS / DFS / Scoping Study","Continuing; no firm date",null,false,true,0.0440,"2026-11-19"],
+["BTE","BOTALA ENERGY LTD","Energy","Serowe CBM (Botswana) — Pitse pilot dewatering to ~20m above coal for meaningful gas flow; completion at well 3.2 and remediation/restart of well 3.1","other","Other","No firm date given",null,false,true,0.0440,"2026-11-20"],
+["BTE","BOTALA ENERGY LTD","Energy","Serowe — demonstrate sustained commercial gas production to support reserves certification","production_fid","FID / Production","No firm date given",null,false,true,0.0440,"2026-11-20"],
+["BTE","BOTALA ENERGY LTD","Energy","Phase 2 Bankable Feasibility Study for modular LNG facility (subject to commercial agreements), ahead of SA gas cliff from mid-2028","dfs_bfs_scoping","BFS / DFS / Scoping Study","Continuing; no firm date",null,false,true,0.0440,"2026-11-20"],
 ["BTM","BREAKTHROUGH MINERALS LIMITED","Energy","Turpentine copper-gold (Mt Isa region) — 4,000m resource expansion drilling results / resource growth","drilling_assay","Drilling / Assay Results","2026 program; no firm date",null,false,true,0.0710,"2026-11-20"],
 ["BTM","BREAKTHROUGH MINERALS LIMITED","Energy","Barbara copper-gold — DHEM surveys and follow-up of deep mineralisation (26BAR009 below MRE)","mre_upgrade","MRE / Resource Upgrade","No firm date given",null,false,true,0.0710,"2026-11-20"],
 ["BXN","BIOXYNE LIMITED","Consumer Staples","Scotland GMP manufacturing facility — commissioning/completion (UK capacity expansion)","production_fid","FID / Production","On track; no date given",null,false,true,1.1000,"2026-09-07"],
@@ -690,7 +690,7 @@ const DATA = [
 ["CAV","CARNAVALE RESOURCES LIMITED","Lithium + Cobalt + Silver + Nickel + Gold","Kookynie — project funding (bank debt/equity) and toll-treatment/ore-purchase agreement selection","capital_raise","Capital Raise","No firm date given",null,false,true,0.0590,"2026-11-20"],
 ["CAZ","CAZALY RESOURCES LIMITED","Rare Earths + Lithium + Silver + Copper + Zinc / Lead","Goongarrie Gold Project (51% earned from Brightstar) — RC drilling at Gulls Blow (first drilling since 1980s, commenced 8 Oct 2026) results","drilling_assay","Drilling / Assay Results","Underway; no date given",null,false,true,0.0150,"2026-11-20"],
 ["CAZ","CAZALY RESOURCES LIMITED","Rare Earths + Lithium + Silver + Copper + Zinc / Lead","Goongarrie — follow-up of Hastings AC results along the Bardoc Tectonic Zone","other","Other","No firm date given",null,false,true,0.0150,"2026-11-20"],
-["CDT","CASTLE MINERALS LIMITED","Gold","Nielle — maiden 2,500–3,000m RC/diamond drilling program (subject to permit grant)","drilling_assay","Drilling / Assay Results","After permit grant; no firm date",null,false,true,0.0660,"2026-11-19"],
+["CDT","CASTLE MINERALS LIMITED","Gold","Nielle — maiden 2,500–3,000m RC/diamond drilling program (subject to permit grant)","drilling_assay","Drilling / Assay Results","After permit grant; no firm date",null,false,true,0.0610,"2026-11-20"],
 ["CEH","COAST ENTERTAINMENT HOLDINGS LIMITED","Consumer Discretionary","Coomera 55ha landholding — outcome of Barrenjoey-led capital/funding review (land sale, third-party partnering or self-development)","capital_raise","Capital Raise","Review underway; no date given",null,false,true,0.4200,"2026-11-20"],
 ["CEH","COAST ENTERTAINMENT HOLDINGS LIMITED","Consumer Discretionary","Independent valuation of Dreamworld business and surrounding land","other","Other","Commissioned; no date given",null,false,true,0.4200,"2026-11-20"],
 ["CHN","CHALICE MINING LIMITED","Platinum Group Metals + Nickel + Copper","Warrego North Cu-Au (NT) — assays from initial drilling of targets; Goomalling Cu (WA) Deep Blue follow-up drilling, soils and IP","drilling_assay","Drilling / Assay Results","Assays pending; no date given",null,false,true,0.8850,"2026-11-20"],
@@ -708,7 +708,7 @@ const DATA = [
 ["DXN","DXN LIMITED","Info Tech","Pipeline conversion — 93 identified projects, 13% in final negotiation/verbal win, incl. new AI/HPC data centre contracts","other","Other","No date given",null,false,true,0.2150,"2026-11-20"],
 ["E25","ELEMENT 25 LIMITED","Manganese","Butcherbird (WA) — award of E&I and remaining work packages; transition from early works to main construction phase","production_fid","FID / Production","In line with project plan; no firm date",null,false,true,0.1800,"2026-11-20"],
 ["E25","ELEMENT 25 LIMITED","Manganese","Louisiana HPMSM facility — repositioning review with US DoE under revised grant agreement","other","Other","No firm date given",null,false,true,0.1800,"2026-11-20"],
-["EDE","EDEN INNOVATIONS LTD","Energy","OptiBlend — conversion of ~US$916k of submitted quotes (16 USA, plus Mexico/Bolivia)","other","Other","No firm date given",null,false,true,0.0490,"2026-11-20"],
+["EDE","EDEN INNOVATIONS LTD","Energy","OptiBlend — conversion of ~US$916k of submitted quotes (16 USA, plus Mexico/Bolivia)","other","Other","No firm date given",null,false,true,0.0640,"2026-11-23"],
 ["ELV","ELEVRA LITHIUM LIMITED","Lithium","NAL (Québec) — NAL Expansion in execution (detailed engineering, long-lead procurement, legacy carbonate plant demolition)","other","Other","Underway; completion date not given",null,false,true,3.4000,"2026-11-20"],
 ["ELV","ELEVRA LITHIUM LIMITED","Lithium","Moblan lithium (Québec) — updated Scoping Study on plant sizing and staging; environmental permitting","dfs_bfs_scoping","BFS / DFS / Scoping Study","No firm date given",null,false,true,3.4000,"2026-11-20"],
 ["ELV","ELEVRA LITHIUM LIMITED","Lithium","Carolina Lithium (US) — final air permit from NC Division of Air Quality (draft received) and further permitting","production_fid","FID / Production","No firm date given",null,false,true,3.4000,"2026-11-20"],
@@ -720,8 +720,8 @@ const DATA = [
 ["ENR","ENCOUNTER RESOURCES LIMITED","Copper + Gold + Niobium + Rare Earths","Aileron (West Arunta) — niobium assays from ongoing diamond drilling across Green’s potential starter pits (5 holes pending)","drilling_assay","Drilling / Assay Results","Upcoming; no date given",null,false,true,0.1800,"2026-11-20"],
 ["ENR","ENCOUNTER RESOURCES LIMITED","Copper + Gold + Niobium + Rare Earths","Aileron — gold re-assaying of prior Green drilling and gold mineralogy; regional aircore assays across Aileron tenure","drilling_assay","Drilling / Assay Results","Upcoming; no date given",null,false,true,0.1800,"2026-11-20"],
 ["ENR","ENCOUNTER RESOURCES LIMITED","Copper + Gold + Niobium + Rare Earths","Aileron — project studies and oxide metallurgical testwork","metallurgy","Metallurgical Test Work","No firm date given",null,false,true,0.1800,"2026-11-20"],
-["EQU","EQUUS ENERGY LIMITED","Energy","Equus Gas Project (offshore WA) — Stage Two Project Partnering: secure operating, LNG offtake, infrastructure and financing partners (Alcoa funding US$1.5M)","capital_raise","Capital Raise","No firm date given",null,false,true,0.3500,"2026-11-20"],
-["EQU","EQUUS ENERGY LIMITED","Energy","Equus — FEED (funded under Alcoa facility of up to US$30M) and progression to Final Investment Decision","production_fid","FID / Production","No firm date given",null,false,true,0.3500,"2026-11-20"],
+["EQU","EQUUS ENERGY LIMITED","Energy","Equus Gas Project (offshore WA) — Stage Two Project Partnering: secure operating, LNG offtake, infrastructure and financing partners (Alcoa funding US$1.5M)","capital_raise","Capital Raise","No firm date given",null,false,true,0.3350,"2026-11-23"],
+["EQU","EQUUS ENERGY LIMITED","Energy","Equus — FEED (funded under Alcoa facility of up to US$30M) and progression to Final Investment Decision","production_fid","FID / Production","No firm date given",null,false,true,0.3350,"2026-11-23"],
 ["EVG","EVION GROUP NL","Graphite","Maniry graphite (Madagascar) — completion of Mining Permit Decree (formal presidential issue) and FMISC levy payment","production_fid","FID / Production","No firm date given",null,false,true,0.0090,"2026-11-20"],
 ["EVG","EVION GROUP NL","Graphite","Maniry — final environmental approval, project funding and Stage 1 Final Investment Decision","production_fid","FID / Production","No firm date given",null,false,true,0.0090,"2026-11-20"],
 ["EVG","EVION GROUP NL","Graphite","Carp fluorspar (Nevada) — exploration with specialist Nevada geologists (new zone 300m SW of historic pits)","other","Other","No firm date given",null,false,true,0.0090,"2026-11-20"],
@@ -761,10 +761,10 @@ const DATA = [
 ["MAN","MANDRAKE RESOURCES LIMITED","Lithium + Gold + Copper","Berinka gold-copper (NT) — results from 3,000m RC program (commenced post quarter)","drilling_assay","Drilling / Assay Results","No firm date given",null,false,true,0.0160,"2026-11-20"],
 ["MAN","MANDRAKE RESOURCES LIMITED","Lithium + Gold + Copper","Utah Lithium Project (Paradox Basin) — DLE test results on 8,000L bulk brine delivered to Electroflow","other","Other","No firm date given",null,false,true,0.0160,"2026-11-20"],
 ["MHC","MANHATTAN GOLD CORPORATION LIMITED","Energy","Hook Lake (Canada) — Maiden 2026 RC campaign — assays for five pending holes (two at Jaws incl. 2.25km strike extension, three at Omega) plus 550 till samples; scoping metallurgical testwork","metallurgy","Metallurgical Test Work","Pending; no date given",null,false,true,0.0120,"2026-11-20"],
-["ML8","MOONLIGHT RESOURCES LTD","Gold + Copper + Uranium + Rare Earths","Clermont — Leo Grande maiden Mineral Resource Estimate (diamond drilling underway)","mre_upgrade","MRE / Resource Upgrade","No firm date given",null,false,true,0.1150,"2026-11-19"],
-["ML8","MOONLIGHT RESOURCES LTD","Gold + Copper + Uranium + Rare Earths","Clermont — Goldfinger maiden RC drilling results","drilling_assay","Drilling / Assay Results","No firm date given",null,false,true,0.1150,"2026-11-19"],
-["ML8","MOONLIGHT RESOURCES LTD","Gold + Copper + Uranium + Rare Earths","Peak Downs copper — next phase: diamond drilling, metallurgical testwork and modelling ahead of maiden MRE","mre_upgrade","MRE / Resource Upgrade","No firm date given",null,false,true,0.1150,"2026-11-19"],
-["MNC","MERINO & CO. LIMITED","Consumer Discretionary","China exclusive distribution agreement — further purchase orders toward CNY30M (~A$6.5M) minimum annual commitment (yr 1 of 3)","other","Other","Ongoing over initial 3-year term; no order dates given",null,false,true,0.0900,"2026-11-19"],
+["ML8","MOONLIGHT RESOURCES LTD","Gold + Copper + Uranium + Rare Earths","Clermont — Leo Grande maiden Mineral Resource Estimate (diamond drilling underway)","mre_upgrade","MRE / Resource Upgrade","No firm date given",null,false,true,0.1150,"2026-11-20"],
+["ML8","MOONLIGHT RESOURCES LTD","Gold + Copper + Uranium + Rare Earths","Clermont — Goldfinger maiden RC drilling results","drilling_assay","Drilling / Assay Results","No firm date given",null,false,true,0.1150,"2026-11-20"],
+["ML8","MOONLIGHT RESOURCES LTD","Gold + Copper + Uranium + Rare Earths","Peak Downs copper — next phase: diamond drilling, metallurgical testwork and modelling ahead of maiden MRE","mre_upgrade","MRE / Resource Upgrade","No firm date given",null,false,true,0.1150,"2026-11-20"],
+["MNC","MERINO & CO. LIMITED","Consumer Discretionary","China exclusive distribution agreement — further purchase orders toward CNY30M (~A$6.5M) minimum annual commitment (yr 1 of 3)","other","Other","Ongoing over initial 3-year term; no order dates given",null,false,true,0.0900,"2026-11-20"],
 ["NUZ","NEURIZON THERAPEUTICS LIMITED","Neurological / CNS","NUZ-001 — NDA preparation for traditional approval (FDA Type C feedback: HEALEY may serve as single registrational study)","trial_regulatory","Trial Data / Regulatory Clearance","Following topline data; no date given",null,false,true,0.0580,"2026-11-20"],
 ["OCN","OCEANA METALS LIMITED","Lithium","Solonópole (Brazil) — divestment/partnering process (information memorandum completed)","board_ma","Activist / Board / M&A","No firm date given",null,false,true,0.1925,"2026-11-20"],
 ["OMA","OMEGA OIL & GAS LIMITED","Energy","Taroom Trough (QLD) — remaining vertical appraisal wells of 2026/27 program (Canyon-5/6 after Canyon-3/4)","other","Other","2026/27 program; no specific dates",null,false,true,0.6950,"2026-11-20"],
@@ -776,7 +776,7 @@ const DATA = [
 ["PNN","POWER MINERALS LIMITED","Lithium","Morro do Ferro — initial metallurgical/mineralogical study results (>100kg samples)","metallurgy","Metallurgical Test Work","No firm date given",null,false,true,0.1150,"2026-11-20"],
 ["PTR","PTR MINERALS LTD","Copper","Rosewood Titanium Project (Muckanippie, SA) — finalise Scoping Study (integration of technical workstreams into financial model)","dfs_bfs_scoping","BFS / DFS / Scoping Study","No firm date given",null,false,true,0.0710,"2026-11-20"],
 ["PTR","PTR MINERALS LTD","Copper","Rosewood — further customer product sample dispatch; metallurgical/geomet flowsheet optimisation; environmental baseline toward Mining Lease application","metallurgy","Metallurgical Test Work","No firm date given",null,false,true,0.0710,"2026-11-20"],
-["PVT","PIVOTAL METALS LIMITED","Copper + Nickel + Platinum Group Metals","Horden Lake — strategic initiatives / non-equity financing (strategic adviser appointed) after maiden Scoping Study","dfs_bfs_scoping","BFS / DFS / Scoping Study","No firm date given",null,false,true,0.0120,"2026-11-19"],
+["PVT","PIVOTAL METALS LIMITED","Copper + Nickel + Platinum Group Metals","Horden Lake — strategic initiatives / non-equity financing (strategic adviser appointed) after maiden Scoping Study","dfs_bfs_scoping","BFS / DFS / Scoping Study","No firm date given",null,false,true,0.0110,"2026-11-23"],
 ["PXX","POLARX LIMITED","Gold","Caribou Dome copper (Alaska Range, NST earning in) — assays for further 13 holes from 2026 season; inputs to future MRE update","mre_upgrade","MRE / Resource Upgrade","Pending; no date given",null,false,true,0.0130,"2026-11-20"],
 ["PXX","POLARX LIMITED","Gold","Alaska Range — Gemini–Jupiter magnetic anomaly survey results to refine drill targeting","drilling_assay","Drilling / Assay Results","Results pending; for 2027 drilling",null,false,true,0.0130,"2026-11-20"],
 ["QML","QMINES LIMITED","Gold + Copper + Zinc / Lead + Silver","Mt Chalmers — updated Mineral Resource incorporating 2026 drilling","mre_upgrade","MRE / Resource Upgrade","Updates pending; no date given",null,false,true,0.0490,"2026-11-20"],
@@ -790,8 +790,8 @@ const DATA = [
 ["RSG","RESOLUTE MINING LIMITED","Gold","Syama — Sulphide Conversion Project full commissioning (transition to full sulphide)","production_fid","FID / Production","Commissioning nearing completion; no firm date",null,false,true,1.0150,"2026-11-20"],
 ["RSG","RESOLUTE MINING LIMITED","Gold","La Debo — technical studies on expanded 0.9Moz MRE; Doropo expansion study","mre_upgrade","MRE / Resource Upgrade","2027 roadmap; no firm date",null,false,true,1.0150,"2026-11-20"],
 ["S32","SOUTH32 LIMITED","Manganese + Aluminium","Ambler Metals JV (Alaska) — follow-up to 2026 summer field season; reinvestment of US$17.8M stake-sale proceeds","other","Other","No firm date given",null,false,true,4.0200,"2026-11-20"],
-["SBM","ST BARBARA LIMITED","Gold","Atlantic — federal decision on whether impact assessment required (15-Mile)","other","Other","Awaited; no date given",null,false,true,0.6450,"2026-11-20"],
-["SBM","ST BARBARA LIMITED","Gold","Touquoy — assessment of Old Austen down-plunge underground and Mill Shaft West prospect","other","Other","No firm date given",null,false,true,0.6450,"2026-11-20"],
+["SBM","ST BARBARA LIMITED","Gold","Atlantic — federal decision on whether impact assessment required (15-Mile)","other","Other","Awaited; no date given",null,false,true,0.6800,"2026-11-23"],
+["SBM","ST BARBARA LIMITED","Gold","Touquoy — assessment of Old Austen down-plunge underground and Mill Shaft West prospect","other","Other","No firm date given",null,false,true,0.6800,"2026-11-23"],
 ["SLB","STELAR METALS LIMITED","Lithium + Copper + Cobalt + Gold","Hill of Leaders — maiden 3,500m bedrock RC drilling program (approvals secured, funded by $2.6M placement) and results","drilling_assay","Drilling / Assay Results","Upcoming; no firm date",null,false,true,0.2100,"2026-11-20"],
 ["SLB","STELAR METALS LIMITED","Lithium + Copper + Cobalt + Gold","Hill of Leaders — follow-up mapping, surface sampling, UHD geophysics and subsequent diamond drilling","drilling_assay","Drilling / Assay Results","No firm date given",null,false,true,0.2100,"2026-11-20"],
 ["SLM","SOLIS MINERALS LIMITED","Copper + Gold + Silver + Molybdenum + Lithium","Brazil Lithium Project — assays from Mandacaru (7 holes, ~1,454m) and Campo Grande diamond drilling; follow-up drilling scope","drilling_assay","Drilling / Assay Results","Assays pending; no date given",null,false,true,0.0330,"2026-11-20"],

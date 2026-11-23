@@ -9,25 +9,25 @@ try {
 </script>
 <style>
 :root{
-  --bg:#faf8f2; --surface:#f0ead8; --surface2:#e6ddc4; --border:#a89b7a;
-  --ink:#141209; --ink-soft:#3d3829; --ink-faint:#6b6552;
+  --bg:#f6f2e4; --surface:#efe6d0; --surface2:#e7dab8; --border:#b9a173;
+  --ink:#2a1f14; --ink-soft:#4a3c28; --ink-faint:#7a6b4f;
   --accent:#1e3a72; --accent-ink:#f0f4fc;
-  --nav-accent:#7a4a0f;
-  --accent2:#163540; --accent2-ink:#eaf5f7;
-  --good:#33481f; --good-bg:#d5dfc4;
-  --warn:#6b4a0f; --warn-bg:#ecdfc0;
-  --bad:#6b241c; --bad-bg:#e3c6bc;
+  --nav-accent:#9c6b1f;
+  --accent2:#2f6b63; --accent2-ink:#eaf5f2;
+  --good:#3f7a2f; --good-bg:#dfe8cf;
+  --warn:#8a6a1f; --warn-bg:#ecdfc0;
+  --bad:#9c3b2b; --bad-bg:#ecd3cb;
   --shadow: 0 1px 2px rgba(20,18,9,.06), 0 4px 16px rgba(20,18,9,.05);
 }
 :root[data-theme="dark"]{
-  --bg:#121316; --surface:#1c1f24; --surface2:#262b32; --border:#454b56;
-  --ink:#f5f2e8; --ink-soft:#c9c2b0; --ink-faint:#8f8874;
+  --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+  --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
   --accent:#8fb4f0; --accent-ink:#0a1830;
-  --nav-accent:#e8b355;
-  --accent2:#8fc4db; --accent2-ink:#0a1f26;
-  --good:#a8d491; --good-bg:#233022;
-  --warn:#eec27a; --warn-bg:#332a1a;
-  --bad:#f0998a; --bad-bg:#3d2420;
+  --nav-accent:#e0a63f;
+  --accent2:#6fc9ba; --accent2-ink:#0a1f1c;
+  --good:#8fc97a; --good-bg:#263019;
+  --warn:#e0b86a; --warn-bg:#332a1a;
+  --bad:#e2816a; --bad-bg:#3d2420;
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
@@ -393,60 +393,7 @@ const DATA = [
 ["AGC","","Materials","2026-07-24",1,1,["Diemar (Glen)"],10660,115000,33153838,null,null,true,0.032,null,null,null],
 ["AGD","","Materials","2026-05-29",1,1,["Elsztain (Eduardo Sergio)"],3257,37833,65474161,null,null,false,0.005,null,null,null],
 ["AGL","","Utilities","2026-10-16",3,3,["Cockroft (Graham John)", "Donaghey (Elizabeth)", "Holman (Christine Francis)"],135109,22500,6135454765,null,null,false,0.002,null,null,null],
-["AGN","","Healthcare","2026-09-29",1,1,["Joughin (Jeannette)"],13936,142643,12845671,null,null,false,0.108,null,null,null],
-["AHE","","Healthcare","2026-10-01",4,4,["Ciccio (John)", "Hill (Catherine Jane)", "Merrow (Lucas)", "Murray (John)"],53904,7812422,8293754,null,null,false,0.65,null,null,null],
-["AHL","","Consumer Discretionary","2026-08-19",1,1,["Proctor (Paul)"],11142,13107,109878011,null,null,false,0.01,null,null,null],
-["AIH","","Industrials","2026-08-21",2,2,["Bennion (Andrew David)", "Shepherd (Simon Harry)"],350882,978656,148876117,null,null,false,0.236,null,null,null],
-["AIM","","Info Tech","2026-10-23",1,1,["Cubis (Brent)"],3342,20000,45194497,null,null,false,0.007,null,null,null],
-["AJL","","Industrials","2026-06-11",1,1,["Ball (Julian R.S.)"],8360,3981380,8254378,null,null,false,0.101,null,null,null],
-["AKG","","Consumer Discretionary","2026-11-10",11,2,["Campbell (Christopher Elmore)", "Schlederer (John Lewis)"],25077,419350,10209157,null,null,false,0.246,null,null,null],
-["AL3","","Industrials","2026-10-27",1,1,["Siebels (Peter)"],17560,200000,57241689,null,null,false,0.031,null,null,null],
-["ALA","","Healthcare","2026-11-18",6,2,["Diamond (Mark)", "Williams (David John)"],34261,928087,59233741,null,null,false,0.058,null,null,null],
-["ALC","","Healthcare","2026-10-05",5,2,["Smart (William Keith)", "Way (Andrew)"],35979,522578,141729541,null,null,false,0.025,null,null,null],
-["ALD","","Energy","2026-08-25",1,1,["Donaghey (Elizabeth Ann)"],30586,1000,8612237858,null,null,false,0.0,null,null,null],
-["ALI","","Other","2026-06-25",1,1,["Warne (Peter Hastings)"],70184,40000,487006293,null,null,false,0.014,null,null,null],
-["ALL","","Consumer Discretionary","2026-11-19",1,1,["Chand (Natasha)"],32106,750,38378264887,null,null,false,0.0,null,null,null],
-["ALQ","","Industrials","2026-08-27",5,4,["Boyce (Christina Mary)", "Deane (Malcolm)", "Farrow (Catharine)", "Garrard (Nigel David)"],1074949,71598,10242208720,null,null,false,0.01,null,null,null],
-["ALU","","Materials","2026-11-04",3,2,["Hannigan (Todd)", "Todd (Thomas)"],526347,1457108,70680728,null,null,false,0.745,null,null,null],
-["ALV","","Materials","2026-06-26",2,2,["Nicholls (Beau)", "Slattery (Graeme Michael)"],27510,816328,22348460,null,null,false,0.123,null,null,null],
-["ALX","","Industrials","2026-11-13",3,3,["Bell (Kiernan)", "Daley (Ken)", "Hendricks (Laura)"],328019,103867,5508740248,null,null,false,0.006,null,null,null],
-["AM5","","Materials","2026-06-09",1,1,["Topping (Terence)"],4900,1000000,5521351,null,null,true,0.089,null,null,null],
-["AMA","","Industrials","2026-11-04",3,2,["Austin (Brian)", "Clark (Anthony)"],202878,632143,216127391,null,null,false,0.094,null,null,null],
-["AMH","","Other","2026-08-09",2,2,["Gibson (Alison)", "Webster (Jonathan James)"],277770,436147,278355076,null,null,false,0.1,null,null,null],
-["AMI","","Materials","2026-10-29",3,1,["Brazil (Franklyn Roger)"],4370995,14000000,636579145,null,null,false,0.687,null,null,null],
-["AMO","","Info Tech","2026-10-26",8,2,["Amos (Peter Andrew)", "Carlini (Santo)"],32938827,1145448,6296716,null,null,false,523.111,null,null,null],
-["AMP","","Financials","2026-11-10",5,4,["Bailey (Kathleen Anne)", "Elkins (Linda)", "Hirst (Michael John)", "Leibel (Anna)"],171090,131526,4975686519,null,null,false,0.003,null,null,null],
-["AMS","","Consumer Discretionary","2026-09-11",2,2,["Barber (Peter Gordon)", "Joughin (James)"],7792,610995,11913320,null,null,false,0.065,null,null,null],
-["AMX","","Industrials","2026-09-15",2,1,["Lindh (Mark Llewellyn)"],29596,138422,38946162,null,null,false,0.076,null,null,null],
-["ANG","","Industrials","2026-10-28",1,1,["OFarrell (Linda)"],10560,107000,112159957,null,null,false,0.009,null,null,null],
-["ANN","","Healthcare","2026-08-31",2,2,["Goodin (Debra)", "Samuelson (Jonas)"],179088,6204,6467064471,null,null,false,0.003,null,null,null],
-["ANO","","Materials","2026-11-19",26,1,["Mizikovsky (Lev)"],259257,533214,37607914,null,null,false,0.689,null,null,null],
-["ANZ","","Financials","2026-07-29",3,2,["John (Scott Andrew)", "O'Sullivan (Paul Dominic)"],86604,3306,117620875983,null,null,false,0.0,null,null,null],
-["AOA","","Materials","2026-11-19",1,1,["Wang (Qiang John)"],22660,20600000,1426513,null,null,false,1.588,null,null,null],
-["AOK","","Energy","2026-09-17",4,3,["Ashby (William)", "Lewis (Piers)", "Marshall (John Lloyd Kane)"],36367,17646550,4862118,null,null,false,0.748,null,null,null],
-["AOV","","Consumer Discretionary","2026-08-20",2,2,["Douglas (Jennifer)", "Fazzino (James Ernest)"],82338,18256,666572811,null,null,false,0.012,null,null,null],
-["APE","","Consumer Discretionary","2026-11-11",4,3,["Crommelin (Timothy Boyd Irving)", "Mcnamara (Katrina Susan)", "Politis (Nicholas George)"],2607357,207842,4161192298,null,null,false,0.063,null,null,null],
-["APL","","Financials","2026-09-03",1,1,["Cairns (Brett Peter)"],1353,7526,17512506,null,null,false,0.008,null,null,null],
-["APZ","","Real Estate","2026-09-07",2,2,["Freedman (John)", "Gilbert (Edwina)"],237772,64316,1109493625,null,null,false,0.021,null,null,null],
-["AQ1","","Industrials","2026-09-04",3,2,["Chen (Yingyi)", "Hornby (Andrew)"],35122,1420183,8163129,null,null,false,0.43,null,null,null],
-["AQZ","","Industrials","2026-09-21",5,3,["Campbell (Bernard Joseph)", "Jackson (James)", "Lange (Simon)"],266604,582688,89540189,null,null,false,0.298,null,null,null],
-["AR1","","Materials","2026-09-18",1,1,["Jauncey (Daniel)"],702485,13179833,132742829,null,null,false,0.529,null,null,null],
-["ARB","","Consumer Discretionary","2026-06-16",1,1,["Faber (Shona Maree)"],70697,5420,1486367607,null,null,false,0.005,null,null,null],
-["ARC","","Financials","2026-06-15",4,2,["Beeton (Scott)", "Walker (Michael)"],97235,1261956,3600188,null,null,false,2.701,null,null,null],
-["ARD","","Materials","2026-07-09",1,1,["Michael (Peter)"],5173,266667,30646317,null,null,false,0.017,null,null,null],
-["ARF","","Real Estate","2026-09-02",4,2,["Bailey (Justin)", "Tindall (Adam)"],373540,226768,1132059677,null,null,false,0.033,null,null,null],
-["ARG","","Other","2026-06-30",2,2,["Buck (Lianne Margaret)", "Holzberger (Melissa Kate)"],68483,10988,7028176995,null,null,false,0.001,null,null,null],
-["ARO","","Materials","2026-10-16",3,1,["Kent (Vaughan Tom)"],65605,27150000,6287016,null,null,true,1.043,null,null,null],
-["ARR","","Materials","2026-11-04",4,4,["Arkell (Brian)", "Beckton (Jason)", "Gili (Matthew)", "Hudson (Richard)"],43967,230200,151478028,null,null,false,0.029,null,null,null],
-["ARX","","Healthcare","2026-06-26",1,1,["Diddams (John Flower)"],86740,200000,169492300,null,null,false,0.051,null,null,null],
-["ASP","","Communication Services","2026-06-02",1,1,["Mccracken (Graeme)"],71776,57142,14108023,null,null,false,0.509,null,null,null],
-["ASX","","Financials","2026-09-08",6,4,["Byres (Wayne Stephen)", "Clarke (David Clarence)", "Jokovic (Vic John)", "Randell (Luke Anthony)"],256743,6431,13115855745,null,null,false,0.002,null,null,null],
-["ATA","","Info Tech","2026-09-02",1,1,["Kanji (Shan)"],1992565,6950000,114864116,null,null,false,1.735,null,null,null],
-["ATG","","Consumer Discretionary","2026-11-05",4,2,["Kumar (Vivek)", "Sparks (Naseema)"],25698,118701,93792883,null,null,false,0.027,null,null,null],
-["ATR","","Materials","2026-11-06",1,1,["Bastos (Marcelo)"],11529,30000,234320785,null,null,false,0.005,null,null,null],
-["ATT","","Materials","2026-11-18",1,1,["McIntyre (Peter Thomas)"],15000,6000000,2975746,null,null,false,0.504,null,null,null],
-["ATV","","Info Tech","2026-11-03",3,1,["Christie (Peter)"],6841,1110000,9708171,null,null,false,0.07,null,null,null],
-["AUI","","Other","2026-10-16",2,1,["Freeman (Robert Mark)"],349320,41650,2662680315,null,null,false,0.013,null,null,null]
+["AGN","","Healthcare","2026-09-29",1,1,["Joughin (Jeannette)"],13936,142643,12845671,null,null,false,0.108,null,null,null]
 ];
 
 const commchips = document.getElementById('sectorchips');
