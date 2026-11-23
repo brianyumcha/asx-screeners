@@ -117,7 +117,7 @@ body{background:var(--ink); color:var(--cream); font-family:"IBM Plex Sans",-app
   <div class="topbar">
     <h1>Morning <em>Brief</em></h1>
     <div class="meta">
-      <div class="d">Saturday 21 November 2026</div>
+      <div class="d">Monday 23 November 2026</div>
       Snapshot &middot; Overnight US close + ASX pre-market
     </div>
     <button class="themebtn" id="themeBtn" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
@@ -132,7 +132,7 @@ body{background:var(--ink); color:var(--cream); font-family:"IBM Plex Sans",-app
     <div class="card">
       <div class="hd">
         <div><div class="lbl">Section 01</div><h2>US Overnight</h2></div>
-        <div class="asof">Close &middot; Fri 20 Nov</div>
+        <div class="asof">Close &middot; Fri 20 Nov &middot; futures as of ~18:30 AEDT Mon</div>
       </div>
       <div class="tickrow"><div class="nm"><span class="sym">S&amp;P 500</span></div><div class="vals"><span class="px">6,910.39</span><span class="chg down">&minus;3.70%</span></div></div>
       <div class="tickrow"><div class="nm"><span class="sym">NASDAQ</span></div><div class="vals"><span class="px">22,617.73</span><span class="chg down">&minus;5.28%</span></div></div>
@@ -148,41 +148,43 @@ body{background:var(--ink); color:var(--cream); font-family:"IBM Plex Sans",-app
       <div class="tickrow"><div class="nm"><span class="sym">URA</span><span class="full">Uranium</span></div><div class="vals"><span class="px">$26.79</span><span class="chg down">&minus;6.56%</span></div></div>
       <div class="tickrow"><div class="nm"><span class="sym">LIT</span><span class="full">Lithium &amp; Battery</span></div><div class="vals"><span class="px">$51.98</span><span class="chg down">&minus;4.33%</span></div></div>
       <div class="tickrow"><div class="nm"><span class="sym">REMX</span><span class="full">Rare Earth &amp; Strategic</span></div><div class="vals"><span class="px">$42.06</span><span class="chg down">&minus;5.10%</span></div></div>
-      <div class="headline"><b>AI rout: the Nasdaq erases its 2026 gains</b>. The Nasdaq fell <b>5.28%</b>, its worst week since April 2025, and the S&amp;P fell <b>3.70%</b>. Reports have both the Dow and the S&amp;P now in correction territory. <b>Nvidia fell 14%</b>. Neither its Q3 beat nor Anthropic's record IPO could hold up the AI trade, and chip, memory and optical names fell more than 10%. The VIX jumped <b>26% to 35.89</b>, and bonds rallied, with the US10Y down 10bp to 4.95%. Gold <b>&minus;2.4%</b>, silver <b>&minus;3.8%</b> and copper <b>&minus;2.6%</b> kept falling, and every miners ETF fell 4&ndash;7%. That was the third straight day of declines.</div>
+      <div class="subhd">US futures (Mon, pre-open)</div>
+      <div class="tickrow"><div class="nm"><span class="sym">ES</span><span class="full">S&amp;P 500 fut</span></div><div class="vals"><span class="px">7,091.50</span><span class="chg up">+2.26%</span></div></div>
+      <div class="tickrow"><div class="nm"><span class="sym">NQ</span><span class="full">Nasdaq 100 fut</span></div><div class="vals"><span class="px">25,895.50</span><span class="chg up">+3.06%</span></div></div>
+      <div class="headline"><b>Futures bounce hard after the AI rout</b>. Wall St hasn't traded since Friday, when the Nasdaq fell <b>5.28%</b> and the S&amp;P <b>3.70%</b> into correction territory, with <b>Nvidia &minus;14%</b> amid the leadership crisis around former CEO Jensen Huang. Reports put last week's Nasdaq drop near 10%, its biggest weekly fall since March 2020. In Asia on Monday, <b>S&amp;P futures are up 2.3% and Nasdaq futures 3.1%</b>, and Taiwan rebounded 2.2%, but the Kospi fell 3.3%. Havens eased: the DXY slipped 0.2% to 103.60, and gold futures recovered <b>+3.3%</b>. Friday's miners-ETF closes above (all down 4&ndash;7%) don't reflect that metals bounce yet.</div>
+      <div class="src">yfinance (^GSPC, ^VIX, ^TNX, DX-Y.NYB, ES=F, NQ=F, CL=F) &middot; Bloomberg markets wrap via swissinfo 23 Nov &middot; SBS / CNBC futures reports 22&ndash;23 Nov</div>
     </div>
 
     <!-- ASX PRE-MARKET -->
     <div class="card">
       <div class="hd">
         <div><div class="lbl">Section 02</div><h2>ASX Pre-Market</h2></div>
-        <div class="asof">ASX closed Fri &middot; SPI night session final &middot; metals/FX Fri close</div>
+        <div class="asof">ASX close Mon 23 Nov &middot; metals/FX as of ~18:30 AEDT</div>
       </div>
-      <div class="tickrow"><div class="nm"><span class="sym">ASX 200</span><span class="full">Fri close</span></div><div class="vals"><span class="px">8,592.6</span><span class="chg down">&minus;1.58%</span></div></div>
-      <div class="tickrow"><div class="nm"><span class="sym">SPI 200</span><span class="full">night session</span></div><div class="vals"><span class="px">8,556</span><span class="chg down">&minus;0.57%</span></div></div>
-      <div class="tickrow"><div class="nm"><span class="sym">GOLD</span></div><div class="vals"><span class="px">$3,537.83</span><span class="chg down">&minus;2.41%</span></div></div>
-      <div class="tickrow"><div class="nm"><span class="sym">SILVER</span></div><div class="vals"><span class="px">$41.22</span><span class="chg down">&minus;3.84%</span></div></div>
-      <div class="tickrow"><div class="nm"><span class="sym">COPPER</span></div><div class="vals"><span class="px">$5.485/lb</span><span class="chg down">&minus;2.64%</span></div></div>
+      <div class="tickrow"><div class="nm"><span class="sym">ASX 200</span><span class="full">Mon close</span></div><div class="vals"><span class="px">8,570.6</span><span class="chg down">&minus;0.26%</span></div></div>
+      <div class="tickrow"><div class="nm"><span class="sym">GOLD</span><span class="full">futures</span></div><div class="vals"><span class="px">$3,632.20</span><span class="chg up">+3.32%</span></div></div>
+      <div class="tickrow"><div class="nm"><span class="sym">SILVER</span><span class="full">futures</span></div><div class="vals"><span class="px">$42.73</span><span class="chg up">+4.13%</span></div></div>
+      <div class="tickrow"><div class="nm"><span class="sym">COPPER</span><span class="full">futures</span></div><div class="vals"><span class="px">$5.54/lb</span><span class="chg up">+1.15%</span></div></div>
       <div class="subhd">Macro inputs</div>
-      <div class="tickrow"><div class="nm"><span class="sym">AUD/USD</span></div><div class="vals"><span class="px">0.6616</span><span class="chg down">&minus;0.63%</span></div></div>
-      <div class="tickrow"><div class="nm"><span class="sym">AU 10Y</span></div><div class="vals"><span class="px">4.91%</span><span class="chg down">&minus;5.4bp</span></div></div>
-      <div class="catrow" style="margin-top:10px;"><div class="when">Close</div><div class="what"><span class="desc">The ASX 200 fell <b>137.8 pts (&minus;1.58%) to 8,592.6</b>. That is its <b>seventh straight loss</b> and a fresh 20-day low (intraday 8,585.0). For the week the index lost <b>489.6 pts (&minus;5.39%)</b>, from last Friday's 9,082.2 close.</span></div></div>
-      <div class="catrow"><div class="when">Sectors</div><div class="what"><span class="desc">All 11 sectors closed lower. <b>IT</b> (XIJ <b>&minus;4.70%</b>) fell hardest after Thursday's Wall St tech sell-off, and <b>Materials</b> (XMJ &minus;2.15%) finished the week down <b>12.32%</b>, falling in all five sessions. <b>Utilities</b> (XUJ &minus;0.53%) were the day's best sector and the only one higher for the week.</span></div></div>
-      <div class="catrow"><div class="when">Stocks</div><div class="what"><span class="desc"><b>MP1</b> &minus;12.89% (&minus;17% for the week), <b>XRO</b> &minus;5.7% and <b>WTC</b> &minus;3.4% led tech lower. In gold, <b>GMD</b> &minus;5.81% (fifth straight loss) and <b>CMM</b> &minus;5.12%. <b>TCL</b> &minus;2.33%, <b>BHP</b> &minus;1.8%, and the big four banks fell 1.0&ndash;2.2%.</span></div></div>
-      <div class="catrow"><div class="when">Mon open</div><div class="what"><span class="desc">The ASX closed <i>before</i> Friday's 3.7% S&amp;P drop. The SPI night session absorbed it, settling <b>49 pts lower at 8,556</b> (low 8,535). That implies a soft open about 0.4% under the cash close. A weaker AUD (0.6616) and a further &minus;2.4% in gold point to more pressure on miners.</span></div></div>
-      <div class="headline"><b>Futures are pricing a much milder hit than Wall Street took</b>. The Nasdaq fell 5.3%, but the SPI fell only 0.6%, because the ASX had already sold off for seven straight sessions and isn't heavy in AI megacaps. The risk is concentrated in IT (XIJ) and the metals complex, where gold, silver and copper closed at fresh 20-day lows for a third straight day.</div>
-      <div class="src">TradingView (ASX:XJO, ASX24:AP1!, FX:AUDUSD, TVC:AU10Y, TVC:GOLD/SILVER, COMEX:HG1!, sector indices) &middot; ShareTrader weekly wrap 20 Nov 2026 &middot; Investing.com ASX close 20 Nov &middot; ABC News markets blog 20 Nov</div>
+      <div class="tickrow"><div class="nm"><span class="sym">AUD/USD</span></div><div class="vals"><span class="px">0.6652</span><span class="chg down">&minus;0.06%</span></div></div>
+      <div class="catrow" style="margin-top:10px;"><div class="when">Close</div><div class="what"><span class="desc">The ASX 200 fell <b>22 pts (&minus;0.26%) to 8,570.6</b>, its <b>eighth straight loss</b>, even though US futures rallied 2&ndash;3% through the session. Nine of 11 sectors finished lower. Japan was shut for a holiday, and the Kospi and Hang Seng both fared worse.</span></div></div>
+      <div class="catrow"><div class="when">Sectors</div><div class="what"><span class="desc"><b>Materials</b> (XMJ <b>+1.82%</b>) bounced after last week's 12.3% fall, and Health Care (XHJ +0.24%) was the only other gainer. <b>Financials</b> (XFJ &minus;1.20%), A-REITs (XPJ &minus;1.01%) and Discretionary (XDJ &minus;1.00%) were the weakest.</span></div></div>
+      <div class="catrow"><div class="when">Stocks</div><div class="what"><span class="desc"><b>BHP</b> +2.2% on plans to double South Australian copper output by 2040. <b>SGM</b> (Sims) +9.6% on split broker calls. <b>ALQ</b> (ALS) &minus;12% despite a jump in first-half profit. <b>CBA</b> &minus;2.22%, <b>WBC</b> &minus;1.89% and <b>ANZ</b> &minus;1.66% led the banks lower.</span></div></div>
+      <div class="catrow"><div class="when">Brokers</div><div class="what"><span class="desc">Upgrades: <b>LYC</b> to Accumulate (Ord Minnett), <b>SEK</b> to Buy (Bell Potter), <b>IFT</b>, <b>RIC</b> and <b>SVR</b> to Buy (Morgans). Downgrades: <b>TCL</b> to Sell (Citi), <b>LLC</b> to Underweight (Morgan Stanley), and <b>A2M</b> and <b>TNE</b> were each cut by two brokers.</span></div></div>
+      <div class="headline"><b>The ASX sat out the US futures bounce</b>. The banks dragged the index lower, while miners joined in as gold futures rebounded about 3%. If Wall St holds its futures gains tonight, Tuesday's open is the first real test of whether the eight-day slide is done. No live SPI night-session or AU 10Y reading turned up in search, so neither is shown.</div>
+      <div class="src">yfinance (^AXJO, sector indices ^AX*J, GC=F/SI=F/HG=F, AUDUSD=X) &middot; AAP/news.com.au close 23 Nov &middot; ABC News markets blog 23 Nov &middot; FNArena Monday Report 23 Nov</div>
     </div>
 
     <!-- CRYPTO -->
     <div class="card">
       <div class="hd">
         <div><div class="lbl">Section 03</div><h2>Crypto Overnight</h2></div>
-        <div class="asof">Since 00:00 UTC (11:00 AEDT) &middot; as of ~21:45 AEDT Sat</div>
+        <div class="asof">Since 00:00 UTC (11:00 AEDT) &middot; as of ~18:30 AEDT Mon</div>
       </div>
-      <div class="tickrow"><div class="nm"><span class="sym">BTC</span></div><div class="vals"><span class="px">$57,845</span><span class="chg down">&minus;1.63%</span></div></div>
-      <div class="tickrow"><div class="nm"><span class="sym">ETH</span></div><div class="vals"><span class="px">$1,638</span><span class="chg up">+1.13%</span></div></div>
-      <div class="headline">Friday's AI rout spilled straight into crypto. BTC fell <b>5.01%</b> to $58,814 (UTC day) and has hit <b>$55,081</b> today. That is a level reports describe as its lowest in over two years. It has since bounced to about $57.9k. ETH fell <b>7.76%</b> to $1,619 and briefly lost $1,536 today, but is now slightly green on the day. CoinGlass liquidation tallies cited for the sell-off ran <b>$1.5&ndash;2.4B in 24h</b>, and the largest was <b>~93% longs</b>. That is a <b>leveraged long flush</b>, not a spot-led move. No current funding-rate reading turned up in search, so there's no read on whether leverage has reset.</div>
-      <div class="src">TradingView (BITSTAMP:BTCUSD, ETHUSD daily) &middot; The Defiant / Coinpaper / bitcoin.com liquidation reports (CoinGlass data), 20&ndash;21 Nov 2026</div>
+      <div class="tickrow"><div class="nm"><span class="sym">BTC</span></div><div class="vals"><span class="px">$61,384</span><span class="chg up">+0.36%</span></div></div>
+      <div class="tickrow"><div class="nm"><span class="sym">ETH</span></div><div class="vals"><span class="px">$1,722</span><span class="chg up">+0.03%</span></div></div>
+      <div class="headline">Crypto has steadied over the weekend. BTC is up from about $57.8k on Saturday night to <b>$61.4k</b> (it closed Sun UTC at $61,162), and ETH is back above <b>$1,700</b>. Monday's move is small and runs alongside the US futures bounce. No current funding-rate or liquidation reading for today turned up in search, so this can't be called a leveraged or a spot-led move. The only verified read is still last Friday's <b>long-heavy liquidation flush</b>.</div>
+      <div class="src">yfinance (BTC-USD, ETH-USD daily) &middot; Bloomberg markets wrap via swissinfo 23 Nov (BTC ~$61.4k)</div>
     </div>
 
     <!-- CATALYSTS DUE -->
@@ -191,35 +193,34 @@ body{background:var(--ink); color:var(--cream); font-family:"IBM Plex Sans",-app
         <div><div class="lbl">Section 04</div><h2>Catalysts This Week</h2></div>
         <div class="asof">From the bull map</div>
       </div>
-      <div class="catrow"><div class="when">Passed 20 Nov</div><div class="what"><span class="sym">MLX</span><span class="desc">First Tin PLC (LSE:1SN): firm intention to make an offer, or walk away, under the UK Takeover Code, due "by 5pm London time, 20 November 2026" (4am Sat AEDT). The deadline has passed, and search turned up no firm offer, walk-away or further extension. Check the ASX/RNS announcements before Monday's open.</span></div></div>
-      <div class="catrow"><div class="when">23 Nov</div><div class="what"><span class="sym">EMP</span><span class="desc">Judith-2 well-site geophysical survey commencing.</span></div></div>
+      <div class="catrow"><div class="when">Passed 20 Nov</div><div class="what"><span class="sym">MLX</span><span class="desc">First Tin PLC (LSE:1SN): firm intention to make an offer, or walk away, under the UK Takeover Code, due "by 5pm London time, 20 November 2026". Search still turns up no firm offer, walk-away or further extension. MLX closed &minus;0.37% at $1.33 on Monday.</span></div></div>
+      <div class="catrow"><div class="when">Today 23 Nov</div><div class="what"><span class="sym">EMP</span><span class="desc">Judith-2 well-site geophysical survey, "Commencing 23 November 2026". EMP closed +13.85% at $0.074.</span></div></div>
       <div class="catrow"><div class="when">Late Nov</div><div class="what"><span class="sym">VAU</span><span class="desc">Merger with Genesis Minerals: scheme implementation, guided for "late November 2026". The second court hearing was 16 Nov, and shareholders approved on 11 Nov.</span></div></div>
       <div class="catrow"><div class="when">27 Nov</div><div class="what"><span class="sym">INA</span><span class="desc">AVID $5.55 cash proposal: written confirmation that it will not withdraw or reduce, due "by 27 November 2026".</span></div></div>
       <div class="catrow"><div class="when">30 Nov</div><div class="what"><span class="sym">BKT</span><span class="desc">Mahenge graphite: Financial Close on the US$204M debt facility (deadline extended) and equity structure, then a fully funded FID. The "Financial Close deadline 30 November 2026".</span></div></div>
+      <div class="catrow"><div class="when">1 Dec</div><div class="what"><span class="sym">TLX</span><span class="desc">ITM merger: Telix shareholder General Meeting vote, "expected 1 December 2026".</span></div></div>
       <div class="catrow"><div class="when">Overdue</div><div class="what"><span class="sym">AGR</span><span class="desc">Tr&ecirc;s Estradas phosphate: court resolution confirming validity of the environmental licence (TRF4 appeal), "anticipated by mid-November 2026".</span></div></div>
       <div class="catrow"><div class="when">Overdue</div><div class="what"><span class="sym">DES</span><span class="desc">Timbakouna gold (Siguiri, Guinea): initial assays from the restarted 485-hole, 10,000m power auger program, guided for "early November 2026".</span></div></div>
       <div class="catrow"><div class="when">Overdue</div><div class="what"><span class="sym">TGM</span><span class="desc">TGME Gold Project: further bond facility drawdown, guided for "early November 2026".</span></div></div>
-      <div class="src">Pulled from the CATALYSTS data in craig-bullish-map.html: dated items landing 20&ndash;30 Nov, nearest first, plus early/mid-November items still outstanding. AGR, DES and TGM status was not re-searched today. Not a full corporate calendar, only what's been flagged.</div>
+      <div class="src">Pulled from the CATALYSTS data in craig-bullish-map.html: dated items landing 20 Nov&ndash;1 Dec, nearest first, plus early/mid-November items still outstanding. AGR, DES and TGM status was not re-searched today. Not a full corporate calendar, only what's been flagged.</div>
     </div>
 
     <!-- TODAY'S GAME PLAN -->
     <div class="card wide">
       <div class="hd">
         <div><div class="lbl">Section 05</div><h2>Today's Game Plan</h2></div>
-        <div class="asof">Weekend Sat 21 Nov &middot; into Mon 23 Nov</div>
+        <div class="asof">Into Tue 24 Nov</div>
       </div>
-      <div class="catrow"><div class="when">Catalyst</div><div class="what"><span class="desc">Watch <b>EMP</b>: Judith-2 well-site geophysical survey, due "Commencing 23 November 2026" (Monday).</span></div></div>
-      <div class="catrow"><div class="when">Catalyst</div><div class="what"><span class="desc">Watch <b>MLX</b>: First Tin PLC (LSE:1SN) firm intention to make an offer, or walk away, under the UK Takeover Code (deadline extended), due "By 5pm London time, 20 November 2026". The deadline has passed, and no outcome was found in search, so Monday's open is the first ASX session to react.</span></div></div>
-      <div class="catrow"><div class="when">20d low</div><div class="what"><span class="desc">Three sectors set <b>fresh 20-day closing lows</b> on Friday. <b>XMJ</b> (Materials) closed at <b>20,089.5</b>, under the prior 20-day floor of 20,530.1. <b>XEJ</b> (Energy) closed at <b>9,866.4</b>, under 9,995.9. <b>XFJ</b> (Financials) closed at <b>9,487.8</b>, under 9,614.4.</span></div></div>
-      <div class="catrow"><div class="when">20d low</div><div class="what"><span class="desc">Every US commodity proxy also set <b>a fresh 20-day closing low</b>. <b>GDX</b> $68.40 (prior floor $72.00). <b>SIL</b> $60.29 ($63.86). <b>COPX</b> $56.33 ($59.28). <b>URA</b> $26.79 ($28.67). <b>LIT</b> $51.98 ($54.33). <b>REMX</b> $42.06 ($44.32). <b>Gold</b> futures $3,515.40 ($3,685.50). <b>Silver</b> $41.03 ($44.32). <b>Copper</b> $5.48 ($5.62).</span></div></div>
-      <div class="catrow"><div class="when">Fib</div><div class="what"><span class="desc"><b>XHJ</b> (Health Care) closed at 34,728.6, <b>0.2% from its 0.5 retrace</b> (34,782.3) of the 4 Nov low (34,088.8) to 12 Nov high (35,475.7) rally. That is the tightest fib test on the watchlist.</span></div></div>
-      <div class="catrow"><div class="when">Fib</div><div class="what"><span class="desc"><b>XSJ</b> (Staples) closed at 13,479.5, <b>0.6% above its 0.5 retrace</b> (13,404.1) of the 2 Nov low (12,994.5) to 6 Nov high (13,813.6) rally.</span></div></div>
-      <div class="src">Catalysts are items due within 1&ndash;2 days in the bull map CATALYSTS data, plus MLX's just-passed deadline. Technicals come from morning_brief_technicals.py (daily yfinance closes for the 11 ASX GICS sector indices plus GDX/SIL/COPX/URA/LIT/REMX and gold/silver/copper futures). The 20-day checks compare against the prior 20 sessions. The fib checks use 0.5/0.618 retraces within ~2%. XNJ, XPJ, XDJ, XUJ and XTJ also sat 1.0&ndash;1.3% from 0.5 retraces, but they're left off as looser tests. ASX lines use Friday's closes, so they don't yet reflect Friday's US sell-off (SPI &minus;0.57%).</div>
+      <div class="catrow"><div class="when">Catalyst</div><div class="what"><span class="desc">Watch <b>EMP</b>: Judith-2 well-site geophysical survey, due "Commencing 23 November 2026" (today). The stock closed +13.85%.</span></div></div>
+      <div class="catrow"><div class="when">20d low</div><div class="what"><span class="desc"><b>XFJ</b> (Financials) set another <b>fresh 20-day closing low</b> at <b>9,373.9</b>, under Friday's 9,487.8 floor, as the big banks fell 0.6&ndash;2.2%. <b>XEJ</b> (Energy) did the same at <b>9,807.6</b>, under 9,866.4.</span></div></div>
+      <div class="catrow"><div class="when">Fib</div><div class="what"><span class="desc"><b>XPJ</b> (A-REITs) closed at 1,583.3, <b>right on its 0.5 retrace</b> (1,582.95) of the 19 Oct low (1,506.4) to 12 Nov high (1,659.5) rally. <b>XHJ</b> (Health Care) closed at 34,812.9, <b>0.1% from its 0.5 retrace</b> (34,782.25) of the 4 Nov to 12 Nov rally, and held it for a second day.</span></div></div>
+      <div class="catrow"><div class="when">20d low</div><div class="what"><span class="desc">All six US miners ETFs are still sitting on Friday's <b>fresh 20-day closing lows</b>: <b>GDX</b> $68.40 (prior floor $72.00), <b>SIL</b> $60.29 ($63.86) and <b>COPX</b> $56.33 ($59.28), with URA, LIT and REMX the same. They haven't traded since then, and gold futures are up 3.3% in Asia, so tonight's US session shows whether those lows hold.</span></div></div>
+      <div class="src">The catalyst line is the only bull map CATALYSTS item due within 1&ndash;2 days. Technicals come from morning_brief_technicals.py (daily yfinance closes for the 11 ASX GICS sector indices plus GDX/SIL/COPX/URA/LIT/REMX and gold/silver/copper futures). The 20-day checks compare against the prior 20 sessions. The fib checks use 0.5/0.618 retraces within ~2%. XSJ (0.4%), XNJ (0.6%), XUJ (0.8%) and XDJ (1.5%) also sat near retraces but are left off. ASX lines use Monday's closes; the US ETF lines use Friday's.</div>
     </div>
 
   </div>
 
-  <div class="foot">Built from TradingView/yfinance data + live search at ~21:45 AEDT, 21 Nov 2026 (after Friday's US close) &middot; static snapshot, not auto-refreshing yet</div>
+  <div class="foot">Built from yfinance data + live search at ~18:30 AEDT, 23 Nov 2026 (after Monday's ASX close, before the US open) &middot; static snapshot, not auto-refreshing yet</div>
 
   <div class="foot" style="margin-top:6px;"><a href="index.html">&larr; ASX Trading Hub</a></div>
 
