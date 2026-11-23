@@ -236,14 +236,14 @@ try {
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:#1a1510; --surface:#251f17; --border:#4a3f2c; --card:#332a1d;
+    --bg:#1a1510; --surface:#221f1a; --border:#4a443a; --card:#2b2721;
     --accent:#e0a63f; --accent-ink:#1c1204; --accent2:#6fc9ba; --accent2-ink:#0a1f1c;
     --good:#8fc97a; --bad:#e2816a; --warn:#e0b86a;
     --text:#f3ecd8; --muted:#cdc2a3;
   }
 }
 [data-theme="dark"] {
-  --bg:#1a1510; --surface:#251f17; --border:#4a3f2c; --card:#332a1d;
+  --bg:#1a1510; --surface:#221f1a; --border:#4a443a; --card:#2b2721;
   --accent:#e0a63f; --accent-ink:#1c1204; --accent2:#6fc9ba; --accent2-ink:#0a1f1c;
   --good:#8fc97a; --bad:#e2816a; --warn:#e0b86a;
   --text:#f3ecd8; --muted:#cdc2a3;

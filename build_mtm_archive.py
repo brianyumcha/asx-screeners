@@ -349,14 +349,14 @@ HTML_TEMPLATE = r"""<meta charset="UTF-8">
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+    --bg:#1a1510; --surface:#221f1a; --surface2:#2b2721; --border:#4a443a;
     --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
     --accent:#e0a63f; --accent-ink:#1c1204;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+  --bg:#1a1510; --surface:#221f1a; --surface2:#2b2721; --border:#4a443a;
   --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
   --accent:#e0a63f; --accent-ink:#1c1204;
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);

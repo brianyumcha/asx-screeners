@@ -508,7 +508,7 @@ CSS_AND_SHELL = r"""<meta charset="UTF-8">
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+    --bg:#1a1510; --surface:#221f1a; --surface2:#2b2721; --border:#4a443a;
     --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
     --accent:#e0a63f; --accent-ink:#1c1204;
     --materials:#e0a63f; --energy:#e2816a; --health:#6fc9ba; --industrials:#a8c99e; --it:#b8a8e8; --consumer:#e0a8c8; --unresolved:#8f8468;
@@ -517,7 +517,7 @@ CSS_AND_SHELL = r"""<meta charset="UTF-8">
   }
 }
 :root[data-theme="dark"]{
-  --bg:#1a1510; --surface:#251f17; --surface2:#332a1d; --border:#4a3f2c;
+  --bg:#1a1510; --surface:#221f1a; --surface2:#2b2721; --border:#4a443a;
   --ink:#f3ecd8; --ink-soft:#cdc2a3; --ink-faint:#8f8468;
   --accent:#e0a63f; --accent-ink:#1c1204;
   --materials:#e0a63f; --energy:#e2816a; --health:#6fc9ba; --industrials:#a8c99e; --it:#b8a8e8; --consumer:#e0a8c8; --unresolved:#8f8468;
