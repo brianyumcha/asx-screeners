@@ -55,7 +55,7 @@ h2{font-size:1.15rem;margin:0 0 .5rem}
 p{color:var(--ink-soft)}
 .mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
 
-.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem;flex-wrap:wrap;gap:1rem}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem;flex-wrap:nowrap;gap:1rem}
 .topbar>div:first-child{flex:1 1 auto;min-width:0}
 @media (min-width:641px){
   .topbar{position:sticky;top:65px;z-index:400;background:var(--bg);padding:.9rem 0 .7rem;border-bottom:1px solid var(--border)}
@@ -88,7 +88,7 @@ p{color:var(--ink-soft)}
 .controls .hint{font-size:.78rem;color:var(--ink-faint);margin-left:auto}
 
 .calgridwrap{margin-top:.6rem}
-table.calgrid{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.85rem}
+table.calgrid{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:.85rem}
 table.calgrid th:nth-child(1), table.calgrid td:nth-child(1){width:10%}
 table.calgrid th:nth-child(2), table.calgrid td:nth-child(2){width:9%}
 table.calgrid th:nth-child(3), table.calgrid td:nth-child(3){width:16%}
