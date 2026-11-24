@@ -1917,7 +1917,7 @@ canvas{width:100%;height:100%;display:block}
   <div class="topbar">
     <div>
       <h1>⬆️ ASX Higher-High Screener</h1>
-      <div class="subtitle">Flags ASX stocks breaking out to a new swing high — a close crossing back above the last confirmed pivot high, by sector, across the full ASX universe.</div>
+      <div class="subtitle">Close crosses back above the last confirmed pivot high (3 bars left/right) · by sector, full ASX universe.</div>
       <div class="subtitle">Runs weekdays at 10:30am, 1pm, 3:30pm &amp; 4:30pm intraday, plus 5pm after close — all Sydney time.</div>
     </div>
     <div class="topbar-right">

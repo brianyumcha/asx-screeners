@@ -774,7 +774,7 @@ def build_html_report(results, total_scanned, out_path):
         cards=[to_card(r) for r in results],
         total_scanned=total_scanned,
         title='↩️ ASX Pullback Screener — Zag Zone',
-        subtitle='ASX stocks pulling back into the 38.2%-61.8% retracement of their latest swing.',
+        subtitle='Price sits in the 38.2%-61.8% retracement zone of the latest confirmed swing.',
         footer_note=(
             'ASX Pullback Screener · Data via Yahoo Finance (yfinance), ticker universe via SeaBee/Market Index<br>'
             f'Required: latest swing retracement in the Zag Zone (impulse ≥ {MIN_IMPULSE_PCT}%). '

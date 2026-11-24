@@ -287,7 +287,7 @@ def build_html_report(results, total_scanned, out_path):
         cards=[to_card(r) for r in results],
         total_scanned=total_scanned,
         title='🚀 ASX Momentum Screener',
-        subtitle='ASX stocks with a confirmed uptrend and healthy RSI — not already overbought. Sorted by relative volume.',
+        subtitle='RSI 50-65 · price > SMA20 > SMA50 · min $500K avg daily volume · sorted by relative volume.',
         footer_note=(
             'ASX Momentum Screener · Data via Yahoo Finance (yfinance), ticker universe via SeaBee<br>'
             'Criteria: 30d average volume &ge; 500,000 AND price above 20d SMA above 50d SMA AND '

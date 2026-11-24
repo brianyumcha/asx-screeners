@@ -201,7 +201,7 @@ def build_html_report(results, total_scanned, out_path):
         cards=[to_card(r) for r in results],
         total_scanned=total_scanned,
         title='🌋 ASX Volume Anomaly Scanner',
-        subtitle='ASX stocks trading well above their own normal volume today — no price-direction filter, so quiet accumulation shows up here before it shows up anywhere else on this site.',
+        subtitle="Today's volume &ge; 3x the 20-day average (min 100K shares) · no price-direction filter · &plusmn;2% separates Spike Up/Down from Quiet Spike.",
         footer_note=(
             'ASX Volume Anomaly Scanner · Data via Yahoo Finance (yfinance), ticker universe via SeaBee<br>'
             f'Criteria: today\'s volume &ge; {RVOL_THRESHOLD:.1f}&times; the trailing 20-day average AND '

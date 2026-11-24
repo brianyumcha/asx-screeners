@@ -73,6 +73,13 @@ RSI_MIN               = 45     # RSI floor
 RSI_MAX               = 70     # RSI ceiling
 SMA_SHORT             = 20     # short moving average
 SMA_LONG              = 50     # long moving average
+PEAK_LOOKBACK_DAYS    = 60     # window to find the "prior advance" high in, for the pause check below
+MIN_DAYS_SINCE_PEAK   = 8      # a stock must have gone at least this many sessions with no new
+                                # PEAK_LOOKBACK_DAYS high - distinguishes a stock that's actually
+                                # pausing/basing from one still mid-trend making new highs every
+                                # few days (KOA/HLS both made their 60-day high only 2-3 sessions
+                                # before being flagged, despite technically sitting under the
+                                # trailing-30-day high already used by LOOKBACK_DAYS below)
 HISTORY_PERIOD       = "1y"    # need enough history for 50-day SMA + 30-day windows, and a 12M chart view
 CHART_TRIM_BARS       = 260    # trailing bars embedded per result for the dashboard's mini charts
 MIN_PRICE             = 0.05   # minimum price filter (5 cents)
@@ -507,7 +514,7 @@ def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LO
         if market_cap and market_cap < MIN_MARKET_CAP:
             return None
 
-        min_needed = max(obv_days + 5, lookback_days + 5, SMA_LONG + 5)
+        min_needed = max(obv_days + 5, lookback_days + 5, SMA_LONG + 5, PEAK_LOOKBACK_DAYS + 5)
         if ticker_frame is None or len(ticker_frame) < min_needed:
             return None
 
@@ -570,6 +577,23 @@ def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LO
 
         gap_pct = (n_day_high - price) / n_day_high * 100  # info column only
 
+        # ── Criterion: at least MIN_DAYS_SINCE_PEAK sessions since the
+        # prior advance's own high - confirms an actual pause/base is
+        # forming, not a stock still making fresh highs every few days.
+        # The check above only asks "is price under its 30-day high right
+        # now," which a stock satisfies the instant it pulls back even
+        # one cent the day after printing that high - true of a name
+        # that broke out violently days ago just as much as one that's
+        # been quietly basing for weeks. This looks further back
+        # (PEAK_LOOKBACK_DAYS, long enough to span the prior advance into
+        # the base) and requires real time to have passed since that
+        # peak, not just a down day or two.
+        peak_window = highs[-PEAK_LOOKBACK_DAYS:]
+        peak_idx = max(range(len(peak_window)), key=lambda i: peak_window[i])
+        days_since_peak = len(peak_window) - 1 - peak_idx
+        if days_since_peak < MIN_DAYS_SINCE_PEAK:
+            return None
+
         # ── Criterion: RSI between 45 and 70 ──────────────────────────────
         rsi = calc_rsi(closes, period=RSI_PERIOD)
         if rsi is None or not (RSI_MIN <= rsi <= RSI_MAX):
@@ -628,6 +652,7 @@ def analyse_ticker(ticker_raw, ticker_frame, obv_days=OBV_DAYS, lookback_days=LO
             'sma50':        round(sma50, 4),
             'thirty_day_high': round(n_day_high, 4),
             'gap_pct':      round(gap_pct, 2),
+            'days_since_peak': days_since_peak,
             'vol_ratio':    round(vol_ratio, 2),
             'avg_vol':      int(avg_vol),
             'dates':        dates[trim],
@@ -661,7 +686,7 @@ def run_scan(tickers, obv_days=OBV_DAYS, workers=DEFAULT_WORKERS, sector_map=Non
 
     print(f"\n🔄 Refreshing shared price cache for {total} ASX tickers | {workers} threads\n")
     cache, fetched_ok, _ = price_cache.refresh_cache(tickers, workers=workers, max_history=HISTORY_PERIOD)
-    min_needed = max(obv_days + 5, LOOKBACK_DAYS + 5, SMA_LONG + 5)
+    min_needed = max(obv_days + 5, LOOKBACK_DAYS + 5, SMA_LONG + 5, PEAK_LOOKBACK_DAYS + 5)
     usable = price_cache.count_usable(cache, tickers, min_days=min_needed)
     latest_date = cache["date"].max() if not cache.empty else None
     print(f"   Cache refresh done in {time.time()-t0:.1f}s  |  Fresh this run: {fetched_ok}/{total}  |  Usable overall: {usable}/{total}")
@@ -884,7 +909,7 @@ def build_html_report(results, total_scanned, out_path, rs_leaders=None):
         cards=[to_card(r) for r in results],
         total_scanned=total_scanned,
         title='📈 ASX Pre-Breakout Screener',
-        subtitle='ASX stocks quietly building strength before a breakout — not stocks already breaking out.',
+        subtitle='OBV rising over 30d · price below its 30-day high · 8+ sessions since the 60-day peak (confirms an actual pause, not a recent spike) · RSI 45-70 · price above SMA20 &amp; SMA50.',
         footer_note=(
             'ASX Pre-Breakout Screener · Data via Yahoo Finance (yfinance), ticker universe via SeaBee/Market Index<br>'
             'Criteria: rising OBV (30d) AND price below 30-day high AND RSI 45-70 AND price above 20d &amp; 50d SMA '
