@@ -2554,7 +2554,7 @@
       "catalyst": "Morro do Ferro REE (Brazil) — complete current 2-rig drilling program, toward a potential maiden Mineral Resource estimate",
       "catalyst_type": "mre_upgrade",
       "timing": "Program completion ~six weeks from 30 Oct 2026 (mid-Dec 2026); MRE no date",
-      "sort": "2026-10-30",
+      "sort": "2026-12-15",
       "day_precise": true,
       "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
       "estimated": false
@@ -3194,13 +3194,13 @@
   ],
   "MLX": [
     {
-      "catalyst": "First Tin PLC (LSE:1SN) — firm intention to make an offer, or walk away, under UK Takeover Code (deadline extended)",
-      "catalyst_type": "board_ma",
-      "timing": "By 5pm London time, 20 November 2026",
-      "sort": "2026-11-20",
-      "day_precise": true,
-      "source": "Extension of deadline to make offer for First Tin, 6 Nov 2026",
-      "estimated": false
+      "catalyst": "First Tin PLC (LSE:1SN) — recommended £89.4M cash offer agreed (16.5p/share); Offer Document and Form of Acceptance to be sent to First Tin shareholders",
+      "timing": "Within 28 days of 20 Nov 2026 (~mid-Dec 2026)",
+      "sort": "2026-12-15",
+      "source": "Recommended Cash Offer announcement, 20 Nov 2026",
+      "day_precise": false,
+      "estimated": true,
+      "catalyst_type": "board_ma"
     },
     {
       "catalyst": "Renison — Rentails Front-End Engineering Design completion (delayed from late CY2026)",
@@ -3561,15 +3561,6 @@
     }
   ],
   "AXP": [
-    {
-      "catalyst": "Oklahoma acquisition (wells, facilities, saltwater disposal; 100% WI) — completion; entitlement offer (min A$1.2M) closes",
-      "catalyst_type": "board_ma",
-      "timing": "Completion targeted by 3 Nov 2026; offer closes 3 Nov 2026",
-      "sort": "2026-11-03",
-      "day_precise": true,
-      "source": "September 2026 Quarterly Activities Report (30 Oct 2026)",
-      "estimated": false
-    },
     {
       "catalyst": "Recompletion field work on acquired wellbores to add gas for gas-to-power (Bitcoin mining) expansion",
       "catalyst_type": "other",
@@ -4443,15 +4434,6 @@
     }
   ],
   "INA": [
-    {
-      "catalyst": "Takeover contest — Warburg Pincus consortium due diligence access ends (possible counter-bid)",
-      "catalyst_type": "board_ma",
-      "timing": "Until 13 November 2026",
-      "sort": "2026-11-13",
-      "day_precise": true,
-      "source": "Ingenia takeover proposal updates (2-10 Nov 2026)",
-      "estimated": false
-    },
     {
       "catalyst": "AVID $5.55 cash proposal — written confirmation it will not withdraw/reduce",
       "catalyst_type": "other",
