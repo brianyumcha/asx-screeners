@@ -167,9 +167,9 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="lower-low.html">Lower-Low</a>
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
-<a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="volume-anomaly.html">Volume Anomaly</a>
-<a href="reversal-rsi.html">Reversal (RSI)</a>
+<a href="reversal-rsi.html">RSI Divergence</a>
+<a href="darvas-box.html">Darvas Box</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -242,7 +242,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily after ASX close — last rebuilt 23 Nov 2026.</div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt 24 Nov 2026.</div>
 
   <div class="notice">⚠ 'Category' is Yahoo's own industry classification passed through as-is - inspecting all 20 Utilities-sector tickers' real data found a clean, specific taxonomy already ('Utilities - Renewable', 'Utilities - Independent Power Producers', 'Utilities - Diversified', 'Utilities - Regulated Gas', 'Utilities - Regulated Electric'), no systematic mistagging cluster to fix. Utilities has no natural explorer/producer or clinical-trial lifecycle the way Materials or Healthcare do, so this index skips an inferred 'Stage' column and shows dividend yield instead — the metric that actually matters for this sector.</div>
 
@@ -289,24 +289,24 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["AGL","AGL Energy Limited","Utilities - Independent Power Producers",6007633408,8.93,-0.8,10.63,5.78],
-["APA","APA Group","Utilities - Regulated Gas",15060805632,11.3,0.4,11.62,5.16],
-["CCE","Carnegie Clean Energy Limited","Utilities - Renewable",79051072,0.185,-2.6,0.365,0.0],
-["CEN","Contact Energy Limited","Utilities - Renewable",7552434176,6.98,-2.0,8.59,4.47],
-["DEL","Delorean Corporation Limited","Utilities - Renewable",18625682,0.068,-4.2,0.15,0.0],
-["DEM","De.mem Limited","Pollution & Treatment Controls",34363872,0.105,5.0,0.13,0.0],
-["EWC","Energy World Corporation Ltd","Utilities - Independent Power Producers",285150848,0.074,-1.3,0.086,0.0],
-["FLC","Fluence Corporation Limited","Pollution & Treatment Controls",64698756,0.055,-1.8,0.11,0.0],
-["GNE","Genesis Energy Limited","Utilities - Independent Power Producers",2534167296,1.92,-2.8,2.32,6.36],
-["JNS","Janus Electric Holdings Limited","Utilities - Renewable",116195000,0.615,5.1,0.9,0.0],
-["KPO","Kalina Power Limited","Utilities - Diversified",45917568,0.015,15.4,0.027,0.0],
-["LGI","LGI Limited","Utilities - Renewable",245153440,2.37,-3.3,4.37,1.1],
+["AGL","AGL Energy Limited","Utilities - Independent Power Producers",6068180480,9.02,1.0,10.63,5.82],
+["APA","APA Group","Utilities - Regulated Gas",15114118144,11.34,0.4,11.62,5.13],
+["CCE","Carnegie Clean Energy Limited","Utilities - Renewable",79051072,0.185,0.0,0.365,0.0],
+["CEN","Contact Energy Limited","Utilities - Renewable",7617354752,7.04,0.9,8.59,4.56],
+["DEL","Delorean Corporation Limited","Utilities - Renewable",18351774,0.067,-1.5,0.15,0.0],
+["DEM","De.mem Limited","Pollution & Treatment Controls",32727498,0.1,-4.8,0.13,0.0],
+["EWC","Energy World Corporation Ltd","Utilities - Independent Power Producers",285150848,0.074,0.0,0.086,0.0],
+["FLC","Fluence Corporation Limited","Pollution & Treatment Controls",64698756,0.055,0.0,0.11,0.0],
+["GNE","Genesis Energy Limited","Utilities - Independent Power Producers",2573763584,1.95,1.6,2.32,6.55],
+["JNS","Janus Electric Holdings Limited","Utilities - Renewable",122807720,0.65,5.7,0.9,0.0],
+["KPO","Kalina Power Limited","Utilities - Diversified",42856400,0.014,-6.7,0.027,0.0],
+["LGI","LGI Limited","Utilities - Renewable",247222256,2.39,0.8,4.37,1.14],
 ["LPE","Locality Planning Energy Holdings Limited","Utilities - Regulated Electric",19540814,0.107,-0.5,0.18,0.0],
-["MCY","Mercury NZ Limited","Utilities - Renewable",7701959680,5.36,-1.8,6.37,4.02],
-["MEZ","Meridian Energy Limited","Utilities - Renewable",12226867200,4.6,-3.6,5.1,3.76],
-["ORG","Origin Energy Limited","Utilities - Diversified",21379297280,12.41,-0.4,12.84,4.82],
-["RIV","Rivco Australia Ltd","Utilities",175616976,1.12,-1.3,1.53,3.17],
-["TML","Timah Resources Limited","Utilities - Renewable",4437988,0.05,0.0,0.05,0.0],
+["MCY","Mercury NZ Limited","Utilities - Renewable",7903130112,5.5,2.6,6.37,4.1],
+["MEZ","Meridian Energy Limited","Utilities - Renewable",12014226432,4.52,-1.7,5.1,3.9],
+["ORG","Origin Energy Limited","Utilities - Diversified",21568800768,12.52,0.9,12.84,4.83],
+["RIV","Rivco Australia Ltd","Utilities",185025008,1.18,5.4,1.53,3.21],
+["TML","Timah Resources Limited","Utilities - Renewable",4437988,0.05,0.0,0.051,0.0],
 ["TPC","TPC Consolidated Limited","Utilities - Diversified",46811144,3.9,0.0,6.41,5.13],
 ["VPR","Volt Group Limited","Utilities - Renewable",17182586,0.105,0.0,0.18,0.0]
 ];

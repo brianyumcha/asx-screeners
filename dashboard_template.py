@@ -120,7 +120,7 @@ NAV_SCREENER_LINKS = [
     ('lower-low.html', 'Lower-Low'),
     ('momentum.html', 'Momentum'),
     ('pre-breakout.html', 'Pre-Breakout (OBV)'),
-    ('pullback.html', 'Pullback (Zag Zone)'),
+    # ('pullback.html', 'Pullback (Zag Zone)'),  # hidden 2026-11-24, rarely used - page/script untouched, just re-add this line to bring it back
     ('volume-anomaly.html', 'Volume Anomaly'),
     ('reversal-rsi.html', 'RSI Divergence'),
     ('darvas-box.html', 'Darvas Box'),

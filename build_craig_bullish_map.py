@@ -705,9 +705,23 @@ function calMonthLabel(iso){
 (function renderCatalystCalendar(){
   const body = document.getElementById('catalystCalendarBody');
   if(!body) return;
+  const todayD = new Date();
+  const todayIso = `${todayD.getFullYear()}-${String(todayD.getMonth()+1).padStart(2,'0')}-${String(todayD.getDate()).padStart(2,'0')}`;
   const flat = [];
   Object.entries(CATALYSTS).forEach(([tk, items]) => {
-    (items || []).forEach(c => flat.push({tk, catalyst: c.catalyst, timing: c.timing, sort: c.sort, dayPrecise: !!c.day_precise, estimated: !!c.estimated}));
+    (items || []).forEach(c => {
+      // An estimated (quarter/half/vague-year) sort date is a midpoint
+      // computed once at build time - it never re-anchors as real time
+      // passes, so a still-open item looks more stale every day until the
+      // underlying data is re-researched. Bumping it forward to today here
+      // (client-side, same fix as the public FA Catalyst Calendar) means it
+      // self-corrects on every page view rather than only at next rebuild.
+      // A day-precise lapsed deadline is left alone - that's a real
+      // staleness bug needing re-verification, not a date to paper over.
+      let sort = c.sort;
+      if(c.estimated && sort !== null && sort < todayIso) sort = todayIso;
+      flat.push({tk, catalyst: c.catalyst, timing: c.timing, sort, dayPrecise: !!c.day_precise, estimated: !!c.estimated});
+    });
   });
   // Group by month (YYYY-MM), undated last; within a month, non-estimated
   // rows (genuinely-stated timing) before estimated (quarter/half/vague-year

@@ -167,9 +167,9 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="lower-low.html">Lower-Low</a>
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
-<a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="volume-anomaly.html">Volume Anomaly</a>
-<a href="reversal-rsi.html">Reversal (RSI)</a>
+<a href="reversal-rsi.html">RSI Divergence</a>
+<a href="darvas-box.html">Darvas Box</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html" class="active">Communication Services</a>
@@ -242,7 +242,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily after ASX close — last rebuilt 23 Nov 2026.</div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt 24 Nov 2026.</div>
 
   <div class="notice">⚠ 'Category' is Yahoo's own industry classification passed through as-is - inspecting all 53 Communication Services-sector tickers' real data found no systematic mistagging cluster, just genuine (if sometimes narrow) descriptions of what each company does ('Telecom Services', 'Internet Content &amp; Information', 'Entertainment', 'Advertising Agencies', 'Electronic Gaming &amp; Multimedia', 'Broadcasting', 'Publishing' and more). Communication Services has no natural explorer/producer or clinical-trial lifecycle the way Materials or Healthcare do, so this index skips an inferred 'Stage' column and shows dividend yield instead — the metric that actually matters for this sector.</div>
 
@@ -289,59 +289,59 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["5GG","Pentanet Limited","Telecom Services",4981474,0.0115,4.5,0.034,0.0],
-["A1N","ARN Media Limited","Broadcasting",87654104,0.28,-1.8,0.49,0.0],
-["ABB","Aussie Broadband Limited","Telecom Services",1253416576,4.18,-1.6,5.8,1.41],
+["5GG","Pentanet Limited","Telecom Services",5198060,0.012,4.3,0.034,0.0],
+["A1N","ARN Media Limited","Broadcasting",89219352,0.285,1.8,0.49,0.0],
+["ABB","Aussie Broadband Limited","Telecom Services",1268409728,4.23,1.2,5.8,1.44],
 ["AD1","AdNeo Limited","Information Technology Services",4996056,0.012,0.0,0.043,0.0],
 ["AER","Aeeris Limited","Software - Application",4454485,0.057,0.0,0.1,0.0],
-["AGT","Arbitr Group Limited","Specialty Business Services",5983555,0.093,-4.1,0.435,0.0],
-["ART","Airtasker Limited","Internet Content & Information",85680696,0.175,-5.4,0.365,0.0],
-["ASP","Aspermont Limited","Publishing",14343157,1.22,1.7,2.5,0.0],
-["BBL","Brisbane Broncos Limited","Entertainment",152453184,1.555,0.3,1.92,1.29],
-["CAR","CAR Group Limited","Internet Content & Information",9431451648,24.86,-0.8,34.98,3.47],
-["CCG","Comms Group Limited","Information Technology Services",41375660,0.075,0.0,0.1,3.33],
-["CNU","Chorus Limited","Telecom Services",2881011712,6.64,-1.8,8.49,6.2],
-["EGG","Enero Group Limited","Advertising Agencies",17239672,0.19,0.0,0.685,14.74],
-["EVT","EVT Limited","Entertainment",2476369664,15.2,-0.7,16.15,2.68],
-["FDV","Frontier Digital Ventures Limited","Internet Content & Information",120060312,0.275,-1.8,0.42,0.0],
-["FRX","FlexiRoam Limited","Telecom Services",28817640,0.019,-5.0,0.03,0.0],
+["AGT","Arbitr Group Limited","Specialty Business Services",6047894,0.094,1.1,0.435,0.0],
+["ART","Airtasker Limited","Internet Content & Information",90576736,0.185,5.7,0.365,0.0],
+["ASP","Aspermont Limited","Publishing",14343157,1.22,0.0,2.5,0.0],
+["BBL","Brisbane Broncos Limited","Entertainment",153923792,1.57,1.0,1.92,1.29],
+["CAR","CAR Group Limited","Internet Content & Information",9647698944,25.43,2.3,34.98,3.5],
+["CCG","Comms Group Limited","Information Technology Services",43306524,0.0785,4.7,0.1,3.33],
+["CNU","Chorus Limited","Telecom Services",2898366976,6.68,0.6,8.49,6.32],
+["EGG","Enero Group Limited","Advertising Agencies",16785998,0.185,-2.6,0.685,14.74],
+["EVT","EVT Limited","Entertainment",2499178240,15.34,0.9,16.15,2.7],
+["FDV","Frontier Digital Ventures Limited","Internet Content & Information",122243224,0.28,1.8,0.42,0.0],
+["FRX","FlexiRoam Limited","Telecom Services",28817640,0.019,0.0,0.03,0.0],
 ["FTI","NOL8 Ltd","Electronic Gaming & Multimedia",180390000,0.455,0.0,1.26,0.0],
-["GTN","GTN Limited","Advertising Agencies",33366550,0.175,2.9,0.32,61.65],
+["GTN","GTN Limited","Advertising Agencies",33366550,0.175,0.0,0.32,59.89],
 ["GUM","Gumtree Australia Markets Limited","Internet Content & Information",30571386,0.095,0.0,0.145,0.0],
 ["HFY","Hubify Limited","Telecom Services",4653798,0.009,0.0,0.03,0.0],
-["HPG","hipages Group Holdings Limited","Software - Application",102257776,0.75,-2.6,1.385,0.0],
+["HPG","hipages Group Holdings Limited","Software - Application",102257776,0.75,0.0,1.385,0.0],
 ["ICI","","Communication Services",null,null,null,null,null],
-["IGL","IVE Group Limited","Advertising Agencies",328096736,2.14,-0.9,3.19,8.33],
+["IGL","IVE Group Limited","Advertising Agencies",331163072,2.16,0.9,3.19,8.41],
 ["KNM","","Communication Services",null,null,null,null,null],
 ["MXO","Motio Limited","Advertising Agencies",19297328,0.06,0.0,0.062,0.0],
-["NEC","Nine Entertainment Co. Holdings Limited","Entertainment",1284467328,0.81,-0.6,1.245,9.2],
-["NWS","News Corporation","Entertainment",22847819776,42.59,0.3,49.8,0.67],
-["NZM","NZME Limited","Entertainment",147722576,0.785,-1.3,1.045,9.32],
+["NEC","Nine Entertainment Co. Holdings Limited","Entertainment",1347897856,0.85,4.9,1.245,9.26],
+["NWS","News Corporation","Entertainment",23040944128,42.95,0.8,49.8,0.67],
+["NZM","NZME Limited","Entertainment",146781648,0.78,-0.6,1.045,9.44],
 ["OML","oOh!media Limited","Advertising Agencies",882113664,1.67,0.0,1.675,3.59],
-["OVT","Ovanti Limited","Software - Infrastructure",2447247,0.0015,0.0,0.18,0.0],
-["PLY","PlaySide Studios Limited","Electronic Gaming & Multimedia",43114288,0.095,0.0,0.39,0.0],
-["PPL","Pureprofile Ltd","Advertising Agencies",42339496,0.035,0.0,0.056,0.0],
-["REA","REA Group Limited","Internet Content & Information",20569853952,157.19,-0.4,204.28,2.19],
+["OVT","Ovanti Limited","Software - Infrastructure",1631498,0.001,-33.3,0.18,0.0],
+["PLY","PlaySide Studios Limited","Electronic Gaming & Multimedia",45383464,0.1,5.3,0.39,0.0],
+["PPL","Pureprofile Ltd","Advertising Agencies",41129796,0.034,-2.9,0.056,0.0],
+["REA","REA Group Limited","Internet Content & Information",20951963648,160.11,1.9,204.28,2.2],
 ["RLG","RooLife Group Ltd","Software - Application",9684982,0.004,0.0,0.0065,0.0],
 ["RMY","RMA Global Limited","Internet Content & Information",10805057,0.016,0.0,0.071,0.0],
-["RNT","Rent.com.au Limited","Internet Content & Information",49884228,0.043,-4.4,0.077,0.0],
-["SEG","Sports Entertainment Group Limited","Broadcasting",87593064,0.26,2.0,0.38,3.92],
-["SEK","SEEK Limited","Internet Content & Information",4517583360,12.62,-1.3,25.6,4.07],
-["SHO","SportsHero Limited","Internet Content & Information",33758776,0.037,-2.6,0.14,0.0],
+["RNT","Rent.com.au Limited","Internet Content & Information",49884228,0.043,0.0,0.077,0.0],
+["SEG","Sports Entertainment Group Limited","Broadcasting",87593064,0.26,0.0,0.38,3.85],
+["SEK","SEEK Limited","Internet Content & Information",4624974848,12.92,2.4,25.6,4.12],
+["SHO","SportsHero Limited","Internet Content & Information",33758776,0.037,0.0,0.14,0.0],
 ["SKK","Stakk Limited","Software - Application",89305784,0.014,0.0,0.0435,0.0],
-["SKT","SKY Network Television Limited","Entertainment",409732800,2.97,-3.3,3.3,8.51],
-["SLC","Superloop Limited","Telecom Services",1138710656,2.21,-2.6,3.87,0.0],
-["SMG","Seven Media Group Limited","Entertainment",201087232,0.42,2.4,0.84,0.0],
+["SKT","SKY Network Television Limited","Entertainment",426287648,3.09,4.0,3.3,8.79],
+["SLC","Superloop Limited","Telecom Services",1143863168,2.22,0.5,3.87,0.0],
+["SMG","Seven Media Group Limited","Entertainment",191511664,0.4,-4.8,0.84,0.0],
 ["SP8","StreamPlay Studio Limited","Electronic Gaming & Multimedia",6656271,0.005,0.0,0.013,0.0],
-["SPK","Spark New Zealand Limited","Telecom Services",3232094208,1.705,-3.4,2.04,6.9],
+["SPK","Spark New Zealand Limited","Telecom Services",3336355072,1.76,3.2,2.04,7.14],
 ["STG","Arbitr Group Limited","Specialty Business Services",7399019,0.115,null,0.13,null],
-["STV","Swift TV Ltd","Entertainment",5801341,0.004,-20.0,0.017,0.0],
-["SWP","Swoop Holdings Limited","Telecom Services",22707468,0.073,0.0,0.175,0.0],
+["STV","Swift TV Ltd","Entertainment",5801341,0.004,0.0,0.017,0.0],
+["SWP","Swoop Holdings Limited","Telecom Services",22396406,0.072,-1.4,0.175,0.0],
 ["SXL","Seven Media Group Limited","Entertainment",225026192,0.47,0.0,0.515,null],
-["TLS","Telstra Group Limited","Telecom Services",56886194176,5.15,-0.4,5.58,4.06],
-["TNY","Tinybeans Group Limited","Internet Content & Information",5500206,0.03,-16.7,0.11,0.0],
-["TPG","TPG Telecom Limited","Telecom Services",7734336000,3.94,-0.8,4.36,5.04],
-["TUA","Tuas Limited","Telecom Services",745818816,1.36,-2.2,7.805,0.0],
+["TLS","Telstra Group Limited","Telecom Services",57438482432,5.2,1.0,5.58,4.08],
+["TNY","Tinybeans Group Limited","Internet Content & Information",5500206,0.03,0.0,0.11,0.0],
+["TPG","TPG Telecom Limited","Telecom Services",7812856832,3.98,1.0,4.36,5.08],
+["TUA","Tuas Limited","Telecom Services",987113088,1.8,32.4,7.805,0.0],
 ["UNT","Unith Ltd","Software - Application",11073062,0.006,0.0,0.012,0.0],
 ["XGL","Xamble Group Limited","Advertising Agencies",5638724,0.011,0.0,0.018,0.0]
 ];

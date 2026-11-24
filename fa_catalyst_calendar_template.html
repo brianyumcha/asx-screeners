@@ -299,6 +299,24 @@ function todayISOLocal(){
 const TODAY_ISO = todayISOLocal();
 const TODAY_LABEL = new Date(TODAY_ISO+'T00:00:00').toLocaleDateString('en-AU', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
 
+// An "estimated" sort date is a midpoint computed from a wide window
+// ("H2 2026" -> ~30 Sep) at whatever point it was researched - baked into
+// the data at build time, it never moves again on its own, so a still-open
+// item just sits looking more and more stale as real time passes it by
+// (reported directly: "still has september and october dates" while
+// viewing in late November, for entries genuinely still inside their own
+// stated window - H2 2026 runs to 31 Dec, nothing was wrong, it just never
+// re-anchored). Doing this client-side rather than at build time means it
+// self-corrects on every page view regardless of how long it's been since
+// the page was last rebuilt, rather than only at the moment of rebuild.
+// Only an `estimated` row is bumped forward to today - a day_precise
+// (non-estimated) row with a lapsed specific deadline is a real staleness
+// bug needing actual re-verification (drop or update with real news), not
+// a date bump that would fabricate confidence that isn't there.
+DATA.forEach(r => {
+  if(r[9] && r[7] !== null && r[7] < TODAY_ISO) r[7] = TODAY_ISO;
+});
+
 const typeCounts = {};
 DATA.forEach(r => { typeCounts[r[4]] = (typeCounts[r[4]] || 0) + 1; });
 

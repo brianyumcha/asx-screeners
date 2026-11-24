@@ -167,9 +167,9 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="lower-low.html">Lower-Low</a>
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
-<a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="volume-anomaly.html">Volume Anomaly</a>
-<a href="reversal-rsi.html">Reversal (RSI)</a>
+<a href="reversal-rsi.html">RSI Divergence</a>
+<a href="darvas-box.html">Darvas Box</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -242,7 +242,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session">Rebuilt daily after ASX close — last rebuilt 23 Nov 2026.</div>
+  <div class="session">Rebuilt daily after ASX close — last rebuilt 24 Nov 2026.</div>
 
   <div class="notice">⚠ 'Category' is mostly Yahoo's own industry classification passed through as-is (it's already a specific REIT/Real Estate taxonomy for most tickers here — 'REIT - Diversified', 'REIT - Retail', 'REIT - Industrial', 'REIT - Office', 'REIT - Residential', 'REIT - Specialty', 'REIT - Healthcare Facilities', 'Real Estate - Development', 'Real Estate Services'), with a small hand-checked override for the handful of tickers Yahoo tags with an unrelated industry. Real Estate has no natural explorer/producer or clinical-trial lifecycle the way Materials or Healthcare do, so this index skips an inferred 'Stage' column and shows distribution yield instead — the metric that actually matters for this sector.</div>
 
@@ -289,69 +289,69 @@ document.addEventListener('keydown', function(e){
 
 <script>
 const DATA = [
-["ABG","Abacus Group","REIT - Diversified",719394432,0.805,-1.8,1.265,10.37],
+["ABG","Abacus Group","REIT - Diversified",746204160,0.835,3.7,1.265,10.56],
 ["ACU","Acumentis Group Limited","Real Estate Services",19620044,0.088,0.0,0.15,5.11],
 ["AOF","","Real Estate",null,null,null,null,null],
 ["APW","Aims Property Securities Fund","REIT - Diversified",173624112,3.9,0.0,4.2,0.0],
-["APZ","Aspen Group","Real Estate - Diversified",1077400832,4.7,0.4,6.43,2.35],
-["ARF","Arena REIT","REIT - Specialty",1127972736,2.76,-1.1,3.74,6.45],
+["APZ","Aspen Group","Real Estate - Diversified",1098031872,4.79,1.9,6.43,2.34],
+["ARF","Arena REIT","REIT - Specialty",1156580736,2.83,2.5,3.74,6.52],
 ["ASK","","Real Estate",null,null,null,null,null],
 ["AU1","The Agency Group Australia Limited","Real Estate Services",10110247,0.023,0.0,0.038,0.0],
-["AXI","Axtec Limited","Real Estate Services",6456136,0.01,-33.3,0.024,0.0],
-["BWP","BWP Trust","REIT - Industrial",2882589440,3.67,0.5,4.12,5.31],
+["AXI","Axtec Limited","Real Estate Services",6456136,0.01,0.0,0.024,0.0],
+["BWP","BWP Trust","REIT - Industrial",2898298368,3.69,0.5,4.12,5.28],
 ["CAQ","CAQ Holdings Limited","Real Estate - Development",6460076,0.009,0.0,0.009,null],
-["CDP","Carindale Property Trust","REIT - Retail",434370368,5.25,2.5,5.88,5.84],
-["CHC","Charter Hall Group","REIT - Diversified",10320798720,21.82,-0.4,25.95,2.36],
-["CIP","Centuria Industrial REIT","REIT - Industrial",1798237824,2.88,-1.4,3.51,5.92],
-["CLW","Charter Hall Long WALE REIT","REIT - Diversified",2540583424,3.5,-0.8,4.25,7.22],
+["CDP","Carindale Property Trust","REIT - Retail",440162016,5.32,1.3,5.88,5.69],
+["CHC","Charter Hall Group","REIT - Diversified",10528917504,22.26,2.0,25.95,2.37],
+["CIP","Centuria Industrial REIT","REIT - Industrial",1835700992,2.94,2.1,3.51,6.01],
+["CLW","Charter Hall Long WALE REIT","REIT - Diversified",2576877312,3.55,1.4,4.25,7.29],
 ["CMW","Cromwell Property Group","REIT - Office",916603328,1.75,0.0,2.45,8.56],
-["CNI","Centuria Capital Group","REIT - Diversified",1128883968,1.125,-2.2,2.395,9.04],
-["COF","Centuria Office REIT","REIT - Office",525656576,0.88,-2.2,1.2,10.0],
-["CQE","Charter Hall Social Infrastructure REIT","REIT - Specialty",953749504,2.57,-0.8,3.26,6.95],
-["CQR","Charter Hall Retail REIT","REIT - Retail",2237734144,3.85,-0.5,4.24,6.82],
-["CWP","Cedar Woods Properties Limited","Real Estate - Development",558947712,6.57,3.5,9.2,6.14],
+["CNI","Centuria Capital Group","REIT - Diversified",1148952960,1.145,1.8,2.395,9.24],
+["COF","Centuria Office REIT","REIT - Office",534616640,0.895,1.7,1.2,10.23],
+["CQE","Charter Hall Social Infrastructure REIT","REIT - Specialty",979727168,2.64,2.7,3.26,7.0],
+["CQR","Charter Hall Retail REIT","REIT - Retail",2290044672,3.94,2.3,4.24,6.86],
+["CWP","Cedar Woods Properties Limited","Real Estate - Development",553843136,6.51,-0.9,9.2,5.94],
 ["DGH","Desane Group Holdings Limited","Real Estate Services",32727994,0.8,0.0,0.935,0.0],
-["DXC","Dexus Convenience Retail REIT","REIT - Retail",372690304,2.79,0.0,2.95,7.49],
-["DXI","Dexus Industria REIT","REIT - Industrial",751368320,2.45,-0.8,2.84,6.72],
-["DXS","DEXUS","REIT - Office",6222465536,5.85,-1.3,7.435,6.24],
+["DXC","Dexus Convenience Retail REIT","REIT - Retail",368682912,2.76,-1.1,2.95,7.49],
+["DXI","Dexus Industria REIT","REIT - Industrial",757501888,2.47,0.8,2.84,6.78],
+["DXS","DEXUS","REIT - Office",6307558912,5.93,1.4,7.435,6.32],
 ["ECF","","Real Estate",null,null,null,null,null],
-["EGH","Eureka Group Holdings Limited","Real Estate Services",359847072,0.64,0.8,0.795,2.3],
-["FRI","Finbar Group Limited","Real Estate - Development",190486192,0.7,-2.8,0.9,7.64],
+["EGH","Eureka Group Holdings Limited","Real Estate Services",359847072,0.64,0.0,0.795,2.28],
+["FRI","Finbar Group Limited","Real Estate - Development",197289280,0.725,3.6,0.9,7.86],
 ["G1C","Group One Capital Limited","Real Estate - Diversified",19397668,0.055,0.0,0.15,0.0],
-["GDF","Garda Property Group","Real Estate Services",237696416,1.09,0.5,1.24,8.29],
-["GDI","GDI Property Group","Real Estate Services",331602144,0.615,0.0,0.67,8.13],
-["GLF","GemLife Communities Group","Real Estate - Development",1403264384,3.69,-2.1,5.44,0.58],
-["GMG","Goodman Group","REIT - Diversified",56135892992,27.32,-0.8,33.17,1.09],
-["GOZ","Growthpoint Properties Australia","REIT - Office",1516763648,2.01,-1.5,2.63,9.02],
-["GPT","The GPT Group","REIT - Diversified",9443796992,4.93,-1.8,5.75,4.83],
-["HCW","HealthCo Healthcare and Wellness REIT","REIT - Healthcare Facilities",407130208,0.74,-1.3,0.845,2.0],
-["HDN","HomeCo Daily Needs REIT","REIT - Retail",2437441792,1.165,-1.3,1.415,7.29],
+["GDF","Garda Property Group","Real Estate Services",234425360,1.075,-1.4,1.24,8.26],
+["GDI","GDI Property Group","Real Estate Services",336994048,0.625,1.6,0.67,8.13],
+["GLF","GemLife Communities Group","Real Estate - Development",1464110464,3.85,4.3,5.44,0.6],
+["GMG","Goodman Group","REIT - Diversified",57574223872,28.02,2.6,33.17,1.1],
+["GOZ","Growthpoint Properties Australia","REIT - Office",1539401856,2.04,1.5,2.63,9.15],
+["GPT","The GPT Group","REIT - Diversified",9654510592,5.04,2.2,5.75,4.92],
+["HCW","HealthCo Healthcare and Wellness REIT","REIT - Healthcare Facilities",412631936,0.75,1.4,0.845,2.03],
+["HDN","HomeCo Daily Needs REIT","REIT - Retail",2500208640,1.195,2.6,1.415,7.38],
 ["IEQ","International Equities Corporation Limited","Real Estate",5128943,0.04,0.0,0.04,null],
-["INA","Ingenia Communities Group","REIT - Residential",2074598912,5.09,-1.2,5.45,1.86],
-["LED","LDR Capital Property Fund","Real Estate Services",134310656,0.33,0.8,0.68,14.89],
-["LIC","Lifestyle Communities Limited","Real Estate - Diversified",496699424,4.08,-0.7,6.16,0.0],
-["LLC","Lendlease Group","Real Estate - Diversified",1123524608,1.625,-0.3,5.36,9.66],
-["MGR","Mirvac Group","REIT - Diversified",7219058688,1.86,-0.3,2.31,5.15],
+["INA","Ingenia Communities Group","REIT - Residential",2099053824,5.15,1.2,5.45,1.89],
+["LED","LDR Capital Property Fund","Real Estate Services",134310656,0.33,0.0,0.68,14.77],
+["LIC","Lifestyle Communities Limited","Real Estate - Diversified",495482048,4.07,-0.2,6.16,0.0],
+["LLC","Lendlease Group","Real Estate - Diversified",1113153536,1.61,-0.9,5.36,9.69],
+["MGR","Mirvac Group","REIT - Diversified",7335494656,1.89,1.6,2.31,5.16],
 ["MPX","Mustera Property Group Limited","Real Estate - Development",15417689,0.105,0.0,0.145,0.0],
 ["NSR","","Real Estate",null,null,null,null,null],
-["PPC","Peet Limited","Real Estate - Development",701112832,1.49,-1.7,2.24,8.58],
-["PXA","PEXA Group Limited","Real Estate Services",1145344768,6.51,-3.7,16.05,0.0],
-["QAL","Qualitas Limited","Real Estate Services",723418880,2.4,0.8,4.1,4.73],
-["REP","RAM Essential Services Property Fund","REIT - Diversified",113992336,0.455,-1.1,0.6,8.26],
-["RFF","Rural Funds Group","REIT - Specialty",736576448,1.89,-0.8,2.275,6.16],
-["RGN","Region Group","REIT - Retail",2689399552,2.35,-0.4,2.49,5.97],
-["SCG","Scentre Group","REIT - Retail",18407571456,3.52,-1.4,4.25,5.16],
-["SGP","Stockland","REIT - Diversified",10407437312,4.28,-2.1,6.32,5.77],
-["SKG","Storage King Group","REIT - Industrial",1491506816,1.135,-0.9,1.61,5.41],
-["SRV","Servcorp Limited","Real Estate Services",519460928,5.1,-0.2,8.16,6.26],
+["PPC","Peet Limited","Real Estate - Development",715229184,1.52,2.0,2.24,8.72],
+["PXA","PEXA Group Limited","Real Estate Services",1148863488,6.53,0.3,16.05,0.0],
+["QAL","Qualitas Limited","Real Estate Services",738490048,2.45,2.1,4.1,4.69],
+["REP","RAM Essential Services Property Fund","REIT - Diversified",112739664,0.45,-1.1,0.6,8.35],
+["RFF","Rural Funds Group","REIT - Specialty",748268160,1.92,1.6,2.275,6.21],
+["RGN","Region Group","REIT - Retail",2735176704,2.39,1.7,2.49,6.0],
+["SCG","Scentre Group","REIT - Retail",18878218240,3.61,2.6,4.25,5.24],
+["SGP","Stockland","REIT - Diversified",10723550208,4.41,3.0,6.32,5.89],
+["SKG","Storage King Group","REIT - Industrial",1511218304,1.15,1.3,1.61,5.46],
+["SRV","Servcorp Limited","Real Estate Services",526590816,5.17,1.4,8.16,6.27],
 ["SSL","Sietel Limited","Real Estate Services",68864328,8.6,0.0,8.89,null],
 ["TIA","Tian An Australia Limited","Real Estate - Development",13424369,0.155,0.0,0.35,0.0],
-["TOT","360 Capital REIT","REIT - Diversified",89460144,0.4,1.3,0.44,7.97],
-["UOS","United Overseas Australia Ltd","Real Estate - Development",1095983616,0.62,-0.8,0.79,4.0],
+["TOT","360 Capital REIT","REIT - Diversified",89460144,0.4,0.0,0.44,7.88],
+["UOS","United Overseas Australia Ltd","Real Estate - Development",1095983616,0.62,0.0,0.79,4.03],
 ["URF","US Masters Residential Property Fund","REIT - Residential",75729640,0.11,0.0,0.295,0.0],
-["VCX","Vicinity Centres","REIT - Retail",11233120256,2.4,-0.8,2.73,5.12],
-["WOT","WOTSO","Real Estate",87672352,0.55,-4.3,0.69,null],
-["WPR","Waypoint REIT","REIT - Specialty",1482477952,2.27,-0.4,2.73,7.58],
+["VCX","Vicinity Centres","REIT - Retail",11560752128,2.47,2.9,2.73,5.17],
+["WOT","WOTSO","Real Estate",87672352,0.55,0.0,0.69,null],
+["WPR","Waypoint REIT","REIT - Specialty",1508600832,2.31,1.8,2.73,7.61],
 ["WTN","Winton Land Limited","Real Estate - Development",286232224,0.965,0.0,2.27,0.0]
 ];
 

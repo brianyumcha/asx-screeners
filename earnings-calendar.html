@@ -178,9 +178,9 @@ footer{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--border);f
 <a href="lower-low.html">Lower-Low</a>
 <a href="momentum.html">Momentum</a>
 <a href="pre-breakout.html">Pre-Breakout (OBV)</a>
-<a href="pullback.html">Pullback (Zag Zone)</a>
 <a href="volume-anomaly.html">Volume Anomaly</a>
-<a href="reversal-rsi.html">Reversal (RSI)</a>
+<a href="reversal-rsi.html">RSI Divergence</a>
+<a href="darvas-box.html">Darvas Box</a>
 </div></div>
 <div class="sitenav-drop"><button class="sitenav-toggle" type="button">ASX Sector Indexes <span class="sitenav-caret">&#9662;</span></button><div class="sitenav-menu">
 <a href="comms-index.html">Communication Services</a>
@@ -253,7 +253,7 @@ document.addEventListener('keydown', function(e){
       <button class="themebtn" id="themeBtn" title="Toggle light/dark">🌙</button>
     </div>
   </div>
-  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 24 Nov 2026, 6:50AM Sydney time.</div>
+  <div class="session" id="sessionLine">Rebuilt daily — last rebuilt 24 Nov 2026, 10:11PM Sydney time.</div>
 
   <div class="notice" id="seasonNotice" style="display:none"></div>
 
@@ -567,7 +567,7 @@ const SEASON_ACTIVE = false;
 const NEXT_SEASON_NOTE = "February 2027";
 
 document.getElementById('sessionLine').textContent =
-  `Rebuilt daily — last rebuilt 24 Nov 2026, 6:50AM Sydney time. ${SEASON_LABEL} reporting season.`;
+  `Rebuilt daily — last rebuilt 24 Nov 2026, 10:11PM Sydney time. ${SEASON_LABEL} reporting season.`;
 
 if (!SEASON_ACTIVE) {
   const notice = document.getElementById('seasonNotice');
