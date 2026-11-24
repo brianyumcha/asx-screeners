@@ -84,6 +84,8 @@ def render_dashboard_html(
         active_href = 'pullback.html'
     elif 'Momentum' in title:
         active_href = 'momentum.html'
+    elif 'Darvas' in title:
+        active_href = 'darvas-box.html'
     elif 'Cash-Secured Put' in title and 'ETF' in title:
         active_href = 'options-us-etf.html'
     elif 'Cash-Secured Put' in title:
@@ -119,6 +121,7 @@ NAV_SCREENER_LINKS = [
     ('pullback.html', 'Pullback (Zag Zone)'),
     ('volume-anomaly.html', 'Volume Anomaly'),
     ('reversal-rsi.html', 'Reversal (RSI)'),
+    ('darvas-box.html', 'Darvas Box'),
 ]
 NAV_INDEX_LINKS = [
     ('comms-index.html', 'Communication Services'),

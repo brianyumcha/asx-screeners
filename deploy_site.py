@@ -97,6 +97,7 @@ PAGES = {
     "mtm-call-archive.html": ["mtm-call-archive.html"],
     "timing-the-carts.html": ["timing-the-carts.html"],
     "reversal-rsi.html": ["reversal-rsi.html"],
+    "darvas-box.html": ["darvas-box.html"],
     "morning-brief.html": ["morning-brief.html"],
     "morning-brief-manifest.json": ["morning-brief-manifest.json"],
     "morning-brief-icon-192.png": ["morning-brief-icon-192.png"],
