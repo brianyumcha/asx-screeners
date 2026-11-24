@@ -33,13 +33,31 @@ OHLC/volume aggregated per calendar week) rather than a second yfinance
 pull - the shared cache (kept warm by HH/LL/OBV/PULLBACK's own daily
 runs) already has what's needed, so this adds zero extra API load.
 
-First run is a manual/ad-hoc validation pass against whatever's already
-in the shared cache (no refresh_cache() call) - see if the rule actually
-produces good signals before deciding on a real schedule.
+2026-11-25: converted from a bespoke filterable table to the shared
+card-grid renderer (dashboard_template.py's render_dashboard_html(), the
+same one OBV/PULLBACK/MOMENTUM/DARVAS use) and renamed user-facing text
+to "RSI Divergence" - the old "Reversal (RSI)" table read inconsistently
+next to every other screener once there were several of them. A single
+ticker can carry up to 4 independent divergences at once (bullish/bearish
+x daily/weekly); each becomes its OWN card rather than cramming all four
+into one, same "one qualifying result = one card" convention the other
+screeners already use. The old table's per-row Direction/Timeframe filter
+pills don't have an equivalent in the shared renderer (which only filters
+by Sector and Market Cap size) - rather than extend that shared function
+for one screener's sake, Direction+Timeframe are shown as a single
+colored "Setup" stat per card instead (green for bullish, red for
+bearish) - visibly scannable, just not a toggle-filter. The exact pivot
+dates/values that used to fill two whole table columns are condensed into
+the RSI Gap stat plus the swing dates in each card's footer_note-adjacent
+detail; the mini chart is a plain price/RSI context view, not an
+annotated pivot overlay (the shared chart-drawing code has no marker
+primitive, and adding one risks every other screener that reuses it).
 """
 import importlib.util
 import json
+import os
 import sys
+from datetime import date, datetime, timedelta
 
 import pandas as pd
 
@@ -51,10 +69,15 @@ PIVOT_RIGHT = 3
 MIN_PIVOT_SEPARATION = 5
 MAX_PIVOT_AGE = 8
 MIN_DAILY_HISTORY = 300  # enough for weekly resample + pivots on both timeframes
-CHART_WINDOW = 90  # trailing daily bars sent to the page for the on-demand chart
+CHART_TRIM_BARS = 260    # trailing daily bars embedded per card for the mini chart
+STREAK_GAP_DAYS = 5      # trading-day gap before a repeat sighting counts as a new streak
 
-TEMPLATE = "reversal_rsi_template.html"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+HISTORY_FILENAME = 'seen_tickers_reversal.json'
 OUTPUT = "reversal-rsi.html"
+
+DIRECTION_LABEL = {"bull": "Bullish", "bear": "Bearish"}
+TIMEFRAME_LABEL = {"daily": "Daily", "weekly": "Weekly"}
 
 
 def load_universe():
@@ -212,22 +235,130 @@ def analyse_ticker(ticker, frame):
 
     out["ticker"] = ticker
     out["price"] = round(float(d_closes[-1]), 4)
+    out["change_1d"] = round((d_closes[-1] - d_closes[-2]) / d_closes[-2] * 100, 2) if len(d_closes) > 1 and d_closes[-2] else 0.0
 
-    # Daily-only chart window (90 trailing bars) for the page's on-demand
-    # price+RSI chart - "offset" lets the client map p1_idx/p2_idx (indices
-    # into the FULL daily series) onto this trimmed window.
     n = len(d_closes)
-    start = max(0, n - CHART_WINDOW)
-    out["chart_daily"] = {
-        "offset": start,
-        "dates": [str(d)[:10] for d in frame["date"].iloc[start:].tolist()],
-        "opens": [round(float(o), 4) for o in d_opens[start:]],
-        "closes": [round(float(c), 4) for c in d_closes[start:]],
-        "highs": [round(float(h), 4) for h in frame["high"].iloc[start:].tolist()],
-        "lows": [round(float(l), 4) for l in frame["low"].iloc[start:].tolist()],
-        "rsi": [round(v, 1) if v is not None else None for v in d_rsi[start:]],
-    }
+    start = max(0, n - CHART_TRIM_BARS)
+    out["dates"] = [str(d)[:10] for d in frame["date"].iloc[start:].tolist()]
+    out["opens"] = [round(float(v), 4) for v in d_opens[start:]]
+    out["highs"] = [round(float(v), 4) for v in frame["high"].iloc[start:].tolist()]
+    out["lows"] = [round(float(v), 4) for v in frame["low"].iloc[start:].tolist()]
+    out["closes"] = [round(float(v), 4) for v in d_closes[start:]]
+    out["volumes"] = [int(v) for v in frame["volume"].iloc[start:].tolist()]
     return out
+
+
+# ─── STREAK HISTORY (first-seen tracking, not a hide/cooldown) ─────────────
+# Same convention as every other screener here: persistence is part of the
+# signal, so a ticker that keeps flagging isn't hidden, it just accumulates
+# a longer "Since" stat. Keyed by ticker+direction+timeframe (not just
+# ticker) since one ticker can carry up to 4 independent divergences and
+# each should track its own streak - a fresh bearish-weekly signal on a
+# ticker that's had a bullish-daily one for weeks is a new setup, not a
+# continuation.
+
+def _weekdays_between(d1, d2):
+    if d2 < d1:
+        d1, d2 = d2, d1
+    days = 0
+    cur = d1
+    while cur < d2:
+        cur += timedelta(days=1)
+        if cur.weekday() < 5:
+            days += 1
+    return days
+
+
+def load_seen_history():
+    path = os.path.join(SCRIPT_DIR, HISTORY_FILENAME)
+    if not os.path.isfile(path):
+        return {}
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except Exception as e:
+        print(f"  ⚠ Could not read {HISTORY_FILENAME}, starting fresh: {e}")
+        return {}
+
+
+def save_seen_history(history):
+    path = os.path.join(SCRIPT_DIR, HISTORY_FILENAME)
+    try:
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(history, f, indent=2, sort_keys=True)
+    except Exception as e:
+        print(f"  ⚠ Could not save {HISTORY_FILENAME}: {e}")
+
+
+def first_seen_for(history, key, today, gap_days=STREAK_GAP_DAYS):
+    today_str = today.strftime('%Y-%m-%d')
+    entry = history.get(key)
+    first_seen = today_str
+    if entry:
+        try:
+            last_seen = datetime.strptime(entry['last_seen'], '%Y-%m-%d').date()
+            if _weekdays_between(last_seen, today) <= gap_days:
+                first_seen = entry['first_seen']
+        except Exception:
+            pass
+    history[key] = {'first_seen': first_seen, 'last_seen': today_str}
+    return first_seen
+
+
+# ─── CARD CONSTRUCTION ──────────────────────────────────────────────────────
+# Score formula: a larger RSI gap is a stronger divergence (the whole
+# signal IS the size of that gap), and a more recently-confirmed 2nd pivot
+# (lower age_bars) is more immediately actionable - both get rewarded.
+# Calibrated against real gaps seen in this universe (roughly +5 to +15)
+# so a typical result lands in the 55-75 range, not bunched at the ends.
+
+def score_for(rsi_gap, age_bars):
+    raw = 45 + rsi_gap * 2.2 + (MAX_PIVOT_AGE - age_bars) * 2.5
+    return max(0, min(100, round(raw)))
+
+
+def build_cards(results, history, today):
+    cards = []
+    for r in results:
+        for slot, (direction, timeframe) in (
+            ("bull_daily", ("bull", "daily")),
+            ("bear_daily", ("bear", "daily")),
+            ("bull_weekly", ("bull", "weekly")),
+            ("bear_weekly", ("bear", "weekly")),
+        ):
+            d = r.get(slot)
+            if d is None:
+                continue
+            key = f"{r['ticker']}_{direction}_{timeframe}"
+            first_seen = first_seen_for(history, key, today)
+            first_seen_date = datetime.strptime(first_seen, '%Y-%m-%d').date()
+            days_flagging = _weekdays_between(first_seen_date, today)
+            since_label = 'Today' if days_flagging == 0 else f'{days_flagging}d'
+            first_seen_ts = int(datetime.combine(first_seen_date, datetime.min.time()).timestamp())
+
+            cards.append({
+                'ticker': r['ticker'],
+                'name': r.get('name', r['ticker']),
+                'sector': r.get('sector', 'Other'),
+                'market_cap': r.get('market_cap', 0),
+                'price': r['price'],
+                'change_1d': r['change_1d'],
+                'score': score_for(d['rsi_gap'], d['age_bars']),
+                'first_seen_ts': first_seen_ts,
+                'stats': [
+                    {
+                        'label': 'Setup',
+                        'value': f"{DIRECTION_LABEL[direction]} · {TIMEFRAME_LABEL[timeframe]}",
+                        'cls': 'stat-good' if direction == 'bull' else 'stat-bad',
+                    },
+                    {'label': 'RSI Gap', 'value': f"+{d['rsi_gap']:.1f}"},
+                    {'label': 'Since', 'value': since_label},
+                ],
+                'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
+                'lows': r['lows'], 'closes': r['closes'], 'volumes': r['volumes'],
+            })
+    return cards
 
 
 def main():
@@ -260,23 +391,31 @@ def main():
         if i % 300 == 0:
             print(f"  ...{i}/{len(tickers)} scanned, {usable} usable, {len(results)} hits so far")
 
-    print(f"Done: {usable}/{len(tickers)} tickers had enough cached history. {len(results)} flagged.")
+    print(f"Done: {usable}/{len(tickers)} tickers had enough cached history. {len(results)} tickers flagged.")
 
-    data = {r["ticker"]: r for r in sorted(results, key=lambda r: r["ticker"])}
-    with open(TEMPLATE) as f:
-        template = f.read()
-    assert "<<<NAV_HTML>>>" in template
-    assert "<<<DATA_JSON>>>" in template
+    history = load_seen_history()
+    today = date.today()
+    cards = build_cards(results, history, today)
+    save_seen_history(history)
+    print(f"Built {len(cards)} cards (one per ticker+direction+timeframe divergence) from {len(results)} flagged tickers.")
 
-    from dashboard_template import render_nav, size_bucket
-    for r in data.values():
-        r["size"] = size_bucket(r.get("market_cap", 0))
-    html = template.replace("<<<NAV_HTML>>>", render_nav(OUTPUT))
-    html = html.replace("<<<DATA_JSON>>>", json.dumps(data, separators=(",", ":")))
-
-    with open(OUTPUT, "w", encoding="utf-8") as f:
-        f.write(html)
-    print(f"Wrote {OUTPUT} ({len(html)} bytes, {len(results)} tickers flagged).")
+    from dashboard_template import render_dashboard_html
+    render_dashboard_html(
+        cards=cards,
+        total_scanned=len(tickers),
+        title='↕️ RSI Divergence',
+        subtitle="Price prints a new swing extreme that RSI doesn't confirm (daily &amp; weekly) · pivots &ge;5 bars apart · 2nd pivot within the last 8 bars · not yet invalidated by a close back past that level · no minimum RSI-gap filter.",
+        footer_note=(
+            'RSI Divergence · Data via Yahoo Finance (yfinance), ticker universe via SeaBee/Market Index<br>'
+            'One card per independent divergence - a ticker can carry a bullish and a bearish signal at once, '
+            'or a daily and a weekly one, each tracked and scored separately. '
+            '"Setup" shows direction and timeframe; RSI Gap is the actual divergence size (not gated by a minimum).'
+        ),
+        out_path=OUTPUT,
+        default_sort_key='score',
+        default_mode='chart',
+    )
+    print(f"Wrote {OUTPUT}.")
 
 
 if __name__ == "__main__":
