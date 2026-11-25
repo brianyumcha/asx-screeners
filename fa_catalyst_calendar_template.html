@@ -67,6 +67,10 @@ p{color:var(--ink-soft)}
 
 .chipsection{margin-top:1.3rem}
 .chipsection h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);font-weight:700;margin-bottom:.6rem}
+.chipsection h2.collapsible{cursor:pointer;user-select:none;display:flex;align-items:center;gap:.4rem}
+.chipsection h2.collapsible .collapsecaret{display:inline-block;transition:transform .15s ease;font-size:.7rem}
+.chipsection.collapsed h2.collapsible .collapsecaret{transform:rotate(-90deg)}
+.chipsection.collapsed .calgridwrap{display:none}
 .divider{border:none;border-top:1px solid var(--border);margin:1.4rem 0}
 .chipgroups{display:flex;flex-direction:column;gap:.5rem}
 .chipgroup{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
@@ -396,6 +400,17 @@ function saveWatchlist(set){
 }
 let watched = loadWatchlist();
 
+const WATCH_COLLAPSE_KEY = 'faCatalystWatchlistCollapsed';
+function loadWatchCollapsed(){
+  try{ return localStorage.getItem(WATCH_COLLAPSE_KEY) === '1'; }
+  catch(e){ return false; }
+}
+function saveWatchCollapsed(v){
+  try{ localStorage.setItem(WATCH_COLLAPSE_KEY, v ? '1' : '0'); }
+  catch(e){}
+}
+let watchCollapsed = loadWatchCollapsed();
+
 function rowHtml([ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise, estimated, lastClose, closeDate]){
   const asxUrl = `https://www.asx.com.au/markets/company/${encodeURIComponent(ticker.toLowerCase())}`;
   const companyLine = company
@@ -494,8 +509,8 @@ function render(){
     watchSection.innerHTML = '';
   } else {
     watchSection.innerHTML = `
-      <div class="chipsection">
-        <h2>★ Watchlist</h2>
+      <div class="chipsection${watchCollapsed ? ' collapsed' : ''}">
+        <h2 class="collapsible" id="watchToggle"><span class="collapsecaret">&#9662;</span>★ Watchlist (${watchRows.length})</h2>
         <div class="calgridwrap">
           <table class="calgrid watchtable">
             <thead><tr><th>Date</th><th>Ticker</th><th>Company</th><th>Last Close</th><th>Type</th><th>Catalyst</th><th>Timing</th></tr></thead>
@@ -504,6 +519,11 @@ function render(){
         </div>
       </div>
       <hr class="divider">`;
+    document.getElementById('watchToggle').addEventListener('click', () => {
+      watchCollapsed = !watchCollapsed;
+      saveWatchCollapsed(watchCollapsed);
+      render();
+    });
   }
   document.getElementById('countLabel').textContent = `${rows.length} of ${DATA.length} catalysts`;
   document.querySelectorAll('#typechips .commchip[data-type]').forEach(c => c.classList.toggle('active', activeTypes.has(c.dataset.type)));

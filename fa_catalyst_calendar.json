@@ -1208,7 +1208,7 @@
     },
     {
       "catalyst": "Resettlement (RAP Phase 2) after exploitation permit grant",
-      "catalyst_type": "trial_regulatory",
+      "catalyst_type": "production_fid",
       "timing": "Q2 2027 to end of 2028",
       "sort": "2027-05-15",
       "day_precise": false,
@@ -2157,7 +2157,7 @@
     },
     {
       "catalyst": "Phase 2 expansion resumes (to 580ktpa), then Phase 3 (830ktpa)",
-      "catalyst_type": "trial_regulatory",
+      "catalyst_type": "production_fid",
       "timing": "Phase 2 resumes in 2027",
       "sort": "2027-12-31",
       "day_precise": false,
@@ -2188,7 +2188,7 @@
   "GLN": [
     {
       "catalyst": "Hombre Muerto West (Argentina) — first lithium chloride concentrate sales (Phase 1)",
-      "catalyst_type": "trial_regulatory",
+      "catalyst_type": "production_fid",
       "timing": "Q4 CY2026",
       "sort": "2026-11-15",
       "day_precise": false,
@@ -2197,7 +2197,7 @@
     },
     {
       "catalyst": "HMW Phase 1 — reach initial 4 ktpa LCE throughput as plant moves into warmer conditions",
-      "catalyst_type": "trial_regulatory",
+      "catalyst_type": "production_fid",
       "timing": "H1 CY2027",
       "sort": "2027-03-31",
       "day_precise": false,
@@ -2206,7 +2206,7 @@
     },
     {
       "catalyst": "HMW Phase 1 expansion to 5.2 ktpa LCE (earthworks commenced) — higher production volumes; additional winter-resilience processing capacity",
-      "catalyst_type": "trial_regulatory",
+      "catalyst_type": "production_fid",
       "timing": "H2 2027",
       "sort": "2027-09-30",
       "day_precise": false,
@@ -3005,7 +3005,7 @@
   "JGH": [
     {
       "catalyst": "TTCBM — Phase 1 development works commence (subject to definitive agreements)",
-      "catalyst_type": "trial_regulatory",
+      "catalyst_type": "production_fid",
       "timing": "Late 2026",
       "sort": "2026-11-15",
       "day_precise": false,
@@ -3090,7 +3090,7 @@
     },
     {
       "catalyst": "Iron Bear — secure non-dilutive funding/new partner after Vale declined Phase 2 (IBR retains 100%)",
-      "catalyst_type": "trial_regulatory",
+      "catalyst_type": "capital_raise",
       "timing": "No firm date given",
       "sort": null,
       "day_precise": false,
