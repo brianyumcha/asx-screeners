@@ -38,6 +38,15 @@ def render_dashboard_html(
                                 # (or e.g. 'NASDAQ:') for a non-ASX ticker set
     default_mode='chart',       # 'chart' (card grid) or 'table' - which
                                 # Mode pill is active on page load
+    extra_facets=None,          # optional list of single-select filter rows,
+                                # e.g. [{'key': 'direction', 'label': 'Direction',
+                                # 'options': [['bull','Bullish'],['bear','Bearish']]}] -
+                                # each `key` must match a flat string field on
+                                # every card (e.g. card['direction']). Renders
+                                # one reset pill (labeled 'all_label' if given,
+                                # else "All <label>") + one pill per option,
+                                # same look as the Sector row. Defaults to none,
+                                # so every other screener's output is unaffected.
 ):
     """
     Card schema (each item in `cards`):
@@ -60,6 +69,11 @@ def render_dashboard_html(
         'fa_badge': str (optional) - e.g. 'FA bullish — 27 Oct', from
             call_badges.load_call_badges(); shown as a small pill when set.
         'ta_badge': str (optional) - e.g. 'TA bullish — 29 Oct', same source.
+        'rsi': [...] (optional) - same length/trim/indexing as 'closes', None
+            for undefined leading bars (RSI needs `period` bars of history).
+            When present, draws an extra RSI sub-panel under the price panel
+            (card chart AND lightbox both, since they share drawChart()) -
+            absent entirely for any card that doesn't set it.
       }
 
     No cards are ever hidden here - a stock that keeps qualifying run
@@ -101,6 +115,7 @@ def render_dashboard_html(
     html = html.replace('##SESSION_LINE##', session_line)
     html = html.replace('##FOOTER_NOTE##', footer_note)
     html = html.replace('##SECTORS_JSON##', json.dumps(sectors))
+    html = html.replace('##EXTRA_FACETS_JSON##', json.dumps(extra_facets or []))
     html = html.replace('##DATA_JSON##', json.dumps(cards))
     html = html.replace('##DEFAULT_SORT_KEY##', default_sort_key)
     html = html.replace('##DEFAULT_SORT_DIR##', str(default_sort_dir))
@@ -341,6 +356,7 @@ input[type=text]:focus{border-color:rgba(232,179,85,.4)}
 .scorebar .num{font-size:.68rem;color:var(--muted)}
 
 .chartwrap{position:relative;width:100%;height:150px;cursor:zoom-in}
+.chartwrap.withrsi{height:210px}
 canvas{width:100%;height:100%;display:block}
 
 .lightbox-overlay{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.72);
@@ -499,6 +515,7 @@ footer{margin-top:2rem;font-size:.62rem;color:var(--muted);border-top:1px solid 
 
   <div class="ctrllabel" style="margin-bottom:.4rem">Sector</div>
   <div class="sectorrow" id="sectorRow"></div>
+  <div id="extraFacets"></div>
   <div class="ctrllabel" id="signalLabel" style="margin:.7rem 0 .4rem;display:none">Confluence signal</div>
   <div class="sectorrow" id="signalRow" style="display:none"></div>
   <div class="countline" id="countLine"></div>
@@ -580,6 +597,7 @@ if (document.fonts && document.fonts.ready) { document.fonts.ready.then(updateTh
 
 const DATA = ##DATA_JSON##;
 const SECTORS = ##SECTORS_JSON##;
+const EXTRA_FACETS = ##EXTRA_FACETS_JSON##;
 const TV_PREFIX = ##TV_PREFIX_JSON##;
 
 let state = {
@@ -590,6 +608,7 @@ let state = {
   search: '',
   priceFloor: false,
   sector: null,
+  facets: {},
   sortKey: '##DEFAULT_SORT_KEY##',
   sortDir: ##DEFAULT_SORT_DIR##,
 };
@@ -610,6 +629,28 @@ sectorRow.querySelectorAll('.sectorpill').forEach(el => el.addEventListener('cli
   el.classList.add('active');
   render();
 }));
+
+// Generic single-select filter rows, data-driven from EXTRA_FACETS (opt-in,
+// see render_dashboard_html()'s extra_facets param) - a page that doesn't
+// pass any gets an empty array here and this whole block is a no-op.
+const extraFacetsEl = document.getElementById('extraFacets');
+EXTRA_FACETS.forEach(f => {
+  state.facets[f.key] = null;
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `<div class="ctrllabel" style="margin:.7rem 0 .4rem">${esc(f.label)}</div>
+    <div class="sectorrow">
+      <button class="sectorpill active" data-value="">${esc(f.all_label || ('All ' + f.label))}</button>
+      ${f.options.map(([v, l]) => `<button class="sectorpill" data-value="${esc(v)}">${esc(l)}</button>`).join('')}
+    </div>`;
+  extraFacetsEl.appendChild(wrap);
+  const pills = wrap.querySelectorAll('.sectorpill');
+  pills.forEach(el => el.addEventListener('click', () => {
+    state.facets[f.key] = el.dataset.value || null;
+    pills.forEach(x => x.classList.remove('active'));
+    el.classList.add('active');
+    render();
+  }));
+});
 
 // Confluence-signal filter - only present for screeners whose cards carry
 // a signals_present array (Pullback today). A no-op section for anything
@@ -704,7 +745,8 @@ function filteredCards() {
     state.sizes.has(c.size) &&
     (!state.sector || c.sector === state.sector) &&
     (!state.search || c.ticker.includes(state.search)) &&
-    (state.signals.size === 0 || [...state.signals].every(k => (c.signals_present || []).includes(k)))
+    (state.signals.size === 0 || [...state.signals].every(k => (c.signals_present || []).includes(k))) &&
+    EXTRA_FACETS.every(f => !state.facets[f.key] || c[f.key] === state.facets[f.key])
   );
 }
 
@@ -738,12 +780,25 @@ function drawChart(canvas, card, tf) {
   const W = rect.width, H = rect.height;
   ctx.clearRect(0, 0, W, H);
 
+  // Optional RSI sub-panel beneath the price panel (RSI Divergence
+  // screener only - absent/no-op for every other card type, same gating
+  // as the box/wave-point overlays above). card.rsi is the SAME
+  // full-history trimmed array as closes/highs/lows (sliced by `start`
+  // below), so it lines up bar-for-bar with the price panel above it.
+  // Carved out of whatever height the canvas actually has (card view or
+  // the much taller lightbox) rather than a fixed pixel split, with a
+  // floor so it stays legible even on the small card chart.
+  const hasRsi = !!(card.rsi && card.rsi.length === n);
+  const rsiH = hasRsi ? Math.max(36, H * 0.28) : 0;
+  const rsiGap = hasRsi ? 6 : 0;
+  const priceH = H - rsiH - rsiGap;
+
   const allVals = [...highs, ...lows, ...sma20.filter(v=>v!=null), ...sma50.filter(v=>v!=null)];
   if (card.box_top != null && card.box_bottom != null) allVals.push(card.box_top, card.box_bottom);
   const lo = Math.min(...allVals), hi = Math.max(...allVals);
   const pad = (hi - lo) * 0.08 || 1;
   const yMin = lo - pad, yMax = hi + pad;
-  const y = v => H - ((v - yMin) / (yMax - yMin)) * H;
+  const y = v => priceH - ((v - yMin) / (yMax - yMin)) * priceH;
   const n2 = closes.length;
   const cw = W / n2;
   const x = i => i * cw + cw / 2;
@@ -841,6 +896,41 @@ function drawChart(canvas, card, tf) {
   ctx.fillRect(bx - 4, by - 8, tw + 8, 16);
   ctx.fillStyle = isLightTheme() ? '#fdf8ef' : '#1c1204';
   ctx.fillText(label, bx, by + 3);
+
+  if (hasRsi) {
+    const rsiVals = card.rsi.slice(start);
+    const panelTop = priceH + rsiGap;
+    const rsiY = v => panelTop + rsiH - (v / 100) * rsiH;
+
+    ctx.strokeStyle = isLightTheme() ? 'rgba(61,56,41,0.18)' : 'rgba(201,194,176,0.18)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    [30, 70].forEach(level => {
+      ctx.beginPath();
+      ctx.moveTo(0, rsiY(level));
+      ctx.lineTo(W, rsiY(level));
+      ctx.stroke();
+    });
+    ctx.setLineDash([]);
+
+    ctx.beginPath();
+    ctx.strokeStyle = isLightTheme() ? '#6b4fa0' : '#b8a8e8';
+    ctx.lineWidth = 1.3;
+    let started = false;
+    for (let i = 0; i < rsiVals.length; i++) {
+      if (rsiVals[i] == null) continue;
+      const px = x(i), py = rsiY(rsiVals[i]);
+      if (!started) { ctx.moveTo(px, py); started = true; } else { ctx.lineTo(px, py); }
+    }
+    ctx.stroke();
+
+    const lastRsi = [...rsiVals].reverse().find(v => v != null);
+    if (lastRsi != null) {
+      ctx.font = '600 9px "IBM Plex Mono", monospace';
+      ctx.fillStyle = isLightTheme() ? '#6b4fa0' : '#b8a8e8';
+      ctx.fillText(`RSI ${lastRsi.toFixed(0)}`, 2, panelTop + 9);
+    }
+  }
 }
 
 function callBadgesHtml(c) {
@@ -865,7 +955,7 @@ function cardHtml(c) {
     </div>
     ${c.name ? `<div class="company-name">${esc(c.name)}</div>` : ''}
     ${callBadgesHtml(c)}
-    <div class="chartwrap"><canvas></canvas></div>
+    <div class="chartwrap${c.rsi ? ' withrsi' : ''}"><canvas></canvas></div>
     <div class="statrow">${statsHtml}</div>
     <div class="sectortag">${esc(c.sector)}</div>
   </div>`;

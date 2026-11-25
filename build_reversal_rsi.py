@@ -41,17 +41,24 @@ next to every other screener once there were several of them. A single
 ticker can carry up to 4 independent divergences at once (bullish/bearish
 x daily/weekly); each becomes its OWN card rather than cramming all four
 into one, same "one qualifying result = one card" convention the other
-screeners already use. The old table's per-row Direction/Timeframe filter
-pills don't have an equivalent in the shared renderer (which only filters
-by Sector and Market Cap size) - rather than extend that shared function
-for one screener's sake, Direction+Timeframe are shown as a single
-colored "Setup" stat per card instead (green for bullish, red for
-bearish) - visibly scannable, just not a toggle-filter. The exact pivot
+screeners already use. Direction+Timeframe are also still shown as a
+single colored "Setup" stat per card (green for bullish, red for
+bearish) since that's the quickest-scanned form; the exact pivot
 dates/values that used to fill two whole table columns are condensed into
 the RSI Gap stat plus the swing dates in each card's footer_note-adjacent
 detail; the mini chart is a plain price/RSI context view, not an
 annotated pivot overlay (the shared chart-drawing code has no marker
 primitive, and adding one risks every other screener that reuses it).
+
+2026-11-25 (later same day): added real Direction/Timeframe toggle
+filters and an actual RSI sub-panel on the chart, both requested after
+the above tradeoffs were explained. Rather than hardcode either into the
+shared renderer, both are generic, opt-in, data-driven additions:
+render_dashboard_html()'s new `extra_facets` param renders a single-select
+filter row per facet purely from what's passed in (used here for
+direction/timeframe; every other screener passes nothing and is
+unaffected), and drawChart() draws an RSI sub-panel only when a card sets
+`rsi` (same gating pattern as the existing box/wave-point overlays).
 """
 import importlib.util
 import json
@@ -245,6 +252,7 @@ def analyse_ticker(ticker, frame):
     out["lows"] = [round(float(v), 4) for v in frame["low"].iloc[start:].tolist()]
     out["closes"] = [round(float(v), 4) for v in d_closes[start:]]
     out["volumes"] = [int(v) for v in frame["volume"].iloc[start:].tolist()]
+    out["rsi"] = [None if v is None else round(float(v), 2) for v in d_rsi[start:]]
     return out
 
 
@@ -346,6 +354,8 @@ def build_cards(results, history, today):
                 'change_1d': r['change_1d'],
                 'score': score_for(d['rsi_gap'], d['age_bars']),
                 'first_seen_ts': first_seen_ts,
+                'direction': direction,
+                'timeframe': timeframe,
                 'stats': [
                     {
                         'label': 'Setup',
@@ -357,6 +367,7 @@ def build_cards(results, history, today):
                 ],
                 'dates': r['dates'], 'opens': r['opens'], 'highs': r['highs'],
                 'lows': r['lows'], 'closes': r['closes'], 'volumes': r['volumes'],
+                'rsi': r['rsi'],
             })
     return cards
 
@@ -414,6 +425,19 @@ def main():
         out_path=OUTPUT,
         default_sort_key='score',
         default_mode='chart',
+        extra_facets=[
+            {
+                'key': 'direction',
+                'label': 'Direction',
+                'options': [['bull', 'Bullish'], ['bear', 'Bearish']],
+            },
+            {
+                'key': 'timeframe',
+                'label': 'Timeframe',
+                'all_label': 'Daily+Weekly',
+                'options': [['daily', 'Daily'], ['weekly', 'Weekly']],
+            },
+        ],
     )
     print(f"Wrote {OUTPUT}.")
 
