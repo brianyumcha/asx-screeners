@@ -739,6 +739,7 @@ function drawChart(canvas, card, tf) {
   ctx.clearRect(0, 0, W, H);
 
   const allVals = [...highs, ...lows, ...sma20.filter(v=>v!=null), ...sma50.filter(v=>v!=null)];
+  if (card.box_top != null && card.box_bottom != null) allVals.push(card.box_top, card.box_bottom);
   const lo = Math.min(...allVals), hi = Math.max(...allVals);
   const pad = (hi - lo) * 0.08 || 1;
   const yMin = lo - pad, yMax = hi + pad;
@@ -763,6 +764,27 @@ function drawChart(canvas, card, tf) {
   }
   line(sma50, isLightTheme() ? 'rgba(61,56,41,0.55)' : 'rgba(201,194,176,0.55)', true);
   line(sma20, isLightTheme() ? 'rgba(22,53,64,0.85)' : 'rgba(143,196,219,0.85)', false);
+
+  // Optional Darvas box overlay (Darvas Box screener only - absent/no-op
+  // for every other card type, same gating pattern as wave_points below).
+  // Left edge is where the box's top was confirmed (card.box_days_since_top
+  // sessions back from the most recent bar, in the FULL trimmed array
+  // Python sent - not the shorter timeframe-filtered view), clamped to the
+  // visible window's left edge if the box is older than the current view.
+  // Right edge is always "today" since a reported box is still live/intact.
+  if (card.box_top != null && card.box_bottom != null) {
+    const topIdxView = (n - 1 - (card.box_days_since_top || 0)) - start;
+    const leftX = topIdxView <= 0 ? 0 : x(Math.min(topIdxView, n2 - 1)) - cw / 2;
+    const boxTopY = y(card.box_top), boxBotY = y(card.box_bottom);
+    const boxRGB = isLightTheme() ? '156,107,31' : '224,166,63';
+    ctx.fillStyle = `rgba(${boxRGB},0.08)`;
+    ctx.fillRect(leftX, boxTopY, W - leftX, boxBotY - boxTopY);
+    ctx.strokeStyle = `rgba(${boxRGB},0.75)`;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 3]);
+    ctx.strokeRect(leftX, boxTopY, W - leftX, boxBotY - boxTopY);
+    ctx.setLineDash([]);
+  }
 
   // Deliberately more saturated than the --good/--bad text tokens (those
   // are tuned to sit quietly inline in prose; a candlestick needs to read

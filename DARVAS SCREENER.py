@@ -269,6 +269,9 @@ def build_html_report(results, total_scanned, out_path):
             'change_1d': r['change_1d'],
             'score': int(round(max(0.0, 1 - r['box_height_pct'] / 20.0) * 100)),
             'first_seen_ts': first_seen_ts,
+            'box_top': r['box_top'],
+            'box_bottom': r['box_bottom'],
+            'box_days_since_top': r['days_since_top'],
             'stats': [
                 {'label': 'Box height', 'value': f"{r['box_height_pct']:.1f}%"},
                 {'label': 'In box', 'value': f"{r['days_since_top']}d"},
