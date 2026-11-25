@@ -106,6 +106,9 @@ table.calgrid tr:last-child td{border-bottom:none}
 tr.monthsep td{background:color-mix(in srgb, var(--accent2) 16%, var(--surface2));
   color:var(--accent2);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
   padding:.4rem .6rem;border-left:3px solid var(--accent2);border-bottom:1px solid var(--border)}
+tr.overduesep td{background:var(--bad-bg);color:var(--bad);font-size:.68rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;padding:.4rem .6rem;border-left:3px solid var(--bad);
+  border-bottom:1px solid var(--border)}
 tr.todaymarker td{padding:.3rem .6rem;font-size:.72rem;font-weight:700;color:var(--accent);
   border-top:2px solid var(--accent);border-bottom:2px solid var(--accent);
   background:color-mix(in srgb, var(--accent) 10%, transparent);letter-spacing:.03em}
@@ -317,6 +320,29 @@ DATA.forEach(r => {
   if(r[9] && r[7] !== null && r[7] < TODAY_ISO) r[7] = TODAY_ISO;
 });
 
+// The bump above only mutates r[7] in place - DATA's array order was fixed
+// at build time from the ORIGINAL (pre-bump) dates, so without a re-sort a
+// bumped September/October row renders at its old array position, inside a
+// run of other still-October rows, and the month-separator logic (which
+// just watches for monthLabel(sort) to change as it walks the array) emits
+// a new "November" block there, then an "October" block for the untouched
+// rows right after it, then a THIRD block once the array reaches the real
+// November rows - "November, October, November" with no month boundary
+// actually being crossed twice. Reported 4 times (most recently: "has
+// November, then October, then November again... why do I have 2
+// Novembers"). Re-sorting here, using the same key build_fa_catalyst_
+// calendar.py's rows.sort(...) uses but against the now-current r[7]
+// values, is what actually fixes it - the bump alone never could.
+DATA.sort((a, b) => {
+  const aNull = a[7] === null, bNull = b[7] === null;
+  if(aNull !== bNull) return aNull ? 1 : -1;
+  const aYm = (a[7] || '').slice(0, 7), bYm = (b[7] || '').slice(0, 7);
+  if(aYm !== bYm) return aYm < bYm ? -1 : 1;
+  if(a[9] !== b[9]) return a[9] ? 1 : -1;   // estimated sorts after non-estimated within the month
+  if(a[8] !== b[8]) return a[8] ? -1 : 1;   // day-precise sorts before non-day-precise
+  return a[0].localeCompare(b[0]);
+});
+
 const typeCounts = {};
 DATA.forEach(r => { typeCounts[r[4]] = (typeCounts[r[4]] || 0) + 1; });
 
@@ -413,10 +439,38 @@ function render(){
   if(!rows.length){
     grid.innerHTML = '<tr><td colspan="7"><div class="emptystate">No catalysts match the current filters.</div></td></tr>';
   } else {
+    // A row is only genuinely overdue once the window IT actually claimed
+    // has lapsed - not whenever its internal sort key (used purely for
+    // ordering within a month) happens to sit before today. A day-precise
+    // row ("31 October 2026") claimed an exact day, so it's overdue the
+    // moment that day passes. A row that only names a month ("November
+    // 2026", day_precise=false, NOT estimated - too fine-grained a claim
+    // to be an estimated quarter/half-window guess, but too coarse to
+    // have an exact day) gets an arbitrary mid-month placeholder sort
+    // value just to alphabetize within that month's block - testing THAT
+    // placeholder against today's exact date flagged roughly 20 still-
+    // current-month rows (e.g. "Targeted November 2026" while today is
+    // still in November) as falsely overdue. The real test for those is
+    // whether their stated MONTH has fully passed, not their placeholder
+    // day. (An `estimated` row's sort was already bumped to today above,
+    // so it never reaches here as overdue either way.)
+    function isOverdue(r){
+      const sort = r[7];
+      if(sort === null) return false;
+      return r[8] ? sort < TODAY_ISO : sort.slice(0, 7) < TODAY_ISO.slice(0, 7);
+    }
+    const overdue = rows.filter(isOverdue);
+    const upcoming = rows.filter(r => !isOverdue(r));
+
     let html = '';
+    if(overdue.length){
+      html += `<tr class="overduesep"><td colspan="7">&#9888; Overdue — stated date has passed, needs re-verification</td></tr>`;
+      for(const r of overdue) html += rowHtml(r);
+    }
     let lastMonth = null;
     let todayInserted = false;
-    for(const [ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise, estimated, lastClose, closeDate] of rows){
+    for(const r of upcoming){
+      const sort = r[7];
       if(!todayInserted && (sort === null || sort >= TODAY_ISO)){
         html += `<tr class="todaymarker"><td colspan="7"><span class="todaydot"></span>Today — ${esc(TODAY_LABEL)}</td></tr>`;
         todayInserted = true;
@@ -426,7 +480,7 @@ function render(){
         html += `<tr class="monthsep"><td colspan="7">${esc(bucket)}</td></tr>`;
         lastMonth = bucket;
       }
-      html += rowHtml([ticker, company, sector, catalyst, typeKey, typeLabel, timing, sort, dayPrecise, estimated, lastClose, closeDate]);
+      html += rowHtml(r);
     }
     if(!todayInserted){
       html += `<tr class="todaymarker"><td colspan="7"><span class="todaydot"></span>Today — ${esc(TODAY_LABEL)}</td></tr>`;

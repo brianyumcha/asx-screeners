@@ -610,6 +610,8 @@ table.calendartable td.lastclose{font-family:"IBM Plex Mono",monospace;text-alig
 table.calendartable tr.monthsep td{background:color-mix(in srgb, var(--accent2) 16%, var(--surface2));
   color:var(--accent2);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
   border-left:3px solid var(--accent2)}
+table.calendartable tr.overduesep td{background:var(--risk-bg);color:var(--risk);font-size:.68rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-left:3px solid var(--risk)}
 table.calendartable td.caldate{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);white-space:normal}
 table.calendartable td.timing{color:var(--warn);font-size:.8rem}
 
@@ -737,22 +739,42 @@ function calMonthLabel(iso){
     if(a.dayPrecise !== b.dayPrecise) return a.dayPrecise ? -1 : 1;
     return a.tk.localeCompare(b.tk);
   });
-  let html = '';
-  let lastMonth = null;
-  for(const r of flat){
-    const bucket = calMonthLabel(r.sort);
-    if(bucket !== lastMonth){
-      html += `<tr class="monthsep"><td colspan="5">${escHtml(bucket)}</td></tr>`;
-      lastMonth = bucket;
-    }
+  function rowHtml(r){
     const asxUrl = `https://www.asx.com.au/markets/company/${encodeURIComponent(r.tk.toLowerCase())}`;
-    html += `<tr>
+    return `<tr>
       <td class="caldate">${fmtCalDate(r.sort, r.dayPrecise, r.estimated)}</td>
       <td class="tk"><a href="${asxUrl}" target="_blank" rel="noopener noreferrer">${escHtml(r.tk)}</a></td>
       <td class="lastclose">${fmtClose(r.tk)}</td>
       <td class="desc">${escHtml(r.catalyst)}</td>
       <td class="timing">${escHtml(r.timing || '—')}</td>
     </tr>`;
+  }
+  // A row is only genuinely overdue once the window IT actually claimed
+  // has lapsed, not whenever its internal sort key (a placeholder used
+  // purely to order rows within a month) happens to sit before today -
+  // see the public FA Catalyst Calendar's isOverdue() for the full
+  // reasoning (a month-only claim like "November 2026" isn't overdue
+  // while today is still in November, even though its mid-month
+  // placeholder sort value already is).
+  function isOverdue(r){
+    if(r.sort === null) return false;
+    return r.dayPrecise ? r.sort < todayIso : r.sort.slice(0, 7) < todayIso.slice(0, 7);
+  }
+  const overdue = flat.filter(isOverdue);
+  const upcoming = flat.filter(r => !isOverdue(r));
+  let html = '';
+  if(overdue.length){
+    html += `<tr class="overduesep"><td colspan="5">&#9888; Overdue — stated date has passed, needs re-verification</td></tr>`;
+    for(const r of overdue) html += rowHtml(r);
+  }
+  let lastMonth = null;
+  for(const r of upcoming){
+    const bucket = calMonthLabel(r.sort);
+    if(bucket !== lastMonth){
+      html += `<tr class="monthsep"><td colspan="5">${escHtml(bucket)}</td></tr>`;
+      lastMonth = bucket;
+    }
+    html += rowHtml(r);
   }
   body.innerHTML = html || '<tr><td colspan="5" class="nocat">No catalysts tracked yet.</td></tr>';
 })();
