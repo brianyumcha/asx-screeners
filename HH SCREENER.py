@@ -2136,16 +2136,6 @@ function drawChart(canvas, r, tf) {
     ctx.fillRect(x(i) - bw / 2, bodyTop, bw, Math.max(1, bodyBot - bodyTop));
   }
 
-  const lastPrice = closes[closes.length - 1];
-  const up = r.change_1d >= 0;
-  ctx.font = '600 10px "IBM Plex Mono", monospace';
-  const label = lastPrice.toFixed(lastPrice < 1 ? 3 : 2);
-  const tw = ctx.measureText(label).width;
-  const bx = W - tw - 10, by = y(lastPrice);
-  ctx.fillStyle = up ? CANDLE_UP : CANDLE_DOWN;
-  ctx.fillRect(bx - 4, by - 8, tw + 8, 16);
-  ctx.fillStyle = isLightTheme() ? '#fdf8ef' : '#1c1204';
-  ctx.fillText(label, bx, by + 3);
 }
 
 function callBadgesHtml(r) {
